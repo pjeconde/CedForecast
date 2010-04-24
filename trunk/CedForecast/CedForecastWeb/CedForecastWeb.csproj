@@ -1,0 +1,278 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF45BC73-5AB0-4440-BDFC-152258195500}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CedForecastWeb</RootNamespace>
+    <AssemblyName>CedForecastWeb</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.10618.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\CrystalDecisions.Web\10.2.3600.0__692fbea5521e1304\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Windows\assembly\GAC_MSIL\System.Web.Extensions\1.0.61025.0__31bf3856ad364e35\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Inicio.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Administracion.Master.cs">
+      <DependentUpon>Administracion.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Administracion.Master.designer.cs">
+      <DependentUpon>Administracion.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Configuracion.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Configuracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Configuracion.aspx.designer.cs">
+      <DependentUpon>Configuracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Cuenta\Explorador.aspx.cs">
+      <DependentUpon>Explorador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Cuenta\Explorador.aspx.designer.cs">
+      <DependentUpon>Explorador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaConfirmacion.aspx.cs">
+      <DependentUpon>CuentaConfirmacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaConfirmacion.aspx.designer.cs">
+      <DependentUpon>CuentaConfirmacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaCrear.aspx.cs">
+      <DependentUpon>CuentaCrear.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaCrear.aspx.designer.cs">
+      <DependentUpon>CuentaCrear.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaOlvidoId.aspx.cs">
+      <DependentUpon>CuentaOlvidoId.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaOlvidoId.aspx.designer.cs">
+      <DependentUpon>CuentaOlvidoId.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaOlvidoPassword.aspx.cs">
+      <DependentUpon>CuentaOlvidoPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaOlvidoPassword.aspx.designer.cs">
+      <DependentUpon>CuentaOlvidoPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DatePickerWebUserControl.ascx.cs">
+      <DependentUpon>DatePickerWebUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DatePickerWebUserControl.ascx.designer.cs">
+      <DependentUpon>DatePickerWebUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SoloDispPUsuariosOperForecast.aspx.cs">
+      <DependentUpon>SoloDispPUsuariosOperForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SoloDispPUsuariosOperForecast.aspx.designer.cs">
+      <DependentUpon>SoloDispPUsuariosOperForecast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Excepcion.aspx.cs">
+      <DependentUpon>Excepcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Excepcion.aspx.designer.cs">
+      <DependentUpon>Excepcion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\Forecast.Master.cs">
+      <DependentUpon>Forecast.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\Forecast.Master.designer.cs">
+      <DependentUpon>Forecast.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="CedForecastWeb.Master.cs">
+      <DependentUpon>CedForecastWeb.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CedForecastWeb.Master.designer.cs">
+      <DependentUpon>CedForecastWeb.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoloDispPUsuariosAdministradores.aspx.cs">
+      <DependentUpon>SoloDispPUsuariosAdministradores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SoloDispPUsuariosAdministradores.aspx.designer.cs">
+      <DependentUpon>SoloDispPUsuariosAdministradores.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cal\calendar.gif" />
+    <Content Include="cal\close.gif" />
+    <Content Include="cal\divider.gif" />
+    <Content Include="cal\drop1.gif" />
+    <Content Include="cal\drop2.gif" />
+    <Content Include="cal\left1.gif" />
+    <Content Include="cal\left2.gif" />
+    <Content Include="cal\popcalendar.css" />
+    <Content Include="cal\popcalendar.js" />
+    <Content Include="cal\right1.gif" />
+    <Content Include="cal\right2.gif" />
+    <Content Include="cal\up2.gif" />
+    <Content Include="CedForecastWeb.Master" />
+    <Content Include="Imagenes\Cedeira.ico" />
+    <Content Include="Imagenes\head-map-center.jpg" />
+    <Content Include="Imagenes\head-map-der.jpg" />
+    <Content Include="Imagenes\head-map-izq.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forecast\Default.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Cuenta\Explorador.aspx" />
+    <Content Include="Excepcion.aspx" />
+    <Content Include="SoloDispPUsuariosAdministradores.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CaptchaDotNet2\CaptchaDotNet2.csproj">
+      <Project>{B76ED545-1CF6-40BC-A3E1-52C34B0A0EFF}</Project>
+      <Name>CaptchaDotNet2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedeiraUIWebForms\CedeiraUIWebForms.csproj">
+      <Project>{65404969-7DC6-45A2-BD12-40515251A60F}</Project>
+      <Name>CedeiraUIWebForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
+      <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
+      <Name>CedEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
+      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
+      <Name>CedeiraEx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastWebEntidades\CedForecastWebEntidades.csproj">
+      <Project>{13363318-67E8-47D8-BA5C-5CE5E2290CF8}</Project>
+      <Name>CedForecastWebEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastWebRN\CedForecastWebRN.csproj">
+      <Project>{0E25A061-E78C-4141-8590-892C2CAC08B5}</Project>
+      <Name>CedForecastWebRN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Administracion.Master" />
+    <Content Include="Admin\Configuracion.aspx" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Imagenes\head-map.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Cedeira\KS.css" />
+    <Content Include="CuentaConfirmacion.aspx" />
+    <Content Include="CuentaCrear.aspx" />
+    <Content Include="CuentaOlvidoId.aspx" />
+    <Content Include="CuentaOlvidoPassword.aspx" />
+    <Content Include="DatePickerWebUserControl.ascx" />
+    <Content Include="Imagenes\button_link.gif" />
+    <Content Include="Imagenes\FondoMenu.gif" />
+    <Content Include="SoloDispPUsuariosOperForecast.aspx" />
+    <Content Include="Forecast\Forecast.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Cedeira\KS.skin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\Temp\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v8.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52586</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

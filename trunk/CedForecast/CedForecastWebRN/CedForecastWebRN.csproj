@@ -1,0 +1,90 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E25A061-E78C-4141-8590-892C2CAC08B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CedForecastWebRN</RootNamespace>
+    <AssemblyName>CedForecastWebRN</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aplicacion.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Articulo.cs" />
+    <Compile Include="ConfirmacionCarga.cs" />
+    <Compile Include="Periodo.cs" />
+    <Compile Include="Zona.cs" />
+    <Compile Include="Division.cs" />
+    <Compile Include="Forecast.cs" />
+    <Compile Include="Cripto.cs" />
+    <Compile Include="Cuenta.cs" />
+    <Compile Include="Flag.cs" />
+    <Compile Include="Funciones.cs" />
+    <Compile Include="PaginaDefault.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sesion.cs" />
+    <Compile Include="Texto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CaptchaDotNet2\CaptchaDotNet2.csproj">
+      <Project>{B76ED545-1CF6-40BC-A3E1-52C34B0A0EFF}</Project>
+      <Name>CaptchaDotNet2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedeiraAP\CedeiraAP.csproj">
+      <Project>{DB0A7D76-F68E-43A7-ADBD-08DDF2AFAD36}</Project>
+      <Name>CedeiraAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
+      <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
+      <Name>CedEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
+      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
+      <Name>CedeiraEx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastWebDB\CedForecastWebDB.csproj">
+      <Project>{9EDAF57F-CE24-4128-B6FC-4A0166BC11D8}</Project>
+      <Name>CedForecastWebDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastWebEntidades\CedForecastWebEntidades.csproj">
+      <Project>{13363318-67E8-47D8-BA5C-5CE5E2290CF8}</Project>
+      <Name>CedForecastWebEntidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

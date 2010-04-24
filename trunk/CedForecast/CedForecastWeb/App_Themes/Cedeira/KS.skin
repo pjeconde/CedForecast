@@ -1,0 +1,148 @@
+<%@ Register Assembly="CedeiraUIWebForms" Namespace="CedeiraUIWebForms" TagPrefix="cc1" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
+<asp:Label runat="server" Font-Size="14px" ForeColor="#071F70" Font-Bold="True" SkinID="TituloPagina"></asp:Label>
+<asp:Label runat="server" Font-Size="12px" ForeColor="black" Font-Bold="True" SkinID="TituloMediano"></asp:Label>
+<asp:Label runat="server" Font-Size="10px" ForeColor="black" Font-Bold="True" Width="100%" SkinID="TituloChico"></asp:Label>
+<asp:Label runat="server" Font-Size="14px" ForeColor="white" Font-Bold="True" Width="100%" SkinID="TituloPaginaClaro"></asp:Label>
+<asp:Label runat="server" Font-Size="20px" ForeColor="white" Font-Bold="True" Width="100%" SkinID="TituloPaginaClaroGr"></asp:Label>
+
+<asp:Label runat="server" Font-Size="10px" ForeColor="white" Font-Bold="True" Width="100%" SkinID="MenuOpcion"></asp:Label>
+
+<asp:Label runat="server" Font-Size="12px" ForeColor="black" Font-Bold="False" Width="100%" SkinID="TextoInicioMediano"></asp:Label>
+<asp:Label runat="server" Font-Size="10px" ForeColor="black" Font-Bold="False" Width="100%" SkinID="TextoInicioChico"></asp:Label>
+
+<asp:Label runat="server" Font-Size="14px" ForeColor="black" SkinID="TextoGrande"></asp:Label>
+<asp:Label runat="server" Font-Size="12px" ForeColor="black" Font-Bold="False" SkinID="TextoMediano"></asp:Label>
+<asp:Label runat="server" Font-Size="10px" ForeColor="black" Font-Bold="False" Width="100%" SkinID="TextoChico"></asp:Label>
+
+<asp:Label runat="server" Font-Size="10px" ForeColor="white" Font-Bold="False" Width="100%" SkinID="BulletTituloMediano"></asp:Label>
+<asp:Label runat="server" Font-Size="10px" ForeColor="red" Font-Bold="False" Width="100%" SkinID="BulletLinkChico"></asp:Label>
+
+<asp:TextBox runat="server" Style="width: 50px" ForeColor="#071F70" SkinID="TextoBoxChico" BorderStyle="Solid" BorderWidth="1px" BorderColor=#071F70></asp:TextBox>
+<asp:TextBox runat="server" Style="width: 100px" ForeColor="#071F70" SkinID="TextoBoxMediano" BorderStyle="Solid" BorderWidth="1px" BorderColor=#071F70></asp:TextBox>
+
+<asp:Label runat="server" Font-Size="12px" ForeColor="#FF6600" Font-Bold="True" Width="100%" SkinID="MensajePagina"></asp:Label>
+<asp:Label runat="server" Font-Size="12px" ForeColor="#FF6600" Font-Bold="True" SkinID="MensajePaginaSinWidth"></asp:Label>
+
+<asp:ValidationSummary runat="server" Font-Size="12px" ForeColor="#FF6600" Font-Bold="True" SkinID="MensajeValidationSummary" HeaderText="Por favor, ingrese (o corrija) los siguientes campos: " ShowMessageBox="true" ShowSummary="true" DisplayMode="SingleParagraph"/>
+<asp:Label runat="server" SkinID="IndicadorValidacion" Font-Size="14px" ForeColor="#FF6600" Font-Bold="True" Text="*"></asp:Label>
+
+<asp:Label runat="server" Font-Size="14px" ForeColor="#202020" SkinID="TituloGrande"></asp:Label>
+<asp:Label runat="server" Font-Size="14px" ForeColor="#A52A2A" Font-Bold="True" Width="100%" SkinID="TituloColor1Grande"></asp:Label>
+<asp:Label runat="server" Font-Size="12px" ForeColor="#A52A2A" Font-Bold="True" SkinID="TituloColor1Mediano"></asp:Label>
+<asp:Label runat="server" Font-Size="10px" ForeColor="#A52A2A" Font-Bold="True" Width="100%" SkinID="TituloColor1Chico"></asp:Label>
+
+<asp:Label runat="server" Font-Size="12px" ForeColor="red" Font-Bold="True" Width="100%" SkinID="TituloColor2Mediano"></asp:Label>
+
+<asp:HyperLink runat="server" Font-Size="10px" ForeColor="#071F70" SkinID="LinkChico"></asp:HyperLink>
+<asp:HyperLink runat="server" Font-Size="12px" ForeColor="#071F70" SkinID="LinkMediano"></asp:HyperLink>
+<asp:HyperLink runat="server" Font-Size="10px" ForeColor="blue" SkinID="LinkChicoClaro"></asp:HyperLink>
+<asp:HyperLink runat="server" Font-Size="12px" ForeColor="blue" SkinID="LinkMedianoClaro"></asp:HyperLink>
+<asp:HyperLink runat="server" Font-Size="14px" ForeColor="blue" SkinID="LinkGrandeClaro"></asp:HyperLink>
+
+<asp:DropDownList runat="server" Style="width: 186px" ForeColor="#071F70" SkinID="DropDownListVendedor" BorderStyle="NotSet"></asp:DropDownList>
+<asp:DropDownList runat="server" Style="width: 200px" BackColor="peachpuff" ForeColor="brown" Font-Bold="true" SkinID="DropDownListPremium" BorderStyle="Solid" BorderColor="Brown" BorderWidth="1" ToolTip="Exclusivo SERVICIO PREMIUM"></asp:DropDownList>
+
+<asp:CheckBox runat="server" Width="40px" ForeColor="#071F70" SkinID="CheckBoxFEALoteDetChCh"></asp:CheckBox>
+
+<asp:DropDownList runat="server" Style="width: 186px" ForeColor="#071F70" SkinID="DropDownListComprador" BorderStyle="NotSet"></asp:DropDownList>
+<asp:DropDownList runat="server" Style="width: 280px" ForeColor="#071F70" SkinID="DropDownListCompradorGr" BorderStyle="NotSet"></asp:DropDownList>
+
+<asp:TextBox runat="server" Style="width: 590px" ForeColor="#071F70" SkinID="TextoBoxFEADescrGr" BorderStyle="NotSet"></asp:TextBox>
+
+<asp:Menu runat="server"
+    Width="100%"
+    DynamicHorizontalOffset="2"
+    StaticSubMenuIndent="12px" 
+    Font-Size="12px"
+    Font-Bold="True"
+    ForeColor="White"
+    BackColor="Transparent"
+    ItemWrap="true"
+    StaticMenuStyle-BackColor=Transparent
+    DynamicMenuStyle-BackColor=Transparent
+    StaticHoverStyle-BackColor=Transparent
+    DynamicHoverStyle-BackColor=Transparent
+    StaticSelectedStyle-BackColor=Transparent
+    DynamicSelectedStyle-BackColor=Transparent
+    StaticPopOutImageUrl="~/Imagenes/Indicador_SubMenu.gif"
+    DynamicPopOutImageUrl="~/Imagenes/Indicador_SubMenu.gif"
+    SkinID="MenuInicio">
+    <DynamicMenuItemStyle HorizontalPadding="8px" VerticalPadding="3px" />
+    <StaticMenuItemStyle HorizontalPadding="8px" VerticalPadding="3px" />
+</asp:Menu>
+      
+<cc1:paginggridview 
+    runat="server" 
+    CssClass="DataWebControlStylePagingGridView"
+    GridLines="None" 
+    AllowPaging="True" 
+    AllowSorting="True" 
+    CellPadding="1" 
+    VirtualItemCount="-1" 
+    BackColor="white"
+    AutoGenerateColumns="False">
+    <PagerSettings Mode="NumericFirstLast"/>
+    <PagerStyle CssClass="PagerStylePagingGridView"/>
+    <RowStyle CssClass="RowStylePagingGridView"/>
+    <AlternatingRowStyle CssClass="AlternatingRowStylePagingGridView"/>
+    <HeaderStyle CssClass="HeaderStylePagingGridView"/>
+    <FooterStyle CssClass="FooterStylePagingGridView"/>
+    <SelectedRowStyle CssClass="SelectedRowStylePagingGridView"/>
+</cc1:paginggridview>  
+
+<asp:GridView 
+    runat="server" 
+    SkinID="GrillaComun"
+    CssClass="DataWebControlStylePagingGridView"
+    GridLines="None" 
+    AllowPaging="False" 
+    AllowSorting="False" 
+    CellPadding="1" 
+    VirtualItemCount="-1" 
+    BackColor="white"
+    ShowFooter="true"
+    AutoGenerateColumns="False">
+    <RowStyle CssClass="RowStylePagingGridView"/>
+    <AlternatingRowStyle CssClass="AlternatingRowStylePagingGridView"/>
+    <HeaderStyle CssClass="HeaderStylePagingGridView"/>
+    <FooterStyle CssClass="FooterStylePagingGridView"/>
+    <SelectedRowStyle CssClass="SelectedRowStylePagingGridView"/>
+</asp:GridView>  
+
+<asp:GridView 
+    runat="server" 
+    SkinID="GrillaEspecialSinTitulo"
+    AutoGenerateColumns="False"
+    ShowHeader="false" ShowFooter="false"
+    BorderStyle="None"
+    GridLines="None"
+    Font-Size="Small" ForeColor="#AAAA99"
+    >
+</asp:GridView>
+
+<asp:SiteMapPath runat="server" RenderCurrentNodeAsLink="True" Font-Size="12px" PathSeparator="&gt;">
+    <PathSeparatorStyle Font-Bold="True" ForeColor="#990000" />
+    <CurrentNodeStyle ForeColor="#990000" />
+    <NodeStyle Font-Bold="True" ForeColor="#990000" />
+    <RootNodeStyle Font-Bold="True" ForeColor="#990000" />
+</asp:SiteMapPath>
+
+<asp:TreeView runat="server" 
+    Font-Size="12px" 
+    ForeColor="#404040"
+    RootNodeStyle-Font-Bold="true" 
+    RootNodeStyle-Font-Size="14px"
+    ShowLines="true"
+    SkinID="TextoMediano">
+</asp:TreeView>
+
+<CR:CrystalReportViewer runat="server" HasCrystalLogo="False"
+    DisplayGroupTree="False" EnableDatabaseLogonPrompt="False" EnableDrillDown="False"
+    EnableParameterPrompt="False" HasDrillUpButton="False" HasToggleGroupTreeButton="False"
+    HasViewList="False" HasZoomFactorList="False" ReuseParameterValuesOnRefresh="True"
+    SeparatePages="True" HasSearchButton="False" PrintMode="Pdf" ShowAllPageIds="True"
+    BestFitPage="False" HasPrintButton="False" Height="500px" Width="1070px"/>
+                                                

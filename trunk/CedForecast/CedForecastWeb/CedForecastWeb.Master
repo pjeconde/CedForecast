@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CedForecastWeb.Master.cs" Inherits="CedForecastWeb.CedForecastWeb" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="CedForecastWebHead" runat="server">
+    <title>Cedeira Software Factory</title>
+    <link href="cal/popcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="Imagenes/Cedeira.ico" rel="shortcut icon" />
+    <link href="App_Themes/Cedeira/KS.css" rel="stylesheet" type="text/css" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="K9/glGqlJwjaRgYqa7zUjPt1eBk+u1AUUC8kIJKa2BM=" name="verify-v1" />
+</head>
+<body style="width: 100%;">
+<form id="MasterNoAutenticadoForm" runat="server">
+        <table border="0" cellpadding="0px" cellspacing="0px" style="background-color: Gray ; width: 100%;">
+            <tr>
+                <td class="" rowspan="5" style="width: 50%; background-repeat: repeat-y; background-position: right; background-color:Gray">
+                </td>
+                <td style="width: 977px;">
+                </td>
+                <td class="" rowspan="5" style="width: 50%; background-repeat: repeat-y; background-position: left; background-color:Gray">
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 100px;" class="FondoEnca">
+                    <table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td style="height: 16px; width: 335px">
+							    <asp:Label ID="LabelEncaL" runat="server" SkinID="LabelGral" Text=""></asp:Label>
+							</td>
+							<td align="center" style="width: 100%">
+							</td>
+							<td style="height: 16px; text-align:right; padding-right: 5px;">
+							    <asp:Label ID="MensajeGeneralLabel" runat="server" Font-Bold="true" ForeColor="white"
+									Width="310px"></asp:Label>
+							</td>
+						</tr>
+						<tr>
+							<td style="height: 16px; width: 335px">
+							</td>
+							<td align="center" style="height: 16px;">
+							</td>
+							<td style="height: 16px;">
+							</td>
+						</tr>
+						<tr>
+							<td style="height: 18px; width: 335px">
+							</td>
+							<td align="center" style="height: 18px; width: 210px; padding-bottom: 3px">
+				            </td>
+							<td style="height: 18px; width: 50px">
+							</td>
+						</tr>
+                        <tr>
+                           <td align="right" colspan="3" style="height: 30px; width: 977px; padding-top: 10px; padding-right: 10px; text-align: right;">
+                                <asp:Label ID="NombreCuentaLabel" runat="server" Font-Bold="true" ForeColor="brown"></asp:Label>
+                                <asp:Label ID="Separador1Label" runat="server" Text="|" Visible="false"></asp:Label>&nbsp;
+                                <asp:LinkButton ID="SalirLinkButton" runat="server" CausesValidation="false" ForeColor="Blue"
+                                    OnClick="SalirLinkButton_Click" Visible="false">Salir</asp:LinkButton>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="FondoMenu" style="height: 25px; text-align: left">
+					<table id="TableMenu" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+						    <td style="padding-left: 10px; padding-right: 10px; width: 200px;">
+						    </td>
+							<td style="padding-left: 10px; padding-right: 10px">
+                                <asp:LinkButton ID="InicioLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Inicio.aspx">Inicio</asp:LinkButton>
+							</td>
+							<td style="padding-left: 10px; padding-right: 10px">
+							    <asp:LinkButton ID="ForecastLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Default.aspx" Visible="false">Forecast</asp:LinkButton>
+							</td>
+							<td style="padding-left: 10px; padding-right: 10px">
+							<asp:LinkButton ID="AdministracionLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Admin/Default.aspx" Visible="false">Administración</asp:LinkButton>
+							</td>
+						</tr>
+					</table>
+				</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolderNoAutenticado" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" class="" style="height: 18px; color: White">
+                    <b>© 2009 Cedeira Sofware Factory S.R.L. Todos los derechos reservados.</b>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
