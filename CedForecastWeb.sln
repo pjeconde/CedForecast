@@ -63,6 +63,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedForecastWebRN", "CedFore
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "D:\...\CedForecastWS\", "CedForecastWS\", "{98336B13-6286-4148-85C2-18E996FD2459}"
 	ProjectSection(WebsiteProperties) = preProject
+		ProjectReferences = "{13363318-67E8-47D8-BA5C-5CE5E2290CF8}|CedForecastWebEntidades.dll;{0E25A061-E78C-4141-8590-892C2CAC08B5}|CedForecastWebRN.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/CedForecastWS"
 		Debug.AspNetCompiler.PhysicalPath = "CedForecastWS\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\CedForecastWS\"
