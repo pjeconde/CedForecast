@@ -14,5 +14,14 @@ namespace CedForecast
         {
             InitializeComponent();
         }
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void sincronizaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SincronizacionForm form = new SincronizacionForm();
+            form.ShowDialog();
+        }
     }
 }

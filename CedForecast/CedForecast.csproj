@@ -36,6 +36,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SincronizacionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SincronizacionForm.Designer.cs">
+      <DependentUpon>SincronizacionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableroForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -48,6 +54,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SincronizacionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SincronizacionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableroForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TableroForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
