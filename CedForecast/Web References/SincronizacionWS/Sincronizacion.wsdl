@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://cedeira.com.ar/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://cedeira.com.ar/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://cedeira.com.ar/">
+      <s:element name="FechaUltimaSincronizacionArticulos">
+        <s:complexType />
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionArticulosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FechaUltimaSincronizacionArticulosResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionCuentas">
+        <s:complexType />
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionCuentasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FechaUltimaSincronizacionCuentasResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionClientes">
+        <s:complexType />
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FechaUltimaSincronizacionClientesResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionZonas">
+        <s:complexType />
+      </s:element>
+      <s:element name="FechaUltimaSincronizacionZonasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FechaUltimaSincronizacionZonasResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviarArticulos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfArticulo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArticulo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Articulo" nillable="true" type="tns:Articulo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Articulo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdArticulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescrArticulo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PesoBruto" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnidadMedida" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitado" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaUltModif" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="GrupoArticulo" type="tns:GrupoArticulo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GrupoArticulo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdGrupoArticulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescrGrupoArticulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="tns:Division" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Division">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdDivision" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescrDivision" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarArticulosResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarCuentas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfCuenta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cuenta" nillable="true" type="tns:Cuenta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfirmacionPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pregunta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Respuesta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoCuenta" type="tns:TipoCuenta" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstadoCuenta" type="tns:EstadoCuenta" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAlta" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadEnviosMail" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaUltimoReenvioMail" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailSMS" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecibeAvisoAltaCuenta" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaginaDefault" type="tns:PaginaDefault" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TipoCuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EstadoCuenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaginaDefault">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarCuentasResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarClientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfCliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescrCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zona" type="tns:Zona" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitado" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaUltModif" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Zona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdZona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescrZona" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarClientesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarVentas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfVenta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Venta" nillable="true" type="tns:Venta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Venta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdArticulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaForecast" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadMesAnterior" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadUltimoAño" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarVentasResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarZonas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfZona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Zona" nillable="true" type="tns:Zona" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarZonasResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RecibirForecast">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibirForecastResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibirForecastResult" type="tns:ArrayOfForecast" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfForecast">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Forecast" nillable="true" type="tns:Forecast" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Forecast">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdCuenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdDivision" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Articulo" type="tns:Articulo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad3" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad4" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad5" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad6" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad7" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad8" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad9" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad10" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad11" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad12" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FechaUltimaSincronizacionArticulosSoapIn">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionArticulos" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionArticulosSoapOut">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionArticulosResponse" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionCuentasSoapIn">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionCuentas" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionCuentasSoapOut">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionCuentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionClientes" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionZonasSoapIn">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionZonas" />
+  </wsdl:message>
+  <wsdl:message name="FechaUltimaSincronizacionZonasSoapOut">
+    <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionZonasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarArticulosSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarArticulos" />
+  </wsdl:message>
+  <wsdl:message name="EnviarArticulosSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarArticulosResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarCuentasSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarCuentas" />
+  </wsdl:message>
+  <wsdl:message name="EnviarCuentasSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarCuentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarClientes" />
+  </wsdl:message>
+  <wsdl:message name="EnviarClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarVentasSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarVentas" />
+  </wsdl:message>
+  <wsdl:message name="EnviarVentasSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarVentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarZonasSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarZonas" />
+  </wsdl:message>
+  <wsdl:message name="EnviarZonasSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarZonasResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibirForecastSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibirForecast" />
+  </wsdl:message>
+  <wsdl:message name="RecibirForecastSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibirForecastResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SincronizacionSoap">
+    <wsdl:operation name="FechaUltimaSincronizacionArticulos">
+      <wsdl:input message="tns:FechaUltimaSincronizacionArticulosSoapIn" />
+      <wsdl:output message="tns:FechaUltimaSincronizacionArticulosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionCuentas">
+      <wsdl:input message="tns:FechaUltimaSincronizacionCuentasSoapIn" />
+      <wsdl:output message="tns:FechaUltimaSincronizacionCuentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionClientes">
+      <wsdl:input message="tns:FechaUltimaSincronizacionClientesSoapIn" />
+      <wsdl:output message="tns:FechaUltimaSincronizacionClientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionZonas">
+      <wsdl:input message="tns:FechaUltimaSincronizacionZonasSoapIn" />
+      <wsdl:output message="tns:FechaUltimaSincronizacionZonasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarArticulos">
+      <wsdl:input message="tns:EnviarArticulosSoapIn" />
+      <wsdl:output message="tns:EnviarArticulosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCuentas">
+      <wsdl:input message="tns:EnviarCuentasSoapIn" />
+      <wsdl:output message="tns:EnviarCuentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarClientes">
+      <wsdl:input message="tns:EnviarClientesSoapIn" />
+      <wsdl:output message="tns:EnviarClientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarVentas">
+      <wsdl:input message="tns:EnviarVentasSoapIn" />
+      <wsdl:output message="tns:EnviarVentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarZonas">
+      <wsdl:input message="tns:EnviarZonasSoapIn" />
+      <wsdl:output message="tns:EnviarZonasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibirForecast">
+      <wsdl:input message="tns:RecibirForecastSoapIn" />
+      <wsdl:output message="tns:RecibirForecastSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SincronizacionSoap" type="tns:SincronizacionSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FechaUltimaSincronizacionArticulos">
+      <soap:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionArticulos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionCuentas">
+      <soap:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionCuentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionClientes">
+      <soap:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionZonas">
+      <soap:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionZonas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarArticulos">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarArticulos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCuentas">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarCuentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarClientes">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarVentas">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarVentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarZonas">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarZonas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirForecast">
+      <soap:operation soapAction="http://cedeira.com.ar/RecibirForecast" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SincronizacionSoap12" type="tns:SincronizacionSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FechaUltimaSincronizacionArticulos">
+      <soap12:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionArticulos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionCuentas">
+      <soap12:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionCuentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionClientes">
+      <soap12:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FechaUltimaSincronizacionZonas">
+      <soap12:operation soapAction="http://cedeira.com.ar/FechaUltimaSincronizacionZonas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarArticulos">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarArticulos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCuentas">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarCuentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarClientes">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarVentas">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarVentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarZonas">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarZonas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirForecast">
+      <soap12:operation soapAction="http://cedeira.com.ar/RecibirForecast" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Sincronizacion">
+    <wsdl:port name="SincronizacionSoap" binding="tns:SincronizacionSoap">
+      <soap:address location="http://localhost:3000/Sincronizacion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SincronizacionSoap12" binding="tns:SincronizacionSoap12">
+      <soap12:address location="http://localhost:3000/Sincronizacion.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
