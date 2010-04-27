@@ -18,8 +18,12 @@ namespace CedForecast
         private void SincronizarButton_Click(object sender, EventArgs e)
         {
             bool seChequeoAlgo = false;
+            //WS.Sincronizacion ws = new CedForecast.WS.Sincronizacion();
+            //ws.Url = "http://localhost:3000/Sincronizacion.asmx";
             if (ArticuloCheckBox.Checked)
             {
+                //List<WS.Articulo> lista = new List<CedForecast.WS.Articulo>();
+                //ws.EnviarArticulos(lista);
                 seChequeoAlgo = true;
             }
             if (ClienteCheckBox.Checked)

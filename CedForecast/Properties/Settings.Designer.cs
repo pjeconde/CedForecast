@@ -27,9 +27,9 @@ namespace CedForecast.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:3000/Sincronizacion.asmx")]
-        public string CedForecast_SincronizacionWS_Sincronizacion {
+        public string CedForecast_WS_Sincronizacion {
             get {
-                return ((string)(this["CedForecast_SincronizacionWS_Sincronizacion"]));
+                return ((string)(this["CedForecast_WS_Sincronizacion"]));
             }
         }
     }

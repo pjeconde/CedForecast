@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace CedForecast.SincronizacionWS {
+namespace CedForecast.WS {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -53,7 +53,7 @@ namespace CedForecast.SincronizacionWS {
         
         /// <remarks/>
         public Sincronizacion() {
-            this.Url = global::CedForecast.Properties.Settings.Default.CedForecast_SincronizacionWS_Sincronizacion;
+            this.Url = global::CedForecast.Properties.Settings.Default.CedForecast_WS_Sincronizacion;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
