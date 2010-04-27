@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 800px; text-align: left;">
+        width: 800px; text-align: left; background-color: white;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">
@@ -10,19 +10,31 @@
                     <tr>
                         <td style="padding-left: 10px" valign="top">
                             <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td style="width: 21px; height: 20px;">
-                                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/CajaBrownPeru.ico" />
-                                    </td>
-                                    <td style="height: 20px;">
-                                        <asp:Label ID="TituloLabel" runat="server" SkinID="TituloPagina" Text="¿Olvidó la Contraseña de su cuenta "></asp:Label>
-                                    </td>
-                                    <td style="height: 20px; padding-left: 3px" valign="middle">
-                                        <asp:Image ID="Image1" runat="server" AlternateText="Factura Electrónica" ImageUrl="~/Imagenes/eFact.jpg" />
-                                    </td>
-                                    <td style="height: 20px;">
-                                        <asp:Label ID="Label7" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Black"
-                                            Text="?"></asp:Label>
+                                 <tr>
+                                    <td align="left" style="padding-left: 10px" valign="top">
+                                        <!-- @@@ TITULO DE LA PAGINA @@@-->
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="width: 20px; vertical-align:top;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" id="TABLE3">
+        						                    <tr>
+                                                        <td style="height: 3px">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                        <asp:Image ID="Image3" runat="server" AlternateText="o" ImageUrl="~/Imagenes/button_link.gif" />
+                                                        </td>
+                                                    </tr>
+                                                    </table>   
+                                                </td>
+                                                <td style="width:864px;" colspan="3">
+                                                    <asp:Label ID="Label16" SkinID="TituloPagina" runat="server" Text="¿Olvidó la Contraseña de su cuenta? "></asp:Label>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                                     </td>
                                 </tr>
                             </table>
@@ -43,7 +55,7 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td align="right" style="padding-top: 5px; padding-right: 5px" valign="top">
-                                        <asp:Image ID="Image7" runat="server" ImageUrl="~/Imagenes/Bola1.png" />
+                                        1) 
                                     </td>
                                     <td align="left" colspan="3" style="padding-top: 5px" valign="middle">
                                         <asp:Label ID="Label9" runat="server" SkinID="TextoMediano" Text="Ingrese Id.Usuario e Email (luego haga clic en el botón 'Solicitar Pregunta de seguridad')."></asp:Label>
@@ -92,7 +104,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-top: 5px; padding-right: 5px" valign="top">
-                                        <asp:Image ID="Image9" runat="server" ImageUrl="~/Imagenes/Bola2.png" />
+                                        2) 
                                     </td>
                                     <td align="left" colspan="3" style="padding-top: 5px">
                                         <asp:Label ID="Label10" runat="server" SkinID="TextoMediano" Text="Responda la Pregunta de Seguridad (luego haga clic en el botón 'Solicitar nuevo ingreso de Contraseña')."></asp:Label>
@@ -134,7 +146,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-top: 5px; padding-right: 5px" valign="top">
-                                        <asp:Image ID="Image10" runat="server" ImageUrl="~/Imagenes/Bola3.png" />
+                                        3) 
                                     </td>
                                     <td align="left" colspan="3" style="padding-top: 5px">
                                         <asp:Label ID="Label11" runat="server" SkinID="TextoMediano" Text="Ingrese, y confirme, su nueva Contraseña (luego haga click en el botón 'Aceptar')."></asp:Label>

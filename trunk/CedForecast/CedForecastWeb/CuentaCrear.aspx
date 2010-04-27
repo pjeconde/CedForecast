@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="CuentaCrear.aspx.cs" Inherits="CedForecastWeb.CuentaCrear"  %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
-    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 800px">
+    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 800px; background-color: white">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 100%;
@@ -11,14 +11,23 @@
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td style="width: 21px; height: 20px;">
-                                        <asp:Image ID="Image2" runat="server" AlternateText="o" ImageUrl="~/Imagenes/CajaBrownPeru.ico" />
+                                    <td style="width: 20px; vertical-align:top;">
+                                        <table border="0" cellpadding="0" cellspacing="0" id="TABLE3">
+        						        <tr>
+                                            <td style="height: 3px">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            <asp:Image ID="Image1" runat="server" AlternateText="o" ImageUrl="~/Imagenes/button_link.gif" />
+                                            </td>
+                                        </tr>
+                                        </table>   
                                     </td>
-                                    <td style="height: 20px;">
-                                        <asp:Label ID="Label5" runat="server" SkinID="TituloPagina" Text="Creación de cuenta "></asp:Label>
+                                    <td style="width:864px;" colspan="3">
+                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Creación de cuenta "></asp:Label>
+                                        <hr />
                                     </td>
-                                    <td style="height: 20px; padding-left: 3px" valign="middle">
-                                        &nbsp;</td>
                                 </tr>
                             </table>
                             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -84,13 +93,23 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td align="right" colspan="2" style="padding-top: 3px; padding-right: 5px; height: 25px;">
+                                        <asp:Label ID="DivisionLabel" runat="server" Text="División"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px; height: 25px;">
+                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px" OnSelectedIndexChanged="DivisionDropDownList_SelectedIndexChanged">
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td colspan="2">
                                     </td>
-                                    <td colspan="2" style="color: gray">
+                                    <td colspan="2" style="color: white">
                                         (muy importante: las facturas electrónicas -archivos xml- se enviarán, vía email,
                                         a esta dirección)
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td align="right" colspan="2" style="padding-top: 3px; padding-right: 5px">
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="IdUsuarioTextBox"
@@ -187,11 +206,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" colspan="2" style="padding-top: 3px; padding-right: 5px">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="MedioDropDownList"
-                                            ErrorMessage="Cómo nos conoció" SetFocusOnError="True">
-                                            <asp:Label ID="Label26" runat="server" SkinID="IndicadorValidacion"></asp:Label>
-                                        </asp:RequiredFieldValidator>&nbsp;
-                                    </td>
+                                                                    </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
                                         &nbsp;</td>
                                 </tr>
@@ -244,7 +259,7 @@
                                             TabIndex="10" Text="Crear cuenta" Width="100px" />
                                     </td>
                                     <td align="right" style="padding-top: 10px">
-                                        <asp:Button ID="CancelarButton" runat="server" CausesValidation="false" PostBackUrl="~/FacturaElectronica.aspx"
+                                        <asp:Button ID="CancelarButton" runat="server" CausesValidation="false" PostBackUrl="~/Inicio.aspx"
                                             Text="Cancelar" Width="100px" />
                                     </td>
                                 </tr>
