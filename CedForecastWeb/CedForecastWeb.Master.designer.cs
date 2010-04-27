@@ -74,6 +74,24 @@ namespace CedForecastWeb {
         protected global::System.Web.UI.WebControls.Label Separador1Label;
         
         /// <summary>
+        /// Control ConfiguracionLinkButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ConfiguracionLinkButton;
+        
+        /// <summary>
+        /// Control Separador2Label.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Separador2Label;
+        
+        /// <summary>
         /// Control SalirLinkButton.
         /// </summary>
         /// <remarks>
@@ -99,6 +117,15 @@ namespace CedForecastWeb {
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ForecastLinkButton;
+        
+        /// <summary>
+        /// Control ConfirmacionCargaButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ConfirmacionCargaButton;
         
         /// <summary>
         /// Control AdministracionLinkButton.

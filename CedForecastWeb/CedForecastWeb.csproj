@@ -63,12 +63,19 @@
     <Compile Include="Admin\Administracion.Master.designer.cs">
       <DependentUpon>Administracion.Master</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Configuracion.aspx.cs">
+    <Compile Include="Admin\Periodo.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Configuracion.aspx</DependentUpon>
+      <DependentUpon>Periodo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Configuracion.aspx.designer.cs">
-      <DependentUpon>Configuracion.aspx</DependentUpon>
+    <Compile Include="Admin\Periodo.aspx.designer.cs">
+      <DependentUpon>Periodo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConfirmacionCarga\Explorador.aspx.cs">
+      <DependentUpon>Explorador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConfirmacionCarga\Explorador.aspx.designer.cs">
+      <DependentUpon>Explorador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Cuenta\Explorador.aspx.cs">
       <DependentUpon>Explorador.aspx</DependentUpon>
@@ -83,6 +90,27 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion.aspx.cs">
+      <DependentUpon>Configuracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion.aspx.designer.cs">
+      <DependentUpon>Configuracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaCambiarPassword.aspx.cs">
+      <DependentUpon>CuentaCambiarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaCambiarPassword.aspx.designer.cs">
+      <DependentUpon>CuentaCambiarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaConfiguracion.aspx.cs">
+      <DependentUpon>CuentaConfiguracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaConfiguracion.aspx.designer.cs">
+      <DependentUpon>CuentaConfiguracion.aspx</DependentUpon>
     </Compile>
     <Compile Include="CuentaConfirmacion.aspx.cs">
       <DependentUpon>CuentaConfirmacion.aspx</DependentUpon>
@@ -118,6 +146,13 @@
     </Compile>
     <Compile Include="DatePickerWebUserControl.ascx.designer.cs">
       <DependentUpon>DatePickerWebUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\ConfirmacionCarga.aspx.cs">
+      <DependentUpon>ConfirmacionCarga.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ConfirmacionCarga.aspx.designer.cs">
+      <DependentUpon>ConfirmacionCarga.aspx</DependentUpon>
     </Compile>
     <Compile Include="SoloDispPUsuariosOperForecast.aspx.cs">
       <DependentUpon>SoloDispPUsuariosOperForecast.aspx</DependentUpon>
@@ -228,7 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Administracion.Master" />
-    <Content Include="Admin\Configuracion.aspx" />
+    <Content Include="Admin\Periodo.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\head-map.jpg" />
@@ -246,7 +281,15 @@
     <Content Include="Forecast\Forecast.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ConfirmacionCarga\Explorador.aspx" />
     <Content Include="App_Themes\Cedeira\KS.skin" />
+    <Content Include="Forecast\ConfirmacionCarga.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Captcha.ashx" />
+    <Content Include="Configuracion.aspx" />
+    <Content Include="CuentaCambiarPassword.aspx" />
+    <Content Include="CuentaConfiguracion.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Temp\" />

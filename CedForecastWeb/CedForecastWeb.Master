@@ -7,7 +7,7 @@
     <title>Cedeira Software Factory</title>
     <link href="cal/popcalendar.css" rel="stylesheet" type="text/css" />
     <link href="Imagenes/Cedeira.ico" rel="shortcut icon" />
-    <link href="App_Themes/Cedeira/KS.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Themes/Cedeira/KS.css" rel="stylesheet" type="text/css" />
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="K9/glGqlJwjaRgYqa7zUjPt1eBk+u1AUUC8kIJKa2BM=" name="verify-v1" />
 </head>
@@ -55,9 +55,10 @@
                         <tr>
                            <td align="right" colspan="3" style="height: 30px; width: 977px; padding-top: 10px; padding-right: 10px; text-align: right;">
                                 <asp:Label ID="NombreCuentaLabel" runat="server" Font-Bold="true" ForeColor="brown"></asp:Label>
-                                <asp:Label ID="Separador1Label" runat="server" Text="|" Visible="false"></asp:Label>&nbsp;
-                                <asp:LinkButton ID="SalirLinkButton" runat="server" CausesValidation="false" ForeColor="Blue"
-                                    OnClick="SalirLinkButton_Click" Visible="false">Salir</asp:LinkButton>
+                                <asp:Label ID="Separador1Label" runat="server" Text="|" Visible="false"></asp:Label>
+                                <asp:LinkButton ID="ConfiguracionLinkButton" runat="server" CausesValidation="false" ForeColor="Blue" PostBackUrl="~/Configuracion.aspx" Visible="false">Configuración</asp:LinkButton>
+                                <asp:Label ID="Separador2Label" runat="server" Text="|" Visible="false"></asp:Label>
+                                <asp:LinkButton ID="SalirLinkButton" runat="server" CausesValidation="false" ForeColor="Blue" OnClick="SalirLinkButton_Click" Visible="false">Salir</asp:LinkButton>
                             </td>
                         </tr>
                     </table>
@@ -76,7 +77,11 @@
 							    <asp:LinkButton ID="ForecastLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Default.aspx" Visible="false">Forecast</asp:LinkButton>
 							</td>
 							<td style="padding-left: 10px; padding-right: 10px">
-							<asp:LinkButton ID="AdministracionLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Admin/Default.aspx" Visible="false">Administración</asp:LinkButton>
+							    <asp:LinkButton ID="ConfirmacionCargaButton" runat="server" CausesValidation="false"
+									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/ConfirmacionCarga.aspx" Visible="False" >Confirmacion</asp:LinkButton>
+						    </td>
+							<td style="padding-left: 10px; padding-right: 10px">
+							    <asp:LinkButton ID="AdministracionLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Admin/Default.aspx" Visible="false">Administración</asp:LinkButton>
 							</td>
 						</tr>
 					</table>

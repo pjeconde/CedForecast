@@ -12,21 +12,21 @@ namespace CedForecastWeb {
     
     
     /// <summary>
-    /// Clase CuentaConfirmacion.
+    /// Clase Configuracion.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.
     /// </remarks>
-    public partial class CuentaConfirmacion {
+    public partial class Configuracion {
         
         /// <summary>
-        /// Control Image3.
+        /// Control Image1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.Image Image1;
         
         /// <summary>
         /// Control TituloLabel.
@@ -38,22 +38,22 @@ namespace CedForecastWeb {
         protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
-        /// Control MensajeLabel.
+        /// Control Label13.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MensajeLabel;
+        protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// Control Label2.
+        /// Control HyperLink5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
         
         /// <summary>
         /// Control HyperLink1.

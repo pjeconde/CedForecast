@@ -21,21 +21,26 @@ namespace CedForecastWeb
                 NombreCuentaLabel.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Nombre;
                 Separador1Label.Visible = true;
                 SalirLinkButton.Visible = true;
+                ConfiguracionLinkButton.Visible = true;
+                Separador2Label.Visible = true;
                 switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id)
                 {
                     case "Admin":
                         AdministracionLinkButton.Visible = true;
+                        ConfirmacionCargaButton.Visible = false;
                         break;
-                     case "OperForecast":
+                    case "OperForecast":
                         AdministracionLinkButton.Visible = false;
                         switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
                         {
                             case "Vigente":
                                 ForecastLinkButton.Visible = true;
+                                ConfirmacionCargaButton.Visible = true;
                                 break;
                             case "Suspend":
                                 NombreCuentaLabel.Text += " (suspendido)";
                                 ForecastLinkButton.Visible = false;
+                                ConfirmacionCargaButton.Visible = false;
                                 break;
                         }
                         break;
@@ -45,11 +50,10 @@ namespace CedForecastWeb
             {
                 NombreCuentaLabel.Text = string.Empty;
                 Separador1Label.Visible = false;
-                //ConfiguracionLinkButton.Visible = false;
-                //Separador2Label.Visible = false;
+                ConfiguracionLinkButton.Visible = false;
+                Separador2Label.Visible = false;
                 SalirLinkButton.Visible = false;
                 AdministracionLinkButton.Visible = false;
-                //ServicioPremiumEstadoLabel.Text = string.Empty;
             }
             if (Request.UrlReferrer != null)
             {
@@ -67,10 +71,8 @@ namespace CedForecastWeb
             sesion.Cuenta = new CedForecastWebEntidades.Cuenta();
             NombreCuentaLabel.Text = String.Empty;
             Separador1Label.Visible = false;
-            //ConfiguracionLinkButton.Visible = false;
-            //Separador2Label.Visible = false;
-            //BackupLinkButton.Visible = false;
-            //Separador3Label.Visible = false;
+            ConfiguracionLinkButton.Visible = false;
+            Separador2Label.Visible = false;
             SalirLinkButton.Visible = false;
             AdministracionLinkButton.Visible = false;
             Session["AceptarTYC"] = null;
