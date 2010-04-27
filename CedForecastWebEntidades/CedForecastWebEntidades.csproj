@@ -49,6 +49,7 @@
     <Compile Include="Sesion.cs" />
     <Compile Include="Texto.cs" />
     <Compile Include="TipoCuenta.cs" />
+    <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />
   </ItemGroup>
   <ItemGroup>

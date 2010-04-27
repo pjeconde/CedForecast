@@ -9,10 +9,10 @@ namespace CedForecastWebRN
         public Periodo()
         {
         }
-        public static List<CedForecastWebEntidades.Periodo> Leer(CedForecastWebEntidades.Periodo Periodo, CedEntidades.Sesion Sesion)
+        public static void Leer(CedForecastWebEntidades.Periodo Periodo, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Periodo periodo = new CedForecastWebDB.Periodo(Sesion);
-            return periodo.Leer(Periodo);
+            periodo.Leer(Periodo);
         }
     }
 }
