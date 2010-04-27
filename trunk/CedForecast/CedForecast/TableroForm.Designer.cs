@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableroForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,22 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // sincronizaciónToolStripMenuItem
+            // 
+            this.sincronizaciónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sincronizaciónToolStripMenuItem.Image")));
+            this.sincronizaciónToolStripMenuItem.Name = "sincronizaciónToolStripMenuItem";
+            this.sincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.sincronizaciónToolStripMenuItem.Text = "Sincronización";
+            this.sincronizaciónToolStripMenuItem.Click += new System.EventHandler(this.sincronizaciónToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("salirToolStripMenuItem.Image")));
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 240);
@@ -53,20 +70,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(284, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // sincronizaciónToolStripMenuItem
-            // 
-            this.sincronizaciónToolStripMenuItem.Name = "sincronizaciónToolStripMenuItem";
-            this.sincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.sincronizaciónToolStripMenuItem.Text = "Sincronización";
-            this.sincronizaciónToolStripMenuItem.Click += new System.EventHandler(this.sincronizaciónToolStripMenuItem_Click);
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // TableroForm
             // 
