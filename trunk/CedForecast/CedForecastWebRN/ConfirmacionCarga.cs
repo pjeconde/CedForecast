@@ -9,10 +9,10 @@ namespace CedForecastWebRN
         public ConfirmacionCarga()
         {
         }
-        public static List<CedForecastWebEntidades.ConfirmacionCarga> Lista(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga, CedEntidades.Sesion Sesion)
+        public static void Lista(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.ConfirmacionCarga confirmacionCarga = new CedForecastWebDB.ConfirmacionCarga(Sesion);
-            return confirmacionCarga.Leer(ConfirmacionCarga);
+            confirmacionCarga.Leer(ConfirmacionCarga);
         }
     }
 }

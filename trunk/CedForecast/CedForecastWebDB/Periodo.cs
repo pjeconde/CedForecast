@@ -20,7 +20,7 @@ namespace CedForecastWebDB
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
             {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Cliente " + Cliente.IdCliente.ToString());
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Periodo");
             }
             else
             {
@@ -29,8 +29,8 @@ namespace CedForecastWebDB
         }
          private void Copiar(DataRow Desde, CedForecastWebEntidades.Periodo Hasta)
         {
-            Hasta.IdPeriodo = Convert.ToString(Desde["IdPeriodo"]);
-            Hasta.FechaVtoConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
+            Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
+            Hasta.FechaConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
             Hasta.Habilitado = Convert.ToBoolean(Desde["Habilitado"]);
         }
     }

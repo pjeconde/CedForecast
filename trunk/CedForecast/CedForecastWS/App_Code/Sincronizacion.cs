@@ -31,23 +31,23 @@ namespace CedForecast.WS
             return new DateTime(2000, 1, 1);
         }
         [WebMethod]
-        public void Articulo(List<CedForecastWebEntidades.Articulo> Lista)
+        public void Enviar(List<CedForecastWebEntidades.Articulo> Lista)
         {
         }
         [WebMethod]
-        public void Cuenta(List<CedForecastWebEntidades.Cuenta> Lista)
+        public void Enviar(List<CedForecastWebEntidades.Cuenta> Lista)
         {
         }
         [WebMethod]
-        public void Cliente(List<CedForecastWebEntidades.Cliente> Lista)
+        public void Enviar(List<CedForecastWebEntidades.Cliente> Lista)
         {
         }
-        //[WebMethod]
-        //public void Venta(List<CedForecastWebEntidades.Venta> Lista)
-        //{
-        //}
         [WebMethod]
-        public void Zona(List<CedForecastWebEntidades.Zona> Lista)
+        public void Enviar(List<CedForecastWebEntidades.Venta> Lista)
+        {
+        }
+        [WebMethod]
+        public void Enviar(List<CedForecastWebEntidades.Zona> Lista)
         {
         }
     }
