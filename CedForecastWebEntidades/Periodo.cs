@@ -8,7 +8,7 @@ namespace CedForecastWebEntidades
     public class Periodo
     {
         private DateTime idPeriodo;
-        private DateTime fechaConfirmacionCarga;
+        private DateTime fechaVtoConfirmacionCarga;
         private bool habilitado;
 
         public Periodo()
@@ -25,15 +25,15 @@ namespace CedForecastWebEntidades
                 return idPeriodo;
             }
         }
-        public DateTime FechaConfirmacionCarga
+        public DateTime FechaVtoConfirmacionCarga
         {
             set
             {
-                fechaConfirmacionCarga = value;
+                fechaVtoConfirmacionCarga = value;
             }
             get
             {
-                return fechaConfirmacionCarga;
+                return fechaVtoConfirmacionCarga;
             }
         }
         public bool Habilitado

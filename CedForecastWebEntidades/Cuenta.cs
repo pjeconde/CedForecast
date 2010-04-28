@@ -11,6 +11,7 @@ namespace CedForecastWebEntidades
         private string nombre;
         private string telefono;
         private string email;
+        private CedForecastWebEntidades.Division division;
         private string password;
         private string confirmacionPassword;
         private string pregunta;
@@ -30,6 +31,7 @@ namespace CedForecastWebEntidades
             tipoCuenta = new TipoCuenta();
             estadoCuenta = new EstadoCuenta();
             paginaDefault = new PaginaDefault();
+            division = new Division();
         }
 
         public string Id
@@ -74,6 +76,17 @@ namespace CedForecastWebEntidades
             get
             {
                 return email;
+            }
+        }
+        public Division Division
+        {
+            set
+            {
+                division = value;
+            }
+            get
+            {
+                return division;
             }
         }
         public string Password

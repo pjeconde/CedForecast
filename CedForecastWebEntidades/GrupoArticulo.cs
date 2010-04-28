@@ -13,6 +13,7 @@ namespace CedForecastWebEntidades
 
         public GrupoArticulo()
         {
+            division = new Division();
         }
         public string IdGrupoArticulo
         {

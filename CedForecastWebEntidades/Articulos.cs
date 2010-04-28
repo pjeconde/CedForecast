@@ -17,6 +17,7 @@ namespace CedForecastWebEntidades
 
         public Articulo()
         {
+            grupoArticulo = new GrupoArticulo();
         }
         public string IdArticulo
         {

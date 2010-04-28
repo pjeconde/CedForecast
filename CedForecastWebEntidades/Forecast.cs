@@ -42,13 +42,9 @@ namespace CedForecastWebEntidades
         }
         public string IdDivision
         {
-            set
-            {
-                idDivision = value;
-            }
             get
             {
-                return idDivision;
+                return articulo.GrupoArticulo.Division.IdDivision;
             }
         }
         public string IdCliente
@@ -221,6 +217,14 @@ namespace CedForecastWebEntidades
             get
             {
                 return cantidad12;
+            }
+        }
+        public decimal CantidadTotal
+        {
+            get
+            {
+                decimal suma = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad9 + cantidad10 + cantidad11 + cantidad12;
+                return suma;
             }
         }
     }
