@@ -160,30 +160,6 @@ namespace CedForecastWeb.Admin.Cuenta
                     //ActivarButton.Enabled = true;
 					break;
 			}
-			switch (Cuenta.TipoCuenta.Id)
-			{
-                //case "Prem":
-                //    switch (Cuenta.EstadoCuenta.Id)
-                //    {
-                //        case "Vigente":
-                //            SuspenderPremiumButton.Enabled = true;
-                //            DesactivarPremiumButton.Enabled = true;
-                //            break;
-                //        case "Suspend":
-                //            ActivarPremiumButton.Enabled = true;
-                //            DesactivarPremiumButton.Enabled = true;
-                //            break;
-                //    }
-                //    break;
-                //case "Free":
-                //    switch (Cuenta.EstadoCuenta.Id)
-                //    {
-                //        case "Vigente":
-                //            ActivarPremiumButton.Enabled = true;
-                //            break;
-                //    }
-                //    break;
-			}
 		}
 		private void DeshabilitarAcciones()
 		{
@@ -260,5 +236,11 @@ namespace CedForecastWeb.Admin.Cuenta
 		{
 			Server.Transfer("~/Admin/Default.aspx");
 		}
+
+        protected void CrearButton_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("~/CuentaCrear.aspx");
+        }
+
 	}
 }

@@ -65,6 +65,15 @@ namespace CedForecastWeb.Admin.Cuenta {
         protected global::CedeiraUIWebForms.PagingGridView CuentaPagingGridView;
         
         /// <summary>
+        /// Control CrearButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CrearButton;
+        
+        /// <summary>
         /// Control BajaButton.
         /// </summary>
         /// <remarks>
