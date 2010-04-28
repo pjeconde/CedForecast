@@ -12,8 +12,8 @@ namespace CedForecastWebDB
         public void Leer(CedForecastWebEntidades.Cuenta Cuenta)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-			a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.IdPaginaDefault, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
-            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, PaginaDefault ");
+            a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.IdDivision, Division.DescrDivision, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.IdPaginaDefault, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
+            a.Append("from Cuenta left outer join Division on Cuenta.IdDivision = Division.IdDivision, TipoCuenta, EstadoCuenta, PaginaDefault ");
             a.Append("where Cuenta.IdCuenta='" + Cuenta.Id.ToString() + "' and Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
@@ -31,6 +31,8 @@ namespace CedForecastWebDB
             Hasta.Nombre = Convert.ToString(Desde["Nombre"]);
             Hasta.Telefono = Convert.ToString(Desde["Telefono"]);
             Hasta.Email = Convert.ToString(Desde["Email"]);
+            Hasta.Division.IdDivision = Convert.ToString(Desde["IdDivision"]);
+            Hasta.Division.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
             Hasta.Password = Convert.ToString(Desde["Password"]);
             Hasta.Pregunta = Convert.ToString(Desde["Pregunta"]);
             Hasta.Respuesta = Convert.ToString(Desde["Respuesta"]);
@@ -55,6 +57,7 @@ namespace CedForecastWebDB
             a.Append("'"+Cuenta.Nombre+"', ");
             a.Append("'"+Cuenta.Telefono+"', ");
             a.Append("'"+Cuenta.Email+"', ");
+            a.Append("'"+Cuenta.Division.IdDivision + "', ");
             a.Append("'"+Cuenta.Password+"', ");
             a.Append("'"+Cuenta.Pregunta+"', ");
             a.Append("'"+Cuenta.Respuesta+"', ");
@@ -106,9 +109,9 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Cuenta> Lista(string Email)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.UltimoNroLote, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.Activar, Cuenta.NroSerieDisco, Cuenta.IdMedio, Medio.DescrMedio, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.CantidadComprobantes, Cuenta.FechaUltimoComprobante, Cuenta.FechaVtoActivacion, Cuenta.IdPaginaDefault, Cuenta.NroSerieCertificado, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
-            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, Medio, PaginaDefault ");
-            a.Append("where Cuenta.Email='" + Email + "' and Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdMedio=Medio.IdMedio and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault ");
+            a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.IdDivision, Division.DescrDivision, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.UltimoNroLote, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.Activar, Cuenta.NroSerieDisco, Cuenta.IdMedio, Medio.DescrMedio, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.CantidadComprobantes, Cuenta.FechaUltimoComprobante, Cuenta.FechaVtoActivacion, Cuenta.IdPaginaDefault, Cuenta.NroSerieCertificado, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
+            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, Medio, PaginaDefault, Division ");
+            a.Append("where Cuenta.Email='" + Email + "' and Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdMedio=Medio.IdMedio and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault and Cuenta.IdDivision = Division.IdDivision ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
             {
@@ -131,9 +134,9 @@ namespace CedForecastWebDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select * ");
             a.Append("from (select top {0} ROW_NUMBER() OVER (ORDER BY {1}) as ROW_NUM, ");
-            a.Append("Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.IdPaginaDefault, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
-            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, PaginaDefault ");
-            a.Append("where Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault ");
+            a.Append("Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.IdDivision, Division.DescrDivision, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.IdPaginaDefault, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
+            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, PaginaDefault, Division ");
+            a.Append("where Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault and Cuenta.IdDivision = Division.IdDivision ");
             a.Append("ORDER BY ROW_NUM) innerSelect WHERE ROW_NUM > {2} ");
             string commandText = string.Format(a.ToString(), ((IndicePagina + 1) * TamañoPagina), OrderBy, (IndicePagina * TamañoPagina));
             DataTable dt = new DataTable();
@@ -175,6 +178,7 @@ namespace CedForecastWebDB
             a.Append("update Cuenta set ");
             a.Append("Nombre='" + Cuenta.Nombre + "', ");
             a.Append("Telefono='" + Cuenta.Telefono + "', ");
+            a.Append("IdDivision='" + Cuenta.Division.IdDivision + "', ");
             a.Append("EmailSMS='" + Cuenta.EmailSMS + "', ");
             a.Append("IdPaginaDefault='" + Cuenta.PaginaDefault.Id + "' ");
             a.Append("where Cuenta.IdCuenta='" + Cuenta.Id.ToString() + "' ");
@@ -237,10 +241,10 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Cuenta> DestinatariosAvisoAltaCuenta()
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.UltimoNroLote, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.Activar, Cuenta.NroSerieDisco, Cuenta.IdMedio, Medio.DescrMedio, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.CantidadComprobantes, Cuenta.FechaUltimoComprobante, Cuenta.FechaVtoActivacion, Cuenta.IdPaginaDefault, Cuenta.NroSerieCertificado, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
-            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, Medio, PaginaDefault ");
+            a.Append("select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.IdDivision, Division.DescrDivision, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.UltimoNroLote, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.Activar, Cuenta.NroSerieDisco, Cuenta.IdMedio, Medio.DescrMedio, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.CantidadComprobantes, Cuenta.FechaUltimoComprobante, Cuenta.FechaVtoActivacion, Cuenta.IdPaginaDefault, Cuenta.NroSerieCertificado, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
+            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, Medio, PaginaDefault, Division ");
             a.Append("where RecibeAvisoAltaCuenta=1 and EmailSMS<>'' ");
-            a.Append("and Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdMedio=Medio.IdMedio and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault ");
+            a.Append("and Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdMedio=Medio.IdMedio and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault and Cuenta.IdDivision = Division.IdDivision ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Cuenta> lista = new List<CedForecastWebEntidades.Cuenta>();
             for (int i = 0; i < dt.Rows.Count; i++)

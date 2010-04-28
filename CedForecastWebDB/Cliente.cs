@@ -28,7 +28,7 @@ namespace CedForecastWebDB
                 Copiar(dt.Rows[0], Cliente);
             }
         }
-        public List<CedForecastWebEntidades.Cliente> Lista()
+        public List<CedForecastWebEntidades.Cliente> Lista(bool ConClienteSinInformar)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Cliente.IdCliente, Cliente.DescrCliente, Cliente.IdZona, Cliente.Habilitado, Cliente.FechaUltModif, Zona.DescrZona ");
@@ -38,6 +38,10 @@ namespace CedForecastWebDB
             List<CedForecastWebEntidades.Cliente> lista = new List<CedForecastWebEntidades.Cliente>();
             if (dt.Rows.Count != 0)
             {
+                if (ConClienteSinInformar)
+                {
+                    lista.Add(new CedForecastWebEntidades.Cliente());
+                }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
