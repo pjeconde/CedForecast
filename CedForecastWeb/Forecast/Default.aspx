@@ -9,7 +9,7 @@
 	TagPrefix="uc1" %>
 
 <asp:content id="ForecastContent" runat="Server" contentplaceholderid="ForecastContentPlaceHolder">
-    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 977px; text-align: left; background-color: white">
+    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px; text-align: left; background-color: white">
         <tr>
             <td style="height: 10px;" valign="top">
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -17,7 +17,7 @@
             </td>
         </tr>
         <tr>
-            <td style="padding-left: 10px; width: 100%" valign="top">
+            <td style="padding-left: 10px; padding-right: 10px; width: 100%" valign="top">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top">
@@ -38,7 +38,7 @@
                                            
                                         </table>   
                                     </td>
-                                    <td style="width: 846px">
+                                    <td style="width: 870px">
                                         <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Forecast"></asp:Label>
                                         <hr />
                                     </td>
@@ -121,7 +121,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4" style="" valign="middle">
-                                        <asp:Button ID="LeerButton" runat="server" OnClick="LeerButton_Click" Text="Leer" Width="866px" />
+                                        <asp:Button ID="LeerButton" runat="server" OnClick="LeerButton_Click" Text="Leer" Width="870px" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -129,12 +129,12 @@
                                     </td>
                                 </tr>
                             </table>
-                            <table border="0" cellpadding="0" cellspacing="0" id="TablaGrilla" onclick="">
+                            <table border="0" cellpadding="0" cellspacing="0" style="width:870px" id="TablaGrilla" onclick="">
 						        <tr>
                                     <td colspan="3">
                                         <asp:UpdatePanel ID="detalleUpdatePanel" runat="server">
                                             <ContentTemplate>
-										        <asp:Panel ID="detallePanel" runat="server" BorderStyle="Ridge" Height="200px" ScrollBars="Auto" Width="860px" Wrap="true">
+										        <asp:Panel ID="detallePanel" runat="server" BorderStyle="Ridge" Height="200px" ScrollBars="Auto" Width="865px" Wrap="true">
 											        <asp:GridView ID="detalleGridView" runat="server" AutoGenerateColumns="False" BorderColor="Gray"
 												        BorderStyle="Solid" BorderWidth="1px" EditRowStyle-ForeColor="#071F70" EmptyDataRowStyle-ForeColor="#071F70" Font-Bold="False" ForeColor="#071F70"
 												        HeaderStyle-ForeColor="#A52A2A" OnRowCancelingEdit="detalleGridView_RowCancelingEdit"
@@ -433,20 +433,23 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 10px;">
+                                    <td colspan="3" style="height: 10px;">
                                     </td>
                                 </tr> 
                                 <tr>
-                                    <td>
-                                        <asp:Button ID="AceptarButton" runat="server" OnClick="AceptarButton_Click" Text="Aceptar"
-                                            Width="188px" />
-
-                                    </td>
-                                    <td style="width: 490px">
-                                    </td>
-                                    <td>
-                                        <asp:Button ID="CancelarButton" runat="server" OnClick="CancelarButton_Click" Text="Cancelar"
-                                            Width="188px" />
+                                    <td colspan="3">
+                                        <table border="0" cellpadding="0" cellspacing="0" id="Table1"> 
+                                            <td style="width:190px">
+                                            
+                                                <asp:Button ID="AceptarButton" runat="server" OnClick="AceptarButton_Click" Text="Aceptar" Width="190px" />
+                                            </td>
+                                            <td style="width: 490px;">
+                                            </td>
+                                            <td style="width:190px">
+                                                <asp:Button ID="CancelarButton" runat="server" OnClick="CancelarButton_Click" Text="Cancelar"
+                                                    Width="190px" />
+                                            </td>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>
