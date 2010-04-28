@@ -15,8 +15,8 @@ namespace CedForecastWebDB
         public void Leer(CedForecastWebEntidades.Periodo Periodo)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select Periodo.IdPeriodo, Periodo.fechaVtoConfirmacionCarga, Periodo.Habilitado ");
-            a.Append("from Periodo ");
+            a.Append("select Periodo.IdPeriodo, Periodo.FechaVtoConfirmacionCarga, Periodo.Habilitado ");
+            a.Append("from Periodo");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
             {
@@ -27,11 +27,19 @@ namespace CedForecastWebDB
                 Copiar(dt.Rows[0], Periodo);
             }
         }
-         private void Copiar(DataRow Desde, CedForecastWebEntidades.Periodo Hasta)
+        private void Copiar(DataRow Desde, CedForecastWebEntidades.Periodo Hasta)
         {
+            Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
+            Hasta.FechaVtoConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
             Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
             Hasta.FechaConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
             Hasta.Habilitado = Convert.ToBoolean(Desde["Habilitado"]);
+        }
+        public void Modificar(CedForecastWebEntidades.Periodo Periodo)
+        {
+            StringBuilder a = new StringBuilder(string.Empty);
+            a.Append("update Periodo set IdPeriodo = '" + Periodo.IdPeriodo.ToString("yyyyMMdd") + "', FechaVtoConfirmacionCarga = '" + Periodo.FechaVtoConfirmacionCarga.ToString("yyyyMMdd") + "', Habilitado = " + Convert.ToInt32(Periodo.Habilitado));
+            DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }
