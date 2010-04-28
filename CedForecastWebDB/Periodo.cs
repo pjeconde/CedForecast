@@ -31,8 +31,6 @@ namespace CedForecastWebDB
         {
             Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
             Hasta.FechaVtoConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
-            Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
-            Hasta.FechaConfirmacionCarga = Convert.ToDateTime(Desde["FechaVtoConfirmacionCarga"]);
             Hasta.Habilitado = Convert.ToBoolean(Desde["Habilitado"]);
         }
         public void Modificar(CedForecastWebEntidades.Periodo Periodo)
