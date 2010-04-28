@@ -56,7 +56,7 @@
 								<asp:Label ID="NombreCuentaLabel" runat="server" Font-Bold="true" ForeColor="brown"></asp:Label>
 								<asp:Label ID="Separador1Label" runat="server" Text="|" Visible="false"></asp:Label>
 								<asp:LinkButton ID="ConfiguracionLinkButton" runat="server" CausesValidation="false" ForeColor="Blue"
-									PostBackUrl="~/Admin/Configuracion.aspx" Visible="false">Configuración</asp:LinkButton>
+									PostBackUrl="~/Configuracion.aspx" Visible="false">Configuración</asp:LinkButton>
 								<asp:Label ID="Separador2Label" runat="server" Text="|" Visible="false"></asp:Label>
 								<asp:LinkButton ID="SalirLinkButton" runat="server" CausesValidation="false" ForeColor="Blue"
 									OnClick="SalirLinkButton_Click" Visible="false">Salir</asp:LinkButton>

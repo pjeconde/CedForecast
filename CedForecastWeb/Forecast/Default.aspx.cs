@@ -36,19 +36,25 @@ namespace CedForecastWeb.Forecast
                     {
                         ClienteDropDownList.DataValueField = "IdCliente";
                         ClienteDropDownList.DataTextField = "DescrCliente";
-                        ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista((CedEntidades.Sesion)Session["Sesion"]);
+                        ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         ClienteDropDownList.SelectedIndex = -1;
 
                         DivisionDropDownList.DataValueField = "IdDivision";
                         DivisionDropDownList.DataTextField = "DescrDivision";
-                        DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista((CedEntidades.Sesion)Session["Sesion"]);
-                        DivisionDropDownList.SelectedIndex = -1;
+                        DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista((CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
 
-                        FechaTextBox.Text = DateTime.Today.Year.ToString("0000") + DateTime.Today.Month.ToString("00");
-                        //FechaTextBox.ReadOnly = true;
+                        CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
+                        CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                        FechaTextBox.Text = periodo.IdPeriodo.ToString("yyyyMM");
+                        FechaTextBox.ReadOnly = true;
+                        
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
+                        
+                        FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaVtoConfirmacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
                         for (int i = 1; i <= 12; i++)
                         {
-                            detalleGridView.Columns[i].HeaderText = TextoCantidadHeader(i, Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4,2) + "/" + FechaTextBox.Text.Substring(0,4)));
+                            detalleGridView.Columns[i+1].HeaderText = TextoCantidadHeader(i, Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4,2) + "/" + FechaTextBox.Text.Substring(0,4)));
                         }
 
                         DataBind();
@@ -59,6 +65,7 @@ namespace CedForecastWeb.Forecast
                         CancelarButton.Attributes.Add("onclick", "return confirm('Confirmar la cancelación de los datos ?');");
                         CancelarButton.Attributes.Add("title", "Cancela los datos ingresados en la grilla.");;
                         AceptarButton.Attributes.Add("onclick", "return confirm('Confirmar la aceptación de los datos ?');");
+
                         detalleGridView.Enabled = false;
                         CancelarButton.Enabled = false;
                         AceptarButton.Enabled = false;
@@ -74,12 +81,13 @@ namespace CedForecastWeb.Forecast
             detalleGridView.DataSource = forecastLista;
             detalleGridView.DataBind();
             ViewState["lineas"] = forecastLista;
+            ClienteDropDownList.SelectedIndex = -1;
         }
         private void BindearDropDownLists()
         {
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "IdArticulo";
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "DescrArticulo";
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista((CedEntidades.Sesion)Session["Sesion"]);
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataBind();
         }
 
@@ -288,7 +296,7 @@ namespace CedForecastWeb.Forecast
 
                     CedForecastWebEntidades.Forecast l = new CedForecastWebEntidades.Forecast();
                     l.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                    l.IdDivision = DivisionDropDownList.SelectedValue;
+                    l.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
                     l.IdCliente = ClienteDropDownList.SelectedValue;
                     l.Fecha = Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4, 2) + "/" + FechaTextBox.Text.Substring(0, 4));
                     
@@ -456,7 +464,7 @@ namespace CedForecastWeb.Forecast
 
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "IdArticulo";
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrArticulo";
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista((CedEntidades.Sesion)Session["Sesion"]);
+            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             try
             {
@@ -516,7 +524,7 @@ namespace CedForecastWeb.Forecast
                 }
                 if (!DivisionDropDownList.SelectedValue.Equals(string.Empty))
                 {
-                    forecast.IdDivision = DivisionDropDownList.SelectedValue;
+                    forecast.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
                 }
                 else
                 {
@@ -529,7 +537,9 @@ namespace CedForecastWeb.Forecast
                 ViewState["lineas"] = forecastLista;
 
                 BindearDropDownLists();
-
+                
+                LeerButton.Enabled = false;
+                SeleccionPanel.Enabled = false;
                 detalleGridView.Enabled = true;
                 CancelarButton.Enabled = true;
                 AceptarButton.Enabled = true;
@@ -543,8 +553,10 @@ namespace CedForecastWeb.Forecast
         protected void AceptarButton_Click(object sender, EventArgs e)
         {
             CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
-            CedForecastWebRN.Forecast.Guardar((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"], ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, DivisionDropDownList.SelectedValue, ClienteDropDownList.SelectedValue, Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4, 2) + "/" + FechaTextBox.Text.Substring(0, 4)), (CedEntidades.Sesion)Session["Sesion"]);
+            CedForecastWebRN.Forecast.Guardar((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"], ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue, Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4, 2) + "/" + FechaTextBox.Text.Substring(0, 4)), (CedEntidades.Sesion)Session["Sesion"]);
             LimpiarGrilla();
+            LeerButton.Enabled = true;
+            SeleccionPanel.Enabled = true;
             detalleGridView.Enabled = false;
             CancelarButton.Enabled = false;
             AceptarButton.Enabled = false;
@@ -553,6 +565,8 @@ namespace CedForecastWeb.Forecast
         protected void CancelarButton_Click(object sender, EventArgs e)
         {
             LimpiarGrilla();
+            LeerButton.Enabled = true;
+            SeleccionPanel.Enabled = true;
             detalleGridView.Enabled = false;
             CancelarButton.Enabled = false;
             AceptarButton.Enabled = false;

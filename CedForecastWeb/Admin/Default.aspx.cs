@@ -40,7 +40,8 @@ namespace CedForecastWeb.Admin
 						UltimasAltasPagingGridView.VirtualItemCount = CedForecastWebRN.Cuenta.CantidadDeFilas((CedEntidades.Sesion)Session["Sesion"]);
 						UltimasAltasPagingGridView.DataSource = listaUltimasAltas;
 						UltimasAltasPagingGridView.DataBind();
-
+                        CuentasLabel.Text = "(" + CedForecastWebRN.Cuenta.CantidadDeFilas((CedEntidades.Sesion)Session["Sesion"]) + "), ";
+                        PeriodoLabel.Text = "(1), ";
 						try
 						{
 							//Borro los gráficos anteriores

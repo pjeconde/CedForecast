@@ -18,9 +18,11 @@ namespace CedForecastWeb.Forecast
 			MensajeGeneralLabel.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).MensajeGeneral;
 			if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Nombre != null)
 			{
-				NombreCuentaLabel.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Nombre;
-				Separador1Label.Visible = true;
-				SalirLinkButton.Visible = true;
+                NombreCuentaLabel.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Nombre;
+                Separador1Label.Visible = true;
+                ConfiguracionLinkButton.Visible = true;
+                Separador2Label.Visible = true;
+                SalirLinkButton.Visible = true;
 				switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id)
 				{
                     case "OperForecast":
@@ -38,9 +40,11 @@ namespace CedForecastWeb.Forecast
 			}
 			else
 			{
-				NombreCuentaLabel.Text = string.Empty;
-				Separador1Label.Visible = false;
-				SalirLinkButton.Visible = false;
+                NombreCuentaLabel.Text = string.Empty;
+                Separador1Label.Visible = false;
+                ConfiguracionLinkButton.Visible = false;
+                Separador2Label.Visible = false;
+                SalirLinkButton.Visible = false;
 			}
 			if (Request.UrlReferrer != null)
 			{
@@ -54,11 +58,13 @@ namespace CedForecastWeb.Forecast
 		}
 		public void CaducarIdentificacion()
 		{
-			CedForecastWebEntidades.Sesion sesion = (CedForecastWebEntidades.Sesion)Session["Sesion"];
-			sesion.Cuenta = new CedForecastWebEntidades.Cuenta();
-			NombreCuentaLabel.Text = String.Empty;
-			Separador1Label.Visible = false;
-			SalirLinkButton.Visible = false;
+            CedForecastWebEntidades.Sesion sesion = (CedForecastWebEntidades.Sesion)Session["Sesion"];
+            sesion.Cuenta = new CedForecastWebEntidades.Cuenta();
+            NombreCuentaLabel.Text = String.Empty;
+            Separador1Label.Visible = false;
+            ConfiguracionLinkButton.Visible = false;
+            Separador2Label.Visible = false;
+            SalirLinkButton.Visible = false;
 			Session["AceptarTYC"] = null;
 			Application.Lock();
 			Application["Registrados"] = (int)Application["Registrados"] - 1;

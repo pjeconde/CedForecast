@@ -112,10 +112,25 @@ A:hover {text-decoration: none; font-weight:normal; color: Blue;}
 {
 	color: black; font-weight: normal; font-size: 12px; font-family: Verdana; font-style: normal;
 }
-.TextoResaltado
+.TextoResaltadoAIzq
 {
-	color: black;
-	font-weight: bold; font-size: 12px; font-family: Arial; font-style: normal; vertical-align: middle;
+	color: Black;
+	font-weight: bold; font-size: 12px; font-family: Arial; font-style: normal; vertical-align: middle; text-align: left;
+}
+.TextoADerecha
+{
+	color: Blue;
+	font-weight: normal; font-size: 12px; font-family: Arial; font-style: normal; vertical-align: middle; text-align: right; 
+}
+.TextoResaltadoADerecha
+{
+	color: Blue;
+	font-weight: bold; font-size: 12px; font-family: Arial; font-style: normal; vertical-align: middle; text-align: right; 
+}
+.TextoResaltadoTotales
+{
+	color: Black;
+	font-weight: bold; font-size: 12px; font-family: Arial; font-style: normal; vertical-align: middle; text-align: right;
 }
 .TextoComun
 {
