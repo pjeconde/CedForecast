@@ -21,7 +21,7 @@
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
                             <table border="0" cellpadding="0" cellspacing="0">
 								<tr>
-                                    <td colspan="2" style="">
+                                    <td colspan="2" style="HEIGHT: 76px">
                                         <table border="0" cellpadding="0" cellspacing="0" id="TablaEnca">
                                             <tr>
                                                 <td style="width: 20px; vertical-align:top;">
@@ -52,14 +52,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="height: 26px">
                                     </td>
-                                    <td align="left" style="padding-top: 10px;" valign="middle">
+                                    <td align="left" style="padding-top: 10px; height: 26px;" valign="middle">
                                         Explorador de:
+                                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Admin/Periodo.aspx"
+                                            SkinID="LinkMedianoClaro">Periodo actual</asp:HyperLink>
+                                        <asp:Label ID="PeriodoLabel" runat="server" SkinID="TextoMediano" Text="( ), "></asp:Label>
                                         <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/Cuenta/Explorador.aspx"
                                             SkinID="LinkMedianoClaro">Cuentas</asp:HyperLink>
-                                        <asp:Label ID="CuentasLabel" runat="server" SkinID="TextoMediano" Text=""></asp:Label>
-                                    </td>
+                                        <asp:Label ID="CuentasLabel" runat="server" SkinID="TextoMediano" Text="( ), "></asp:Label>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/ConfirmacionCarga/Explorador.aspx"
+                                            SkinID="LinkMedianoClaro">Confirmación de Carga</asp:HyperLink>
+                                        <asp:Label ID="ConfirmacionCargaLabel" runat="server" SkinID="TextoMediano" Text="( )"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-top: 5px; padding-right: 3px" valign="top">
@@ -70,10 +75,10 @@
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-right: 3px; height: 20px;" valign="top">
-                                        <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="true"
+                                        <asp:CheckBox ID="RecibeAvisoConfirmacionCargaCheckBox" runat="server" AutoPostBack="true"
                                             OnCheckedChanged="RecibeAvisoAltaCuentaCheckBox_CheckedChanged" />&nbsp;</td>
                                     <td align="left" valign="middle" style="height: 20px">
-                                        Recibe aviso de alta de cuenta (SMS)</td>
+                                        Recibe aviso de confirmación de carga por cuenta vendedor (Email)</td>
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-right: 3px; height: 20px;" valign="top">

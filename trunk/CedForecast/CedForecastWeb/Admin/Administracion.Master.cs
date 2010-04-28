@@ -28,39 +28,8 @@ namespace CedForecastWeb.Admin
 					case "Admin":
 						AdministracionLinkButton.Visible = true;
 						break;
-					//Puede avisar cuando cierra la carga del mes...
-                    case "Prem":
-						switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
-						{
-                            //case "Vigente":
-                            //    ServicioPremiumEstadoLabel.Text = "Servicio Premium vigente";
-                            //    TimeSpan n = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.FechaVtoActivacion.Subtract(DateTime.Today);
-                            //    if (n.Days == 0)
-                            //    {
-                            //        ServicioPremiumVtoLabel.Text = "(caduca hoy)";
-                            //    }
-                            //    else
-                            //    {
-                            //        if (n.Days == 1)
-                            //        {
-                            //            ServicioPremiumVtoLabel.Text = "(caduca mañana)";
-                            //        }
-                            //        else
-                            //        {
-                            //            if (n.Days > 1 && n.Days < 10)
-                            //            {
-                            //                ServicioPremiumVtoLabel.Text = "(caduca en " + n.Days.ToString() + " días)";
-                            //            }
-                            //        }
-                            //    }
-                            //    break;
-                            //case "Suspend":
-                            //    ServicioPremiumEstadoLabel.Text = "Servicio Premium suspendido";
-                            //    break;
-						}
-						break;
-					case "Free":
-                        //ServicioPremiumEstadoLabel.Text = "Servicio Premium no activado";
+					case "OperForecast":
+                        //Operador
 						break;
 				}
 			}
@@ -72,7 +41,6 @@ namespace CedForecastWeb.Admin
 				Separador2Label.Visible = false;
 				SalirLinkButton.Visible = false;
 				AdministracionLinkButton.Visible = false;
-                //ServicioPremiumEstadoLabel.Text = string.Empty;
 			}
 			if (Request.UrlReferrer != null)
 			{

@@ -47,6 +47,15 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
+        /// Control CabeceraFijaPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CabeceraFijaPanel;
+        
+        /// <summary>
         /// Control FechaLabel.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
         
         /// <summary>
+        /// Control FechaVtoConfimacionCargaLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaVtoConfimacionCargaLabel;
+        
+        /// <summary>
         /// Control DivisionLabel.
         /// </summary>
         /// <remarks>
@@ -81,6 +99,15 @@ namespace CedForecastWeb.Forecast {
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DivisionDropDownList;
+        
+        /// <summary>
+        /// Control SeleccionPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SeleccionPanel;
         
         /// <summary>
         /// Control ClienteLabel.

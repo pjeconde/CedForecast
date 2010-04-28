@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CedForecastWeb.Admin {
+namespace CedForecastWeb.Forecast {
     
     
     /// <summary>
-    /// Clase Default.
+    /// Clase ConfirmacionCarga.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.
     /// </remarks>
-    public partial class Default {
+    public partial class ConfirmacionCarga {
         
         /// <summary>
         /// Control ScriptManager1.
@@ -29,13 +29,13 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control Image1.
+        /// Control Image2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
         /// Control TituloLabel.
@@ -47,147 +47,120 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
-        /// Control HyperLink3.
+        /// Control CabeceraFijaPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.Panel CabeceraFijaPanel;
         
         /// <summary>
-        /// Control PeriodoLabel.
+        /// Control FechaLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PeriodoLabel;
+        protected global::System.Web.UI.WebControls.Label FechaLabel;
         
         /// <summary>
-        /// Control HyperLink5.
+        /// Control PeriodoTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
+        protected global::System.Web.UI.WebControls.TextBox PeriodoTextBox;
         
         /// <summary>
-        /// Control CuentasLabel.
+        /// Control FechaVtoConfimacionCargaLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CuentasLabel;
+        protected global::System.Web.UI.WebControls.Label FechaVtoConfimacionCargaLabel;
         
         /// <summary>
-        /// Control HyperLink1.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control ConfirmacionCargaLabel.
+        /// Control FechaConfirmacionCargaTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmacionCargaLabel;
+        protected global::System.Web.UI.WebControls.TextBox FechaConfirmacionCargaTextBox;
         
         /// <summary>
-        /// Control ModoDepuracionCheckBox.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ModoDepuracionCheckBox;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control RecibeAvisoConfirmacionCargaCheckBox.
+        /// Control IdEstadoConfirmacionCargaTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoConfirmacionCargaCheckBox;
+        protected global::System.Web.UI.WebControls.TextBox IdEstadoConfirmacionCargaTextBox;
         
         /// <summary>
-        /// Control RecibeAvisoAltaCuentaCheckBox.
+        /// Control ComentarioLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoAltaCuentaCheckBox;
+        protected global::System.Web.UI.WebControls.Label ComentarioLabel;
         
         /// <summary>
-        /// Control PruebaSMSLinkButton.
+        /// Control ComentarioTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PruebaSMSLinkButton;
+        protected global::System.Web.UI.WebControls.TextBox ComentarioTextBox;
         
         /// <summary>
-        /// Control VisitantesLabel.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label VisitantesLabel;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control RegistradosLabel.
+        /// Control ConfirmarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label RegistradosLabel;
+        protected global::System.Web.UI.WebControls.Button ConfirmarButton;
         
         /// <summary>
-        /// Control Panel1.
+        /// Control AnularConfirmacionButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-        
-        /// <summary>
-        /// Control UltimasAltasPagingGridView.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::CedeiraUIWebForms.PagingGridView UltimasAltasPagingGridView;
-        
-        /// <summary>
-        /// Control HyperLink2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
-        
-        /// <summary>
-        /// Control MsgErrorLabel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MsgErrorLabel;
+        protected global::System.Web.UI.WebControls.Button AnularConfirmacionButton;
     }
 }
