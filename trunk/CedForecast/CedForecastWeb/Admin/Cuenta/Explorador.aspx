@@ -103,6 +103,12 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-top: 5px">
+                                        <asp:Button ID="CrearButton" runat="server" OnClick="CrearButton_Click"
+                                            Text="Crear cuenta" Width="100px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 5px">
                                         <asp:Button ID="BajaButton" runat="server" Enabled="false" OnClick="BajaButton_Click"
                                             Text="Dar de baja" Width="100px" />
                                     </td>
