@@ -14,5 +14,10 @@ namespace CedForecastWebRN
             CedForecastWebDB.Periodo periodo = new CedForecastWebDB.Periodo(Sesion);
             periodo.Leer(Periodo);
         }
+        public static void Modificar(CedForecastWebEntidades.Periodo Periodo, CedEntidades.Sesion Sesion)
+        {
+            CedForecastWebDB.Periodo periodo = new CedForecastWebDB.Periodo(Sesion);
+            periodo.Modificar(Periodo);
+        }
     }
 }

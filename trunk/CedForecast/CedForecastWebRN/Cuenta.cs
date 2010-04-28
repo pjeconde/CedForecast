@@ -94,7 +94,7 @@ namespace CedForecastWebRN
         }
         public static void Registrar(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
         {
-            Cuenta.TipoCuenta.Id = "Free";
+            Cuenta.TipoCuenta.Id = "OperForecast";
             Cuenta.EstadoCuenta.Id = "PteConf";
             Cuenta.PaginaDefault.Id = CedForecastWebRN.PaginaDefault.Predeterminada(Cuenta.TipoCuenta, Sesion).Id;
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
@@ -193,7 +193,7 @@ namespace CedForecastWebRN
                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Cuenta.LoginRechazadoXPasswordInvalida();
                     }
                     //Se impide el login a cuenta pendientes de confirmacion o dadas de baja
-                    //(las cuentas "Prem" suspendidas se comportan como cuentas "Free")
+                    //(las cuentas "Prem" suspendidas se comportan como cuentas "OperForecast")
                     if (Cuenta.EstadoCuenta.Id != "Vigente" && Cuenta.EstadoCuenta.Id != "Suspend")
                     {
                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Cuenta.LoginRechazadoXEstadoCuenta();
@@ -355,29 +355,6 @@ namespace CedForecastWebRN
             nuevoEstado.Id = "Vigente";
             CambiarEstado(Cuenta, nuevoEstado, Sesion);
         }        
-        //public static void SuspenderPremium(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
-        //{
-        //    CedForecastWebEntidades.EstadoCuenta nuevoEstado=new CedForecastWebEntidades.EstadoCuenta();
-        //    nuevoEstado.Id = "Suspend";
-        //    CambiarEstado(Cuenta, nuevoEstado, Sesion);
-        //}        
-        //public static void ActivarPremium(CedForecastWebEntidades.Cuenta Cuenta, DateTime FechaVtoActivacion, CedEntidades.Sesion Sesion)
-        //{
-        //    if (Convert.ToInt64(FechaVtoActivacion.ToString("yyyyMMdd")) < Convert.ToInt64(DateTime.Today.ToString("yyyyMMdd")))
-        //    {
-        //        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de vto. del servicio Premium");
-        //    }
-        //    else
-        //    {
-        //        CedForecastWebEntidades.TipoCuenta nuevoTipo = new CedForecastWebEntidades.TipoCuenta();
-        //        nuevoTipo.Id = "Prem";
-        //        CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
-        //        cuenta.CambiarTipo(Cuenta, nuevoTipo, FechaVtoActivacion);
-        //        CedForecastWebEntidades.EstadoCuenta nuevoEstado = new CedForecastWebEntidades.EstadoCuenta();
-        //        nuevoEstado.Id = "Vigente";
-        //        CambiarEstado(Cuenta, nuevoEstado, Sesion);
-        //    }
-        //}
         //public static void EnviarMailBienvenidaPremium(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
         //{
         //    SmtpClient smtpClient = new SmtpClient("mail.cedeira.com.ar");
@@ -413,37 +390,15 @@ namespace CedForecastWebRN
         //    smtpClient.Credentials = new NetworkCredential("registrousuarios@cedeira.com.ar", "cedeira123");
         //    smtpClient.Send(mail);
         //}
-        public static void DesactivarPremium(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
-        {
-            CedForecastWebEntidades.EstadoCuenta nuevoEstado = new CedForecastWebEntidades.EstadoCuenta();
-            nuevoEstado.Id = "Vigente";
-            CambiarEstado(Cuenta, nuevoEstado, Sesion);
-            CedForecastWebEntidades.TipoCuenta nuevoTipo = new CedForecastWebEntidades.TipoCuenta();
-            nuevoTipo.Id = "Free";
-            CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
-            cuenta.CambiarTipo(Cuenta, nuevoTipo);
-        }
         public static void Depurar(CedForecastWebEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             List<CedForecastWebEntidades.Cuenta> cuentaSuspendida = cuenta.DepurarBajasYPtesConf();
         }
-        //public static string ObtenerClaveActivar(CedForecastWebEntidades.Cuenta Cuenta, string ClaveSolicitud, CedEntidades.Sesion Sesion)
-        //{
-        //    CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
-        //    cuenta.ApagarActivar(Cuenta, ClaveSolicitud);
-        //    Cuenta.Activar = false;
-        //    return Encryptor.Encrypt(ClaveSolicitud, "srgerg$%^bg", Convert.FromBase64String("srfjuoxp")).ToString();
-        //}
         public static void SetearRecibeAvisoAltaCuenta(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             cuenta.SetearRecibeAvisoAltaCuenta(Cuenta);
         }
-        //public static void RegistrarComprobante(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
-        //{
-        //    CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
-        //    cuenta.RegistrarComprobante(Cuenta);
-        //}
     }
 }

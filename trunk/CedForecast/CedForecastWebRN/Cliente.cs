@@ -9,10 +9,10 @@ namespace CedForecastWebRN
         public Cliente()
         {
         }
-        public static List<CedForecastWebEntidades.Cliente> Lista(CedEntidades.Sesion Sesion)
+        public static List<CedForecastWebEntidades.Cliente> Lista(bool ConArticuloSinInformar, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cliente cliente = new CedForecastWebDB.Cliente(Sesion);
-            return cliente.Lista();
+            return cliente.Lista(ConArticuloSinInformar);
         }
     }
 }
