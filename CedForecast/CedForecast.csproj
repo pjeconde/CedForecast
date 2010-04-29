@@ -9,6 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CedForecast</RootNamespace>
     <AssemblyName>CedForecast</AssemblyName>
+    <StartupObject>CedForecast.Aplicacion</StartupObject>
+    <ApplicationIcon>Cedeira.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -38,19 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecursoIncrustado.cs" />
     <Compile Include="SincronizacionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SincronizacionForm.Designer.cs">
       <DependentUpon>SincronizacionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableroForm.cs">
+    <Compile Include="CedForecastForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TableroForm.Designer.cs">
-      <DependentUpon>TableroForm.cs</DependentUpon>
+    <Compile Include="CedForecastForm.Designer.cs">
+      <DependentUpon>CedForecastForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -61,9 +65,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>SincronizacionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TableroForm.resx">
+    <EmbeddedResource Include="CedForecastForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>TableroForm.cs</DependentUpon>
+      <DependentUpon>CedForecastForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,45 +82,45 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Web References\WS\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
+    <Compile Include="SingleApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ConfigFiles\appSettings.config" />
+    <None Include="ConfigFiles\connectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cedeira.ico" />
     <Content Include="Iconos\back_16.ico" />
     <Content Include="Iconos\close_16.ico" />
     <Content Include="Iconos\forwd_16.ico" />
     <Content Include="Iconos\wiz_16.ico" />
-    <None Include="Web References\WS\Forecast.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\WS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\WS\Sincronizacion.disco" />
-    <None Include="Web References\WS\Sincronizacion.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3000/Sincronizacion.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WS\</RelPath>
-      <UpdateFromURL>http://localhost:3000/Sincronizacion.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>CedForecast_WS_Sincronizacion</CachedSettingsPropName>
-    </WebReferenceUrl>
+    <ProjectReference Include="..\CedeiraAP\CedeiraAP.csproj">
+      <Project>{DB0A7D76-F68E-43A7-ADBD-08DDF2AFAD36}</Project>
+      <Name>CedeiraAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
+      <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
+      <Name>CedEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
+      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
+      <Name>CedeiraEx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastEntidades\CedForecastEntidades.csproj">
+      <Project>{5860D5C0-20DF-4207-AB83-AFA345077AB2}</Project>
+      <Name>CedForecastEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedForecastRN\CedForecastRN.csproj">
+      <Project>{75ACE3D0-AFF6-4C28-9162-7E69629B9FED}</Project>
+      <Name>CedForecastRN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedUI\CedeiraUIforms.vbproj">
+      <Project>{48571E9A-0BCD-486E-875F-62B861186EBE}</Project>
+      <Name>CedeiraUIforms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

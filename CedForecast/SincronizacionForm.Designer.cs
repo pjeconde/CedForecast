@@ -44,6 +44,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.ArticuloProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ClienteProgressBar = new System.Windows.Forms.ProgressBar();
+            this.CuentaProgressBar = new System.Windows.Forms.ProgressBar();
+            this.VentaProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ZonaProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ForecastProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // ArticuloCheckBox
@@ -192,11 +198,65 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "a";
             // 
+            // ArticuloProgressBar
+            // 
+            this.ArticuloProgressBar.Location = new System.Drawing.Point(185, 51);
+            this.ArticuloProgressBar.Name = "ArticuloProgressBar";
+            this.ArticuloProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ArticuloProgressBar.TabIndex = 19;
+            this.ArticuloProgressBar.Visible = false;
+            // 
+            // ClienteProgressBar
+            // 
+            this.ClienteProgressBar.Location = new System.Drawing.Point(185, 74);
+            this.ClienteProgressBar.Name = "ClienteProgressBar";
+            this.ClienteProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ClienteProgressBar.TabIndex = 20;
+            this.ClienteProgressBar.Visible = false;
+            // 
+            // CuentaProgressBar
+            // 
+            this.CuentaProgressBar.Location = new System.Drawing.Point(185, 98);
+            this.CuentaProgressBar.Name = "CuentaProgressBar";
+            this.CuentaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.CuentaProgressBar.TabIndex = 21;
+            this.CuentaProgressBar.Visible = false;
+            // 
+            // VentaProgressBar
+            // 
+            this.VentaProgressBar.Location = new System.Drawing.Point(185, 122);
+            this.VentaProgressBar.Name = "VentaProgressBar";
+            this.VentaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.VentaProgressBar.TabIndex = 22;
+            this.VentaProgressBar.Visible = false;
+            // 
+            // ZonaProgressBar
+            // 
+            this.ZonaProgressBar.Location = new System.Drawing.Point(185, 145);
+            this.ZonaProgressBar.Name = "ZonaProgressBar";
+            this.ZonaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ZonaProgressBar.TabIndex = 23;
+            this.ZonaProgressBar.Visible = false;
+            // 
+            // ForecastProgressBar
+            // 
+            this.ForecastProgressBar.Location = new System.Drawing.Point(185, 207);
+            this.ForecastProgressBar.Name = "ForecastProgressBar";
+            this.ForecastProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ForecastProgressBar.TabIndex = 24;
+            this.ForecastProgressBar.Visible = false;
+            // 
             // SincronizacionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(370, 302);
+            this.Controls.Add(this.ForecastProgressBar);
+            this.Controls.Add(this.ZonaProgressBar);
+            this.Controls.Add(this.VentaProgressBar);
+            this.Controls.Add(this.CuentaProgressBar);
+            this.Controls.Add(this.ClienteProgressBar);
+            this.Controls.Add(this.ArticuloProgressBar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -237,5 +297,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ProgressBar ArticuloProgressBar;
+        private System.Windows.Forms.ProgressBar ClienteProgressBar;
+        private System.Windows.Forms.ProgressBar CuentaProgressBar;
+        private System.Windows.Forms.ProgressBar VentaProgressBar;
+        private System.Windows.Forms.ProgressBar ZonaProgressBar;
+        private System.Windows.Forms.ProgressBar ForecastProgressBar;
     }
 }

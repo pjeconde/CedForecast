@@ -36,6 +36,10 @@ namespace Cedeira.SV
 			{
 				// Verifico que el usuario tenga acceso a la base de datos 
 				db.TesteoConexion(Sesion.CnnStr);
+                if (Sesion.CnnStrAplicExterna != String.Empty)
+                {
+                    db.TesteoConexion(Sesion.CnnStrAplicExterna);
+                }
 				// Obtengo Parametros
 				Sesion.CXO = db.CXO();
 				// Obtengo info del usuario

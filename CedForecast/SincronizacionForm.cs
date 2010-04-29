@@ -18,32 +18,41 @@ namespace CedForecast
         private void SincronizarButton_Click(object sender, EventArgs e)
         {
             bool seChequeoAlgo = false;
-            //WS.Sincronizacion ws = new CedForecast.WS.Sincronizacion();
-            //ws.Url = "http://localhost:3000/Sincronizacion.asmx";
             if (ArticuloCheckBox.Checked)
             {
-                //List<WS.Articulo> lista = new List<CedForecast.WS.Articulo>();
-                //ws.EnviarArticulos(lista);
+                ArticuloProgressBar.Visible = true;
+                ArticuloProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if (ClienteCheckBox.Checked)
             {
+                ClienteProgressBar.Visible = true;
+                ClienteProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if (CuentaCheckBox.Checked)
             {
+                CuentaProgressBar.Visible = true;
+                CuentaProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if (VentaCheckBox.Checked)
             {
+                VentaProgressBar.Visible = true;
+                VentaProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if ( ZonaCheckBox.Checked)
             {
+                ZonaProgressBar.Visible = true;
+                CedForecastRN.Zona.EnviarNovedades(new CedEntidades.Sesion());
+                ZonaProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if (ForecastCheckBox.Checked)
             {
+                ForecastProgressBar.Visible = true;
+                ForecastProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
             if (!seChequeoAlgo)

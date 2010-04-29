@@ -42,18 +42,13 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="EnviarArticulos">
+      <s:element name="EnviarArticulo">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfArticulo" />
+            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Articulo" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfArticulo">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Articulo" nillable="true" type="tns:Articulo" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="Articulo">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="IdArticulo" type="s:string" />
@@ -78,27 +73,23 @@
           <s:element minOccurs="0" maxOccurs="1" name="DescrDivision" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="EnviarArticulosResponse">
+      <s:element name="EnviarArticuloResponse">
         <s:complexType />
       </s:element>
-      <s:element name="EnviarCuentas">
+      <s:element name="EnviarCuenta">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfCuenta" />
+            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Cuenta" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfCuenta">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Cuenta" nillable="true" type="tns:Cuenta" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="Cuenta">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="tns:Division" />
           <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ConfirmacionPassword" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Pregunta" type="s:string" />
@@ -132,21 +123,16 @@
           <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="EnviarCuentasResponse">
+      <s:element name="EnviarCuentaResponse">
         <s:complexType />
       </s:element>
-      <s:element name="EnviarClientes">
+      <s:element name="EnviarCliente">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfCliente" />
+            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Cliente" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfCliente">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="Cliente">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
@@ -160,9 +146,11 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="IdZona" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DescrZona" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Habilitada" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaUltModif" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
-      <s:element name="EnviarClientesResponse">
+      <s:element name="EnviarClienteResponse">
         <s:complexType />
       </s:element>
       <s:element name="EnviarVentas">
@@ -189,19 +177,14 @@
       <s:element name="EnviarVentasResponse">
         <s:complexType />
       </s:element>
-      <s:element name="EnviarZonas">
+      <s:element name="EnviarZona">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Lista" type="tns:ArrayOfZona" />
+            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Zona" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfZona">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Zona" nillable="true" type="tns:Zona" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="EnviarZonasResponse">
+      <s:element name="EnviarZonaResponse">
         <s:complexType />
       </s:element>
       <s:element name="RecibirForecast">
@@ -226,7 +209,6 @@
       <s:complexType name="Forecast">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="IdCuenta" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="IdDivision" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Articulo" type="tns:Articulo" />
           <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
@@ -270,23 +252,23 @@
   <wsdl:message name="FechaUltimaSincronizacionZonasSoapOut">
     <wsdl:part name="parameters" element="tns:FechaUltimaSincronizacionZonasResponse" />
   </wsdl:message>
-  <wsdl:message name="EnviarArticulosSoapIn">
-    <wsdl:part name="parameters" element="tns:EnviarArticulos" />
+  <wsdl:message name="EnviarArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarArticulo" />
   </wsdl:message>
-  <wsdl:message name="EnviarArticulosSoapOut">
-    <wsdl:part name="parameters" element="tns:EnviarArticulosResponse" />
+  <wsdl:message name="EnviarArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarArticuloResponse" />
   </wsdl:message>
-  <wsdl:message name="EnviarCuentasSoapIn">
-    <wsdl:part name="parameters" element="tns:EnviarCuentas" />
+  <wsdl:message name="EnviarCuentaSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarCuenta" />
   </wsdl:message>
-  <wsdl:message name="EnviarCuentasSoapOut">
-    <wsdl:part name="parameters" element="tns:EnviarCuentasResponse" />
+  <wsdl:message name="EnviarCuentaSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarCuentaResponse" />
   </wsdl:message>
-  <wsdl:message name="EnviarClientesSoapIn">
-    <wsdl:part name="parameters" element="tns:EnviarClientes" />
+  <wsdl:message name="EnviarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarCliente" />
   </wsdl:message>
-  <wsdl:message name="EnviarClientesSoapOut">
-    <wsdl:part name="parameters" element="tns:EnviarClientesResponse" />
+  <wsdl:message name="EnviarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarClienteResponse" />
   </wsdl:message>
   <wsdl:message name="EnviarVentasSoapIn">
     <wsdl:part name="parameters" element="tns:EnviarVentas" />
@@ -294,11 +276,11 @@
   <wsdl:message name="EnviarVentasSoapOut">
     <wsdl:part name="parameters" element="tns:EnviarVentasResponse" />
   </wsdl:message>
-  <wsdl:message name="EnviarZonasSoapIn">
-    <wsdl:part name="parameters" element="tns:EnviarZonas" />
+  <wsdl:message name="EnviarZonaSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarZona" />
   </wsdl:message>
-  <wsdl:message name="EnviarZonasSoapOut">
-    <wsdl:part name="parameters" element="tns:EnviarZonasResponse" />
+  <wsdl:message name="EnviarZonaSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarZonaResponse" />
   </wsdl:message>
   <wsdl:message name="RecibirForecastSoapIn">
     <wsdl:part name="parameters" element="tns:RecibirForecast" />
@@ -323,25 +305,25 @@
       <wsdl:input message="tns:FechaUltimaSincronizacionZonasSoapIn" />
       <wsdl:output message="tns:FechaUltimaSincronizacionZonasSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="EnviarArticulos">
-      <wsdl:input message="tns:EnviarArticulosSoapIn" />
-      <wsdl:output message="tns:EnviarArticulosSoapOut" />
+    <wsdl:operation name="EnviarArticulo">
+      <wsdl:input message="tns:EnviarArticuloSoapIn" />
+      <wsdl:output message="tns:EnviarArticuloSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="EnviarCuentas">
-      <wsdl:input message="tns:EnviarCuentasSoapIn" />
-      <wsdl:output message="tns:EnviarCuentasSoapOut" />
+    <wsdl:operation name="EnviarCuenta">
+      <wsdl:input message="tns:EnviarCuentaSoapIn" />
+      <wsdl:output message="tns:EnviarCuentaSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="EnviarClientes">
-      <wsdl:input message="tns:EnviarClientesSoapIn" />
-      <wsdl:output message="tns:EnviarClientesSoapOut" />
+    <wsdl:operation name="EnviarCliente">
+      <wsdl:input message="tns:EnviarClienteSoapIn" />
+      <wsdl:output message="tns:EnviarClienteSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="EnviarVentas">
       <wsdl:input message="tns:EnviarVentasSoapIn" />
       <wsdl:output message="tns:EnviarVentasSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="EnviarZonas">
-      <wsdl:input message="tns:EnviarZonasSoapIn" />
-      <wsdl:output message="tns:EnviarZonasSoapOut" />
+    <wsdl:operation name="EnviarZona">
+      <wsdl:input message="tns:EnviarZonaSoapIn" />
+      <wsdl:output message="tns:EnviarZonaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="RecibirForecast">
       <wsdl:input message="tns:RecibirForecastSoapIn" />
@@ -386,8 +368,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarArticulos">
-      <soap:operation soapAction="http://cedeira.com.ar/EnviarArticulos" style="document" />
+    <wsdl:operation name="EnviarArticulo">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarArticulo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -395,8 +377,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarCuentas">
-      <soap:operation soapAction="http://cedeira.com.ar/EnviarCuentas" style="document" />
+    <wsdl:operation name="EnviarCuenta">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarCuenta" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -404,8 +386,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarClientes">
-      <soap:operation soapAction="http://cedeira.com.ar/EnviarClientes" style="document" />
+    <wsdl:operation name="EnviarCliente">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarCliente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -422,8 +404,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarZonas">
-      <soap:operation soapAction="http://cedeira.com.ar/EnviarZonas" style="document" />
+    <wsdl:operation name="EnviarZona">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarZona" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -479,8 +461,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarArticulos">
-      <soap12:operation soapAction="http://cedeira.com.ar/EnviarArticulos" style="document" />
+    <wsdl:operation name="EnviarArticulo">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarArticulo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -488,8 +470,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarCuentas">
-      <soap12:operation soapAction="http://cedeira.com.ar/EnviarCuentas" style="document" />
+    <wsdl:operation name="EnviarCuenta">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarCuenta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -497,8 +479,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarClientes">
-      <soap12:operation soapAction="http://cedeira.com.ar/EnviarClientes" style="document" />
+    <wsdl:operation name="EnviarCliente">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarCliente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -515,8 +497,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="EnviarZonas">
-      <soap12:operation soapAction="http://cedeira.com.ar/EnviarZonas" style="document" />
+    <wsdl:operation name="EnviarZona">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarZona" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

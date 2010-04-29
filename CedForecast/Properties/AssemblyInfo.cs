@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("CedForecast")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("K+S Forecast")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Cedeira Software Factory")]
 [assembly: AssemblyProduct("CedForecast")]
-[assembly: AssemblyCopyright("© Microsoft 2010")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Cedeira Software Factory")]
+[assembly: AssemblyTrademark("CedForecast")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible como false hace que los tipos de este ensamblado no sean visibles 

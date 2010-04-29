@@ -9,6 +9,8 @@ namespace CedForecastWebEntidades
     {
         private string idZona;
         private string descrZona;
+        private bool habilitada;
+        private DateTime fechaUltModif;
 
         public Zona()
         {
@@ -33,6 +35,28 @@ namespace CedForecastWebEntidades
             get
             {
                 return descrZona;
+            }
+        }
+        public bool Habilitada
+        {
+            set
+            {
+                habilitada = value;
+            }
+            get
+            {
+                return habilitada;
+            }
+        }
+        public DateTime FechaUltModif
+        {
+            set
+            {
+                fechaUltModif = value;
+            }
+            get
+            {
+                return fechaUltModif;
             }
         }
     }
