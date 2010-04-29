@@ -8,10 +8,11 @@ using System.Windows.Forms;
 
 namespace CedForecast
 {
-    public partial class TableroForm : Form
+    public partial class CedForecastForm : Form
     {
-        public TableroForm()
+        public CedForecastForm(string Titulo)
         {
+            this.Text = Titulo;
             InitializeComponent();
         }
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)

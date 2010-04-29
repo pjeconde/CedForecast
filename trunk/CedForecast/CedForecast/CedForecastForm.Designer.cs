@@ -1,6 +1,6 @@
 ﻿namespace CedForecast
 {
-    partial class TableroForm
+    partial class CedForecastForm
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableroForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CedForecastForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

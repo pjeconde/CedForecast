@@ -33,15 +33,15 @@ namespace CedForecast.WS
             return new DateTime(2000, 1, 1);
         }
         [WebMethod]
-        public void EnviarArticulos(List<CedForecastWebEntidades.Articulo> Lista)
+        public void EnviarArticulo(CedForecastWebEntidades.Articulo NuevoElemento)
         {
         }
         [WebMethod]
-        public void EnviarCuentas(List<CedForecastWebEntidades.Cuenta> Lista)
+        public void EnviarCuenta(CedForecastWebEntidades.Cuenta NuevoElemento)
         {
         }
         [WebMethod]
-        public void EnviarClientes(List<CedForecastWebEntidades.Cliente> Lista)
+        public void EnviarCliente(CedForecastWebEntidades.Cliente NuevoElemento)
         {
         }
         [WebMethod]
@@ -49,7 +49,7 @@ namespace CedForecast.WS
         {
         }
         [WebMethod]
-        public void EnviarZonas(List<CedForecastWebEntidades.Zona> Lista)
+        public void EnviarZona(CedForecastWebEntidades.Zona NuevoElemento)
         {
         }
         [WebMethod]

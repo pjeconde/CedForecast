@@ -22,15 +22,5 @@ namespace CedForecast.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:3000/Sincronizacion.asmx")]
-        public string CedForecast_WS_Sincronizacion {
-            get {
-                return ((string)(this["CedForecast_WS_Sincronizacion"]));
-            }
-        }
     }
 }

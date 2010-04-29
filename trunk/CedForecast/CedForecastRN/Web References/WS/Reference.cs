@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace CedForecast.WS {
+namespace CedForecastRN.WS {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -37,15 +37,15 @@ namespace CedForecast.WS {
         
         private System.Threading.SendOrPostCallback FechaUltimaSincronizacionZonasOperationCompleted;
         
-        private System.Threading.SendOrPostCallback EnviarArticulosOperationCompleted;
+        private System.Threading.SendOrPostCallback EnviarArticuloOperationCompleted;
         
-        private System.Threading.SendOrPostCallback EnviarCuentasOperationCompleted;
+        private System.Threading.SendOrPostCallback EnviarCuentaOperationCompleted;
         
-        private System.Threading.SendOrPostCallback EnviarClientesOperationCompleted;
+        private System.Threading.SendOrPostCallback EnviarClienteOperationCompleted;
         
         private System.Threading.SendOrPostCallback EnviarVentasOperationCompleted;
         
-        private System.Threading.SendOrPostCallback EnviarZonasOperationCompleted;
+        private System.Threading.SendOrPostCallback EnviarZonaOperationCompleted;
         
         private System.Threading.SendOrPostCallback RecibirForecastOperationCompleted;
         
@@ -53,7 +53,7 @@ namespace CedForecast.WS {
         
         /// <remarks/>
         public Sincronizacion() {
-            this.Url = global::CedForecast.Properties.Settings.Default.CedForecast_WS_Sincronizacion;
+            this.Url = global::CedForecastRN.Properties.Settings.Default.CedForecastRN_WS_Sincronizacion;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -100,19 +100,19 @@ namespace CedForecast.WS {
         public event FechaUltimaSincronizacionZonasCompletedEventHandler FechaUltimaSincronizacionZonasCompleted;
         
         /// <remarks/>
-        public event EnviarArticulosCompletedEventHandler EnviarArticulosCompleted;
+        public event EnviarArticuloCompletedEventHandler EnviarArticuloCompleted;
         
         /// <remarks/>
-        public event EnviarCuentasCompletedEventHandler EnviarCuentasCompleted;
+        public event EnviarCuentaCompletedEventHandler EnviarCuentaCompleted;
         
         /// <remarks/>
-        public event EnviarClientesCompletedEventHandler EnviarClientesCompleted;
+        public event EnviarClienteCompletedEventHandler EnviarClienteCompleted;
         
         /// <remarks/>
         public event EnviarVentasCompletedEventHandler EnviarVentasCompleted;
         
         /// <remarks/>
-        public event EnviarZonasCompletedEventHandler EnviarZonasCompleted;
+        public event EnviarZonaCompletedEventHandler EnviarZonaCompleted;
         
         /// <remarks/>
         public event RecibirForecastCompletedEventHandler RecibirForecastCompleted;
@@ -226,86 +226,86 @@ namespace CedForecast.WS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarArticulos", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarArticulos(Articulo[] Lista) {
-            this.Invoke("EnviarArticulos", new object[] {
-                        Lista});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarArticulo(Articulo NuevoElemento) {
+            this.Invoke("EnviarArticulo", new object[] {
+                        NuevoElemento});
         }
         
         /// <remarks/>
-        public void EnviarArticulosAsync(Articulo[] Lista) {
-            this.EnviarArticulosAsync(Lista, null);
+        public void EnviarArticuloAsync(Articulo NuevoElemento) {
+            this.EnviarArticuloAsync(NuevoElemento, null);
         }
         
         /// <remarks/>
-        public void EnviarArticulosAsync(Articulo[] Lista, object userState) {
-            if ((this.EnviarArticulosOperationCompleted == null)) {
-                this.EnviarArticulosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarArticulosOperationCompleted);
+        public void EnviarArticuloAsync(Articulo NuevoElemento, object userState) {
+            if ((this.EnviarArticuloOperationCompleted == null)) {
+                this.EnviarArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarArticuloOperationCompleted);
             }
-            this.InvokeAsync("EnviarArticulos", new object[] {
-                        Lista}, this.EnviarArticulosOperationCompleted, userState);
+            this.InvokeAsync("EnviarArticulo", new object[] {
+                        NuevoElemento}, this.EnviarArticuloOperationCompleted, userState);
         }
         
-        private void OnEnviarArticulosOperationCompleted(object arg) {
-            if ((this.EnviarArticulosCompleted != null)) {
+        private void OnEnviarArticuloOperationCompleted(object arg) {
+            if ((this.EnviarArticuloCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarArticulosCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.EnviarArticuloCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarCuentas", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarCuentas(Cuenta[] Lista) {
-            this.Invoke("EnviarCuentas", new object[] {
-                        Lista});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarCuenta", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarCuenta(Cuenta NuevoElemento) {
+            this.Invoke("EnviarCuenta", new object[] {
+                        NuevoElemento});
         }
         
         /// <remarks/>
-        public void EnviarCuentasAsync(Cuenta[] Lista) {
-            this.EnviarCuentasAsync(Lista, null);
+        public void EnviarCuentaAsync(Cuenta NuevoElemento) {
+            this.EnviarCuentaAsync(NuevoElemento, null);
         }
         
         /// <remarks/>
-        public void EnviarCuentasAsync(Cuenta[] Lista, object userState) {
-            if ((this.EnviarCuentasOperationCompleted == null)) {
-                this.EnviarCuentasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarCuentasOperationCompleted);
+        public void EnviarCuentaAsync(Cuenta NuevoElemento, object userState) {
+            if ((this.EnviarCuentaOperationCompleted == null)) {
+                this.EnviarCuentaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarCuentaOperationCompleted);
             }
-            this.InvokeAsync("EnviarCuentas", new object[] {
-                        Lista}, this.EnviarCuentasOperationCompleted, userState);
+            this.InvokeAsync("EnviarCuenta", new object[] {
+                        NuevoElemento}, this.EnviarCuentaOperationCompleted, userState);
         }
         
-        private void OnEnviarCuentasOperationCompleted(object arg) {
-            if ((this.EnviarCuentasCompleted != null)) {
+        private void OnEnviarCuentaOperationCompleted(object arg) {
+            if ((this.EnviarCuentaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarCuentasCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.EnviarCuentaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarClientes", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarClientes(Cliente[] Lista) {
-            this.Invoke("EnviarClientes", new object[] {
-                        Lista});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarCliente", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarCliente(Cliente NuevoElemento) {
+            this.Invoke("EnviarCliente", new object[] {
+                        NuevoElemento});
         }
         
         /// <remarks/>
-        public void EnviarClientesAsync(Cliente[] Lista) {
-            this.EnviarClientesAsync(Lista, null);
+        public void EnviarClienteAsync(Cliente NuevoElemento) {
+            this.EnviarClienteAsync(NuevoElemento, null);
         }
         
         /// <remarks/>
-        public void EnviarClientesAsync(Cliente[] Lista, object userState) {
-            if ((this.EnviarClientesOperationCompleted == null)) {
-                this.EnviarClientesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarClientesOperationCompleted);
+        public void EnviarClienteAsync(Cliente NuevoElemento, object userState) {
+            if ((this.EnviarClienteOperationCompleted == null)) {
+                this.EnviarClienteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarClienteOperationCompleted);
             }
-            this.InvokeAsync("EnviarClientes", new object[] {
-                        Lista}, this.EnviarClientesOperationCompleted, userState);
+            this.InvokeAsync("EnviarCliente", new object[] {
+                        NuevoElemento}, this.EnviarClienteOperationCompleted, userState);
         }
         
-        private void OnEnviarClientesOperationCompleted(object arg) {
-            if ((this.EnviarClientesCompleted != null)) {
+        private void OnEnviarClienteOperationCompleted(object arg) {
+            if ((this.EnviarClienteCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarClientesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.EnviarClienteCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -338,30 +338,30 @@ namespace CedForecast.WS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarZonas", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarZonas(Zona[] Lista) {
-            this.Invoke("EnviarZonas", new object[] {
-                        Lista});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarZona", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarZona(Zona NuevoElemento) {
+            this.Invoke("EnviarZona", new object[] {
+                        NuevoElemento});
         }
         
         /// <remarks/>
-        public void EnviarZonasAsync(Zona[] Lista) {
-            this.EnviarZonasAsync(Lista, null);
+        public void EnviarZonaAsync(Zona NuevoElemento) {
+            this.EnviarZonaAsync(NuevoElemento, null);
         }
         
         /// <remarks/>
-        public void EnviarZonasAsync(Zona[] Lista, object userState) {
-            if ((this.EnviarZonasOperationCompleted == null)) {
-                this.EnviarZonasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarZonasOperationCompleted);
+        public void EnviarZonaAsync(Zona NuevoElemento, object userState) {
+            if ((this.EnviarZonaOperationCompleted == null)) {
+                this.EnviarZonaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarZonaOperationCompleted);
             }
-            this.InvokeAsync("EnviarZonas", new object[] {
-                        Lista}, this.EnviarZonasOperationCompleted, userState);
+            this.InvokeAsync("EnviarZona", new object[] {
+                        NuevoElemento}, this.EnviarZonaOperationCompleted, userState);
         }
         
-        private void OnEnviarZonasOperationCompleted(object arg) {
-            if ((this.EnviarZonasCompleted != null)) {
+        private void OnEnviarZonaOperationCompleted(object arg) {
+            if ((this.EnviarZonaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarZonasCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.EnviarZonaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -594,8 +594,6 @@ namespace CedForecast.WS {
         
         private string idCuentaField;
         
-        private string idDivisionField;
-        
         private string idClienteField;
         
         private Articulo articuloField;
@@ -633,16 +631,6 @@ namespace CedForecast.WS {
             }
             set {
                 this.idCuentaField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public string IdDivision {
-            get {
-                return this.idDivisionField;
-            }
-            set {
-                this.idDivisionField = value;
             }
         }
         
@@ -878,6 +866,10 @@ namespace CedForecast.WS {
         
         private string descrZonaField;
         
+        private bool habilitadaField;
+        
+        private System.DateTime fechaUltModifField;
+        
         /// <comentarios/>
         public string IdZona {
             get {
@@ -895,6 +887,26 @@ namespace CedForecast.WS {
             }
             set {
                 this.descrZonaField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public bool Habilitada {
+            get {
+                return this.habilitadaField;
+            }
+            set {
+                this.habilitadaField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public System.DateTime FechaUltModif {
+            get {
+                return this.fechaUltModifField;
+            }
+            set {
+                this.fechaUltModifField = value;
             }
         }
     }
@@ -1095,6 +1107,8 @@ namespace CedForecast.WS {
         
         private string emailField;
         
+        private Division divisionField;
+        
         private string passwordField;
         
         private string confirmacionPasswordField;
@@ -1156,6 +1170,16 @@ namespace CedForecast.WS {
             }
             set {
                 this.emailField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public Division Division {
+            get {
+                return this.divisionField;
+            }
+            set {
+                this.divisionField = value;
             }
         }
         
@@ -1386,15 +1410,15 @@ namespace CedForecast.WS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void EnviarArticulosCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void EnviarArticuloCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void EnviarCuentasCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void EnviarCuentaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void EnviarClientesCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void EnviarClienteCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
@@ -1402,7 +1426,7 @@ namespace CedForecast.WS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void EnviarZonasCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void EnviarZonaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
