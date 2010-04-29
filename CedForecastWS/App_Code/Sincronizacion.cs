@@ -51,6 +51,8 @@ namespace CedForecast.WS
         [WebMethod]
         public void EnviarZona(CedForecastWebEntidades.Zona NuevoElemento)
         {
+
+
         }
         [WebMethod]
         public List<CedForecastWebEntidades.Forecast> RecibirForecast(DateTime Fecha)

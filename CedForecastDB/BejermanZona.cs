@@ -15,9 +15,9 @@ namespace CedForecastDB.Bejerman
         public List<CedForecastEntidades.Bejerman.Zona> LeerNovedades(DateTime FechaUltimaSincronizacion)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select * from Zona where zon_FecMod>'" + FechaUltimaSincronizacion.ToString() + "' ");
+            a.Append("select * from Zona where zon_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd hh:mm:ss.fff") + "' order by zon_FecMod");
             DataTable dt = new DataTable();
-            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             List<CedForecastEntidades.Bejerman.Zona> lista = new List<CedForecastEntidades.Bejerman.Zona>();
             if (dt.Rows.Count != 0)
             {

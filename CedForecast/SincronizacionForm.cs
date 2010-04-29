@@ -45,7 +45,7 @@ namespace CedForecast
             if ( ZonaCheckBox.Checked)
             {
                 ZonaProgressBar.Visible = true;
-                CedForecastRN.Zona.EnviarNovedades(new CedEntidades.Sesion());
+                CedForecastRN.Zona.EnviarNovedades(Aplicacion.Sesion);
                 ZonaProgressBar.Visible = false;
                 seChequeoAlgo = true;
             }
