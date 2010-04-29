@@ -55,6 +55,7 @@
             // ArticuloCheckBox
             // 
             this.ArticuloCheckBox.AutoSize = true;
+            this.ArticuloCheckBox.Enabled = false;
             this.ArticuloCheckBox.Location = new System.Drawing.Point(12, 51);
             this.ArticuloCheckBox.Name = "ArticuloCheckBox";
             this.ArticuloCheckBox.Size = new System.Drawing.Size(68, 17);
@@ -65,6 +66,7 @@
             // ClienteCheckBox
             // 
             this.ClienteCheckBox.AutoSize = true;
+            this.ClienteCheckBox.Enabled = false;
             this.ClienteCheckBox.Location = new System.Drawing.Point(12, 74);
             this.ClienteCheckBox.Name = "ClienteCheckBox";
             this.ClienteCheckBox.Size = new System.Drawing.Size(63, 17);
@@ -75,6 +77,7 @@
             // CuentaCheckBox
             // 
             this.CuentaCheckBox.AutoSize = true;
+            this.CuentaCheckBox.Enabled = false;
             this.CuentaCheckBox.Location = new System.Drawing.Point(12, 98);
             this.CuentaCheckBox.Name = "CuentaCheckBox";
             this.CuentaCheckBox.Size = new System.Drawing.Size(83, 17);
@@ -85,6 +88,7 @@
             // VentaCheckBox
             // 
             this.VentaCheckBox.AutoSize = true;
+            this.VentaCheckBox.Enabled = false;
             this.VentaCheckBox.Location = new System.Drawing.Point(12, 122);
             this.VentaCheckBox.Name = "VentaCheckBox";
             this.VentaCheckBox.Size = new System.Drawing.Size(101, 17);
@@ -125,6 +129,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "MM/yyyy";
+            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(113, 121);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -143,6 +148,7 @@
             // ForecastCheckBox
             // 
             this.ForecastCheckBox.AutoSize = true;
+            this.ForecastCheckBox.Enabled = false;
             this.ForecastCheckBox.Location = new System.Drawing.Point(12, 207);
             this.ForecastCheckBox.Name = "ForecastCheckBox";
             this.ForecastCheckBox.Size = new System.Drawing.Size(67, 17);
