@@ -23,7 +23,7 @@ namespace Cedeira.SV
 			Sesion.Version = Version;
 			Sesion.VersionParaControl = VersionParaControl;
 			// Chequeo de version del assembly
-			VerificarAssemblyVersion(Sesion);
+            if (VersionParaControl!=String.Empty) VerificarAssemblyVersion(Sesion);
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			if (db.WF_Acceso_lst().FindAll(delegate(CedEntidades.Acceso e)
 			{
