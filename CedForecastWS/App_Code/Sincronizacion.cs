@@ -30,7 +30,8 @@ namespace CedForecast.WS
         [WebMethod]
         public DateTime FechaUltimaSincronizacionZonas()
         {
-            return new DateTime(2000, 1, 1);
+            CedForecastWebDB.Zona datos = new CedForecastWebDB.Zona(Sesion());
+            return datos.FechaUltimaSincronizacion();
         }
         [WebMethod]
         public void EnviarArticulo(CedForecastWebEntidades.Articulo NuevoElemento)
@@ -59,6 +60,21 @@ namespace CedForecast.WS
         {
             List<CedForecastWebEntidades.Forecast> lista = new List<CedForecastWebEntidades.Forecast>();
             return lista;
+        }
+        private CedEntidades.Sesion Sesion()
+        {
+            string nombre = "ced_usuario";
+            string password = "mosca430rijo";
+            System.Text.StringBuilder auxCnn = new System.Text.StringBuilder();
+            auxCnn.Append(System.Configuration.ConfigurationManager.AppSettings["CnnStr"].ToString());
+            auxCnn.Append("User Id=");
+            auxCnn.Append(nombre);
+            auxCnn.Append(";Password=");
+            auxCnn.Append(password);
+            auxCnn.Append(";");
+            CedEntidades.Sesion sesion = new CedEntidades.Sesion();
+            Cedeira.SV.Sesion.Crear("Sincronizacion", String.Empty, "NONE", auxCnn.ToString(), "Sincronizacion", String.Empty, String.Empty, sesion);
+            return sesion;
         }
     }
 }
