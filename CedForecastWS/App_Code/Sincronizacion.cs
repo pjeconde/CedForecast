@@ -73,6 +73,8 @@ namespace CedForecast.WS
             auxCnn.Append(password);
             auxCnn.Append(";");
             CedEntidades.Sesion sesion = new CedEntidades.Sesion();
+            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+            string versionParaControl = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
             Cedeira.SV.Sesion.Crear("Sincronizacion", String.Empty, "NONE", auxCnn.ToString(), "Sincronizacion", String.Empty, String.Empty, sesion);
             return sesion;
         }
