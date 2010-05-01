@@ -6,10 +6,10 @@ namespace CedForecastRN
 {
     public static class Zona
     {
-        public static void EnviarNovedades(CedEntidades.Sesion Sesion)
+        public static void EnviarNovedades(CedEntidades.Sesion Sesion, string CedForecastWSRUL)
         {
             WS.Sincronizacion ws = new WS.Sincronizacion();
-            ws.Url = "http://localhost:3000/Sincronizacion.asmx";
+            ws.Url = CedForecastWSRUL;
             DateTime fechaUltimaSincronizacion = ws.FechaUltimaSincronizacionZonas();
             CedForecastDB.Bejerman.Zona datos = new CedForecastDB.Bejerman.Zona(Sesion);
             List<CedForecastEntidades.Bejerman.Zona> lista = datos.LeerNovedades(fechaUltimaSincronizacion);

@@ -23,7 +23,7 @@ namespace Cedeira.SV
 			Sesion.Version = Version;
 			Sesion.VersionParaControl = VersionParaControl;
 			// Chequeo de version del assembly
-            if (VersionParaControl!=String.Empty) VerificarAssemblyVersion(Sesion);
+            VerificarAssemblyVersion(Sesion);
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			if (db.WF_Acceso_lst().FindAll(delegate(CedEntidades.Acceso e)
 			{
@@ -36,7 +36,7 @@ namespace Cedeira.SV
 			{
 				// Verifico que el usuario tenga acceso a la base de datos 
 				db.TesteoConexion(Sesion.CnnStr);
-                if (Sesion.CnnStrAplicExterna != String.Empty)
+                if (Sesion.CnnStrAplicExterna != null)
                 {
                     db.TesteoConexion(Sesion.CnnStrAplicExterna);
                 }

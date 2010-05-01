@@ -227,23 +227,23 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarArticulo(Articulo NuevoElemento) {
+        public void EnviarArticulo(Articulo Elemento) {
             this.Invoke("EnviarArticulo", new object[] {
-                        NuevoElemento});
+                        Elemento});
         }
         
         /// <remarks/>
-        public void EnviarArticuloAsync(Articulo NuevoElemento) {
-            this.EnviarArticuloAsync(NuevoElemento, null);
+        public void EnviarArticuloAsync(Articulo Elemento) {
+            this.EnviarArticuloAsync(Elemento, null);
         }
         
         /// <remarks/>
-        public void EnviarArticuloAsync(Articulo NuevoElemento, object userState) {
+        public void EnviarArticuloAsync(Articulo Elemento, object userState) {
             if ((this.EnviarArticuloOperationCompleted == null)) {
                 this.EnviarArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarArticuloOperationCompleted);
             }
             this.InvokeAsync("EnviarArticulo", new object[] {
-                        NuevoElemento}, this.EnviarArticuloOperationCompleted, userState);
+                        Elemento}, this.EnviarArticuloOperationCompleted, userState);
         }
         
         private void OnEnviarArticuloOperationCompleted(object arg) {
@@ -255,23 +255,23 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarCuenta", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarCuenta(Cuenta NuevoElemento) {
+        public void EnviarCuenta(Cuenta Elemento) {
             this.Invoke("EnviarCuenta", new object[] {
-                        NuevoElemento});
+                        Elemento});
         }
         
         /// <remarks/>
-        public void EnviarCuentaAsync(Cuenta NuevoElemento) {
-            this.EnviarCuentaAsync(NuevoElemento, null);
+        public void EnviarCuentaAsync(Cuenta Elemento) {
+            this.EnviarCuentaAsync(Elemento, null);
         }
         
         /// <remarks/>
-        public void EnviarCuentaAsync(Cuenta NuevoElemento, object userState) {
+        public void EnviarCuentaAsync(Cuenta Elemento, object userState) {
             if ((this.EnviarCuentaOperationCompleted == null)) {
                 this.EnviarCuentaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarCuentaOperationCompleted);
             }
             this.InvokeAsync("EnviarCuenta", new object[] {
-                        NuevoElemento}, this.EnviarCuentaOperationCompleted, userState);
+                        Elemento}, this.EnviarCuentaOperationCompleted, userState);
         }
         
         private void OnEnviarCuentaOperationCompleted(object arg) {
@@ -283,23 +283,23 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarCliente", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarCliente(Cliente NuevoElemento) {
+        public void EnviarCliente(Cliente Elemento) {
             this.Invoke("EnviarCliente", new object[] {
-                        NuevoElemento});
+                        Elemento});
         }
         
         /// <remarks/>
-        public void EnviarClienteAsync(Cliente NuevoElemento) {
-            this.EnviarClienteAsync(NuevoElemento, null);
+        public void EnviarClienteAsync(Cliente Elemento) {
+            this.EnviarClienteAsync(Elemento, null);
         }
         
         /// <remarks/>
-        public void EnviarClienteAsync(Cliente NuevoElemento, object userState) {
+        public void EnviarClienteAsync(Cliente Elemento, object userState) {
             if ((this.EnviarClienteOperationCompleted == null)) {
                 this.EnviarClienteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarClienteOperationCompleted);
             }
             this.InvokeAsync("EnviarCliente", new object[] {
-                        NuevoElemento}, this.EnviarClienteOperationCompleted, userState);
+                        Elemento}, this.EnviarClienteOperationCompleted, userState);
         }
         
         private void OnEnviarClienteOperationCompleted(object arg) {
@@ -339,23 +339,23 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarZona", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarZona(Zona NuevoElemento) {
+        public void EnviarZona(Zona Elemento) {
             this.Invoke("EnviarZona", new object[] {
-                        NuevoElemento});
+                        Elemento});
         }
         
         /// <remarks/>
-        public void EnviarZonaAsync(Zona NuevoElemento) {
-            this.EnviarZonaAsync(NuevoElemento, null);
+        public void EnviarZonaAsync(Zona Elemento) {
+            this.EnviarZonaAsync(Elemento, null);
         }
         
         /// <remarks/>
-        public void EnviarZonaAsync(Zona NuevoElemento, object userState) {
+        public void EnviarZonaAsync(Zona Elemento, object userState) {
             if ((this.EnviarZonaOperationCompleted == null)) {
                 this.EnviarZonaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarZonaOperationCompleted);
             }
             this.InvokeAsync("EnviarZona", new object[] {
-                        NuevoElemento}, this.EnviarZonaOperationCompleted, userState);
+                        Elemento}, this.EnviarZonaOperationCompleted, userState);
         }
         
         private void OnEnviarZonaOperationCompleted(object arg) {

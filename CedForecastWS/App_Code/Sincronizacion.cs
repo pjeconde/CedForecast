@@ -34,15 +34,15 @@ namespace CedForecast.WS
             return datos.FechaUltimaSincronizacion();
         }
         [WebMethod]
-        public void EnviarArticulo(CedForecastWebEntidades.Articulo NuevoElemento)
+        public void EnviarArticulo(CedForecastWebEntidades.Articulo Elemento)
         {
         }
         [WebMethod]
-        public void EnviarCuenta(CedForecastWebEntidades.Cuenta NuevoElemento)
+        public void EnviarCuenta(CedForecastWebEntidades.Cuenta Elemento)
         {
         }
         [WebMethod]
-        public void EnviarCliente(CedForecastWebEntidades.Cliente NuevoElemento)
+        public void EnviarCliente(CedForecastWebEntidades.Cliente Elemento)
         {
         }
         [WebMethod]
@@ -50,10 +50,10 @@ namespace CedForecast.WS
         {
         }
         [WebMethod]
-        public void EnviarZona(CedForecastWebEntidades.Zona NuevoElemento)
+        public void EnviarZona(CedForecastWebEntidades.Zona Elemento)
         {
-
-
+            CedForecastWebDB.Zona datos = new CedForecastWebDB.Zona(Sesion());
+            datos.Actualizar(Elemento);
         }
         [WebMethod]
         public List<CedForecastWebEntidades.Forecast> RecibirForecast(DateTime Fecha)
@@ -63,19 +63,8 @@ namespace CedForecast.WS
         }
         private CedEntidades.Sesion Sesion()
         {
-            string nombre = "ced_usuario";
-            string password = "mosca430rijo";
-            System.Text.StringBuilder auxCnn = new System.Text.StringBuilder();
-            auxCnn.Append(System.Configuration.ConfigurationManager.AppSettings["CnnStr"].ToString());
-            auxCnn.Append("User Id=");
-            auxCnn.Append(nombre);
-            auxCnn.Append(";Password=");
-            auxCnn.Append(password);
-            auxCnn.Append(";");
             CedEntidades.Sesion sesion = new CedEntidades.Sesion();
-            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
-            string versionParaControl = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
-            Cedeira.SV.Sesion.Crear("Sincronizacion", String.Empty, "NONE", auxCnn.ToString(), "Sincronizacion", String.Empty, String.Empty, sesion);
+            sesion.CnnStr = System.Configuration.ConfigurationManager.AppSettings["CnnStr"].ToString();
             return sesion;
         }
     }
