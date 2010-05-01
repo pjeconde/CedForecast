@@ -45,7 +45,7 @@
       <s:element name="EnviarArticulo">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Articulo" />
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:Articulo" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -79,7 +79,7 @@
       <s:element name="EnviarCuenta">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Cuenta" />
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:Cuenta" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -129,7 +129,7 @@
       <s:element name="EnviarCliente">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Cliente" />
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:Cliente" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -180,7 +180,7 @@
       <s:element name="EnviarZona">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="NuevoElemento" type="tns:Zona" />
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:Zona" />
           </s:sequence>
         </s:complexType>
       </s:element>

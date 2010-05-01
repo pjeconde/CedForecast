@@ -41,7 +41,7 @@ namespace CedForecastWebDB
             a.Append("select max(FechaUltModif) as FEchaUltModif from Zona ");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
-            if (dt.Rows.Count == 1)
+            if (dt.Rows[0]["FEchaUltModif"] != DBNull.Value )
             {
                 return Convert.ToDateTime(dt.Rows[0]["FechaUltModif"]);
             }
@@ -49,6 +49,24 @@ namespace CedForecastWebDB
             {
                 return new DateTime(1980, 1, 1);
             }
+        }
+        public void Actualizar(CedForecastWebEntidades.Zona Elemento)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("if exists (select IdZona from Zona where IdZona='" + Elemento.IdZona + "') ");
+            a.Append("update Zona set ");
+            a.Append("DescrZona='" + Elemento.DescrZona + "', ");
+            a.Append("Habilitada=" + Convert.ToInt16(Elemento.Habilitada) + ", ");
+            a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append("where IdZona='" + Elemento.IdZona + "' ");
+            a.Append("else ");
+            a.Append("insert Zona values ( ");
+            a.Append("'" + Elemento.IdZona + "', ");
+            a.Append("'" + Elemento.DescrZona + "', ");
+            a.Append(Convert.ToInt16(Elemento.Habilitada) + ", ");
+            a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append(") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }
