@@ -15,6 +15,7 @@ namespace CedForecastWebEntidades
 
         public Cliente()
         {
+            zona = new CedForecastWebEntidades.Zona();
         }
         public string IdCliente
         {

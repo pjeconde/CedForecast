@@ -56,14 +56,14 @@ namespace CedForecastWebDB
             a.Append("if exists (select IdZona from Zona where IdZona='" + Elemento.IdZona + "') ");
             a.Append("update Zona set ");
             a.Append("DescrZona='" + Elemento.DescrZona + "', ");
-            a.Append("Habilitada=" + Convert.ToInt16(Elemento.Habilitada) + ", ");
+            a.Append("Habilitada=" + Convert.ToInt16(Elemento.Habilitada).ToString() + ", ");
             a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
             a.Append("where IdZona='" + Elemento.IdZona + "' ");
             a.Append("else ");
             a.Append("insert Zona values ( ");
             a.Append("'" + Elemento.IdZona + "', ");
             a.Append("'" + Elemento.DescrZona + "', ");
-            a.Append(Convert.ToInt16(Elemento.Habilitada) + ", ");
+            a.Append(Convert.ToInt16(Elemento.Habilitada).ToString() + ", ");
             a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
             a.Append(") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);

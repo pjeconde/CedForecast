@@ -66,7 +66,6 @@
             // ClienteCheckBox
             // 
             this.ClienteCheckBox.AutoSize = true;
-            this.ClienteCheckBox.Enabled = false;
             this.ClienteCheckBox.Location = new System.Drawing.Point(12, 74);
             this.ClienteCheckBox.Name = "ClienteCheckBox";
             this.ClienteCheckBox.Size = new System.Drawing.Size(63, 17);

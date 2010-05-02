@@ -35,7 +35,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BejermanZona.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Proceso.cs" />
+    <Compile Include="Zona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
       <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
       <Name>CedEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
+      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
+      <Name>CedeiraEx</Name>
     </ProjectReference>
     <ProjectReference Include="..\CedForecastDB\CedForecastDB.csproj">
       <Project>{EA08AE7C-6783-45C4-8DC2-54AB24801859}</Project>

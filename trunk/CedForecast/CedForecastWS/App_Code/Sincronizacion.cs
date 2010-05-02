@@ -25,7 +25,8 @@ namespace CedForecast.WS
         [WebMethod]
         public DateTime FechaUltimaSincronizacionClientes()
         {
-            return new DateTime(2000, 1, 1);
+            CedForecastWebDB.Cliente datos = new CedForecastWebDB.Cliente(Sesion());
+            return datos.FechaUltimaSincronizacion();
         }
         [WebMethod]
         public DateTime FechaUltimaSincronizacionZonas()
@@ -44,6 +45,8 @@ namespace CedForecast.WS
         [WebMethod]
         public void EnviarCliente(CedForecastWebEntidades.Cliente Elemento)
         {
+            CedForecastWebDB.Cliente datos = new CedForecastWebDB.Cliente(Sesion());
+            datos.Actualizar(Elemento);
         }
         [WebMethod]
         public void EnviarVentas(List<CedForecastWebEntidades.Venta> Lista)

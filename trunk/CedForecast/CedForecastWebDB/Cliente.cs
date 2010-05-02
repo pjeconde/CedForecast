@@ -61,5 +61,40 @@ namespace CedForecastWebDB
             Hasta.Habilitado = Convert.ToBoolean(Desde["Habilitado"]);
             Hasta.FechaUltModif = Convert.ToDateTime(Desde["FechaUltModif"]);
         }
+        public DateTime FechaUltimaSincronizacion()
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select max(FechaUltModif) as FechaUltModif from Cliente ");
+            DataTable dt = new DataTable();
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            if (dt.Rows[0]["FechaUltModif"] != DBNull.Value)
+            {
+                return Convert.ToDateTime(dt.Rows[0]["FechaUltModif"]);
+            }
+            else
+            {
+                return new DateTime(1980, 1, 1);
+            }
+        }
+        public void Actualizar(CedForecastWebEntidades.Cliente Elemento)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("if exists (select IdCliente from Cliente where IdCliente='" + Elemento.IdCliente + "') ");
+            a.Append("update Cliente set ");
+            a.Append("DescrCliente='" + Elemento.DescrCliente + "', ");
+            a.Append("IdZona='" + Elemento.Zona.IdZona + "', ");
+            a.Append("Habilitado=" + Convert.ToInt16(Elemento.Habilitado).ToString() + ", ");
+            a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append("where IdCliente='" + Elemento.IdCliente + "' ");
+            a.Append("else ");
+            a.Append("insert Cliente values ( ");
+            a.Append("'" + Elemento.IdCliente + "', ");
+            a.Append("'" + Elemento.DescrCliente + "', ");
+            a.Append("'" + Elemento.Zona.IdZona + "', ");
+            a.Append(Convert.ToInt16(Elemento.Habilitado).ToString() + ", ");
+            a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append(") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
+        }
     }
 }
