@@ -25,8 +25,19 @@ namespace CedForecast
                 bool seChequeoAlgo = false;
                 if (ArticuloCheckBox.Checked)
                 {
-                    ArticuloProgressBar.Visible = true;
-                    ArticuloProgressBar.Visible = false;
+                    BarraActivar(ArticuloProgressBar);
+                    CedForecastRN.Articulo proceso = new CedForecastRN.Articulo(Aplicacion.Sesion, cedForecastWSURL);
+                    thread = new Thread(new ThreadStart(proceso.EnviarNovedades));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(ArticuloProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(1000);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    BarraDesactivar(ArticuloProgressBar);
                     seChequeoAlgo = true;
                 }
                 if (ClienteCheckBox.Checked)

@@ -12,7 +12,7 @@ namespace CedForecastWebRN
         public static List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Articulo articulo = new CedForecastWebDB.Articulo(Sesion);
-            return articulo.Lista(ConArticuloSinInformar);
+            return articulo.Lista(ConArticuloSinInformar, Sesion.Cuenta.Division);
         }
     }
 }
