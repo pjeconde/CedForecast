@@ -7,10 +7,9 @@ namespace CedForecastWebDB
 {
     public class Articulo: db
     {
-        private CedForecastWebEntidades.Cuenta cuenta;
-        public Articulo(CedForecastWebEntidades.Sesion Sesion) : base(Sesion)
+        public Articulo(CedEntidades.Sesion Sesion)
+            : base(Sesion)
         {
-            cuenta = Sesion.Cuenta;
         }
 
         public void Leer(CedForecastWebEntidades.Articulo Articulo)
@@ -29,12 +28,12 @@ namespace CedForecastWebDB
                 Copiar(dt.Rows[0], Articulo);
             }
         }
-        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar)
+        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Articulo.IdArticulo, Articulo.DescrArticulo + ' (' + Articulo.IdGrupoArticulo + ')' as DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where GrupoArticulo.IdDivision = '" + cuenta.Division.IdDivision + "'");
+            a.Append("where GrupoArticulo.IdDivision = '" + Division.IdDivision + "'");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Articulo> lista = new List<CedForecastWebEntidades.Articulo>();
@@ -65,6 +64,45 @@ namespace CedForecastWebDB
             Hasta.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
             Hasta.GrupoArticulo.Division.IdDivision = Convert.ToString(Desde["IdDivision"]);
             Hasta.GrupoArticulo.Division.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
+        }
+        public DateTime FechaUltimaSincronizacion()
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select max(FechaUltModif) as FechaUltModif from Articulo ");
+            DataTable dt = new DataTable();
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            if (dt.Rows[0]["FechaUltModif"] != DBNull.Value)
+            {
+                return Convert.ToDateTime(dt.Rows[0]["FechaUltModif"]);
+            }
+            else
+            {
+                return new DateTime(1980, 1, 1);
+            }
+        }
+        public void Actualizar(CedForecastWebEntidades.Articulo Elemento)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("if exists (select IdArticulo from Articulo where IdArticulo='" + Elemento.IdArticulo + "') ");
+            a.Append("update Articulo set ");
+            a.Append("DescrArticulo='" + Elemento.DescrArticulo + "', ");
+            a.Append("IdGrupoArticulo='" + Elemento.GrupoArticulo.IdGrupoArticulo + "', ");
+            a.Append("PesoBruto='" + Convert.ToString(Elemento.PesoBruto, cedeiraCultura) + "', ");
+            a.Append("UnidadMedida='" + Elemento.UnidadMedida + "', ");
+            a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "', ");
+            a.Append("Habilitado=" + Convert.ToInt16(Elemento.Habilitado).ToString() + " ");
+            a.Append("where IdArticulo='" + Elemento.IdArticulo + "' ");
+            a.Append("else ");
+            a.Append("insert Articulo values ( ");
+            a.Append("'" + Elemento.IdArticulo + "', ");
+            a.Append("'" + Elemento.DescrArticulo + "', ");
+            a.Append("'" + Elemento.GrupoArticulo.IdGrupoArticulo + "', ");
+            a.Append("'" + Convert.ToString(Elemento.PesoBruto, cedeiraCultura) + "', ");
+            a.Append("'" + Elemento.UnidadMedida + "', ");
+            a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "', ");
+            a.Append(Convert.ToInt16(Elemento.Habilitado).ToString() + " ");
+            a.Append(") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }

@@ -35,6 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulo.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Proceso.cs" />
     <Compile Include="Zona.cs" />

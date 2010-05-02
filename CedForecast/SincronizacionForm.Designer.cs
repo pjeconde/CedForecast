@@ -55,7 +55,6 @@
             // ArticuloCheckBox
             // 
             this.ArticuloCheckBox.AutoSize = true;
-            this.ArticuloCheckBox.Enabled = false;
             this.ArticuloCheckBox.Location = new System.Drawing.Point(12, 51);
             this.ArticuloCheckBox.Name = "ArticuloCheckBox";
             this.ArticuloCheckBox.Size = new System.Drawing.Size(68, 17);
@@ -107,22 +106,26 @@
             // 
             // SincronizarButton
             // 
+            this.SincronizarButton.Image = ((System.Drawing.Image)(resources.GetObject("SincronizarButton.Image")));
             this.SincronizarButton.Location = new System.Drawing.Point(12, 270);
             this.SincronizarButton.Name = "SincronizarButton";
-            this.SincronizarButton.Size = new System.Drawing.Size(75, 23);
+            this.SincronizarButton.Size = new System.Drawing.Size(83, 23);
             this.SincronizarButton.TabIndex = 5;
             this.SincronizarButton.Text = "Sincronizar";
+            this.SincronizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SincronizarButton.UseVisualStyleBackColor = true;
             this.SincronizarButton.Click += new System.EventHandler(this.SincronizarButton_Click);
             // 
             // SalirButton
             // 
             this.SalirButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.SalirButton.Location = new System.Drawing.Point(93, 270);
+            this.SalirButton.Image = ((System.Drawing.Image)(resources.GetObject("SalirButton.Image")));
+            this.SalirButton.Location = new System.Drawing.Point(101, 270);
             this.SalirButton.Name = "SalirButton";
-            this.SalirButton.Size = new System.Drawing.Size(75, 23);
+            this.SalirButton.Size = new System.Drawing.Size(52, 23);
             this.SalirButton.TabIndex = 6;
             this.SalirButton.Text = "Salir";
+            this.SalirButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SalirButton.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
@@ -255,7 +258,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.SalirButton;
             this.ClientSize = new System.Drawing.Size(370, 302);
+            this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ForecastProgressBar);
             this.Controls.Add(this.ZonaProgressBar);
@@ -277,7 +282,10 @@
             this.Controls.Add(this.CuentaCheckBox);
             this.Controls.Add(this.ClienteCheckBox);
             this.Controls.Add(this.ArticuloCheckBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SincronizacionForm";
             this.Text = "Sincronización";
             this.ResumeLayout(false);
