@@ -7,8 +7,8 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Articulo
     {
-        private string idArticulo;
-        private string descrArticulo;
+        private string id;
+        private string descr;
         private string unidadMedida;
         private decimal pesoBruto;
         private bool habilitado; 
@@ -19,26 +19,26 @@ namespace CedForecastWebEntidades
         {
             grupoArticulo = new GrupoArticulo();
         }
-        public string IdArticulo
+        public string Id
         {
             set
             {
-                idArticulo = value;
+                id = value;
             }
             get
             {
-                return idArticulo;
+                return id;
             }
         }
-        public string DescrArticulo
+        public string Descr
         {
             set
             {
-                descrArticulo = value;
+                descr = value;
             }
             get
             {
-                return descrArticulo;
+                return descr;
             }
         }
         public decimal PesoBruto

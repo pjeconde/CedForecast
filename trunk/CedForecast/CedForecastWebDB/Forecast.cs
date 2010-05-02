@@ -51,12 +51,12 @@ namespace CedForecastWebDB
             Hasta.IdCuenta = Convert.ToString(Desde["IdCuenta"]);
             Hasta.IdCliente = Convert.ToString(Desde["IdCliente"]);
             Hasta.Articulo = new CedForecastWebEntidades.Articulo();
-            Hasta.Articulo.IdArticulo = Convert.ToString(Desde["IdArticulo"]);
-            Hasta.Articulo.DescrArticulo = Convert.ToString(Desde["DescrArticulo"]);
+            Hasta.Articulo.Id = Convert.ToString(Desde["IdArticulo"]);
+            Hasta.Articulo.Descr = Convert.ToString(Desde["DescrArticulo"]);
             Hasta.Articulo.GrupoArticulo.IdGrupoArticulo = Convert.ToString(Desde["IdGrupoArticulo"]);
             Hasta.Articulo.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
-            Hasta.Articulo.GrupoArticulo.Division.IdDivision = Convert.ToString(Desde["IdDivision"]);
-            Hasta.Articulo.GrupoArticulo.Division.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.Articulo.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
+            Hasta.Articulo.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
             Hasta.Fecha = Convert.ToDateTime(FechaInicial.ToString("01/MM/yyyy"));
         }
         private void CopiarDet(DataRow Desde, CedForecastWebEntidades.Forecast Hasta, int Mes)
@@ -133,7 +133,7 @@ namespace CedForecastWebDB
             a.Append("and Fecha >= '" + Fecha.ToString("yyyyMM01") + "' and Fecha < '" + UltimoMesForecast(Fecha).ToString("yyyyMMdd") + "' ");
             foreach (CedForecastWebEntidades.Forecast Forecast in ForecastLista)
             {
-                if (Forecast.Articulo.IdArticulo != null)
+                if (Forecast.Articulo.Id != null)
                 {
                     for (int i = 1; i <= 12; i++)
                     {
@@ -180,7 +180,7 @@ namespace CedForecastWebDB
                         if (cantidad > 0)
                         {
                             a.Append("Insert Forecast values ('" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                            a.Append(Forecast.Articulo.IdArticulo + "', '" + FechaAProcesar(i - 1, Forecast.Fecha).ToString("yyyyMMdd") + "', " + cantidad + ") ");
+                            a.Append(Forecast.Articulo.Id + "', '" + FechaAProcesar(i - 1, Forecast.Fecha).ToString("yyyyMMdd") + "', " + cantidad + ") ");
                         }
                     }
                 }

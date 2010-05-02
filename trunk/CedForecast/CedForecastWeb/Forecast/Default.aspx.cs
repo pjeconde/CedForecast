@@ -42,14 +42,14 @@ namespace CedForecastWeb.Forecast
                         DivisionDropDownList.DataValueField = "IdDivision";
                         DivisionDropDownList.DataTextField = "DescrDivision";
                         DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista((CedForecastWebEntidades.Sesion)Session["Sesion"]);
-                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
 
                         CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         FechaTextBox.Text = periodo.IdPeriodo.ToString("yyyyMM");
                         FechaTextBox.ReadOnly = true;
                         
-                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
                         
                         FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaVtoConfirmacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
                         for (int i = 1; i <= 12; i++)
@@ -117,7 +117,7 @@ namespace CedForecastWeb.Forecast
                 //Modificación de articulo existente. ( El articulo ya existe en el ViewState y en un index distinto al que estoy modificando )
                 if (e.RowIndex < ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Count)
                 {
-                    int indexArticulo =((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).FindIndex((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
+                    int indexArticulo =((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).FindIndex((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
                     if (indexArticulo >= 0 && e.RowIndex != indexArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
@@ -126,8 +126,8 @@ namespace CedForecastWeb.Forecast
                 //Articulo nuevo. ( El e.RowIndex es mayor al ultimo del ViewState )
                 else
                 {
-                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
-                    if (forecast != null && forecast.Articulo.IdArticulo == auxIdArticulo)
+                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
+                    if (forecast != null && forecast.Articulo.Id == auxIdArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
                     }
@@ -139,8 +139,8 @@ namespace CedForecastWeb.Forecast
                 string auxDescrArticulo = ((DropDownList)detalleGridView.Rows[e.RowIndex].FindControl("ddlIdArticuloEdit")).SelectedItem.Text;
                 if (!auxIdArticulo.Equals(string.Empty))
                 {
-                    l.Articulo.IdArticulo = auxIdArticulo;
-                    l.Articulo.DescrArticulo = auxDescrArticulo;
+                    l.Articulo.Id = auxIdArticulo;
+                    l.Articulo.Descr = auxDescrArticulo;
                 }
                 else
                 {
@@ -288,15 +288,15 @@ namespace CedForecastWeb.Forecast
                     CultureInfo cedeiraCultura = new System.Globalization.CultureInfo(System.Configuration.ConfigurationManager.AppSettings["Cultura"]);
                     
                     string auxIdArticulo = ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).SelectedValue;
-                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
-                    if (forecast != null && forecast.Articulo.IdArticulo == auxIdArticulo)
+                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
+                    if (forecast != null && forecast.Articulo.Id == auxIdArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
                     }
 
                     CedForecastWebEntidades.Forecast l = new CedForecastWebEntidades.Forecast();
                     l.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                    l.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
+                    l.Articulo.GrupoArticulo.Division.Id = DivisionDropDownList.SelectedValue;
                     l.IdCliente = ClienteDropDownList.SelectedValue;
                     l.Fecha = Convert.ToDateTime("01/" + FechaTextBox.Text.Substring(4, 2) + "/" + FechaTextBox.Text.Substring(0, 4));
                     
@@ -304,8 +304,8 @@ namespace CedForecastWeb.Forecast
                     if (!auxIdArticulo.Equals(string.Empty))
                     {
                         l.Articulo = new CedForecastWebEntidades.Articulo();
-                        l.Articulo.IdArticulo = auxIdArticulo;
-                        l.Articulo.DescrArticulo = auxDescrArticulo;
+                        l.Articulo.Id = auxIdArticulo;
+                        l.Articulo.Descr = auxDescrArticulo;
                     }
                     else
                     {
@@ -468,7 +468,7 @@ namespace CedForecastWeb.Forecast
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             try
             {
-                ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"])[e.NewEditIndex].Articulo.IdArticulo.ToString());
+                ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString());
                 liUnidad.Selected = true;
             }
             catch
@@ -524,7 +524,7 @@ namespace CedForecastWeb.Forecast
                 }
                 if (!DivisionDropDownList.SelectedValue.Equals(string.Empty))
                 {
-                    forecast.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
+                    forecast.Articulo.GrupoArticulo.Division.Id = DivisionDropDownList.SelectedValue;
                 }
                 else
                 {

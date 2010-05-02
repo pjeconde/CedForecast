@@ -26,8 +26,8 @@ namespace CedForecastRN
             for (contador = 0; contador < contadorTope; contador++)
             {
                 WS.Zona elemento = new WS.Zona();
-                elemento.IdZona = lista[contador].Zon_Cod;
-                elemento.DescrZona = lista[contador].Zon_Desc;
+                elemento.Id = lista[contador].Zon_Cod;
+                elemento.Descr = lista[contador].Zon_Desc;
                 elemento.Habilitada = true;
                 elemento.FechaUltModif = lista[contador].Zon_FecMod;
                 ws.EnviarZona(elemento);

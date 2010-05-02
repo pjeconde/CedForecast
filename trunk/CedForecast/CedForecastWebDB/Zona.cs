@@ -32,8 +32,8 @@ namespace CedForecastWebDB
         }
         private void Copiar(DataRow Desde, CedForecastWebEntidades.Zona Hasta)
         {
-            Hasta.IdZona = Convert.ToString(Desde["IdZona"]);
-            Hasta.DescrZona = Convert.ToString(Desde["DescrZona"]);
+            Hasta.Id = Convert.ToString(Desde["IdZona"]);
+            Hasta.Descr = Convert.ToString(Desde["DescrZona"]);
         }
         public DateTime FechaUltimaSincronizacion()
         {
@@ -53,16 +53,16 @@ namespace CedForecastWebDB
         public void Actualizar(CedForecastWebEntidades.Zona Elemento)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("if exists (select IdZona from Zona where IdZona='" + Elemento.IdZona + "') ");
+            a.Append("if exists (select IdZona from Zona where IdZona='" + Elemento.Id + "') ");
             a.Append("update Zona set ");
-            a.Append("DescrZona='" + Elemento.DescrZona + "', ");
+            a.Append("DescrZona='" + Elemento.Descr + "', ");
             a.Append("Habilitada=" + Convert.ToInt16(Elemento.Habilitada).ToString() + ", ");
             a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
-            a.Append("where IdZona='" + Elemento.IdZona + "' ");
+            a.Append("where IdZona='" + Elemento.Id + "' ");
             a.Append("else ");
             a.Append("insert Zona values ( ");
-            a.Append("'" + Elemento.IdZona + "', ");
-            a.Append("'" + Elemento.DescrZona + "', ");
+            a.Append("'" + Elemento.Id + "', ");
+            a.Append("'" + Elemento.Descr + "', ");
             a.Append(Convert.ToInt16(Elemento.Habilitada).ToString() + ", ");
             a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
             a.Append(") ");

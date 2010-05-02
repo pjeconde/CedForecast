@@ -7,34 +7,34 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Zona
     {
-        private string idZona;
-        private string descrZona;
+        private string id;
+        private string descr;
         private bool habilitada;
         private DateTime fechaUltModif;
 
         public Zona()
         {
         }
-        public string IdZona
+        public string Id
         {
             set
             {
-                idZona = value;
+                id = value;
             }
             get
             {
-                return idZona;
+                return id;
             }
         }
-        public string DescrZona
+        public string Descr
         {
             set
             {
-                descrZona = value;
+                descr = value;
             }
             get
             {
-                return descrZona;
+                return descr;
             }
         }
         public bool Habilitada

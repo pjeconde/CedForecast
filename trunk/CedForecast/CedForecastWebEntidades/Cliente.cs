@@ -7,8 +7,8 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Cliente
     {
-        private string idCliente;
-        private string descrCliente;
+        private string id;
+        private string descr;
         private CedForecastWebEntidades.Zona zona;
         private bool habilitado;
         private DateTime fechaUltModif;
@@ -17,26 +17,26 @@ namespace CedForecastWebEntidades
         {
             zona = new CedForecastWebEntidades.Zona();
         }
-        public string IdCliente
+        public string Id
         {
             set
             {
-                idCliente = value;
+                id = value;
             }
             get
             {
-                return idCliente;
+                return id;
             }
         }
-        public string DescrCliente
+        public string Descr
         {
             set
             {
-                descrCliente = value;
+                descr = value;
             }
             get
             {
-                return descrCliente;
+                return descr;
             }
         }
         public CedForecastWebEntidades.Zona Zona

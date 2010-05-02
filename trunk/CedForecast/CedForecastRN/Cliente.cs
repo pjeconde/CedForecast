@@ -26,10 +26,10 @@ namespace CedForecastRN
             for (contador = 0; contador < contadorTope; contador++)
             {
                 WS.Cliente elemento = new WS.Cliente();
-                elemento.IdCliente = lista[contador].Cli_Cod;
-                elemento.DescrCliente = lista[contador].Cli_RazSoc;
+                elemento.Id = lista[contador].Cli_Cod;
+                elemento.Descr = lista[contador].Cli_RazSoc;
                 elemento.Zona = new CedForecastRN.WS.Zona();
-                elemento.Zona.IdZona = lista[contador].Clizon_Cod;
+                elemento.Zona.Id = lista[contador].Clizon_Cod;
                 elemento.Habilitado = lista[contador].Cli_Habilitado;
                 elemento.FechaUltModif = lista[contador].Cli_FecMod;
                 ws.EnviarCliente(elemento);
