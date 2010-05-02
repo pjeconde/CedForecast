@@ -25,6 +25,7 @@ namespace CedForecastWebEntidades
         private string emailSMS;
         private bool recibeAvisoAltaCuenta;
         private PaginaDefault paginaDefault;
+        private DateTime fechaUltModif;
 
         public Cuenta()
         {
@@ -249,5 +250,16 @@ namespace CedForecastWebEntidades
                 return paginaDefault;
             }
         }
-	}
+        public DateTime FechaUltModif
+        {
+            set
+            {
+                fechaUltModif = value;
+            }
+            get
+            {
+                return fechaUltModif;
+            }
+        }
+    }
 }

@@ -1133,6 +1133,8 @@ namespace CedForecastRN.WS {
         
         private PaginaDefault paginaDefaultField;
         
+        private System.DateTime fechaUltModifField;
+        
         /// <comentarios/>
         public string Id {
             get {
@@ -1300,6 +1302,16 @@ namespace CedForecastRN.WS {
             }
             set {
                 this.paginaDefaultField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public System.DateTime FechaUltModif {
+            get {
+                return this.fechaUltModifField;
+            }
+            set {
+                this.fechaUltModifField = value;
             }
         }
     }

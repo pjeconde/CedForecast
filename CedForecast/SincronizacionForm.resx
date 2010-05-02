@@ -121,7 +121,7 @@
   <data name="SincronizarButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF3SURBVDhPnZOhcoNAEIYzfYw+QB6gAhmJqEAgEIgIBOJE
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAF3SURBVDhPnZOhcoNAEIYzfYw+QB6gAhmJqEAgEIgIBOJE
         RAQCEYGIiEAgEAgEIgKBQCIQiIiKiIiICERExckIRMX9ZS8DkzYJScsMcze393+3u//daDTwvYznGIoP
         xkgcxwX+BSHRcplBiKgd879DCNBwVwKakw/bjp6HkNhbxOC1h6LIcKxDGEb2HIDEhhHCmSewrLI9eQvH
         KSTgXYsfQwjAt+oPAIGiIED9YQ4DSKyqvgQcdzOZQRiWcqQM9pUFvlHuQwiga54ECD6VLjRNDMYIkiKN
@@ -134,7 +134,7 @@
   <data name="SalirButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHESURBVDhPjZMhVMJQFIY9LywQDAsEg4FAIBgWCAYCgWAw
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAHESURBVDhPjZMhVMJQFIY9LywQDAsEg4FAIBgWCAYCgWAw
         GAgGgsFgIBAWDIQFA4G4QDAYCAYCYYGwQCAQFgwLBIJhwbBAMBDu771vYxMZ6s75B2d73//fe9/eycmR
         60EpfNexdQfPdxCNr0F+B9Sr4a1qZGa/GglMdda1CepbiAYNLLt1BJcmFucK7mlSVaGJvAh4UVxTWLOG
         ZQOPhoJTUhiXFWZnCnN+P+HfAxN5MObFU06QhQLarKXTxNxu4DU1mN014VVKWFUV7r9XIgYua8QS0DEN

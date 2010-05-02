@@ -75,7 +75,6 @@
             // CuentaCheckBox
             // 
             this.CuentaCheckBox.AutoSize = true;
-            this.CuentaCheckBox.Enabled = false;
             this.CuentaCheckBox.Location = new System.Drawing.Point(12, 98);
             this.CuentaCheckBox.Name = "CuentaCheckBox";
             this.CuentaCheckBox.Size = new System.Drawing.Size(83, 17);
@@ -287,6 +286,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SincronizacionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sincronización";
             this.ResumeLayout(false);
             this.PerformLayout();
