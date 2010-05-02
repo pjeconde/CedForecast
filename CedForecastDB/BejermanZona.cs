@@ -23,9 +23,9 @@ namespace CedForecastDB.Bejerman
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    CedForecastEntidades.Bejerman.Zona zona = new CedForecastEntidades.Bejerman.Zona();
-                    Copiar(dt.Rows[i], zona);
-                    lista.Add(zona);
+                    CedForecastEntidades.Bejerman.Zona elemento = new CedForecastEntidades.Bejerman.Zona();
+                    Copiar(dt.Rows[i], elemento);
+                    lista.Add(elemento);
                 }
             }
             return lista;

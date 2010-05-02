@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BejermanClientes.cs" />
     <Compile Include="BejermanZona.cs" />
     <Compile Include="db.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
