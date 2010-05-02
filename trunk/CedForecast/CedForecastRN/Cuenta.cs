@@ -54,6 +54,7 @@ namespace CedForecastRN
                 elemento.FechaUltimoReenvioMail = DateTime.Now;
                 elemento.EmailSMS = String.Empty;
                 elemento.RecibeAvisoAltaCuenta = false;
+                elemento.FechaUltModif = lista[contador].Ven_FecMod;
                 ws.EnviarCuenta(elemento);
             }
         }

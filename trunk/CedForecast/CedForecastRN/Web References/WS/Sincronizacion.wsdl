@@ -102,6 +102,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="EmailSMS" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="RecibeAvisoAltaCuenta" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="PaginaDefault" type="tns:PaginaDefault" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaUltModif" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="TipoCuenta">

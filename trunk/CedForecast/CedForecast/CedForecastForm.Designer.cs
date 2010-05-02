@@ -85,6 +85,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CedForecastForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "K+S Forecast";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

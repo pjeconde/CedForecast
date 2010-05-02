@@ -68,7 +68,8 @@ namespace CedForecastWebDB
             a.Append("1, ");            //CantidadEnviosMail
             a.Append("getdate(), ");    //FechaUltimoReenvioMail
             a.Append("'', ");           //EmailSMS
-            a.Append("0 ");             //RecibeAvisoAltaCuenta
+            a.Append("0, ");            //RecibeAvisoAltaCuenta
+            a.Append("getdate(), ");    //FechaULtModif
             a.Append(")");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
@@ -254,6 +255,56 @@ namespace CedForecastWebDB
                 lista.Add(cuenta);
             }
             return lista;
+        }
+        public DateTime FechaUltimaSincronizacion()
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select max(FechaUltModif) as FechaUltModif from Cuenta where IdTipoCuenta='OperForecast' ");
+            DataTable dt = new DataTable();
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            if (dt.Rows[0]["FechaUltModif"] != DBNull.Value)
+            {
+                return Convert.ToDateTime(dt.Rows[0]["FechaUltModif"]);
+            }
+            else
+            {
+                return new DateTime(1980, 1, 1);
+            }
+        }
+        public void Actualizar(CedForecastWebEntidades.Cuenta Elemento)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("if exists (select IdCuenta from Cuenta where IdCuenta='" + Elemento.Id + "') ");
+            a.Append("update Cuenta set ");
+            a.Append("Nombre='" + Elemento.Nombre + "', ");
+            a.Append("Telefono='" + Elemento.Telefono + "', ");
+            a.Append("Email='" + Elemento.Email + "', ");
+            a.Append("IdDivision='" + Elemento.Division.Id + "', ");
+            a.Append("Password='" + Elemento.Password + "', ");
+            a.Append("IdEstadoCuenta='" + Elemento.EstadoCuenta.Id + "', ");
+            a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append("where IdCuenta='" + Elemento.Id + "' ");
+            a.Append("else ");
+            a.Append("insert Cuenta values ( ");
+            a.Append("'" + Elemento.Id + "', ");
+            a.Append("'" + Elemento.Nombre + "', ");
+            a.Append("'" + Elemento.Telefono + "', ");
+            a.Append("'" + Elemento.Email + "', ");
+            a.Append("'" + Elemento.Division.Id + "', ");
+            a.Append("'" + Elemento.Password + "', ");
+            a.Append("'" + Elemento.Pregunta + "', ");
+            a.Append("'" + Elemento.Respuesta + "', ");
+            a.Append("'" + Elemento.TipoCuenta.Id + "', ");
+            a.Append("'" + Elemento.EstadoCuenta.Id + "', ");
+            a.Append("'" + Elemento.PaginaDefault.Id + "', ");
+            a.Append("'" + Elemento.FechaAlta.ToString("yyyyMMdd HH:mm:ss.fff") + "', ");
+            a.Append(Elemento.CantidadEnviosMail + ", ");
+            a.Append("'" + Elemento.FechaUltimoReenvioMail.ToString("yyyyMMdd HH:mm:ss.fff") + "', ");
+            a.Append("'" + Elemento.EmailSMS+ "', ");
+            a.Append(Convert.ToInt16(Elemento.RecibeAvisoAltaCuenta).ToString() + ", ");
+            a.Append("'" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
+            a.Append(") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }

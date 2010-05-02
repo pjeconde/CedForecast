@@ -59,8 +59,19 @@ namespace CedForecast
                 }
                 if (CuentaCheckBox.Checked)
                 {
-                    CuentaProgressBar.Visible = true;
-                    CuentaProgressBar.Visible = false;
+                    BarraActivar(CuentaProgressBar);
+                    CedForecastRN.Cuenta proceso = new CedForecastRN.Cuenta(Aplicacion.Sesion, cedForecastWSURL);
+                    thread = new Thread(new ThreadStart(proceso.EnviarNovedades));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(CuentaProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(1000);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    BarraDesactivar(CuentaProgressBar);
                     seChequeoAlgo = true;
                 }
                 if (VentaCheckBox.Checked)
