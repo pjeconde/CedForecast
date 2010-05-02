@@ -38,10 +38,10 @@ namespace CedForecastWebDB
         public DateTime FechaUltimaSincronizacion()
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select max(FechaUltModif) as FEchaUltModif from Zona ");
+            a.Append("select max(FechaUltModif) as FechaUltModif from Zona ");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
-            if (dt.Rows[0]["FEchaUltModif"] != DBNull.Value )
+            if (dt.Rows[0]["FechaUltModif"] != DBNull.Value )
             {
                 return Convert.ToDateTime(dt.Rows[0]["FechaUltModif"]);
             }
