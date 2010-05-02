@@ -108,7 +108,7 @@
             this.SincronizarButton.Image = ((System.Drawing.Image)(resources.GetObject("SincronizarButton.Image")));
             this.SincronizarButton.Location = new System.Drawing.Point(12, 270);
             this.SincronizarButton.Name = "SincronizarButton";
-            this.SincronizarButton.Size = new System.Drawing.Size(83, 23);
+            this.SincronizarButton.Size = new System.Drawing.Size(101, 23);
             this.SincronizarButton.TabIndex = 5;
             this.SincronizarButton.Text = "Sincronizar";
             this.SincronizarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -119,7 +119,7 @@
             // 
             this.SalirButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.SalirButton.Image = ((System.Drawing.Image)(resources.GetObject("SalirButton.Image")));
-            this.SalirButton.Location = new System.Drawing.Point(101, 270);
+            this.SalirButton.Location = new System.Drawing.Point(119, 270);
             this.SalirButton.Name = "SalirButton";
             this.SalirButton.Size = new System.Drawing.Size(52, 23);
             this.SalirButton.TabIndex = 6;
