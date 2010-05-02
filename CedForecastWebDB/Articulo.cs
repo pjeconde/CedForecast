@@ -17,11 +17,11 @@ namespace CedForecastWebDB
             StringBuilder a = new StringBuilder(string.Empty);
             a.Append("select  Articulo.IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where Articulo.IdArticulo='" + Articulo.IdArticulo.ToString() + "'");
+            a.Append("where Articulo.IdArticulo='" + Articulo.Id.ToString() + "'");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
             {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Articulo " + Articulo.IdArticulo.ToString());
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Articulo " + Articulo.Id.ToString());
             }
             else
             {
@@ -33,7 +33,7 @@ namespace CedForecastWebDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Articulo.IdArticulo, Articulo.DescrArticulo + ' (' + Articulo.IdGrupoArticulo + ')' as DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where GrupoArticulo.IdDivision = '" + Division.IdDivision + "'");
+            a.Append("where GrupoArticulo.IdDivision = '" + Division.Id + "'");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Articulo> lista = new List<CedForecastWebEntidades.Articulo>();
@@ -54,16 +54,16 @@ namespace CedForecastWebDB
         }
         private void Copiar(DataRow Desde, CedForecastWebEntidades.Articulo Hasta)
         {
-            Hasta.IdArticulo = Convert.ToString(Desde["IdArticulo"]);
-            Hasta.DescrArticulo = Convert.ToString(Desde["DescrArticulo"]);
+            Hasta.Id = Convert.ToString(Desde["IdArticulo"]);
+            Hasta.Descr = Convert.ToString(Desde["DescrArticulo"]);
             Hasta.PesoBruto = Convert.ToDecimal(Desde["PesoBruto"]);
             Hasta.UnidadMedida = Convert.ToString(Desde["UnidadMedida"]);
             Hasta.Habilitado = Convert.ToBoolean(Desde["Habilitado"]);
             Hasta.FechaUltModif = Convert.ToDateTime(Desde["FechaUltModif"]);
             Hasta.GrupoArticulo.IdGrupoArticulo = Convert.ToString(Desde["IdGrupoArticulo"]);
             Hasta.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
-            Hasta.GrupoArticulo.Division.IdDivision = Convert.ToString(Desde["IdDivision"]);
-            Hasta.GrupoArticulo.Division.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
+            Hasta.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
         }
         public DateTime FechaUltimaSincronizacion()
         {
@@ -83,19 +83,19 @@ namespace CedForecastWebDB
         public void Actualizar(CedForecastWebEntidades.Articulo Elemento)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("if exists (select IdArticulo from Articulo where IdArticulo='" + Elemento.IdArticulo + "') ");
+            a.Append("if exists (select IdArticulo from Articulo where IdArticulo='" + Elemento.Id + "') ");
             a.Append("update Articulo set ");
-            a.Append("DescrArticulo='" + Elemento.DescrArticulo + "', ");
+            a.Append("DescrArticulo='" + Elemento.Descr + "', ");
             a.Append("IdGrupoArticulo='" + Elemento.GrupoArticulo.IdGrupoArticulo + "', ");
             a.Append("PesoBruto='" + Convert.ToString(Elemento.PesoBruto, cedeiraCultura) + "', ");
             a.Append("UnidadMedida='" + Elemento.UnidadMedida + "', ");
             a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "', ");
             a.Append("Habilitado=" + Convert.ToInt16(Elemento.Habilitado).ToString() + " ");
-            a.Append("where IdArticulo='" + Elemento.IdArticulo + "' ");
+            a.Append("where IdArticulo='" + Elemento.Id + "' ");
             a.Append("else ");
             a.Append("insert Articulo values ( ");
-            a.Append("'" + Elemento.IdArticulo + "', ");
-            a.Append("'" + Elemento.DescrArticulo + "', ");
+            a.Append("'" + Elemento.Id + "', ");
+            a.Append("'" + Elemento.Descr + "', ");
             a.Append("'" + Elemento.GrupoArticulo.IdGrupoArticulo + "', ");
             a.Append("'" + Convert.ToString(Elemento.PesoBruto, cedeiraCultura) + "', ");
             a.Append("'" + Elemento.UnidadMedida + "', ");

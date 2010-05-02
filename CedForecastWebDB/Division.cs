@@ -17,11 +17,11 @@ namespace CedForecastWebDB
             StringBuilder a = new StringBuilder(string.Empty);
             a.Append("select Division.IdDivision, Cliente.DescrDivision ");
             a.Append("from Division ");
-            a.Append("where Division.IdDivision='" + Division.IdDivision.ToString() + "'");
+            a.Append("where Division.IdDivision='" + Division.Id.ToString() + "'");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count == 0)
             {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Division " + Division.IdDivision.ToString());
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Division " + Division.Id.ToString());
             }
             else
             {
@@ -49,8 +49,8 @@ namespace CedForecastWebDB
         }
         private void Copiar(DataRow Desde, CedForecastWebEntidades.Division Hasta)
         {
-            Hasta.IdDivision = Convert.ToString(Desde["IdDivision"]);
-            Hasta.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.Id = Convert.ToString(Desde["IdDivision"]);
+            Hasta.Descr = Convert.ToString(Desde["DescrDivision"]);
         }
     }
 }

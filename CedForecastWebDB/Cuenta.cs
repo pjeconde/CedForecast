@@ -31,8 +31,8 @@ namespace CedForecastWebDB
             Hasta.Nombre = Convert.ToString(Desde["Nombre"]);
             Hasta.Telefono = Convert.ToString(Desde["Telefono"]);
             Hasta.Email = Convert.ToString(Desde["Email"]);
-            Hasta.Division.IdDivision = Convert.ToString(Desde["IdDivision"]);
-            Hasta.Division.DescrDivision = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.Division.Id = Convert.ToString(Desde["IdDivision"]);
+            Hasta.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
             Hasta.Password = Convert.ToString(Desde["Password"]);
             Hasta.Pregunta = Convert.ToString(Desde["Pregunta"]);
             Hasta.Respuesta = Convert.ToString(Desde["Respuesta"]);
@@ -57,7 +57,7 @@ namespace CedForecastWebDB
             a.Append("'"+Cuenta.Nombre+"', ");
             a.Append("'"+Cuenta.Telefono+"', ");
             a.Append("'"+Cuenta.Email+"', ");
-            a.Append("'"+Cuenta.Division.IdDivision + "', ");
+            a.Append("'"+Cuenta.Division.Id + "', ");
             a.Append("'"+Cuenta.Password+"', ");
             a.Append("'"+Cuenta.Pregunta+"', ");
             a.Append("'"+Cuenta.Respuesta+"', ");
@@ -178,7 +178,7 @@ namespace CedForecastWebDB
             a.Append("update Cuenta set ");
             a.Append("Nombre='" + Cuenta.Nombre + "', ");
             a.Append("Telefono='" + Cuenta.Telefono + "', ");
-            a.Append("IdDivision='" + Cuenta.Division.IdDivision + "', ");
+            a.Append("IdDivision='" + Cuenta.Division.Id + "', ");
             a.Append("EmailSMS='" + Cuenta.EmailSMS + "', ");
             a.Append("IdPaginaDefault='" + Cuenta.PaginaDefault.Id + "' ");
             a.Append("where Cuenta.IdCuenta='" + Cuenta.Id.ToString() + "' ");

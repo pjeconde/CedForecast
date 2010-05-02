@@ -27,8 +27,8 @@ namespace CedForecastRN
             for (contador = 0; contador < contadorTope; contador++)
             {
                 WS.Articulo elemento = new WS.Articulo();
-                elemento.IdArticulo = lista[contador].Art_CodGen;
-                elemento.DescrArticulo = lista[contador].Art_DescGen;
+                elemento.Id = lista[contador].Art_CodGen;
+                elemento.Descr = lista[contador].Art_DescGen;
                 elemento.PesoBruto = lista[contador].Art_PesoBruto;
                 elemento.UnidadMedida = lista[contador].Artcla_Cod;
                 elemento.GrupoArticulo = new CedForecastRN.WS.GrupoArticulo();

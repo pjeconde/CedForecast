@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cuenta.cs" />
     <Compile Include="Proceso.cs" />
     <Compile Include="Zona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

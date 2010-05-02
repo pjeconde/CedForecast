@@ -44,7 +44,7 @@ namespace CedForecastWebEntidades
         {
             get
             {
-                return articulo.GrupoArticulo.Division.IdDivision;
+                return articulo.GrupoArticulo.Division.Id;
             }
         }
         public string IdCliente
@@ -62,7 +62,7 @@ namespace CedForecastWebEntidades
         {
             get
             {
-                return articulo.DescrArticulo;
+                return articulo.Descr;
             }
         }
         public CedForecastWebEntidades.Articulo Articulo

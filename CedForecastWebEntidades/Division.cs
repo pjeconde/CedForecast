@@ -7,32 +7,32 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Division
     {
-        private string idDivision;
-        private string descrDivision;
+        private string id;
+        private string descr;
 
         public Division()
         {
         }
-        public string IdDivision
+        public string Id
         {
             set
             {
-                idDivision = value;
+                id = value;
             }
             get
             {
-                return idDivision;
+                return id;
             }
         }
-        public string DescrDivision
+        public string Descr
         {
             set
             {
-                descrDivision = value;
+                descr = value;
             }
             get
             {
-                return descrDivision;
+                return descr;
             }
         }
     }

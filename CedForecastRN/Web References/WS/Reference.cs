@@ -421,9 +421,9 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Articulo {
         
-        private string idArticuloField;
+        private string idField;
         
-        private string descrArticuloField;
+        private string descrField;
         
         private decimal pesoBrutoField;
         
@@ -436,22 +436,22 @@ namespace CedForecastRN.WS {
         private GrupoArticulo grupoArticuloField;
         
         /// <comentarios/>
-        public string IdArticulo {
+        public string Id {
             get {
-                return this.idArticuloField;
+                return this.idField;
             }
             set {
-                this.idArticuloField = value;
+                this.idField = value;
             }
         }
         
         /// <comentarios/>
-        public string DescrArticulo {
+        public string Descr {
             get {
-                return this.descrArticuloField;
+                return this.descrField;
             }
             set {
-                this.descrArticuloField = value;
+                this.descrField = value;
             }
         }
         
@@ -559,27 +559,27 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Division {
         
-        private string idDivisionField;
+        private string idField;
         
-        private string descrDivisionField;
+        private string descrField;
         
         /// <comentarios/>
-        public string IdDivision {
+        public string Id {
             get {
-                return this.idDivisionField;
+                return this.idField;
             }
             set {
-                this.idDivisionField = value;
+                this.idField = value;
             }
         }
         
         /// <comentarios/>
-        public string DescrDivision {
+        public string Descr {
             get {
-                return this.descrDivisionField;
+                return this.descrField;
             }
             set {
-                this.descrDivisionField = value;
+                this.descrField = value;
             }
         }
     }
@@ -862,31 +862,31 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Zona {
         
-        private string idZonaField;
+        private string idField;
         
-        private string descrZonaField;
+        private string descrField;
         
         private bool habilitadaField;
         
         private System.DateTime fechaUltModifField;
         
         /// <comentarios/>
-        public string IdZona {
+        public string Id {
             get {
-                return this.idZonaField;
+                return this.idField;
             }
             set {
-                this.idZonaField = value;
+                this.idField = value;
             }
         }
         
         /// <comentarios/>
-        public string DescrZona {
+        public string Descr {
             get {
-                return this.descrZonaField;
+                return this.descrField;
             }
             set {
-                this.descrZonaField = value;
+                this.descrField = value;
             }
         }
         
@@ -919,9 +919,9 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Cliente {
         
-        private string idClienteField;
+        private string idField;
         
-        private string descrClienteField;
+        private string descrField;
         
         private Zona zonaField;
         
@@ -930,22 +930,22 @@ namespace CedForecastRN.WS {
         private System.DateTime fechaUltModifField;
         
         /// <comentarios/>
-        public string IdCliente {
+        public string Id {
             get {
-                return this.idClienteField;
+                return this.idField;
             }
             set {
-                this.idClienteField = value;
+                this.idField = value;
             }
         }
         
         /// <comentarios/>
-        public string DescrCliente {
+        public string Descr {
             get {
-                return this.descrClienteField;
+                return this.descrField;
             }
             set {
-                this.descrClienteField = value;
+                this.descrField = value;
             }
         }
         
