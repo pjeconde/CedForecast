@@ -14,6 +14,11 @@ namespace CedForecastWebRN
             CedForecastWebDB.PaginaDefault paginaDefault = new CedForecastWebDB.PaginaDefault(Sesion);
             return paginaDefault.Lista(Cuenta);
         }
+        public static List<CedForecastWebEntidades.PaginaDefault> Lista(CedForecastWebEntidades.TipoCuenta TipoCuenta, CedEntidades.Sesion Sesion)
+        {
+            CedForecastWebDB.PaginaDefault paginaDefault = new CedForecastWebDB.PaginaDefault(Sesion);
+            return paginaDefault.Lista(TipoCuenta);
+        }
         public static CedForecastWebEntidades.PaginaDefault Predeterminada(CedForecastWebEntidades.TipoCuenta TipoCuenta, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.PaginaDefault paginaDefault = new CedForecastWebDB.PaginaDefault(Sesion);
