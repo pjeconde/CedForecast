@@ -28,7 +28,7 @@ namespace CedForecastWebDB
                 Copiar(dt.Rows[0], Division);
             }
         }
-        public List<CedForecastWebEntidades.Division> Lista()
+        public List<CedForecastWebEntidades.Division> Lista(bool ConDivisionSinInformar)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Division.IdDivision, Division.DescrDivision ");
@@ -38,6 +38,10 @@ namespace CedForecastWebDB
             List<CedForecastWebEntidades.Division> lista = new List<CedForecastWebEntidades.Division>();
             if (dt.Rows.Count != 0)
             {
+                if (ConDivisionSinInformar)
+                {
+                    lista.Add(new CedForecastWebEntidades.Division());
+                }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     CedForecastWebEntidades.Division division = new CedForecastWebEntidades.Division();

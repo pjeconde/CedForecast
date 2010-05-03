@@ -15,15 +15,11 @@ namespace CedForecastWebDB
         public void Leer(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
+            a.Append("select ConfirmacionCarga.IdTipoPlanilla, ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
-            a.Append("where Cuenta.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "' and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga) ");
+            a.Append("where ConfirmacionCarga.IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and Cuenta.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga) ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count != 0)
-            {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("ConfirmacionCarga para Cuenta " + ConfirmacionCarga.Cuenta.Id.ToString() + " y Periodo " + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd"));
-            }
-            else
             {
                 Copiar(dt.Rows[0], ConfirmacionCarga);
             }
@@ -40,7 +36,7 @@ namespace CedForecastWebDB
             }
             if (ConfirmacionCarga.IdPeriodo != null)
             {
-                a.Append("and ConfirmacionCarga.IdPeriodo = '" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "'");
+                a.Append("and ConfirmacionCarga.IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "'");
             }
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
@@ -58,7 +54,8 @@ namespace CedForecastWebDB
         }
         private void Copiar(DataRow Desde, CedForecastWebEntidades.ConfirmacionCarga Hasta)
         {
-            Hasta.IdPeriodo = Convert.ToDateTime(Desde["IdPeriodo"]);
+            Hasta.IdTipoPlanilla = Convert.ToString(Desde["IdTipoPlanilla"]);
+            Hasta.IdPeriodo = Convert.ToString(Desde["IdPeriodo"]);
             Hasta.Cuenta = new CedForecastWebEntidades.Cuenta();
             Hasta.Cuenta.Id = Convert.ToString(Desde["IdCuenta"]);
             Hasta.Cuenta.Nombre = Convert.ToString(Desde["Nombre"]);
@@ -76,11 +73,11 @@ namespace CedForecastWebDB
             a.Append("where 1=1 ");
             if (ConfirmacionCarga.Cuenta.Id != null)
             {
-                a.Append(" and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "'");
+                a.Append("and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "'");
             }
-            if (ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") != "00010101")
+            if (ConfirmacionCarga.IdPeriodo != "")
             {
-                a.Append("and ConfirmacionCarga.IdPeriodo = '" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "'");
+                a.Append("and ConfirmacionCarga.IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "'");
             }
             a.Append("ORDER BY ROW_NUM) innerSelect WHERE ROW_NUM > {2} ");
             string commandText = string.Format(a.ToString(), ((IndicePagina + 1) * TamañoPagina), OrderBy, (IndicePagina * TamañoPagina));
@@ -114,7 +111,7 @@ namespace CedForecastWebDB
         public void UltimoRegistro(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select Max(FechaConfirmacionCarga) from ConfirmacionCarga where IdPeriodo = '" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "'");
+            a.Append("select Max(FechaConfirmacionCarga) from ConfirmacionCarga where IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "'");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count != 0)
@@ -133,7 +130,8 @@ namespace CedForecastWebDB
                 a.Append("else ");
                 a.Append("   begin ");
                 a.Append("      Insert ConfirmacionCarga values (");
-                a.Append("      '" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "', ");
+                a.Append("      '" + ConfirmacionCarga.IdTipoPlanilla + "', ");
+                a.Append("      '" + ConfirmacionCarga.IdPeriodo + "', ");
                 a.Append("      '" + ConfirmacionCarga.Cuenta.Id + "', ");
                 a.Append("      getdate(), ");
                 a.Append("      '" + ConfirmacionCarga.IdEstadoConfirmacionCarga + "', ");
@@ -144,7 +142,8 @@ namespace CedForecastWebDB
             else
             {
                 a.Append("Insert ConfirmacionCarga values (");
-                a.Append("'" + ConfirmacionCarga.IdPeriodo.ToString("yyyyMMdd") + "', ");
+                a.Append("'" + ConfirmacionCarga.IdTipoPlanilla + "', ");
+                a.Append("'" + ConfirmacionCarga.IdPeriodo + "', ");
                 a.Append("'" + ConfirmacionCarga.Cuenta.Id + "', ");
                 a.Append("'" + ConfirmacionCarga.FechaConfirmacionCarga.ToString("yyyyMMdd hh:mm:ss") + "', ");
                 a.Append("'" + ConfirmacionCarga.IdEstadoConfirmacionCarga + "', ");
