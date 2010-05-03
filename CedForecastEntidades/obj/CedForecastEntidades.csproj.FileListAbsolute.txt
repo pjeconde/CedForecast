@@ -1,5 +1,0 @@
-D:\Usuarios\Claudio\Mis documentos\Cedeira y Asoc. S.A\GoogleCode-CedForecast\CedForecast\CedForecastEntidades\bin\Debug\CedForecastEntidades.dll
-D:\Usuarios\Claudio\Mis documentos\Cedeira y Asoc. S.A\GoogleCode-CedForecast\CedForecast\CedForecastEntidades\bin\Debug\CedForecastEntidades.pdb
-D:\Usuarios\Claudio\Mis documentos\Cedeira y Asoc. S.A\GoogleCode-CedForecast\CedForecast\CedForecastEntidades\obj\Debug\ResolveAssemblyReference.cache
-D:\Usuarios\Claudio\Mis documentos\Cedeira y Asoc. S.A\GoogleCode-CedForecast\CedForecast\CedForecastEntidades\obj\Debug\CedForecastEntidades.dll
-D:\Usuarios\Claudio\Mis documentos\Cedeira y Asoc. S.A\GoogleCode-CedForecast\CedForecast\CedForecastEntidades\obj\Debug\CedForecastEntidades.pdb
