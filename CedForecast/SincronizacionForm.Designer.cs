@@ -36,9 +36,9 @@
             this.ZonaCheckBox = new System.Windows.Forms.CheckBox();
             this.SincronizarButton = new System.Windows.Forms.Button();
             this.SalirButton = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.VentaDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.ForecastCheckBox = new System.Windows.Forms.CheckBox();
+            this.ProyeccionCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +49,10 @@
             this.CuentaProgressBar = new System.Windows.Forms.ProgressBar();
             this.VentaProgressBar = new System.Windows.Forms.ProgressBar();
             this.ZonaProgressBar = new System.Windows.Forms.ProgressBar();
-            this.ForecastProgressBar = new System.Windows.Forms.ProgressBar();
+            this.ProyeccionProgressBar = new System.Windows.Forms.ProgressBar();
+            this.RollingForecastProgressBar = new System.Windows.Forms.ProgressBar();
+            this.RollingForecastCheckBox = new System.Windows.Forms.CheckBox();
+            this.ProyeccionDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // ArticuloCheckBox
@@ -127,15 +130,15 @@
             this.SalirButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SalirButton.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // VentaDateTimePicker
             // 
-            this.dateTimePicker1.CustomFormat = "MM/yyyy";
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(113, 121);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(62, 20);
-            this.dateTimePicker1.TabIndex = 7;
+            this.VentaDateTimePicker.CustomFormat = "MM/yyyy";
+            this.VentaDateTimePicker.Enabled = false;
+            this.VentaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.VentaDateTimePicker.Location = new System.Drawing.Point(113, 121);
+            this.VentaDateTimePicker.Name = "VentaDateTimePicker";
+            this.VentaDateTimePicker.Size = new System.Drawing.Size(79, 20);
+            this.VentaDateTimePicker.TabIndex = 7;
             // 
             // label1
             // 
@@ -146,16 +149,16 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Envio de novedades de";
             // 
-            // ForecastCheckBox
+            // ProyeccionCheckBox
             // 
-            this.ForecastCheckBox.AutoSize = true;
-            this.ForecastCheckBox.Enabled = false;
-            this.ForecastCheckBox.Location = new System.Drawing.Point(12, 207);
-            this.ForecastCheckBox.Name = "ForecastCheckBox";
-            this.ForecastCheckBox.Size = new System.Drawing.Size(67, 17);
-            this.ForecastCheckBox.TabIndex = 9;
-            this.ForecastCheckBox.Text = "Forecast";
-            this.ForecastCheckBox.UseVisualStyleBackColor = true;
+            this.ProyeccionCheckBox.AutoSize = true;
+            this.ProyeccionCheckBox.Enabled = false;
+            this.ProyeccionCheckBox.Location = new System.Drawing.Point(12, 207);
+            this.ProyeccionCheckBox.Name = "ProyeccionCheckBox";
+            this.ProyeccionCheckBox.Size = new System.Drawing.Size(108, 17);
+            this.ProyeccionCheckBox.TabIndex = 9;
+            this.ProyeccionCheckBox.Text = "Proyeccion anual";
+            this.ProyeccionCheckBox.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -207,51 +210,80 @@
             // 
             // ArticuloProgressBar
             // 
-            this.ArticuloProgressBar.Location = new System.Drawing.Point(185, 51);
+            this.ArticuloProgressBar.Location = new System.Drawing.Point(198, 51);
             this.ArticuloProgressBar.Name = "ArticuloProgressBar";
-            this.ArticuloProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ArticuloProgressBar.Size = new System.Drawing.Size(159, 17);
             this.ArticuloProgressBar.TabIndex = 19;
             this.ArticuloProgressBar.Visible = false;
             // 
             // ClienteProgressBar
             // 
-            this.ClienteProgressBar.Location = new System.Drawing.Point(185, 74);
+            this.ClienteProgressBar.Location = new System.Drawing.Point(198, 74);
             this.ClienteProgressBar.Name = "ClienteProgressBar";
-            this.ClienteProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ClienteProgressBar.Size = new System.Drawing.Size(159, 17);
             this.ClienteProgressBar.TabIndex = 20;
             this.ClienteProgressBar.Visible = false;
             // 
             // CuentaProgressBar
             // 
-            this.CuentaProgressBar.Location = new System.Drawing.Point(185, 98);
+            this.CuentaProgressBar.Location = new System.Drawing.Point(198, 98);
             this.CuentaProgressBar.Name = "CuentaProgressBar";
-            this.CuentaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.CuentaProgressBar.Size = new System.Drawing.Size(159, 17);
             this.CuentaProgressBar.TabIndex = 21;
             this.CuentaProgressBar.Visible = false;
             // 
             // VentaProgressBar
             // 
-            this.VentaProgressBar.Location = new System.Drawing.Point(185, 122);
+            this.VentaProgressBar.Location = new System.Drawing.Point(198, 122);
             this.VentaProgressBar.Name = "VentaProgressBar";
-            this.VentaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.VentaProgressBar.Size = new System.Drawing.Size(159, 17);
             this.VentaProgressBar.TabIndex = 22;
             this.VentaProgressBar.Visible = false;
             // 
             // ZonaProgressBar
             // 
-            this.ZonaProgressBar.Location = new System.Drawing.Point(185, 145);
+            this.ZonaProgressBar.Location = new System.Drawing.Point(198, 145);
             this.ZonaProgressBar.Name = "ZonaProgressBar";
-            this.ZonaProgressBar.Size = new System.Drawing.Size(167, 17);
+            this.ZonaProgressBar.Size = new System.Drawing.Size(159, 17);
             this.ZonaProgressBar.TabIndex = 23;
             this.ZonaProgressBar.Visible = false;
             // 
-            // ForecastProgressBar
+            // ProyeccionProgressBar
             // 
-            this.ForecastProgressBar.Location = new System.Drawing.Point(185, 207);
-            this.ForecastProgressBar.Name = "ForecastProgressBar";
-            this.ForecastProgressBar.Size = new System.Drawing.Size(167, 17);
-            this.ForecastProgressBar.TabIndex = 24;
-            this.ForecastProgressBar.Visible = false;
+            this.ProyeccionProgressBar.Location = new System.Drawing.Point(198, 207);
+            this.ProyeccionProgressBar.Name = "ProyeccionProgressBar";
+            this.ProyeccionProgressBar.Size = new System.Drawing.Size(159, 17);
+            this.ProyeccionProgressBar.TabIndex = 24;
+            this.ProyeccionProgressBar.Visible = false;
+            // 
+            // RollingForecastProgressBar
+            // 
+            this.RollingForecastProgressBar.Location = new System.Drawing.Point(198, 230);
+            this.RollingForecastProgressBar.Name = "RollingForecastProgressBar";
+            this.RollingForecastProgressBar.Size = new System.Drawing.Size(159, 17);
+            this.RollingForecastProgressBar.TabIndex = 26;
+            this.RollingForecastProgressBar.Visible = false;
+            // 
+            // RollingForecastCheckBox
+            // 
+            this.RollingForecastCheckBox.AutoSize = true;
+            this.RollingForecastCheckBox.Enabled = false;
+            this.RollingForecastCheckBox.Location = new System.Drawing.Point(12, 230);
+            this.RollingForecastCheckBox.Name = "RollingForecastCheckBox";
+            this.RollingForecastCheckBox.Size = new System.Drawing.Size(102, 17);
+            this.RollingForecastCheckBox.TabIndex = 25;
+            this.RollingForecastCheckBox.Text = "Rolling Forecast";
+            this.RollingForecastCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ProyeccionDateTimePicker
+            // 
+            this.ProyeccionDateTimePicker.CustomFormat = "yyyy";
+            this.ProyeccionDateTimePicker.Enabled = false;
+            this.ProyeccionDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ProyeccionDateTimePicker.Location = new System.Drawing.Point(124, 206);
+            this.ProyeccionDateTimePicker.Name = "ProyeccionDateTimePicker";
+            this.ProyeccionDateTimePicker.Size = new System.Drawing.Size(68, 20);
+            this.ProyeccionDateTimePicker.TabIndex = 27;
             // 
             // SincronizacionForm
             // 
@@ -260,8 +292,11 @@
             this.CancelButton = this.SalirButton;
             this.ClientSize = new System.Drawing.Size(370, 302);
             this.ControlBox = false;
+            this.Controls.Add(this.ProyeccionDateTimePicker);
+            this.Controls.Add(this.RollingForecastProgressBar);
+            this.Controls.Add(this.RollingForecastCheckBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.ForecastProgressBar);
+            this.Controls.Add(this.ProyeccionProgressBar);
             this.Controls.Add(this.ZonaProgressBar);
             this.Controls.Add(this.VentaProgressBar);
             this.Controls.Add(this.CuentaProgressBar);
@@ -271,9 +306,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ForecastCheckBox);
+            this.Controls.Add(this.ProyeccionCheckBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.VentaDateTimePicker);
             this.Controls.Add(this.SalirButton);
             this.Controls.Add(this.SincronizarButton);
             this.Controls.Add(this.ZonaCheckBox);
@@ -302,9 +337,9 @@
         private System.Windows.Forms.CheckBox ZonaCheckBox;
         private System.Windows.Forms.Button SincronizarButton;
         private System.Windows.Forms.Button SalirButton;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker VentaDateTimePicker;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox ForecastCheckBox;
+        private System.Windows.Forms.CheckBox ProyeccionCheckBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -315,6 +350,9 @@
         private System.Windows.Forms.ProgressBar CuentaProgressBar;
         private System.Windows.Forms.ProgressBar VentaProgressBar;
         private System.Windows.Forms.ProgressBar ZonaProgressBar;
-        private System.Windows.Forms.ProgressBar ForecastProgressBar;
+        private System.Windows.Forms.ProgressBar ProyeccionProgressBar;
+        private System.Windows.Forms.ProgressBar RollingForecastProgressBar;
+        private System.Windows.Forms.CheckBox RollingForecastCheckBox;
+        private System.Windows.Forms.DateTimePicker ProyeccionDateTimePicker;
     }
 }
