@@ -97,10 +97,10 @@ namespace CedForecast
                     BarraDesactivar(ZonaProgressBar);
                     seChequeoAlgo = true;
                 }
-                if (ForecastCheckBox.Checked)
+                if (ProyeccionCheckBox.Checked)
                 {
-                    ForecastProgressBar.Visible = true;
-                    ForecastProgressBar.Visible = false;
+                    ProyeccionProgressBar.Visible = true;
+                    ProyeccionProgressBar.Visible = false;
                     seChequeoAlgo = true;
                 }
                 if (!seChequeoAlgo)
