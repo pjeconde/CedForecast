@@ -7,7 +7,8 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class ConfirmacionCarga
     {
-        private DateTime idPeriodo;
+        private string idTipoPlanilla;
+        private string idPeriodo;
         private CedForecastWebEntidades.Cuenta cuenta;
         private DateTime fechaConfirmacionCarga;
         private string idEstadoConfirmacionCarga;
@@ -17,7 +18,18 @@ namespace CedForecastWebEntidades
         {
             cuenta = new Cuenta();
         }
-        public DateTime IdPeriodo
+        public string IdTipoPlanilla
+        {
+            set
+            {
+                idTipoPlanilla = value;
+            }
+            get
+            {
+                return idTipoPlanilla;
+            }
+        }
+        public string IdPeriodo
         {
             set
             {

@@ -7,11 +7,11 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Forecast
     {
+        private string idTipoPlanilla;
         private string idCuenta;
-        private string idDivision;
         private string idCliente;
         private CedForecastWebEntidades.Articulo articulo;
-        private DateTime fecha;
+        private string idPeriodo;
         private decimal cantidad1;
         private decimal cantidad2;
         private decimal cantidad3;
@@ -24,10 +24,23 @@ namespace CedForecastWebEntidades
         private decimal cantidad10;
         private decimal cantidad11;
         private decimal cantidad12;
+        private decimal cantidad13;
+        private decimal cantidad14;
 
         public Forecast()
         {
             articulo = new Articulo();
+        }
+        public string IdTipoPlanilla
+        {
+            set
+            {
+                idTipoPlanilla = value;
+            }
+            get
+            {
+                return idTipoPlanilla;
+            }
         }
         public string IdCuenta
         {
@@ -76,15 +89,15 @@ namespace CedForecastWebEntidades
                 return articulo;
             }
         }
-        public DateTime Fecha
+        public string IdPeriodo
         {
             set
             {
-                fecha = value;
+                idPeriodo = value;
             }
             get
             {
-                return fecha;
+                return idPeriodo;
             }
         }
         public decimal Cantidad1
@@ -225,6 +238,28 @@ namespace CedForecastWebEntidades
             {
                 decimal suma = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad9 + cantidad10 + cantidad11 + cantidad12;
                 return suma;
+            }
+        }
+        public decimal Cantidad13
+        {
+            set
+            {
+                cantidad13 = value;
+            }
+            get
+            {
+                return cantidad13;
+            }
+        }
+        public decimal Cantidad14
+        {
+            set
+            {
+                cantidad14 = value;
+            }
+            get
+            {
+                return cantidad14;
             }
         }
     }
