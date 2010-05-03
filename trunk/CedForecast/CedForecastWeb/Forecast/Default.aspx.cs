@@ -34,13 +34,13 @@ namespace CedForecastWeb.Forecast
                     }
                     else
                     {
-                        ClienteDropDownList.DataValueField = "IdCliente";
-                        ClienteDropDownList.DataTextField = "DescrCliente";
+                        ClienteDropDownList.DataValueField = "Id";
+                        ClienteDropDownList.DataTextField = "Descr";
                         ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         ClienteDropDownList.SelectedIndex = -1;
 
-                        DivisionDropDownList.DataValueField = "IdDivision";
-                        DivisionDropDownList.DataTextField = "DescrDivision";
+                        DivisionDropDownList.DataValueField = "Id";
+                        DivisionDropDownList.DataTextField = "Descr";
                         DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
 
@@ -105,8 +105,8 @@ namespace CedForecastWeb.Forecast
         }
         private void BindearDropDownLists()
         {
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "IdArticulo";
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "DescrArticulo";
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "Id";
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "Descr";
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataBind();
         }
