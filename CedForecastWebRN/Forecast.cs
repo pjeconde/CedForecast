@@ -14,10 +14,10 @@ namespace CedForecastWebRN
             CedForecastWebDB.Forecast forecast = new CedForecastWebDB.Forecast(Sesion);
             return forecast.Lista(Forecast);
         }
-        public static void Guardar(List<CedForecastWebEntidades.Forecast> Forecast, string IdCuenta, string IdCliente, DateTime Fecha, CedEntidades.Sesion Sesion)
+        public static void Guardar(List<CedForecastWebEntidades.Forecast> Forecast, string IdTipoPlanilla, string IdCuenta, string IdCliente, string Periodo, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Forecast forecast = new CedForecastWebDB.Forecast(Sesion);
-            forecast.Guardar(Forecast, IdCuenta, IdCliente, Fecha);
+            forecast.Guardar(Forecast, IdTipoPlanilla, IdCuenta, IdCliente, Periodo);
         }
     }
 }

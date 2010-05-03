@@ -9,10 +9,10 @@ namespace CedForecastWebRN
         public Division()
         {
         }
-        public static List<CedForecastWebEntidades.Division> Lista(CedEntidades.Sesion Sesion)
+        public static List<CedForecastWebEntidades.Division> Lista(bool ConDivisionSinInformar, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Division division = new CedForecastWebDB.Division(Sesion);
-            return division.Lista();
+            return division.Lista(ConDivisionSinInformar);
         }
     }
 }
