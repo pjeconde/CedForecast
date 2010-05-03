@@ -1,7 +1,7 @@
 ﻿<%@ Page AutoEventWireup="true" Codebehind="Inicio.aspx.cs" Inherits="CedForecastWeb.Inicio" Language="C#" MasterPageFile="~/CedForecastWeb.Master" Title="K+S Group" StylesheetTheme="Cedeira" %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
-    <table border="0" cellpadding="0" cellspacing="0" width="977px;" style="background-color:white;">
+    <table border="0" cellpadding="0" cellspacing="0" width="890px;" style="background-color:white;">
         <tr>
             <td rowspan="12" style="width: 190px;">&nbsp;
             </td>

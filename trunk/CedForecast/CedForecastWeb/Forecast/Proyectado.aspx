@@ -1,4 +1,4 @@
-ï»¿<%@ Page Language="C#" MasterPageFile="~/Forecast/Forecast.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CedForecastWeb.Forecast.Default" StylesheetTheme="Cedeira" %>
+<%@ Page Language="C#" MasterPageFile="~/Forecast/Forecast.Master" AutoEventWireup="true" CodeBehind="Proyectado.aspx.cs" Inherits="CedForecastWeb.Forecast.Proyectado" StylesheetTheme="Cedeira" %>
 
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
@@ -39,8 +39,8 @@
                                         </table>   
                                     </td>
                                     <td style="width: 870px">
-                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Forecast"></asp:Label>&nbsp;&nbsp;
-                                        <asp:Label ID="MsgLabel" runat="server" Width="780px"></asp:Label>
+                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Forecast Proyectado"></asp:Label>&nbsp;&nbsp;
+                                        <asp:Label ID="MsgLabel" runat="server" Width="697px"></asp:Label>
                                         <hr />
                                     </td>
                                </tr>
@@ -54,7 +54,7 @@
                                                     <td>
                                                     </td>
                                                     <td align="right" style="height: 10px" valign="middle">
-                                                        <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="PerÃ­odo:"></asp:Label>
+                                                        <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
                                                     </td>
                                                     <td>
                                                     </td>
@@ -78,7 +78,7 @@
                                                     <td>
                                                     </td>
                                                     <td align="right" style="height: 10px" valign="middle">
-                                                        <asp:Label ID="DivisionLabel" runat="server" SkinID="TituloMediano" Text="DivisiÃ³n: "></asp:Label>
+                                                        <asp:Label ID="DivisionLabel" runat="server" SkinID="TituloMediano" Text="División: "></asp:Label>
                                                     </td>
                                                     <td>
                                                     </td>
@@ -175,13 +175,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad1Edit" runat="server" Text='<%# Eval("Cantidad1") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad1EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad1" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad1FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -194,13 +194,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad2Edit" runat="server" Text='<%# Eval("Cantidad2") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad2EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad2" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad2FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -213,13 +213,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad3Edit" runat="server" Text='<%# Eval("Cantidad3") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad3EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad3Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad3" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad3FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad3"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -232,13 +232,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad4Edit" runat="server" Text='<%# Eval("Cantidad4") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad4EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad4Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad4" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad4FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad4"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -251,13 +251,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad5Edit" runat="server" Text='<%# Eval("Cantidad5") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad5EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad5Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad5" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad5FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad5"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -270,13 +270,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad6Edit" runat="server" Text='<%# Eval("Cantidad6") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad6EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad6Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad6" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad6FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad6"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -289,13 +289,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad7Edit" runat="server" Text='<%# Eval("Cantidad7") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad7EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad7Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad7" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad7FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad7"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -308,13 +308,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad8Edit" runat="server" Text='<%# Eval("Cantidad8") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad8EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad8Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad8" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad8FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad8"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -327,13 +327,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad9Edit" runat="server" Text='<%# Eval("Cantidad9") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad9EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad9Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad9" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad9FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad9"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -346,13 +346,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad10Edit" runat="server" Text='<%# Eval("Cantidad10") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad10EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad10Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad10" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad10FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad10"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -365,13 +365,13 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad11Edit" runat="server" Text='<%# Eval("Cantidad11") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad11EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad11Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad11" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad11FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad11"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
@@ -384,13 +384,51 @@
 														        <EditItemTemplate>
 															        <asp:TextBox ID="txtCantidad12Edit" runat="server" Text='<%# Eval("Cantidad12") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="cantidad12EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad12Edit"
-																        ErrorMessage="Cantidad del artÃ­culo en ediciÃ³n mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
 															        <asp:TextBox ID="txtCantidad12" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
 																        ID="txtcantidad12FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad12"
-																        ErrorMessage="Cantidad del artÃ­culo a agregar mal formateado" SetFocusOnError="true"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
+																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
+														        </FooterTemplate>
+														        <ItemStyle HorizontalAlign="Right" />
+                                                                <HeaderStyle Font-Bold="False" Width="80px" />
+													        </asp:TemplateField>  												        
+                                                            <asp:TemplateField HeaderText="Cantidad13" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
+														        <ItemTemplate>
+															        <asp:Label ID="lblCantidad13" runat="server" Text='<%# Eval("Cantidad13") %>' Width="80px"></asp:Label>
+														        </ItemTemplate>
+														        <EditItemTemplate>
+															        <asp:TextBox ID="txtCantidad13Edit" runat="server" Text='<%# Eval("Cantidad13") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
+																        ID="cantidad13EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad13Edit"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
+																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
+														        </EditItemTemplate>
+														        <FooterTemplate>
+															        <asp:TextBox ID="txtCantidad13" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
+																        ID="txtcantidad13FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad13"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
+																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
+														        </FooterTemplate>
+														        <ItemStyle HorizontalAlign="Right" />
+                                                                <HeaderStyle Font-Bold="False" Width="80px" />
+													        </asp:TemplateField>
+													        <asp:TemplateField HeaderText="Cantidad14" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
+														        <ItemTemplate>
+															        <asp:Label ID="lblCantidad14" runat="server" Text='<%# Eval("Cantidad14") %>' Width="80px"></asp:Label>
+														        </ItemTemplate>
+														        <EditItemTemplate>
+															        <asp:TextBox ID="txtCantidad14Edit" runat="server" Text='<%# Eval("Cantidad14") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
+																        ID="cantidad14EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad14Edit"
+																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
+																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
+														        </EditItemTemplate>
+														        <FooterTemplate>
+															        <asp:TextBox ID="txtCantidad14" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
+																        ID="txtcantidad14FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad14"
+																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Right" />

@@ -31,7 +31,7 @@ namespace CedForecastWeb
 
                     DivisionDropDownList.DataValueField = "IdDivision";
                     DivisionDropDownList.DataTextField = "DescrDivision";
-                    DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista((CedEntidades.Sesion)Session["Sesion"]);
+                    DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedEntidades.Sesion)Session["Sesion"]);
                     DivisionDropDownList.SelectedIndex = -1;
 
                     DataBind();
@@ -127,11 +127,6 @@ namespace CedForecastWeb
                 ResultadoComprobarDisponibilidadLabel.Text = "ver detalle al pie de página";
                 MsgErrorLabel.Text = CedeiraUIWebForms.Excepciones.Detalle(ex);
             }
-        }
-
-        protected void DivisionDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

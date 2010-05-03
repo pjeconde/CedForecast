@@ -76,6 +76,10 @@
 							<td style="padding-left: 10px; padding-right: 10px">
 							    <asp:LinkButton ID="ForecastLinkButton" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Default.aspx" Visible="false">Forecast</asp:LinkButton>
 							</td>
+							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
+								<asp:LinkButton ID="ProyectadoLinkButton" runat="server" CausesValidation="false"
+									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Proyectado.aspx" Visible="False" >Proyectado</asp:LinkButton>
+							</td>
 							<td style="padding-left: 10px; padding-right: 10px">
 							    <asp:LinkButton ID="ConfirmacionCargaButton" runat="server" CausesValidation="false"
 									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/ConfirmacionCarga.aspx" Visible="False" >Confirmacion</asp:LinkButton>

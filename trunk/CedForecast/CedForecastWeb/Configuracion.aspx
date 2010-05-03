@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="Configuracion.aspx.cs" Inherits="CedForecastWeb.Configuracion"  %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
-    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 800px;
+    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px;
         height: 500px; text-align: left; background-color: white;">
         <tr>
             <td style="height: 10px;" valign="top">

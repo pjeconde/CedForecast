@@ -68,18 +68,22 @@
 				<td class="FondoMenu" colspan="3" style="height: 25px;">
 					<table id="TableMenu" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-                            <td style="padding-left: 10px; padding-right: 10px; width: 200px;">
+                            <td style="padding-left: 10px; padding-right: 10px; width: 200px; height: 16px;">
 						    </td>
-							<td style="padding-left: 10px; padding-right: 10px">
+							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
 								<asp:LinkButton ID="InicioLinkButton" runat="server" CausesValidation="false" Font-Bold="true"
 									ForeColor="white" PostBackUrl="~/Inicio.aspx">Inicio</asp:LinkButton>
 							</td>
-							<td style="padding-left: 10px; padding-right: 10px">
+							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
 								<asp:LinkButton ID="ForecastLinkButton" runat="server" CausesValidation="false"
 									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Default.aspx" >Forecast</asp:LinkButton>
 							</td>
-							<td style="padding-left: 10px; padding-right: 10px">
-								<asp:LinkButton ID="ConfirmacionCargaButton" runat="server" CausesValidation="false"
+                            <td style="padding-left: 10px; padding-right: 10px; height: 16px;">
+								<asp:LinkButton ID="ProyectadoLinkButton" runat="server" CausesValidation="false"
+									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Proyectado.aspx" >Proyectado</asp:LinkButton>
+							</td>
+							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
+								<asp:LinkButton ID="ConfirmacionCargaLinkButton" runat="server" CausesValidation="false"
 									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/ConfirmacionCarga.aspx" >Confirmacion</asp:LinkButton>
 							</td>
 						</tr>
