@@ -208,22 +208,22 @@ namespace CedForecastWebDB
                             a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
                             if (Forecast.IdTipoPlanilla == "Proyectado")
                             {
-                                a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo + "01") + "', " + cantidad + ") ");
+                                a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo + "01") + "', " + cantidad + ") ");
                             }
                             else 
                             { 
-                                a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
+                                a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                             }
                             a.Append("Insert Forecast values ('" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                            a.Append(Forecast.Articulo.Id + "', '" + FechaAProcesar(i - 1, Forecast.Fecha).ToString("yyyyMMdd") + "', " + cantidad + ") ");
+                            a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                         }
                     }
                     if (Forecast.IdTipoPlanilla == "Proyectado")
                     {
                         a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                        a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(13, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad13 + ") ");
+                        a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(13, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad13 + ") ");
                         a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                        a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(25, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad14 + ") ");
+                        a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(25, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad14 + ") ");
                     }
                 }
             }
