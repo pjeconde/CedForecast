@@ -15,13 +15,21 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Forecast> Lista(CedForecastWebEntidades.Forecast Forecast)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdCuenta, Forecast.IdCliente, Forecast.Fecha, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
             a.Append("from Forecast, Articulo, GrupoArticulo, Division ");
-            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and IdCuenta='" + Forecast.IdCuenta + "' and GrupoArticulo.IdDivision='" + Forecast.IdDivision + "' and IdCliente='" + Forecast.IdCliente + "' ");
-            DateTime fecha = UltimoMesForecast(Forecast.Fecha);
-            a.Append("and Fecha >= '" + Forecast.Fecha.ToString("yyyyMM01") + "' ");
-            a.Append("and Fecha < '" + fecha.ToString("yyyyMMdd") + "' ");
-            a.Append("order by IdArticulo asc, Fecha asc");
+            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' and IdCuenta='" + Forecast.IdCuenta + "' and GrupoArticulo.IdDivision='" + Forecast.IdDivision + "' and IdCliente='" + Forecast.IdCliente + "' ");
+            string periodo = "";
+            if (Forecast.IdTipoPlanilla=="Proyectado")
+            {
+                periodo = Forecast.IdPeriodo + "99";
+            }
+            else
+            {
+                periodo = UltimoMesForecast(Forecast.IdPeriodo);
+            }
+            a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
+            a.Append("and IdPeriodo <= '" + periodo + "' ");
+            a.Append("order by IdArticulo asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Forecast> lista = new List<CedForecastWebEntidades.Forecast>();
@@ -29,16 +37,16 @@ namespace CedForecastWebDB
             if (dt.Rows.Count != 0)
             {
                 string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
-                CopiarCab(dt.Rows[0], forecast, Forecast.Fecha);
+                CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    int mes = MesAProcesar(Convert.ToDateTime(dt.Rows[i]["Fecha"]), Forecast.Fecha);
+                    int mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), Forecast.IdPeriodo);
                     if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
                     {
                         idArticulo = dt.Rows[i]["IdArticulo"].ToString();
                         lista.Add(forecast);
                         forecast = new CedForecastWebEntidades.Forecast();
-                        CopiarCab(dt.Rows[i], forecast, Forecast.Fecha);
+                        CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
                     }
                     CopiarDet(dt.Rows[i], forecast, mes);
                  }
@@ -46,8 +54,9 @@ namespace CedForecastWebDB
             lista.Add(forecast);
             return lista;
         }
-        private void CopiarCab(DataRow Desde, CedForecastWebEntidades.Forecast Hasta, DateTime FechaInicial)
+        private void CopiarCab(DataRow Desde, CedForecastWebEntidades.Forecast Hasta, string PeriodoInicial)
         {
+            Hasta.IdTipoPlanilla = Convert.ToString(Desde["IdTipoPlanilla"]);
             Hasta.IdCuenta = Convert.ToString(Desde["IdCuenta"]);
             Hasta.IdCliente = Convert.ToString(Desde["IdCliente"]);
             Hasta.Articulo = new CedForecastWebEntidades.Articulo();
@@ -57,7 +66,7 @@ namespace CedForecastWebDB
             Hasta.Articulo.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
             Hasta.Articulo.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
             Hasta.Articulo.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
-            Hasta.Fecha = Convert.ToDateTime(FechaInicial.ToString("01/MM/yyyy"));
+            Hasta.IdPeriodo = PeriodoInicial;
         }
         private void CopiarDet(DataRow Desde, CedForecastWebEntidades.Forecast Hasta, int Mes)
         {
@@ -100,21 +109,27 @@ namespace CedForecastWebDB
                 case 12:
                     Hasta.Cantidad12 = Convert.ToDecimal(Desde["Cantidad"]);
                     break;
+                case 13:
+                    Hasta.Cantidad13 = Convert.ToDecimal(Desde["Cantidad"]);
+                    break;
+                case 14:
+                    Hasta.Cantidad14 = Convert.ToDecimal(Desde["Cantidad"]);
+                    break;
             }
         }
-        private DateTime UltimoMesForecast(DateTime Fecha)
+        private string UltimoMesForecast(string Periodo)
         {
-            DateTime fechaUltimoMesForecast = Fecha.AddMonths(11);
-            fechaUltimoMesForecast = fechaUltimoMesForecast.AddDays(1);
-            return fechaUltimoMesForecast;
+            DateTime fechaUltimoMesForecast = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
+            fechaUltimoMesForecast = fechaUltimoMesForecast.AddMonths(11);
+            return fechaUltimoMesForecast.ToString("yyyyMM");
         }
-        private int MesAProcesar(DateTime FechaAProcesar, DateTime FechaInicial)
+        private int MesAProcesar(string PeriodoAProcesar, string PeriodoInicial)
         {
             int i = 0;
-            DateTime fechaAux = FechaInicial;
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
             for (i = 1; i <= 12; i++)
             {
-                if (fechaAux.Month == FechaAProcesar.Month)
+                if (fechaAux.Month == Convert.ToInt32(PeriodoAProcesar.Substring(4, 2)))
                 {
                     break;
                 }
@@ -122,15 +137,26 @@ namespace CedForecastWebDB
             }
             return i;
         }
-        private DateTime FechaAProcesar(int i, DateTime FechaInicial)
+        private string PeriodoAProcesar(int i, string PeriodoInicial)
         {
-            return FechaInicial.AddMonths(i);
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
+            fechaAux = fechaAux.AddMonths(i);
+            return fechaAux.ToString("yyyyMM");
         }
-        public void Guardar(List<CedForecastWebEntidades.Forecast> ForecastLista, string IdCuenta, string IdCliente, DateTime Fecha)
+        public void Guardar(List<CedForecastWebEntidades.Forecast> ForecastLista, string IdTipoPlanilla, string IdCuenta, string IdCliente, string Periodo)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("delete Forecast where IdCuenta = '" + IdCuenta + "' and IdCliente = '" + IdCliente + "' ");
-            a.Append("and Fecha >= '" + Fecha.ToString("yyyyMM01") + "' and Fecha < '" + UltimoMesForecast(Fecha).ToString("yyyyMMdd") + "' ");
+            string periodo = "";
+            if (IdTipoPlanilla == "Proyectado")
+            {
+                periodo = Periodo + "99";
+            }
+            else
+            {
+                periodo = UltimoMesForecast(Periodo);
+            }
+            a.Append("and IdPeriodo >= '" + Periodo + "' and IdPeriodo <= '" + periodo + "' ");
             foreach (CedForecastWebEntidades.Forecast Forecast in ForecastLista)
             {
                 if (Forecast.Articulo.Id != null)
@@ -179,9 +205,25 @@ namespace CedForecastWebDB
                         }
                         if (cantidad > 0)
                         {
+                            a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
+                            if (Forecast.IdTipoPlanilla == "Proyectado")
+                            {
+                                a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo + "01") + "', " + cantidad + ") ");
+                            }
+                            else 
+                            { 
+                                a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
+                            }
                             a.Append("Insert Forecast values ('" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
                             a.Append(Forecast.Articulo.Id + "', '" + FechaAProcesar(i - 1, Forecast.Fecha).ToString("yyyyMMdd") + "', " + cantidad + ") ");
                         }
+                    }
+                    if (Forecast.IdTipoPlanilla == "Proyectado")
+                    {
+                        a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
+                        a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(13, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad13 + ") ");
+                        a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
+                        a.Append(Forecast.Articulo.IdArticulo + "', '" + PeriodoAProcesar(25, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad14 + ") ");
                     }
                 }
             }
