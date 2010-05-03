@@ -15,11 +15,11 @@ using System.Web.UI.HtmlControls;
 
 namespace CedForecastWeb.Forecast
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Proyectado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((LinkButton)Master.FindControl("ForecastLinkButton")).ForeColor = System.Drawing.Color.Gold;
+            ((LinkButton)Master.FindControl("ProyectadoLinkButton")).ForeColor = System.Drawing.Color.Gold;
             if (!IsPostBack)
             {
                 if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -42,21 +42,24 @@ namespace CedForecastWeb.Forecast
                         DivisionDropDownList.DataValueField = "IdDivision";
                         DivisionDropDownList.DataTextField = "DescrDivision";
                         DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
 
                         CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
-                        periodo.IdTipoPlanilla = "RollingForecast";
+                        periodo.IdTipoPlanilla = "Proyectado";
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         PeriodoTextBox.Text = periodo.IdPeriodo;
                         PeriodoTextBox.ReadOnly = true;
                         
-                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
+                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
                         
                         FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
+                        detalleGridView.Columns[1].HeaderText = "Total " + periodo.IdPeriodo;
                         for (int i = 1; i <= 12; i++)
                         {
                             detalleGridView.Columns[i+1].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
                         }
+                        detalleGridView.Columns[13 + 1].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
+                        detalleGridView.Columns[14 + 1].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
 
                         DataBind();
                         LimpiarGrilla();
@@ -137,7 +140,7 @@ namespace CedForecastWeb.Forecast
                 //Modificación de articulo existente. ( El articulo ya existe en el ViewState y en un index distinto al que estoy modificando )
                 if (e.RowIndex < ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Count)
                 {
-                    int indexArticulo =((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).FindIndex((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
+                    int indexArticulo =((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).FindIndex((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
                     if (indexArticulo >= 0 && e.RowIndex != indexArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
@@ -146,8 +149,8 @@ namespace CedForecastWeb.Forecast
                 //Articulo nuevo. ( El e.RowIndex es mayor al ultimo del ViewState )
                 else
                 {
-                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
-                    if (forecast != null && forecast.Articulo.Id == auxIdArticulo)
+                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
+                    if (forecast != null && forecast.Articulo.IdArticulo == auxIdArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
                     }
@@ -159,8 +162,8 @@ namespace CedForecastWeb.Forecast
                 string auxDescrArticulo = ((DropDownList)detalleGridView.Rows[e.RowIndex].FindControl("ddlIdArticuloEdit")).SelectedItem.Text;
                 if (!auxIdArticulo.Equals(string.Empty))
                 {
-                    l.Articulo.Id = auxIdArticulo;
-                    l.Articulo.Descr = auxDescrArticulo;
+                    l.Articulo.IdArticulo = auxIdArticulo;
+                    l.Articulo.DescrArticulo = auxDescrArticulo;
                 }
                 else
                 {
@@ -274,7 +277,24 @@ namespace CedForecastWeb.Forecast
                 {
                     throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
                 }
-
+                string auxCantidad13 = ((TextBox)detalleGridView.Rows[e.RowIndex].FindControl("txtCantidad13Edit")).Text;
+                if (!auxCantidad13.Contains(","))
+                {
+                    l.Cantidad13 = Convert.ToDecimal(auxCantidad13, cedeiraCultura);
+                }
+                else
+                {
+                    throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
+                }
+                string auxCantidad14 = ((TextBox)detalleGridView.Rows[e.RowIndex].FindControl("txtCantidad14Edit")).Text;
+                if (!auxCantidad14.Contains(","))
+                {
+                    l.Cantidad14 = Convert.ToDecimal(auxCantidad14, cedeiraCultura);
+                }
+                else
+                {
+                    throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
+                }
                 detalleGridView.EditIndex = -1;
                 detalleGridView.DataSource = ViewState["lineas"];
                 detalleGridView.DataBind();
@@ -308,15 +328,15 @@ namespace CedForecastWeb.Forecast
                     CultureInfo cedeiraCultura = new System.Globalization.CultureInfo(System.Configuration.ConfigurationManager.AppSettings["Cultura"]);
                     
                     string auxIdArticulo = ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).SelectedValue;
-                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.Id == auxIdArticulo; }));
-                    if (forecast != null && forecast.Articulo.Id == auxIdArticulo)
+                    CedForecastWebEntidades.Forecast forecast = ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Find((delegate(CedForecastWebEntidades.Forecast e1) { return e1.Articulo.IdArticulo == auxIdArticulo; }));
+                    if (forecast != null && forecast.Articulo.IdArticulo == auxIdArticulo)
                     {
                         throw new Exception("Articulo ya ingresado.");
                     }
 
                     CedForecastWebEntidades.Forecast l = new CedForecastWebEntidades.Forecast();
                     l.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                    l.Articulo.GrupoArticulo.Division.Id = DivisionDropDownList.SelectedValue;
+                    l.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
                     l.IdCliente = ClienteDropDownList.SelectedValue;
                     l.IdPeriodo = PeriodoTextBox.Text;
                     
@@ -324,8 +344,8 @@ namespace CedForecastWeb.Forecast
                     if (!auxIdArticulo.Equals(string.Empty))
                     {
                         l.Articulo = new CedForecastWebEntidades.Articulo();
-                        l.Articulo.Id = auxIdArticulo;
-                        l.Articulo.Descr = auxDescrArticulo;
+                        l.Articulo.IdArticulo = auxIdArticulo;
+                        l.Articulo.DescrArticulo = auxDescrArticulo;
                     }
                     else
                     {
@@ -440,6 +460,24 @@ namespace CedForecastWeb.Forecast
                     {
                         throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
                     }
+                    string auxCantidad13 = ((TextBox)detalleGridView.FooterRow.FindControl("txtCantidad13")).Text;
+                    if (!auxCantidad13.Contains(","))
+                    {
+                        l.Cantidad13 = Convert.ToDecimal(auxCantidad13, cedeiraCultura);
+                    }
+                    else
+                    {
+                        throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
+                    }
+                    string auxCantidad14 = ((TextBox)detalleGridView.FooterRow.FindControl("txtCantidad14")).Text;
+                    if (!auxCantidad14.Contains(","))
+                    {
+                        l.Cantidad14 = Convert.ToDecimal(auxCantidad14, cedeiraCultura);
+                    }
+                    else
+                    {
+                        throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
+                    }
 
                     //Agrego la nueva linea
                     ((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"]).Add(l);
@@ -464,7 +502,7 @@ namespace CedForecastWeb.Forecast
         }
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = Convert.ToDateTime("01/01/" + PeriodoInicial.Substring(0, 4));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }
@@ -488,7 +526,7 @@ namespace CedForecastWeb.Forecast
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             try
             {
-                ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString());
+                ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"])[e.NewEditIndex].Articulo.IdArticulo.ToString());
                 liUnidad.Selected = true;
             }
             catch
@@ -534,7 +572,7 @@ namespace CedForecastWeb.Forecast
                 CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
                 forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
                 forecast.IdPeriodo = PeriodoTextBox.Text;
-                forecast.IdTipoPlanilla = "RollingForecast";
+                forecast.IdTipoPlanilla = "Proyectado";
                 if (!ClienteDropDownList.SelectedValue.Equals(string.Empty))
                 {
                     forecast.IdCliente = ClienteDropDownList.SelectedValue;
@@ -545,7 +583,7 @@ namespace CedForecastWeb.Forecast
                 }
                 if (!DivisionDropDownList.SelectedValue.Equals(string.Empty))
                 {
-                    forecast.Articulo.GrupoArticulo.Division.Id = DivisionDropDownList.SelectedValue;
+                    forecast.Articulo.GrupoArticulo.Division.IdDivision = DivisionDropDownList.SelectedValue;
                 }
                 else
                 {
@@ -574,7 +612,7 @@ namespace CedForecastWeb.Forecast
         protected void AceptarButton_Click(object sender, EventArgs e)
         {
             CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
-            CedForecastWebRN.Forecast.Guardar((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"], "RollingForecast", ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue.ToString(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+            CedForecastWebRN.Forecast.Guardar((List<CedForecastWebEntidades.Forecast>)ViewState["lineas"], "Proyectado", ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue.ToString(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
             LimpiarGrilla();
             LeerButton.Enabled = true;
             SeleccionPanel.Enabled = true;

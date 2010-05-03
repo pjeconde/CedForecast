@@ -19,7 +19,7 @@ namespace CedForecastWeb.Forecast
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((LinkButton)Master.FindControl("ForecastLinkButton")).ForeColor = System.Drawing.Color.Gold;
+            ((LinkButton)Master.FindControl("ConfirmacionCargaLinkButton")).ForeColor = System.Drawing.Color.Gold;
             if (!IsPostBack)
             {
                 if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -62,19 +62,21 @@ namespace CedForecastWeb.Forecast
         }
         private void CompletarDatosEntidad(CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga)
         {
-            confirmacionCarga.IdPeriodo = Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4));
+            confirmacionCarga.IdPeriodo = PeriodoTextBox.Text;
             confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
             confirmacionCarga.FechaConfirmacionCarga = DateTime.Now;
         }
         private void Leer()
         {
             CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
+            periodo.IdTipoPlanilla = "RollingForecast";
             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-            PeriodoTextBox.Text = periodo.IdPeriodo.ToString("yyyyMM");
+            PeriodoTextBox.Text = periodo.IdPeriodo;
             PeriodoTextBox.ReadOnly = true;
             CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
             confirmacionCarga.IdPeriodo = periodo.IdPeriodo;
             confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+            confirmacionCarga.IdTipoPlanilla = "RollingForecast";
             CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             switch (confirmacionCarga.IdEstadoConfirmacionCarga)
             {
@@ -93,7 +95,7 @@ namespace CedForecastWeb.Forecast
                     ConfirmarButton.Enabled = false;
                     break;
             }
-            FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaVtoConfirmacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
+            FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
             FechaConfirmacionCargaTextBox.Text = Convert.ToString(confirmacionCarga.FechaConfirmacionCarga);
             ComentarioTextBox.Text = confirmacionCarga.Comentario;
             IdEstadoConfirmacionCargaTextBox.Text = confirmacionCarga.IdEstadoConfirmacionCarga;

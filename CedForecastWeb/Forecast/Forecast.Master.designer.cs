@@ -119,13 +119,22 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.LinkButton ForecastLinkButton;
         
         /// <summary>
-        /// Control ConfirmacionCargaButton.
+        /// Control ProyectadoLinkButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ConfirmacionCargaButton;
+        protected global::System.Web.UI.WebControls.LinkButton ProyectadoLinkButton;
+        
+        /// <summary>
+        /// Control ConfirmacionCargaLinkButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ConfirmacionCargaLinkButton;
         
         /// <summary>
         /// Control ForecastContentPlaceHolder.

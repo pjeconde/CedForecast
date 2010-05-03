@@ -154,6 +154,13 @@
     <Compile Include="Forecast\ConfirmacionCarga.aspx.designer.cs">
       <DependentUpon>ConfirmacionCarga.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forecast\Proyectado.aspx.cs">
+      <DependentUpon>Proyectado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\Proyectado.aspx.designer.cs">
+      <DependentUpon>Proyectado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SoloDispPUsuariosOperForecast.aspx.cs">
       <DependentUpon>SoloDispPUsuariosOperForecast.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,6 +297,7 @@
     <Content Include="Configuracion.aspx" />
     <Content Include="CuentaCambiarPassword.aspx" />
     <Content Include="CuentaConfiguracion.aspx" />
+    <Content Include="Forecast\Proyectado.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Temp\" />

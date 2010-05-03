@@ -22,10 +22,21 @@ namespace CedForecastWeb
                 TelefonoTextBox.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Telefono;
                 EmailTextBox.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Email;
                 EmailSMSTextBox.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EmailSMS;
+                PreguntaTextBox.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Pregunta;
+                RespuestaTextBox.Text = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Respuesta;
                 PaginaDefaultDropDownList.DataValueField = "Id";
                 PaginaDefaultDropDownList.DataTextField = "Descr";
                 PaginaDefaultDropDownList.DataSource = CedForecastWebRN.PaginaDefault.Lista(((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta, (CedEntidades.Sesion)Session["Sesion"]);
-                PaginaDefaultDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.PaginaDefault.Id; ;
+                PaginaDefaultDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.PaginaDefault.Id;
+                DivisionDropDownList.DataValueField = "IdDivision";
+                DivisionDropDownList.DataTextField = "DescrDivision";
+                DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
+                TipoCuentaDropDownList.DataValueField = "Id";
+                TipoCuentaDropDownList.DataTextField = "Descr";
+                TipoCuentaDropDownList.DataSource = CedForecastWebRN.TipoCuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                TipoCuentaDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id;
+
                 DataBind();
                 CancelarButton.Focus();
             }
@@ -38,6 +49,9 @@ namespace CedForecastWeb
             cuenta.Nombre = NombreTextBox.Text;
             cuenta.Telefono = TelefonoTextBox.Text;
             cuenta.EmailSMS = EmailSMSTextBox.Text;
+            cuenta.Division.IdDivision = DivisionDropDownList.SelectedValue;
+            cuenta.Pregunta = PreguntaTextBox.Text;
+            cuenta.Respuesta = RespuestaTextBox.Text;
             cuenta.PaginaDefault.Id = Convert.ToString(PaginaDefaultDropDownList.SelectedValue);
             try
             {
@@ -49,6 +63,9 @@ namespace CedForecastWeb
                 EmailTextBox.Enabled = false;
                 EmailSMSTextBox.Enabled = false;
                 PaginaDefaultDropDownList.Enabled = false;
+                DivisionDropDownList.Enabled = false;
+                PreguntaTextBox.Enabled = false;
+                RespuestaTextBox.Enabled = false;
                 MsgErrorLabel.Text = "Se ha registrado la nueva configuración satisfactoriamente.";
             }
             catch (Exception ex)
@@ -56,6 +73,14 @@ namespace CedForecastWeb
                 string a = CedeiraUIWebForms.Excepciones.Detalle(ex);
                 MsgErrorLabel.Text = a;
             }
+        }
+
+        protected void TipoCuentaDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CedForecastWebEntidades.TipoCuenta tipoCuenta = new CedForecastWebEntidades.TipoCuenta();
+            tipoCuenta.Id = TipoCuentaDropDownList.SelectedValue;
+            PaginaDefaultDropDownList.DataSource = CedForecastWebRN.PaginaDefault.Lista(tipoCuenta, (CedEntidades.Sesion)Session["Sesion"]);
+            PaginaDefaultDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.PaginaDefault.Id;
         }
     }
 }

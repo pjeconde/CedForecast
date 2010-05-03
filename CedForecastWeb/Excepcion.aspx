@@ -2,7 +2,7 @@
 
 <asp:Content ID="ExContent" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 800px; text-align: left;">
+        width: 890px; text-align: left;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">

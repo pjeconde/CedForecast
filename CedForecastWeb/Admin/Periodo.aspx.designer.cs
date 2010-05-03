@@ -38,6 +38,15 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
+        /// Control RollingForecastTituloLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RollingForecastTituloLabel;
+        
+        /// <summary>
         /// Control Label2.
         /// </summary>
         /// <remarks>
@@ -92,13 +101,13 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control FechaVtoConfirmacionCargaTextBox.
+        /// Control FechaInhabilitacionCargaTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FechaVtoConfirmacionCargaTextBox;
+        protected global::System.Web.UI.WebControls.TextBox FechaInhabilitacionCargaTextBox;
         
         /// <summary>
         /// Control Label5.
@@ -110,13 +119,103 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Control HabilitarCargaCheckBox.
+        /// Control CargaHabilitadaCheckBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox HabilitarCargaCheckBox;
+        protected global::System.Web.UI.WebControls.CheckBox CargaHabilitadaCheckBox;
+        
+        /// <summary>
+        /// Control ProyectadoTituloLabel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProyectadoTituloLabel;
+        
+        /// <summary>
+        /// Control Label7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// Control Label8.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
+        /// Control PeriodoProyectadoTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PeriodoProyectadoTextBox;
+        
+        /// <summary>
+        /// Control Label9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+        
+        /// <summary>
+        /// Control Label10.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+        
+        /// <summary>
+        /// Control Label11.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label11;
+        
+        /// <summary>
+        /// Control FechaInhabilitacionCargaProyectadoTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaInhabilitacionCargaProyectadoTextBox;
+        
+        /// <summary>
+        /// Control Label12.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// Control CargaHabilitadaProyectadoCheckBox.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CargaHabilitadaProyectadoCheckBox;
         
         /// <summary>
         /// Control AceptarButton.

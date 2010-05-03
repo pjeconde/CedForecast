@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="CuentaConfiguracion.aspx.cs" Inherits="CedForecastWeb.CuentaConfiguracion"  %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
-    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 800px; background-color: white;">
+    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 890px; background-color: white;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 100%; padding-top: 10px">
@@ -86,6 +86,66 @@
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
                                         <asp:TextBox ID="EmailSMSTextBox" runat="server" MaxLength="128" Width="360px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px">
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="PreguntaTextBox"
+                                            ErrorMessage="Pregunta de seguridad" SetFocusOnError="True" ValidationExpression="[A-Za-z\- ,.0-9]*">
+                                            <asp:Label ID="Label19" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="PreguntaTextBox"
+                                            ErrorMessage="Pregunta de seguridad" SetFocusOnError="True">
+                                            <asp:Label ID="Label20" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RequiredFieldValidator>
+                                        <asp:Label ID="PreguntaLabel" runat="server" Text="Pregunta de seguridad"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px">
+                                        <asp:Label ID="Label3" runat="server" Font-Bold="true" Text="¿"></asp:Label>
+                                        <asp:TextBox ID="PreguntaTextBox" runat="server" MaxLength="256" TabIndex="7" Width="334px"></asp:TextBox>
+                                        <asp:Label ID="Label6" runat="server" Font-Bold="true" Text="?"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px">
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ControlToValidate="RespuestaTextBox"
+                                            ErrorMessage="Respuesta" SetFocusOnError="True" ValidationExpression="[A-Za-z\- ,.0-9]*">
+                                            <asp:Label ID="Label21" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="RespuestaTextBox"
+                                            ErrorMessage="Respuesta" SetFocusOnError="True">
+                                            <asp:Label ID="Label22" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RequiredFieldValidator>
+                                        <asp:Label ID="RespuestaLabel" runat="server" Text="Respuesta"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px">
+                                        <asp:TextBox ID="RespuestaTextBox" runat="server" MaxLength="256" TabIndex="8" Width="360px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px; height: 25px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px; height: 25px;">
+                                        <asp:Label ID="DivisionLabel" runat="server" Text="División"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px; height: 25px;">
+                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px">
+                                        </asp:DropDownList>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TipoCuentaDropDownList"
+                                            ErrorMessage="Página de inicio" SetFocusOnError="True">
+                                            <asp:Label ID="Label4" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RequiredFieldValidator>
+                                        <asp:Label ID="Label5" runat="server" Text="Tipo de cuenta"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px">
+                                        <asp:DropDownList ID="TipoCuentaDropDownList" runat="server" TabIndex="4" Width="360px" OnSelectedIndexChanged="TipoCuentaDropDownList_SelectedIndexChanged">
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>

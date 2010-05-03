@@ -49,10 +49,10 @@ namespace CedForecastWeb.Admin
             { 
                 CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
                 ValidarPeriodo(PeriodoTextBox.Text);
-                periodo.IdPeriodo = Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4));
-                ValidarFecha(FechaVtoConfirmacionCargaTextBox.Text);
-                periodo.FechaVtoConfirmacionCarga = Convert.ToDateTime(FechaVtoConfirmacionCargaTextBox.Text.Substring(6, 2) + "/" + FechaVtoConfirmacionCargaTextBox.Text.Substring(4, 2) + "/" + FechaVtoConfirmacionCargaTextBox.Text.Substring(0, 4));
-                periodo.Habilitado = HabilitarCargaCheckBox.Checked;
+                periodo.IdPeriodo = PeriodoTextBox.Text;
+                ValidarFecha(FechaInhabilitacionCargaTextBox.Text);
+                periodo.FechaInhabilitacionCarga = Convert.ToDateTime(FechaInhabilitacionCargaTextBox.Text.Substring(6, 2) + "/" + FechaInhabilitacionCargaTextBox.Text.Substring(4, 2) + "/" + FechaInhabilitacionCargaTextBox.Text.Substring(0, 4));
+                periodo.CargaHabilitada = CargaHabilitadaCheckBox.Checked;
                 CedForecastWebRN.Periodo.Modificar(periodo, (CedEntidades.Sesion)Session["Sesion"]);
             }
             catch (Exception ex)
@@ -86,9 +86,9 @@ namespace CedForecastWeb.Admin
         {
             CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
             CedForecastWebRN.Periodo.Leer(periodo, (CedEntidades.Sesion)Session["Sesion"]);
-            PeriodoTextBox.Text = periodo.IdPeriodo.ToString("yyyyMM");
-            FechaVtoConfirmacionCargaTextBox.Text = periodo.FechaVtoConfirmacionCarga.ToString("yyyyMMdd");
-            HabilitarCargaCheckBox.Checked = periodo.Habilitado;
+            PeriodoTextBox.Text = periodo.IdPeriodo;
+            FechaInhabilitacionCargaTextBox.Text = periodo.FechaInhabilitacionCarga.ToString("yyyyMMdd");
+            CargaHabilitadaCheckBox.Checked = periodo.CargaHabilitada;
         }
         protected void CancelarButton_Click(object sender, EventArgs e)
         {

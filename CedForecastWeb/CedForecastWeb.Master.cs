@@ -23,24 +23,26 @@ namespace CedForecastWeb
                 SalirLinkButton.Visible = true;
                 ConfiguracionLinkButton.Visible = true;
                 Separador2Label.Visible = true;
+                //Menu
+                AdministracionLinkButton.Visible = false;
+                ForecastLinkButton.Visible = false;
+                ProyectadoLinkButton.Visible = false;
+                ConfirmacionCargaButton.Visible = false;
                 switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id)
                 {
                     case "Admin":
                         AdministracionLinkButton.Visible = true;
-                        ConfirmacionCargaButton.Visible = false;
                         break;
                     case "OperForecast":
-                        AdministracionLinkButton.Visible = false;
                         switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
                         {
                             case "Vigente":
                                 ForecastLinkButton.Visible = true;
+                                ProyectadoLinkButton.Visible = true;
                                 ConfirmacionCargaButton.Visible = true;
                                 break;
                             case "Suspend":
                                 NombreCuentaLabel.Text += " (suspendido)";
-                                ForecastLinkButton.Visible = false;
-                                ConfirmacionCargaButton.Visible = false;
                                 break;
                         }
                         break;

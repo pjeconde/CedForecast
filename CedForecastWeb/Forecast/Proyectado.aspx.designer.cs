@@ -12,12 +12,12 @@ namespace CedForecastWeb.Forecast {
     
     
     /// <summary>
-    /// Clase Default.
+    /// Clase Proyectado.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.
     /// </remarks>
-    public partial class Default {
+    public partial class Proyectado {
         
         /// <summary>
         /// Control ScriptManager1.

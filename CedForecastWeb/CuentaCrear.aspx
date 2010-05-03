@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="CuentaCrear.aspx.cs" Inherits="CedForecastWeb.CuentaCrear"  %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
-    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 800px; background-color: white">
+    <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 890px; background-color: white">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 100%;
@@ -97,7 +97,7 @@
                                         <asp:Label ID="DivisionLabel" runat="server" Text="División"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px; height: 25px;">
-                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px" OnSelectedIndexChanged="DivisionDropDownList_SelectedIndexChanged">
+                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
