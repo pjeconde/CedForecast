@@ -7,14 +7,26 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Periodo
     {
-        private DateTime idPeriodo;
-        private DateTime fechaVtoConfirmacionCarga;
-        private bool habilitado;
+        private string idTipoPlanilla;
+        private string idPeriodo;
+        private DateTime fechaInhabilitacionCarga;
+        private bool cargaHabilitada;
 
         public Periodo()
         {
         }
-        public DateTime IdPeriodo
+        public string IdTipoPlanilla
+        {
+            set
+            {
+                idTipoPlanilla = value;
+            }
+            get
+            {
+                return idTipoPlanilla;
+            }
+        }
+        public string IdPeriodo
         {
             set
             {
@@ -25,26 +37,26 @@ namespace CedForecastWebEntidades
                 return idPeriodo;
             }
         }
-        public DateTime FechaVtoConfirmacionCarga
+        public DateTime FechaInhabilitacionCarga
         {
             set
             {
-                fechaVtoConfirmacionCarga = value;
+                fechaInhabilitacionCarga = value;
             }
             get
             {
-                return fechaVtoConfirmacionCarga;
+                return fechaInhabilitacionCarga;
             }
         }
-        public bool Habilitado
+        public bool CargaHabilitada
         {
             set
             {
-                habilitado = value;
+                cargaHabilitada = value;
             }
             get
             {
-                return habilitado;
+                return cargaHabilitada;
             }
         }
     }
