@@ -31,7 +31,7 @@ namespace CedForecastWeb
                 DivisionDropDownList.DataValueField = "IdDivision";
                 DivisionDropDownList.DataTextField = "DescrDivision";
                 DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-                DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.IdDivision;
+                DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
                 TipoCuentaDropDownList.DataValueField = "Id";
                 TipoCuentaDropDownList.DataTextField = "Descr";
                 TipoCuentaDropDownList.DataSource = CedForecastWebRN.TipoCuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
@@ -49,7 +49,7 @@ namespace CedForecastWeb
             cuenta.Nombre = NombreTextBox.Text;
             cuenta.Telefono = TelefonoTextBox.Text;
             cuenta.EmailSMS = EmailSMSTextBox.Text;
-            cuenta.Division.IdDivision = DivisionDropDownList.SelectedValue;
+            cuenta.Division.Id = DivisionDropDownList.SelectedValue;
             cuenta.Pregunta = PreguntaTextBox.Text;
             cuenta.Respuesta = RespuestaTextBox.Text;
             cuenta.PaginaDefault.Id = Convert.ToString(PaginaDefaultDropDownList.SelectedValue);
