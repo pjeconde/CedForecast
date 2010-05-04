@@ -3,9 +3,9 @@ GO
 CREATE LOGIN CedFW_usuario WITH PASSWORD = 'mosca430rijo', DEFAULT_DATABASE=CedForecastWeb
 GO
 USE CedForecastWeb
+GO
 CREATE ROLE ce_update
 GO
-USE CedForecastWeb
 CREATE USER CedFW_usuario FOR LOGIN CedFW_usuario
 GO
 EXEC sp_addrolemember 'ce_update', 'CedFW_usuario'
@@ -18,11 +18,11 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Articulo](
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrArticulo] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdGrupoArticulo] [varchar](4) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
+	[DescrArticulo] [varchar](50) NOT NULL,
+	[IdGrupoArticulo] [varchar](4) NOT NULL,
 	[PesoBruto] [float] NOT NULL,
-	[UnidadMedida] [varchar](3) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[UnidadMedida] [varchar](3) NOT NULL,
 	[FechaUltModif] [datetime] NOT NULL,
 	[Habilitado] [bit] NOT NULL
 ) ON [PRIMARY]
@@ -37,9 +37,9 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Cliente](
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrCliente] [varchar](40) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdZona] [varchar](4) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
+	[DescrCliente] [varchar](40) NOT NULL,
+	[IdZona] [varchar](4) NOT NULL,
 	[Habilitado] [bit] NOT NULL,
 	[FechaUltModif] [datetime] NOT NULL
 ) ON [PRIMARY]
@@ -55,7 +55,7 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[ConfirmacionCarga](
 	[IdPeriodo] [datetime] NOT NULL,
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
 	[FechaConfirmacionCarga] [datetime] NOT NULL
 ) ON [PRIMARY]
 GO
@@ -69,8 +69,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[EstadoCuenta](
-	[IdEstadoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrEstadoCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdEstadoCuenta] [varchar](15) NOT NULL,
+	[DescrEstadoCuenta] [varchar](50) NOT NULL,
  CONSTRAINT [PK_EstadoCuenta] PRIMARY KEY CLUSTERED 
 (
 	[IdEstadoCuenta] ASC
@@ -87,8 +87,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[TipoCuenta](
-	[IdTipoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrTipoCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoCuenta] [varchar](15) NOT NULL,
+	[DescrTipoCuenta] [varchar](50) NOT NULL,
  CONSTRAINT [PK_TipoCuenta] PRIMARY KEY CLUSTERED 
 (
 	[IdTipoCuenta] ASC
@@ -105,9 +105,9 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[PaginaDefault](
-	[IdPaginaDefault] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrPaginaDefault] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[URL] [varchar](255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPaginaDefault] [varchar](15) NOT NULL,
+	[DescrPaginaDefault] [varchar](50) NOT NULL,
+	[URL] [varchar](255) NOT NULL,
  CONSTRAINT [PK_Table_PaginaDefault] PRIMARY KEY CLUSTERED 
 (
 	[IdPaginaDefault] ASC
@@ -124,8 +124,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[PaginaDefaultXTipoCuenta](
-	[IdTipoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPaginaDefault] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoCuenta] [varchar](15) NOT NULL,
+	[IdPaginaDefault] [varchar](15) NOT NULL,
 	[Predeterminada] [bit] NOT NULL,
  CONSTRAINT [PK_Table_PaginaDefaultXTipoCuenta] PRIMARY KEY CLUSTERED 
 (
@@ -154,21 +154,21 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Cuenta](
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Nombre] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Telefono] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Email] [varchar](128) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdDivision] [varchar](30) COLLATE Modern_Spanish_CI_AS NULL,
-	[Password] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Pregunta] [varchar](256) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Respuesta] [varchar](256) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdTipoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdEstadoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPaginaDefault] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
+	[Nombre] [varchar](50) NOT NULL,
+	[Telefono] [varchar](50) NOT NULL,
+	[Email] [varchar](128) NOT NULL,
+	[IdDivision] [varchar](30) NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Pregunta] [varchar](256) NOT NULL,
+	[Respuesta] [varchar](256) NOT NULL,
+	[IdTipoCuenta] [varchar](15) NOT NULL,
+	[IdEstadoCuenta] [varchar](15) NOT NULL,
+	[IdPaginaDefault] [varchar](15) NOT NULL,
 	[FechaAlta] [datetime] NOT NULL,
 	[CantidadEnviosMail] [int] NOT NULL,
 	[FechaUltimoReenvioMail] [datetime] NOT NULL,
-	[EmailSMS] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[EmailSMS] [varchar](50) NOT NULL,
 	[RecibeAvisoAltaCuenta] [bit] NOT NULL,
 	[FechaUltModif] [datetime] NOT NULL,
  CONSTRAINT [PK_Table_Cuenta] PRIMARY KEY CLUSTERED 
@@ -202,20 +202,20 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[CuentaDepurada](
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Nombre] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Telefono] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Email] [varchar](128) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Password] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Pregunta] [varchar](256) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Respuesta] [varchar](256) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdTipoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdEstadoCuenta] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPaginaDefault] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
+	[Nombre] [varchar](50) NOT NULL,
+	[Telefono] [varchar](50) NOT NULL,
+	[Email] [varchar](128) NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Pregunta] [varchar](256) NOT NULL,
+	[Respuesta] [varchar](256) NOT NULL,
+	[IdTipoCuenta] [varchar](15) NOT NULL,
+	[IdEstadoCuenta] [varchar](15) NOT NULL,
+	[IdPaginaDefault] [varchar](15) NOT NULL,
 	[FechaAlta] [datetime] NOT NULL,
 	[CantidadEnviosMail] [int] NOT NULL,
 	[FechaUltimoReenvioMail] [datetime] NOT NULL,
-	[EmailSMS] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[EmailSMS] [varchar](50) NOT NULL,
 	[RecibeAvisoAltaCuenta] [bit] NOT NULL,
 	[FechaUltModif] [datetime] NOT NULL
 ) ON [PRIMARY]
@@ -230,8 +230,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Division](
-	[IdDivision] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrDivision] [varchar](60) COLLATE Modern_Spanish_CI_AS NOT NULL
+	[IdDivision] [varchar](30) NOT NULL,
+	[DescrDivision] [varchar](60) NOT NULL
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
@@ -244,7 +244,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Flag](
-	[IdFlag] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdFlag] [varchar](30) NOT NULL,
 	[Valor] [bit] NOT NULL,
  CONSTRAINT [PK_Flag] PRIMARY KEY CLUSTERED 
 (
@@ -262,9 +262,9 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[GrupoArticulo](
-	[IdGrupoArticulo] [varchar](4) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrGrupoArticulo] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdDivision] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdGrupoArticulo] [varchar](4) NOT NULL,
+	[DescrGrupoArticulo] [varchar](50) NOT NULL,
+	[IdDivision] [varchar](30) NOT NULL,
  CONSTRAINT [PK_DivisionXGrupoArticulo_1] PRIMARY KEY CLUSTERED 
 (
 	[IdGrupoArticulo] ASC
@@ -296,8 +296,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Texto](
-	[IdTexto] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrTexto] [text] COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTexto] [varchar](50) NOT NULL,
+	[DescrTexto] [text] NOT NULL,
  CONSTRAINT [PK_Texto] PRIMARY KEY CLUSTERED 
 (
 	[IdTexto] ASC
@@ -314,10 +314,10 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Forecast](
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdDivision] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
+	[IdDivision] [varchar](30) NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
 	[Fecha] [datetime] NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_Forecast] PRIMARY KEY CLUSTERED 
@@ -340,8 +340,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Zona](
-	[IdZona] [varchar](4) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrZona] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdZona] [varchar](4) NOT NULL,
+	[DescrZona] [varchar](15) NOT NULL,
 	[Habilitada] [bit] NOT NULL,
 	[FechaUltModif] [datetime] NOT NULL
 ) ON [PRIMARY]
@@ -356,9 +356,9 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Venta](
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_Venta] PRIMARY KEY CLUSTERED 
 (
@@ -378,9 +378,9 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[VentaAux](
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_VentaAux] PRIMARY KEY CLUSTERED 
 (
