@@ -37,6 +37,7 @@
     <Compile Include="BejermanArticulos.cs" />
     <Compile Include="BejermanClientes.cs" />
     <Compile Include="BejermanVendedor.cs" />
+    <Compile Include="BejermanVentas.cs" />
     <Compile Include="BejermanZona.cs" />
     <Compile Include="db.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

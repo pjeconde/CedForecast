@@ -39,6 +39,7 @@
     <Compile Include="ConfirmacionCarga.cs" />
     <Compile Include="TipoCuenta.cs" />
     <Compile Include="Periodo.cs" />
+    <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />
     <Compile Include="Division.cs" />
     <Compile Include="Forecast.cs" />

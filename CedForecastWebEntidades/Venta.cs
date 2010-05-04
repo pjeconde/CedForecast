@@ -7,14 +7,24 @@ namespace CedForecastWebEntidades
     [Serializable]
     public class Venta
     {
+        private string idPeriodo;
         private string idArticulo;
         private string idCliente;
-        private DateTime fechaForecast;
-        private decimal cantidadMesAnterior;
-        private decimal cantidadUltimoAño;
+        private decimal cantidad;
 
         public Venta()
         {
+        }
+        public string IdPeriodo
+        {
+            set
+            {
+                idPeriodo = value;
+            }
+            get
+            {
+                return idPeriodo;
+            }
         }
         public string IdArticulo
         {
@@ -38,37 +48,15 @@ namespace CedForecastWebEntidades
                 return idCliente;
             }
         }
-        public DateTime FechaForecast
+        public decimal Cantidad
         {
             set
             {
-                fechaForecast = value;
+                cantidad = value;
             }
             get
             {
-                return fechaForecast;
-            }
-        }
-        public decimal CantidadMesAnterior
-        {
-            set
-            {
-                cantidadMesAnterior = value;
-            }
-            get
-            {
-                return cantidadMesAnterior;
-            }
-        }
-        public decimal CantidadUltimoAño
-        {
-            set
-            {
-                cantidadUltimoAño = value;
-            }
-            get
-            {
-                return cantidadUltimoAño;
+                return cantidad;
             }
         }
     }

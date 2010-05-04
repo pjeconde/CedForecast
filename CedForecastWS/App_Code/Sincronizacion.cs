@@ -55,8 +55,22 @@ namespace CedForecast.WS
             datos.Actualizar(Elemento);
         }
         [WebMethod]
-        public void EnviarVentas(List<CedForecastWebEntidades.Venta> Lista)
+        public void IniciarEnvioVenta()
         {
+            CedForecastWebDB.Venta datos = new CedForecastWebDB.Venta(Sesion());
+            datos.IniciarEnvioVenta();
+        }
+        [WebMethod]
+        public void EnviarVenta(CedForecastWebEntidades.Venta Elemento)
+        {
+            CedForecastWebDB.Venta datos = new CedForecastWebDB.Venta(Sesion());
+            datos.AgregarEnAux(Elemento);
+        }
+        [WebMethod]
+        public void TerminarEnvioVenta()
+        {
+            CedForecastWebDB.Venta datos = new CedForecastWebDB.Venta(Sesion());
+            datos.Confirmar();
         }
         [WebMethod]
         public void EnviarZona(CedForecastWebEntidades.Zona Elemento)
