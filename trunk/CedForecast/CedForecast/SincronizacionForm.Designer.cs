@@ -88,7 +88,6 @@
             // VentaCheckBox
             // 
             this.VentaCheckBox.AutoSize = true;
-            this.VentaCheckBox.Enabled = false;
             this.VentaCheckBox.Location = new System.Drawing.Point(12, 122);
             this.VentaCheckBox.Name = "VentaCheckBox";
             this.VentaCheckBox.Size = new System.Drawing.Size(101, 17);
@@ -133,7 +132,6 @@
             // VentaDateTimePicker
             // 
             this.VentaDateTimePicker.CustomFormat = "MM/yyyy";
-            this.VentaDateTimePicker.Enabled = false;
             this.VentaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.VentaDateTimePicker.Location = new System.Drawing.Point(113, 121);
             this.VentaDateTimePicker.Name = "VentaDateTimePicker";

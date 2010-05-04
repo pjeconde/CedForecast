@@ -39,6 +39,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="Proceso.cs" />
+    <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

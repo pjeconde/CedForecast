@@ -43,7 +43,11 @@ namespace CedForecastRN.WS {
         
         private System.Threading.SendOrPostCallback EnviarClienteOperationCompleted;
         
-        private System.Threading.SendOrPostCallback EnviarVentasOperationCompleted;
+        private System.Threading.SendOrPostCallback IniciarEnvioVentaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EnviarVentaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TerminarEnvioVentaOperationCompleted;
         
         private System.Threading.SendOrPostCallback EnviarZonaOperationCompleted;
         
@@ -109,7 +113,13 @@ namespace CedForecastRN.WS {
         public event EnviarClienteCompletedEventHandler EnviarClienteCompleted;
         
         /// <remarks/>
-        public event EnviarVentasCompletedEventHandler EnviarVentasCompleted;
+        public event IniciarEnvioVentaCompletedEventHandler IniciarEnvioVentaCompleted;
+        
+        /// <remarks/>
+        public event EnviarVentaCompletedEventHandler EnviarVentaCompleted;
+        
+        /// <remarks/>
+        public event TerminarEnvioVentaCompletedEventHandler TerminarEnvioVentaCompleted;
         
         /// <remarks/>
         public event EnviarZonaCompletedEventHandler EnviarZonaCompleted;
@@ -310,30 +320,82 @@ namespace CedForecastRN.WS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarVentas", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void EnviarVentas(Venta[] Lista) {
-            this.Invoke("EnviarVentas", new object[] {
-                        Lista});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/IniciarEnvioVenta", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void IniciarEnvioVenta() {
+            this.Invoke("IniciarEnvioVenta", new object[0]);
         }
         
         /// <remarks/>
-        public void EnviarVentasAsync(Venta[] Lista) {
-            this.EnviarVentasAsync(Lista, null);
+        public void IniciarEnvioVentaAsync() {
+            this.IniciarEnvioVentaAsync(null);
         }
         
         /// <remarks/>
-        public void EnviarVentasAsync(Venta[] Lista, object userState) {
-            if ((this.EnviarVentasOperationCompleted == null)) {
-                this.EnviarVentasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarVentasOperationCompleted);
+        public void IniciarEnvioVentaAsync(object userState) {
+            if ((this.IniciarEnvioVentaOperationCompleted == null)) {
+                this.IniciarEnvioVentaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnIniciarEnvioVentaOperationCompleted);
             }
-            this.InvokeAsync("EnviarVentas", new object[] {
-                        Lista}, this.EnviarVentasOperationCompleted, userState);
+            this.InvokeAsync("IniciarEnvioVenta", new object[0], this.IniciarEnvioVentaOperationCompleted, userState);
         }
         
-        private void OnEnviarVentasOperationCompleted(object arg) {
-            if ((this.EnviarVentasCompleted != null)) {
+        private void OnIniciarEnvioVentaOperationCompleted(object arg) {
+            if ((this.IniciarEnvioVentaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarVentasCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.IniciarEnvioVentaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarVenta", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarVenta(Venta Elemento) {
+            this.Invoke("EnviarVenta", new object[] {
+                        Elemento});
+        }
+        
+        /// <remarks/>
+        public void EnviarVentaAsync(Venta Elemento) {
+            this.EnviarVentaAsync(Elemento, null);
+        }
+        
+        /// <remarks/>
+        public void EnviarVentaAsync(Venta Elemento, object userState) {
+            if ((this.EnviarVentaOperationCompleted == null)) {
+                this.EnviarVentaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarVentaOperationCompleted);
+            }
+            this.InvokeAsync("EnviarVenta", new object[] {
+                        Elemento}, this.EnviarVentaOperationCompleted, userState);
+        }
+        
+        private void OnEnviarVentaOperationCompleted(object arg) {
+            if ((this.EnviarVentaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EnviarVentaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/TerminarEnvioVenta", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void TerminarEnvioVenta() {
+            this.Invoke("TerminarEnvioVenta", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void TerminarEnvioVentaAsync() {
+            this.TerminarEnvioVentaAsync(null);
+        }
+        
+        /// <remarks/>
+        public void TerminarEnvioVentaAsync(object userState) {
+            if ((this.TerminarEnvioVentaOperationCompleted == null)) {
+                this.TerminarEnvioVentaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTerminarEnvioVentaOperationCompleted);
+            }
+            this.InvokeAsync("TerminarEnvioVenta", new object[0], this.TerminarEnvioVentaOperationCompleted, userState);
+        }
+        
+        private void OnTerminarEnvioVentaOperationCompleted(object arg) {
+            if ((this.TerminarEnvioVentaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TerminarEnvioVentaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -592,13 +654,15 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Forecast {
         
+        private string idTipoPlanillaField;
+        
         private string idCuentaField;
         
         private string idClienteField;
         
         private Articulo articuloField;
         
-        private System.DateTime fechaField;
+        private string idPeriodoField;
         
         private decimal cantidad1Field;
         
@@ -623,6 +687,20 @@ namespace CedForecastRN.WS {
         private decimal cantidad11Field;
         
         private decimal cantidad12Field;
+        
+        private decimal cantidad13Field;
+        
+        private decimal cantidad14Field;
+        
+        /// <comentarios/>
+        public string IdTipoPlanilla {
+            get {
+                return this.idTipoPlanillaField;
+            }
+            set {
+                this.idTipoPlanillaField = value;
+            }
+        }
         
         /// <comentarios/>
         public string IdCuenta {
@@ -655,12 +733,12 @@ namespace CedForecastRN.WS {
         }
         
         /// <comentarios/>
-        public System.DateTime Fecha {
+        public string IdPeriodo {
             get {
-                return this.fechaField;
+                return this.idPeriodoField;
             }
             set {
-                this.fechaField = value;
+                this.idPeriodoField = value;
             }
         }
         
@@ -783,6 +861,26 @@ namespace CedForecastRN.WS {
                 this.cantidad12Field = value;
             }
         }
+        
+        /// <comentarios/>
+        public decimal Cantidad13 {
+            get {
+                return this.cantidad13Field;
+            }
+            set {
+                this.cantidad13Field = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public decimal Cantidad14 {
+            get {
+                return this.cantidad14Field;
+            }
+            set {
+                this.cantidad14Field = value;
+            }
+        }
     }
     
     /// <comentarios/>
@@ -793,15 +891,23 @@ namespace CedForecastRN.WS {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
     public partial class Venta {
         
+        private string idPeriodoField;
+        
         private string idArticuloField;
         
         private string idClienteField;
         
-        private System.DateTime fechaForecastField;
+        private decimal cantidadField;
         
-        private decimal cantidadMesAnteriorField;
-        
-        private decimal cantidadUltimoAñoField;
+        /// <comentarios/>
+        public string IdPeriodo {
+            get {
+                return this.idPeriodoField;
+            }
+            set {
+                this.idPeriodoField = value;
+            }
+        }
         
         /// <comentarios/>
         public string IdArticulo {
@@ -824,32 +930,12 @@ namespace CedForecastRN.WS {
         }
         
         /// <comentarios/>
-        public System.DateTime FechaForecast {
+        public decimal Cantidad {
             get {
-                return this.fechaForecastField;
+                return this.cantidadField;
             }
             set {
-                this.fechaForecastField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal CantidadMesAnterior {
-            get {
-                return this.cantidadMesAnteriorField;
-            }
-            set {
-                this.cantidadMesAnteriorField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal CantidadUltimoAño {
-            get {
-                return this.cantidadUltimoAñoField;
-            }
-            set {
-                this.cantidadUltimoAñoField = value;
+                this.cantidadField = value;
             }
         }
     }
@@ -1434,7 +1520,15 @@ namespace CedForecastRN.WS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void EnviarVentasCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void IniciarEnvioVentaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void EnviarVentaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void TerminarEnvioVentaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]

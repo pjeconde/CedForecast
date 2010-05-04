@@ -16,6 +16,8 @@ namespace CedForecast
         public SincronizacionForm()
         {
             InitializeComponent();
+            DateTime aux = DateTime.Now;
+            VentaDateTimePicker.Value = aux;
         }
         private void SincronizarButton_Click(object sender, EventArgs e)
         {
@@ -23,6 +25,7 @@ namespace CedForecast
             {
                 string cedForecastWSURL = System.Configuration.ConfigurationManager.AppSettings["CedForecastWSURL"];
                 bool seChequeoAlgo = false;
+                int cantidadMilisegundos = 100;
                 if (ArticuloCheckBox.Checked)
                 {
                     BarraActivar(ArticuloProgressBar);
@@ -34,7 +37,7 @@ namespace CedForecast
                         BarraActualizar(ArticuloProgressBar, proceso);
                         this.Refresh();
                         this.BringToFront();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
                     BarraDesactivar(ArticuloProgressBar);
@@ -51,7 +54,7 @@ namespace CedForecast
                         BarraActualizar(ClienteProgressBar, proceso);
                         this.Refresh();
                         this.BringToFront();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
                     BarraDesactivar(ClienteProgressBar);
@@ -68,7 +71,7 @@ namespace CedForecast
                         BarraActualizar(CuentaProgressBar, proceso);
                         this.Refresh();
                         this.BringToFront();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
                     BarraDesactivar(CuentaProgressBar);
@@ -76,8 +79,19 @@ namespace CedForecast
                 }
                 if (VentaCheckBox.Checked)
                 {
-                    VentaProgressBar.Visible = true;
-                    VentaProgressBar.Visible = false;
+                    BarraActivar(VentaProgressBar);
+                    CedForecastRN.Venta proceso = new CedForecastRN.Venta(VentaDateTimePicker.Value.ToString("yyyyMM"), Aplicacion.Sesion, cedForecastWSURL);
+                    thread = new Thread(new ThreadStart(proceso.EnviarNovedades));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(VentaProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(cantidadMilisegundos);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    BarraDesactivar(VentaProgressBar);
                     seChequeoAlgo = true;
                 }
                 if (ZonaCheckBox.Checked)
@@ -91,7 +105,7 @@ namespace CedForecast
                         BarraActualizar(ZonaProgressBar, proceso);
                         this.Refresh();
                         this.BringToFront();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
                     BarraDesactivar(ZonaProgressBar);
