@@ -348,6 +348,50 @@ CREATE TABLE [dbo].[Zona](
 GO
 SET ANSI_PADDING OFF
 GO
+/****** Objeto:  Table [dbo].[Venta]    Fecha de la secuencia de comandos: 05/04/2010 08:55:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Venta](
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[Cantidad] [decimal](18, 0) NOT NULL,
+ CONSTRAINT [PK_Venta] PRIMARY KEY CLUSTERED 
+(
+	[IdPeriodo] ASC,
+	[IdArticulo] ASC,
+	[IdCliente] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Objeto:  Table [dbo].[VentaAux]    Fecha de la secuencia de comandos: 05/04/2010 08:55:49 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[VentaAux](
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[Cantidad] [decimal](18, 0) NOT NULL,
+ CONSTRAINT [PK_VentaAux] PRIMARY KEY CLUSTERED 
+(
+	[IdPeriodo] ASC,
+	[IdArticulo] ASC,
+	[IdCliente] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
 GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.Articulo TO ce_update
 GO
 GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.Cliente TO ce_update
@@ -379,6 +423,10 @@ GO
 GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.TipoCuenta TO ce_update
 GO
 GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.Zona TO ce_update
+GO
+GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.Venta TO ce_update
+GO
+GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.VentaAux TO ce_update
 GO
 insert TipoCuenta values ('Admin', 'Administrador')
 GO
