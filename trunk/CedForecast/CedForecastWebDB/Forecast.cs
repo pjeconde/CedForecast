@@ -33,9 +33,9 @@ namespace CedForecastWebDB
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Forecast> lista = new List<CedForecastWebEntidades.Forecast>();
-            CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
             if (dt.Rows.Count != 0)
             {
+                CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
                 string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -50,8 +50,8 @@ namespace CedForecastWebDB
                     }
                     CopiarDet(dt.Rows[i], forecast, mes);
                  }
+                 lista.Add(forecast);
             }
-            lista.Add(forecast);
             return lista;
         }
         private void CopiarCab(DataRow Desde, CedForecastWebEntidades.Forecast Hasta, string PeriodoInicial)
