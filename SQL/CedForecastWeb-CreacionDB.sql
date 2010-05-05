@@ -46,7 +46,7 @@ CREATE TABLE [dbo].[Cliente](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Objeto:  Table [dbo].[ConfirmacionCarga]    Fecha de la secuencia de comandos: 05/03/2010 09:25:03 ******/
+/****** Objeto:  Table [dbo].[ConfirmacionCarga]    Fecha de la secuencia de comandos: 05/04/2010 14:14:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -54,13 +54,41 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[ConfirmacionCarga](
-	[IdPeriodo] [datetime] NOT NULL,
-	[IdCuenta] [varchar](50) NOT NULL,
-	[FechaConfirmacionCarga] [datetime] NOT NULL
+	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[FechaConfirmacionCarga] [datetime] NOT NULL,
+	[IdEstadoConfirmacionCarga] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[Comentario] [varchar](255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+ CONSTRAINT [PK_ConfirmacionCarga] PRIMARY KEY CLUSTERED 
+(
+	[IdTipoPlanilla] ASC,
+	[IdPeriodo] ASC,
+	[IdCuenta] ASC,
+	[FechaConfirmacionCarga] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+
 GO
 SET ANSI_PADDING OFF
+/****** Objeto:  Table [dbo].[EstadoConfirmacionCarga]    Fecha de la secuencia de comandos: 05/04/2010 14:13:52 ******/
+SET ANSI_NULLS ON
 GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[EstadoConfirmacionCarga](
+	[IdEstadoConfirmacionCarga] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[DescrEstadoConfirmacionCarga] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+ CONSTRAINT [PK_EstadoConfirmacionCarga] PRIMARY KEY CLUSTERED 
+(
+	[IdEstadoConfirmacionCarga] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
 /****** Objeto:  Table [dbo].[EstadoCuenta]    Fecha de la secuencia de comandos: 05/03/2010 09:28:25 ******/
 SET ANSI_NULLS ON
 GO
@@ -273,21 +301,26 @@ CREATE TABLE [dbo].[GrupoArticulo](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Objeto:  Table [dbo].[Periodo]    Fecha de la secuencia de comandos: 05/03/2010 09:33:14 ******/
+/****** Objeto:  Table [dbo].[Periodo]    Fecha de la secuencia de comandos: 05/04/2010 14:10:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+SET ANSI_PADDING ON
+GO
 CREATE TABLE [dbo].[Periodo](
-	[IdPeriodo] [datetime] NOT NULL,
-	[FechaVtoConfirmacionCarga] [datetime] NOT NULL,
-	[Habilitado] [bit] NOT NULL,
+	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[FechaInhabilitacionCarga] [datetime] NOT NULL,
+	[CargaHabilitada] [bit] NOT NULL,
  CONSTRAINT [PK_Periodo] PRIMARY KEY CLUSTERED 
 (
-	[IdPeriodo] ASC
+	[IdTipoPlanilla] ASC
 )WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+
 GO
+SET ANSI_PADDING OFF
 /****** Objeto:  Table [dbo].[Texto]    Fecha de la secuencia de comandos: 05/03/2010 09:33:43 ******/
 SET ANSI_NULLS ON
 GO
@@ -306,7 +339,7 @@ CREATE TABLE [dbo].[Texto](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Objeto:  Table [dbo].[Forecast]    Fecha de la secuencia de comandos: 05/03/2010 09:34:00 ******/
+/****** Objeto:  Table [dbo].[Forecast]    Fecha de la secuencia de comandos: 05/04/2010 14:12:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -314,24 +347,23 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Forecast](
-	[IdCuenta] [varchar](50) NOT NULL,
-	[IdDivision] [varchar](30) NOT NULL,
-	[IdCliente] [varchar](6) NOT NULL,
-	[IdArticulo] [varchar](20) NOT NULL,
-	[Fecha] [datetime] NOT NULL,
-	[Cantidad] [decimal](18, 0) NOT NULL,
- CONSTRAINT [PK_Forecast] PRIMARY KEY CLUSTERED 
+	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[Cantidad] [decimal](18, 2) NOT NULL,
+ CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
 (
+	[IdTipoPlanilla] ASC,
 	[IdCuenta] ASC,
-	[IdDivision] ASC,
-	[IdArticulo] ASC,
 	[IdCliente] ASC,
-	[Fecha] ASC
+	[IdArticulo] ASC,
+	[IdPeriodo] ASC
 )WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
-GO
 /****** Objeto:  Table [dbo].[Zona]    Fecha de la secuencia de comandos: 05/03/2010 09:34:21 ******/
 SET ANSI_NULLS ON
 GO
@@ -348,6 +380,24 @@ CREATE TABLE [dbo].[Zona](
 GO
 SET ANSI_PADDING OFF
 GO
+/****** Objeto:  Table [dbo].[TipoPlanilla]    Fecha de la secuencia de comandos: 05/04/2010 14:15:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[TipoPlanilla](
+	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[DescrTipoPlanilla] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
+ CONSTRAINT [PK_TipoPlanilla] PRIMARY KEY CLUSTERED 
+(
+	[IdTipoPlanilla] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
 /****** Objeto:  Table [dbo].[Venta]    Fecha de la secuencia de comandos: 05/04/2010 08:55:06 ******/
 SET ANSI_NULLS ON
 GO
@@ -465,5 +515,15 @@ GO
 insert GrupoArticulo values ('NI1', 'NITROGEN 1', 'K+S NITROGEN')
 GO
 insert GrupoArticulo values ('NI2', 'NITROGEN 2', 'K+S NITROGEN')
+GO
+insert TipoPlanilla values ('Proyectado', 'Proyectado')
+GO
+insert TipoPlanilla values ('RollingForecast', 'Rolling Forecast')
+GO
+insert Cuenta values ('Administrador', 'Administrador', '', '', '', '', '', '', 'Admin', 'Vigente', 'Admin', '20100101', 0, '99991231', '', 0, '20100101')
+GO
+insert Periodo values ('Proyectado', '2011', '20101231', 0)
+GO
+insert Periodo values ('RollingForecast', '201005', '20101231', 0)
 GO
 

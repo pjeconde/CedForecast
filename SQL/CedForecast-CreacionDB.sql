@@ -455,9 +455,13 @@ insert WCUsuarios values ('Claudio', 'Claudio A. Cedeira', 1, 'DESA', '20100501'
 GO
 insert WCUsuarios values ('Pablo', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pablo.conde@cedeira.com.ar')
 GO
+insert WCUsuarios values ('Pol', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+GO
 insert WCGrupos values ('Usuarios', 'Claudio', 0, 0)
 GO
 insert WCGrupos values ('Usuarios', 'Pablo', 0, 0)
+GO
+insert WCGrupos values ('Usuarios', 'Pol', 0, 0)
 GO
 insert WF_Acceso values ('FrontEnd', 'FrontEnd CedForecast', '1.0')
 GO
