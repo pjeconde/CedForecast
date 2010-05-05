@@ -35,10 +35,13 @@ namespace CedForecastWebDB
             Hasta.FechaInhabilitacionCarga = Convert.ToDateTime(Desde["FechaInhabilitacionCarga"]);
             Hasta.CargaHabilitada = Convert.ToBoolean(Desde["CargaHabilitada"]);
         }
-        public void Modificar(CedForecastWebEntidades.Periodo Periodo)
+        public void Modificar(List<CedForecastWebEntidades.Periodo> Periodo)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("update Periodo set IdPeriodo = '" + Periodo.IdPeriodo + "', FechaInhabilitacionCarga = '" + Periodo.FechaInhabilitacionCarga.ToString("yyyyMMdd") + "', CargaHabilitada = " + Convert.ToInt32(Periodo.CargaHabilitada) + " where IdTipoPlanilla = '" + Periodo.IdTipoPlanilla + "'");
+            for (int i = 0; i < Periodo.Count; i++)
+            {
+                a.Append("update Periodo set IdPeriodo = '" + Periodo[i].IdPeriodo + "', FechaInhabilitacionCarga = '" + Periodo[i].FechaInhabilitacionCarga.ToString("yyyyMMdd") + "', CargaHabilitada = " + Convert.ToInt32(Periodo[i].CargaHabilitada) + " where IdTipoPlanilla = '" + Periodo[i].IdTipoPlanilla + "'");
+            }
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
