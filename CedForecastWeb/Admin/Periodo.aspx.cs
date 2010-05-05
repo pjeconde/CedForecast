@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -46,14 +47,27 @@ namespace CedForecastWeb.Admin
         protected void AceptarButton_Click(object sender, EventArgs e)
         {
             try 
-            { 
+            {
+                List<CedForecastWebEntidades.Periodo> periodoLista = new List<CedForecastWebEntidades.Periodo>();
                 CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
                 ValidarPeriodo(PeriodoTextBox.Text);
                 periodo.IdPeriodo = PeriodoTextBox.Text;
                 ValidarFecha(FechaInhabilitacionCargaTextBox.Text);
                 periodo.FechaInhabilitacionCarga = Convert.ToDateTime(FechaInhabilitacionCargaTextBox.Text.Substring(6, 2) + "/" + FechaInhabilitacionCargaTextBox.Text.Substring(4, 2) + "/" + FechaInhabilitacionCargaTextBox.Text.Substring(0, 4));
                 periodo.CargaHabilitada = CargaHabilitadaCheckBox.Checked;
-                CedForecastWebRN.Periodo.Modificar(periodo, (CedEntidades.Sesion)Session["Sesion"]);
+                periodo.IdTipoPlanilla = "RollingForecast";
+                periodoLista.Add(periodo);
+
+                CedForecastWebEntidades.Periodo periodoProyectado = new CedForecastWebEntidades.Periodo();
+                ValidarPeriodoProyectado(PeriodoProyectadoTextBox.Text);
+                periodoProyectado.IdPeriodo = PeriodoProyectadoTextBox.Text;
+                ValidarFecha(FechaInhabilitacionCargaProyectadoTextBox.Text);
+                periodoProyectado.FechaInhabilitacionCarga = Convert.ToDateTime(FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(6, 2) + "/" + FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(4, 2) + "/" + FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(0, 4));
+                periodoProyectado.CargaHabilitada = CargaHabilitadaCheckBox.Checked;
+                periodoProyectado.IdTipoPlanilla = "Proyectado";
+                periodoLista.Add(periodoProyectado);
+
+                CedForecastWebRN.Periodo.Modificar(periodoLista, (CedEntidades.Sesion)Session["Sesion"]);
             }
             catch (Exception ex)
             {
@@ -71,6 +85,17 @@ namespace CedForecastWeb.Admin
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo");
             }
         }
+        private void ValidarPeriodoProyectado(string Periodo)
+        {
+            try
+            {
+                DateTime d = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
+            }
+            catch
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo Proyectado");
+            }
+        }
         private void ValidarFecha(string Fecha)
         {
             try
@@ -85,10 +110,18 @@ namespace CedForecastWeb.Admin
         private void Leer()
         {
             CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
+            periodo.IdTipoPlanilla = "RollingForecast";
             CedForecastWebRN.Periodo.Leer(periodo, (CedEntidades.Sesion)Session["Sesion"]);
             PeriodoTextBox.Text = periodo.IdPeriodo;
             FechaInhabilitacionCargaTextBox.Text = periodo.FechaInhabilitacionCarga.ToString("yyyyMMdd");
             CargaHabilitadaCheckBox.Checked = periodo.CargaHabilitada;
+
+            CedForecastWebEntidades.Periodo periodoProyectado = new CedForecastWebEntidades.Periodo();
+            periodoProyectado.IdTipoPlanilla = "Proyectado";
+            CedForecastWebRN.Periodo.Leer(periodoProyectado, (CedEntidades.Sesion)Session["Sesion"]);
+            PeriodoTextBox.Text = periodoProyectado.IdPeriodo;
+            FechaInhabilitacionCargaTextBox.Text = periodoProyectado.FechaInhabilitacionCarga.ToString("yyyyMMdd");
+            CargaHabilitadaCheckBox.Checked = periodoProyectado.CargaHabilitada;
         }
         protected void CancelarButton_Click(object sender, EventArgs e)
         {

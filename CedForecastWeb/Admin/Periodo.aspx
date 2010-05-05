@@ -150,7 +150,7 @@
                                                         <td style="width: 1px">
                                                         </td>
                                                         <td colspan="3" style="text-align: left" class="">
-                                                            <asp:Label ID="ProyectadoTituloLabel" runat="server" Text="Forecast Proyectado" SkinID="TituloMediano"></asp:Label>
+                                                            <asp:Label ID="ProyectadoTituloLabel" runat="server" Text="Proyectado Anual" SkinID="TituloMediano"></asp:Label>
                                                         </td>
                                                     </tr>
                                                     <tr>
