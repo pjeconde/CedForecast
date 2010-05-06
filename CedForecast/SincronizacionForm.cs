@@ -149,8 +149,8 @@ namespace CedForecast
         }
         private void BarraDesactivar(ProgressBar Barra)
         {
-            Barra.Value = 0;
-            Barra.Visible = false;
+            //Barra.Value = 0;
+            //Barra.Visible = false;
         }
     }
 }
