@@ -353,7 +353,7 @@ CREATE TABLE [dbo].[Forecast](
 	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
 	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
 	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Cantidad] [decimal](18, 2) NOT NULL,
+	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
 (
 	[IdTipoPlanilla] ASC,
