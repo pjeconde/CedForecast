@@ -30,6 +30,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.CedFCIcom, Version=1.14.1.0, Culture=neutral, PublicKeyToken=7473e78fd129cb3d" />
+    <Reference Include="Janus.Windows.ButtonBar.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.ButtonBar.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.CalendarCombo.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.Common.v2.DLL</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ExplorerBar.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.ExplorerBar.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.GridEX.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.UI.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PureComponents.NicePanel, Version=1.0.1013.4, Culture=neutral, PublicKeyToken=2f0f2e4259d7a8e4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CedeiraUIForms\DLLs\PureComponents.NicePanel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -42,32 +72,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RecursoIncrustado.cs" />
-    <Compile Include="SincronizacionForm.cs">
+    <Compile Include="SincronizacionBejermanCedForecastWebForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SincronizacionForm.Designer.cs">
-      <DependentUpon>SincronizacionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CedForecastForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CedForecastForm.Designer.cs">
-      <DependentUpon>CedForecastForm.cs</DependentUpon>
+    <Compile Include="SincronizacionBejermanCedForecastWebForm.Designer.cs">
+      <DependentUpon>SincronizacionBejermanCedForecastWebForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SincronizacionForm.resx">
+    <EmbeddedResource Include="SincronizacionBejermanCedForecastWebForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SincronizacionForm.cs</DependentUpon>
+      <DependentUpon>SincronizacionBejermanCedForecastWebForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CedForecastForm.resx">
+    <EmbeddedResource Include="TableroForm.resx">
+      <DependentUpon>TableroForm.cs</DependentUpon>
       <SubType>Designer</SubType>
-      <DependentUpon>CedForecastForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,6 +108,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SingleApplication.cs" />
+    <Compile Include="TableroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableroForm.Designer.cs">
+      <DependentUpon>TableroForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -101,6 +132,10 @@
       <Project>{DB0A7D76-F68E-43A7-ADBD-08DDF2AFAD36}</Project>
       <Name>CedeiraAP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CedeiraUIForms\CedeiraUIforms.vbproj">
+      <Project>{48571E9A-0BCD-486E-875F-62B861186EBE}</Project>
+      <Name>CedeiraUIforms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
       <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
       <Name>CedEntidades</Name>
@@ -116,10 +151,6 @@
     <ProjectReference Include="..\CedForecastRN\CedForecastRN.csproj">
       <Project>{75ACE3D0-AFF6-4C28-9162-7E69629B9FED}</Project>
       <Name>CedForecastRN</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CedUI\CedeiraUIforms.vbproj">
-      <Project>{48571E9A-0BCD-486E-875F-62B861186EBE}</Project>
-      <Name>CedeiraUIforms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -83,7 +83,7 @@ namespace CedForecast
                     r.GuardarRecursoIncrustado();
 
                     // Levanto el Front-End de la aplicacion
-                    SingleInstance.SingleApplication.Run(new CedForecastForm(Titulo));
+                    SingleInstance.SingleApplication.Run(new TableroForm(Titulo));
                 }
                 Cedeira.UI.Mostrar.Acerca(Aplicacion.Titulo, "Gracias", "por utilizar " + Codigo, 2);
             }

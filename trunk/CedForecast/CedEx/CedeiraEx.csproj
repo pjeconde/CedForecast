@@ -157,7 +157,7 @@
     <None Include="cedeirapub.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CedUI\CedeiraUIforms.vbproj">
+    <ProjectReference Include="..\CedeiraUIForms\CedeiraUIforms.vbproj">
       <Project>{48571E9A-0BCD-486E-875F-62B861186EBE}</Project>
       <Name>CedeiraUIforms</Name>
     </ProjectReference>

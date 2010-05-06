@@ -42,6 +42,7 @@ Public Class Bindear
                         sz = gr.MeasureString(dr.Item(i).ToString, dg.Font)         ' Measure "width" of data value
                         cs.Width = CInt(Math.Max(sz.Width + sngPadding, cs.Width))                                  ' Use larger width
                     Next j           ' Next DataRow
+                    gr.Dispose() ' Release graphic object
                 Catch ex As Exception
                     Cedeira.UI.Mostrar.Excepcion(ex)
                 End Try
@@ -49,9 +50,6 @@ Public Class Bindear
             ts.GridColumnStyles.Add(cs)
         Next i
         dg.EndInit()   ' complete graphics edit
-        If dv.Table.Rows.Count > 0 Then
-            gr.Dispose() ' Release graphic object
-        End If
         ts.RowHeadersVisible = False
         dg.TableStyles.Clear()
         dg.TableStyles.Add(ts)
@@ -82,17 +80,18 @@ Public Class Bindear
         '    cbo.SelectedValue = dv.Table.Rows(0)(cbo.ValueMember)
         'End If
     End Sub
-    'Public Shared Sub tb2Combo(ByVal cbo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, ByVal tb As DataTable)
-    '    cbo.DropDownList.AlternatingColors = True
-    '    cbo.DropDownList.ColumnAutoResize = True
-    '    cbo.DropDownList.ColumnHeaders = Janus.Windows.GridEX.InheritableBoolean.False
-    '    cbo.DropDownList.Columns.Add("Id", Janus.Windows.GridEX.ColumnType.Text, Janus.Windows.GridEX.EditType.DropDownList)
-    '    cbo.DropDownList.Columns(0).Visible = False
-    '    cbo.DropDownList.Columns.Add("Descr", Janus.Windows.GridEX.ColumnType.Text, Janus.Windows.GridEX.EditType.DropDownList)
-    '    cbo.DataSource = tb
-    '    cbo.DisplayMember = "Descr"
-    '    cbo.ValueMember = "Id"
-    'End Sub
+    Public Shared Sub tb2Combo(ByVal cbo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, ByVal tb As DataTable)
+        cbo.DropDownList.AlternatingColors = True
+        cbo.DropDownList.ColumnAutoResize = True
+        cbo.DropDownList.ColumnHeaders = Janus.Windows.GridEX.InheritableBoolean.False
+        cbo.DropDownList.Columns.Clear()
+        cbo.DropDownList.Columns.Add("Id", Janus.Windows.GridEX.ColumnType.Text, Janus.Windows.GridEX.EditType.DropDownList)
+        cbo.DropDownList.Columns(0).Visible = False
+        cbo.DropDownList.Columns.Add("Descr", Janus.Windows.GridEX.ColumnType.Text, Janus.Windows.GridEX.EditType.DropDownList)
+        cbo.DataSource = tb
+        cbo.DisplayMember = "Descr"
+        cbo.ValueMember = "Id"
+    End Sub
     Public Shared Sub dv2ListBind(ByVal lbo As ListBox, ByVal dv As DataView, ByVal obj As Object, ByVal atrib As String)
         lbo.DataSource = dv
         lbo.DisplayMember = "Descr"
@@ -127,12 +126,22 @@ End Class
 Public Class Mostrar
     Public Shared Function Mensaje(ByVal Texto As String, ByVal Icono As Microsoft.VisualBasic.MsgBoxStyle, ByVal Titulo As String, ByVal MasDetalles As String) As Microsoft.VisualBasic.MsgBoxResult
         Dim oFrm As frmMensaje
+        If Titulo = "NOTIFICACION DE EXCEPCION" Then
+            Titulo += " en "
+            Titulo += Application.ProductName
+        End If
         oFrm = New frmMensaje(Texto, Icono, Titulo, MasDetalles)
         Microsoft.VisualBasic.Interaction.Beep()
         oFrm.ShowDialog()
         oFrm.Dispose()
         oFrm = Nothing
         Return MsgBoxResult.OK
+    End Function
+    Public Shared Function Mensaje(ByVal Texto As String, ByVal Titulo As String) As Microsoft.VisualBasic.MsgBoxResult
+        Return Mensaje(Texto, MsgBoxStyle.Information, Titulo, "")
+    End Function
+    Public Shared Function Mensaje(ByVal Texto As String) As Microsoft.VisualBasic.MsgBoxResult
+        Return Mensaje(Texto, MsgBoxStyle.Information, "ATENCIÓN", "")
     End Function
     Public Shared Function Excepcion(ByVal ex As Exception) As Microsoft.VisualBasic.MsgBoxResult
         Return Mensaje(ex.Message, MsgBoxStyle.Critical, "NOTIFICACION DE EXCEPCION", ex.StackTrace)
@@ -155,7 +164,7 @@ Public Class Fun
     Public Shared Function ListaTreeView(ByVal tvw As TreeView) As String
         Dim lista As String
         Dim i As Integer
-        lista = ""
+        lista = String.Empty
         For i = 0 To tvw.Nodes.Count - 1
             If tvw.Nodes(i).Checked Then
                 lista = lista & "'" & Convert.ToString(tvw.Nodes(i).Tag) & "', "
@@ -167,4 +176,3 @@ Public Class Fun
         Return lista
     End Function
 End Class
-

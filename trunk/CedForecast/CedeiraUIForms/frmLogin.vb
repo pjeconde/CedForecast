@@ -2,13 +2,11 @@ Public Class frmLogin
     Inherits System.Windows.Forms.Form
 
 #Region " Código generado por el Diseñador de Windows Forms "
-    Public Sub New(ByVal Sistema As String, ByVal Version As String)
+    Public Sub New(ByVal Sistema As String, ByVal Version As String, ByVal IdUsuarioDefault As String)
         Me.New()
         Me.Text = Sistema
         pnlGral.HeaderText = Sistema
         VersionLabel.Text = Version
-        Dim IdUsuarioDefault As String
-        IdUsuarioDefault = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split("\".ToCharArray())(1)
         IdUsuarioTextBox.Text = IdUsuarioDefault
         PasswordTextBox.Select()
     End Sub
