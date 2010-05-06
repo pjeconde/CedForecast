@@ -36,7 +36,8 @@
                                         </table>   
                                     </td>
                                     <td style="width: 846px">
-                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Confirmación Proyectado Anual"></asp:Label>
+                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Proyectado Anual"></asp:Label>
+                                        <asp:Label ID="MsgLabel" runat="server" Width="600px"></asp:Label>
                                         <hr />
                                     </td>
                                </tr>
