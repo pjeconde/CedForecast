@@ -74,27 +74,38 @@ namespace CedForecastWeb.Forecast
             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             PeriodoTextBox.Text = periodo.IdPeriodo;
             PeriodoTextBox.ReadOnly = true;
+
             CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
             confirmacionCarga.IdPeriodo = periodo.IdPeriodo;
             confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
             confirmacionCarga.IdTipoPlanilla = "RollingForecast";
             CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-            switch (confirmacionCarga.IdEstadoConfirmacionCarga)
+            
+            if ((!periodo.CargaHabilitada) || periodo.FechaInhabilitacionCarga < DateTime.Today)
             {
-                case "Vigente":
-                case "Rechazada":
-                    AnularConfirmacionButton.Enabled = true;
-                    ConfirmarButton.Enabled = false;
-                    break;
-                case "Baja":
-                case null:
-                    AnularConfirmacionButton.Enabled = false;
-                    ConfirmarButton.Enabled = true;
-                    break;
-                case "Aceptada":
-                    AnularConfirmacionButton.Enabled = false;
-                    ConfirmarButton.Enabled = false;
-                    break;
+                AnularConfirmacionButton.Enabled = false;
+                ConfirmarButton.Enabled = false;
+                MsgLabel.Text = " (Carga inhabilitada).";
+            }
+            else
+            {
+                switch (confirmacionCarga.IdEstadoConfirmacionCarga)
+                {
+                    case "Vigente":
+                    case "Rechazada":
+                        AnularConfirmacionButton.Enabled = true;
+                        ConfirmarButton.Enabled = false;
+                        break;
+                    case "Baja":
+                    case null:
+                        AnularConfirmacionButton.Enabled = false;
+                        ConfirmarButton.Enabled = true;
+                        break;
+                    case "Aceptada":
+                        AnularConfirmacionButton.Enabled = false;
+                        ConfirmarButton.Enabled = false;
+                        break;
+                }
             }
             FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
             FechaConfirmacionCargaTextBox.Text = Convert.ToString(confirmacionCarga.FechaConfirmacionCarga);
