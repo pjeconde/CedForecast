@@ -161,15 +161,6 @@ namespace CedForecastWebRN
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             cuenta.Leer(Cuenta);
-            //Cuenta.Vendedor.IdCuenta = Cuenta.Id;
-            //Cuenta.Vendedor.NombreCuenta = Cuenta.Nombre;
-            //try
-            //{
-            //    CedForecastWebRN.Vendedor.Leer(Cuenta.Vendedor, Sesion);
-            //}
-            //catch (Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente)
-            //{
-            //}
         }
        
         public static void Login(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
