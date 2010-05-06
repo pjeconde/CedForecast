@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="RecursoIncrustado.cs" />
     <Compile Include="SincronizacionBejermanCedForecastWebForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SincronizacionBejermanCedForecastWebForm.Designer.cs">
       <DependentUpon>SincronizacionBejermanCedForecastWebForm.cs</DependentUpon>
@@ -108,6 +109,7 @@
     </Compile>
     <Compile Include="SingleApplication.cs" />
     <Compile Include="TableroForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TableroForm.Designer.cs">
       <DependentUpon>TableroForm.cs</DependentUpon>
