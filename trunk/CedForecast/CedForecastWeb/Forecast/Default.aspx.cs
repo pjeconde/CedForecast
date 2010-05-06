@@ -19,7 +19,7 @@ namespace CedForecastWeb.Forecast
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((LinkButton)Master.FindControl("ForecastLinkButton")).ForeColor = System.Drawing.Color.Gold;
+            ((LinkButton)Master.FindControl("ForecastLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
             if (!IsPostBack)
             {
                 if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -49,7 +49,8 @@ namespace CedForecastWeb.Forecast
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         PeriodoTextBox.Text = periodo.IdPeriodo;
                         PeriodoTextBox.ReadOnly = true;
-                        
+                        FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
+                                               
                         DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
                         
                         FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
@@ -68,23 +69,32 @@ namespace CedForecastWeb.Forecast
                         AceptarButton.Attributes.Add("onclick", "return confirm('Confirmar la aceptación de los datos ?');");
 
                         CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
+                        confirmacionCarga.IdTipoPlanilla = "Rolling Forecast";
                         confirmacionCarga.IdPeriodo = periodo.IdPeriodo;
                         confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
                         CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         LeerButton.Enabled = false;
                         ClienteDropDownList.Enabled = false;
                         ClienteLabel.Enabled = false;
-                        switch (confirmacionCarga.IdEstadoConfirmacionCarga)
+                        if ((!periodo.CargaHabilitada) || periodo.FechaInhabilitacionCarga < DateTime.Today)
                         {
-                            case "Baja":
-                            case null:
-                                LeerButton.Enabled = true;
-                                ClienteDropDownList.Enabled = true;
-                                ClienteLabel.Enabled = true;
-                                break;
-                            default:
-                                MsgLabel.Text = "(No es posible modifcar los datos en el estado actual)";
-                                break;
+                            ClienteDropDownList.Enabled = false;
+                            MsgLabel.Text = " (Carga inhabilitada).";
+                        }
+                        else
+                        {
+                            switch (confirmacionCarga.IdEstadoConfirmacionCarga)
+                            {
+                                case "Baja":
+                                case null:
+                                    LeerButton.Enabled = true;
+                                    ClienteDropDownList.Enabled = true;
+                                    ClienteLabel.Enabled = true;
+                                    break;
+                                default:
+                                    MsgLabel.Text = " (No es posible modificar los datos en el estado actual).";
+                                    break;
+                            }
                         }
                         detalleGridView.Enabled = false;
                         CancelarButton.Enabled = false;
@@ -319,6 +329,7 @@ namespace CedForecastWeb.Forecast
                     l.Articulo.GrupoArticulo.Division.Id = DivisionDropDownList.SelectedValue;
                     l.IdCliente = ClienteDropDownList.SelectedValue;
                     l.IdPeriodo = PeriodoTextBox.Text;
+                    l.IdTipoPlanilla = "RollingForecast";
                     
                     string auxDescrArticulo = ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).SelectedItem.Text;
                     if (!auxIdArticulo.Equals(string.Empty))

@@ -2,7 +2,7 @@
 
 <asp:Content ID="ExContent" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 890px; text-align: left;">
+        width: 890px; text-align: left; background-color: White;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">
@@ -12,7 +12,7 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="width: 21px; height: 20px;">
-                                        <asp:Image ID="Image2" runat="server" AlternateText="o" ImageUrl="" />
+                                        <asp:Image ID="Image2" runat="server" AlternateText="o" ImageUrl="~/Imagenes/button_link.gif" />
                                     </td>
                                     <td style="height: 20px;">
                                         <asp:Label ID="TituloLabel" runat="server" SkinID="TituloPagina"></asp:Label>

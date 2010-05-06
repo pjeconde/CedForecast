@@ -6,7 +6,7 @@
 <%@ Register Assembly="CedeiraUIWebForms" Namespace="CedeiraUIWebForms" TagPrefix="cc1" %>
 
 <asp:content id="AdministracionContent" runat="Server" contentplaceholderid="AdministracionContentPlaceHolder">
-    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px; height: 500px; text-align: left;">
+    <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px; height: 500px; text-align: left; background-color:White;">
         <tr>
             <td style="height: 10px;" valign="top">
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -21,7 +21,7 @@
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
                             <table border="0" cellpadding="0" cellspacing="0">
 								<tr>
-                                    <td colspan="2" style="HEIGHT: 76px">
+                                    <td colspan="2" style="HEIGHT: 50px">
                                         <table border="0" cellpadding="0" cellspacing="0" id="TablaEnca">
                                             <tr>
                                                 <td style="width: 20px; vertical-align:top;">

@@ -98,6 +98,13 @@
     <Compile Include="Configuracion.aspx.designer.cs">
       <DependentUpon>Configuracion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forecast\Confirmacion.aspx.cs">
+      <DependentUpon>Confirmacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\Confirmacion.aspx.designer.cs">
+      <DependentUpon>Confirmacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CuentaCambiarPassword.aspx.cs">
       <DependentUpon>CuentaCambiarPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -111,20 +118,6 @@
     </Compile>
     <Compile Include="CuentaConfiguracion.aspx.designer.cs">
       <DependentUpon>CuentaConfiguracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CuentaConfirmacion.aspx.cs">
-      <DependentUpon>CuentaConfirmacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CuentaConfirmacion.aspx.designer.cs">
-      <DependentUpon>CuentaConfirmacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CuentaCrear.aspx.cs">
-      <DependentUpon>CuentaCrear.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CuentaCrear.aspx.designer.cs">
-      <DependentUpon>CuentaCrear.aspx</DependentUpon>
     </Compile>
     <Compile Include="CuentaOlvidoId.aspx.cs">
       <DependentUpon>CuentaOlvidoId.aspx</DependentUpon>
@@ -153,6 +146,13 @@
     </Compile>
     <Compile Include="Forecast\ConfirmacionCarga.aspx.designer.cs">
       <DependentUpon>ConfirmacionCarga.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\ConfirmacionCargaProyectado.aspx.cs">
+      <DependentUpon>ConfirmacionCargaProyectado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ConfirmacionCargaProyectado.aspx.designer.cs">
+      <DependentUpon>ConfirmacionCargaProyectado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forecast\Proyectado.aspx.cs">
       <DependentUpon>Proyectado.aspx</DependentUpon>
@@ -247,7 +247,7 @@
       <Project>{B76ED545-1CF6-40BC-A3E1-52C34B0A0EFF}</Project>
       <Name>CaptchaDotNet2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CedeiraEx\CedeiraEx.csproj">
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
       <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
       <Name>CedeiraEx</Name>
     </ProjectReference>
@@ -277,8 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Cedeira\KS.css" />
-    <Content Include="CuentaConfirmacion.aspx" />
-    <Content Include="CuentaCrear.aspx" />
     <Content Include="CuentaOlvidoId.aspx" />
     <Content Include="CuentaOlvidoPassword.aspx" />
     <Content Include="DatePickerWebUserControl.ascx" />
@@ -295,8 +293,10 @@
   <ItemGroup>
     <Content Include="Captcha.ashx" />
     <Content Include="Configuracion.aspx" />
+    <Content Include="Forecast\Confirmacion.aspx" />
     <Content Include="CuentaCambiarPassword.aspx" />
     <Content Include="CuentaConfiguracion.aspx" />
+    <Content Include="Forecast\ConfirmacionCargaProyectado.aspx" />
     <Content Include="Forecast\Proyectado.aspx" />
   </ItemGroup>
   <ItemGroup>

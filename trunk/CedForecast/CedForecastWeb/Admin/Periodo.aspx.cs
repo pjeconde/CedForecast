@@ -18,7 +18,7 @@ namespace CedForecastWeb.Admin
         {
             try
             {
-                ((LinkButton)Master.FindControl("ConfiguracionLinkButton")).ForeColor = System.Drawing.Color.Gold;
+                ((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
                 if (!IsPostBack)
                 {
                     if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -63,11 +63,12 @@ namespace CedForecastWeb.Admin
                 periodoProyectado.IdPeriodo = PeriodoProyectadoTextBox.Text;
                 ValidarFecha(FechaInhabilitacionCargaProyectadoTextBox.Text);
                 periodoProyectado.FechaInhabilitacionCarga = Convert.ToDateTime(FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(6, 2) + "/" + FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(4, 2) + "/" + FechaInhabilitacionCargaProyectadoTextBox.Text.Substring(0, 4));
-                periodoProyectado.CargaHabilitada = CargaHabilitadaCheckBox.Checked;
+                periodoProyectado.CargaHabilitada = CargaHabilitadaProyectadoCheckBox.Checked;
                 periodoProyectado.IdTipoPlanilla = "Proyectado";
                 periodoLista.Add(periodoProyectado);
 
                 CedForecastWebRN.Periodo.Modificar(periodoLista, (CedEntidades.Sesion)Session["Sesion"]);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Message", "<SCRIPT LANGUAGE='javascript'>alert('Periodo modificado satisfactoriamente');</SCRIPT>", false);
             }
             catch (Exception ex)
             {
@@ -89,7 +90,7 @@ namespace CedForecastWeb.Admin
         {
             try
             {
-                DateTime d = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
+                DateTime d = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
             }
             catch
             {
@@ -119,9 +120,9 @@ namespace CedForecastWeb.Admin
             CedForecastWebEntidades.Periodo periodoProyectado = new CedForecastWebEntidades.Periodo();
             periodoProyectado.IdTipoPlanilla = "Proyectado";
             CedForecastWebRN.Periodo.Leer(periodoProyectado, (CedEntidades.Sesion)Session["Sesion"]);
-            PeriodoTextBox.Text = periodoProyectado.IdPeriodo;
-            FechaInhabilitacionCargaTextBox.Text = periodoProyectado.FechaInhabilitacionCarga.ToString("yyyyMMdd");
-            CargaHabilitadaCheckBox.Checked = periodoProyectado.CargaHabilitada;
+            PeriodoProyectadoTextBox.Text = periodoProyectado.IdPeriodo;
+            FechaInhabilitacionCargaProyectadoTextBox.Text = periodoProyectado.FechaInhabilitacionCarga.ToString("yyyyMMdd");
+            CargaHabilitadaProyectadoCheckBox.Checked = periodoProyectado.CargaHabilitada;
         }
         protected void CancelarButton_Click(object sender, EventArgs e)
         {

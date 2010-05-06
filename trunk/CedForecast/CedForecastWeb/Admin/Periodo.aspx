@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdministracionContentPlaceHolder" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px;
-        height: 500px; text-align: left;">
+        height: 500px; text-align: left; background-color:White;">
         <tr>
             <td style="height: 10px; width: 890px;" valign="top">
             </td>
@@ -53,6 +53,10 @@
                                                         </td>
                                                         <td colspan="3" style="text-align: left" class="">
                                                             <asp:Label ID="RollingForecastTituloLabel" runat="server" Text="Rolling Forecast" SkinID="TituloMediano"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" style="text-align: left; height: 20px;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -151,6 +155,10 @@
                                                         </td>
                                                         <td colspan="3" style="text-align: left" class="">
                                                             <asp:Label ID="ProyectadoTituloLabel" runat="server" Text="Proyectado Anual" SkinID="TituloMediano"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" style="text-align: left; height: 20px;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -268,7 +276,7 @@
                                     </td>
                                 </tr>   
                             </table>
-                        </td>
+                            <asp:Label ID="MensajeLabel" runat="server" SkinID="MensajePagina"></asp:Label></td>
                     </tr>
                 </table>
             </td>

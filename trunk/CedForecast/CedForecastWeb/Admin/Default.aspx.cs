@@ -16,7 +16,7 @@ namespace CedForecastWeb.Admin
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.Gold;
+			((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
 			if (!IsPostBack)
 			{
 				if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -62,16 +62,6 @@ namespace CedForecastWeb.Admin
 		}
 		protected void Page_Disposed(object sender, EventArgs e)
 		{
-            //string archivoTemporario = Server.MapPath(MedioImageMap.ImageUrl.Replace("~/", String.Empty).Replace("/", "\\"));
-            //if (System.IO.File.Exists(archivoTemporario))
-            //{
-            //    System.IO.File.Delete(archivoTemporario);
-            //}
-            //archivoTemporario = Server.MapPath(ProvinciaImageMap.ImageUrl.Replace("~/", String.Empty).Replace("/", "\\"));
-            //if (System.IO.File.Exists(archivoTemporario))
-            //{
-            //    System.IO.File.Delete(archivoTemporario);
-            //}
 		}
 		protected void RecibeAvisoAltaCuentaCheckBox_CheckedChanged(object sender, EventArgs e)
 		{

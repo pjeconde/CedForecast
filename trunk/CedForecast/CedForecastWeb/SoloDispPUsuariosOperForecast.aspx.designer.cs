@@ -12,7 +12,7 @@ namespace CedForecastWeb {
     
     
     /// <summary>
-    /// Clase SoloDispPUsuariosAdministradores.
+    /// Clase SoloDispPUsuariosOperForecast.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.

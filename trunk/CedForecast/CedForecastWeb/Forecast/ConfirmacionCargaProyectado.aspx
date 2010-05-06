@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forecast/Forecast.Master" AutoEventWireup="true" CodeBehind="ConfirmacionCarga.aspx.cs" Inherits="CedForecastWeb.Forecast.ConfirmacionCarga" StylesheetTheme="Cedeira" %>
+<%@ Page Language="C#" MasterPageFile="~/Forecast/Forecast.Master" AutoEventWireup="true" CodeBehind="ConfirmacionCargaProyectado.aspx.cs" Inherits="CedForecastWeb.Forecast.ConfirmacionCargaProyectado" StylesheetTheme="Cedeira" %>
 
 <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI" TagPrefix="asp" %>
@@ -36,7 +36,7 @@
                                         </table>   
                                     </td>
                                     <td style="width: 846px">
-                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Confirmación Rolling Forecast"></asp:Label>
+                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Confirmación Proyectado Anual"></asp:Label>
                                         <hr />
                                     </td>
                                </tr>

@@ -29,10 +29,13 @@ namespace CedForecastWeb.Forecast
 						switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
 						{
                             case "Vigente":
-                                ForecastLinkButton.Visible = true;
+                                ForecastLinkButton.Enabled = true;
+                                ProyectadoLinkButton.Enabled = true;
                                 break;
                             case "Suspend":
-                                ForecastLinkButton.Visible = false;
+                            case "Baja":
+                                ForecastLinkButton.Enabled = false;
+                                ProyectadoLinkButton.Enabled = false;
                                 break;
 						}
 						break;
