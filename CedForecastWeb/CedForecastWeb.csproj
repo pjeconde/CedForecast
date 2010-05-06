@@ -247,6 +247,10 @@
       <Project>{B76ED545-1CF6-40BC-A3E1-52C34B0A0EFF}</Project>
       <Name>CaptchaDotNet2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CedeiraEx\CedeiraEx.csproj">
+      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
+      <Name>CedeiraEx</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CedeiraUIWebForms\CedeiraUIWebForms.csproj">
       <Project>{65404969-7DC6-45A2-BD12-40515251A60F}</Project>
       <Name>CedeiraUIWebForms</Name>
@@ -254,10 +258,6 @@
     <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
       <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
       <Name>CedEntidades</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
-      <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
-      <Name>CedeiraEx</Name>
     </ProjectReference>
     <ProjectReference Include="..\CedForecastWebEntidades\CedForecastWebEntidades.csproj">
       <Project>{13363318-67E8-47D8-BA5C-5CE5E2290CF8}</Project>
