@@ -280,7 +280,7 @@ namespace CedForecastWebDB
             a.Append("Telefono='" + Elemento.Telefono + "', ");
             a.Append("Email='" + Elemento.Email + "', ");
             a.Append("IdDivision='" + Elemento.Division.Id + "', ");
-            a.Append("Password='" + Elemento.Password + "', ");
+            //La Password ya no se vuelve a modificar (sólo se la considera en el alta de una Cuenta desde Bejerman)
             a.Append("IdEstadoCuenta='" + Elemento.EstadoCuenta.Id + "', ");
             a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
             a.Append("where IdCuenta='" + Elemento.Id + "' ");
