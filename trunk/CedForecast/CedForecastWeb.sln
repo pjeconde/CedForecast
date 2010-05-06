@@ -19,12 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedeiraUIWebForms", "Cedeir
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedeiraEx", "CedEx\CedeiraEx.csproj", "{883AB19F-36F5-42A4-A1A7-4206F84E7757}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedEntidades", "CedEntidades\CedEntidades.csproj", "{2D17A63F-789D-4C01-864A-C15411D577A7}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -108,6 +102,12 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CedeiraUIforms", "CedeiraUI
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedeiraEx", "CedeiraEx\CedeiraEx.csproj", "{883AB19F-36F5-42A4-A1A7-4206F84E7757}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -170,21 +170,6 @@ Global
 		{65404969-7DC6-45A2-BD12-40515251A60F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65404969-7DC6-45A2-BD12-40515251A60F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{65404969-7DC6-45A2-BD12-40515251A60F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|.NET.ActiveCfg = Cedeira|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Any CPU.ActiveCfg = Cedeira|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Any CPU.Build.0 = Cedeira|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Mixed Platforms.ActiveCfg = Cedeira|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Mixed Platforms.Build.0 = Cedeira|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|.NET.ActiveCfg = Release|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Any CPU.Build.0 = Release|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Cedeira|.NET.ActiveCfg = Release|Any CPU
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Cedeira|Any CPU.ActiveCfg = Release|Any CPU
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Cedeira|Any CPU.Build.0 = Release|Any CPU
@@ -350,6 +335,21 @@ Global
 		{48571E9A-0BCD-486E-875F-62B861186EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48571E9A-0BCD-486E-875F-62B861186EBE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{48571E9A-0BCD-486E-875F-62B861186EBE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|.NET.ActiveCfg = Cedeira|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Any CPU.ActiveCfg = Cedeira|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Any CPU.Build.0 = Cedeira|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Mixed Platforms.ActiveCfg = Cedeira|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Cedeira|Mixed Platforms.Build.0 = Cedeira|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|.NET.ActiveCfg = Release|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{883AB19F-36F5-42A4-A1A7-4206F84E7757}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
