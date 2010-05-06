@@ -40,7 +40,20 @@ namespace CedForecastWebDB
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    int mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), Forecast.IdPeriodo);
+                    string periodoInicial = Forecast.IdPeriodo;
+                    if (Forecast.IdTipoPlanilla == "Proyectado")
+                    {
+                        periodoInicial = periodoInicial + "01";
+                    }
+                    int mes = 0;
+                    if (Forecast.IdTipoPlanilla == "Proyectado" && (dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "13" || dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "14"))
+                    {
+                        mes = Convert.ToInt32(dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2));
+                    }
+                    else
+                    {
+                        mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
+                    }
                     if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
                     {
                         idArticulo = dt.Rows[i]["IdArticulo"].ToString();
@@ -214,16 +227,20 @@ namespace CedForecastWebDB
                             { 
                                 a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                             }
-                            a.Append("Insert Forecast values ('" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                            a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                         }
                     }
                     if (Forecast.IdTipoPlanilla == "Proyectado")
                     {
-                        a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                        a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(13, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad13 + ") ");
-                        a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                        a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(25, Forecast.IdPeriodo + "01").Substring(0, 4) + "', " + Forecast.Cantidad14 + ") ");
+                        if (Forecast.Cantidad13 > 0)
+                        {
+                            a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
+                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo + "13', " + Forecast.Cantidad13 + ") ");
+                        }
+                        if (Forecast.Cantidad14 > 0)
+                        {
+                            a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
+                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo + "14', " + Forecast.Cantidad14 + ") ");
+                        }
                     }
                 }
             }

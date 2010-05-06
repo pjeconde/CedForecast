@@ -17,7 +17,8 @@ namespace CedForecastWebDB
             StringBuilder a = new StringBuilder(string.Empty);
             a.Append("select ConfirmacionCarga.IdTipoPlanilla, ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
-            a.Append("where ConfirmacionCarga.IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and Cuenta.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga) ");
+            a.Append("where ConfirmacionCarga.IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and Cuenta.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' ");
+            a.Append("and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga where IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "')");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count != 0)
             {
@@ -30,6 +31,10 @@ namespace CedForecastWebDB
             a.Append("select ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
             a.Append("where 1=1 ");
+            if (ConfirmacionCarga.IdTipoPlanilla != null)
+            {
+                a.Append("and ConfirmacionCarga.IdTipoPlanilla='" + ConfirmacionCarga.IdTipoPlanilla + "'");
+            }
             if (ConfirmacionCarga.Cuenta.Id.ToString() != "")
             {
                 a.Append(" and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "'");
@@ -71,9 +76,13 @@ namespace CedForecastWebDB
             a.Append("ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
             a.Append("where 1=1 ");
+            if (ConfirmacionCarga.IdTipoPlanilla != null)
+            {
+                a.Append("and ConfirmacionCarga.IdTipoPlanilla='" + ConfirmacionCarga.IdTipoPlanilla + "'");
+            }
             if (ConfirmacionCarga.Cuenta.Id != null)
             {
-                a.Append("and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id.ToString() + "'");
+                a.Append("and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id + "'");
             }
             if (ConfirmacionCarga.IdPeriodo != "")
             {
@@ -124,7 +133,7 @@ namespace CedForecastWebDB
             StringBuilder a = new StringBuilder(string.Empty);
             if (EstadoActual != "")
             {
-                a.Append("select IdEstadoConfirmacionCarga from ConfirmacionCarga where IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "' and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga where IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "') and IdEstadoConfirmacionCarga='" + EstadoActual + "'");
+                a.Append("select IdEstadoConfirmacionCarga from ConfirmacionCarga where IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "' and FechaConfirmacionCarga in (select Max(FechaConfirmacionCarga) from ConfirmacionCarga where IdTipoPlanilla = '" + ConfirmacionCarga.IdTipoPlanilla + "' and IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "' and IdCuenta = '" + ConfirmacionCarga.IdCuenta + "') and IdEstadoConfirmacionCarga='" + EstadoActual + "'");
                 a.Append("if @@rowcount=0 ");
                 a.Append("   raiserror ('Problemas para acceder los datos o contenido modificado por otro usuario', 16, 1) ");
                 a.Append("else ");
