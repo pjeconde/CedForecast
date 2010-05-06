@@ -96,22 +96,32 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CedeiraUICSTextBox, Version=2.0.1822.29037, Culture=neutral, PublicKeyToken=7473e78fd129cb3d">
+    <Reference Include="Interop.CedFCIcom, Version=1.14.1.0, Culture=neutral, PublicKeyToken=7473e78fd129cb3d">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLLs\CedeiraUICSTextBox.dll</HintPath>
+      <HintPath>DLLs\Interop.CedFCIcom.dll</HintPath>
     </Reference>
-    <Reference Include="PureComponents.NicePanel, Version=1.0.1013.4, Culture=neutral, PublicKeyToken=2f0f2e4259d7a8e4">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Janus.Windows.Common.v2">
+      <Name>Janus.Windows.Common.v2</Name>
+      <HintPath>DLLs\Janus.Windows.Common.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v2">
+      <Name>Janus.Windows.GridEX.v2</Name>
+      <HintPath>DLLs\Janus.Windows.GridEX.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v2">
+      <Name>Janus.Windows.UI.v2</Name>
+      <HintPath>DLLs\Janus.Windows.UI.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="PureComponents.NicePanel">
+      <Name>PureComponents.NicePanel</Name>
       <HintPath>DLLs\PureComponents.NicePanel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
     <Reference Include="System.Data">
       <Name>System.Data</Name>
-    </Reference>
-    <Reference Include="System.Design">
-      <Name>System.Design</Name>
     </Reference>
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
@@ -142,7 +152,13 @@
     <Compile Include="frmAcerca.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmBarraDeProgreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmBase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaseEnviarA.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.vb">
@@ -151,7 +167,12 @@
     <Compile Include="frmMensaje.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion.vb" />
+    <Compile Include="Presentacion.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VerticalLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="DataGridNoActiveCellColumn.resx">
       <DependentUpon>DataGridNoActiveCellColumn.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -160,8 +181,16 @@
       <DependentUpon>frmAcerca.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBarraDeProgreso.resx">
+      <DependentUpon>frmBarraDeProgreso.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBase.resx">
       <DependentUpon>frmBase.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBaseEnviarA.resx">
+      <DependentUpon>frmBaseEnviarA.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
@@ -172,6 +201,7 @@
       <DependentUpon>frmMensaje.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="licenses.licx" />
     <EmbeddedResource Include="PureComponents_NicePanel.license" />
     <Content Include="Imagenes\Cedeira.gif" />
   </ItemGroup>

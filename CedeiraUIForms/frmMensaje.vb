@@ -9,14 +9,18 @@ Friend Class frmMensaje
         MyBase.New()
 
         InitializeComponent()
+
         Text = Titulo
         txtMensaje.Text = Mensaje
         txtMensaje.SelectionLength = 0
         pnlMensaje.Size = New System.Drawing.Size(pnlMensaje.Size.Width, Math.Max(CInt(SendMessage(txtMensaje.Handle, EM_GETLINECOUNT, 0, 0)), CInt(3)) * CSng(txtMensaje.CreateGraphics().MeasureString("M", txtMensaje.Font).Height))
+        If (pnlMensaje.Height > 500) Then
+            pnlMensaje.Height = 500
+        End If
         txtMasDetalles.Text = MasDetalles
         txtMasDetalles.SelectionLength = 0
         pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, CInt(SendMessage(txtMasDetalles.Handle, EM_GETLINECOUNT, 0, 0) * CSng(txtMasDetalles.CreateGraphics().MeasureString("M", txtMasDetalles.Font).Height)))
-        Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24 + 20)
+        Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24)
         Select Case Icono
             Case MsgBoxStyle.Critical
                 PictureBox.Image = SystemIcons.Error.ToBitmap
@@ -61,7 +65,7 @@ Friend Class frmMensaje
     Friend WithEvents SplitterMensaje As System.Windows.Forms.Splitter
     Friend WithEvents SplitterMasDetalles As System.Windows.Forms.Splitter
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMensaje))
+        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmMensaje))
         Me.pnlMensaje = New System.Windows.Forms.Panel
         Me.txtMensaje = New System.Windows.Forms.TextBox
         Me.Splitter3 = New System.Windows.Forms.Splitter
@@ -74,7 +78,6 @@ Friend Class frmMensaje
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.btnMasDetalles = New System.Windows.Forms.Button
         Me.pnlMensaje.SuspendLayout()
-        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMasDetalles.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
         Me.SuspendLayout()
@@ -101,6 +104,7 @@ Friend Class frmMensaje
         Me.txtMensaje.ReadOnly = True
         Me.txtMensaje.Size = New System.Drawing.Size(436, 72)
         Me.txtMensaje.TabIndex = 2
+        Me.txtMensaje.Text = ""
         '
         'Splitter3
         '
@@ -141,6 +145,7 @@ Friend Class frmMensaje
         Me.txtMasDetalles.ReadOnly = True
         Me.txtMasDetalles.Size = New System.Drawing.Size(478, 88)
         Me.txtMasDetalles.TabIndex = 3
+        Me.txtMasDetalles.Text = ""
         '
         'SplitterMensaje
         '
@@ -178,7 +183,6 @@ Friend Class frmMensaje
         Me.btnAceptar.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAceptar.Location = New System.Drawing.Point(398, 0)
-        Me.btnAceptar.MinimumSize = New System.Drawing.Size(0, 23)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(80, 83)
         Me.btnAceptar.TabIndex = 0
@@ -189,7 +193,6 @@ Friend Class frmMensaje
         Me.btnMasDetalles.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnMasDetalles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMasDetalles.Location = New System.Drawing.Point(0, 0)
-        Me.btnMasDetalles.MinimumSize = New System.Drawing.Size(0, 23)
         Me.btnMasDetalles.Name = "btnMasDetalles"
         Me.btnMasDetalles.Size = New System.Drawing.Size(128, 83)
         Me.btnMasDetalles.TabIndex = 1
@@ -205,19 +208,16 @@ Friend Class frmMensaje
         Me.Controls.Add(Me.SplitterMensaje)
         Me.Controls.Add(Me.pnlMasDetalles)
         Me.Controls.Add(Me.pnlMensaje)
+        Me.DockPadding.All = 5
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmMensaje"
-        Me.Padding = New System.Windows.Forms.Padding(5)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mensaje"
         Me.pnlMensaje.ResumeLayout(False)
-        Me.pnlMensaje.PerformLayout()
-        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMasDetalles.ResumeLayout(False)
-        Me.pnlMasDetalles.PerformLayout()
         Me.pnlBotones.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -235,17 +235,17 @@ Friend Class frmMensaje
                 btnMasDetalles.Text = "No ver detalles"
                 SplitterMasDetalles.Visible = True
                 pnlMasDetalles.Visible = True
-                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24 + 20 + SplitterMasDetalles.Size.Height + pnlMasDetalles.Size.Height)
+                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24 + SplitterMasDetalles.Size.Height + pnlMasDetalles.Size.Height)
                 If Me.Size.Height > 500 Then
                     Me.Size = New System.Drawing.Size(Me.Size.Width, 500)
-                    pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, 500 - pnlMensaje.Size.Height - SplitterMensaje.Size.Height - 35 - 24 - 20 - 10)
+                    pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, 500 - pnlMensaje.Size.Height - SplitterMensaje.Size.Height - 35 - 24 - 10)
                     txtMasDetalles.ScrollBars = ScrollBars.Vertical
                 End If
             Case "No ver detalles"
                 btnMasDetalles.Text = "Ver detalles"
                 SplitterMasDetalles.Visible = False
                 pnlMasDetalles.Visible = False
-                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24 + 20)
+                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24)
         End Select
     End Sub
 End Class

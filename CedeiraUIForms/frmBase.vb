@@ -137,4 +137,21 @@ Public Class frmBase
 
 #End Region
 
+    Private Sub frmBase_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim loProcess As System.Diagnostics.Process
+        loProcess = System.Diagnostics.Process.GetCurrentProcess()
+        Dim setMax As IntPtr = New IntPtr(10000000)
+        Dim setMin As IntPtr = New IntPtr(5000000)
+        loProcess.MaxWorkingSet = setMax
+        loProcess.MinWorkingSet = setMin
+    End Sub
+
+    Private Sub frmBase_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Closed
+        Dim loProcess As System.Diagnostics.Process
+        loProcess = System.Diagnostics.Process.GetCurrentProcess()
+        Dim setMax As IntPtr = New IntPtr(10000000)
+        Dim setMin As IntPtr = New IntPtr(5000000)
+        loProcess.MaxWorkingSet = setMax
+        loProcess.MinWorkingSet = setMin
+    End Sub
 End Class
