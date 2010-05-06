@@ -17,7 +17,7 @@ namespace CedForecastWeb.Admin.ConfirmacionCarga
 		{
 			try
 			{
-				((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.Gold;
+				((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
 				if (!IsPostBack)
 				{
 					if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -136,7 +136,6 @@ namespace CedForecastWeb.Admin.ConfirmacionCarga
 			{
 				e.Row.Attributes["onmouseover"] = "this.style.cursor='hand';this.style.textDecoration='underline';";
 				e.Row.Attributes["onmouseout"] = "this.style.textDecoration='none';";
-
 				e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.ConfirmacionCargaPagingGridView, "Select$" + e.Row.RowIndex);
 			}
 		}

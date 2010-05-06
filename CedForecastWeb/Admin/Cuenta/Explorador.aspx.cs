@@ -17,7 +17,7 @@ namespace CedForecastWeb.Admin.Cuenta
 		{
 			try
 			{
-				((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.Gold;
+				((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
 				if (!IsPostBack)
 				{
 					if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
@@ -160,16 +160,14 @@ namespace CedForecastWeb.Admin.Cuenta
                     //ActivarButton.Enabled = true;
 					break;
 			}
+            ModificarButton.Enabled = true;
 		}
 		private void DeshabilitarAcciones()
 		{
-			BajaButton.Enabled = false;
+            ModificarButton.Enabled = false;
+            BajaButton.Enabled = false;
 			AnularBajaButton.Enabled = false;
 			ReenviarMailButton.Enabled = false;
-            //ActivarButton.Enabled = false;
-            //SuspenderPremiumButton.Enabled = false;
-            //ActivarPremiumButton.Enabled = false;
-            //DesactivarPremiumButton.Enabled = false;
 		}
 		protected CedForecastWebEntidades.Cuenta CuentaSeleccionada()
 		{
@@ -237,9 +235,12 @@ namespace CedForecastWeb.Admin.Cuenta
 			Server.Transfer("~/Admin/Default.aspx");
 		}
 
-        protected void CrearButton_Click(object sender, EventArgs e)
+        protected void ModificarButton_Click(object sender, EventArgs e)
         {
-            Server.Transfer("~/CuentaCrear.aspx");
+            CedForecastWebEntidades.Cuenta cuenta = new CedForecastWebEntidades.Cuenta();
+            cuenta = CuentaSeleccionada();
+            string pagina = "~/CuentaConfiguracion.aspx?Id=" + cuenta.Id.ToString();
+            Server.Transfer(pagina);
         }
 
 	}

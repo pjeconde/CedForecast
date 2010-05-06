@@ -5,7 +5,7 @@
 
 <asp:content id="AdminCuentaContent" runat="Server" contentplaceholderid="AdministracionContentPlaceHolder">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 890px; text-align: left;">
+        width: 890px; text-align: left; background-color:White;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">
@@ -46,12 +46,16 @@
                     <tr>
                         <td style="padding-left: 10px; padding-top: 10px" valign="top">
                             <asp:Panel ID="Panel1" runat="server" BackColor="peachpuff" BorderColor="brown" BorderStyle="Solid"
-                                BorderWidth="1px" Height="373px" ScrollBars="Auto" Width="827px">
+                                BorderWidth="1px" Height="373px" ScrollBars="Auto" Width="760px">
                                 <cc1:PagingGridView ID="ConfirmacionCargaPagingGridView" runat="server" AllowPaging="True" AllowSorting="True"
                                     OnPageIndexChanging="ConfirmacionCargaPagingGridView_PageIndexChanging" OnRowDataBound="ConfirmacionCargaPagingGridView_RowDataBound" OnSelectedIndexChanged="ConfirmacionCargaPagingGridView_SelectedIndexChanged" 
                                     OnSorting="ConfirmacionCargaPagingGridView_Sorting"
                                     VirtualItemCount="-1">
                                     <Columns>
+                                        <asp:BoundField DataField="IdTipoPlanilla" HeaderText="Planilla" HtmlEncode="False" SortExpression="IdTipoPlanilla">
+                                            <headerstyle horizontalalign="Left" wrap="False" />
+                                            <itemstyle horizontalalign="Left" width="100px" wrap="False" />
+                                        </asp:BoundField>
                                         <asp:BoundField DataField="IdPeriodo" HeaderText="IdPeriodo" DataFormatString="{0:MM/yyyy}" HtmlEncode="False" SortExpression="IdPeriodo">
                                             <headerstyle horizontalalign="Left" wrap="False" />
                                             <itemstyle horizontalalign="Left" width="100px" wrap="False" />
@@ -81,7 +85,7 @@
                                 </cc1:PagingGridView>
                             </asp:Panel>
                             <asp:Label ID="Label1" runat="server" Text="Comentario: "></asp:Label>
-                            <asp:TextBox ID="ComentarioTextBox" runat="server" Width="822px"></asp:TextBox><br />
+                            <asp:TextBox ID="ComentarioTextBox" runat="server" Width="755px"></asp:TextBox><br />
                         
                         <asp:Label ID="MsgErrorLabel" runat="server" SkinID="MensajePagina" Text=""></asp:Label></td>
                         <td align="left" style="padding-left: 10px; padding-top: 6px" valign="top">

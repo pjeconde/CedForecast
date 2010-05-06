@@ -17,7 +17,7 @@
             </td>
         </tr>
         <tr>
-            <td style="padding-left: 10px; padding-right: 10px; width: 100%" valign="top">
+            <td style="padding-left: 7px; padding-right: 7px; width: 100%" valign="top">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top">
@@ -39,8 +39,8 @@
                                         </table>   
                                     </td>
                                     <td style="width: 870px">
-                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Forecast Proyectado"></asp:Label>&nbsp;&nbsp;
-                                        <asp:Label ID="MsgLabel" runat="server" Width="697px"></asp:Label>
+                                        <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Proyectado Anual"></asp:Label>&nbsp;&nbsp;
+                                        <asp:Label ID="MsgLabel" runat="server" Width="600px"></asp:Label>
                                         <hr />
                                     </td>
                                </tr>
@@ -60,7 +60,7 @@
                                                     </td>
                                                     <td align="left" style="width: 392px;" valign="top">
                                                         <asp:TextBox ID="PeriodoTextBox" runat="server" Width="75px"></asp:TextBox>&nbsp;&nbsp;
-                                                        <asp:Label ID="FechaVtoConfimacionCargaLabel" runat="server" SkinID="TituloMediano" Font-Bold="False"  ></asp:Label>
+                                                        <asp:Label ID="FechaVtoConfimacionCargaLabel" runat="server" SkinID="TituloMediano" Font-Bold="False"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -82,7 +82,7 @@
                                                     </td>
                                                     <td>
                                                     </td>
-                                                    <td align="left" style="width: 392px;" valign="top"><asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="388px" OnSelectedIndexChanged="DivisionDropDownList_SelectedIndexChanged">
+                                                    <td align="left" style="width: 392px;" valign="top"><asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="388px">
                                                     </asp:DropDownList></td>
                                                 </tr>
                                                 <tr>
@@ -132,19 +132,32 @@
                             </table>
                             <table border="0" cellpadding="0" cellspacing="0" style="width:870px" id="TablaGrilla" onclick="">
 						        <tr>
-                                    <td colspan="3">
+                                    <td colspan="3" style="text-align: left; padding:3px; font-weight:normal;">
                                         <asp:UpdatePanel ID="detalleUpdatePanel" runat="server">
                                             <ContentTemplate>
 										        <asp:Panel ID="detallePanel" runat="server" BorderStyle="Ridge" Height="200px" ScrollBars="Auto" Width="865px" Wrap="true">
-											        <asp:GridView ID="detalleGridView" runat="server" AutoGenerateColumns="False" BorderColor="Gray"
+											        <asp:GridView ID="detalleGridView" runat="server" AutoGenerateColumns="False" BorderColor="Gray" 
 												        BorderStyle="Solid" BorderWidth="1px" EditRowStyle-ForeColor="#071F70" EmptyDataRowStyle-ForeColor="#071F70" Font-Bold="False" ForeColor="#071F70"
-												        HeaderStyle-ForeColor="#A52A2A" OnRowCancelingEdit="detalleGridView_RowCancelingEdit"
+												        HeaderStyle-ForeColor="#A52A2A" OnRowCancelingEdit="detalleGridView_RowCancelingEdit" GridLines="Both" 
 												        OnRowCommand="detalleGridView_RowCommand" OnRowDeleted="detalleGridView_RowDeleted"
 												        OnRowDeleting="detalleGridView_RowDeleting" OnRowEditing="detalleGridView_RowEditing"
 												        OnRowUpdated="detalleGridView_RowUpdated" OnRowUpdating="detalleGridView_RowUpdating"
-												        PagerStyle-ForeColor="#071F70" RowStyle-ForeColor="#071F70" SelectedRowStyle-ForeColor="#071F70"
-												        ShowFooter="True" ToolTip="Recuerde que al ingresar importes con decimales el separador a utilizar es el punto" Width="100%" OnSelectedIndexChanged="detalleGridView_SelectedIndexChanged">
+												        PagerStyle-ForeColor="#071F70" RowStyle-ForeColor="#071F70" SelectedRowStyle-ForeColor="#071F70" 
+												        OnPreRender="detalleGridView_PreRender" ShowFooter="True" ShowHeader="true" ToolTip="Recuerde que el separador de decimales a utilizar es el punto" Width="100%">
 												        <Columns>
+												        	<asp:CommandField ButtonType="Button" CancelText="Cancelar" EditText="Editar" HeaderText="Acciones" DeleteText="Borrar"
+															    ShowEditButton="True" ShowDeleteButton="True" UpdateText="Actualizar" ValidationGroup="DetalleEditItem">
+															    <ItemStyle HorizontalAlign="Center" Width="125px" />
+															    <HeaderStyle Font-Bold="False" Width="125px" />
+														    </asp:CommandField>
+														    <asp:TemplateField>
+															    <FooterTemplate>
+															        <asp:Button ID="ButtonAdd" runat="server" Text="Agregar" CausesValidation="true" CommandName="AddDetalle" ValidationGroup="DetalleFooter" Width="123px" />
+															    </FooterTemplate>
+															    <ItemStyle Width="0px" />
+															    <FooterStyle Width="0px" />
+															    <HeaderStyle Width="0px" />
+														    </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Descripci&#243;n del Art&#237;culo">
 														        <ItemTemplate>
 															        <asp:Label ID="lblIdArticulo" runat="server" Text='<%# Eval("DescrArticulo") %>'
@@ -161,30 +174,23 @@
 														        <ItemStyle HorizontalAlign="Left" />
                                                                 <HeaderStyle Font-Bold="False" />
 													        </asp:TemplateField>
-													        <asp:TemplateField HeaderText="Total" HeaderStyle-HorizontalAlign="Right">
-														        <ItemTemplate>
-															        <asp:Label ID="lblTotal" runat="server" Text='<%# Eval("CantidadTotal") %>' Width="100px" SkinID="TextoMedianoEdit"></asp:Label>
-														        </ItemTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
-                                                                <HeaderStyle Font-Bold="False" Width="100px" />
-													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad1" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
 														        <ItemTemplate>
 															        <asp:Label ID="lblCantidad1" runat="server" Text='<%# Eval("Cantidad1") %>' Width="80px"></asp:Label>
 														        </ItemTemplate>
 														        <EditItemTemplate>
-															        <asp:TextBox ID="txtCantidad1Edit" runat="server" Text='<%# Eval("Cantidad1") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
-																        ID="txtcantidad1EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1Edit"
+															        <asp:TextBox ID="txtCantidad1Edit" runat="server" Text='<%# Eval("Cantidad1") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox>
+															        <asp:RegularExpressionValidator ID="txtcantidad1EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1Edit"
 																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
-															        <asp:TextBox ID="txtCantidad1" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
-																        ID="txtcantidad1FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1"
+															        <asp:TextBox ID="txtCantidad1" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox>
+															        <asp:RegularExpressionValidator ID="txtcantidad1FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad1"
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad2" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -192,18 +198,18 @@
 															        <asp:Label ID="lblCantidad2" runat="server" Text='<%# Eval("Cantidad2") %>' Width="80px"></asp:Label>
 														        </ItemTemplate>
 														        <EditItemTemplate>
-															        <asp:TextBox ID="txtCantidad2Edit" runat="server" Text='<%# Eval("Cantidad2") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
-																        ID="txtcantidad2EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2Edit"
+															        <asp:TextBox ID="txtCantidad2Edit" runat="server" Text='<%# Eval("Cantidad2") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox>
+															        <asp:RegularExpressionValidator ID="txtcantidad2EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2Edit"
 																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
 														        <FooterTemplate>
-															        <asp:TextBox ID="txtCantidad2" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
-																        ID="txtcantidad2FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2"
+															        <asp:TextBox ID="txtCantidad2" runat="server" Text='0' Width="70px" SkinID="TextoBoxChico"></asp:TextBox>
+															        <asp:RegularExpressionValidator ID="txtcantidad2FooterRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad2"
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad3" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -211,8 +217,8 @@
 															        <asp:Label ID="lblCantidad3" runat="server" Text='<%# Eval("Cantidad3") %>' Width="80px"></asp:Label>
 														        </ItemTemplate>
 														        <EditItemTemplate>
-															        <asp:TextBox ID="txtCantidad3Edit" runat="server" Text='<%# Eval("Cantidad3") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox><asp:RegularExpressionValidator
-																        ID="txtcantidad3EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad3Edit"
+															        <asp:TextBox ID="txtCantidad3Edit" runat="server" Text='<%# Eval("Cantidad3") %>' Width="70px" SkinID="TextoBoxChico"></asp:TextBox>
+															        <asp:RegularExpressionValidator ID="txtcantidad3EditRegularExpressionValidator" runat="server" ControlToValidate="txtCantidad3Edit"
 																        ErrorMessage="Cantidad del artículo en edición mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleEditItem">*</asp:RegularExpressionValidator>
 														        </EditItemTemplate>
@@ -222,7 +228,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad4" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -241,7 +247,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad5" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -260,7 +266,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad6" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -279,7 +285,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField> 
 													        <asp:TemplateField HeaderText="Cantidad7" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -298,7 +304,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField> 
 													        <asp:TemplateField HeaderText="Cantidad8" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -317,7 +323,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField> 	
 													        <asp:TemplateField HeaderText="Cantidad9" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -336,7 +342,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField> 	
 													        <asp:TemplateField HeaderText="Cantidad10" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -355,7 +361,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField> 
 													        <asp:TemplateField HeaderText="Cantidad11" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -374,7 +380,7 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Cantidad12" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
@@ -393,9 +399,19 @@
 																        ErrorMessage="Cantidad del artículo a agregar mal formateado" SetFocusOnError="true"
 																        ValidationExpression="[0-9]+(\.[0-9]+)?" ValidationGroup="DetalleFooter">*</asp:RegularExpressionValidator>
 														        </FooterTemplate>
-														        <ItemStyle HorizontalAlign="Right" />
+														        <ItemStyle HorizontalAlign="Right" Width="80px"/>
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
-													        </asp:TemplateField>  												        
+													        </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Total" HeaderStyle-HorizontalAlign="Right">
+														        <ItemTemplate>
+															        <asp:Label ID="lblTotal" runat="server" Text='<%# Eval("CantidadTotal") %>' Width="90px" SkinID="TextoMedianoEdit"></asp:Label>
+														        </ItemTemplate>
+														        <FooterTemplate>
+															        <asp:TextBox ID="CantidadTotalTextBox" runat="server" ReadOnly="true" Text='' Width="90px" ToolTip="Se calcula automáticamente" SkinID="TextoBoxChico"></asp:TextBox>
+															    </FooterTemplate>
+														        <ItemStyle HorizontalAlign="Right" Width="90px"/>
+                                                                <HeaderStyle Font-Bold="False" Width="90px" />
+													        </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Cantidad13" HeaderStyle-HorizontalAlign="Right" FooterStyle-HorizontalAlign="Right">
 														        <ItemTemplate>
 															        <asp:Label ID="lblCantidad13" runat="server" Text='<%# Eval("Cantidad13") %>' Width="80px"></asp:Label>
@@ -434,7 +450,7 @@
 														        <ItemStyle HorizontalAlign="Right" />
                                                                 <HeaderStyle Font-Bold="False" Width="80px" />
 													        </asp:TemplateField>  												        
-                                                            <asp:CommandField
+                                                            <%--<asp:CommandField
 														        HeaderText="Edici&#243;n" ShowEditButton="True" ValidationGroup="DetalleEditItem">
 														        <ItemStyle HorizontalAlign="Center" Width="150px" />
                                                                 <HeaderStyle Font-Bold="False" HorizontalAlign="Center" Width="150px" />
@@ -450,7 +466,7 @@
 														        </FooterTemplate>
 														        <ItemStyle HorizontalAlign="Center" />
                                                                 <HeaderStyle Font-Bold="False" Width="150px" />
-													        </asp:TemplateField>
+													        </asp:TemplateField>--%>
 												        </Columns>
                                                         <RowStyle ForeColor="#071F70" />
                                                         <EmptyDataRowStyle ForeColor="#071F70" />
@@ -479,7 +495,6 @@
                                     <td colspan="3">
                                         <table border="0" cellpadding="0" cellspacing="0" id="Table1"> 
                                             <td style="width:190px">
-                                            
                                                 <asp:Button ID="AceptarButton" runat="server" OnClick="AceptarButton_Click" Text="Aceptar" Width="190px" />
                                             </td>
                                             <td style="width: 490px;">

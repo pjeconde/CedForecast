@@ -15,7 +15,7 @@ using System.Web.UI.HtmlControls;
 
 namespace CedForecastWeb.Forecast
 {
-    public partial class ConfirmacionCarga : System.Web.UI.Page
+    public partial class ConfirmacionCargaProyectado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -62,7 +62,7 @@ namespace CedForecastWeb.Forecast
         }
         private void CompletarDatosEntidad(CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga)
         {
-            confirmacionCarga.IdTipoPlanilla = "RollingForecast";
+            confirmacionCarga.IdTipoPlanilla = "Proyectado";
             confirmacionCarga.IdPeriodo = PeriodoTextBox.Text;
             confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
             confirmacionCarga.FechaConfirmacionCarga = DateTime.Now;
@@ -70,14 +70,14 @@ namespace CedForecastWeb.Forecast
         private void Leer()
         {
             CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
-            periodo.IdTipoPlanilla = "RollingForecast";
+            periodo.IdTipoPlanilla = "Proyectado";
             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             PeriodoTextBox.Text = periodo.IdPeriodo;
             PeriodoTextBox.ReadOnly = true;
             CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
             confirmacionCarga.IdPeriodo = periodo.IdPeriodo;
             confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-            confirmacionCarga.IdTipoPlanilla = "RollingForecast";
+            confirmacionCarga.IdTipoPlanilla = "Proyectado";
             CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             switch (confirmacionCarga.IdEstadoConfirmacionCarga)
             {

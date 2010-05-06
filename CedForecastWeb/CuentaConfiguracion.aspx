@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="CuentaConfiguracion.aspx.cs" Inherits="CedForecastWeb.CuentaConfiguracion"  %>
+﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="CuentaConfiguracion.aspx.cs" Inherits="CedForecastWeb.CuentaConfiguracion" StylesheetTheme="Cedeira" %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" style="height: 500px; width: 890px; background-color: white;">
@@ -30,6 +30,22 @@
                             <table id="Table1" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td align="right" style="padding-right: 5px; padding-top: 20px">
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="IdCuentaTextBox"
+                                            ErrorMessage="Nombre y Apellido" SetFocusOnError="True" ValidationExpression="[A-Za-z\- ,.0-9]*">
+                                            <asp:Label ID="Label14" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RegularExpressionValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="IdCuentaTextBox"
+                                            ErrorMessage="Nombre y Apellido" SetFocusOnError="True">
+                                            <asp:Label ID="Label15" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RequiredFieldValidator>
+                                        <asp:Label ID="IdCuentaLabel" runat="server" Text="Id.Cuenta"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 20px">
+                                        <asp:TextBox ID="IdCuentaTextBox" runat="server" MaxLength="50" TabIndex="1" Width="360px" ReadOnly="True"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-right: 5px; padding-top: 3px">
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="NombreTextBox"
                                             ErrorMessage="Nombre y Apellido" SetFocusOnError="True" ValidationExpression="[A-Za-z\- ,.0-9]*">
                                             <asp:Label ID="Label7" runat="server" SkinID="IndicadorValidacion"></asp:Label>
@@ -40,8 +56,8 @@
                                         </asp:RequiredFieldValidator>
                                         <asp:Label ID="NombreLabel" runat="server" Text="Nombre y Apellido"></asp:Label>
                                     </td>
-                                    <td align="left" colspan="2" style="padding-top: 20px">
-                                        <asp:TextBox ID="NombreTextBox" runat="server" MaxLength="50" TabIndex="1" Width="360px"></asp:TextBox>
+                                    <td align="left" colspan="2" style="padding-top: 3px">
+                                        <asp:TextBox ID="NombreTextBox" runat="server" MaxLength="50" TabIndex="2" Width="360px" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -57,7 +73,7 @@
                                         <asp:Label ID="TelefonoLabel" runat="server" Text="Teléfono"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:TextBox ID="TelefonoTextBox" runat="server" MaxLength="50" TabIndex="2" Width="360px"></asp:TextBox>
+                                        <asp:TextBox ID="TelefonoTextBox" runat="server" MaxLength="50" TabIndex="3" Width="360px" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,7 +89,7 @@
                                         <asp:Label ID="EmailLabel" runat="server" Text="Email"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:TextBox ID="EmailTextBox" runat="server" MaxLength="128" ReadOnly="true" Width="360px"></asp:TextBox>
+                                        <asp:TextBox ID="EmailTextBox" runat="server" MaxLength="128" ReadOnly="true" TabIndex="4" Width="360px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -85,7 +101,7 @@
                                         <asp:Label ID="Label13" runat="server" Text="Email para SMSs"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:TextBox ID="EmailSMSTextBox" runat="server" MaxLength="128" Width="360px"></asp:TextBox>
+                                        <asp:TextBox ID="EmailSMSTextBox" runat="server" MaxLength="128" TabIndex="5" Width="360px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -102,7 +118,7 @@
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
                                         <asp:Label ID="Label3" runat="server" Font-Bold="true" Text="¿"></asp:Label>
-                                        <asp:TextBox ID="PreguntaTextBox" runat="server" MaxLength="256" TabIndex="7" Width="334px"></asp:TextBox>
+                                        <asp:TextBox ID="PreguntaTextBox" runat="server" MaxLength="256" TabIndex="6" Width="334px"></asp:TextBox>
                                         <asp:Label ID="Label6" runat="server" Font-Bold="true" Text="?"></asp:Label>
                                     </td>
                                 </tr>
@@ -119,7 +135,19 @@
                                         <asp:Label ID="RespuestaLabel" runat="server" Text="Respuesta"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:TextBox ID="RespuestaTextBox" runat="server" MaxLength="256" TabIndex="8" Width="360px"></asp:TextBox>
+                                        <asp:TextBox ID="RespuestaTextBox" runat="server" MaxLength="256" TabIndex="7" Width="360px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TipoCuentaDropDownList"
+                                            ErrorMessage="Página de inicio" SetFocusOnError="True">
+                                            <asp:Label ID="Label16" runat="server" SkinID="IndicadorValidacion"></asp:Label>
+                                        </asp:RequiredFieldValidator>
+                                        <asp:Label ID="EstadoLabel" runat="server" Text="Estado"></asp:Label>
+                                    </td>
+                                    <td align="left" colspan="2" style="padding-top: 3px">
+                                        <asp:TextBox ID="EstadoTextBox" runat="server" MaxLength="256" TabIndex="8" Width="360px" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -127,11 +155,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" style="padding-top: 3px; padding-right: 5px; height: 25px;">
+                                    <td align="right" style="padding-top: 3px; padding-right: 5px;">
                                         <asp:Label ID="DivisionLabel" runat="server" Text="División"></asp:Label>
                                     </td>
-                                    <td align="left" colspan="2" style="padding-top: 3px; height: 25px;">
-                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px">
+                                    <td align="left" colspan="2" style="padding-top: 3px;">
+                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="360px" Enabled="False">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -144,7 +172,7 @@
                                         <asp:Label ID="Label5" runat="server" Text="Tipo de cuenta"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:DropDownList ID="TipoCuentaDropDownList" runat="server" TabIndex="4" Width="360px" OnSelectedIndexChanged="TipoCuentaDropDownList_SelectedIndexChanged">
+                                        <asp:DropDownList ID="TipoCuentaDropDownList" runat="server" TabIndex="10" Width="360px" OnSelectedIndexChanged="TipoCuentaDropDownList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -157,7 +185,7 @@
                                         <asp:Label ID="Label25" runat="server" Text="Página de inicio"></asp:Label>
                                     </td>
                                     <td align="left" colspan="2" style="padding-top: 3px">
-                                        <asp:DropDownList ID="PaginaDefaultDropDownList" runat="server" TabIndex="4" Width="360px">
+                                        <asp:DropDownList ID="PaginaDefaultDropDownList" runat="server" TabIndex="11" Width="360px">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -165,12 +193,12 @@
                                     <td>
                                     </td>
                                     <td align="left" style="padding-top: 10px">
-                                        <asp:Button ID="GuardarButton" runat="server" OnClick="GuardarButton_Click" TabIndex="4"
+                                        <asp:Button ID="GuardarButton" runat="server" OnClick="GuardarButton_Click" TabIndex="12"
                                             Text="Guardar" Width="100px" />
                                     </td>
                                     <td align="right" style="padding-top: 10px">
                                         <asp:Button ID="CancelarButton" runat="server" CausesValidation="false" PostBackUrl="~/Configuracion.aspx"
-                                            TabIndex="5" Text="Cancelar" Width="100px" />
+                                            TabIndex="13" Text="Cancelar" Width="100px" />
                                     </td>
                                 </tr>
                                 <tr>

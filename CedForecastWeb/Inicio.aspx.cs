@@ -15,7 +15,7 @@ namespace CedForecastWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((LinkButton)Master.FindControl("InicioLinkButton")).ForeColor = System.Drawing.Color.Gold;
+            ((LinkButton)Master.FindControl("InicioLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
             CuentaCrearHyperLink.Enabled = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Flag.CreacionCuentaHabilitada;
             if (!CuentaCrearHyperLink.Enabled)
             {

@@ -5,7 +5,7 @@
 
 <asp:content id="AdminCuentaContent" runat="Server" contentplaceholderid="AdministracionContentPlaceHolder">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 890px; text-align: left;">
+        width: 890px; text-align: left; background-color:White;">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">
@@ -46,7 +46,7 @@
                     <tr>
                         <td style="padding-left: 10px; padding-top: 10px" valign="top">
                             <asp:Panel ID="Panel1" runat="server" BackColor="peachpuff" BorderColor="brown" BorderStyle="Solid"
-                                BorderWidth="1px" Height="373px" ScrollBars="Auto" Width="827px">
+                                BorderWidth="1px" Height="373px" ScrollBars="Auto" Width="760px">
                                 <cc1:PagingGridView ID="CuentaPagingGridView" runat="server" OnPageIndexChanging="CuentaPagingGridView_PageIndexChanging"
                                     OnRowDataBound="CuentaPagingGridView_RowDataBound" OnSelectedIndexChanged="CuentaPagingGridView_SelectedIndexChanged"
                                     OnSorting="CuentaPagingGridView_Sorting" AllowPaging="True" AllowSorting="True" VirtualItemCount="-1">
@@ -103,8 +103,8 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-top: 5px">
-                                        <asp:Button ID="CrearButton" runat="server" OnClick="CrearButton_Click"
-                                            Text="Crear cuenta" Width="100px" />
+                                        <asp:Button ID="ModificarButton" runat="server" OnClick="ModificarButton_Click"
+                                            Text="Modificar" Width="100px" Enabled="False" />
                                     </td>
                                 </tr>
                                 <tr>
