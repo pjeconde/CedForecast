@@ -234,6 +234,7 @@ CREATE TABLE [dbo].[CuentaDepurada](
 	[Nombre] [varchar](50) NOT NULL,
 	[Telefono] [varchar](50) NOT NULL,
 	[Email] [varchar](128) NOT NULL,
+	[IdDivision] [varchar](30) NULL,
 	[Password] [varchar](50) NOT NULL,
 	[Pregunta] [varchar](256) NOT NULL,
 	[Respuesta] [varchar](256) NOT NULL,
