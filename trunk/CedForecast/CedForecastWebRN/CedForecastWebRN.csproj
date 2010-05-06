@@ -63,7 +63,7 @@
       <Project>{DB0A7D76-F68E-43A7-ADBD-08DDF2AFAD36}</Project>
       <Name>CedeiraAP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CedeiraEx\CedeiraEx.csproj">
+    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
       <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
       <Name>CedeiraEx</Name>
     </ProjectReference>
