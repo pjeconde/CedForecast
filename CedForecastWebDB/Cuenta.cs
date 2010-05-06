@@ -285,6 +285,7 @@ namespace CedForecastWebDB
             a.Append("FechaUltModif='" + Elemento.FechaUltModif.ToString("yyyyMMdd HH:mm:ss.fff") + "' ");
             a.Append("where IdCuenta='" + Elemento.Id + "' ");
             a.Append("else ");
+            a.Append("if not exists (select IdCuenta from CuentaDepurada where IdCuenta='" + Elemento.Id + "') ");
             a.Append("insert Cuenta values ( ");
             a.Append("'" + Elemento.Id + "', ");
             a.Append("'" + Elemento.Nombre + "', ");
