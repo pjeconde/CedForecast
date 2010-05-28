@@ -86,6 +86,10 @@
 								<asp:LinkButton ID="ConfirmacionLinkButton" runat="server" CausesValidation="false"
 									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Confirmacion.aspx" >Confirmacion</asp:LinkButton>
 							</td>
+							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
+								<asp:LinkButton ID="ConsultaLinkButton" runat="server" CausesValidation="false"
+									Font-Bold="true" ForeColor="white" PostBackUrl="~/Forecast/Consulta.aspx" >Consulta</asp:LinkButton>
+							</td>
 						</tr>
 					</table>
 				</td>

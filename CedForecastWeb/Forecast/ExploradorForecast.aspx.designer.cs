@@ -12,146 +12,110 @@ namespace CedForecastWeb.Forecast {
     
     
     /// <summary>
-    /// Clase Forecast.
+    /// Clase ExploradorForecast.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.
     /// </remarks>
-    public partial class Forecast {
+    public partial class ExploradorForecast {
         
         /// <summary>
-        /// Control ForecastHead.
+        /// Control Image2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead ForecastHead;
+        protected global::System.Web.UI.WebControls.Image Image2;
         
         /// <summary>
-        /// Control ForecastForm.
+        /// Control TituloLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm ForecastForm;
+        protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
-        /// Control LabelEncaL.
+        /// Control FechaLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelEncaL;
+        protected global::System.Web.UI.WebControls.Label FechaLabel;
         
         /// <summary>
-        /// Control MensajeGeneralLabel.
+        /// Control PeriodoTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MensajeGeneralLabel;
+        protected global::System.Web.UI.WebControls.TextBox PeriodoTextBox;
         
         /// <summary>
-        /// Control NombreCuentaLabel.
+        /// Control ClienteLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombreCuentaLabel;
+        protected global::System.Web.UI.WebControls.Label ClienteLabel;
         
         /// <summary>
-        /// Control Separador1Label.
+        /// Control ClienteDropDownList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Separador1Label;
+        protected global::System.Web.UI.WebControls.DropDownList ClienteDropDownList;
         
         /// <summary>
-        /// Control ConfiguracionLinkButton.
+        /// Control LeerButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ConfiguracionLinkButton;
+        protected global::System.Web.UI.WebControls.Button LeerButton;
         
         /// <summary>
-        /// Control Separador2Label.
+        /// Control Panel1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Separador2Label;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// Control SalirLinkButton.
+        /// Control ForecastPagingGridView.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SalirLinkButton;
+        protected global::CedeiraUIWebForms.PagingGridView ForecastPagingGridView;
         
         /// <summary>
-        /// Control InicioLinkButton.
+        /// Control SalirButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton InicioLinkButton;
+        protected global::System.Web.UI.WebControls.Button SalirButton;
         
         /// <summary>
-        /// Control ForecastLinkButton.
+        /// Control MsgErrorLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ForecastLinkButton;
-        
-        /// <summary>
-        /// Control ProyectadoLinkButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ProyectadoLinkButton;
-        
-        /// <summary>
-        /// Control ConfirmacionLinkButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ConfirmacionLinkButton;
-        
-        /// <summary>
-        /// Control ConsultaLinkButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ConsultaLinkButton;
-        
-        /// <summary>
-        /// Control ForecastContentPlaceHolder.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ForecastContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.Label MsgErrorLabel;
     }
 }

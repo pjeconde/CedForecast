@@ -5,13 +5,17 @@ using System.Text;
 namespace CedForecastWebEntidades
 {
     [Serializable]
-    public class Forecast
+    public class RFoPA
     {
         private string idTipoPlanilla;
         private string idCuenta;
         private string idCliente;
+        private CedForecastWebEntidades.Cliente cliente;
         private CedForecastWebEntidades.Articulo articulo;
         private string idPeriodo;
+        private decimal ventas;
+        private decimal proyectado;
+        private decimal desvio;
         private decimal cantidad1;
         private decimal cantidad2;
         private decimal cantidad3;
@@ -27,9 +31,10 @@ namespace CedForecastWebEntidades
         private decimal cantidad13;
         private decimal cantidad14;
 
-        public Forecast()
+        public RFoPA()
         {
             articulo = new Articulo();
+            cliente = new Cliente();
         }
         public string IdTipoPlanilla
         {
@@ -60,22 +65,29 @@ namespace CedForecastWebEntidades
                 return articulo.GrupoArticulo.Division.Id;
             }
         }
-        public string IdCliente
+        public CedForecastWebEntidades.Cliente Cliente
         {
             set
             {
-                idCliente = value;
+                cliente = value;
             }
             get
             {
-                return idCliente;
+                return cliente;
             }
         }
-        public string DescrArticulo
+        public string IdCliente
         {
             get
             {
-                return articulo.Descr;
+                return cliente.Id;
+            }
+        }
+        public string DescrCliente
+        {
+            get
+            {
+                return cliente.Descr;
             }
         }
         public CedForecastWebEntidades.Articulo Articulo
@@ -89,6 +101,13 @@ namespace CedForecastWebEntidades
                 return articulo;
             }
         }
+        public string DescrArticulo
+        {
+            get
+            {
+                return Articulo.DescrCombo;
+            }
+        }
         public string IdPeriodo
         {
             set
@@ -98,6 +117,39 @@ namespace CedForecastWebEntidades
             get
             {
                 return idPeriodo;
+            }
+        }
+        public decimal Ventas
+        {
+            set
+            {
+                ventas = value;
+            }
+            get
+            {
+                return ventas;
+            }
+        }
+        public decimal Proyectado
+        {
+            set
+            {
+                proyectado = value;
+            }
+            get
+            {
+                return proyectado;
+            }
+        }
+        public decimal Desvio
+        {
+            set
+            {
+                desvio = value;
+            }
+            get
+            {
+                return desvio;
             }
         }
         public decimal Cantidad1

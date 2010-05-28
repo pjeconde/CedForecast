@@ -41,6 +41,18 @@ namespace CedForecastWebEntidades
                 return descr;
             }
         }
+        public string DescrCombo
+        {
+            get
+            {
+                string descripcion = "";
+                if (descr != null && descr != "")
+                {
+                    descripcion = descr + " (" + grupoArticulo.IdGrupoArticulo + " " + id + ")";
+                }
+                return descripcion;
+            }
+        }
         public decimal PesoBruto
         {
             set
