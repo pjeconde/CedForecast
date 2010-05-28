@@ -154,6 +154,27 @@
     <Compile Include="Forecast\ConfirmacionCargaProyectado.aspx.designer.cs">
       <DependentUpon>ConfirmacionCargaProyectado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forecast\Consulta.aspx.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\Consulta.aspx.designer.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\ExploradorForecastProyectado.aspx.cs">
+      <DependentUpon>ExploradorForecastProyectado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ExploradorForecastProyectado.aspx.designer.cs">
+      <DependentUpon>ExploradorForecastProyectado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\ExploradorForecast.aspx.cs">
+      <DependentUpon>ExploradorForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ExploradorForecast.aspx.designer.cs">
+      <DependentUpon>ExploradorForecast.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forecast\Proyectado.aspx.cs">
       <DependentUpon>Proyectado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -297,6 +318,9 @@
     <Content Include="CuentaCambiarPassword.aspx" />
     <Content Include="CuentaConfiguracion.aspx" />
     <Content Include="Forecast\ConfirmacionCargaProyectado.aspx" />
+    <Content Include="Forecast\Consulta.aspx" />
+    <Content Include="Forecast\ExploradorForecastProyectado.aspx" />
+    <Content Include="Forecast\ExploradorForecast.aspx" />
     <Content Include="Forecast\Proyectado.aspx" />
   </ItemGroup>
   <ItemGroup>

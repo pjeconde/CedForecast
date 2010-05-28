@@ -39,6 +39,18 @@ namespace CedForecastWebEntidades
                 return descr;
             }
         }
+        public string DescrCombo
+        {
+            get
+            {
+                string descripcion = "";
+                if (descr != null && descr != "")
+                {
+                    descripcion = descr + " (" + id + ")";
+                }
+                return descripcion;
+            }
+        }
         public CedForecastWebEntidades.Zona Zona
         {
             set

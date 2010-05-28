@@ -35,5 +35,28 @@ namespace CedForecastWebDB
             a.Append("insert Venta select * from VentaAux ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
+        public List<CedForecastWebEntidades.Venta> ConsultarTotales(string PeriodoDsd, string PeriodoHst)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("Select IdArticulo, IdCliente, Sum(Cantidad) as Cantidad from Venta where IdPeriodo >= '" + PeriodoDsd + "' and IdPeriodo < '" + PeriodoHst + "' group by IdArticulo, IdCliente");
+            DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            List<CedForecastWebEntidades.Venta> lista = new List<CedForecastWebEntidades.Venta>();
+            if (dt.Rows.Count != 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastWebEntidades.Venta venta = new CedForecastWebEntidades.Venta();
+                    CopiarVentaTotal(dt.Rows[i], venta);
+                    lista.Add(venta);
+                }
+            }
+            return lista;
+        }
+        private void CopiarVentaTotal(DataRow Desde, CedForecastWebEntidades.Venta Hasta)
+        {
+            Hasta.IdArticulo = Convert.ToString(Desde["IdArticulo"]);
+            Hasta.IdCliente = Convert.ToString(Desde["IdCliente"]);
+            Hasta.Cantidad = Convert.ToDecimal(Desde["Cantidad"]);
+        }
     }
 }

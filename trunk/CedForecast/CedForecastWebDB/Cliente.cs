@@ -32,7 +32,7 @@ namespace CedForecastWebDB
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Cliente.IdCliente, Cliente.DescrCliente, Cliente.IdZona, Cliente.Habilitado, Cliente.FechaUltModif, Zona.DescrZona ");
-            a.Append("from Cliente left outer join Zona on Cliente.IdZona=Zona.IdZona");
+            a.Append("from Cliente left outer join Zona on Cliente.IdZona=Zona.IdZona order by DescrCliente ASC");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Cliente> lista = new List<CedForecastWebEntidades.Cliente>();

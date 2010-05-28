@@ -19,5 +19,27 @@ namespace CedForecastWebRN
             CedForecastWebDB.Periodo periodo = new CedForecastWebDB.Periodo(Sesion);
             periodo.Modificar(Periodo);
         }
+        public static void ValidarPeriodoYYYYMM(string Periodo)
+        {
+            try
+            {
+                DateTime d = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
+            }
+            catch
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo");
+            }
+        }
+        public static void ValidarPeriodoYYYY(string Periodo)
+        {
+            try
+            {
+                DateTime d = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
+            }
+            catch
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo");
+            }
+        }
     }
 }

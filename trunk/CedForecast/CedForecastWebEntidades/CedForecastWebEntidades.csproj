@@ -43,7 +43,7 @@
     <Compile Include="Cuenta.cs" />
     <Compile Include="EstadoCuenta.cs" />
     <Compile Include="Flag.cs" />
-    <Compile Include="Forecast.cs" />
+    <Compile Include="RFoPA.cs" />
     <Compile Include="PaginaDefault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesion.cs" />

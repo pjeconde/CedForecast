@@ -31,7 +31,7 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Articulo.IdArticulo, Articulo.DescrArticulo + ' (' + Articulo.IdGrupoArticulo + ')' as DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
+            a.Append("select Articulo.IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("where GrupoArticulo.IdDivision = '" + Division.Id + "'");
             DataTable dt = new DataTable();

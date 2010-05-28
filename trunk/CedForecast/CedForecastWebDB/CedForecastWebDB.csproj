@@ -42,7 +42,7 @@
     <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />
     <Compile Include="Division.cs" />
-    <Compile Include="Forecast.cs" />
+    <Compile Include="RFoPA.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="db.cs" />
     <Compile Include="Flag.cs" />
