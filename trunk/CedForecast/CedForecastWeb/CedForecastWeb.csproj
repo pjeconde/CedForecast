@@ -268,7 +268,7 @@
       <Project>{B76ED545-1CF6-40BC-A3E1-52C34B0A0EFF}</Project>
       <Name>CaptchaDotNet2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CedEx\CedeiraEx.csproj">
+    <ProjectReference Include="..\CedeiraEx\CedeiraEx.csproj">
       <Project>{883AB19F-36F5-42A4-A1A7-4206F84E7757}</Project>
       <Name>CedeiraEx</Name>
     </ProjectReference>
