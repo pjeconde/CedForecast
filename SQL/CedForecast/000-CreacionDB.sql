@@ -4,6 +4,31 @@ USE CedForecast
 GO
 CREATE ROLE ce_update
 GO
+/****** Objeto:  Table [dbo].[Forecast]    Fecha de la secuencia de comandos: 05/04/2010 14:12:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Forecast](
+	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[Cantidad] [decimal](18, 0) NOT NULL,
+ CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
+(
+	[IdTipoPlanilla] ASC,
+	[IdCuenta] ASC,
+	[IdCliente] ASC,
+	[IdArticulo] ASC,
+	[IdPeriodo] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
 /****** Objeto:  Table [dbo].[WCTbGrupos]    Fecha de la secuencia de comandos: 05/04/2010 10:45:00 ******/
 SET ANSI_NULLS ON
 GO
