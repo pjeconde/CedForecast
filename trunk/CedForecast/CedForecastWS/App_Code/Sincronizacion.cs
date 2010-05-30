@@ -79,10 +79,16 @@ namespace CedForecast.WS
             datos.Actualizar(Elemento);
         }
         [WebMethod]
-        public List<CedForecastWebEntidades.Forecast> RecibirForecast(DateTime Fecha)
+        public List<CedForecastWebEntidades.Forecast> RecibirRollingForecast()
         {
             List<CedForecastWebEntidades.Forecast> lista = new List<CedForecastWebEntidades.Forecast>();
             return lista;
+        }
+        [WebMethod]
+        public List<CedForecastWebEntidades.Forecast> RecibirProyeccionAnual(string Año)
+        {
+            CedForecastWebDB.Forecast datos = new CedForecastWebDB.Forecast(Sesion());
+            return datos.ListaProyeccionAnual(Año);
         }
         private CedEntidades.Sesion Sesion()
         {

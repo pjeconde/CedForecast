@@ -37,7 +37,7 @@ namespace CedForecast
             this.CuentaUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ClienteUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.VentaUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
-            this.ProyeccionUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
+            this.ProyeccionAnualUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ZonaUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.RollingForecastUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,20 +51,20 @@ namespace CedForecast
             this.CuentaUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.ZonaUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.VentaUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
-            this.ProyeccionUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
+            this.ProyeccionAnualUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.RollingForecastUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.VentaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.ProyeccionCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.ProyeccionAnualCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FondoNicePanel
             // 
-            this.FondoNicePanel.Controls.Add(this.ProyeccionCalendarCombo);
+            this.FondoNicePanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.VentaCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.RollingForecastUiProgressBar);
-            this.FondoNicePanel.Controls.Add(this.ProyeccionUiProgressBar);
+            this.FondoNicePanel.Controls.Add(this.ProyeccionAnualUiProgressBar);
             this.FondoNicePanel.Controls.Add(this.VentaUiProgressBar);
             this.FondoNicePanel.Controls.Add(this.ZonaUiProgressBar);
             this.FondoNicePanel.Controls.Add(this.CuentaUiProgressBar);
@@ -78,7 +78,7 @@ namespace CedForecast
             this.FondoNicePanel.Controls.Add(this.label1);
             this.FondoNicePanel.Controls.Add(this.RollingForecastUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.ZonaUiCheckBox);
-            this.FondoNicePanel.Controls.Add(this.ProyeccionUiCheckBox);
+            this.FondoNicePanel.Controls.Add(this.ProyeccionAnualUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.VentaUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.ClienteUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.CuentaUiCheckBox);
@@ -197,18 +197,17 @@ namespace CedForecast
             this.VentaUiCheckBox.UseThemes = false;
             this.VentaUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
-            // ProyeccionUiCheckBox
+            // ProyeccionAnualUiCheckBox
             // 
-            this.ProyeccionUiCheckBox.Enabled = false;
-            this.ProyeccionUiCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.ProyeccionUiCheckBox.Location = new System.Drawing.Point(10, 255);
-            this.ProyeccionUiCheckBox.Name = "ProyeccionUiCheckBox";
-            this.ProyeccionUiCheckBox.ShowFocusRectangle = false;
-            this.ProyeccionUiCheckBox.Size = new System.Drawing.Size(118, 22);
-            this.ProyeccionUiCheckBox.TabIndex = 9018;
-            this.ProyeccionUiCheckBox.Text = "Proyeccion anual";
-            this.ProyeccionUiCheckBox.UseThemes = false;
-            this.ProyeccionUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.ProyeccionAnualUiCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.ProyeccionAnualUiCheckBox.Location = new System.Drawing.Point(10, 255);
+            this.ProyeccionAnualUiCheckBox.Name = "ProyeccionAnualUiCheckBox";
+            this.ProyeccionAnualUiCheckBox.ShowFocusRectangle = false;
+            this.ProyeccionAnualUiCheckBox.Size = new System.Drawing.Size(118, 22);
+            this.ProyeccionAnualUiCheckBox.TabIndex = 9018;
+            this.ProyeccionAnualUiCheckBox.Text = "Proyeccion anual";
+            this.ProyeccionAnualUiCheckBox.UseThemes = false;
+            this.ProyeccionAnualUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
             // ZonaUiCheckBox
             // 
@@ -362,19 +361,19 @@ namespace CedForecast
             this.VentaUiProgressBar.TabIndex = 9031;
             this.VentaUiProgressBar.UseThemes = false;
             // 
-            // ProyeccionUiProgressBar
+            // ProyeccionAnualUiProgressBar
             // 
-            this.ProyeccionUiProgressBar.BackgroundFormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.ProyeccionUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
-            this.ProyeccionUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
-            this.ProyeccionUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.ProyeccionUiProgressBar.Location = new System.Drawing.Point(214, 256);
-            this.ProyeccionUiProgressBar.Name = "ProyeccionUiProgressBar";
-            this.ProyeccionUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.ProyeccionUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
-            this.ProyeccionUiProgressBar.Size = new System.Drawing.Size(129, 20);
-            this.ProyeccionUiProgressBar.TabIndex = 9032;
-            this.ProyeccionUiProgressBar.UseThemes = false;
+            this.ProyeccionAnualUiProgressBar.BackgroundFormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.ProyeccionAnualUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
+            this.ProyeccionAnualUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
+            this.ProyeccionAnualUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.ProyeccionAnualUiProgressBar.Location = new System.Drawing.Point(214, 256);
+            this.ProyeccionAnualUiProgressBar.Name = "ProyeccionAnualUiProgressBar";
+            this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
+            this.ProyeccionAnualUiProgressBar.Size = new System.Drawing.Size(129, 20);
+            this.ProyeccionAnualUiProgressBar.TabIndex = 9032;
+            this.ProyeccionAnualUiProgressBar.UseThemes = false;
             // 
             // RollingForecastUiProgressBar
             // 
@@ -414,29 +413,29 @@ namespace CedForecast
             this.VentaCalendarCombo.TodayButtonText = "Hoy";
             this.VentaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             // 
-            // ProyeccionCalendarCombo
+            // ProyeccionAnualCalendarCombo
             // 
-            this.ProyeccionCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.ProyeccionCalendarCombo.CustomFormat = "yyyy";
-            this.ProyeccionCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            this.ProyeccionAnualCalendarCombo.BackColor = System.Drawing.Color.White;
+            this.ProyeccionAnualCalendarCombo.CustomFormat = "yyyy";
+            this.ProyeccionAnualCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
             // 
-            this.ProyeccionCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 9, 1, 0, 0, 0, 0);
-            this.ProyeccionCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(15, 35);
-            this.ProyeccionCalendarCombo.DropDownCalendar.Name = "";
-            this.ProyeccionCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.ProyeccionCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.ProyeccionCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.ProyeccionCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
-            this.ProyeccionCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.ProyeccionCalendarCombo.Location = new System.Drawing.Point(122, 257);
-            this.ProyeccionCalendarCombo.Name = "ProyeccionCalendarCombo";
-            this.ProyeccionCalendarCombo.Size = new System.Drawing.Size(50, 20);
-            this.ProyeccionCalendarCombo.TabIndex = 9035;
-            this.ProyeccionCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.ProyeccionCalendarCombo.TodayButtonText = "Hoy";
-            this.ProyeccionCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 9, 1, 0, 0, 0, 0);
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(15, 35);
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.Name = "";
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.ProyeccionAnualCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.ProyeccionAnualCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.ProyeccionAnualCalendarCombo.ForeColor = System.Drawing.Color.Black;
+            this.ProyeccionAnualCalendarCombo.Location = new System.Drawing.Point(122, 257);
+            this.ProyeccionAnualCalendarCombo.Name = "ProyeccionAnualCalendarCombo";
+            this.ProyeccionAnualCalendarCombo.Size = new System.Drawing.Size(50, 20);
+            this.ProyeccionAnualCalendarCombo.TabIndex = 9035;
+            this.ProyeccionAnualCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.ProyeccionAnualCalendarCombo.TodayButtonText = "Hoy";
+            this.ProyeccionAnualCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             // 
             // SincronizacionBejermanCedForecastWebForm
             // 
@@ -457,7 +456,7 @@ namespace CedForecast
         protected Janus.Windows.EditControls.UIButton AceptarUiButton;
         private Janus.Windows.EditControls.UICheckBox RollingForecastUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox ZonaUiCheckBox;
-        private Janus.Windows.EditControls.UICheckBox ProyeccionUiCheckBox;
+        private Janus.Windows.EditControls.UICheckBox ProyeccionAnualUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox VentaUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox ClienteUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox CuentaUiCheckBox;
@@ -469,13 +468,13 @@ namespace CedForecast
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private Janus.Windows.EditControls.UIProgressBar RollingForecastUiProgressBar;
-        private Janus.Windows.EditControls.UIProgressBar ProyeccionUiProgressBar;
+        private Janus.Windows.EditControls.UIProgressBar ProyeccionAnualUiProgressBar;
         private Janus.Windows.EditControls.UIProgressBar VentaUiProgressBar;
         private Janus.Windows.EditControls.UIProgressBar ZonaUiProgressBar;
         private Janus.Windows.EditControls.UIProgressBar CuentaUiProgressBar;
         private Janus.Windows.EditControls.UIProgressBar ClienteUiProgressBar;
         private Janus.Windows.EditControls.UIProgressBar ArticuloUIProgressBar;
-        private Janus.Windows.CalendarCombo.CalendarCombo ProyeccionCalendarCombo;
+        private Janus.Windows.CalendarCombo.CalendarCombo ProyeccionAnualCalendarCombo;
         private Janus.Windows.CalendarCombo.CalendarCombo VentaCalendarCombo;
     }
 }

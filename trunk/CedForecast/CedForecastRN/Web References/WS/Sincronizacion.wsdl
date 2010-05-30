@@ -194,17 +194,13 @@
       <s:element name="EnviarZonaResponse">
         <s:complexType />
       </s:element>
-      <s:element name="RecibirForecast">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
-          </s:sequence>
-        </s:complexType>
+      <s:element name="RecibirRollingForecast">
+        <s:complexType />
       </s:element>
-      <s:element name="RecibirForecastResponse">
+      <s:element name="RecibirRollingForecastResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="RecibirForecastResult" type="tns:ArrayOfForecast" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecibirRollingForecastResult" type="tns:ArrayOfForecast" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -217,25 +213,26 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="IdTipoPlanilla" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="IdCuenta" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="tns:Cliente" />
           <s:element minOccurs="0" maxOccurs="1" name="Articulo" type="tns:Articulo" />
           <s:element minOccurs="0" maxOccurs="1" name="IdPeriodo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad1" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad2" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad3" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad4" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad5" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad6" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad7" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad8" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad9" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad10" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad11" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad12" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad13" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Cantidad14" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:decimal" />
         </s:sequence>
       </s:complexType>
+      <s:element name="RecibirProyeccionAnual">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Año" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecibirProyeccionAnualResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecibirProyeccionAnualResult" type="tns:ArrayOfForecast" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="FechaUltimaSincronizacionArticulosSoapIn">
@@ -304,11 +301,17 @@
   <wsdl:message name="EnviarZonaSoapOut">
     <wsdl:part name="parameters" element="tns:EnviarZonaResponse" />
   </wsdl:message>
-  <wsdl:message name="RecibirForecastSoapIn">
-    <wsdl:part name="parameters" element="tns:RecibirForecast" />
+  <wsdl:message name="RecibirRollingForecastSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibirRollingForecast" />
   </wsdl:message>
-  <wsdl:message name="RecibirForecastSoapOut">
-    <wsdl:part name="parameters" element="tns:RecibirForecastResponse" />
+  <wsdl:message name="RecibirRollingForecastSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibirRollingForecastResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecibirProyeccionAnualSoapIn">
+    <wsdl:part name="parameters" element="tns:RecibirProyeccionAnual" />
+  </wsdl:message>
+  <wsdl:message name="RecibirProyeccionAnualSoapOut">
+    <wsdl:part name="parameters" element="tns:RecibirProyeccionAnualResponse" />
   </wsdl:message>
   <wsdl:portType name="SincronizacionSoap">
     <wsdl:operation name="FechaUltimaSincronizacionArticulos">
@@ -355,9 +358,13 @@
       <wsdl:input message="tns:EnviarZonaSoapIn" />
       <wsdl:output message="tns:EnviarZonaSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="RecibirForecast">
-      <wsdl:input message="tns:RecibirForecastSoapIn" />
-      <wsdl:output message="tns:RecibirForecastSoapOut" />
+    <wsdl:operation name="RecibirRollingForecast">
+      <wsdl:input message="tns:RecibirRollingForecastSoapIn" />
+      <wsdl:output message="tns:RecibirRollingForecastSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibirProyeccionAnual">
+      <wsdl:input message="tns:RecibirProyeccionAnualSoapIn" />
+      <wsdl:output message="tns:RecibirProyeccionAnualSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SincronizacionSoap" type="tns:SincronizacionSoap">
@@ -461,8 +468,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RecibirForecast">
-      <soap:operation soapAction="http://cedeira.com.ar/RecibirForecast" style="document" />
+    <wsdl:operation name="RecibirRollingForecast">
+      <soap:operation soapAction="http://cedeira.com.ar/RecibirRollingForecast" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirProyeccionAnual">
+      <soap:operation soapAction="http://cedeira.com.ar/RecibirProyeccionAnual" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -572,8 +588,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RecibirForecast">
-      <soap12:operation soapAction="http://cedeira.com.ar/RecibirForecast" style="document" />
+    <wsdl:operation name="RecibirRollingForecast">
+      <soap12:operation soapAction="http://cedeira.com.ar/RecibirRollingForecast" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirProyeccionAnual">
+      <soap12:operation soapAction="http://cedeira.com.ar/RecibirProyeccionAnual" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
