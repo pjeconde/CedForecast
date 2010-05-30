@@ -51,7 +51,9 @@ namespace CedForecastRN.WS {
         
         private System.Threading.SendOrPostCallback EnviarZonaOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RecibirForecastOperationCompleted;
+        private System.Threading.SendOrPostCallback RecibirRollingForecastOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RecibirProyeccionAnualOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -125,7 +127,10 @@ namespace CedForecastRN.WS {
         public event EnviarZonaCompletedEventHandler EnviarZonaCompleted;
         
         /// <remarks/>
-        public event RecibirForecastCompletedEventHandler RecibirForecastCompleted;
+        public event RecibirRollingForecastCompletedEventHandler RecibirRollingForecastCompleted;
+        
+        /// <remarks/>
+        public event RecibirProyeccionAnualCompletedEventHandler RecibirProyeccionAnualCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/FechaUltimaSincronizacionArticulos", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -428,31 +433,58 @@ namespace CedForecastRN.WS {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/RecibirForecast", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Forecast[] RecibirForecast(System.DateTime Fecha) {
-            object[] results = this.Invoke("RecibirForecast", new object[] {
-                        Fecha});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/RecibirRollingForecast", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Forecast[] RecibirRollingForecast() {
+            object[] results = this.Invoke("RecibirRollingForecast", new object[0]);
             return ((Forecast[])(results[0]));
         }
         
         /// <remarks/>
-        public void RecibirForecastAsync(System.DateTime Fecha) {
-            this.RecibirForecastAsync(Fecha, null);
+        public void RecibirRollingForecastAsync() {
+            this.RecibirRollingForecastAsync(null);
         }
         
         /// <remarks/>
-        public void RecibirForecastAsync(System.DateTime Fecha, object userState) {
-            if ((this.RecibirForecastOperationCompleted == null)) {
-                this.RecibirForecastOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRecibirForecastOperationCompleted);
+        public void RecibirRollingForecastAsync(object userState) {
+            if ((this.RecibirRollingForecastOperationCompleted == null)) {
+                this.RecibirRollingForecastOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRecibirRollingForecastOperationCompleted);
             }
-            this.InvokeAsync("RecibirForecast", new object[] {
-                        Fecha}, this.RecibirForecastOperationCompleted, userState);
+            this.InvokeAsync("RecibirRollingForecast", new object[0], this.RecibirRollingForecastOperationCompleted, userState);
         }
         
-        private void OnRecibirForecastOperationCompleted(object arg) {
-            if ((this.RecibirForecastCompleted != null)) {
+        private void OnRecibirRollingForecastOperationCompleted(object arg) {
+            if ((this.RecibirRollingForecastCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RecibirForecastCompleted(this, new RecibirForecastCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.RecibirRollingForecastCompleted(this, new RecibirRollingForecastCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/RecibirProyeccionAnual", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Forecast[] RecibirProyeccionAnual(string Año) {
+            object[] results = this.Invoke("RecibirProyeccionAnual", new object[] {
+                        Año});
+            return ((Forecast[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RecibirProyeccionAnualAsync(string Año) {
+            this.RecibirProyeccionAnualAsync(Año, null);
+        }
+        
+        /// <remarks/>
+        public void RecibirProyeccionAnualAsync(string Año, object userState) {
+            if ((this.RecibirProyeccionAnualOperationCompleted == null)) {
+                this.RecibirProyeccionAnualOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRecibirProyeccionAnualOperationCompleted);
+            }
+            this.InvokeAsync("RecibirProyeccionAnual", new object[] {
+                        Año}, this.RecibirProyeccionAnualOperationCompleted, userState);
+        }
+        
+        private void OnRecibirProyeccionAnualOperationCompleted(object arg) {
+            if ((this.RecibirProyeccionAnualCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RecibirProyeccionAnualCompleted(this, new RecibirProyeccionAnualCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -658,39 +690,13 @@ namespace CedForecastRN.WS {
         
         private string idCuentaField;
         
-        private string idClienteField;
+        private Cliente clienteField;
         
         private Articulo articuloField;
         
         private string idPeriodoField;
         
-        private decimal cantidad1Field;
-        
-        private decimal cantidad2Field;
-        
-        private decimal cantidad3Field;
-        
-        private decimal cantidad4Field;
-        
-        private decimal cantidad5Field;
-        
-        private decimal cantidad6Field;
-        
-        private decimal cantidad7Field;
-        
-        private decimal cantidad8Field;
-        
-        private decimal cantidad9Field;
-        
-        private decimal cantidad10Field;
-        
-        private decimal cantidad11Field;
-        
-        private decimal cantidad12Field;
-        
-        private decimal cantidad13Field;
-        
-        private decimal cantidad14Field;
+        private decimal cantidadField;
         
         /// <comentarios/>
         public string IdTipoPlanilla {
@@ -713,12 +719,12 @@ namespace CedForecastRN.WS {
         }
         
         /// <comentarios/>
-        public string IdCliente {
+        public Cliente Cliente {
             get {
-                return this.idClienteField;
+                return this.clienteField;
             }
             set {
-                this.idClienteField = value;
+                this.clienteField = value;
             }
         }
         
@@ -743,256 +749,12 @@ namespace CedForecastRN.WS {
         }
         
         /// <comentarios/>
-        public decimal Cantidad1 {
-            get {
-                return this.cantidad1Field;
-            }
-            set {
-                this.cantidad1Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad2 {
-            get {
-                return this.cantidad2Field;
-            }
-            set {
-                this.cantidad2Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad3 {
-            get {
-                return this.cantidad3Field;
-            }
-            set {
-                this.cantidad3Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad4 {
-            get {
-                return this.cantidad4Field;
-            }
-            set {
-                this.cantidad4Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad5 {
-            get {
-                return this.cantidad5Field;
-            }
-            set {
-                this.cantidad5Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad6 {
-            get {
-                return this.cantidad6Field;
-            }
-            set {
-                this.cantidad6Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad7 {
-            get {
-                return this.cantidad7Field;
-            }
-            set {
-                this.cantidad7Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad8 {
-            get {
-                return this.cantidad8Field;
-            }
-            set {
-                this.cantidad8Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad9 {
-            get {
-                return this.cantidad9Field;
-            }
-            set {
-                this.cantidad9Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad10 {
-            get {
-                return this.cantidad10Field;
-            }
-            set {
-                this.cantidad10Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad11 {
-            get {
-                return this.cantidad11Field;
-            }
-            set {
-                this.cantidad11Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad12 {
-            get {
-                return this.cantidad12Field;
-            }
-            set {
-                this.cantidad12Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad13 {
-            get {
-                return this.cantidad13Field;
-            }
-            set {
-                this.cantidad13Field = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public decimal Cantidad14 {
-            get {
-                return this.cantidad14Field;
-            }
-            set {
-                this.cantidad14Field = value;
-            }
-        }
-    }
-    
-    /// <comentarios/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
-    public partial class Venta {
-        
-        private string idPeriodoField;
-        
-        private string idArticuloField;
-        
-        private string idClienteField;
-        
-        private decimal cantidadField;
-        
-        /// <comentarios/>
-        public string IdPeriodo {
-            get {
-                return this.idPeriodoField;
-            }
-            set {
-                this.idPeriodoField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public string IdArticulo {
-            get {
-                return this.idArticuloField;
-            }
-            set {
-                this.idArticuloField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public string IdCliente {
-            get {
-                return this.idClienteField;
-            }
-            set {
-                this.idClienteField = value;
-            }
-        }
-        
-        /// <comentarios/>
         public decimal Cantidad {
             get {
                 return this.cantidadField;
             }
             set {
                 this.cantidadField = value;
-            }
-        }
-    }
-    
-    /// <comentarios/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
-    public partial class Zona {
-        
-        private string idField;
-        
-        private string descrField;
-        
-        private bool habilitadaField;
-        
-        private System.DateTime fechaUltModifField;
-        
-        /// <comentarios/>
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public string Descr {
-            get {
-                return this.descrField;
-            }
-            set {
-                this.descrField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public bool Habilitada {
-            get {
-                return this.habilitadaField;
-            }
-            set {
-                this.habilitadaField = value;
-            }
-        }
-        
-        /// <comentarios/>
-        public System.DateTime FechaUltModif {
-            get {
-                return this.fechaUltModifField;
-            }
-            set {
-                this.fechaUltModifField = value;
             }
         }
     }
@@ -1062,6 +824,120 @@ namespace CedForecastRN.WS {
             }
             set {
                 this.fechaUltModifField = value;
+            }
+        }
+    }
+    
+    /// <comentarios/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
+    public partial class Zona {
+        
+        private string idField;
+        
+        private string descrField;
+        
+        private bool habilitadaField;
+        
+        private System.DateTime fechaUltModifField;
+        
+        /// <comentarios/>
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string Descr {
+            get {
+                return this.descrField;
+            }
+            set {
+                this.descrField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public bool Habilitada {
+            get {
+                return this.habilitadaField;
+            }
+            set {
+                this.habilitadaField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public System.DateTime FechaUltModif {
+            get {
+                return this.fechaUltModifField;
+            }
+            set {
+                this.fechaUltModifField = value;
+            }
+        }
+    }
+    
+    /// <comentarios/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
+    public partial class Venta {
+        
+        private string idPeriodoField;
+        
+        private string idArticuloField;
+        
+        private string idClienteField;
+        
+        private decimal cantidadField;
+        
+        /// <comentarios/>
+        public string IdPeriodo {
+            get {
+                return this.idPeriodoField;
+            }
+            set {
+                this.idPeriodoField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string IdArticulo {
+            get {
+                return this.idArticuloField;
+            }
+            set {
+                this.idArticuloField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string IdCliente {
+            get {
+                return this.idClienteField;
+            }
+            set {
+                this.idClienteField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public decimal Cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                this.cantidadField = value;
             }
         }
     }
@@ -1536,17 +1412,43 @@ namespace CedForecastRN.WS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void RecibirForecastCompletedEventHandler(object sender, RecibirForecastCompletedEventArgs e);
+    public delegate void RecibirRollingForecastCompletedEventHandler(object sender, RecibirRollingForecastCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class RecibirForecastCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class RecibirRollingForecastCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal RecibirForecastCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal RecibirRollingForecastCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Forecast[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Forecast[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void RecibirProyeccionAnualCompletedEventHandler(object sender, RecibirProyeccionAnualCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RecibirProyeccionAnualCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RecibirProyeccionAnualCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

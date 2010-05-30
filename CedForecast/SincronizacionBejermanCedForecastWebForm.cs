@@ -115,6 +115,40 @@ namespace CedForecast
                     BarraDesactivar(ZonaUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                if (ProyeccionAnualUiCheckBox.Checked)
+                {
+                    BarraActivar(ProyeccionAnualUiProgressBar);
+                    CedForecastRN.ProyeccionAnual proceso = new CedForecastRN.ProyeccionAnual(Aplicacion.Sesion, cedForecastWSURL, ProyeccionAnualCalendarCombo.Value.Year.ToString());
+                    thread = new Thread(new ThreadStart(proceso.RecibirNovedades));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(ProyeccionAnualUiProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(cantidadMilisegundos);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    } 
+                    BarraDesactivar(ProyeccionAnualUiProgressBar);
+                    seChequeoAlgo = true;
+                }
+                if (RollingForecastUiCheckBox.Checked)
+                {
+                    BarraActivar(RollingForecastUiProgressBar);
+                    CedForecastRN.RollingForecast proceso = new CedForecastRN.RollingForecast(Aplicacion.Sesion, cedForecastWSURL);
+                    thread = new Thread(new ThreadStart(proceso.RecibirNovedades));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(RollingForecastUiProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(cantidadMilisegundos);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    BarraDesactivar(RollingForecastUiProgressBar);
+                    seChequeoAlgo = true;
+                }
                 if (!seChequeoAlgo)
                 {
                     MessageBox.Show("Elija el elemento que desea sincronizar", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);

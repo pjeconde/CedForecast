@@ -38,6 +38,7 @@
     <Compile Include="BejermanVendedor.cs" />
     <Compile Include="BejermanVentas.cs" />
     <Compile Include="BejermanZona.cs" />
+    <Compile Include="Forecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

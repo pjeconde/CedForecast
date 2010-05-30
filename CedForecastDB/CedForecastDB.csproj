@@ -40,6 +40,7 @@
     <Compile Include="BejermanVentas.cs" />
     <Compile Include="BejermanZona.cs" />
     <Compile Include="db.cs" />
+    <Compile Include="Forecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
