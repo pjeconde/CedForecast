@@ -8,29 +8,33 @@ namespace CedForecastRN
     {
         private CedEntidades.Sesion sesion;
         private string cedForecastWSRUL;
+        private string periodo;
 
-        public RollingForecast(CedEntidades.Sesion Sesion, string CedForecastWSRUL)
+        public RollingForecast(CedEntidades.Sesion Sesion, string CedForecastWSRUL, string Periodo)
         {
             sesion = Sesion;
             cedForecastWSRUL = CedForecastWSRUL;
+            periodo = Periodo;
         }
         public void RecibirNovedades()
         {
             WS.Sincronizacion ws = new WS.Sincronizacion();
             ws.Url = cedForecastWSRUL;
-            DateTime fechaUltimaSincronizacion = ws.FechaUltimaSincronizacionZonas();
-            CedForecastDB.Bejerman.Zona datos = new CedForecastDB.Bejerman.Zona(sesion);
-            List<CedForecastEntidades.Bejerman.Zona> lista = datos.LeerNovedades(fechaUltimaSincronizacion);
+            WS.Forecast[] lista = ws.RecibirRollingForecast(periodo);
             contador = 0;
-            contadorTope = lista.Count;
+            contadorTope = lista.Length;
+            CedForecastDB.Forecast db = new CedForecastDB.Forecast(sesion);
+            db.EliminarRollingForecast(periodo);
             for (contador = 0; contador < contadorTope; contador++)
             {
-                WS.Zona elemento = new WS.Zona();
-                elemento.Id = lista[contador].Zon_Cod;
-                elemento.Descr = lista[contador].Zon_Desc;
-                elemento.Habilitada = true;
-                elemento.FechaUltModif = lista[contador].Zon_FecMod;
-                ws.EnviarZona(elemento);
+                CedForecastEntidades.Forecast elemento = new CedForecastEntidades.Forecast();
+                elemento.IdTipoPlanilla = lista[contador].IdTipoPlanilla;
+                elemento.IdCuenta = lista[contador].IdCuenta;
+                elemento.IdCliente = lista[contador].Cliente.Id;
+                elemento.IdArticulo = lista[contador].Articulo.Id;
+                elemento.IdPeriodo = lista[contador].IdPeriodo;
+                elemento.Cantidad = lista[contador].Cantidad;
+                db.Crear(elemento);
             }
         }
     }

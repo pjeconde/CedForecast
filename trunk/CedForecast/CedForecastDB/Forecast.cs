@@ -17,6 +17,12 @@ namespace CedForecastDB
             a.Append("delete Forecast where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdPeriodo='" + Año + "' ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
+        public void EliminarRollingForecast(string Periodo)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("delete Forecast where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdPeriodo>='" + Periodo + "' ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
+        }
         public void Crear(CedForecastEntidades.Forecast Elemento)
         {
             System.Text.StringBuilder a = new StringBuilder();
