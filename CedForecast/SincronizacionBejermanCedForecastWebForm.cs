@@ -135,7 +135,7 @@ namespace CedForecast
                 if (RollingForecastUiCheckBox.Checked)
                 {
                     BarraActivar(RollingForecastUiProgressBar);
-                    CedForecastRN.RollingForecast proceso = new CedForecastRN.RollingForecast(Aplicacion.Sesion, cedForecastWSURL);
+                    CedForecastRN.RollingForecast proceso = new CedForecastRN.RollingForecast(Aplicacion.Sesion, cedForecastWSURL, RollingForecastCalendarCombo.Value.ToString("yyyyMM"));
                     thread = new Thread(new ThreadStart(proceso.RecibirNovedades));
                     thread.Start();
                     while (true)

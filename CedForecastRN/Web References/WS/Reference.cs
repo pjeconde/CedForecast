@@ -434,22 +434,24 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/RecibirRollingForecast", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Forecast[] RecibirRollingForecast() {
-            object[] results = this.Invoke("RecibirRollingForecast", new object[0]);
+        public Forecast[] RecibirRollingForecast(string Periodo) {
+            object[] results = this.Invoke("RecibirRollingForecast", new object[] {
+                        Periodo});
             return ((Forecast[])(results[0]));
         }
         
         /// <remarks/>
-        public void RecibirRollingForecastAsync() {
-            this.RecibirRollingForecastAsync(null);
+        public void RecibirRollingForecastAsync(string Periodo) {
+            this.RecibirRollingForecastAsync(Periodo, null);
         }
         
         /// <remarks/>
-        public void RecibirRollingForecastAsync(object userState) {
+        public void RecibirRollingForecastAsync(string Periodo, object userState) {
             if ((this.RecibirRollingForecastOperationCompleted == null)) {
                 this.RecibirRollingForecastOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRecibirRollingForecastOperationCompleted);
             }
-            this.InvokeAsync("RecibirRollingForecast", new object[0], this.RecibirRollingForecastOperationCompleted, userState);
+            this.InvokeAsync("RecibirRollingForecast", new object[] {
+                        Periodo}, this.RecibirRollingForecastOperationCompleted, userState);
         }
         
         private void OnRecibirRollingForecastOperationCompleted(object arg) {

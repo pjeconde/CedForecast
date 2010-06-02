@@ -55,12 +55,14 @@ namespace CedForecast
             this.RollingForecastUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.VentaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.ProyeccionAnualCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.RollingForecastCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FondoNicePanel
             // 
+            this.FondoNicePanel.Controls.Add(this.RollingForecastCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.VentaCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.RollingForecastUiProgressBar);
@@ -223,12 +225,11 @@ namespace CedForecast
             // 
             // RollingForecastUiCheckBox
             // 
-            this.RollingForecastUiCheckBox.Enabled = false;
             this.RollingForecastUiCheckBox.ForeColor = System.Drawing.Color.Navy;
             this.RollingForecastUiCheckBox.Location = new System.Drawing.Point(10, 281);
             this.RollingForecastUiCheckBox.Name = "RollingForecastUiCheckBox";
             this.RollingForecastUiCheckBox.ShowFocusRectangle = false;
-            this.RollingForecastUiCheckBox.Size = new System.Drawing.Size(118, 22);
+            this.RollingForecastUiCheckBox.Size = new System.Drawing.Size(108, 22);
             this.RollingForecastUiCheckBox.TabIndex = 9020;
             this.RollingForecastUiCheckBox.Text = "Rolling Forecast";
             this.RollingForecastUiCheckBox.UseThemes = false;
@@ -429,13 +430,37 @@ namespace CedForecast
             this.ProyeccionAnualCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.ProyeccionAnualCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
             this.ProyeccionAnualCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.ProyeccionAnualCalendarCombo.Location = new System.Drawing.Point(122, 257);
+            this.ProyeccionAnualCalendarCombo.Location = new System.Drawing.Point(122, 255);
             this.ProyeccionAnualCalendarCombo.Name = "ProyeccionAnualCalendarCombo";
             this.ProyeccionAnualCalendarCombo.Size = new System.Drawing.Size(50, 20);
             this.ProyeccionAnualCalendarCombo.TabIndex = 9035;
             this.ProyeccionAnualCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
             this.ProyeccionAnualCalendarCombo.TodayButtonText = "Hoy";
             this.ProyeccionAnualCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
+            // RollingForecastCalendarCombo
+            // 
+            this.RollingForecastCalendarCombo.BackColor = System.Drawing.Color.White;
+            this.RollingForecastCalendarCombo.CustomFormat = "MM/yyyy";
+            this.RollingForecastCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.RollingForecastCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 9, 1, 0, 0, 0, 0);
+            this.RollingForecastCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(15, 35);
+            this.RollingForecastCalendarCombo.DropDownCalendar.Name = "";
+            this.RollingForecastCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.RollingForecastCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.RollingForecastCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.RollingForecastCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.RollingForecastCalendarCombo.ForeColor = System.Drawing.Color.Black;
+            this.RollingForecastCalendarCombo.Location = new System.Drawing.Point(122, 281);
+            this.RollingForecastCalendarCombo.Name = "RollingForecastCalendarCombo";
+            this.RollingForecastCalendarCombo.Size = new System.Drawing.Size(70, 20);
+            this.RollingForecastCalendarCombo.TabIndex = 9036;
+            this.RollingForecastCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.RollingForecastCalendarCombo.TodayButtonText = "Hoy";
+            this.RollingForecastCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             // 
             // SincronizacionBejermanCedForecastWebForm
             // 
@@ -476,5 +501,6 @@ namespace CedForecast
         private Janus.Windows.EditControls.UIProgressBar ArticuloUIProgressBar;
         private Janus.Windows.CalendarCombo.CalendarCombo ProyeccionAnualCalendarCombo;
         private Janus.Windows.CalendarCombo.CalendarCombo VentaCalendarCombo;
+        private Janus.Windows.CalendarCombo.CalendarCombo RollingForecastCalendarCombo;
     }
 }
