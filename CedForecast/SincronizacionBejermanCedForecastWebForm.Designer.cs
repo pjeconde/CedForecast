@@ -56,12 +56,14 @@ namespace CedForecast
             this.VentaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.ProyeccionAnualCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.RollingForecastCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.label7 = new System.Windows.Forms.Label();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FondoNicePanel
             // 
+            this.FondoNicePanel.Controls.Add(this.label7);
             this.FondoNicePanel.Controls.Add(this.RollingForecastCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
             this.FondoNicePanel.Controls.Add(this.VentaCalendarCombo);
@@ -86,7 +88,7 @@ namespace CedForecast
             this.FondoNicePanel.Controls.Add(this.CuentaUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.ArticuloUiCheckBox);
             this.FondoNicePanel.Controls.Add(this.BotonesPanel);
-            this.FondoNicePanel.Size = new System.Drawing.Size(361, 355);
+            this.FondoNicePanel.Size = new System.Drawing.Size(384, 355);
             // 
             // BotonesPanel
             // 
@@ -97,7 +99,7 @@ namespace CedForecast
             this.BotonesPanel.Location = new System.Drawing.Point(0, 320);
             this.BotonesPanel.Name = "BotonesPanel";
             this.BotonesPanel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.BotonesPanel.Size = new System.Drawing.Size(361, 35);
+            this.BotonesPanel.Size = new System.Drawing.Size(384, 35);
             this.BotonesPanel.TabIndex = 9001;
             // 
             // OtrosBotonesPanel
@@ -105,7 +107,7 @@ namespace CedForecast
             this.OtrosBotonesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OtrosBotonesPanel.Location = new System.Drawing.Point(104, 5);
             this.OtrosBotonesPanel.Name = "OtrosBotonesPanel";
-            this.OtrosBotonesPanel.Size = new System.Drawing.Size(175, 25);
+            this.OtrosBotonesPanel.Size = new System.Drawing.Size(198, 25);
             this.OtrosBotonesPanel.TabIndex = 2;
             // 
             // SalirUiButton
@@ -117,7 +119,7 @@ namespace CedForecast
             this.SalirUiButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(279, 5);
+            this.SalirUiButton.Location = new System.Drawing.Point(302, 5);
             this.SalirUiButton.Name = "SalirUiButton";
             this.SalirUiButton.ShowFocusRectangle = false;
             this.SalirUiButton.Size = new System.Drawing.Size(72, 25);
@@ -229,7 +231,7 @@ namespace CedForecast
             this.RollingForecastUiCheckBox.Location = new System.Drawing.Point(10, 281);
             this.RollingForecastUiCheckBox.Name = "RollingForecastUiCheckBox";
             this.RollingForecastUiCheckBox.ShowFocusRectangle = false;
-            this.RollingForecastUiCheckBox.Size = new System.Drawing.Size(108, 22);
+            this.RollingForecastUiCheckBox.Size = new System.Drawing.Size(107, 22);
             this.RollingForecastUiCheckBox.TabIndex = 9020;
             this.RollingForecastUiCheckBox.Text = "Rolling Forecast";
             this.RollingForecastUiCheckBox.UseThemes = false;
@@ -298,7 +300,7 @@ namespace CedForecast
             this.ArticuloUIProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.ArticuloUIProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.ArticuloUIProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.ArticuloUIProgressBar.Location = new System.Drawing.Point(214, 72);
+            this.ArticuloUIProgressBar.Location = new System.Drawing.Point(240, 72);
             this.ArticuloUIProgressBar.Name = "ArticuloUIProgressBar";
             this.ArticuloUIProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.ArticuloUIProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -312,7 +314,7 @@ namespace CedForecast
             this.ClienteUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.ClienteUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.ClienteUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.ClienteUiProgressBar.Location = new System.Drawing.Point(214, 100);
+            this.ClienteUiProgressBar.Location = new System.Drawing.Point(240, 100);
             this.ClienteUiProgressBar.Name = "ClienteUiProgressBar";
             this.ClienteUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.ClienteUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -326,7 +328,7 @@ namespace CedForecast
             this.CuentaUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.CuentaUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.CuentaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.CuentaUiProgressBar.Location = new System.Drawing.Point(214, 128);
+            this.CuentaUiProgressBar.Location = new System.Drawing.Point(240, 128);
             this.CuentaUiProgressBar.Name = "CuentaUiProgressBar";
             this.CuentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.CuentaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -340,7 +342,7 @@ namespace CedForecast
             this.ZonaUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.ZonaUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.ZonaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.ZonaUiProgressBar.Location = new System.Drawing.Point(214, 184);
+            this.ZonaUiProgressBar.Location = new System.Drawing.Point(240, 184);
             this.ZonaUiProgressBar.Name = "ZonaUiProgressBar";
             this.ZonaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.ZonaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -354,7 +356,7 @@ namespace CedForecast
             this.VentaUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.VentaUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.VentaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.VentaUiProgressBar.Location = new System.Drawing.Point(214, 158);
+            this.VentaUiProgressBar.Location = new System.Drawing.Point(240, 158);
             this.VentaUiProgressBar.Name = "VentaUiProgressBar";
             this.VentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.VentaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -368,7 +370,7 @@ namespace CedForecast
             this.ProyeccionAnualUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.ProyeccionAnualUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.ProyeccionAnualUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.ProyeccionAnualUiProgressBar.Location = new System.Drawing.Point(214, 256);
+            this.ProyeccionAnualUiProgressBar.Location = new System.Drawing.Point(240, 256);
             this.ProyeccionAnualUiProgressBar.Name = "ProyeccionAnualUiProgressBar";
             this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -382,7 +384,7 @@ namespace CedForecast
             this.RollingForecastUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
             this.RollingForecastUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
             this.RollingForecastUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.RollingForecastUiProgressBar.Location = new System.Drawing.Point(214, 282);
+            this.RollingForecastUiProgressBar.Location = new System.Drawing.Point(240, 282);
             this.RollingForecastUiProgressBar.Name = "RollingForecastUiProgressBar";
             this.RollingForecastUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.RollingForecastUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
@@ -454,7 +456,7 @@ namespace CedForecast
             this.RollingForecastCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.RollingForecastCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
             this.RollingForecastCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.RollingForecastCalendarCombo.Location = new System.Drawing.Point(122, 281);
+            this.RollingForecastCalendarCombo.Location = new System.Drawing.Point(159, 281);
             this.RollingForecastCalendarCombo.Name = "RollingForecastCalendarCombo";
             this.RollingForecastCalendarCombo.Size = new System.Drawing.Size(70, 20);
             this.RollingForecastCalendarCombo.TabIndex = 9036;
@@ -462,9 +464,19 @@ namespace CedForecast
             this.RollingForecastCalendarCombo.TodayButtonText = "Hoy";
             this.RollingForecastCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(123, 285);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.TabIndex = 9037;
+            this.label7.Text = "desde";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // SincronizacionBejermanCedForecastWebForm
             // 
-            this.ClientSize = new System.Drawing.Size(361, 355);
+            this.ClientSize = new System.Drawing.Size(384, 355);
             this.Name = "SincronizacionBejermanCedForecastWebForm";
             this.FondoNicePanel.ResumeLayout(false);
             this.FondoNicePanel.PerformLayout();
@@ -502,5 +514,6 @@ namespace CedForecast
         private Janus.Windows.CalendarCombo.CalendarCombo ProyeccionAnualCalendarCombo;
         private Janus.Windows.CalendarCombo.CalendarCombo VentaCalendarCombo;
         private Janus.Windows.CalendarCombo.CalendarCombo RollingForecastCalendarCombo;
+        private System.Windows.Forms.Label label7;
     }
 }
