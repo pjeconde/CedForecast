@@ -9,11 +9,11 @@ using System.Threading;
 
 namespace CedForecast
 {
-    public partial class SincronizacionBejermanCedForecastWebForm : Cedeira.UI.frmBase
+    public partial class SincronizacionForm : Cedeira.UI.frmBase
     {
         private Thread thread;
 
-        public SincronizacionBejermanCedForecastWebForm(string Titulo) : base(Titulo)
+        public SincronizacionForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
             DateTime aux = DateTime.Now;

@@ -245,11 +245,11 @@ namespace CedForecast
             this.SincronizaciónUiButton.Location = new System.Drawing.Point(5, 44);
             this.SincronizaciónUiButton.Name = "SincronizaciónUiButton";
             this.SincronizaciónUiButton.ShowFocusRectangle = false;
-            this.SincronizaciónUiButton.Size = new System.Drawing.Size(254, 24);
+            this.SincronizaciónUiButton.Size = new System.Drawing.Size(104, 24);
             this.SincronizaciónUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SincronizaciónUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.SincronizaciónUiButton.TabIndex = 135;
-            this.SincronizaciónUiButton.Text = "Sincronización Bejerman - CedForecastWeb";
+            this.SincronizaciónUiButton.Text = "Sincronización";
             this.SincronizaciónUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.SincronizaciónUiButton.UseThemes = false;
             this.SincronizaciónUiButton.Click += new System.EventHandler(this.SincronizaciónUiButton_Click);
