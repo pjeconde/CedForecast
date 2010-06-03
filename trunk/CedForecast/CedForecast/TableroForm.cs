@@ -22,7 +22,7 @@ namespace CedForecast
 
         private void SincronizaciónUiButton_Click(object sender, EventArgs e)
         {
-            SincronizacionBejermanCedForecastWebForm frm = new SincronizacionBejermanCedForecastWebForm(((Janus.Windows.EditControls.UIButton)sender).Text);
+            SincronizacionForm frm = new SincronizacionForm(((Janus.Windows.EditControls.UIButton)sender).Text);
             frm.ShowDialog();
         }
     }

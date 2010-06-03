@@ -10,7 +10,8 @@
     <RootNamespace>CedForecast</RootNamespace>
     <AssemblyName>CedForecast</AssemblyName>
     <StartupObject>CedForecast.Aplicacion</StartupObject>
-    <ApplicationIcon>Cedeira.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,11 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RecursoIncrustado.cs" />
-    <Compile Include="SincronizacionBejermanCedForecastWebForm.cs">
+    <Compile Include="SincronizacionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SincronizacionBejermanCedForecastWebForm.Designer.cs">
-      <DependentUpon>SincronizacionBejermanCedForecastWebForm.cs</DependentUpon>
+    <Compile Include="SincronizacionForm.Designer.cs">
+      <DependentUpon>SincronizacionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,9 +87,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SincronizacionBejermanCedForecastWebForm.resx">
+    <EmbeddedResource Include="SincronizacionForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SincronizacionBejermanCedForecastWebForm.cs</DependentUpon>
+      <DependentUpon>SincronizacionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableroForm.resx">
       <DependentUpon>TableroForm.cs</DependentUpon>
@@ -121,11 +122,12 @@
     <None Include="ConfigFiles\connectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cedeira.ico" />
-    <Content Include="Iconos\back_16.ico" />
-    <Content Include="Iconos\close_16.ico" />
-    <Content Include="Iconos\forwd_16.ico" />
-    <Content Include="Iconos\wiz_16.ico" />
+    <Content Include="Imagenes\back_16.ico" />
+    <Content Include="Imagenes\Cedeira.ico" />
+    <Content Include="Imagenes\close_16.ico" />
+    <Content Include="Imagenes\forwd_16.ico" />
+    <Content Include="Imagenes\Sincronizacion.png" />
+    <Content Include="Imagenes\wiz_16.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CedeiraAP\CedeiraAP.csproj">
