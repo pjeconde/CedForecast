@@ -535,6 +535,7 @@ namespace CedForecast
             // TableroForm
             // 
             this.ClientSize = new System.Drawing.Size(785, 537);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TableroForm";
             this.FondoNicePanel.ResumeLayout(false);
             this.BarraEstado.ResumeLayout(false);
