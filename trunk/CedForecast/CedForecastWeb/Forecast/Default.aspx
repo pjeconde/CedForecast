@@ -174,6 +174,13 @@
 														        <ItemStyle HorizontalAlign="Left" />
                                                                 <HeaderStyle Font-Bold="False" />
 													        </asp:TemplateField>
+													        <asp:TemplateField HeaderText="Proyectado" HeaderStyle-HorizontalAlign="Right">
+														        <ItemTemplate>
+															        <asp:Label ID="lblProyectado" runat="server" Text='<%# Eval("Proyectado") %>' Width="100px" SkinID="TextoMedianoEdit"></asp:Label>
+														        </ItemTemplate>
+														        <ItemStyle HorizontalAlign="Right" />
+                                                                <HeaderStyle Font-Bold="False" Width="100px" />
+													        </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Ventas" HeaderStyle-HorizontalAlign="Right">
 														        <ItemTemplate>
 															        <asp:Label ID="lblVentas" runat="server" Text='<%# Eval("Ventas") %>' Width="100px" SkinID="TextoMedianoEdit"></asp:Label>
@@ -181,9 +188,9 @@
 														        <ItemStyle HorizontalAlign="Right" />
                                                                 <HeaderStyle Font-Bold="False" Width="100px" />
 													        </asp:TemplateField>
-													        <asp:TemplateField HeaderText="Proyectado" HeaderStyle-HorizontalAlign="Right">
+													        <asp:TemplateField HeaderText="Desvio" HeaderStyle-HorizontalAlign="Right">
 														        <ItemTemplate>
-															        <asp:Label ID="lblProyectado" runat="server" Text='<%# Eval("Proyectado") %>' Width="100px" SkinID="TextoMedianoEdit"></asp:Label>
+															        <asp:Label ID="lblDesvio" runat="server" Text='<%# Eval("Desvio") %>' Width="100px" SkinID="TextoMedianoEdit"></asp:Label>
 														        </ItemTemplate>
 														        <ItemStyle HorizontalAlign="Right" />
                                                                 <HeaderStyle Font-Bold="False" Width="100px" />

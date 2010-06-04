@@ -15,7 +15,7 @@ namespace CedForecastWebEntidades
         private string idPeriodo;
         private decimal ventas;
         private decimal proyectado;
-        private decimal desvio;
+        private int cantidadMesesParaDesvio;
         private decimal cantidad1;
         private decimal cantidad2;
         private decimal cantidad3;
@@ -141,15 +141,65 @@ namespace CedForecastWebEntidades
                 return proyectado;
             }
         }
-        public decimal Desvio
+        public int CantidadMesesParaDesvio
         {
             set
             {
-                desvio = value;
+                cantidadMesesParaDesvio = value;
             }
             get
             {
-                return desvio;
+                return cantidadMesesParaDesvio;
+            }
+        }
+        public decimal Desvio
+        {
+            get
+            {
+                decimal suma = 0;
+                for (int i = 1; i <= cantidadMesesParaDesvio; i++)
+                {
+                    switch (i)
+                    {
+                        case 1:
+                            suma += cantidad1;
+                            break;
+                        case 2:
+                            suma += cantidad2;
+                            break;
+                        case 3:
+                            suma += cantidad3;
+                            break;
+                        case 4:
+                            suma += cantidad4;
+                            break;
+                        case 5:
+                            suma += cantidad5;
+                            break;
+                        case 6:
+                            suma += cantidad6;
+                            break;
+                        case 7:
+                            suma += cantidad7;
+                            break;
+                        case 8:
+                            suma += cantidad8;
+                            break;
+                        case 9:
+                            suma += cantidad9;
+                            break;
+                        case 10:
+                            suma += cantidad10;
+                            break;
+                        case 11:
+                            suma += cantidad11;
+                            break;
+                        case 12:
+                            suma += cantidad12;
+                            break;
+                    }
+                }
+                return proyectado - ventas - suma;
             }
         }
         public decimal Cantidad1
