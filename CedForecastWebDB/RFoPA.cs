@@ -106,7 +106,6 @@ namespace CedForecastWebDB
                             {
                                 forecast.Proyectado = totalProyectado.Proyectado;
                             }
-
                         }
                     }
                     CopiarDet(dt.Rows[i], forecast, mes);
@@ -116,7 +115,7 @@ namespace CedForecastWebDB
             cantidadFilas = lista.Count;
             return lista;
         }
-        private List<CedForecastWebEntidades.RFoPA> TotalProyectado(CedForecastWebEntidades.RFoPA Forecast)
+        public List<CedForecastWebEntidades.RFoPA> TotalProyectado(CedForecastWebEntidades.RFoPA Forecast)
         { 
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
@@ -166,6 +165,10 @@ namespace CedForecastWebDB
             Hasta.Articulo.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
             Hasta.Articulo.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
             Hasta.IdPeriodo = PeriodoInicial;
+            if (Hasta.IdTipoPlanilla == "RollingForecast")
+            {
+                Hasta.CantidadMesesParaDesvio = 13 - Convert.ToInt32(PeriodoInicial.Substring(4, 2));
+            }
         }
         private void CopiarDet(DataRow Desde, CedForecastWebEntidades.RFoPA Hasta, int Mes)
         {

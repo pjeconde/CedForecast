@@ -55,7 +55,7 @@ namespace CedForecastWeb.Forecast
                         DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
                         
                         FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
-                        int colFijas = 4;
+                        int colFijas = 5;
                         for (int i = 1; i <= 12; i++)
                         {
                             detalleGridView.Columns[i+colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
@@ -378,6 +378,15 @@ namespace CedForecastWeb.Forecast
                         l.Ventas = venta.Cantidad;
                     }
 
+                    List<CedForecastWebEntidades.RFoPA> totalProyectadoLista = new List<CedForecastWebEntidades.RFoPA>();
+                    totalProyectadoLista = CedForecastWebRN.RFoPA.TotalProyectado(l, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                    CedForecastWebEntidades.RFoPA totalProyectado = new CedForecastWebEntidades.RFoPA();
+                    totalProyectado = totalProyectadoLista.Find((delegate(CedForecastWebEntidades.RFoPA e1) { return e1.IdCliente == l.IdCliente && e1.Articulo.Id == l.Articulo.Id; }));
+                    if (totalProyectado != null)
+                    {
+                        l.Proyectado = totalProyectado.Proyectado;
+                    }
+                    
                     int sumaCantidades = 0;
                     for (int i = 1; i < 13; i++)
                     {

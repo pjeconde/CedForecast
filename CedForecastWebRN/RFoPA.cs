@@ -30,5 +30,10 @@ namespace CedForecastWebRN
             }
             return forecast.Lista(out CantidadFilas, IndicePagina, TamañoPagina, OrderBy, SessionID, listaForecast);
         }
+        public static List<CedForecastWebEntidades.RFoPA> TotalProyectado(CedForecastWebEntidades.RFoPA Forecast, CedEntidades.Sesion Sesion)
+        {
+            CedForecastWebDB.RFoPA forecast = new CedForecastWebDB.RFoPA(Sesion);
+            return forecast.TotalProyectado(Forecast);
+        }
     }
 }
