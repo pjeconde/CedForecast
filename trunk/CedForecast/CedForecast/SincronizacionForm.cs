@@ -27,6 +27,7 @@ namespace CedForecast
         {
             try
             {
+                Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
                 string cedForecastWSURL = System.Configuration.ConfigurationManager.AppSettings["CedForecastWSURL"];
                 bool seChequeoAlgo = false;
                 int cantidadMilisegundos = 100;
@@ -163,6 +164,10 @@ namespace CedForecast
             {
                 Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
+            finally
+            {
+                Cursor.Current = System.Windows.Forms.Cursors.Default;
+            }
         }
         private void BarraActivar(Janus.Windows.EditControls.UIProgressBar Barra)
         {
@@ -183,6 +188,19 @@ namespace CedForecast
         {
             //Barra.Value = 0;
             //Barra.Visible = false;
+        }
+        private void EnviarTodoUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ArticuloUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
+            ClienteUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
+            CuentaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
+            VentaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
+            ZonaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
+        }
+        private void RecibirTodoUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ProyeccionAnualUiCheckBox.Checked = RecibirTodoUiCheckBox.Checked;
+            RollingForecastUiCheckBox.Checked = RecibirTodoUiCheckBox.Checked;
         }
     }
 }

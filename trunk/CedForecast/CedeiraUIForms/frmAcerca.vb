@@ -43,7 +43,7 @@ Public Class frmAcerca
     Friend WithEvents CodigoSistemaLabel As System.Windows.Forms.Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmAcerca))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAcerca))
         Dim ContainerImage1 As PureComponents.NicePanel.ContainerImage = New PureComponents.NicePanel.ContainerImage
         Dim HeaderImage1 As PureComponents.NicePanel.HeaderImage = New PureComponents.NicePanel.HeaderImage
         Dim HeaderImage2 As PureComponents.NicePanel.HeaderImage = New PureComponents.NicePanel.HeaderImage
@@ -58,6 +58,7 @@ Public Class frmAcerca
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.pnlGral = New PureComponents.NicePanel.NicePanel
         Me.CodigoSistemaLabel = New System.Windows.Forms.Label
+        CType(Me.pictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlGral.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,10 +80,10 @@ Public Class frmAcerca
         '
         Me.pictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.pictureBox2.Image = CType(resources.GetObject("pictureBox2.Image"), System.Drawing.Image)
-        Me.pictureBox2.Location = New System.Drawing.Point(112, 156)
+        Me.pictureBox2.Location = New System.Drawing.Point(105, 142)
         Me.pictureBox2.Name = "pictureBox2"
-        Me.pictureBox2.Size = New System.Drawing.Size(144, 42)
-        Me.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureBox2.Size = New System.Drawing.Size(158, 58)
+        Me.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pictureBox2.TabIndex = 8
         Me.pictureBox2.TabStop = False
         '
@@ -155,31 +156,31 @@ Public Class frmAcerca
         ContainerStyle1.FadeColor = System.Drawing.Color.PeachPuff
         ContainerStyle1.FillStyle = PureComponents.NicePanel.FillStyle.DiagonalForward
         ContainerStyle1.FlashItemBackColor = System.Drawing.Color.Red
-        ContainerStyle1.FocusItemBackColor = System.Drawing.Color.FromArgb(CType(255, Byte), CType(255, Byte), CType(192, Byte))
+        ContainerStyle1.FocusItemBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         ContainerStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         ContainerStyle1.ForeColor = System.Drawing.Color.Black
         ContainerStyle1.Shape = PureComponents.NicePanel.Shape.Rounded
         PanelStyle1.ContainerStyle = ContainerStyle1
-        PanelHeaderStyle1.BackColor = System.Drawing.Color.FromArgb(CType(9, Byte), CType(42, Byte), CType(127, Byte))
-        PanelHeaderStyle1.ButtonColor = System.Drawing.Color.FromArgb(CType(172, Byte), CType(191, Byte), CType(227, Byte))
-        PanelHeaderStyle1.FadeColor = System.Drawing.Color.FromArgb(CType(102, Byte), CType(145, Byte), CType(215, Byte))
+        PanelHeaderStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(9, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(127, Byte), Integer))
+        PanelHeaderStyle1.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(172, Byte), Integer), CType(CType(191, Byte), Integer), CType(CType(227, Byte), Integer))
+        PanelHeaderStyle1.FadeColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(145, Byte), Integer), CType(CType(215, Byte), Integer))
         PanelHeaderStyle1.FillStyle = PureComponents.NicePanel.FillStyle.HorizontalFading
-        PanelHeaderStyle1.FlashBackColor = System.Drawing.Color.FromArgb(CType(243, Byte), CType(122, Byte), CType(1, Byte))
-        PanelHeaderStyle1.FlashFadeColor = System.Drawing.Color.FromArgb(CType(255, Byte), CType(215, Byte), CType(159, Byte))
+        PanelHeaderStyle1.FlashBackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(1, Byte), Integer))
+        PanelHeaderStyle1.FlashFadeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(159, Byte), Integer))
         PanelHeaderStyle1.FlashForeColor = System.Drawing.Color.White
         PanelHeaderStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
-        PanelHeaderStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(169, Byte), CType(198, Byte), CType(237, Byte))
+        PanelHeaderStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(198, Byte), Integer), CType(CType(237, Byte), Integer))
         PanelHeaderStyle1.Size = PureComponents.NicePanel.PanelHeaderSize.Small
         PanelStyle1.FooterStyle = PanelHeaderStyle1
-        PanelHeaderStyle2.BackColor = System.Drawing.Color.FromArgb(CType(102, Byte), CType(145, Byte), CType(215, Byte))
-        PanelHeaderStyle2.ButtonColor = System.Drawing.Color.FromArgb(CType(172, Byte), CType(191, Byte), CType(227, Byte))
-        PanelHeaderStyle2.FadeColor = System.Drawing.Color.FromArgb(CType(9, Byte), CType(42, Byte), CType(127, Byte))
+        PanelHeaderStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(102, Byte), Integer), CType(CType(145, Byte), Integer), CType(CType(215, Byte), Integer))
+        PanelHeaderStyle2.ButtonColor = System.Drawing.Color.FromArgb(CType(CType(172, Byte), Integer), CType(CType(191, Byte), Integer), CType(CType(227, Byte), Integer))
+        PanelHeaderStyle2.FadeColor = System.Drawing.Color.FromArgb(CType(CType(9, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(127, Byte), Integer))
         PanelHeaderStyle2.FillStyle = PureComponents.NicePanel.FillStyle.VerticalFading
-        PanelHeaderStyle2.FlashBackColor = System.Drawing.Color.FromArgb(CType(243, Byte), CType(122, Byte), CType(1, Byte))
-        PanelHeaderStyle2.FlashFadeColor = System.Drawing.Color.FromArgb(CType(255, Byte), CType(215, Byte), CType(159, Byte))
+        PanelHeaderStyle2.FlashBackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(1, Byte), Integer))
+        PanelHeaderStyle2.FlashFadeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(159, Byte), Integer))
         PanelHeaderStyle2.FlashForeColor = System.Drawing.Color.White
         PanelHeaderStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold)
-        PanelHeaderStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(255, Byte), CType(255, Byte), CType(255, Byte))
+        PanelHeaderStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         PanelHeaderStyle2.Size = PureComponents.NicePanel.PanelHeaderSize.Medium
         PanelStyle1.HeaderStyle = PanelHeaderStyle2
         Me.pnlGral.Style = PanelStyle1
@@ -207,6 +208,7 @@ Public Class frmAcerca
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.TransparencyKey = System.Drawing.SystemColors.Control
+        CType(Me.pictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlGral.ResumeLayout(False)
         Me.ResumeLayout(False)
 
