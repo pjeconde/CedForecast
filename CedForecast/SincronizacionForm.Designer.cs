@@ -56,6 +56,8 @@ namespace CedForecast
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.EnviarTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
+            this.RecibirTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -409,6 +411,7 @@ namespace CedForecast
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.EnviarTodoUiCheckBox);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.ArticuloUiCheckBox);
             this.panel1.Controls.Add(this.CuentaUiCheckBox);
@@ -431,15 +434,16 @@ namespace CedForecast
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label8.Location = new System.Drawing.Point(154, 4);
+            this.label8.Location = new System.Drawing.Point(158, 4);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 24);
+            this.label8.Size = new System.Drawing.Size(69, 24);
             this.label8.TabIndex = 9024;
-            this.label8.Text = "Envío";
+            this.label8.Text = "Envíar";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.RecibirTodoUiCheckBox);
             this.panel2.Controls.Add(this.ProyeccionAnualUiProgressBar);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.RollingForecastUiCheckBox);
@@ -458,11 +462,37 @@ namespace CedForecast
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.label1.Location = new System.Drawing.Point(130, 4);
+            this.label1.Location = new System.Drawing.Point(154, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 24);
+            this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 9025;
-            this.label1.Text = "Recepción";
+            this.label1.Text = "Recibir";
+            // 
+            // EnviarTodoUiCheckBox
+            // 
+            this.EnviarTodoUiCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.EnviarTodoUiCheckBox.Location = new System.Drawing.Point(241, 8);
+            this.EnviarTodoUiCheckBox.Name = "EnviarTodoUiCheckBox";
+            this.EnviarTodoUiCheckBox.ShowFocusRectangle = false;
+            this.EnviarTodoUiCheckBox.Size = new System.Drawing.Size(56, 20);
+            this.EnviarTodoUiCheckBox.TabIndex = 9035;
+            this.EnviarTodoUiCheckBox.Text = "todo";
+            this.EnviarTodoUiCheckBox.UseThemes = false;
+            this.EnviarTodoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.EnviarTodoUiCheckBox.CheckedChanged += new System.EventHandler(this.EnviarTodoUiCheckBox_CheckedChanged);
+            // 
+            // RecibirTodoUiCheckBox
+            // 
+            this.RecibirTodoUiCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.RecibirTodoUiCheckBox.Location = new System.Drawing.Point(241, 8);
+            this.RecibirTodoUiCheckBox.Name = "RecibirTodoUiCheckBox";
+            this.RecibirTodoUiCheckBox.ShowFocusRectangle = false;
+            this.RecibirTodoUiCheckBox.Size = new System.Drawing.Size(56, 20);
+            this.RecibirTodoUiCheckBox.TabIndex = 9038;
+            this.RecibirTodoUiCheckBox.Text = "todo";
+            this.RecibirTodoUiCheckBox.UseThemes = false;
+            this.RecibirTodoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.RecibirTodoUiCheckBox.CheckedChanged += new System.EventHandler(this.RecibirTodoUiCheckBox_CheckedChanged);
             // 
             // SincronizacionForm
             // 
@@ -508,5 +538,7 @@ namespace CedForecast
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
+        private Janus.Windows.EditControls.UICheckBox EnviarTodoUiCheckBox;
+        private Janus.Windows.EditControls.UICheckBox RecibirTodoUiCheckBox;
     }
 }
