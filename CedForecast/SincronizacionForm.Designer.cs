@@ -52,26 +52,26 @@ namespace CedForecast
             this.RollingForecastCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.EnviarPanel = new System.Windows.Forms.Panel();
             this.EnviarTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.RecibirPanel = new System.Windows.Forms.Panel();
             this.RecibirTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.EnviarPanel.SuspendLayout();
+            this.RecibirPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FondoNicePanel
             // 
-            this.FondoNicePanel.Controls.Add(this.panel2);
-            this.FondoNicePanel.Controls.Add(this.panel1);
+            this.FondoNicePanel.Controls.Add(this.RecibirPanel);
+            this.FondoNicePanel.Controls.Add(this.EnviarPanel);
             this.FondoNicePanel.Controls.Add(this.pictureBox1);
             this.FondoNicePanel.Controls.Add(this.BotonesPanel);
-            this.FondoNicePanel.Size = new System.Drawing.Size(411, 386);
+            this.FondoNicePanel.Size = new System.Drawing.Size(411, 391);
             // 
             // BotonesPanel
             // 
@@ -79,7 +79,7 @@ namespace CedForecast
             this.BotonesPanel.Controls.Add(this.SalirUiButton);
             this.BotonesPanel.Controls.Add(this.AceptarUiButton);
             this.BotonesPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BotonesPanel.Location = new System.Drawing.Point(0, 351);
+            this.BotonesPanel.Location = new System.Drawing.Point(0, 356);
             this.BotonesPanel.Name = "BotonesPanel";
             this.BotonesPanel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
             this.BotonesPanel.Size = new System.Drawing.Size(411, 35);
@@ -408,65 +408,26 @@ namespace CedForecast
             this.pictureBox1.TabIndex = 9038;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
+            // EnviarPanel
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.EnviarTodoUiCheckBox);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.ArticuloUiCheckBox);
-            this.panel1.Controls.Add(this.CuentaUiCheckBox);
-            this.panel1.Controls.Add(this.ClienteUiCheckBox);
-            this.panel1.Controls.Add(this.VentaCalendarCombo);
-            this.panel1.Controls.Add(this.ZonaUiCheckBox);
-            this.panel1.Controls.Add(this.ArticuloUIProgressBar);
-            this.panel1.Controls.Add(this.ClienteUiProgressBar);
-            this.panel1.Controls.Add(this.VentaUiProgressBar);
-            this.panel1.Controls.Add(this.CuentaUiProgressBar);
-            this.panel1.Controls.Add(this.ZonaUiProgressBar);
-            this.panel1.Controls.Add(this.VentaUiCheckBox);
-            this.panel1.Location = new System.Drawing.Point(12, 101);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(386, 157);
-            this.panel1.TabIndex = 9039;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label8.Location = new System.Drawing.Point(158, 4);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 24);
-            this.label8.TabIndex = 9024;
-            this.label8.Text = "Envíar";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.RecibirTodoUiCheckBox);
-            this.panel2.Controls.Add(this.ProyeccionAnualUiProgressBar);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.RollingForecastUiCheckBox);
-            this.panel2.Controls.Add(this.RollingForecastCalendarCombo);
-            this.panel2.Controls.Add(this.RollingForecastUiProgressBar);
-            this.panel2.Controls.Add(this.ProyeccionAnualCalendarCombo);
-            this.panel2.Controls.Add(this.ProyeccionAnualUiCheckBox);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(12, 264);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(386, 87);
-            this.panel2.TabIndex = 9040;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.label1.Location = new System.Drawing.Point(154, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 24);
-            this.label1.TabIndex = 9025;
-            this.label1.Text = "Recibir";
+            this.EnviarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EnviarPanel.Controls.Add(this.EnviarTodoUiCheckBox);
+            this.EnviarPanel.Controls.Add(this.label8);
+            this.EnviarPanel.Controls.Add(this.ArticuloUiCheckBox);
+            this.EnviarPanel.Controls.Add(this.CuentaUiCheckBox);
+            this.EnviarPanel.Controls.Add(this.ClienteUiCheckBox);
+            this.EnviarPanel.Controls.Add(this.VentaCalendarCombo);
+            this.EnviarPanel.Controls.Add(this.ZonaUiCheckBox);
+            this.EnviarPanel.Controls.Add(this.ArticuloUIProgressBar);
+            this.EnviarPanel.Controls.Add(this.ClienteUiProgressBar);
+            this.EnviarPanel.Controls.Add(this.VentaUiProgressBar);
+            this.EnviarPanel.Controls.Add(this.CuentaUiProgressBar);
+            this.EnviarPanel.Controls.Add(this.ZonaUiProgressBar);
+            this.EnviarPanel.Controls.Add(this.VentaUiCheckBox);
+            this.EnviarPanel.Location = new System.Drawing.Point(12, 101);
+            this.EnviarPanel.Name = "EnviarPanel";
+            this.EnviarPanel.Size = new System.Drawing.Size(386, 157);
+            this.EnviarPanel.TabIndex = 9039;
             // 
             // EnviarTodoUiCheckBox
             // 
@@ -481,6 +442,34 @@ namespace CedForecast
             this.EnviarTodoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             this.EnviarTodoUiCheckBox.CheckedChanged += new System.EventHandler(this.EnviarTodoUiCheckBox_CheckedChanged);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label8.Location = new System.Drawing.Point(158, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 24);
+            this.label8.TabIndex = 9024;
+            this.label8.Text = "Envíar";
+            // 
+            // RecibirPanel
+            // 
+            this.RecibirPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RecibirPanel.Controls.Add(this.RecibirTodoUiCheckBox);
+            this.RecibirPanel.Controls.Add(this.ProyeccionAnualUiProgressBar);
+            this.RecibirPanel.Controls.Add(this.label7);
+            this.RecibirPanel.Controls.Add(this.RollingForecastUiCheckBox);
+            this.RecibirPanel.Controls.Add(this.RollingForecastCalendarCombo);
+            this.RecibirPanel.Controls.Add(this.RollingForecastUiProgressBar);
+            this.RecibirPanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
+            this.RecibirPanel.Controls.Add(this.ProyeccionAnualUiCheckBox);
+            this.RecibirPanel.Controls.Add(this.label1);
+            this.RecibirPanel.Location = new System.Drawing.Point(12, 264);
+            this.RecibirPanel.Name = "RecibirPanel";
+            this.RecibirPanel.Size = new System.Drawing.Size(386, 87);
+            this.RecibirPanel.TabIndex = 9040;
+            // 
             // RecibirTodoUiCheckBox
             // 
             this.RecibirTodoUiCheckBox.ForeColor = System.Drawing.Color.Navy;
@@ -494,17 +483,28 @@ namespace CedForecast
             this.RecibirTodoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             this.RecibirTodoUiCheckBox.CheckedChanged += new System.EventHandler(this.RecibirTodoUiCheckBox_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
+            this.label1.Location = new System.Drawing.Point(154, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 24);
+            this.label1.TabIndex = 9025;
+            this.label1.Text = "Recibir";
+            // 
             // SincronizacionForm
             // 
-            this.ClientSize = new System.Drawing.Size(411, 386);
+            this.ClientSize = new System.Drawing.Size(411, 391);
             this.Name = "SincronizacionForm";
             this.FondoNicePanel.ResumeLayout(false);
             this.BotonesPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.EnviarPanel.ResumeLayout(false);
+            this.EnviarPanel.PerformLayout();
+            this.RecibirPanel.ResumeLayout(false);
+            this.RecibirPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -534,9 +534,9 @@ namespace CedForecast
         private Janus.Windows.CalendarCombo.CalendarCombo RollingForecastCalendarCombo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel EnviarPanel;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel RecibirPanel;
         private System.Windows.Forms.Label label1;
         private Janus.Windows.EditControls.UICheckBox EnviarTodoUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox RecibirTodoUiCheckBox;
