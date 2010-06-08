@@ -72,7 +72,7 @@ namespace CedForecastWeb.Forecast
                         AceptarButton.Attributes.Add("onclick", "return confirm('Confirmar la aceptación de los datos ?');");
 
                         CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
-                        confirmacionCarga.IdTipoPlanilla = "Rolling Forecast";
+                        confirmacionCarga.IdTipoPlanilla = "RollingForecast";
                         confirmacionCarga.IdPeriodo = periodo.IdPeriodo;
                         confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
                         CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
@@ -191,15 +191,11 @@ namespace CedForecastWeb.Forecast
                 }
 
                 string auxDescrArticulo = ((DropDownList)detalleGridView.Rows[e.RowIndex].FindControl("ddlIdArticuloEdit")).SelectedItem.Text;
-                if (!auxIdArticulo.Equals(string.Empty))
-                {
-                    l.Articulo.Id = auxIdArticulo;
-                    l.Articulo.Descr = auxDescrArticulo;
-                }
-                else
+                if (auxIdArticulo.Equals(string.Empty))
                 {
                     throw new Exception("Detalle no actualizado porque la descripción del artículo no puede estar vacía");
                 }
+
                 string auxCantidad1 = ((TextBox)detalleGridView.Rows[e.RowIndex].FindControl("txtCantidad1Edit")).Text;
                 if (!auxCantidad1.Contains(","))
                 {

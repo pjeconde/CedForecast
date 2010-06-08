@@ -122,7 +122,10 @@ namespace CedForecastWebDB
             a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
             a.Append("from Forecast, Articulo, GrupoArticulo, Division ");
             a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
-            a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
+            if (Forecast.IdCliente != null && Forecast.IdCliente != "")
+            {
+                a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
+            }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0,4) + "01' ");
             a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0,4) + "99' ");
             a.Append("order by IdArticulo asc, IdPeriodo asc");
@@ -349,6 +352,9 @@ namespace CedForecastWebDB
             a.Append("[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
             a.Append("[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
             a.Append("[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
+            a.Append("[Proyectado] [decimal](18, 0) NOT NULL, ");
+            a.Append("[Ventas] [decimal](18, 0) NOT NULL, ");
+            a.Append("[CantidadMesesParaDesvio] [int] NOT NULL, ");
             a.Append("[Cantidad1] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad2] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad3] [decimal](18, 0) NOT NULL, ");
@@ -379,6 +385,9 @@ namespace CedForecastWebDB
                 a.Append(Forecast.Cliente.Id + "', '");
                 a.Append(Forecast.Articulo.Id + "', '");
                 a.Append(Forecast.IdPeriodo + "', ");
+                a.Append(Forecast.Proyectado + ", ");
+                a.Append(Forecast.Ventas + ", ");
+                a.Append(Forecast.CantidadMesesParaDesvio + ", ");
                 a.Append(Forecast.Cantidad1 + ", ");
                 a.Append(Forecast.Cantidad2 + ", ");
                 a.Append(Forecast.Cantidad3 + ", ");
@@ -397,7 +406,7 @@ namespace CedForecastWebDB
             a.Append("select * ");
             a.Append("from (select top {0} ROW_NUMBER() OVER (ORDER BY {1}) as ROW_NUM, ");
             a.Append("IdTipoPlanilla, IdCuenta, #Forecast"+SessionID+".IdCliente, DescrCliente, IdPeriodo, #Forecast" + SessionID + ".IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, ");
-            a.Append("Cantidad1, Cantidad2, Cantidad3, Cantidad4, Cantidad5, Cantidad6, Cantidad7, Cantidad8, Cantidad9, Cantidad10, Cantidad11, Cantidad12, Cantidad13, Cantidad14 ");
+            a.Append("Proyectado, Ventas, CantidadMesesParaDesvio, Cantidad1, Cantidad2, Cantidad3, Cantidad4, Cantidad5, Cantidad6, Cantidad7, Cantidad8, Cantidad9, Cantidad10, Cantidad11, Cantidad12, Cantidad13, Cantidad14 ");
             a.Append("from #Forecast"+SessionID+" inner join Articulo on #Forecast"+SessionID+".IdArticulo=Articulo.IdArticulo ");
             a.Append("inner join Cliente on #Forecast"+SessionID+".IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
@@ -417,6 +426,9 @@ namespace CedForecastWebDB
                     forecast.Cliente.Descr = dt.Rows[i]["DescrCliente"].ToString();
                     forecast.Articulo.Id = dt.Rows[i]["IdArticulo"].ToString();
                     forecast.Articulo.Descr = dt.Rows[i]["DescrArticulo"].ToString();
+                    forecast.Proyectado = Convert.ToDecimal(dt.Rows[i]["Proyectado"].ToString());
+                    forecast.Ventas = Convert.ToDecimal(dt.Rows[i]["Ventas"].ToString());
+                    forecast.CantidadMesesParaDesvio = Convert.ToInt32(dt.Rows[i]["CantidadMesesParaDesvio"].ToString());
                     forecast.Cantidad1 = Convert.ToDecimal(dt.Rows[i]["Cantidad1"].ToString());
                     forecast.Cantidad2 = Convert.ToDecimal(dt.Rows[i]["Cantidad2"].ToString());
                     forecast.Cantidad3 = Convert.ToDecimal(dt.Rows[i]["Cantidad3"].ToString());

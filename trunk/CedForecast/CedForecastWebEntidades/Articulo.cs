@@ -46,7 +46,11 @@ namespace CedForecastWebEntidades
             get
             {
                 string descripcion = "";
-                if (descr != null && descr != "")
+                if (id == null)
+                {
+                    descripcion = "";
+                }
+                else
                 {
                     descripcion = descr + " (" + grupoArticulo.IdGrupoArticulo + " " + id + ")";
                 }
