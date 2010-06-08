@@ -86,63 +86,63 @@
                                             <headerstyle horizontalalign="Left" wrap="False" />
                                             <itemstyle horizontalalign="Left" width="300px" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad1" HeaderText="Cantidad1" SortExpression="Cantidad1">
+                                        <asp:BoundField DataField="Cantidad1" HeaderText="Cantidad1" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad2" HeaderText="Cantidad2" SortExpression="Cantidad2">
+                                        <asp:BoundField DataField="Cantidad2" HeaderText="Cantidad2" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad3" HeaderText="Cantidad3" SortExpression="Cantidad3">
+                                        <asp:BoundField DataField="Cantidad3" HeaderText="Cantidad3" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad4" HeaderText="Cantidad4" SortExpression="Cantidad4">
+                                        <asp:BoundField DataField="Cantidad4" HeaderText="Cantidad4" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad5" HeaderText="Cantidad5" SortExpression="Cantidad5">
+                                        <asp:BoundField DataField="Cantidad5" HeaderText="Cantidad5" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad6" HeaderText="Cantidad6" SortExpression="Cantidad6">
+                                        <asp:BoundField DataField="Cantidad6" HeaderText="Cantidad6" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad7" HeaderText="Cantidad7" SortExpression="Cantidad7">
+                                        <asp:BoundField DataField="Cantidad7" HeaderText="Cantidad7" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad8" HeaderText="Cantidad8" SortExpression="Cantidad8">
+                                        <asp:BoundField DataField="Cantidad8" HeaderText="Cantidad8" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad9" HeaderText="Cantidad9" SortExpression="Cantidad9">
+                                        <asp:BoundField DataField="Cantidad9" HeaderText="Cantidad9" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad10" HeaderText="Cantidad10" SortExpression="Cantidad10">
+                                        <asp:BoundField DataField="Cantidad10" HeaderText="Cantidad10" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad11" HeaderText="Cantidad11" SortExpression="Cantidad11">
+                                        <asp:BoundField DataField="Cantidad11" HeaderText="Cantidad11" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad12" HeaderText="Cantidad12" SortExpression="Cantidad12">
+                                        <asp:BoundField DataField="Cantidad12" HeaderText="Cantidad12" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="CantidadTotal" HeaderText="Total" SortExpression="CantidadTotal">
+                                        <asp:BoundField DataField="CantidadTotal" HeaderText="Total" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad13" HeaderText="Cantidad13" SortExpression="Cantidad13">
+                                        <asp:BoundField DataField="Cantidad13" HeaderText="Cantidad13" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Cantidad14" HeaderText="Cantidad14" SortExpression="Cantidad14">
+                                        <asp:BoundField DataField="Cantidad14" HeaderText="Cantidad14" SortExpression="">
                                             <headerstyle horizontalalign="Right" wrap="False" />
                                             <itemstyle horizontalalign="Right" wrap="False" />
                                         </asp:BoundField>

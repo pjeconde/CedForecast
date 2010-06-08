@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="Configuracion.aspx.cs" Inherits="CedForecastWeb.Configuracion"  %>
+﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="Configuracion.aspx.cs" Inherits="CedForecastWeb.Configuracion" StylesheetTheme="Cedeira"  %>
 
 <asp:Content ID="Content2" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="width: 890px;

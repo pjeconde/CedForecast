@@ -35,7 +35,7 @@ namespace CedForecastWeb.Forecast
 							ForecastPagingGridView.PageSize = 10;
 
                             ClienteDropDownList.DataValueField = "Id";
-                            ClienteDropDownList.DataTextField = "Descr";
+                            ClienteDropDownList.DataTextField = "DescrCombo";
                             ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteDropDownList.SelectedIndex = -1;
                             
@@ -46,12 +46,12 @@ namespace CedForecastWeb.Forecast
                             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             PeriodoTextBox.Text = periodo.IdPeriodo;
 
-                            int colFijas = 1; //Es 0 y 1.
+                            int colFijas = 4; //Es 0 y 1.
                             for (int i = 1; i <= 12; i++)
                             {
                                 ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
                             }
-                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text;
+                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text.Substring(0, 4);
 
                             LeerPeriodoActual();
                             BindPagingGrid();
@@ -94,7 +94,7 @@ namespace CedForecastWeb.Forecast
 		}
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/01/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }
@@ -130,40 +130,18 @@ namespace CedForecastWeb.Forecast
 		{
 			try
 			{
-				DesSeleccionarFilas();
-				System.Collections.Generic.List<CedForecastWebEntidades.RFoPA> lista = new System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>();
+                DesSeleccionarFilas();
+                System.Collections.Generic.List<CedForecastWebEntidades.RFoPA> lista = new System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>();
 
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
                 Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                Forecast.IdPeriodo = "2011";
+                Forecast.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
-				lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
-				ViewState["lista"] = lista;
-				ForecastPagingGridView.DataSource = (System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>)ViewState["lista"];
-				ForecastPagingGridView.DataBind();
-			}
-			catch (System.Threading.ThreadAbortException)
-			{
-				Trace.Warn("Thread abortado");
-			}
-			catch (Exception ex)
-			{
-				CedeiraUIWebForms.Excepciones.Redireccionar(ex, "~/Excepcion.aspx");
-			}
-		}
-		protected void ForecastPagingGridView_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			try
-			{
-                //DeshabilitarAcciones();
-                //System.Collections.Generic.List<CedForecastWebEntidades.Cuenta> lista = (System.Collections.Generic.List<CedForecastWebEntidades.Cuenta>)ViewState["lista"];
-                //CedForecastWebEntidades.Cuenta cuenta = new CedForecastWebEntidades.Cuenta();
-                //cuenta = (CedForecastWebEntidades.Cuenta)lista[((CedeiraUIWebForms.PagingGridView)sender).SelectedIndex];
-                //string auxCache = "Cuenta" + Session.SessionID;
-                //Cache.Remove(auxCache);
-                //Cache.Add(auxCache, cuenta, null, DateTime.UtcNow.AddSeconds(300), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.NotRemovable, null);
-                //HabilitarAcciones(cuenta);
+                lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
+                ViewState["lista"] = lista;
+                ForecastPagingGridView.DataSource = (System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>)ViewState["lista"];
+                ForecastPagingGridView.DataBind();
 			}
 			catch (System.Threading.ThreadAbortException)
 			{
@@ -185,15 +163,7 @@ namespace CedForecastWeb.Forecast
 		}
 		private void DesSeleccionarFilas()
 		{
-			DeshabilitarAcciones();
 			ForecastPagingGridView.SelectedIndex = -1;
-		}
-		private void DeshabilitarAcciones()
-		{
-            //ModificarButton.Enabled = false;
-            //BajaButton.Enabled = false;
-            //AnularBajaButton.Enabled = false;
-            //ReenviarMailButton.Enabled = false;
 		}
 		protected CedForecastWebEntidades.RFoPA ForecastSeleccionado()
 		{
@@ -204,25 +174,28 @@ namespace CedForecastWeb.Forecast
 		{
 			Server.Transfer("~/Admin/Default.aspx");
 		}
-
-        protected void ModificarButton_Click(object sender, EventArgs e)
-        {
-            //CedForecastWebEntidades.Forecast forecast = new CedForecastWebEntidades.Forecast();
-            //forecast = ForecastSeleccionado();
-            //string pagina = "~/CuentaConfiguracion.aspx?Id=" + Forecast.Id.ToString();
-            //Server.Transfer(pagina);
-        }
-        protected void LeerButton_Click(object sender, EventArgs e)
+         protected void LeerButton_Click(object sender, EventArgs e)
         {
             BindPagingGrid();
         }
         private void LeerPeriodoActual()
         {
-            CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
-            CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
-            periodo.IdTipoPlanilla = "RollingForecast";
-            CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-            PeriodoTextBox.Text = periodo.IdPeriodo;
+            try
+            {
+                CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
+                CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
+                periodo.IdTipoPlanilla = "RollingForecast";
+                CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                PeriodoTextBox.Text = periodo.IdPeriodo;
+            }
+			catch (System.Threading.ThreadAbortException)
+			{
+				Trace.Warn("Thread abortado");
+			}
+			catch (Exception ex)
+			{
+				CedeiraUIWebForms.Excepciones.Redireccionar(ex, "~/Excepcion.aspx");
+			}
         }
 	}
 }

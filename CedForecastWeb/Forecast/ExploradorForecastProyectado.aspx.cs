@@ -35,7 +35,7 @@ namespace CedForecastWeb.Forecast
 							ForecastPagingGridView.PageSize = 10;
 
                             ClienteDropDownList.DataValueField = "Id";
-                            ClienteDropDownList.DataTextField = "Descr";
+                            ClienteDropDownList.DataTextField = "DescrCombo";
                             ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteDropDownList.SelectedIndex = -1;
                             
@@ -181,11 +181,7 @@ namespace CedForecastWeb.Forecast
 		}
 		private void DesSeleccionarFilas()
 		{
-			DeshabilitarAcciones();
 			ForecastPagingGridView.SelectedIndex = -1;
-		}
-		private void DeshabilitarAcciones()
-		{
 		}
 		protected CedForecastWebEntidades.RFoPA ForecastSeleccionado()
 		{
@@ -196,10 +192,6 @@ namespace CedForecastWeb.Forecast
 		{
 			Server.Transfer("~/Admin/Default.aspx");
 		}
-
-        protected void ModificarButton_Click(object sender, EventArgs e)
-        {
-        }
         protected void LeerButton_Click(object sender, EventArgs e)
         {
             BindPagingGrid();

@@ -199,7 +199,7 @@ namespace CedForecastWebEntidades
                             break;
                     }
                 }
-                return proyectado - ventas - suma;
+                return (proyectado - ventas - suma) * -1;
             }
         }
         public decimal Cantidad1

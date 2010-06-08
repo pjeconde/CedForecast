@@ -27,6 +27,7 @@ namespace CedForecastWeb
                 ForecastLinkButton.Enabled = false;
                 ProyectadoLinkButton.Enabled = false;
                 ConfirmacionCargaButton.Enabled = false;
+                ConsultaLinkButton.Enabled = false;
                 AdministracionLinkButton.Enabled = false;
                 switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id)
                 {
@@ -40,6 +41,7 @@ namespace CedForecastWeb
                                 ForecastLinkButton.Enabled = true;
                                 ProyectadoLinkButton.Enabled = true;
                                 ConfirmacionCargaButton.Enabled = true;
+                                ConsultaLinkButton.Enabled = true;
                                 break;
                             case "Suspend":
                                 NombreCuentaLabel.Text += " (suspendido)";
@@ -79,6 +81,7 @@ namespace CedForecastWeb
             ForecastLinkButton.Enabled = false;
             ProyectadoLinkButton.Enabled = false;
             ConfirmacionCargaButton.Enabled = false;
+            ConsultaLinkButton.Enabled = false;
             AdministracionLinkButton.Enabled = false;
             Session["AceptarTYC"] = null;
 			Application.Lock();
