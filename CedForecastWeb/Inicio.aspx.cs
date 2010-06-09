@@ -49,7 +49,7 @@ namespace CedForecastWeb
 				Application.UnLock();
                 if (sesion.Cuenta.TipoCuenta.Id == "Admin")
                 {
-                    CedForecastWebRN.Cuenta.Depurar(sesion);
+                    //CedForecastWebRN.Cuenta.Depurar(sesion);
                     Response.Redirect("~/Admin/" + sesion.Cuenta.PaginaDefault.URL + ".aspx");
                 }
                 if (sesion.Cuenta.TipoCuenta.Id == "OperForecast")

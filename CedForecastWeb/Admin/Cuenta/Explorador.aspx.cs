@@ -240,7 +240,7 @@ namespace CedForecastWeb.Admin.Cuenta
             CedForecastWebEntidades.Cuenta cuenta = new CedForecastWebEntidades.Cuenta();
             cuenta = CuentaSeleccionada();
             string pagina = "~/CuentaConfiguracion.aspx?Id=" + cuenta.Id.ToString();
-            Server.Transfer(pagina);
+            Response.Redirect(pagina);
         }
 
 	}

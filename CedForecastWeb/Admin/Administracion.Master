@@ -73,11 +73,11 @@
 						    </td>
 							<td style="padding-left: 10px; padding-right: 10px; height: 16px;">
 								<asp:LinkButton ID="InicioLinkButton" runat="server" CausesValidation="false" Font-Bold="true"
-									ForeColor="white" PostBackUrl="~/Inicio.aspx" Visible="true">Inicio</asp:LinkButton>
+									ForeColor="DimGray" PostBackUrl="~/Inicio.aspx" Visible="true">Inicio</asp:LinkButton>
 							</td>
 							<td style="padding-left: 10px; padding-right: 10px; text-align: left; height: 16px;">
 								<asp:LinkButton ID="AdministracionLinkButton" runat="server" CausesValidation="false"
-									Font-Bold="true" ForeColor="white" PostBackUrl="~/Admin/Default.aspx" Visible="true">Administración</asp:LinkButton>
+									Font-Bold="true" ForeColor="DimGray" PostBackUrl="~/Admin/Default.aspx" Visible="true">Administración</asp:LinkButton>
 							</td>
 						</tr>
 					</table>

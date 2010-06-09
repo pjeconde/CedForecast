@@ -47,13 +47,13 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.Label TituloLabel;
         
         /// <summary>
-        /// Control HyperLink3.
+        /// Control PeriodoHiperLink.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.HyperLink PeriodoHiperLink;
         
         /// <summary>
         /// Control PeriodoLabel.
@@ -92,15 +92,6 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// Control ConfirmacionCargaLabel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmacionCargaLabel;
-        
-        /// <summary>
         /// Control ModoDepuracionCheckBox.
         /// </summary>
         /// <remarks>
@@ -110,31 +101,22 @@ namespace CedForecastWeb.Admin {
         protected global::System.Web.UI.WebControls.CheckBox ModoDepuracionCheckBox;
         
         /// <summary>
-        /// Control RecibeAvisoConfirmacionCargaCheckBox.
+        /// Control RecibeAvisoConfirmacionCargaViaMailCheckBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoConfirmacionCargaCheckBox;
+        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoConfirmacionCargaViaMailCheckBox;
         
         /// <summary>
-        /// Control RecibeAvisoAltaCuentaCheckBox.
+        /// Control RecibeAvisoConfirmacionCargaViaSMSCheckBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoAltaCuentaCheckBox;
-        
-        /// <summary>
-        /// Control PruebaSMSLinkButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton PruebaSMSLinkButton;
+        protected global::System.Web.UI.WebControls.CheckBox RecibeAvisoConfirmacionCargaViaSMSCheckBox;
         
         /// <summary>
         /// Control VisitantesLabel.
