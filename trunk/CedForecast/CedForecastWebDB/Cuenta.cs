@@ -233,7 +233,7 @@ namespace CedForecastWebDB
             a.Append("update Cuenta set Cuenta.CantidadEnviosMail=Cuenta.CantidadEnviosMail+1, FechaUltimoReenvioMail=getdate() where Cuenta.IdCuenta='" + Cuenta.Id.ToString() + "' ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
-        public void SetearRecibeAvisoAltaCuenta(CedForecastWebEntidades.Cuenta Cuenta)
+        public void SetearRecibeConfirmacionCargaViaMail(CedForecastWebEntidades.Cuenta Cuenta)
         {
             StringBuilder a = new StringBuilder(string.Empty);
             a.Append("update Cuenta set Cuenta.RecibeAvisoAltaCuenta=" + Convert.ToInt32(Cuenta.RecibeAvisoAltaCuenta) + " where Cuenta.IdCuenta='" + Cuenta.Id.ToString() + "' ");
