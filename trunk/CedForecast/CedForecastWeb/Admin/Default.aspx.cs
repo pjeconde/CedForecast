@@ -32,7 +32,10 @@ namespace CedForecastWeb.Admin
 					else
 					{
 						ModoDepuracionCheckBox.Checked = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Flag.ModoDepuracion;
-						RecibeAvisoAltaCuentaCheckBox.Checked = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta;
+						RecibeAvisoConfirmacionCargaViaMailCheckBox.Checked = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta;
+                        RecibeAvisoConfirmacionCargaViaSMSCheckBox.Checked = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta;
+                        RecibeAvisoConfirmacionCargaViaMailCheckBox.Enabled = false;
+                        RecibeAvisoConfirmacionCargaViaSMSCheckBox.Enabled = false;
 
 						UltimasAltasPagingGridView.PageSize = 6;
 						System.Collections.Generic.List<CedForecastWebEntidades.Cuenta> listaUltimasAltas;
@@ -41,7 +44,7 @@ namespace CedForecastWeb.Admin
 						UltimasAltasPagingGridView.DataSource = listaUltimasAltas;
 						UltimasAltasPagingGridView.DataBind();
                         CuentasLabel.Text = "(" + CedForecastWebRN.Cuenta.CantidadDeFilas((CedEntidades.Sesion)Session["Sesion"]) + "), ";
-                        PeriodoLabel.Text = "(1), ";
+                        PeriodoLabel.Text = ", ";
 						try
 						{
 							//Borro los gráficos anteriores
@@ -63,11 +66,16 @@ namespace CedForecastWeb.Admin
 		protected void Page_Disposed(object sender, EventArgs e)
 		{
 		}
-		protected void RecibeAvisoAltaCuentaCheckBox_CheckedChanged(object sender, EventArgs e)
+        protected void RecibeAvisoConfirmacionCargaViaMailCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-			((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta = RecibeAvisoAltaCuentaCheckBox.Checked;
-			CedForecastWebRN.Cuenta.SetearRecibeAvisoAltaCuenta(((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+			((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta = RecibeAvisoConfirmacionCargaViaMailCheckBox.Checked;
+			CedForecastWebRN.Cuenta.SetearRecibeConfirmacionCargaViaMail(((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
 		}
+        protected void RecibeAvisoConfirmacionCargaViaSMSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.RecibeAvisoAltaCuenta = RecibeAvisoConfirmacionCargaViaSMSCheckBox.Checked;
+            CedForecastWebRN.Cuenta.SetearRecibeConfirmacionCargaViaMail(((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+        }
 		protected void ModoDepuracionCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			((CedForecastWebEntidades.Sesion)Session["Sesion"]).Flag.ModoDepuracion = ModoDepuracionCheckBox.Checked;

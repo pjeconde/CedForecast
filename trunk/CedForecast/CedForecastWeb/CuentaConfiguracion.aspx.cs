@@ -21,13 +21,11 @@ namespace CedForecastWeb
                 string idDivision = "";
                 string idTipoCuenta = "";
                 //Verificar si el administrador seleciono una cuenta
-                string a = HttpContext.Current.Request.Url.Query.ToString();
-                if (a != String.Empty)
+                string a = "";
+                string[] id = Request.QueryString.GetValues("id");
+                if (id != null && id.Length == 1)
                 {
-                    if (a.Substring(0, 4) == "?Id=")
-                    {
-                        a = a.Substring(4);
-                    }
+                    a = id[0];
                 }
                 if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.IdTipoCuenta == "Admin" && (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id != a && a != String.Empty))
                 {

@@ -154,7 +154,7 @@
                                 <tr>
                                     <td style="padding-top: 5px">
                                         <asp:Button ID="DepurarButton" runat="server" OnClick="DepurarButton_Click" Text="Depurar"
-                                            ToolTip="Depura las bajas y suspende las cuentas Premium vencidas" Width="100px" />
+                                            ToolTip="Depura las cuentas dadas de Baja." Width="100px" />
                                     </td>
                                 </tr>
                                 <tr>
