@@ -105,7 +105,7 @@ namespace CedForecastWebRN
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             cuenta.RegistrarReenvioMail(Cuenta);
-            EnviarMailBienvenidaForecast("Ahora dispone de una nueva cuenta Forecast (reenvio)", Cuenta);
+            EnviarMailBienvenidaForecast("Ahora dispone de una nueva cuenta Forecast Web", Cuenta);
         }
         private static void EnviarMailBienvenidaForecast(string Asunto, CedForecastWebEntidades.Cuenta Cuenta)
         {
@@ -162,7 +162,6 @@ namespace CedForecastWebRN
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             cuenta.Leer(Cuenta);
         }
-       
         public static void Login(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
         {
             if (Cuenta.Id == String.Empty)
@@ -364,32 +363,15 @@ namespace CedForecastWebRN
         //    smtpClient.Credentials = new NetworkCredential("registrousuarios@cedeira.com.ar", "cedeira123");
         //    smtpClient.Send(mail);
         //}
-        //public static void EnviarMailSuspensionPremium(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
-        //{
-        //    SmtpClient smtpClient = new SmtpClient("mail.cedeira.com.ar");
-        //    MailMessage mail = new MailMessage();
-        //    mail.From = new MailAddress("registrousuarios@cedeira.com.ar");
-        //    mail.CC.Add(new MailAddress("facturaelectronica@cedeira.com.ar"));
-        //    mail.To.Add(new MailAddress(Cuenta.Email));
-        //    mail.Subject = "Facturación Electrónica - Aviso de suspensión del Servicio Premium (Ref. " + Cuenta.Id + ")";
-        //    mail.IsBodyHtml = true;
-        //    WebClient carta = new WebClient();
-        //    mail.BodyEncoding = System.Text.Encoding.UTF8;
-        //    string a = carta.DownloadString(System.Web.HttpContext.Current.Server.MapPath("EmailTemplates/FacturaElectronicaServicioPremiumSuspension.htm"));
-        //    mail.Body = a.Substring(a.IndexOf("<"));
-        //    mail.Body = mail.Body.Replace("%usuario%", Cuenta.Nombre);
-        //    smtpClient.Credentials = new NetworkCredential("registrousuarios@cedeira.com.ar", "cedeira123");
-        //    smtpClient.Send(mail);
-        //}
         public static void Depurar(CedForecastWebEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
             List<CedForecastWebEntidades.Cuenta> cuentaSuspendida = cuenta.DepurarBajasYPtesConf();
         }
-        public static void SetearRecibeAvisoAltaCuenta(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
+        public static void SetearRecibeConfirmacionCargaViaMail(CedForecastWebEntidades.Cuenta Cuenta, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
-            cuenta.SetearRecibeAvisoAltaCuenta(Cuenta);
+            cuenta.SetearRecibeConfirmacionCargaViaMail(Cuenta);
         }
     }
 }
