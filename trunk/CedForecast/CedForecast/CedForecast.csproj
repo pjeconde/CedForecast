@@ -122,6 +122,7 @@
     <None Include="ConfigFiles\connectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cedeira.ico" />
     <Content Include="Imagenes\back_16.ico" />
     <Content Include="Imagenes\Cedeira.ico" />
     <Content Include="Imagenes\close_16.ico" />
