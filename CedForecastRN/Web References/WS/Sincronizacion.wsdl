@@ -613,10 +613,10 @@
   </wsdl:binding>
   <wsdl:service name="Sincronizacion">
     <wsdl:port name="SincronizacionSoap" binding="tns:SincronizacionSoap">
-      <soap:address location="http://localhost:3000/Sincronizacion.asmx" />
+      <soap:address location="http://localhost:52586/sincronizacion.asmx" />
     </wsdl:port>
     <wsdl:port name="SincronizacionSoap12" binding="tns:SincronizacionSoap12">
-      <soap12:address location="http://localhost:3000/Sincronizacion.asmx" />
+      <soap12:address location="http://localhost:52586/sincronizacion.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
