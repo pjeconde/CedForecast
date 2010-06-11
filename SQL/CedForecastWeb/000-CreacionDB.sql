@@ -54,12 +54,12 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[ConfirmacionCarga](
-	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoPlanilla] [varchar](15) NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
 	[FechaConfirmacionCarga] [datetime] NOT NULL,
-	[IdEstadoConfirmacionCarga] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[Comentario] [varchar](255) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdEstadoConfirmacionCarga] [varchar](15) NOT NULL,
+	[Comentario] [varchar](255) NOT NULL,
  CONSTRAINT [PK_ConfirmacionCarga] PRIMARY KEY CLUSTERED 
 (
 	[IdTipoPlanilla] ASC,
@@ -79,8 +79,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[EstadoConfirmacionCarga](
-	[IdEstadoConfirmacionCarga] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrEstadoConfirmacionCarga] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdEstadoConfirmacionCarga] [varchar](15) NOT NULL,
+	[DescrEstadoConfirmacionCarga] [varchar](50) NOT NULL,
  CONSTRAINT [PK_EstadoConfirmacionCarga] PRIMARY KEY CLUSTERED 
 (
 	[IdEstadoConfirmacionCarga] ASC
@@ -310,8 +310,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Periodo](
-	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoPlanilla] [varchar](15) NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
 	[FechaInhabilitacionCarga] [datetime] NOT NULL,
 	[CargaHabilitada] [bit] NOT NULL,
  CONSTRAINT [PK_Periodo] PRIMARY KEY CLUSTERED 
@@ -348,11 +348,11 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Forecast](
-	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoPlanilla] [varchar](15) NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
 (
@@ -389,8 +389,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[TipoPlanilla](
-	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[DescrTipoPlanilla] [varchar](30) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoPlanilla] [varchar](15) NOT NULL,
+	[DescrTipoPlanilla] [varchar](30) NOT NULL,
  CONSTRAINT [PK_TipoPlanilla] PRIMARY KEY CLUSTERED 
 (
 	[IdTipoPlanilla] ASC
