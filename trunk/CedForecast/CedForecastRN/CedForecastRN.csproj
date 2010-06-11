@@ -77,10 +77,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3000/Sincronizacion.asmx">
+    <WebReferenceUrl Include="http://localhost:52586/sincronizacion.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WS\</RelPath>
-      <UpdateFromURL>http://localhost:3000/Sincronizacion.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:52586/sincronizacion.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
