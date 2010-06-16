@@ -1,8 +1,14 @@
 CREATE DATABASE CedForecast 
 GO
+CREATE LOGIN cedeira WITH PASSWORD = 'fernando1', DEFAULT_DATABASE=CedForecast
+GO
 USE CedForecast
 GO
 CREATE ROLE ce_update
+GO
+CREATE USER Cedeira FOR LOGIN Cedeira
+GO
+EXEC sp_addrolemember 'ce_update', 'cedeira'
 GO
 /****** Objeto:  Table [dbo].[Forecast]    Fecha de la secuencia de comandos: 05/04/2010 14:12:58 ******/
 SET ANSI_NULLS ON
@@ -12,11 +18,11 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Forecast](
-	[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL,
-	[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	[IdTipoPlanilla] [varchar](15) NOT NULL,
+	[IdCuenta] [varchar](50) NOT NULL,
+	[IdCliente] [varchar](6) NOT NULL,
+	[IdArticulo] [varchar](20) NOT NULL,
+	[IdPeriodo] [varchar](6) NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
  CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
 (
@@ -480,9 +486,21 @@ insert WCUsuarios values ('Claudio', 'Claudio A. Cedeira', 1, 'DESA', '20100501'
 GO
 insert WCUsuarios values ('Pol', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
 GO
+insert WCUsuarios values ('Fernando', 'Fernando J. Cedeira', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+GO
+insert WCUsuarios values ('Diego', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+GO
+insert WCUsuarios values ('Herreros', 'Sebastian Herrero', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+GO
 insert WCGrupos values ('Usuarios', 'Claudio', 0, 0)
 GO
 insert WCGrupos values ('Usuarios', 'Pol', 0, 0)
+GO
+insert WCGrupos values ('Usuarios', 'Fernando', 0, 0)
+GO
+insert WCGrupos values ('Usuarios', 'Diego', 0, 0)
+GO
+insert WCGrupos values ('Usuarios', 'Herreros', 0, 0)
 GO
 insert WF_Acceso values ('FrontEnd', 'FrontEnd CedForecast', '1.0')
 GO
