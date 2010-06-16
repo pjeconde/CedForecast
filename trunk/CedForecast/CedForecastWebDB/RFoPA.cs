@@ -347,11 +347,11 @@ namespace CedForecastWebDB
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("CREATE TABLE #Forecast" + SessionID +"( ");
-            a.Append("[IdTipoPlanilla] [varchar](15) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
-            a.Append("[IdCuenta] [varchar](50) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
-            a.Append("[IdCliente] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
-            a.Append("[IdArticulo] [varchar](20) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
-            a.Append("[IdPeriodo] [varchar](6) COLLATE Modern_Spanish_CI_AS NOT NULL, ");
+            a.Append("[IdTipoPlanilla] [varchar](15) NOT NULL, ");
+            a.Append("[IdCuenta] [varchar](50) NOT NULL, ");
+            a.Append("[IdCliente] [varchar](6) NOT NULL, ");
+            a.Append("[IdArticulo] [varchar](20) NOT NULL, ");
+            a.Append("[IdPeriodo] [varchar](6) NOT NULL, ");
             a.Append("[Proyectado] [decimal](18, 0) NOT NULL, ");
             a.Append("[Ventas] [decimal](18, 0) NOT NULL, ");
             a.Append("[CantidadMesesParaDesvio] [int] NOT NULL, ");
@@ -369,7 +369,7 @@ namespace CedForecastWebDB
             a.Append("[Cantidad12] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad13] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad14] [decimal](18, 0) NOT NULL, ");
-            a.Append("CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED ");
+            a.Append("CONSTRAINT [PK_Forecast"+ SessionID +"] PRIMARY KEY CLUSTERED ");
             a.Append("( ");
             a.Append("[IdTipoPlanilla] ASC, ");
             a.Append("[IdCuenta] ASC, ");
@@ -412,6 +412,7 @@ namespace CedForecastWebDB
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("ORDER BY ROW_NUM) innerSelect WHERE ROW_NUM > {2} ");
+            a.Append("DROP TABLE #Forecast" + SessionID);
             string commandText = string.Format(a.ToString(), ((IndicePagina + 1) * TamañoPagina), OrderBy, (IndicePagina * TamañoPagina));
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(commandText.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
