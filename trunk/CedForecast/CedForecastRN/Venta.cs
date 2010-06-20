@@ -19,23 +19,30 @@ namespace CedForecastRN
         }
         public void EnviarNovedades()
         {
-            CedForecastDB.Bejerman.Ventas datos = new CedForecastDB.Bejerman.Ventas(sesion);
-            List<CedForecastEntidades.Bejerman.Ventas> lista = datos.LeerNovedades(periodo);
-            WS.Sincronizacion ws = new WS.Sincronizacion();
-            ws.Url = cedForecastWSRUL;
-            contador = 0;
-            contadorTope = lista.Count;
-            ws.IniciarEnvioVenta();
-            for (contador = 0; contador < contadorTope; contador++)
+            try
             {
-                WS.Venta elemento = new WS.Venta();
-                elemento.IdPeriodo = periodo;
-                elemento.IdArticulo = lista[contador].Sdvart_CodGen;
-                elemento.IdCliente = lista[contador].Cve_CodCli;
-                elemento.Cantidad = lista[contador].Sdv_CantUM1;
-                ws.EnviarVenta(elemento);
+                CedForecastDB.Bejerman.Ventas datos = new CedForecastDB.Bejerman.Ventas(sesion);
+                List<CedForecastEntidades.Bejerman.Ventas> lista = datos.LeerNovedades(periodo);
+                WS.Sincronizacion ws = new WS.Sincronizacion();
+                ws.Url = cedForecastWSRUL;
+                contador = 0;
+                contadorTope = lista.Count;
+                ws.IniciarEnvioVenta();
+                for (contador = 0; contador < contadorTope; contador++)
+                {
+                    WS.Venta elemento = new WS.Venta();
+                    elemento.IdPeriodo = periodo;
+                    elemento.IdArticulo = lista[contador].Sdvart_CodGen;
+                    elemento.IdCliente = lista[contador].Cve_CodCli;
+                    elemento.Cantidad = lista[contador].Sdv_CantUM1;
+                    ws.EnviarVenta(elemento);
+                }
+                ws.TerminarEnvioVenta();
             }
-            ws.TerminarEnvioVenta();
+            catch (Exception Ex)
+            {
+                errores.Add(Ex);
+            }
         }
     }
 }

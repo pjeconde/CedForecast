@@ -3,8 +3,6 @@ Friend Class frmMensaje
     Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
     Const EM_GETLINECOUNT As Integer = &HBA
 
-#Region " Código generado por el Diseñador de Windows Forms "
-
     Public Sub New(ByVal Mensaje As String, ByVal Icono As Microsoft.VisualBasic.MsgBoxStyle, ByVal Titulo As String, ByVal MasDetalles As String)
         MyBase.New()
 
@@ -20,7 +18,7 @@ Friend Class frmMensaje
         txtMasDetalles.Text = MasDetalles
         txtMasDetalles.SelectionLength = 0
         pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, CInt(SendMessage(txtMasDetalles.Handle, EM_GETLINECOUNT, 0, 0) * CSng(txtMasDetalles.CreateGraphics().MeasureString("M", txtMasDetalles.Font).Height)))
-        Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24)
+        Me.Size = New System.Drawing.Size(Me.Size.Width, AltoOriginalFormulario)
         Select Case Icono
             Case MsgBoxStyle.Critical
                 PictureBox.Image = SystemIcons.Error.ToBitmap
@@ -36,6 +34,8 @@ Friend Class frmMensaje
             btnMasDetalles.Visible = False
         End If
     End Sub
+
+#Region " Código generado por el Diseñador de Windows Forms "
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
     Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -62,22 +62,19 @@ Friend Class frmMensaje
     Friend WithEvents pnlBotones As System.Windows.Forms.Panel
     Friend WithEvents Splitter3 As System.Windows.Forms.Splitter
     Friend WithEvents txtMensaje As System.Windows.Forms.TextBox
-    Friend WithEvents SplitterMensaje As System.Windows.Forms.Splitter
-    Friend WithEvents SplitterMasDetalles As System.Windows.Forms.Splitter
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(frmMensaje))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMensaje))
         Me.pnlMensaje = New System.Windows.Forms.Panel
         Me.txtMensaje = New System.Windows.Forms.TextBox
         Me.Splitter3 = New System.Windows.Forms.Splitter
         Me.PictureBox = New System.Windows.Forms.PictureBox
         Me.pnlMasDetalles = New System.Windows.Forms.Panel
         Me.txtMasDetalles = New System.Windows.Forms.TextBox
-        Me.SplitterMensaje = New System.Windows.Forms.Splitter
-        Me.SplitterMasDetalles = New System.Windows.Forms.Splitter
         Me.pnlBotones = New System.Windows.Forms.Panel
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.btnMasDetalles = New System.Windows.Forms.Button
         Me.pnlMensaje.SuspendLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMasDetalles.SuspendLayout()
         Me.pnlBotones.SuspendLayout()
         Me.SuspendLayout()
@@ -104,7 +101,6 @@ Friend Class frmMensaje
         Me.txtMensaje.ReadOnly = True
         Me.txtMensaje.Size = New System.Drawing.Size(436, 72)
         Me.txtMensaje.TabIndex = 2
-        Me.txtMensaje.Text = ""
         '
         'Splitter3
         '
@@ -128,7 +124,7 @@ Friend Class frmMensaje
         '
         Me.pnlMasDetalles.Controls.Add(Me.txtMasDetalles)
         Me.pnlMasDetalles.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlMasDetalles.Location = New System.Drawing.Point(5, 180)
+        Me.pnlMasDetalles.Location = New System.Drawing.Point(5, 122)
         Me.pnlMasDetalles.Name = "pnlMasDetalles"
         Me.pnlMasDetalles.Size = New System.Drawing.Size(478, 88)
         Me.pnlMasDetalles.TabIndex = 6
@@ -145,79 +141,57 @@ Friend Class frmMensaje
         Me.txtMasDetalles.ReadOnly = True
         Me.txtMasDetalles.Size = New System.Drawing.Size(478, 88)
         Me.txtMasDetalles.TabIndex = 3
-        Me.txtMasDetalles.Text = ""
-        '
-        'SplitterMensaje
-        '
-        Me.SplitterMensaje.Dock = System.Windows.Forms.DockStyle.Top
-        Me.SplitterMensaje.Enabled = False
-        Me.SplitterMensaje.Location = New System.Drawing.Point(5, 77)
-        Me.SplitterMensaje.Name = "SplitterMensaje"
-        Me.SplitterMensaje.Size = New System.Drawing.Size(478, 10)
-        Me.SplitterMensaje.TabIndex = 7
-        Me.SplitterMensaje.TabStop = False
-        '
-        'SplitterMasDetalles
-        '
-        Me.SplitterMasDetalles.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SplitterMasDetalles.Enabled = False
-        Me.SplitterMasDetalles.Location = New System.Drawing.Point(5, 170)
-        Me.SplitterMasDetalles.Name = "SplitterMasDetalles"
-        Me.SplitterMasDetalles.Size = New System.Drawing.Size(478, 10)
-        Me.SplitterMasDetalles.TabIndex = 8
-        Me.SplitterMasDetalles.TabStop = False
-        Me.SplitterMasDetalles.Visible = False
         '
         'pnlBotones
         '
         Me.pnlBotones.Controls.Add(Me.btnAceptar)
         Me.pnlBotones.Controls.Add(Me.btnMasDetalles)
-        Me.pnlBotones.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlBotones.Location = New System.Drawing.Point(5, 87)
+        Me.pnlBotones.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlBotones.Location = New System.Drawing.Point(5, 77)
         Me.pnlBotones.Name = "pnlBotones"
-        Me.pnlBotones.Size = New System.Drawing.Size(478, 83)
+        Me.pnlBotones.Padding = New System.Windows.Forms.Padding(0, 6, 0, 6)
+        Me.pnlBotones.Size = New System.Drawing.Size(478, 38)
         Me.pnlBotones.TabIndex = 9
         '
         'btnAceptar
         '
         Me.btnAceptar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAceptar.Location = New System.Drawing.Point(398, 0)
+        Me.btnAceptar.Location = New System.Drawing.Point(412, 6)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 83)
+        Me.btnAceptar.Size = New System.Drawing.Size(66, 26)
         Me.btnAceptar.TabIndex = 0
         Me.btnAceptar.Text = "Aceptar"
         '
         'btnMasDetalles
         '
         Me.btnMasDetalles.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnMasDetalles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMasDetalles.Location = New System.Drawing.Point(0, 0)
+        Me.btnMasDetalles.Location = New System.Drawing.Point(0, 6)
         Me.btnMasDetalles.Name = "btnMasDetalles"
-        Me.btnMasDetalles.Size = New System.Drawing.Size(128, 83)
+        Me.btnMasDetalles.Size = New System.Drawing.Size(104, 26)
         Me.btnMasDetalles.TabIndex = 1
         Me.btnMasDetalles.Text = "Ver detalles"
         '
         'frmMensaje
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-        Me.ClientSize = New System.Drawing.Size(488, 273)
+        Me.ClientSize = New System.Drawing.Size(488, 215)
         Me.ControlBox = False
         Me.Controls.Add(Me.pnlBotones)
-        Me.Controls.Add(Me.SplitterMasDetalles)
-        Me.Controls.Add(Me.SplitterMensaje)
         Me.Controls.Add(Me.pnlMasDetalles)
         Me.Controls.Add(Me.pnlMensaje)
-        Me.DockPadding.All = 5
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmMensaje"
+        Me.Padding = New System.Windows.Forms.Padding(5)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mensaje"
         Me.pnlMensaje.ResumeLayout(False)
+        Me.pnlMensaje.PerformLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMasDetalles.ResumeLayout(False)
+        Me.pnlMasDetalles.PerformLayout()
         Me.pnlBotones.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -233,19 +207,21 @@ Friend Class frmMensaje
         Select Case btnMasDetalles.Text
             Case "Ver detalles"
                 btnMasDetalles.Text = "No ver detalles"
-                SplitterMasDetalles.Visible = True
                 pnlMasDetalles.Visible = True
-                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24 + SplitterMasDetalles.Size.Height + pnlMasDetalles.Size.Height)
+                Me.Size = New System.Drawing.Size(Me.Size.Width, AltoOriginalFormulario() + pnlMasDetalles.Size.Height)
                 If Me.Size.Height > 500 Then
                     Me.Size = New System.Drawing.Size(Me.Size.Width, 500)
-                    pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, 500 - pnlMensaje.Size.Height - SplitterMensaje.Size.Height - 35 - 24 - 10)
+                    pnlMasDetalles.Size = New System.Drawing.Size(pnlMasDetalles.Size.Width, 500 - (AltoOriginalFormulario()))
                     txtMasDetalles.ScrollBars = ScrollBars.Vertical
                 End If
             Case "No ver detalles"
                 btnMasDetalles.Text = "Ver detalles"
-                SplitterMasDetalles.Visible = False
                 pnlMasDetalles.Visible = False
-                Me.Size = New System.Drawing.Size(Me.Size.Width, pnlMensaje.Size.Height + SplitterMensaje.Size.Height + 35 + 24)
+                Me.Size = New System.Drawing.Size(Me.Size.Width, AltoOriginalFormulario())
         End Select
     End Sub
+
+    Private Function AltoOriginalFormulario() As Integer
+        Return pnlMensaje.Size.Height + pnlBotones.Height + 45
+    End Function
 End Class

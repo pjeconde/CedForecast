@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,7 +31,9 @@ namespace CedForecast
                 Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
                 string cedForecastWSURL = System.Configuration.ConfigurationManager.AppSettings["CedForecastWSURL"];
                 bool seChequeoAlgo = false;
+                bool huboErrores = false;
                 int cantidadMilisegundos = 100;
+                #region Articulos
                 if (ArticuloUiCheckBox.Checked)
                 {
                     BarraActivar(ArticuloUIProgressBar);
@@ -45,9 +48,23 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    } 
                     BarraDesactivar(ArticuloUIProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Clientes
                 if (ClienteUiCheckBox.Checked)
                 {
                     BarraActivar(ClienteUiProgressBar);
@@ -62,9 +79,23 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    } 
                     BarraDesactivar(ClienteUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Cuentas (vendedores)
                 if (CuentaUiCheckBox.Checked)
                 {
                     BarraActivar(CuentaUiProgressBar);
@@ -79,9 +110,23 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    } 
                     BarraDesactivar(CuentaUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Ventas
                 if (VentaUiCheckBox.Checked)
                 {
                     BarraActivar(VentaUiProgressBar);
@@ -96,9 +141,23 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    } 
                     BarraDesactivar(VentaUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Zonas
                 if (ZonaUiCheckBox.Checked)
                 {
                     BarraActivar(ZonaUiProgressBar);
@@ -113,9 +172,23 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    }
                     BarraDesactivar(ZonaUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Proyección Anual
                 if (ProyeccionAnualUiCheckBox.Checked)
                 {
                     BarraActivar(ProyeccionAnualUiProgressBar);
@@ -129,10 +202,24 @@ namespace CedForecast
                         this.BringToFront();
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
                     } 
                     BarraDesactivar(ProyeccionAnualUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
+                #region Rolling Forecast
                 if (RollingForecastUiCheckBox.Checked)
                 {
                     BarraActivar(RollingForecastUiProgressBar);
@@ -147,16 +234,36 @@ namespace CedForecast
                         Thread.Sleep(cantidadMilisegundos);
                         if (thread.ThreadState == ThreadState.Stopped) { break; }
                     }
+                    if (proceso.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (proceso.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(proceso.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    } 
                     BarraDesactivar(RollingForecastUiProgressBar);
                     seChequeoAlgo = true;
                 }
+                #endregion
                 if (!seChequeoAlgo)
                 {
                     MessageBox.Show("Elija el elemento que desea sincronizar", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Sincronización concluída satisfactoriamente");
+                    if (!huboErrores)
+                    {
+                        MessageBox.Show("Sincronización concluída satisfactoriamente", "NOTIFICACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sincronización concluída con errores", "NOTIFICACIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     this.DialogResult = DialogResult.OK;
                 }
             }
