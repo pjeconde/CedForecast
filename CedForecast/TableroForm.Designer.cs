@@ -28,6 +28,7 @@ namespace CedForecast
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -40,6 +41,7 @@ namespace CedForecast
             PureComponents.NicePanel.ContainerStyle containerStyle1 = new PureComponents.NicePanel.ContainerStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle1 = new PureComponents.NicePanel.PanelHeaderStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle2 = new PureComponents.NicePanel.PanelHeaderStyle();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             PureComponents.NicePanel.ContainerImage containerImage2 = new PureComponents.NicePanel.ContainerImage();
             PureComponents.NicePanel.HeaderImage headerImage3 = new PureComponents.NicePanel.HeaderImage();
             PureComponents.NicePanel.HeaderImage headerImage4 = new PureComponents.NicePanel.HeaderImage();
@@ -58,7 +60,7 @@ namespace CedForecast
             this.BarraEstado = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.nicePanel = new PureComponents.NicePanel.NicePanel();
-            this.SincronizaciónUiButton = new Janus.Windows.EditControls.UIButton();
+            this.OpcionGridEX = new Janus.Windows.GridEX.GridEX();
             this.GraficosUiButton = new Janus.Windows.EditControls.UIButton();
             this.ProcesosUiButton = new Janus.Windows.EditControls.UIButton();
             this.InterfacesUiButton = new Janus.Windows.EditControls.UIButton();
@@ -69,9 +71,11 @@ namespace CedForecast
             this.ProcesoNicePanel = new PureComponents.NicePanel.NicePanel();
             this.VersionVerticalLabel = new Cedeira.UI.CustomControls.VerticalLabel();
             this.NotificacionesNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.FondoNicePanel.SuspendLayout();
             this.BarraEstado.SuspendLayout();
             this.nicePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OpcionGridEX)).BeginInit();
             this.ProcesoNicePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,7 +175,7 @@ namespace CedForecast
             containerImage1.Transparency = 50;
             this.nicePanel.ContainerImage = containerImage1;
             this.nicePanel.ContextMenuButton = false;
-            this.nicePanel.Controls.Add(this.SincronizaciónUiButton);
+            this.nicePanel.Controls.Add(this.OpcionGridEX);
             this.nicePanel.Controls.Add(this.GraficosUiButton);
             this.nicePanel.Controls.Add(this.ProcesosUiButton);
             this.nicePanel.Controls.Add(this.InterfacesUiButton);
@@ -190,12 +194,12 @@ namespace CedForecast
             this.nicePanel.HeaderImage = headerImage2;
             this.nicePanel.HeaderText = "Opciones";
             this.nicePanel.IsExpanded = true;
-            this.nicePanel.Location = new System.Drawing.Point(451, 33);
+            this.nicePanel.Location = new System.Drawing.Point(555, 33);
             this.nicePanel.Name = "nicePanel";
             this.nicePanel.OriginalFooterVisible = false;
             this.nicePanel.OriginalHeight = 0;
             this.nicePanel.ShowChildFocus = false;
-            this.nicePanel.Size = new System.Drawing.Size(324, 362);
+            this.nicePanel.Size = new System.Drawing.Size(220, 303);
             containerStyle1.BackColor = System.Drawing.Color.PeachPuff;
             containerStyle1.BaseColor = System.Drawing.Color.Transparent;
             containerStyle1.BorderColor = System.Drawing.Color.Peru;
@@ -234,25 +238,39 @@ namespace CedForecast
             this.nicePanel.Style = panelStyle1;
             this.nicePanel.TabIndex = 133;
             // 
-            // SincronizaciónUiButton
+            // OpcionGridEX
             // 
-            this.SincronizaciónUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.SincronizaciónUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.SincronizaciónUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SincronizaciónUiButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.SincronizaciónUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.SincronizaciónUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SincronizaciónUiButton.Icon")));
-            this.SincronizaciónUiButton.Location = new System.Drawing.Point(5, 44);
-            this.SincronizaciónUiButton.Name = "SincronizaciónUiButton";
-            this.SincronizaciónUiButton.ShowFocusRectangle = false;
-            this.SincronizaciónUiButton.Size = new System.Drawing.Size(104, 24);
-            this.SincronizaciónUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.SincronizaciónUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.SincronizaciónUiButton.TabIndex = 135;
-            this.SincronizaciónUiButton.Text = "Sincronización";
-            this.SincronizaciónUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
-            this.SincronizaciónUiButton.UseThemes = false;
-            this.SincronizaciónUiButton.Click += new System.EventHandler(this.SincronizaciónUiButton_Click);
+            this.OpcionGridEX.AllowColumnDrag = false;
+            this.OpcionGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.OpcionGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.OpcionGridEX.AutomaticSort = false;
+            this.OpcionGridEX.BackColor = System.Drawing.Color.PeachPuff;
+            this.OpcionGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
+            this.OpcionGridEX.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.OpcionGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
+            this.OpcionGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
+            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
+            this.OpcionGridEX.DesignTimeLayout = gridEXLayout1;
+            this.OpcionGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
+            this.OpcionGridEX.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid;
+            this.OpcionGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.OpcionGridEX.GridLineColor = System.Drawing.Color.Cornsilk;
+            this.OpcionGridEX.GridLines = Janus.Windows.GridEX.GridLines.None;
+            this.OpcionGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
+            this.OpcionGridEX.GroupByBoxVisible = false;
+            this.OpcionGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.OpcionGridEX.Location = new System.Drawing.Point(5, 44);
+            this.OpcionGridEX.Name = "OpcionGridEX";
+            this.OpcionGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
+            this.OpcionGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Empty;
+            this.OpcionGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.OpcionGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.Empty;
+            this.OpcionGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.OpcionGridEX.Size = new System.Drawing.Size(208, 254);
+            this.OpcionGridEX.TabIndex = 136;
+            this.OpcionGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
+            this.OpcionGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.OpcionGridEX.Click += new System.EventHandler(this.OpcionGridEX_Click);
             // 
             // GraficosUiButton
             // 
@@ -261,7 +279,6 @@ namespace CedForecast
             this.GraficosUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.GraficosUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
             this.GraficosUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GraficosUiButton.Enabled = false;
             this.GraficosUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.GraficosUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("GraficosUiButton.Icon")));
             this.GraficosUiButton.Location = new System.Drawing.Point(149, 2);
@@ -273,6 +290,7 @@ namespace CedForecast
             this.GraficosUiButton.TabIndex = 132;
             this.GraficosUiButton.Tag = "Graficos";
             this.GraficosUiButton.UseThemes = false;
+            this.GraficosUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // ProcesosUiButton
             // 
@@ -281,7 +299,6 @@ namespace CedForecast
             this.ProcesosUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ProcesosUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
             this.ProcesosUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ProcesosUiButton.Enabled = false;
             this.ProcesosUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.ProcesosUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ProcesosUiButton.Icon")));
             this.ProcesosUiButton.Location = new System.Drawing.Point(173, 2);
@@ -293,6 +310,7 @@ namespace CedForecast
             this.ProcesosUiButton.TabIndex = 131;
             this.ProcesosUiButton.Tag = "Procesos";
             this.ProcesosUiButton.UseThemes = false;
+            this.ProcesosUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // InterfacesUiButton
             // 
@@ -301,7 +319,6 @@ namespace CedForecast
             this.InterfacesUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.InterfacesUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
             this.InterfacesUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InterfacesUiButton.Enabled = false;
             this.InterfacesUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.InterfacesUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("InterfacesUiButton.Icon")));
             this.InterfacesUiButton.Location = new System.Drawing.Point(197, 2);
@@ -313,6 +330,7 @@ namespace CedForecast
             this.InterfacesUiButton.TabIndex = 128;
             this.InterfacesUiButton.Tag = "Interfaces";
             this.InterfacesUiButton.UseThemes = false;
+            this.InterfacesUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // ExploradoresUiButton
             // 
@@ -321,7 +339,6 @@ namespace CedForecast
             this.ExploradoresUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ExploradoresUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
             this.ExploradoresUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExploradoresUiButton.Enabled = false;
             this.ExploradoresUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.ExploradoresUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ExploradoresUiButton.Icon")));
             this.ExploradoresUiButton.Location = new System.Drawing.Point(125, 2);
@@ -333,6 +350,7 @@ namespace CedForecast
             this.ExploradoresUiButton.TabIndex = 127;
             this.ExploradoresUiButton.Tag = "Exploradores";
             this.ExploradoresUiButton.UseThemes = false;
+            this.ExploradoresUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // ConsultasUiButton
             // 
@@ -341,7 +359,6 @@ namespace CedForecast
             this.ConsultasUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ConsultasUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
             this.ConsultasUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ConsultasUiButton.Enabled = false;
             this.ConsultasUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.ConsultasUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ConsultasUiButton.Icon")));
             this.ConsultasUiButton.Location = new System.Drawing.Point(101, 2);
@@ -353,6 +370,7 @@ namespace CedForecast
             this.ConsultasUiButton.TabIndex = 126;
             this.ConsultasUiButton.Tag = "Consultas";
             this.ConsultasUiButton.UseThemes = false;
+            this.ConsultasUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // ConfigDBasicosUiButton
             // 
@@ -372,6 +390,7 @@ namespace CedForecast
             this.ConfigDBasicosUiButton.TabIndex = 125;
             this.ConfigDBasicosUiButton.Tag = "Config.datos básicos";
             this.ConfigDBasicosUiButton.UseThemes = false;
+            this.ConfigDBasicosUiButton.Click += new System.EventHandler(this.TipoOpcion_Click);
             // 
             // TipoOpcionLabel
             // 
@@ -380,9 +399,8 @@ namespace CedForecast
             this.TipoOpcionLabel.ForeColor = System.Drawing.Color.Brown;
             this.TipoOpcionLabel.Location = new System.Drawing.Point(2, 26);
             this.TipoOpcionLabel.Name = "TipoOpcionLabel";
-            this.TipoOpcionLabel.Size = new System.Drawing.Size(320, 15);
+            this.TipoOpcionLabel.Size = new System.Drawing.Size(216, 15);
             this.TipoOpcionLabel.TabIndex = 130;
-            this.TipoOpcionLabel.Text = "Configuracion de Datos Basicos";
             this.TipoOpcionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProcesoNicePanel
@@ -408,12 +426,12 @@ namespace CedForecast
             this.ProcesoNicePanel.HeaderImage = headerImage4;
             this.ProcesoNicePanel.HeaderText = "Proceso diario";
             this.ProcesoNicePanel.IsExpanded = true;
-            this.ProcesoNicePanel.Location = new System.Drawing.Point(7, 33);
+            this.ProcesoNicePanel.Location = new System.Drawing.Point(8, 33);
             this.ProcesoNicePanel.Name = "ProcesoNicePanel";
             this.ProcesoNicePanel.OriginalFooterVisible = false;
             this.ProcesoNicePanel.OriginalHeight = 0;
             this.ProcesoNicePanel.ShowChildFocus = false;
-            this.ProcesoNicePanel.Size = new System.Drawing.Size(436, 472);
+            this.ProcesoNicePanel.Size = new System.Drawing.Size(541, 472);
             containerStyle2.BackColor = System.Drawing.Color.White;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Navy;
@@ -488,12 +506,12 @@ namespace CedForecast
             this.NotificacionesNicePanel.HeaderImage = headerImage6;
             this.NotificacionesNicePanel.HeaderText = "Notificaciones";
             this.NotificacionesNicePanel.IsExpanded = true;
-            this.NotificacionesNicePanel.Location = new System.Drawing.Point(451, 401);
+            this.NotificacionesNicePanel.Location = new System.Drawing.Point(555, 342);
             this.NotificacionesNicePanel.Name = "NotificacionesNicePanel";
             this.NotificacionesNicePanel.OriginalFooterVisible = false;
             this.NotificacionesNicePanel.OriginalHeight = 0;
             this.NotificacionesNicePanel.ShowChildFocus = false;
-            this.NotificacionesNicePanel.Size = new System.Drawing.Size(324, 80);
+            this.NotificacionesNicePanel.Size = new System.Drawing.Size(220, 139);
             containerStyle3.BackColor = System.Drawing.Color.PeachPuff;
             containerStyle3.BaseColor = System.Drawing.Color.Transparent;
             containerStyle3.BorderColor = System.Drawing.Color.Peru;
@@ -532,6 +550,15 @@ namespace CedForecast
             this.NotificacionesNicePanel.Style = panelStyle3;
             this.NotificacionesNicePanel.TabIndex = 135;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "back_16.ico");
+            this.imageList1.Images.SetKeyName(1, "close_16.ico");
+            this.imageList1.Images.SetKeyName(2, "forwd_16.ico");
+            this.imageList1.Images.SetKeyName(3, "wiz_16.ico");
+            // 
             // TableroForm
             // 
             this.ClientSize = new System.Drawing.Size(785, 537);
@@ -540,6 +567,7 @@ namespace CedForecast
             this.FondoNicePanel.ResumeLayout(false);
             this.BarraEstado.ResumeLayout(false);
             this.nicePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OpcionGridEX)).EndInit();
             this.ProcesoNicePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -561,6 +589,7 @@ namespace CedForecast
         private PureComponents.NicePanel.NicePanel ProcesoNicePanel;
         private Cedeira.UI.CustomControls.VerticalLabel VersionVerticalLabel;
         private PureComponents.NicePanel.NicePanel NotificacionesNicePanel;
-        protected Janus.Windows.EditControls.UIButton SincronizaciónUiButton;
+        private System.Windows.Forms.ImageList imageList1;
+        protected Janus.Windows.GridEX.GridEX OpcionGridEX;
     }
 }
