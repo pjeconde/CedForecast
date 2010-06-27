@@ -14,7 +14,7 @@ namespace CedForecast
         {
             InitializeComponent();
             VersionVerticalLabel.Text = "Versión " + Aplicacion.Version;
-            TipoOpcion_Click(ProcesosUiButton, EventArgs.Empty);
+            TipoOpcion_Click(ConsultasUiButton, EventArgs.Empty);
         }
         private void SalirUiButton_Click(object sender, EventArgs e)
         {
@@ -28,6 +28,7 @@ namespace CedForecast
                 case "ConfigDBasicos":
                     break;
                 case "Consultas":
+                    opciones.Add(new CedForecastEntidades.Opcion("CrossTabArticulosClientes", "Crosstab Articulos-Clientes"));
                     break;
                 case "Exploradores":
                     break;
@@ -58,6 +59,16 @@ namespace CedForecast
                             case "ConfigDBasicos":
                                 break;
                             case "Consultas":
+                                aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
+                                switch (aux)
+                                {
+                                    case "CrossTabArticulosClientes":
+                                        oFrm = new CrossTabArticulosClientesForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    default:
+                                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+                                }
                                 break;
                             case "Exploradores":
                                 break;
@@ -67,11 +78,9 @@ namespace CedForecast
                                 break;
                             case "Procesos":
                                 aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
-                                //aux = Convert.ToString(((DataTable)OpcionGridEX.DataSource).Rows[OpcionGridEX.Row]["IdOpcion"]);
                                 switch (aux)
                                 {
                                     case "Sincronizacion":
-                                        //oFrm = new SincronizacionForm(Convert.ToString(((DataTable)OpcionGridEX.DataSource).Rows[OpcionGridEX.Row]["DescrOpcion"]));
                                         oFrm = new SincronizacionForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;

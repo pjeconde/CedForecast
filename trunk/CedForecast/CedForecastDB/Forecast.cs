@@ -36,5 +36,18 @@ namespace CedForecastDB
             a.Append(") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
+        public DataSet LeerDatosParaCrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select IdArticulo as Articulo, IdCuenta as Vendedor, IdCliente as Cliente, sum(Cantidad) as Cantidad into #ForecastAux ");
+            a.Append("from Forecast where IdTipoPlanilla='RollingForecast' ");
+            a.Append("and IdPeriodo>='" + IdPeriodoDesde + "'  and IdPeriodo<='" + IdPeriodoHasta + "' group by IdArticulo, IdCuenta, IdCliente ");
+            a.Append("select distinct Articulo from #ForecastAux order by Articulo ");
+            a.Append("select distinct Vendedor from #ForecastAux order by Vendedor ");
+            a.Append("select distinct Cliente from #ForecastAux order by Cliente ");
+            a.Append("select Articulo, Vendedor, Cliente, Cantidad from #ForecastAux order by Articulo, Vendedor ");
+            a.Append("drop table #ForecastAux ");
+            return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
+        }
     }
 }

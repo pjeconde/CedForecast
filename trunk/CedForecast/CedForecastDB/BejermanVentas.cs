@@ -18,7 +18,7 @@ namespace CedForecastDB.Bejerman
             DateTime fechaHst = fechaDsd.AddMonths(1).AddDays(-1);
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("SELECT SegDetV.sdvart_CodGen, CabVenta.cve_CodCli, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1 ");
+            a.Append("SELECT ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, ltrim(rtrim(CabVenta.cve_CodCli)) as cve_CodCli, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1 ");
             a.Append("FROM CabVenta, SegCabV, SegDetV  ");
             a.Append("WHERE CabVenta.cveemp_CodigoSCV=SegCabV.scvemp_Codigo ");
             a.Append("and CabVenta.cvesuc_CodSCV=SegCabV.scvsuc_Cod ");
