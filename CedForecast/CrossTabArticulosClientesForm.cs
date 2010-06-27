@@ -106,9 +106,9 @@ namespace CedForecast
                 case "Planilla":
                     try
                     {
-                        Cedeira.SV.Export exc = new Cedeira.SV.Export();
+                        Cedeira.SV.Export planilla = new Cedeira.SV.Export();
                         Cursor = Cursors.WaitCursor;
-                        exc.ExportDetails((DataTable)BrowserGridEX.DataSource, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                        planilla.ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
                     }
                     catch (Exception ex)
                     {

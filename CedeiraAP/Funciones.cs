@@ -510,6 +510,140 @@ namespace Cedeira.SV
             ((Janus.Windows.GridEX.GridEXPrintDocument)sender).PrinterSettings.ToPage = ((Janus.Windows.GridEX.GridEXPrintDocument)sender).TotalPages;
             ((Janus.Windows.GridEX.GridEXPrintDocument)sender).PageFooterCenter = "Página " + ((Janus.Windows.GridEX.GridEXPrintDocument)sender).Page + " de " + ((Janus.Windows.GridEX.GridEXPrintDocument)sender).TotalPages;
         }
-
-	}
+        /// <summary>
+        /// 	Devuelve un DataTable de un GridEx
+        /// </summary>
+        /// <param name="JanusGridEx"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public static DataSet GetDataSetFromJanusGridEx(Janus.Windows.GridEX.GridEX JanusGridEx, string tableName)
+        {
+            DataSet JanusDataSet = new DataSet();
+            DataTable JanusDataTable = new DataTable(tableName);
+            DataRow JanusDataRow = null;
+            Janus.Windows.GridEX.GridEXRow[] JanusRows;
+            JanusRows = JanusGridEx.GetRows();
+            int columnas = JanusGridEx.RootTable.Columns.Count;
+            if (JanusGridEx.GroupTotals == Janus.Windows.GridEX.GroupTotals.Never)
+            {
+                for (int q = 0; q < columnas; q++)
+                {
+                    if (JanusGridEx.RootTable.Columns[q].Visible == true)
+                    {
+                        Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.Columns[q];
+                        System.Data.DataColumn dc = new DataColumn();
+                        dc.ColumnName = gec.Key;
+                        dc.Caption = gec.Caption;
+                        if (!JanusDataTable.Columns.Contains(gec.Key))
+                        {
+                            JanusDataTable.Columns.Add(dc);
+                        }
+                    }
+                }
+                JanusDataTable.AcceptChanges();
+                for (int registros = 0; registros < JanusGridEx.RowCount; registros++)
+                {
+                    JanusDataRow = JanusDataTable.NewRow();
+                    for (int counter = 0; counter < columnas; counter++)
+                    {
+                        string columna = Convert.ToString(JanusGridEx.RootTable.Columns[counter].Key);
+                        if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
+                        {
+                            string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
+                            auxValor += Convert.ToString(JanusDataRow[0]);
+                            if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
+                            {
+                                JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
+                            }
+                            else
+                            {
+                                JanusDataRow[0] = auxValor;
+                            }
+                            break;
+                        }
+                        else if (JanusGridEx.RootTable.Columns[columna].Visible == true)
+                        {
+                            if (JanusGridEx.GetRow(registros).Cells[columna].Value != null && JanusGridEx.GetRow(registros).Cells[columna].Value.GetType() == System.Type.GetType("System.DateTime"))
+                            {
+                                JanusDataRow[columna] = ((DateTime)JanusGridEx.GetRow(registros).Cells[columna].Value).ToString("MM/dd/yyyy");
+                            }
+                            else
+                            {
+                                JanusDataRow[columna] = JanusGridEx.GetRow(registros).Cells[columna].Text;
+                            }
+                        }
+                    }
+                    JanusDataTable.Rows.Add(JanusDataRow);
+                    JanusDataTable.AcceptChanges();
+                }
+            }
+            else
+            {
+                for (int q = 0; q < columnas; q++)
+                {
+                    if (JanusGridEx.RootTable.Columns[q].Visible == true)
+                    {
+                        Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.Columns[q];
+                        System.Data.DataColumn dc = new DataColumn();
+                        dc.ColumnName = gec.Key;
+                        dc.Caption = gec.Caption;
+                        if (!JanusDataTable.Columns.Contains(gec.Key))
+                        {
+                            JanusDataTable.Columns.Add(dc);
+                        }
+                    }
+                }
+                JanusDataTable.AcceptChanges();
+                for (int registros = 0; registros < JanusGridEx.RowCount; registros++)
+                {
+                    JanusDataRow = JanusDataTable.NewRow();
+                    for (int counter = 0; counter < columnas; counter++)
+                    {
+                        string columna = Convert.ToString(JanusGridEx.RootTable.Columns[counter].Key);
+                        if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
+                        {
+                            string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
+                            auxValor += Convert.ToString(JanusDataRow[0]);
+                            if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
+                            {
+                                JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
+                            }
+                            else
+                            {
+                                JanusDataRow[0] = auxValor;
+                            }
+                            break;
+                        }
+                        else if (JanusGridEx.RootTable.Columns[columna].Visible == true)
+                        {
+                            if (JanusGridEx.GetRow(registros).Cells[columna].Value != null && JanusGridEx.GetRow(registros).Cells[columna].Value.GetType() == System.Type.GetType("System.DateTime"))
+                            {
+                                JanusDataRow[columna] = ((DateTime)JanusGridEx.GetRow(registros).Cells[columna].Value).ToString("MM/dd/yyyy");
+                            }
+                            else
+                            {
+                                JanusDataRow[columna] = JanusGridEx.GetRow(registros).Cells[columna].Text;
+                            }
+                        }
+                    }
+                    JanusDataTable.Rows.Add(JanusDataRow);
+                    JanusDataTable.AcceptChanges();
+                }
+            }
+            JanusDataSet.Tables.Add(JanusDataTable);
+            return JanusDataSet;
+        }
+        private static bool EsFilaDeAgrupamiento(Janus.Windows.GridEX.GridEXRow fila)
+        {
+            for (int i = 0; i < fila.Cells.Count; i++)
+            {
+                string aux = Convert.ToString(fila.Cells[i].Text);
+                if (!aux.Equals(string.Empty))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }
