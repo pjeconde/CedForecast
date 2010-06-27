@@ -41,6 +41,7 @@ namespace CedForecast
                 DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), ArticulosyVendedoresUiRadioButton.Checked, Aplicacion.Sesion);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
+                BrowserGridEX.RootTable.Columns[2].Key = "Pirulo";
                 TabBrowserUiTabPage.TabVisible = true;
                 BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
                 volverATabBrowser = true;
