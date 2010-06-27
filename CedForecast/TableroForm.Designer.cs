@@ -424,7 +424,7 @@ namespace CedForecast
             headerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage4.Image = null;
             this.ProcesoNicePanel.HeaderImage = headerImage4;
-            this.ProcesoNicePanel.HeaderText = "Proceso diario";
+            this.ProcesoNicePanel.HeaderText = "Tablero de Control";
             this.ProcesoNicePanel.IsExpanded = true;
             this.ProcesoNicePanel.Location = new System.Drawing.Point(8, 33);
             this.ProcesoNicePanel.Name = "ProcesoNicePanel";

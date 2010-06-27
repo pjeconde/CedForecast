@@ -11,12 +11,37 @@ namespace CedForecastDB.Bejerman
             : base(Sesion)
         {
         }
-
         public List<CedForecastEntidades.Bejerman.Articulos> LeerNovedades(DateTime FechaUltimaSincronizacion)
         {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where art_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd HH:mm:ss.fff") + "' order by art_FecMod");
+            a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where art_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd HH:mm:ss.fff") + "' order by art_FecMod");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            List<CedForecastEntidades.Bejerman.Articulos> lista = new List<CedForecastEntidades.Bejerman.Articulos>();
+            if (dt.Rows.Count != 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastEntidades.Bejerman.Articulos elemento = new CedForecastEntidades.Bejerman.Articulos();
+                    Copiar(dt.Rows[i], elemento);
+                    lista.Add(elemento);
+                }
+            }
+            return lista;
+        }
+        public List<CedForecastEntidades.Bejerman.Articulos> LeerLista(DataTable Articulos)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where ltrim(rtrim(art_CodGen)) in (");
+            for (int i = 0; i < Articulos.Rows.Count; i++)
+            {
+                a.Append("'" + Articulos.Rows[i]["Articulo"] + "'");
+                if (i != Articulos.Rows.Count - 1)
+                {
+                    a.Append(", ");
+                }
+            } a.Append(") order by ltrim(rtrim(art_CodGen)) ");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             List<CedForecastEntidades.Bejerman.Articulos> lista = new List<CedForecastEntidades.Bejerman.Articulos>();
             if (dt.Rows.Count != 0)

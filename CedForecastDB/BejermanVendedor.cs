@@ -11,12 +11,37 @@ namespace CedForecastDB.Bejerman
             : base(Sesion)
         {
         }
-
         public List<CedForecastEntidades.Bejerman.Vendedor> LeerNovedades(DateTime FechaUltimaSincronizacion)
         {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select ven_Cod, ven_Desc, ven_Tel, ven_email, ven_Fax, ven_Password, ven_Activo, ven_FecMod from Vendedor where ven_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd HH:mm:ss.fff") + "' order by ven_FecMod");
+            a.Append("select ltrim(rtrim(ven_Cod)) as ven_Cod, ven_Desc, ven_Tel, ven_email, ven_Fax, ven_Password, ven_Activo, ven_FecMod from Vendedor where ven_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd HH:mm:ss.fff") + "' order by ven_FecMod");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            List<CedForecastEntidades.Bejerman.Vendedor> lista = new List<CedForecastEntidades.Bejerman.Vendedor>();
+            if (dt.Rows.Count != 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastEntidades.Bejerman.Vendedor elemento = new CedForecastEntidades.Bejerman.Vendedor();
+                    Copiar(dt.Rows[i], elemento);
+                    lista.Add(elemento);
+                }
+            }
+            return lista;
+        }
+        public List<CedForecastEntidades.Bejerman.Vendedor> LeerLista(DataTable Vendedores)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(ven_Cod)) as ven_Cod, ven_Desc, ven_Tel, ven_email, ven_Fax, ven_Password, ven_Activo, ven_FecMod from Vendedor where ltrim(rtrim(ven_Cod)) in (" );
+            for (int i = 0; i < Vendedores.Rows.Count; i++)
+            {
+                a.Append("'" + Vendedores.Rows[i]["Vendedor"] + "'");
+                if (i != Vendedores.Rows.Count - 1)
+                {
+                    a.Append(", ");
+                }
+            } a.Append(") order by ltrim(rtrim(ven_Cod)) ");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             List<CedForecastEntidades.Bejerman.Vendedor> lista = new List<CedForecastEntidades.Bejerman.Vendedor>();
             if (dt.Rows.Count != 0)
