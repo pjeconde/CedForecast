@@ -7,11 +7,11 @@ namespace CedForecastRN
 {
     public static class Reporte
     {
-        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, CedEntidades.Sesion Sesion)
+        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, bool IncluyeVendedor, CedEntidades.Sesion Sesion)
         {
             //Leer datos Forecast
             CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
-            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta);
+            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, IncluyeVendedor);
             DataTable dtArticulos = ds.Tables[0];
             DataTable dtVendedores = ds.Tables[1];
             DataTable dtClientes = ds.Tables[2];
@@ -24,7 +24,10 @@ namespace CedForecastRN
             //Crear crosstab
             DataTable dt = new DataTable();
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+            if (IncluyeVendedor)
+            {
+                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+            }
             for (int i=0; i<dtClientes.Rows.Count; i++)
             {
                 string nombreColumna = Convert.ToString(dtClientes.Rows[i]["Cliente"]);
@@ -40,7 +43,11 @@ namespace CedForecastRN
             string claveAnterior = String.Empty;
             for (int i = 0; i < dtDatos.Rows.Count; i++)
             {
-                string claveActual=Convert.ToString(dtDatos.Rows[i]["Articulo"]) + Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
+                string claveActual=Convert.ToString(dtDatos.Rows[i]["Articulo"]);
+                if (IncluyeVendedor)
+                {
+                    claveActual += Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
+                }
                 if (claveAnterior != claveActual)
                 {
                     DataRow dr=dt.NewRow();
@@ -53,14 +60,17 @@ namespace CedForecastRN
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
                     }
-                    CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
-                    if (vendedor == null)
+                    if (IncluyeVendedor) 
                     {
-                        dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
-                    }
-                    else
-                    {
-                        dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-" + vendedor.Ven_Desc;
+                        CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
+                        if (vendedor == null)
+                        {
+                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
+                        }
+                        else
+                        {
+                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-" + vendedor.Ven_Desc;
+                        }
                     }
                     dt.Rows.Add(dr);
                     claveAnterior = claveActual;

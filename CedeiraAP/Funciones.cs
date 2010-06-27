@@ -456,5 +456,60 @@ namespace Cedeira.SV
 			impersonationContext.Undo();
 		}
 		#endregion
+        public static void ImprimirGrilla(System.Windows.Forms.Form Formulario, Janus.Windows.GridEX.GridEX Grilla, string TituloAplicacion, bool Apaisada)
+        {
+            ImprimirGrilla(Formulario, Grilla, TituloAplicacion, Apaisada, Janus.Windows.GridEX.FitColumnsMode.Zooming);
+        }
+        public static void ImprimirGrilla(System.Windows.Forms.Form Formulario, Janus.Windows.GridEX.GridEX Grilla, string TituloAplicacion, bool Apaisada, Janus.Windows.GridEX.FitColumnsMode ModoAjusteColumnas)
+        {
+            try
+            {
+                Formulario.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+                Janus.Windows.GridEX.GridEXPrintDocument gridEXPrintDocument = new Janus.Windows.GridEX.GridEXPrintDocument();
+                foreach (System.Drawing.Printing.PaperSize ps in gridEXPrintDocument.PrinterSettings.PaperSizes)
+                {
+                    if (ps.Kind == System.Drawing.Printing.PaperKind.Letter)
+                    {
+                        gridEXPrintDocument.DefaultPageSettings.PaperSize = ps;
+                        break;
+                    }
+                }
+                gridEXPrintDocument.ExpandFarColumn = false;
+                gridEXPrintDocument.DefaultPageSettings.Landscape = Apaisada;
+                gridEXPrintDocument.DefaultPageSettings.Margins.Bottom = 90;
+                gridEXPrintDocument.DefaultPageSettings.Margins.Top = 30;
+                gridEXPrintDocument.DefaultPageSettings.Margins.Left = 10;
+                gridEXPrintDocument.DefaultPageSettings.Margins.Right = 70;
+                gridEXPrintDocument.HeaderDistance = 15;
+                gridEXPrintDocument.FitColumns = ModoAjusteColumnas;
+                gridEXPrintDocument.PageHeaderFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+                gridEXPrintDocument.PageHeaderLeft = TituloAplicacion;
+                gridEXPrintDocument.PageHeaderCenter = Formulario.Text;
+                gridEXPrintDocument.PageHeaderRight = System.DateTime.Now.ToString();
+                gridEXPrintDocument.PrintCollapsedRows = true;
+                gridEXPrintDocument.DocumentName = Formulario.Text;
+                gridEXPrintDocument.GridEX = Grilla;
+                gridEXPrintDocument.PrepareDocument();
+                Fun f = new Fun();
+                gridEXPrintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(f.PrepararNroPaginas);
+                gridEXPrintDocument.Print();
+            }
+            catch (System.Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+            }
+            finally
+            {
+                Formulario.Cursor = System.Windows.Forms.Cursors.Default;
+            }
+        }
+        public void PrepararNroPaginas(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            ((Janus.Windows.GridEX.GridEXPrintDocument)sender).PrinterSettings.FromPage = ((Janus.Windows.GridEX.GridEXPrintDocument)sender).Page;
+            ((Janus.Windows.GridEX.GridEXPrintDocument)sender).PrinterSettings.ToPage = ((Janus.Windows.GridEX.GridEXPrintDocument)sender).TotalPages;
+            ((Janus.Windows.GridEX.GridEXPrintDocument)sender).PageFooterCenter = "Página " + ((Janus.Windows.GridEX.GridEXPrintDocument)sender).Page + " de " + ((Janus.Windows.GridEX.GridEXPrintDocument)sender).TotalPages;
+        }
+
 	}
 }
