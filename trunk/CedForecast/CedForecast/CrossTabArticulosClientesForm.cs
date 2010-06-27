@@ -38,7 +38,7 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
-                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), Aplicacion.Sesion);
+                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), ArticulosyVendedoresUiRadioButton.Checked, Aplicacion.Sesion);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
                 TabBrowserUiTabPage.TabVisible = true;
@@ -66,6 +66,15 @@ namespace CedForecast
                 switch (tipo)
                 {
                     case "String":
+                        switch (nombre)
+                        {
+                            case "Articulo":
+                                BrowserGridEX.RootTable.Columns[elemento].Width = 250;
+                                break;
+                            case "Vendedor":
+                                BrowserGridEX.RootTable.Columns[elemento].Width = 150;
+                                break;
+                        }
                         break;
                     case "Decimal":
                         BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
@@ -84,6 +93,32 @@ namespace CedForecast
             if (BrowserUiTab.SelectedTab == TabFiltroUiTabPage)
             {
                 TabBrowserUiTabPage.TabVisible = false;
+            }
+        }
+        private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
+        {
+            switch (e.Command.Key)
+            {
+                case "Impresora":
+                    Cedeira.SV.Fun.ImprimirGrilla(this, BrowserGridEX, Aplicacion.Titulo, true);
+                    break;
+                case "Planilla":
+                    try
+                    {
+                        Cedeira.SV.Export exc = new Cedeira.SV.Export();
+                        Cursor = Cursors.WaitCursor;
+                        exc.ExportDetails((DataTable)BrowserGridEX.DataSource, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                    }
+                    catch (Exception ex)
+                    {
+                        Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                    }
+                    finally
+                    {
+                        Cursor = Cursors.Default;
+                    }
+
+                    break;
             }
         }
     }
