@@ -112,7 +112,7 @@
             this.BrowserUiTab.MultiLine = true;
             this.BrowserUiTab.Name = "BrowserUiTab";
             this.BrowserUiTab.ShowFocusRectangle = false;
-            this.BrowserUiTab.Size = new System.Drawing.Size(736, 432);
+            this.BrowserUiTab.Size = new System.Drawing.Size(736, 438);
             this.BrowserUiTab.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.BrowserUiTab.TabIndex = 10;
             this.BrowserUiTab.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
@@ -132,7 +132,7 @@
             this.TabBrowserUiTabPage.Key = "Datos";
             this.TabBrowserUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabBrowserUiTabPage.Name = "TabBrowserUiTabPage";
-            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(734, 410);
+            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(734, 416);
             this.TabBrowserUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
             this.TabBrowserUiTabPage.TabIndex = 1;
             this.TabBrowserUiTabPage.Tag = "";
@@ -146,7 +146,7 @@
             this.BrowserPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserPanel.Name = "BrowserPanel";
             this.BrowserPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.BrowserPanel.Size = new System.Drawing.Size(734, 410);
+            this.BrowserPanel.Size = new System.Drawing.Size(734, 416);
             this.BrowserPanel.TabIndex = 5;
             // 
             // BrowserGridsPanel
@@ -157,7 +157,7 @@
             this.BrowserGridsPanel.Location = new System.Drawing.Point(5, 5);
             this.BrowserGridsPanel.Name = "BrowserGridsPanel";
             this.BrowserGridsPanel.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.BrowserGridsPanel.Size = new System.Drawing.Size(724, 400);
+            this.BrowserGridsPanel.Size = new System.Drawing.Size(724, 406);
             this.BrowserGridsPanel.TabIndex = 6;
             // 
             // BrowserGridPanel
@@ -167,7 +167,7 @@
             this.BrowserGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserGridPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserGridPanel.Name = "BrowserGridPanel";
-            this.BrowserGridPanel.Size = new System.Drawing.Size(720, 400);
+            this.BrowserGridPanel.Size = new System.Drawing.Size(720, 406);
             this.BrowserGridPanel.TabIndex = 9;
             // 
             // BrowserGridEX
@@ -208,7 +208,7 @@
             this.BrowserGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
             this.BrowserGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.BrowserGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.BrowserGridEX.Size = new System.Drawing.Size(720, 400);
+            this.BrowserGridEX.Size = new System.Drawing.Size(720, 406);
             this.BrowserGridEX.TabIndex = 6;
             this.BrowserGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.BrowserGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -518,7 +518,7 @@
             this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(686, 467);
+            this.SalirUiButton.Location = new System.Drawing.Point(686, 472);
             this.SalirUiButton.Name = "SalirUiButton";
             this.SalirUiButton.ShowFocusRectangle = false;
             this.SalirUiButton.Size = new System.Drawing.Size(55, 24);
@@ -536,7 +536,7 @@
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(600, 467);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(600, 472);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
             this.EnviarAUiButton.Size = new System.Drawing.Size(80, 24);
