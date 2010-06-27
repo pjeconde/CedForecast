@@ -116,7 +116,7 @@ namespace Cedeira.SV
         private string ReemplazarEspaciosyAcentos(string aux)
         {
             aux = aux.Replace("/", "-");
-            aux = aux.Replace(" ", String.Empty);
+            aux = aux.Replace(" ", "_");
             aux = aux.Replace("u$s", "Dolares");
             aux = aux.Replace("$", "Pesos");
             aux = aux.Replace("(", String.Empty);
