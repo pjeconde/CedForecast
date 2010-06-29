@@ -28,7 +28,7 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.ConfirmacionCarga> Lista(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
+            a.Append("select ConfirmacionCarga.IdTipoPlanilla, ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
             a.Append("where 1=1 ");
             if (ConfirmacionCarga.IdTipoPlanilla != null)
@@ -73,7 +73,7 @@ namespace CedForecastWebDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select * ");
             a.Append("from (select top {0} ROW_NUMBER() OVER (ORDER BY {1}) as ROW_NUM, ");
-            a.Append("ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
+            a.Append("ConfirmacionCarga.IdTipoPlanilla, ConfirmacionCarga.IdPeriodo, ConfirmacionCarga.IdCuenta, Cuenta.Nombre, ConfirmacionCarga.FechaConfirmacionCarga, ConfirmacionCarga.IdEstadoConfirmacionCarga, ConfirmacionCarga.Comentario ");
             a.Append("from ConfirmacionCarga left outer join Cuenta on ConfirmacionCarga.IdCuenta=Cuenta.IdCuenta ");
             a.Append("where 1=1 ");
             if (ConfirmacionCarga.IdTipoPlanilla != null)
@@ -84,7 +84,7 @@ namespace CedForecastWebDB
             {
                 a.Append("and ConfirmacionCarga.IdCuenta='" + ConfirmacionCarga.Cuenta.Id + "'");
             }
-            if (ConfirmacionCarga.IdPeriodo != "")
+            if (ConfirmacionCarga.IdPeriodo != null && ConfirmacionCarga.IdPeriodo != "")
             {
                 a.Append("and ConfirmacionCarga.IdPeriodo = '" + ConfirmacionCarga.IdPeriodo + "'");
             }
@@ -125,7 +125,10 @@ namespace CedForecastWebDB
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             if (dt.Rows.Count != 0)
             {
-                ConfirmacionCarga.FechaConfirmacionCarga = Convert.ToDateTime(dt.Rows[0][0]);
+                if (dt.Rows[0][0] != System.DBNull.Value)
+                {
+                    ConfirmacionCarga.FechaConfirmacionCarga = Convert.ToDateTime(dt.Rows[0][0]);
+                }
             }
         }
         public void Ejecutar(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga, string EstadoActual)
