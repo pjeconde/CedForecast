@@ -43,29 +43,32 @@ namespace CedForecastWebRN
         }
         private static void EnviarMailRespuestaConfirmacionCarga(string Asunto, CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga)
         {
-            SmtpClient smtpClient = new SmtpClient("mail.cedeira.com.ar");
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("registrousuarios@cedeira.com.ar");
-            mail.To.Add(new MailAddress(ConfirmacionCarga.Cuenta.Email));
-            mail.Subject = Asunto;
-            mail.IsBodyHtml = true;
-            StringBuilder a = new StringBuilder();
-            a.Append("Vendedor " + ConfirmacionCarga.Cuenta.Nombre.Trim() + ":<br />");
-            a.Append("<br />");
-            a.Append("Se ha recibido la confimación de su carga de datos correspondiente al periodo.<br />");
-            a.Append("<br />");
-            a.Append("Estado: " + ConfirmacionCarga.IdEstadoConfirmacionCarga);
-            if (ConfirmacionCarga.Comentario != "")
+            if (ConfirmacionCarga.Cuenta.Email != null && ConfirmacionCarga.Cuenta.Email != "")
             {
+                SmtpClient smtpClient = new SmtpClient("mail.cedeira.com.ar");
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("registrousuarios@cedeira.com.ar");
+                mail.To.Add(new MailAddress(ConfirmacionCarga.Cuenta.Email));
+                mail.Subject = Asunto;
+                mail.IsBodyHtml = true;
+                StringBuilder a = new StringBuilder();
+                a.Append("Vendedor " + ConfirmacionCarga.Cuenta.Nombre.Trim() + ":<br />");
                 a.Append("<br />");
-                a.Append("Comentario: " + ConfirmacionCarga.Comentario);
+                a.Append("Se ha recibido la confimación de su carga de datos correspondiente al periodo.<br />");
+                a.Append("<br />");
+                a.Append("Estado: " + ConfirmacionCarga.IdEstadoConfirmacionCarga);
+                if (ConfirmacionCarga.Comentario != "")
+                {
+                    a.Append("<br />");
+                    a.Append("Comentario: " + ConfirmacionCarga.Comentario);
+                }
+                a.Append("<br />");
+                a.Append("Saludos.<br />");
+                a.Append("<br />");
+                mail.Body = a.ToString();
+                smtpClient.Credentials = new NetworkCredential("registrousuarios@cedeira.com.ar", "cedeira123");
+                smtpClient.Send(mail);
             }
-            a.Append("<br />");
-            a.Append("Saludos.<br />");
-            a.Append("<br />");
-            mail.Body = a.ToString();
-            smtpClient.Credentials = new NetworkCredential("registrousuarios@cedeira.com.ar", "cedeira123");
-            smtpClient.Send(mail);
         }
         public static void Confirmar(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga, string EstadoActual, CedEntidades.Sesion Sesion)
         {
