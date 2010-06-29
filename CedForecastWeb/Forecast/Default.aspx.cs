@@ -50,7 +50,6 @@ namespace CedForecastWeb.Forecast
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         PeriodoTextBox.Text = periodo.IdPeriodo;
                         PeriodoTextBox.ReadOnly = true;
-                        FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
                                                
                         DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
                         
@@ -179,7 +178,7 @@ namespace CedForecastWeb.Forecast
                 List<CedForecastWebEntidades.RFoPA> lineas = ((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]);
 
                 CedForecastWebEntidades.RFoPA l = lineas[e.RowIndex];
-                
+               
                 int sumaCantidades = 0;
                 for (int i = 1; i < 13; i++)
                 {
@@ -525,12 +524,12 @@ namespace CedForecastWeb.Forecast
         }
         private string PrimerMes(string Periodo)
         {
-            DateTime primerMes = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
+            DateTime primerMes = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), Convert.ToInt32("01"), Convert.ToInt32("01"));
             return primerMes.ToString("yyyyMM");
         }
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = new DateTime(Convert.ToInt32(PeriodoInicial.Substring(0, 4)), Convert.ToInt32(PeriodoInicial.Substring(4, 2)), Convert.ToInt32("01"));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }
@@ -617,6 +616,9 @@ namespace CedForecastWeb.Forecast
                     throw new Exception("División no seleccionada");
                 }
                 List<CedForecastWebEntidades.RFoPA> forecastLista = CedForecastWebRN.RFoPA.Lista(forecast, (CedEntidades.Sesion)Session["Sesion"]);
+                //Si no hay datos ingresados para el forecast, buscar información inicial del proyectado
+                //if (forecastLista == null)
+
                 BindearGrillayDropDownLists(forecastLista);
                
                 LeerButton.Enabled = false;

@@ -20,22 +20,22 @@ namespace CedForecastWeb {
     public partial class Excepcion {
         
         /// <summary>
-        /// Control Image2.
+        /// Control Image3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.Image Image3;
         
         /// <summary>
-        /// Control Label5.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// Control ExLabel.

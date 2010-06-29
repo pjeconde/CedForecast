@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="Excepcion.aspx.cs" Inherits="CedForecastWeb.Excepcion"  %>
+﻿<%@ Page Language="C#" MasterPageFile="~/CedForecastWeb.Master" AutoEventWireup="true" CodeBehind="Excepcion.aspx.cs" Inherits="CedForecastWeb.Excepcion"  StylesheetTheme="Cedeira" %>
 
 <asp:Content ID="ExContent" runat="Server" ContentPlaceHolderID="ContentPlaceHolderNoAutenticado">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
-        width: 890px; text-align: left;">
+        width: 890px; text-align: left; background-color: White">
         <tr>
             <td valign="top">
                 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-top: 10px">
@@ -11,11 +11,28 @@
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td style="width: 21px; height: 20px;">
-                                        <asp:Image ID="Image2" runat="server" AlternateText="o" ImageUrl="~/Imagenes/CajaBrownPeru.ico" />
-                                    </td>
-                                    <td style="height: 20px;">
-                                        <asp:Label ID="Label5" runat="server" SkinID="TituloPagina" Text="Notificación de excepción"></asp:Label>
+                                    <td align="left" style="padding-left: 10px" valign="top">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="width: 20px; vertical-align:top;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" id="TABLE3">
+        						                    <tr>
+                                                        <td style="height: 3px">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                        <asp:Image ID="Image3" runat="server" AlternateText="o" ImageUrl="~/Imagenes/button_link.gif" />
+                                                        </td>
+                                                    </tr>
+                                                    </table>   
+                                                </td>
+                                                <td style="width:864px;" colspan="3">
+                                                    <asp:Label ID="Label1" SkinID="TituloPagina" runat="server" Text="Notificación de excepción "></asp:Label>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </table>

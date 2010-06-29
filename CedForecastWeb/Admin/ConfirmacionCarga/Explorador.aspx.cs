@@ -148,6 +148,7 @@ namespace CedForecastWeb.Admin.ConfirmacionCarga
         private void HabilitarAcciones(CedForecastWebEntidades.ConfirmacionCarga ConfirmacionCarga)
 		{
             CedForecastWebEntidades.ConfirmacionCarga cc = new CedForecastWebEntidades.ConfirmacionCarga();
+            cc.IdTipoPlanilla = ConfirmacionCarga.IdTipoPlanilla;
             cc.IdPeriodo = ConfirmacionCarga.IdPeriodo;
             cc.Cuenta.Id = ConfirmacionCarga.IdCuenta;
             CedForecastWebRN.ConfirmacionCarga.UltimoRegistro(cc, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
