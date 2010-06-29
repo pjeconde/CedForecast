@@ -170,7 +170,7 @@ namespace CedForecastWebDB
             Hasta.IdPeriodo = PeriodoInicial;
             if (Hasta.IdTipoPlanilla == "RollingForecast")
             {
-                Hasta.CantidadMesesParaDesvio = 13 - Convert.ToInt32(PeriodoInicial.Substring(4, 2));
+                //Hasta.CantidadMesesParaDesvio = 13 - Convert.ToInt32(PeriodoInicial.Substring(4, 2));
             }
         }
         private void CopiarDet(DataRow Desde, CedForecastWebEntidades.RFoPA Hasta, int Mes)
@@ -224,19 +224,19 @@ namespace CedForecastWebDB
         }
         private string UltimoMesForecast(string Periodo)
         {
-            DateTime fechaUltimoMesForecast = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
+            DateTime fechaUltimoMesForecast = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), Convert.ToInt32(Periodo.Substring(4, 2)), 1);
             fechaUltimoMesForecast = fechaUltimoMesForecast.AddMonths(11);
             return fechaUltimoMesForecast.ToString("yyyyMM");
         }
         private string PrimerMes(string Periodo)
         {
-            DateTime primerMes = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
+            DateTime primerMes = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), 1, 1);
             return primerMes.ToString("yyyyMM");
         }
         private int MesAProcesar(string PeriodoAProcesar, string PeriodoInicial)
         {
             int i = 0;
-            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = new DateTime(Convert.ToInt32(PeriodoInicial.Substring(0, 4)), Convert.ToInt32(PeriodoInicial.Substring(4, 2)), 1);
             for (i = 1; i <= 12; i++)
             {
                 if (fechaAux.Month == Convert.ToInt32(PeriodoAProcesar.Substring(4, 2)))
@@ -249,7 +249,7 @@ namespace CedForecastWebDB
         }
         private string PeriodoAProcesar(int i, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = new DateTime(Convert.ToInt32(PeriodoInicial.Substring(0, 4)), Convert.ToInt32(PeriodoInicial.Substring(4, 2)), 1);
             fechaAux = fechaAux.AddMonths(i);
             return fechaAux.ToString("yyyyMM");
         }
@@ -354,7 +354,6 @@ namespace CedForecastWebDB
             a.Append("[IdPeriodo] [varchar](6) NOT NULL, ");
             a.Append("[Proyectado] [decimal](18, 0) NOT NULL, ");
             a.Append("[Ventas] [decimal](18, 0) NOT NULL, ");
-            a.Append("[CantidadMesesParaDesvio] [int] NOT NULL, ");
             a.Append("[Cantidad1] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad2] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad3] [decimal](18, 0) NOT NULL, ");
@@ -387,7 +386,6 @@ namespace CedForecastWebDB
                 a.Append(Forecast.IdPeriodo + "', ");
                 a.Append(Forecast.Proyectado + ", ");
                 a.Append(Forecast.Ventas + ", ");
-                a.Append(Forecast.CantidadMesesParaDesvio + ", ");
                 a.Append(Forecast.Cantidad1 + ", ");
                 a.Append(Forecast.Cantidad2 + ", ");
                 a.Append(Forecast.Cantidad3 + ", ");
@@ -406,7 +404,7 @@ namespace CedForecastWebDB
             a.Append("select * ");
             a.Append("from (select top {0} ROW_NUMBER() OVER (ORDER BY {1}) as ROW_NUM, ");
             a.Append("IdTipoPlanilla, IdCuenta, #Forecast"+SessionID+".IdCliente, DescrCliente, IdPeriodo, #Forecast" + SessionID + ".IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, ");
-            a.Append("Proyectado, Ventas, CantidadMesesParaDesvio, Cantidad1, Cantidad2, Cantidad3, Cantidad4, Cantidad5, Cantidad6, Cantidad7, Cantidad8, Cantidad9, Cantidad10, Cantidad11, Cantidad12, Cantidad13, Cantidad14 ");
+            a.Append("Proyectado, Ventas, Cantidad1, Cantidad2, Cantidad3, Cantidad4, Cantidad5, Cantidad6, Cantidad7, Cantidad8, Cantidad9, Cantidad10, Cantidad11, Cantidad12, Cantidad13, Cantidad14 ");
             a.Append("from #Forecast"+SessionID+" inner join Articulo on #Forecast"+SessionID+".IdArticulo=Articulo.IdArticulo ");
             a.Append("inner join Cliente on #Forecast"+SessionID+".IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
@@ -422,6 +420,8 @@ namespace CedForecastWebDB
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     CedForecastWebEntidades.RFoPA forecast = new CedForecastWebEntidades.RFoPA();
+                    forecast.IdTipoPlanilla = dt.Rows[i]["IdTipoPlanilla"].ToString();
+                    forecast.IdPeriodo = dt.Rows[i]["IdPeriodo"].ToString();
                     forecast.IdCuenta = dt.Rows[i]["IdCuenta"].ToString();
                     forecast.Cliente.Id = dt.Rows[i]["IdCliente"].ToString();
                     forecast.Cliente.Descr = dt.Rows[i]["DescrCliente"].ToString();
@@ -429,7 +429,6 @@ namespace CedForecastWebDB
                     forecast.Articulo.Descr = dt.Rows[i]["DescrArticulo"].ToString();
                     forecast.Proyectado = Convert.ToDecimal(dt.Rows[i]["Proyectado"].ToString());
                     forecast.Ventas = Convert.ToDecimal(dt.Rows[i]["Ventas"].ToString());
-                    forecast.CantidadMesesParaDesvio = Convert.ToInt32(dt.Rows[i]["CantidadMesesParaDesvio"].ToString());
                     forecast.Cantidad1 = Convert.ToDecimal(dt.Rows[i]["Cantidad1"].ToString());
                     forecast.Cantidad2 = Convert.ToDecimal(dt.Rows[i]["Cantidad2"].ToString());
                     forecast.Cantidad3 = Convert.ToDecimal(dt.Rows[i]["Cantidad3"].ToString());
