@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Admin/Administracion.Master" AutoEventWireup="true"
-    Codebehind="Periodo.aspx.cs" Inherits="CedForecastWeb.Admin.Configuracion" Title="configuración" StylesheetTheme="Cedeira" %>
+    Codebehind="Periodo.aspx.cs" Inherits="CedForecastWeb.Admin.Configuracion" Title="configuración" StylesheetTheme="Cedeira" UICulture="es" Culture="es-AR" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

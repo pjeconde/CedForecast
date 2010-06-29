@@ -51,7 +51,7 @@ namespace CedForecastWeb.Forecast
                             {
                                 ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
                             }
-                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text.Substring(0, 4);
+                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
 
                             LeerPeriodoActual();
                             BindPagingGrid();
