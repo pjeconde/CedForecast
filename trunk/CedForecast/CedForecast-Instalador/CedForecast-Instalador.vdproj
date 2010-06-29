@@ -64,12 +64,6 @@
         "Entry"
         {
         "MsmKey" = "8:_2F13FB4E22388420D3E3FD779AD6D98A"
-        "OwnerKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2F13FB4E22388420D3E3FD779AD6D98A"
         "OwnerKey" = "8:_6045B291016A87E492AB26F1E84E3DE0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,6 +71,12 @@
         {
         "MsmKey" = "8:_2F13FB4E22388420D3E3FD779AD6D98A"
         "OwnerKey" = "8:_BB2AC5F7EBBD7CF60BC7DF578CD9AF1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2F13FB4E22388420D3E3FD779AD6D98A"
+        "OwnerKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,6 +123,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6BB0A52EDE384C1484A2A87AE9DD2A7A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6C45D4ED74FF48BF9F01FA7B6D96157E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -130,6 +142,12 @@
         "Entry"
         {
         "MsmKey" = "8:_837A85A71EB345B8A48240954561B5B6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9002110E7E994FD1AE0EC1CA4295029A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -147,6 +165,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9B4C101E21804F40979CD8ED1C45F241"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BB0A142D317D4E88A53B11062D1403B5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BB2AC5F7EBBD7CF60BC7DF578CD9AF1F"
         "OwnerKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
         "MsmSig" = "8:_UNDEFINED"
@@ -159,6 +189,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BE19C7CDA25546EDB922A9928D527251"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BE491B8ECDF70A964B512226D3A9BEB0"
         "OwnerKey" = "8:_064ED51C727305830D3CDFF7DCB21964"
         "MsmSig" = "8:_UNDEFINED"
@@ -166,13 +202,13 @@
         "Entry"
         {
         "MsmKey" = "8:_BE491B8ECDF70A964B512226D3A9BEB0"
-        "OwnerKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
+        "OwnerKey" = "8:_2439CACAFC0A747241411908C1BAE878"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BE491B8ECDF70A964B512226D3A9BEB0"
-        "OwnerKey" = "8:_2439CACAFC0A747241411908C1BAE878"
+        "OwnerKey" = "8:_81C763C79D994DF4ABF8664E974A548A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -219,8 +255,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BE491B8ECDF70A964B512226D3A9BEB0"
+        "MsmKey" = "8:_F27D2E0483C6409BBE0571A8A9B0ADA1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -313,6 +349,12 @@
         "OwnerKey" = "8:_064ED51C727305830D3CDFF7DCB21964"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BE491B8ECDF70A964B512226D3A9BEB0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -331,6 +373,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
         "Release"
         {
@@ -347,6 +400,17 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
+            }
         }
     }
     "Deployable"
@@ -686,12 +750,72 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BB0A52EDE384C1484A2A87AE9DD2A7A"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\forwd_16.ico"
+            "TargetName" = "8:forwd_16.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C45D4ED74FF48BF9F01FA7B6D96157E"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\CedeiraSF.jpg"
+            "TargetName" = "8:CedeiraSF.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_837A85A71EB345B8A48240954561B5B6"
             {
             "SourcePath" = "8:..\\CedForecast\\Cedeira.ico"
             "TargetName" = "8:Cedeira.ico"
             "Tag" = "8:"
             "Folder" = "8:_D0252B05FC03426981A26863178E52CF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9002110E7E994FD1AE0EC1CA4295029A"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\Sincronizacion.png"
+            "TargetName" = "8:Sincronizacion.png"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -737,6 +861,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B4C101E21804F40979CD8ED1C45F241"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\back_16.ico"
+            "TargetName" = "8:back_16.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB0A142D317D4E88A53B11062D1403B5"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\close_16.ico"
+            "TargetName" = "8:close_16.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BB2AC5F7EBBD7CF60BC7DF578CD9AF1F"
             {
             "AssemblyRegister" = "3:1"
@@ -766,6 +930,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE19C7CDA25546EDB922A9928D527251"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\Cedeira.ico"
+            "TargetName" = "8:Cedeira.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE491B8ECDF70A964B512226D3A9BEB0"
@@ -861,6 +1045,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F27D2E0483C6409BBE0571A8A9B0ADA1"
+            {
+            "SourcePath" = "8:..\\CedForecast\\Imagenes\\wiz_16.ico"
+            "TargetName" = "8:wiz_16.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_596944052E6C40C19CA8585A3B476750"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -899,6 +1103,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_596944052E6C40C19CA8585A3B476750"
+                    {
+                    "Name" = "8:Imagenes"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_08658AC79B014AABA50464BC9C03EA91"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_B6C8965774AA406FABAEEC3C59E8E286"
+                    {
+                    "Name" = "8:ConfigFiles"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B5F3198AB47B40C5A4377AC04FEC6441"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -916,14 +1142,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CedForecast"
-        "ProductCode" = "8:{F9B914D1-8D05-47CC-85CC-39163498518E}"
-        "PackageCode" = "8:{837D2890-C6E2-4779-B6FA-71EDBBEB76CC}"
+        "ProductCode" = "8:{D4769176-BD71-4FAD-9B30-0D855667C176}"
+        "PackageCode" = "8:{467456C4-4163-4805-A671-0E3E589032C6}"
         "UpgradeCode" = "8:{C92B25DD-1E53-4D49-9423-050AD204A177}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
-        "DetectNewerInstalledVersion" = "11:TRUE"
+        "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.9"
         "Manufacturer" = "8:Cedeira"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.cedeira.com.ar"
@@ -1038,7 +1264,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_794BD4D2019F4FF196884B97AEB5E4B8"
             {
-            "Name" = "8:CedForecast v1.0.0"
+            "Name" = "8:CedForecast v1.0.9"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
