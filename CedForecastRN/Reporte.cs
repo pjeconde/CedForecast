@@ -28,7 +28,8 @@ namespace CedForecastRN
             {
                 dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
             }
-            for (int i=0; i<dtClientes.Rows.Count; i++)
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total", "Total"));
+            for (int i = 0; i < dtClientes.Rows.Count; i++)
             {
                 string nombreColumna = Convert.ToString(dtClientes.Rows[i]["Cliente"]);
                 string tituloColumna = nombreColumna;
@@ -72,10 +73,12 @@ namespace CedForecastRN
                             dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-" + vendedor.Ven_Desc;
                         }
                     }
+                    dr["Total"] = 0;
                     dt.Rows.Add(dr);
                     claveAnterior = claveActual;
                 }
-                dt.Rows[dt.Rows.Count-1][Convert.ToString(dtDatos.Rows[i]["Cliente"])] = Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]);
+                dt.Rows[dt.Rows.Count - 1][Convert.ToString(dtDatos.Rows[i]["Cliente"])] = Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]);
+                dt.Rows[dt.Rows.Count - 1]["Total"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total"]) + Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]);
                 dt.AcceptChanges();
             }
             return dt;
