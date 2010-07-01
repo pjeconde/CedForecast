@@ -41,7 +41,6 @@ namespace CedForecast
                 DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), ArticulosyVendedoresUiRadioButton.Checked, Aplicacion.Sesion);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
-                BrowserGridEX.RootTable.Columns[2].Key = "Pirulo";
                 TabBrowserUiTabPage.TabVisible = true;
                 BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
                 volverATabBrowser = true;
@@ -59,6 +58,7 @@ namespace CedForecast
         {
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
+            BrowserGridEX.RootTable.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
             for (int i = 0; i<Datos.Columns.Count; i++)
             {
                 string nombre = Datos.Columns[i].ColumnName;
@@ -76,11 +76,17 @@ namespace CedForecast
                             case "Vendedor":
                                 BrowserGridEX.RootTable.Columns[elemento].Width = 150;
                                 break;
+                            case "Uni":
+                                BrowserGridEX.RootTable.Columns[elemento].Width = 30;
+                                BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+                                break;
                         }
                         break;
                     case "Decimal":
                         BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
                         BrowserGridEX.RootTable.Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
+                        BrowserGridEX.RootTable.Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
+                        BrowserGridEX.RootTable.Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
                         BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
                         BrowserGridEX.RootTable.Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
                         BrowserGridEX.RootTable.Columns[elemento].Width = 75;
@@ -94,7 +100,6 @@ namespace CedForecast
             if (ArticulosyVendedoresUiRadioButton.Checked)
             {
                 Janus.Windows.GridEX.GridEXGroup grupo = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
-                grupo.GroupFormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
                 grupo.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
                 BrowserGridEX.RootTable.Groups.Add(grupo);
                 BrowserGridEX.RootTable.Columns[0].Visible = false;
@@ -131,6 +136,22 @@ namespace CedForecast
                     }
 
                     break;
+            }
+        }
+
+        private void MaxMinUiButton_Click(object sender, EventArgs e)
+        {
+            if (MaxMinUiButton.Tag.ToString() == "Max")
+            {
+                WindowState = FormWindowState.Maximized;
+                MaxMinUiButton.Text = "Minimiz.tamaño";
+                MaxMinUiButton.Tag = "Min";
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
+                MaxMinUiButton.Text = "Maximizar";
+                MaxMinUiButton.Tag = "Max";
             }
         }
     }

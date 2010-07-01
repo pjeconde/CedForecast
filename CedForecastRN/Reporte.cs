@@ -29,6 +29,7 @@ namespace CedForecastRN
                 dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
             }
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total", "Total"));
+            dt.Columns.Add(new DataColumn("Uni", System.Type.GetType("System.String")));
             for (int i = 0; i < dtClientes.Rows.Count; i++)
             {
                 string nombreColumna = Convert.ToString(dtClientes.Rows[i]["Cliente"]);
@@ -56,10 +57,12 @@ namespace CedForecastRN
                     if (articulo == null)
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]);
+                        dr["Uni"] = String.Empty;
                     }
                     else
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
+                        dr["Uni"] = articulo.Artcla_Cod;
                     }
                     if (IncluyeVendedor) 
                     {
