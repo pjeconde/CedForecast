@@ -1,35 +1,17 @@
 Public Class frmBaseEnviarA
     Inherits UI.frmBase
 
-    Public Sub fcicomThread()
-        Dim x As New Interop.CedFCIcom.clsCedFCIxlsClass
-        Try
-            x.filename = "instancia de pre cacheo"
-        Catch
-        Finally
-            x = Nothing
-        End Try
-    End Sub
-
-
-#Region " Código generado por el Diseñador de Windows Forms "
-
     Public Sub New()
         MyBase.New()
         InitializeComponent()
-        Dim fciComTh As New System.Threading.Thread(AddressOf fcicomThread)
-        fciComTh.IsBackground = True
-        fciComTh.Start()
     End Sub
 
     Public Sub New(ByVal Titulo As String)
         MyBase.New(Titulo)
         InitializeComponent()
-        Dim fciComTh As New System.Threading.Thread(AddressOf fcicomThread)
-        fciComTh.IsBackground = True
-        fciComTh.Start()
     End Sub
 
+#Region " Código generado por el Diseñador de Windows Forms "
     'Form reemplaza a Dispose para limpiar la lista de componentes.
     Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing Then

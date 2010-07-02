@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CedForecast
 {
-    public partial class CrossTabArticulosClientesForm : Cedeira.UI.frmBase
+    public partial class CrossTabArticulosClientesForm : Cedeira.UI.frmBaseEnviarA
     {
         private bool volverATabBrowser;
 
