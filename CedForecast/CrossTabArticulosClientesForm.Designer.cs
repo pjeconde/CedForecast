@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             PureComponents.NicePanel.ContainerImage containerImage1 = new PureComponents.NicePanel.ContainerImage();
             PureComponents.NicePanel.HeaderImage headerImage1 = new PureComponents.NicePanel.HeaderImage();
@@ -65,19 +64,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
-            this.EnviarAUiContextMenu = new Janus.Windows.UI.CommandBars.UIContextMenu();
-            this.EnviarAUiCommandManager = new Janus.Windows.UI.CommandBars.UICommandManager(this.components);
-            this.BottomRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.Impresora = new Janus.Windows.UI.CommandBars.UICommand("Impresora");
-            this.Planilla = new Janus.Windows.UI.CommandBars.UICommand("Planilla");
-            this.LeftRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.RightRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.TopRebar1 = new Janus.Windows.UI.CommandBars.UIRebar();
-            this.Impresora1 = new Janus.Windows.UI.CommandBars.UICommand("Impresora");
-            this.Planilla1 = new Janus.Windows.UI.CommandBars.UICommand("Planilla");
             this.panel1 = new System.Windows.Forms.Panel();
             this.MaxMinUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).BeginInit();
             this.BrowserUiTab.SuspendLayout();
@@ -90,15 +81,20 @@
             this.FiltroPanel.SuspendLayout();
             this.CuentasNicePanel.SuspendLayout();
             this.PeriodoNicePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // EnviarAUiCommandManager
+            // 
+            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.EnviarAUiCommandManager.CommandClick += new Janus.Windows.UI.CommandBars.CommandEventHandler(this.EnviarAUiCommandManager_CommandClick);
+            // 
+            // EnviarAUiContextMenu
+            // 
+            this.EnviarAUiContextMenu.UseThemes = Janus.Windows.UI.InheritableBoolean.False;
+            this.EnviarAUiContextMenu.VisualStyle = Janus.Windows.UI.VisualStyle.Standard;
             // 
             // FondoNicePanel
             // 
@@ -554,89 +550,6 @@
             this.EnviarAUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.EnviarAUiButton.UseThemes = false;
             // 
-            // EnviarAUiContextMenu
-            // 
-            this.EnviarAUiContextMenu.CommandManager = this.EnviarAUiCommandManager;
-            this.EnviarAUiContextMenu.Commands.AddRange(new Janus.Windows.UI.CommandBars.UICommand[] {
-            this.Impresora1,
-            this.Planilla1});
-            this.EnviarAUiContextMenu.Key = "EnviarA";
-            this.EnviarAUiContextMenu.UseThemes = Janus.Windows.UI.InheritableBoolean.False;
-            this.EnviarAUiContextMenu.VisualStyle = Janus.Windows.UI.VisualStyle.Standard;
-            // 
-            // EnviarAUiCommandManager
-            // 
-            this.EnviarAUiCommandManager.BottomRebar = this.BottomRebar1;
-            this.EnviarAUiCommandManager.Commands.AddRange(new Janus.Windows.UI.CommandBars.UICommand[] {
-            this.Impresora,
-            this.Planilla});
-            this.EnviarAUiCommandManager.ContainerControl = this;
-            this.EnviarAUiCommandManager.ContextMenus.AddRange(new Janus.Windows.UI.CommandBars.UIContextMenu[] {
-            this.EnviarAUiContextMenu});
-            this.EnviarAUiCommandManager.Id = new System.Guid("035a05fc-6ec3-4845-b744-2bae268e284b");
-            this.EnviarAUiCommandManager.LeftRebar = this.LeftRebar1;
-            this.EnviarAUiCommandManager.RightRebar = this.RightRebar1;
-            this.EnviarAUiCommandManager.TopRebar = this.TopRebar1;
-            this.EnviarAUiCommandManager.CommandClick += new Janus.Windows.UI.CommandBars.CommandEventHandler(this.EnviarAUiCommandManager_CommandClick);
-            // 
-            // BottomRebar1
-            // 
-            this.BottomRebar1.CommandManager = this.EnviarAUiCommandManager;
-            this.BottomRebar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomRebar1.Location = new System.Drawing.Point(0, 503);
-            this.BottomRebar1.Name = "BottomRebar1";
-            this.BottomRebar1.Size = new System.Drawing.Size(748, 0);
-            this.BottomRebar1.TabIndex = 5;
-            // 
-            // Impresora
-            // 
-            this.Impresora.Key = "Impresora";
-            this.Impresora.Name = "Impresora";
-            this.Impresora.Text = "Impresora";
-            // 
-            // Planilla
-            // 
-            this.Planilla.Key = "Planilla";
-            this.Planilla.Name = "Planilla";
-            this.Planilla.Text = "Planilla de cálculo";
-            // 
-            // LeftRebar1
-            // 
-            this.LeftRebar1.CommandManager = this.EnviarAUiCommandManager;
-            this.LeftRebar1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftRebar1.Location = new System.Drawing.Point(0, 0);
-            this.LeftRebar1.Name = "LeftRebar1";
-            this.LeftRebar1.Size = new System.Drawing.Size(0, 503);
-            this.LeftRebar1.TabIndex = 3;
-            // 
-            // RightRebar1
-            // 
-            this.RightRebar1.CommandManager = this.EnviarAUiCommandManager;
-            this.RightRebar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightRebar1.Location = new System.Drawing.Point(748, 0);
-            this.RightRebar1.Name = "RightRebar1";
-            this.RightRebar1.Size = new System.Drawing.Size(0, 503);
-            this.RightRebar1.TabIndex = 4;
-            // 
-            // TopRebar1
-            // 
-            this.TopRebar1.CommandManager = this.EnviarAUiCommandManager;
-            this.TopRebar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopRebar1.Location = new System.Drawing.Point(0, 0);
-            this.TopRebar1.Name = "TopRebar1";
-            this.TopRebar1.Size = new System.Drawing.Size(748, 0);
-            this.TopRebar1.TabIndex = 2;
-            // 
-            // Impresora1
-            // 
-            this.Impresora1.Key = "Impresora";
-            this.Impresora1.Name = "Impresora1";
-            // 
-            // Planilla1
-            // 
-            this.Planilla1.Key = "Planilla";
-            this.Planilla1.Name = "Planilla1";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.MaxMinUiButton);
@@ -681,17 +594,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(748, 503);
-            this.Controls.Add(this.LeftRebar1);
-            this.Controls.Add(this.RightRebar1);
-            this.Controls.Add(this.TopRebar1);
-            this.Controls.Add(this.BottomRebar1);
             this.Name = "CrossTabArticulosClientesForm";
             this.Text = "CrossTabArticulosClientes";
-            this.Controls.SetChildIndex(this.BottomRebar1, 0);
-            this.Controls.SetChildIndex(this.TopRebar1, 0);
-            this.Controls.SetChildIndex(this.RightRebar1, 0);
-            this.Controls.SetChildIndex(this.LeftRebar1, 0);
-            this.Controls.SetChildIndex(this.FondoNicePanel, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
             this.FondoNicePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).EndInit();
             this.BrowserUiTab.ResumeLayout(false);
@@ -704,12 +610,6 @@
             this.FiltroPanel.ResumeLayout(false);
             this.CuentasNicePanel.ResumeLayout(false);
             this.PeriodoNicePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BottomRebar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LeftRebar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RightRebar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopRebar1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -738,16 +638,6 @@
         private Janus.Windows.CalendarCombo.CalendarCombo PeriodoHastaCalendarCombo;
         private Janus.Windows.CalendarCombo.CalendarCombo PeriodoDesdeCalendarCombo;
         private Janus.Windows.EditControls.UIButton EnviarAUiButton;
-        private Janus.Windows.UI.CommandBars.UICommandManager EnviarAUiCommandManager;
-        private Janus.Windows.UI.CommandBars.UIRebar BottomRebar1;
-        private Janus.Windows.UI.CommandBars.UIRebar LeftRebar1;
-        private Janus.Windows.UI.CommandBars.UIRebar RightRebar1;
-        private Janus.Windows.UI.CommandBars.UIRebar TopRebar1;
-        private Janus.Windows.UI.CommandBars.UIContextMenu EnviarAUiContextMenu;
-        private Janus.Windows.UI.CommandBars.UICommand Impresora;
-        private Janus.Windows.UI.CommandBars.UICommand Planilla;
-        private Janus.Windows.UI.CommandBars.UICommand Impresora1;
-        private Janus.Windows.UI.CommandBars.UICommand Planilla1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private Janus.Windows.EditControls.UIButton MaxMinUiButton;
