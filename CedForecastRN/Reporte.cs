@@ -29,7 +29,6 @@ namespace CedForecastRN
                 dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
             }
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total", "Total"));
-            dt.Columns.Add(new DataColumn("Uni", System.Type.GetType("System.String")));
             for (int i = 0; i < dtClientes.Rows.Count; i++)
             {
                 string nombreColumna = Convert.ToString(dtClientes.Rows[i]["Cliente"]);
@@ -39,7 +38,7 @@ namespace CedForecastRN
                 {
                     tituloColumna += "-" + cliente.Cli_RazSoc;
                 }
-                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], nombreColumna, tituloColumna));
+                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], nombreColumna, " " + tituloColumna));
             }
             //Llenar crosstab
             string claveAnterior = String.Empty;
@@ -56,20 +55,18 @@ namespace CedForecastRN
                     CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen==Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (articulo == null)
                     {
-                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]);
-                        dr["Uni"] = String.Empty;
+                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-Desconocido";
                     }
                     else
                     {
-                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
-                        dr["Uni"] = articulo.Artcla_Cod;
+                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen + " ("+articulo.Artcla_Cod+")";
                     }
                     if (IncluyeVendedor) 
                     {
                         CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
                         if (vendedor == null)
                         {
-                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
+                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-Desconocido";
                         }
                         else
                         {

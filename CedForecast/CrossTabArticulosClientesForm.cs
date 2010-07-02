@@ -76,10 +76,6 @@ namespace CedForecast
                             case "Vendedor":
                                 BrowserGridEX.RootTable.Columns[elemento].Width = 150;
                                 break;
-                            case "Uni":
-                                BrowserGridEX.RootTable.Columns[elemento].Width = 30;
-                                BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
-                                break;
                         }
                         break;
                     case "Decimal":
