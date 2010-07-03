@@ -7,11 +7,11 @@ namespace CedForecastRN
 {
     public static class Reporte
     {
-        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, bool IncluyeVendedor, CedEntidades.Sesion Sesion)
+        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, CedEntidades.Sesion Sesion)
         {
             //Leer datos Forecast
             CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
-            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, IncluyeVendedor);
+            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, TipoReporte);
             DataTable dtArticulos = ds.Tables[0];
             DataTable dtVendedores = ds.Tables[1];
             DataTable dtClientes = ds.Tables[2];
@@ -23,10 +23,22 @@ namespace CedForecastRN
             List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista(dtClientes);
             //Crear crosstab
             DataTable dt = new DataTable();
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
-            if (IncluyeVendedor)
+            bool incluyeVendedor = false;
+            switch (TipoReporte)
             {
-                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+                case "Artículos-Vendedores":
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+                    incluyeVendedor = true;
+                    break;
+                case "Vendedores-Artículos":
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
+                    incluyeVendedor = true;
+                    break;
+                case "Sólo Artículos":
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
+                    break;
             }
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total", "Total"));
             for (int i = 0; i < dtClientes.Rows.Count; i++)
@@ -45,7 +57,7 @@ namespace CedForecastRN
             for (int i = 0; i < dtDatos.Rows.Count; i++)
             {
                 string claveActual=Convert.ToString(dtDatos.Rows[i]["Articulo"]);
-                if (IncluyeVendedor)
+                if (incluyeVendedor)
                 {
                     claveActual += Convert.ToString(dtDatos.Rows[i]["Vendedor"]);
                 }
@@ -61,7 +73,7 @@ namespace CedForecastRN
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen + " ("+articulo.Artcla_Cod+")";
                     }
-                    if (IncluyeVendedor) 
+                    if (incluyeVendedor) 
                     {
                         CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
                         if (vendedor == null)
