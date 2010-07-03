@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.CedFCIcom, Version=1.14.1.0, Culture=neutral, PublicKeyToken=7473e78fd129cb3d" />
     <Reference Include="Janus.Windows.ButtonBar.v2, Version=2.0.1208.0, Culture=neutral, PublicKeyToken=21d5517571b185bf">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CedeiraUIForms\DLLs\Janus.Windows.ButtonBar.v2.dll</HintPath>
@@ -133,6 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cedeira.ico" />
+    <Content Include="Imagenes\arrow_in.png" />
+    <Content Include="Imagenes\arrow_out.png" />
     <Content Include="Imagenes\back_16.ico" />
     <Content Include="Imagenes\Cedeira.ico" />
     <Content Include="Imagenes\close_16.ico" />

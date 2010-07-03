@@ -274,6 +274,36 @@
         DwDgAB8A+AA/AP4A/wA=
 </value>
   </data>
+  <data name="MinimizarUiButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHySURBVDhP3ZLbThpBHMZ5i30cLYpaVESKLOByWlCg
+        FRGhobSp0agYBYzHYqNBbWmt2G6hm9il1FIllaSppxufghue4HNnmnjaC+69mElm5v/9/jPfNyoAqkjV
+        J4aPvbXRP4MMWTca/DeL4PxqlkgdEUuJ0wksnMURqgzUg0ceZvi3Wz67Cxrc5+geX7AIsVII0WIQXM4o
+        quTOwtzJOHYuM0j+m0T4yI+hX7wC4BGtkMV4URrBSjWFlz/CsH4y1Oh1RyoDwszfMaydzGPzIo1nP50K
+        gEsWL1eTmC6/Rqw4CsuOoc5+0DPX7w2U3VS8db4Gf9GhADgEFkvHSaQqM7DnWBAx9YBMgTKPoQMXnpac
+        8BXt8H63KQC2vT707z4hncFm9eh7p6M1DR1vlMhDAbjljElMxGnbZ9msnFFhYm+mE/oNLXRvO9CVbod2
+        VXNjoitvZjx5DnOHU0gcxqnT983rWddibD+GmBi5FtMUiFjuXI9KIbySIogfjNOY7gO65c5RMQzfrhv2
+        bSvaF9UCBTi+mGpEPFuexHDBdyfj25DON23QpbXgsw48z4fQn2HRmmoWVNyeUQyKfgQKXpiyPZRq2OxS
+        3ODxigYdSy1M24K67tzmYN0wQZ1skug/MH/slUzv/4sbDc38I6Yl1VxTJ5pEUnsFuC+0lTL6BqkAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
+  <data name="MaximizarUiButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHzSURBVDhP3ZN/T1JRHMbPu7jvJgMliJESosAFufy4
+        gemFxCtt1mQtnE1Cs8Q1R78sfllxyy4Szpi0JLL1T2tzvgj+4RU8neOGNbn0Ajrb+efsfJ7ne57v95C5
+        1iTYlr+GMdsMIfblGugiWjtU9UCsuBH44ILvnRPe8jgIg7dPtlA8fvZPmAlSmAtXBGS+rWDjaBWe13YQ
+        5pw/forsz0e49z2BaCOoaLmLKs8FdlydRP0mlhoJrDVT4Es2kNnDEOLNaaR/JJH7lcVi6zamP/l6RPw7
+        rvZCPY71VhpyNQJX0QZH3goyQ99847PIRQ6CneWjO7h7OI/re0LtfBWC4lDjtSjkXYnBpwZjL4f/hCXV
+        /dzUvq89uedV+4Xo3h6tdeHuHc20+wlonf9vAjRpZeLtWE8Hum+3PjGrw5umtuWxkTsLMajyp6PLYLkq
+        IVaZYm3q6cRI1lwTiwLCpQDMG4aOaX2IMz4cBPG/d4LCdDgkpBqLmNuNwpGzts8nfmXTpPjzE5hX4wjm
+        BFgyRhge6Kgz/RCpRhK3PsqQKxKDO3RAzkr8W+hyxqB4X/AQC17MlCUMrVwE8byxY/kgieT+AtwFO+xb
+        2nBX6NKaHrFyBLIShT49AMKXRuEsXMX4qxEGw/bc0vc7M9iwqsMgddbfH4AudQG/AQOPtI1y4a4TAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
   <data name="EnviarAUiButton.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAGBgAAAEACADIBgAAJgAAABgYAAABACAAiAkAAO4GAAAoAAAAGAAAADAAAAABAAgAAAAAAEAC

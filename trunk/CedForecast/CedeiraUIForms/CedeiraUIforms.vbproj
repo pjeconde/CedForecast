@@ -96,10 +96,6 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.CedFCIcom, Version=1.14.1.0, Culture=neutral, PublicKeyToken=7473e78fd129cb3d">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLLs\Interop.CedFCIcom.dll</HintPath>
-    </Reference>
     <Reference Include="Janus.Windows.Common.v2">
       <Name>Janus.Windows.Common.v2</Name>
       <HintPath>DLLs\Janus.Windows.Common.v2.dll</HintPath>

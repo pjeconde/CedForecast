@@ -38,7 +38,7 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
-                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), ArticulosyVendedoresUiRadioButton.Checked, Aplicacion.Sesion);
+                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Aplicacion.Sesion);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
                 TabBrowserUiTabPage.TabVisible = true;
@@ -93,12 +93,17 @@ namespace CedForecast
                 BrowserGridEX.RootTable.Columns[elemento].Caption = Datos.Columns[i].Caption;
             }
             //Cortes de control
-            if (ArticulosyVendedoresUiRadioButton.Checked)
+            switch (TipoReporteNicePanel.Tag.ToString())
             {
-                Janus.Windows.GridEX.GridEXGroup grupo = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
-                grupo.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
-                BrowserGridEX.RootTable.Groups.Add(grupo);
-                BrowserGridEX.RootTable.Columns[0].Visible = false;
+                case "Artículos-Vendedores":
+                case "Vendedores-Artículos":
+                    Janus.Windows.GridEX.GridEXGroup grupo = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
+                    grupo.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                    BrowserGridEX.RootTable.Groups.Add(grupo);
+                    BrowserGridEX.RootTable.Columns[0].Visible = false;
+                    break;
+                case "Sólo Artículos":
+                    break;
             }
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
@@ -137,18 +142,19 @@ namespace CedForecast
 
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
-            if (MaxMinUiButton.Tag.ToString() == "Max")
-            {
-                WindowState = FormWindowState.Maximized;
-                MaxMinUiButton.Text = "Minimiz.tamaño";
-                MaxMinUiButton.Tag = "Min";
-            }
-            else
-            {
-                WindowState = FormWindowState.Normal;
-                MaxMinUiButton.Text = "Maximizar";
-                MaxMinUiButton.Tag = "Max";
-            }
+            WindowState = FormWindowState.Maximized;
+            MinimizarUiButton.Visible = true;
+            MaximizarUiButton.Visible = false;
+        }
+        private void MinimizarUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            MinimizarUiButton.Visible = false;
+            MaximizarUiButton.Visible = true;
+        }
+        private void TipoReporte_CheckedChanged(object sender, EventArgs e)
+        {
+            TipoReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Text;
         }
     }
 }
