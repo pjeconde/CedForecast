@@ -20,6 +20,31 @@ namespace CedForecast
             TabBrowserUiTabPage.TabVisible = false;
             CancelarUiButton.Text = "Salir";
             volverATabBrowser = false;
+            ConfigurarFiltros();
+            ArticulosUiCheckBox.Checked = true;
+            VendedoresUiCheckBox.Checked = true;
+        }
+        private void ConfigurarFiltros()
+        {
+
+            ArticulosTreeView.Nodes.Clear();
+            CedForecastDB.Bejerman.Articulos articulos = new CedForecastDB.Bejerman.Articulos(Aplicacion.Sesion);
+            List<CedForecastEntidades.Bejerman.Articulos> listaArticulos = articulos.LeerLista();
+            for (int i = 0; i < listaArticulos.Count; i++)
+            {
+                TreeNode nd = new TreeNode(listaArticulos[i].Art_CodGen+"-"+listaArticulos[i].Art_DescGen);
+                nd.Tag = listaArticulos[i].Art_CodGen;
+                ArticulosTreeView.Nodes.Add(nd);
+            }
+            VendedoresTreeView.Nodes.Clear();
+            CedForecastDB.Bejerman.Vendedor vendedores = new CedForecastDB.Bejerman.Vendedor(Aplicacion.Sesion);
+            List<CedForecastEntidades.Bejerman.Vendedor> listaVendedores = vendedores.LeerLista();
+            for (int i = 0; i < listaVendedores.Count; i++)
+            {
+                TreeNode nd = new TreeNode(listaVendedores[i].Ven_Cod + "-" + listaVendedores[i].Ven_Desc);
+                nd.Tag = listaVendedores[i].Ven_Cod;
+                VendedoresTreeView.Nodes.Add(nd);
+            }
         }
         private void CancelarUiButton_Click(object sender, EventArgs e)
         {
@@ -38,7 +63,7 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
-                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Aplicacion.Sesion);
+                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
                 TabBrowserUiTabPage.TabVisible = true;
@@ -135,7 +160,6 @@ namespace CedForecast
                     {
                         Cursor = Cursors.Default;
                     }
-
                     break;
             }
         }
@@ -155,6 +179,24 @@ namespace CedForecast
         private void TipoReporte_CheckedChanged(object sender, EventArgs e)
         {
             TipoReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Text;
+            if (((Janus.Windows.EditControls.UIRadioButton)sender).Text == "Sólo Artículos")
+            {
+                VendedoresNicePanel.Enabled = false;
+                VendedoresUiCheckBox.Checked = false;
+            }
+            else
+            {
+                VendedoresNicePanel.Enabled = true;
+                VendedoresUiCheckBox.Checked = true;
+            }
+        }
+        private void VendedoresUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+			Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView, VendedoresUiCheckBox.Checked);
+        }
+        private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView, ArticulosUiCheckBox.Checked);
         }
     }
 }

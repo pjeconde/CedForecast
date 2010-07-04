@@ -158,6 +158,10 @@
       <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
       <Name>CedEntidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CedForecastDB\CedForecastDB.csproj">
+      <Project>{EA08AE7C-6783-45C4-8DC2-54AB24801859}</Project>
+      <Name>CedForecastDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CedForecastEntidades\CedForecastEntidades.csproj">
       <Project>{5860D5C0-20DF-4207-AB83-AFA345077AB2}</Project>
       <Name>CedForecastEntidades</Name>
