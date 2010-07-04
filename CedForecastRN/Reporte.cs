@@ -7,11 +7,11 @@ namespace CedForecastRN
 {
     public static class Reporte
     {
-        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, CedEntidades.Sesion Sesion)
+        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaVendedores, CedEntidades.Sesion Sesion)
         {
             //Leer datos Forecast
             CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
-            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, TipoReporte);
+            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, TipoReporte, ListaArticulos, ListaVendedores);
             DataTable dtArticulos = ds.Tables[0];
             DataTable dtVendedores = ds.Tables[1];
             DataTable dtClientes = ds.Tables[2];
