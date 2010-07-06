@@ -41,6 +41,7 @@
     <Compile Include="Proceso.cs" />
     <Compile Include="ProyeccionAnual.cs" />
     <Compile Include="Reporte.cs" />
+    <Compile Include="RFoPA.cs" />
     <Compile Include="RollingForecast.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />

@@ -11,47 +11,53 @@ namespace CedForecastDB.Bejerman
             : base(Sesion)
         {
         }
-
         public List<CedForecastEntidades.Bejerman.Clientes> LeerNovedades(DateTime FechaUltimaSincronizacion)
         {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select ltrim(rtrim(cli_Cod)) as cli_Cod, cli_RazSoc, clizon_Cod, cli_Habilitado, cli_FecMod from Clientes where cli_FecMod>'" + FechaUltimaSincronizacion.ToString("yyyyMMdd HH:mm:ss.fff") + "' order by cli_FecMod");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
-            List<CedForecastEntidades.Bejerman.Clientes> lista = new List<CedForecastEntidades.Bejerman.Clientes>();
-            if (dt.Rows.Count != 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    CedForecastEntidades.Bejerman.Clientes elemento = new CedForecastEntidades.Bejerman.Clientes();
-                    Copiar(dt.Rows[i], elemento);
-                    lista.Add(elemento);
-                }
-            }
-            return lista;
+            return Lista(dt);
         }
         public List<CedForecastEntidades.Bejerman.Clientes> LeerLista(DataTable Clientes)
         {
+            List<CedForecastEntidades.Bejerman.Clientes> lista = new List<CedForecastEntidades.Bejerman.Clientes>();
+            if (Clientes.Rows.Count != 0)
+            {
+                DataTable dt = new DataTable();
+                System.Text.StringBuilder a = new StringBuilder();
+                a.Append("select ltrim(rtrim(cli_Cod)) as cli_Cod, cli_RazSoc, clizon_Cod, cli_Habilitado, cli_FecMod from Clientes where ltrim(rtrim(cli_Cod)) in (");
+                for (int i = 0; i < Clientes.Rows.Count; i++)
+                {
+                    a.Append("'" + Clientes.Rows[i]["Cliente"] + "'");
+                    if (i != Clientes.Rows.Count - 1)
+                    {
+                        a.Append(", ");
+                    }
+                }
+                a.Append(") order by ltrim(rtrim(cli_Cod)) ");
+                dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+                lista = Lista(dt);
+            }
+            return lista;
+        }
+        public List<CedForecastEntidades.Bejerman.Clientes> LeerLista()
+        {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select ltrim(rtrim(cli_Cod)) as cli_Cod, cli_RazSoc, clizon_Cod, cli_Habilitado, cli_FecMod from Clientes where ltrim(rtrim(cli_Cod)) in (");
-            for (int i = 0; i < Clientes.Rows.Count; i++)
-            {
-                a.Append("'" + Clientes.Rows[i]["Cliente"] +"'");
-                if (i != Clientes.Rows.Count - 1)
-                {
-                    a.Append(", ");
-                }
-            }
-            a.Append(") order by ltrim(rtrim(cli_Cod)) ");
+            a.Append("select ltrim(rtrim(cli_Cod)) as cli_Cod, cli_RazSoc, clizon_Cod, cli_Habilitado, cli_FecMod from Clientes order by ltrim(rtrim(cli_Cod)) ");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            return Lista(dt);
+        }
+        private List<CedForecastEntidades.Bejerman.Clientes> Lista(DataTable Datos)
+        {
             List<CedForecastEntidades.Bejerman.Clientes> lista = new List<CedForecastEntidades.Bejerman.Clientes>();
-            if (dt.Rows.Count != 0)
+            if (Datos.Rows.Count != 0)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < Datos.Rows.Count; i++)
                 {
                     CedForecastEntidades.Bejerman.Clientes elemento = new CedForecastEntidades.Bejerman.Clientes();
-                    Copiar(dt.Rows[i], elemento);
+                    Copiar(Datos.Rows[i], elemento);
                     lista.Add(elemento);
                 }
             }

@@ -29,6 +29,7 @@ namespace CedForecast
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("CrossTabArticulosClientes", "Crosstab Articulos-Clientes"));
+                    opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));
                     break;
                 case "Exploradores":
                     break;
@@ -64,6 +65,10 @@ namespace CedForecast
                                 {
                                     case "CrossTabArticulosClientes":
                                         oFrm = new CrossTabArticulosClientesForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    case "RFoPA":
+                                        oFrm = new RFoPAForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
                                     default:
