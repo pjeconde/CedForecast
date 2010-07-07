@@ -7,11 +7,30 @@ namespace CedForecastRN
 {
     public static class Reporte
     {
-        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaVendedores, CedEntidades.Sesion Sesion)
+        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, CedEntidades.Sesion Sesion)
         {
+            //Validacion de parámetros
+            if (ListaArticulos == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Articulo(s)");
+            }
+            if (ListaClientes == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Cliente(s)");
+            }
+            switch (TipoReporte)
+            {
+                case "Artículos-Vendedores":
+                case "Vendedores-Artículos":
+                    if (ListaVendedores == String.Empty)
+                    {
+                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Vendedor(es)");
+                    }
+                    break;
+            } 
             //Leer datos Forecast
             CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
-            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, TipoReporte, ListaArticulos, ListaVendedores);
+            DataSet ds = db.LeerDatosParaCrossTabArticulosClientes(IdPeriodoDesde, IdPeriodoHasta, TipoReporte, ListaArticulos, ListaClientes, ListaVendedores);
             DataTable dtArticulos = ds.Tables[0];
             DataTable dtVendedores = ds.Tables[1];
             DataTable dtClientes = ds.Tables[2];

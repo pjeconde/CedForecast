@@ -36,7 +36,7 @@ namespace CedForecastDB
             a.Append(") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
-        public DataSet LeerDatosParaCrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaVendedores)
+        public DataSet LeerDatosParaCrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             System.Text.StringBuilder a = new StringBuilder();
             switch (TipoReporte)
@@ -45,7 +45,7 @@ namespace CedForecastDB
                 case "Vendedores-Artículos":
                     a.Append("select IdArticulo as Articulo, IdCuenta as Vendedor, IdCliente as Cliente, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast ");
-                    a.Append("where IdTipoPlanilla='RollingForecast' and IdArticulo in (" + ListaArticulos + ") and IdCuenta in (" + ListaVendedores + ") ");
+                    a.Append("where IdTipoPlanilla='RollingForecast' and IdArticulo in (" + ListaArticulos + ") and IdCliente in (" + ListaClientes + ") and IdCuenta in (" + ListaVendedores + ") ");
                     a.Append("and IdPeriodo>='" + IdPeriodoDesde + "'  and IdPeriodo<='" + IdPeriodoHasta + "' group by IdArticulo, IdCuenta, IdCliente ");
                     a.Append("select distinct Articulo from #ForecastAux order by Articulo ");
                     a.Append("select distinct Vendedor from #ForecastAux order by Vendedor ");
@@ -56,7 +56,7 @@ namespace CedForecastDB
                 case "Sólo Artículos":
                     a.Append("select IdArticulo as Articulo, IdCliente as Cliente, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast ");
-                    a.Append("where IdTipoPlanilla='RollingForecast' and IdArticulo in (" + ListaArticulos + ") ");
+                    a.Append("where IdTipoPlanilla='RollingForecast' and IdArticulo in (" + ListaArticulos + ") and IdCliente in (" + ListaClientes + ") ");
                     a.Append("and IdPeriodo>='" + IdPeriodoDesde + "'  and IdPeriodo<='" + IdPeriodoHasta + "' group by IdArticulo, IdCliente ");
                     a.Append("select distinct Articulo from #ForecastAux order by Articulo ");
                     a.Append("select * from #ForecastAux where 1=2 ");
