@@ -96,6 +96,7 @@ namespace CedForecastDB
                     {
                         mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
                     }
+                    //Cuando cambia el Articulo o Cliente o Vendedor o Periodo ( concatenar clave )
                     if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
                     {
                         idArticulo = dt.Rows[i]["IdArticulo"].ToString();
