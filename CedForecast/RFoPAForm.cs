@@ -102,53 +102,39 @@ namespace CedForecast
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
             BrowserGridEX.RootTable.Columns.Add("DescrArticulo", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["DescrArticulo"].Caption = "Articulo";
             BrowserGridEX.RootTable.Columns.Add("DescrCliente", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["DescrCliente"].Caption = "Cliente";
             BrowserGridEX.RootTable.Columns.Add("IdCuenta", Janus.Windows.GridEX.ColumnType.Text);
-            for (int i = 1; i <= 12; i++)
+            BrowserGridEX.RootTable.Columns["IdCuenta"].Caption = "Vendedor";
+            if (PeriodoRFCalendarCombo.Checked)
             {
-                BrowserGridEX.RootTable.Columns.Add("Cantidad" +Convert.ToString(i), Janus.Windows.GridEX.ColumnType.Text);
+                for (int i = 1; i <= 12; i++)
+                {
+                    string elemento = "Cantidad" + Convert.ToString(i);
+                    BrowserGridEX.RootTable.Columns.Add(elemento, Janus.Windows.GridEX.ColumnType.Text);
+                    BrowserGridEX.RootTable.Columns[elemento].Caption = " " + TextoCantidadHeader(i, PeriodoRFCalendarCombo.Value.Year.ToString("0000") + PeriodoRFCalendarCombo.Value.Month.ToString("00"));
+                    BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
+                    BrowserGridEX.RootTable.Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
+                    BrowserGridEX.RootTable.Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
+                    BrowserGridEX.RootTable.Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
+                    BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
+                    BrowserGridEX.RootTable.Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
+                    BrowserGridEX.RootTable.Columns[elemento].Width = 75;
+                }
+                BrowserGridEX.RootTable.Columns.Add("CantidadTotal", Janus.Windows.GridEX.ColumnType.Text);
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].Caption = "Total";
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].FormatString = "######,##0.00;(-######,##0.00)";
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].TotalFormatString = "######,##0.00;(-######,##0.00)";
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].Width = 75;
             }
-            BrowserGridEX.RootTable.Columns.Add("CantidadTotal", Janus.Windows.GridEX.ColumnType.Text);
-            //ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
-            //TextoCantidadHeader(PeriodoRFCalendarCombo.Value.Year + PeriodoRFCalendarCombo.Value.Month));
-
-            //BrowserGridEX.RootTable.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
-            //for (int i = 0; i<Datos.Count; i++)
-            //{
-            //    string nombre = Datos[i].Columns[i].ColumnName;
-            //    BrowserGridEX.RootTable.Columns.Add(nombre, Janus.Windows.GridEX.ColumnType.Text);
-            //    int elemento = BrowserGridEX.RootTable.Columns.Count - 1;
-            //    string tipo = Datos.Columns[i].DataType.Name;
-            //    switch (tipo)
-            //    {
-            //        case "String":
-            //            BrowserGridEX.RootTable.Columns[elemento].Width = 150;
-            //            break;
-            //        case "Decimal":
-            //            BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
-            //            BrowserGridEX.RootTable.Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
-            //            BrowserGridEX.RootTable.Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
-            //            BrowserGridEX.RootTable.Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
-            //            BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
-            //            BrowserGridEX.RootTable.Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
-            //            BrowserGridEX.RootTable.Columns[elemento].Width = 75;
-            //            break;
-            //        default:
-            //            throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Tipo de dato " + tipo);
-            //    }
-            //    BrowserGridEX.RootTable.Columns[elemento].Caption = Datos.Columns[i].Caption;
-            //}
-            //Cortes de control
-            switch (TipoReporteNicePanel.Tag.ToString())
+            else
             {
-                case "Vendedores-Artículos":
-                    //Janus.Windows.GridEX.GridEXGroup grupo = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
-                    //grupo.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
-                    //BrowserGridEX.RootTable.Groups.Add(grupo);
-                    //BrowserGridEX.RootTable.Columns[0].Visible = false;
-                    break;
-                case "Sólo Artículos":
-                    break;
+
             }
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
