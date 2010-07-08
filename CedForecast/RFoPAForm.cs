@@ -23,6 +23,7 @@ namespace CedForecast
             volverATabBrowser = false;
             ConfigurarFiltros();
             ArticulosUiCheckBox.Checked = true;
+            ClientesUiCheckBox.Checked = true;
             VendedoresUiCheckBox.Checked = true;
         }
         private void ConfigurarFiltros()
@@ -36,6 +37,15 @@ namespace CedForecast
                 TreeNode nd = new TreeNode(listaArticulos[i].Art_CodGen+"-"+listaArticulos[i].Art_DescGen);
                 nd.Tag = listaArticulos[i].Art_CodGen;
                 ArticulosTreeView.Nodes.Add(nd);
+            }
+            ClientesTreeView.Nodes.Clear();
+            CedForecastDB.Bejerman.Clientes clientes = new CedForecastDB.Bejerman.Clientes(Aplicacion.Sesion);
+            List<CedForecastEntidades.Bejerman.Clientes> listaClientes = clientes.LeerLista();
+            for (int i = 0; i < listaClientes.Count; i++)
+            {
+                TreeNode nd = new TreeNode(listaClientes[i].Cli_Cod + "-" + listaClientes[i].Cli_RazSoc);
+                nd.Tag = listaClientes[i].Cli_Cod;
+                ClientesTreeView.Nodes.Add(nd);
             }
             VendedoresTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Vendedor vendedores = new CedForecastDB.Bejerman.Vendedor(Aplicacion.Sesion);
@@ -75,7 +85,7 @@ namespace CedForecast
                     forecast.IdTipoPlanilla = "Proyectado";
                     forecast.IdPeriodo = PeriodoPACalendarCombo.Value.ToString("yyyy");
                 }
-                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
+                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
                 PersonalizarGrilla(l);
                 BrowserGridEX.DataSource = l;
                 TabBrowserUiTabPage.TabVisible = true;
@@ -103,39 +113,63 @@ namespace CedForecast
             BrowserGridEX.RootTable.Columns.Clear();
             BrowserGridEX.RootTable.Columns.Add("DescrArticulo", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrArticulo"].Caption = "Articulo";
+            BrowserGridEX.RootTable.Columns["DescrArticulo"].Width = 200;
             BrowserGridEX.RootTable.Columns.Add("DescrCliente", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrCliente"].Caption = "Cliente";
+            BrowserGridEX.RootTable.Columns["DescrCliente"].Width = 200;
             BrowserGridEX.RootTable.Columns.Add("IdCuenta", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["IdCuenta"].Caption = "Vendedor";
-            if (PeriodoRFCalendarCombo.Checked)
+            BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 75;
+            if (RFUiRadioButton.Checked)
             {
-                for (int i = 1; i <= 12; i++)
+                BrowserGridEX.RootTable.Columns.Add("Proyectado", Janus.Windows.GridEX.ColumnType.Text);
+                FormatoColumna("Proyectado", 75);
+                BrowserGridEX.RootTable.Columns.Add("Ventas", Janus.Windows.GridEX.ColumnType.Text);
+                FormatoColumna("Ventas", 75);
+                BrowserGridEX.RootTable.Columns.Add("Desvio", Janus.Windows.GridEX.ColumnType.Text);
+                FormatoColumna("Desvio", 75);
+            }
+            for (int i = 1; i <= 12; i++)
+            {
+                string elemento = "Cantidad" + Convert.ToString(i);
+                BrowserGridEX.RootTable.Columns.Add(elemento, Janus.Windows.GridEX.ColumnType.Text);
+                if (RFUiRadioButton.Checked)
                 {
-                    string elemento = "Cantidad" + Convert.ToString(i);
-                    BrowserGridEX.RootTable.Columns.Add(elemento, Janus.Windows.GridEX.ColumnType.Text);
                     BrowserGridEX.RootTable.Columns[elemento].Caption = " " + TextoCantidadHeader(i, PeriodoRFCalendarCombo.Value.Year.ToString("0000") + PeriodoRFCalendarCombo.Value.Month.ToString("00"));
-                    BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
-                    BrowserGridEX.RootTable.Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
-                    BrowserGridEX.RootTable.Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
-                    BrowserGridEX.RootTable.Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
-                    BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
-                    BrowserGridEX.RootTable.Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
-                    BrowserGridEX.RootTable.Columns[elemento].Width = 75;
                 }
-                BrowserGridEX.RootTable.Columns.Add("CantidadTotal", Janus.Windows.GridEX.ColumnType.Text);
+                else
+                {
+                    BrowserGridEX.RootTable.Columns[elemento].Caption = " " + TextoCantidadHeader(i, PeriodoPACalendarCombo.Value.Year.ToString("0000") + "01");
+                }
+                FormatoColumna(elemento, 75);
+            }
+            BrowserGridEX.RootTable.Columns.Add("CantidadTotal", Janus.Windows.GridEX.ColumnType.Text);
+            if (RFUiRadioButton.Checked)
+            {
                 BrowserGridEX.RootTable.Columns["CantidadTotal"].Caption = "Total";
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].FormatString = "######,##0.00;(-######,##0.00)";
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].TotalFormatString = "######,##0.00;(-######,##0.00)";
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
-                BrowserGridEX.RootTable.Columns["CantidadTotal"].Width = 75;
+                FormatoColumna("CantidadTotal", 75);
             }
             else
             {
-
+                BrowserGridEX.RootTable.Columns["CantidadTotal"].Caption = "Total " + PeriodoPACalendarCombo.Value.Year.ToString("0000");
+                FormatoColumna("CantidadTotal", 75);
+                BrowserGridEX.RootTable.Columns.Add("Cantidad13", Janus.Windows.GridEX.ColumnType.Text);
+                BrowserGridEX.RootTable.Columns["Cantidad13"].Caption = "Total " + PeriodoPACalendarCombo.Value.AddYears(1).Year.ToString("0000");
+                FormatoColumna("Cantidad13", 75);
+                BrowserGridEX.RootTable.Columns.Add("Cantidad14", Janus.Windows.GridEX.ColumnType.Text);
+                BrowserGridEX.RootTable.Columns["Cantidad14"].Caption = "Total " + PeriodoPACalendarCombo.Value.AddYears(2).Year.ToString("0000");
+                FormatoColumna("Cantidad14", 75);
             }
+        }
+        private void FormatoColumna(string elemento, int tamaño)
+        {
+            BrowserGridEX.RootTable.Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
+            BrowserGridEX.RootTable.Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
+            BrowserGridEX.RootTable.Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
+            BrowserGridEX.RootTable.Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
+            BrowserGridEX.RootTable.Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
+            BrowserGridEX.RootTable.Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
+            BrowserGridEX.RootTable.Columns[elemento].Width = tamaño;
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
         {
@@ -158,7 +192,7 @@ namespace CedForecast
                         Cursor = Cursors.WaitCursor;
                         planilla.ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
                     }
-                    catch (Exception ex)
+                catch (Exception ex)
                     {
                         Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
                     }
@@ -199,6 +233,10 @@ namespace CedForecast
         private void VendedoresUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 			Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView, VendedoresUiCheckBox.Checked);
+        }
+        private void ClientesUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView, ClientesUiCheckBox.Checked);
         }
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
