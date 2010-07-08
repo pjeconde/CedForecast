@@ -10,10 +10,10 @@ namespace CedForecastRN
         public RFoPA()
         {
         }
-        public static List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string ListaArticulos, string ListaVendedores, CedEntidades.Sesion Sesion)
+        public static List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string ListaArticulos, string ListaClientes, string ListaVendedores, CedEntidades.Sesion Sesion)
         {
             CedForecastDB.RFoPA forecast = new CedForecastDB.RFoPA(Sesion);
-            List<CedForecastEntidades.RFoPA> lista = forecast.Lista(Forecast, ListaArticulos, ListaVendedores);
+            List<CedForecastEntidades.RFoPA> lista = forecast.Lista(Forecast, ListaArticulos, ListaClientes, ListaVendedores);
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Sesion).LeerLista();
             List<CedForecastEntidades.Bejerman.Vendedor> vendedores = new CedForecastDB.Bejerman.Vendedor(Sesion).LeerLista();
             List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista();

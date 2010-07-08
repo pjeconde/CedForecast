@@ -15,7 +15,7 @@ namespace CedForecastDB
             cantidadFilas = 0;
         }
 
-        public List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string ListaArticulos, string ListaVendedores)
+        public List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
@@ -28,6 +28,10 @@ namespace CedForecastDB
             if (ListaArticulos != "")
             {
                 a.Append("and Forecast.IdArticulo in (" + ListaArticulos + ") "); 
+            }
+            if (ListaClientes != "")
+            {
+                a.Append("and Forecast.IdCliente in (" + ListaClientes + ") ");
             }
             if (ListaVendedores != "")
             {
@@ -48,37 +52,37 @@ namespace CedForecastDB
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
-            a.Append("order by IdArticulo asc, IdPeriodo asc");
-            DataTable dt = new DataTable();
+            a.Append("order by IdCuenta asc, IdCliente asc, IdArticulo asc, IdPeriodo asc ");
+            DataTable dt = new DataTable();  
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastEntidades.RFoPA> lista = new List<CedForecastEntidades.RFoPA>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastEntidades.RFoPA forecast = new CedForecastEntidades.RFoPA();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idClave = dt.Rows[0]["IdCuenta"].ToString() + dt.Rows[0]["IdCliente"].ToString() + dt.Rows[0]["IdArticulo"].ToString();
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 //Lista de ventas para Rolling Forecast
-                //List<CedForecastEntidades.Venta> ventaLista = new List<CedForecastEntidades.Venta>();
+                List<CedForecastEntidades.Bejerman.Ventas> ventas = new List<CedForecastEntidades.Bejerman.Ventas>();
                 List<CedForecastEntidades.RFoPA> totalProyectadoLista = new List<CedForecastEntidades.RFoPA>();
                 if (Forecast.IdTipoPlanilla == "RollingForecast")
                 {
-                    //Venta ventaRN = new Venta(sesion);
-                    //ventaLista = ventaRN.ConsultarTotales(PrimerMes(Forecast.IdPeriodo), Forecast.IdPeriodo);
-                    //CedForecastEntidades.Venta venta = new CedForecastEntidades.Venta();
-                    //venta = ventaLista.Find((delegate(CedForecastEntidades.Venta e) { return e.IdCliente == dt.Rows[0]["IdCliente"].ToString() && e.IdArticulo == dt.Rows[0]["IdArticulo"].ToString(); }));
-                    //if (venta != null)
-                    //{
-                    //    forecast.Ventas = venta.Cantidad;
-                    //}
-                    ////Lista de totales proyectados por articulo
-                    //totalProyectadoLista = TotalProyectado(Forecast);
+                    CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
+                    ventas = db.LeerNovedades(Forecast.IdPeriodo);
+                    CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
+                    venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[0]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
+                    if (venta != null)
+                    {
+                        forecast.Ventas = venta.Sdv_CantUM1;
+                    }
+                    //Lista de totales proyectados por articulo
+                    totalProyectadoLista = TotalProyectado(Forecast);
                     ////Buscar total proyectado
-                    //CedForecastEntidades.RFoPA totalProyectado = new CedForecastEntidades.RFoPA();
-                    //totalProyectado = totalProyectadoLista.Find((delegate(CedForecastEntidades.RFoPA e) { return e.IdCliente == dt.Rows[0]["IdCliente"].ToString() && e.Articulo.Id == dt.Rows[0]["IdArticulo"].ToString(); }));
-                    //if (totalProyectado != null)
-                    //{
-                    //    forecast.Proyectado = totalProyectado.Proyectado;
-                    //}
+                    CedForecastEntidades.RFoPA totalProyectado = new CedForecastEntidades.RFoPA();
+                    totalProyectado = totalProyectadoLista.Find((delegate(CedForecastEntidades.RFoPA e) { return e.IdCliente == dt.Rows[0]["IdCliente"].ToString() && e.Articulo.Art_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
+                    if (totalProyectado != null)
+                    {
+                        forecast.Proyectado = totalProyectado.Proyectado;
+                    }
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -96,29 +100,31 @@ namespace CedForecastDB
                     {
                         mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
                     }
-                    //Cuando cambia el Articulo o Cliente o Vendedor o Periodo ( concatenar clave )
-                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                    //Clave para armado de info según agrupamiento
+                    if (idClave != dt.Rows[i]["IdCuenta"].ToString() + dt.Rows[i]["IdCliente"].ToString() + dt.Rows[i]["IdArticulo"].ToString())
                     {
-                        idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                        idClave = dt.Rows[i]["IdCuenta"].ToString() + dt.Rows[i]["IdCliente"].ToString() + dt.Rows[i]["IdArticulo"].ToString();
                         lista.Add(forecast);
                         forecast = new CedForecastEntidades.RFoPA();
                         CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
                         if (Forecast.IdTipoPlanilla == "RollingForecast")
                         {
-                            ////Buscar ventas reales
-                            //CedForecastEntidades.Venta venta = new CedForecastEntidades.Venta();
-                            //venta = ventaLista.Find((delegate(CedForecastEntidades.Venta e) { return e.IdCliente == dt.Rows[i]["IdCliente"].ToString() && e.IdArticulo == dt.Rows[i]["IdArticulo"].ToString(); }));
-                            //if (venta != null)
-                            //{
-                            //    forecast.Ventas = venta.Cantidad;
-                            //}
-                            ////Buscar total proyectado
-                            //CedForecastEntidades.RFoPA totalProyectado = new CedForecastEntidades.RFoPA();
-                            //totalProyectado = totalProyectadoLista.Find((delegate(CedForecastEntidades.RFoPA e) { return e.IdCliente == dt.Rows[i]["IdCliente"].ToString() && e.Articulo.Id == dt.Rows[i]["IdArticulo"].ToString(); }));
-                            //if (totalProyectado != null)
-                            //{
-                            //    forecast.Proyectado = totalProyectado.Proyectado;
-                            //}
+                            //Buscar ventas reales
+                            CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
+                            ventas = db.LeerNovedades(Forecast.IdPeriodo);
+                            CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
+                            venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[i]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
+                            if (venta != null)
+                            {
+                                forecast.Ventas = venta.Sdv_CantUM1;
+                            }
+                            //Buscar total proyectado
+                            CedForecastEntidades.RFoPA totalProyectado = new CedForecastEntidades.RFoPA();
+                            totalProyectado = totalProyectadoLista.Find((delegate(CedForecastEntidades.RFoPA e) { return e.IdCliente == dt.Rows[i]["IdCliente"].ToString() && e.Articulo.Art_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
+                            if (totalProyectado != null)
+                            {
+                                forecast.Proyectado = totalProyectado.Proyectado;
+                            }
                         }
                     }
                     CopiarDet(dt.Rows[i], forecast, mes);
@@ -132,9 +138,9 @@ namespace CedForecastDB
         { 
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
-            a.Append("from Forecast, Articulo, GrupoArticulo, Division ");
-            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Forecast.Cantidad ");
+            a.Append("from Forecast ");
+            a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");

@@ -38,7 +38,7 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Venta> ConsultarTotales(string PeriodoDsd, string PeriodoHst)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("Select IdArticulo, IdCliente, Sum(Cantidad) as Cantidad from Venta where IdPeriodo >= '" + PeriodoDsd + "' and IdPeriodo < '" + PeriodoHst + "' group by IdArticulo, IdCliente");
+            a.Append("Select Rtrim(Ltrim(IdArticulo)) as IdArticulo, IdCliente, Sum(Cantidad) as Cantidad from Venta where IdPeriodo >= '" + PeriodoDsd + "' and IdPeriodo < '" + PeriodoHst + "' group by IdArticulo, IdCliente");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Venta> lista = new List<CedForecastWebEntidades.Venta>();
             if (dt.Rows.Count != 0)
