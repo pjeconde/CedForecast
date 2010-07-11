@@ -25,10 +25,10 @@ namespace CedForecast
             ArticulosUiCheckBox.Checked = true;
             ClientesUiCheckBox.Checked = true;
             VendedoresUiCheckBox.Checked = true;
+            TipoReporteNicePanel.Tag = "Articulos-Clientes-Vendedores";
         }
         private void ConfigurarFiltros()
         {
-
             ArticulosTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Articulos articulos = new CedForecastDB.Bejerman.Articulos(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Articulos> listaArticulos = articulos.LeerLista();
@@ -85,7 +85,7 @@ namespace CedForecast
                     forecast.IdTipoPlanilla = "Proyectado";
                     forecast.IdPeriodo = PeriodoPACalendarCombo.Value.ToString("yyyy");
                 }
-                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
+                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
                 PersonalizarGrilla(l);
                 BrowserGridEX.DataSource = l;
                 TabBrowserUiTabPage.TabVisible = true;
@@ -120,6 +120,21 @@ namespace CedForecast
             BrowserGridEX.RootTable.Columns.Add("IdCuenta", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["IdCuenta"].Caption = "Vendedor";
             BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 75;
+            switch (TipoReporteNicePanel.Tag.ToString())
+            {
+                case "Articulos-Clientes-Vendedores":
+                    break;
+                case "Articulos-Clientes":
+                    BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
+                    break;
+                case "Articulos-Vendedores":
+                    BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
+                    break;
+                case "Articulos":
+                    BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
+                    BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
+                    break;
+            }
             if (RFUiRadioButton.Checked)
             {
                 BrowserGridEX.RootTable.Columns.Add("Proyectado", Janus.Windows.GridEX.ColumnType.Text);
@@ -216,20 +231,20 @@ namespace CedForecast
             MinimizarUiButton.Visible = false;
             MaximizarUiButton.Visible = true;
         }
-        private void TipoReporte_CheckedChanged(object sender, EventArgs e)
-        {
-            TipoReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Text;
-            if (((Janus.Windows.EditControls.UIRadioButton)sender).Text == "Sólo Artículos")
-            {
-                VendedoresNicePanel.Enabled = false;
-                VendedoresUiCheckBox.Checked = false;
-            }
-            else
-            {
-                VendedoresNicePanel.Enabled = true;
-                VendedoresUiCheckBox.Checked = true;
-            }
-        }
+        //private void TipoReporte_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    ReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Text;
+        //    if (((Janus.Windows.EditControls.UIRadioButton)sender).Text == "Sólo Artículos")
+        //    {
+        //        VendedoresNicePanel.Enabled = false;
+        //        VendedoresUiCheckBox.Checked = false;
+        //    }
+        //    else
+        //    {
+        //        VendedoresNicePanel.Enabled = true;
+        //        VendedoresUiCheckBox.Checked = true;
+        //    }
+        //}
         private void VendedoresUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 			Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView, VendedoresUiCheckBox.Checked);
@@ -241,6 +256,25 @@ namespace CedForecast
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView, ArticulosUiCheckBox.Checked);
+        }
+        private void TipoReporteUiRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ArticulosClientesyVendedoresUiRadioButton.Checked)
+            {
+                TipoReporteNicePanel.Tag = "Articulos-Clientes-Vendedores";
+            }
+            else if (ArticulosyClientesUiRadioButton.Checked)
+            {
+                TipoReporteNicePanel.Tag = "Articulos-Clientes";
+            }
+            else if (ArticulosyVendedoresUiRadioButton.Checked)
+            {
+                TipoReporteNicePanel.Tag = "Articulos-Vendedores";
+            }
+            else
+            {
+                TipoReporteNicePanel.Tag = "Articulos";
+            }
         }
     }
 }
