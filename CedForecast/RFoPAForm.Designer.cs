@@ -76,8 +76,8 @@
             this.ClientesNicePanel = new PureComponents.NicePanel.NicePanel();
             this.ClientesUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ClientesTreeView = new System.Windows.Forms.TreeView();
-            this.VizualizarNicePanel = new PureComponents.NicePanel.NicePanel();
-            this.ArticulosyVendedoresRadioButton1 = new Janus.Windows.EditControls.UIRadioButton();
+            this.TipoReporteNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.ArticulosyVendedoresUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.ArticulosyClientesUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.ArticulosClientesyVendedoresUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.ArticulosUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
@@ -87,7 +87,7 @@
             this.VendedoresNicePanel = new PureComponents.NicePanel.NicePanel();
             this.VendedoresUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.VendedoresTreeView = new System.Windows.Forms.TreeView();
-            this.TipoReporteNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.ReporteNicePanel = new PureComponents.NicePanel.NicePanel();
             this.PeriodoPACalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.PAUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.PeriodoRFCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
@@ -113,10 +113,10 @@
             this.TabFiltroUiTabPage.SuspendLayout();
             this.FiltroPanel.SuspendLayout();
             this.ClientesNicePanel.SuspendLayout();
-            this.VizualizarNicePanel.SuspendLayout();
+            this.TipoReporteNicePanel.SuspendLayout();
             this.ArticulosNicePanel.SuspendLayout();
             this.VendedoresNicePanel.SuspendLayout();
-            this.TipoReporteNicePanel.SuspendLayout();
+            this.ReporteNicePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -267,10 +267,10 @@
             // 
             this.FiltroPanel.BackColor = System.Drawing.Color.Cornsilk;
             this.FiltroPanel.Controls.Add(this.ClientesNicePanel);
-            this.FiltroPanel.Controls.Add(this.VizualizarNicePanel);
+            this.FiltroPanel.Controls.Add(this.TipoReporteNicePanel);
             this.FiltroPanel.Controls.Add(this.ArticulosNicePanel);
             this.FiltroPanel.Controls.Add(this.VendedoresNicePanel);
-            this.FiltroPanel.Controls.Add(this.TipoReporteNicePanel);
+            this.FiltroPanel.Controls.Add(this.ReporteNicePanel);
             this.FiltroPanel.Controls.Add(this.EjecutarSeleccionUiButton);
             this.FiltroPanel.Controls.Add(this.CancelarUiButton);
             this.FiltroPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -376,38 +376,38 @@
             this.ClientesTreeView.Size = new System.Drawing.Size(240, 370);
             this.ClientesTreeView.TabIndex = 3;
             // 
-            // VizualizarNicePanel
+            // TipoReporteNicePanel
             // 
-            this.VizualizarNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.VizualizarNicePanel.CollapseButton = false;
+            this.TipoReporteNicePanel.BackColor = System.Drawing.Color.Transparent;
+            this.TipoReporteNicePanel.CollapseButton = false;
             containerImage2.Alignment = System.Drawing.ContentAlignment.BottomRight;
             containerImage2.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             containerImage2.Image = null;
             containerImage2.Size = PureComponents.NicePanel.ContainerImageSize.Small;
             containerImage2.Transparency = 50;
-            this.VizualizarNicePanel.ContainerImage = containerImage2;
-            this.VizualizarNicePanel.ContextMenuButton = false;
-            this.VizualizarNicePanel.Controls.Add(this.ArticulosyVendedoresRadioButton1);
-            this.VizualizarNicePanel.Controls.Add(this.ArticulosyClientesUiRadioButton);
-            this.VizualizarNicePanel.Controls.Add(this.ArticulosClientesyVendedoresUiRadioButton);
-            this.VizualizarNicePanel.Controls.Add(this.ArticulosUiRadioButton);
+            this.TipoReporteNicePanel.ContainerImage = containerImage2;
+            this.TipoReporteNicePanel.ContextMenuButton = false;
+            this.TipoReporteNicePanel.Controls.Add(this.ArticulosyVendedoresUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.ArticulosyClientesUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.ArticulosClientesyVendedoresUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.ArticulosUiRadioButton);
             headerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage3.Image = null;
-            this.VizualizarNicePanel.FooterImage = headerImage3;
-            this.VizualizarNicePanel.FooterText = "";
-            this.VizualizarNicePanel.FooterVisible = false;
-            this.VizualizarNicePanel.ForeColor = System.Drawing.Color.Black;
+            this.TipoReporteNicePanel.FooterImage = headerImage3;
+            this.TipoReporteNicePanel.FooterText = "";
+            this.TipoReporteNicePanel.FooterVisible = false;
+            this.TipoReporteNicePanel.ForeColor = System.Drawing.Color.Black;
             headerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage4.Image = null;
-            this.VizualizarNicePanel.HeaderImage = headerImage4;
-            this.VizualizarNicePanel.HeaderText = "Visualizar";
-            this.VizualizarNicePanel.IsExpanded = true;
-            this.VizualizarNicePanel.Location = new System.Drawing.Point(8, 156);
-            this.VizualizarNicePanel.Name = "VizualizarNicePanel";
-            this.VizualizarNicePanel.OriginalFooterVisible = false;
-            this.VizualizarNicePanel.OriginalHeight = 0;
-            this.VizualizarNicePanel.ShowChildFocus = false;
-            this.VizualizarNicePanel.Size = new System.Drawing.Size(144, 136);
+            this.TipoReporteNicePanel.HeaderImage = headerImage4;
+            this.TipoReporteNicePanel.HeaderText = "Tipo de reporte";
+            this.TipoReporteNicePanel.IsExpanded = true;
+            this.TipoReporteNicePanel.Location = new System.Drawing.Point(8, 156);
+            this.TipoReporteNicePanel.Name = "TipoReporteNicePanel";
+            this.TipoReporteNicePanel.OriginalFooterVisible = false;
+            this.TipoReporteNicePanel.OriginalHeight = 0;
+            this.TipoReporteNicePanel.ShowChildFocus = false;
+            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 136);
             containerStyle2.BackColor = System.Drawing.Color.Transparent;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Brown;
@@ -444,20 +444,21 @@
             panelHeaderStyle4.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
             panelHeaderStyle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             panelStyle2.HeaderStyle = panelHeaderStyle4;
-            this.VizualizarNicePanel.Style = panelStyle2;
-            this.VizualizarNicePanel.TabIndex = 9033;
-            this.VizualizarNicePanel.Tag = "Artículos-Clientes-Vendedores";
+            this.TipoReporteNicePanel.Style = panelStyle2;
+            this.TipoReporteNicePanel.TabIndex = 9033;
+            this.TipoReporteNicePanel.Tag = "Artículos-Clientes-Vendedores";
             // 
-            // ArticulosyVendedoresRadioButton1
+            // ArticulosyVendedoresUiRadioButton
             // 
-            this.ArticulosyVendedoresRadioButton1.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosyVendedoresRadioButton1.Location = new System.Drawing.Point(8, 84);
-            this.ArticulosyVendedoresRadioButton1.Name = "ArticulosyVendedoresRadioButton1";
-            this.ArticulosyVendedoresRadioButton1.Size = new System.Drawing.Size(130, 16);
-            this.ArticulosyVendedoresRadioButton1.TabIndex = 5;
-            this.ArticulosyVendedoresRadioButton1.TabStop = false;
-            this.ArticulosyVendedoresRadioButton1.Text = "Artículos-Vendedores";
-            this.ArticulosyVendedoresRadioButton1.UseThemes = false;
+            this.ArticulosyVendedoresUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.ArticulosyVendedoresUiRadioButton.Location = new System.Drawing.Point(8, 84);
+            this.ArticulosyVendedoresUiRadioButton.Name = "ArticulosyVendedoresUiRadioButton";
+            this.ArticulosyVendedoresUiRadioButton.Size = new System.Drawing.Size(130, 16);
+            this.ArticulosyVendedoresUiRadioButton.TabIndex = 5;
+            this.ArticulosyVendedoresUiRadioButton.TabStop = false;
+            this.ArticulosyVendedoresUiRadioButton.Text = "Artículos-Vendedores";
+            this.ArticulosyVendedoresUiRadioButton.UseThemes = false;
+            this.ArticulosyVendedoresUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
             // ArticulosyClientesUiRadioButton
             // 
@@ -469,6 +470,7 @@
             this.ArticulosyClientesUiRadioButton.TabStop = false;
             this.ArticulosyClientesUiRadioButton.Text = "Artículos-Clientes";
             this.ArticulosyClientesUiRadioButton.UseThemes = false;
+            this.ArticulosyClientesUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
             // ArticulosClientesyVendedoresUiRadioButton
             // 
@@ -480,6 +482,7 @@
             this.ArticulosClientesyVendedoresUiRadioButton.TabIndex = 2;
             this.ArticulosClientesyVendedoresUiRadioButton.Text = "Artículos-Clientes-Vendedores";
             this.ArticulosClientesyVendedoresUiRadioButton.UseThemes = false;
+            this.ArticulosClientesyVendedoresUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
             // ArticulosUiRadioButton
             // 
@@ -491,6 +494,7 @@
             this.ArticulosUiRadioButton.TabStop = false;
             this.ArticulosUiRadioButton.Text = "Sólo Artículos";
             this.ArticulosUiRadioButton.UseThemes = false;
+            this.ArticulosUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
             // ArticulosNicePanel
             // 
@@ -684,38 +688,38 @@
             this.VendedoresTreeView.Size = new System.Drawing.Size(240, 278);
             this.VendedoresTreeView.TabIndex = 3;
             // 
-            // TipoReporteNicePanel
+            // ReporteNicePanel
             // 
-            this.TipoReporteNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.TipoReporteNicePanel.CollapseButton = false;
+            this.ReporteNicePanel.BackColor = System.Drawing.Color.Transparent;
+            this.ReporteNicePanel.CollapseButton = false;
             containerImage5.Alignment = System.Drawing.ContentAlignment.BottomRight;
             containerImage5.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             containerImage5.Image = null;
             containerImage5.Size = PureComponents.NicePanel.ContainerImageSize.Small;
             containerImage5.Transparency = 50;
-            this.TipoReporteNicePanel.ContainerImage = containerImage5;
-            this.TipoReporteNicePanel.ContextMenuButton = false;
-            this.TipoReporteNicePanel.Controls.Add(this.PeriodoPACalendarCombo);
-            this.TipoReporteNicePanel.Controls.Add(this.PAUiRadioButton);
-            this.TipoReporteNicePanel.Controls.Add(this.PeriodoRFCalendarCombo);
-            this.TipoReporteNicePanel.Controls.Add(this.RFUiRadioButton);
+            this.ReporteNicePanel.ContainerImage = containerImage5;
+            this.ReporteNicePanel.ContextMenuButton = false;
+            this.ReporteNicePanel.Controls.Add(this.PeriodoPACalendarCombo);
+            this.ReporteNicePanel.Controls.Add(this.PAUiRadioButton);
+            this.ReporteNicePanel.Controls.Add(this.PeriodoRFCalendarCombo);
+            this.ReporteNicePanel.Controls.Add(this.RFUiRadioButton);
             headerImage9.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage9.Image = null;
-            this.TipoReporteNicePanel.FooterImage = headerImage9;
-            this.TipoReporteNicePanel.FooterText = "";
-            this.TipoReporteNicePanel.FooterVisible = false;
-            this.TipoReporteNicePanel.ForeColor = System.Drawing.Color.Black;
+            this.ReporteNicePanel.FooterImage = headerImage9;
+            this.ReporteNicePanel.FooterText = "";
+            this.ReporteNicePanel.FooterVisible = false;
+            this.ReporteNicePanel.ForeColor = System.Drawing.Color.Black;
             headerImage10.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage10.Image = null;
-            this.TipoReporteNicePanel.HeaderImage = headerImage10;
-            this.TipoReporteNicePanel.HeaderText = "Tipo de reporte";
-            this.TipoReporteNicePanel.IsExpanded = true;
-            this.TipoReporteNicePanel.Location = new System.Drawing.Point(8, 8);
-            this.TipoReporteNicePanel.Name = "TipoReporteNicePanel";
-            this.TipoReporteNicePanel.OriginalFooterVisible = false;
-            this.TipoReporteNicePanel.OriginalHeight = 0;
-            this.TipoReporteNicePanel.ShowChildFocus = false;
-            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 142);
+            this.ReporteNicePanel.HeaderImage = headerImage10;
+            this.ReporteNicePanel.HeaderText = "Reporte";
+            this.ReporteNicePanel.IsExpanded = true;
+            this.ReporteNicePanel.Location = new System.Drawing.Point(8, 8);
+            this.ReporteNicePanel.Name = "ReporteNicePanel";
+            this.ReporteNicePanel.OriginalFooterVisible = false;
+            this.ReporteNicePanel.OriginalHeight = 0;
+            this.ReporteNicePanel.ShowChildFocus = false;
+            this.ReporteNicePanel.Size = new System.Drawing.Size(144, 142);
             containerStyle5.BackColor = System.Drawing.Color.Transparent;
             containerStyle5.BaseColor = System.Drawing.Color.Transparent;
             containerStyle5.BorderColor = System.Drawing.Color.Brown;
@@ -752,9 +756,9 @@
             panelHeaderStyle10.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
             panelHeaderStyle10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             panelStyle5.HeaderStyle = panelHeaderStyle10;
-            this.TipoReporteNicePanel.Style = panelStyle5;
-            this.TipoReporteNicePanel.TabIndex = 9030;
-            this.TipoReporteNicePanel.Tag = "Artículos-Vendedores";
+            this.ReporteNicePanel.Style = panelStyle5;
+            this.ReporteNicePanel.TabIndex = 9030;
+            this.ReporteNicePanel.Tag = "";
             // 
             // PeriodoPACalendarCombo
             // 
@@ -791,7 +795,6 @@
             this.PAUiRadioButton.TabStop = false;
             this.PAUiRadioButton.Text = "Proyectado Anual";
             this.PAUiRadioButton.UseThemes = false;
-            this.PAUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporte_CheckedChanged);
             // 
             // PeriodoRFCalendarCombo
             // 
@@ -828,7 +831,6 @@
             this.RFUiRadioButton.TabIndex = 2;
             this.RFUiRadioButton.Text = "Rolling Forecast";
             this.RFUiRadioButton.UseThemes = false;
-            this.RFUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporte_CheckedChanged);
             // 
             // EjecutarSeleccionUiButton
             // 
@@ -986,10 +988,10 @@
             this.TabFiltroUiTabPage.ResumeLayout(false);
             this.FiltroPanel.ResumeLayout(false);
             this.ClientesNicePanel.ResumeLayout(false);
-            this.VizualizarNicePanel.ResumeLayout(false);
+            this.TipoReporteNicePanel.ResumeLayout(false);
             this.ArticulosNicePanel.ResumeLayout(false);
             this.VendedoresNicePanel.ResumeLayout(false);
-            this.TipoReporteNicePanel.ResumeLayout(false);
+            this.ReporteNicePanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1006,7 +1008,7 @@
         private Janus.Windows.GridEX.GridEX BrowserGridEX;
         private Janus.Windows.UI.Tab.UITabPage TabFiltroUiTabPage;
         private System.Windows.Forms.Panel FiltroPanel;
-        private PureComponents.NicePanel.NicePanel TipoReporteNicePanel;
+        private PureComponents.NicePanel.NicePanel ReporteNicePanel;
         private Janus.Windows.EditControls.UIRadioButton RFUiRadioButton;
         protected Janus.Windows.EditControls.UIButton EjecutarSeleccionUiButton;
         private Janus.Windows.EditControls.UIButton CancelarUiButton;
@@ -1025,11 +1027,11 @@
         private Janus.Windows.EditControls.UICheckBox ArticulosUiCheckBox;
         private System.Windows.Forms.TreeView ArticulosTreeView;
         private Janus.Windows.CalendarCombo.CalendarCombo PeriodoRFCalendarCombo;
-        private PureComponents.NicePanel.NicePanel VizualizarNicePanel;
+        private PureComponents.NicePanel.NicePanel TipoReporteNicePanel;
         private Janus.Windows.EditControls.UIRadioButton ArticulosyClientesUiRadioButton;
         private Janus.Windows.EditControls.UIRadioButton ArticulosClientesyVendedoresUiRadioButton;
         private Janus.Windows.EditControls.UIRadioButton ArticulosUiRadioButton;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosyVendedoresRadioButton1;
+        private Janus.Windows.EditControls.UIRadioButton ArticulosyVendedoresUiRadioButton;
         private PureComponents.NicePanel.NicePanel ClientesNicePanel;
         private Janus.Windows.EditControls.UICheckBox ClientesUiCheckBox;
         private System.Windows.Forms.TreeView ClientesTreeView;

@@ -15,7 +15,7 @@ namespace CedForecastDB
             cantidadFilas = 0;
         }
 
-        public List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string ListaArticulos, string ListaClientes, string ListaVendedores)
+        public List<CedForecastEntidades.RFoPA> Lista(CedForecastEntidades.RFoPA Forecast, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
@@ -52,14 +52,25 @@ namespace CedForecastDB
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
-            a.Append("order by IdCuenta asc, IdCliente asc, IdArticulo asc, IdPeriodo asc ");
+            switch (TipoReporte)
+            {
+                case "Articulos-Clientes-Vendedores":
+                case "Articulos-Clientes":
+                case "Articulos":
+                    a.Append("order by IdArticulo asc, IdCliente asc, IdCuenta asc, IdPeriodo asc ");
+                    break;
+                case "Articulos-Vendedores":
+                    a.Append("order by IdArticulo asc, IdCuenta asc, IdCliente asc, IdPeriodo asc ");
+                    break;
+            }
             DataTable dt = new DataTable();  
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastEntidades.RFoPA> lista = new List<CedForecastEntidades.RFoPA>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastEntidades.RFoPA forecast = new CedForecastEntidades.RFoPA();
-                string idClave = dt.Rows[0]["IdCuenta"].ToString() + dt.Rows[0]["IdCliente"].ToString() + dt.Rows[0]["IdArticulo"].ToString();
+                string idClave = "";
+                idClave = ObtenerClaveXTipoReporte(dt.Rows[0], TipoReporte);
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 //Lista de ventas para Rolling Forecast
                 List<CedForecastEntidades.Bejerman.Ventas> ventas = new List<CedForecastEntidades.Bejerman.Ventas>();
@@ -67,7 +78,7 @@ namespace CedForecastDB
                 if (Forecast.IdTipoPlanilla == "RollingForecast")
                 {
                     CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
-                    ventas = db.LeerNovedades(Forecast.IdPeriodo);
+                    ventas = db.LeerParaRF(Forecast.IdPeriodo);
                     CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
                     venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[0]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
                     if (venta != null)
@@ -101,9 +112,10 @@ namespace CedForecastDB
                         mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
                     }
                     //Clave para armado de info según agrupamiento
-                    if (idClave != dt.Rows[i]["IdCuenta"].ToString() + dt.Rows[i]["IdCliente"].ToString() + dt.Rows[i]["IdArticulo"].ToString())
+                    string claveAux = ObtenerClaveXTipoReporte(dt.Rows[i], TipoReporte);
+                    if (idClave != claveAux)
                     {
-                        idClave = dt.Rows[i]["IdCuenta"].ToString() + dt.Rows[i]["IdCliente"].ToString() + dt.Rows[i]["IdArticulo"].ToString();
+                        idClave = claveAux;
                         lista.Add(forecast);
                         forecast = new CedForecastEntidades.RFoPA();
                         CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
@@ -111,7 +123,7 @@ namespace CedForecastDB
                         {
                             //Buscar ventas reales
                             CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
-                            ventas = db.LeerNovedades(Forecast.IdPeriodo);
+                            ventas = db.LeerParaRF(Forecast.IdPeriodo);
                             CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
                             venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[i]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
                             if (venta != null)
@@ -133,6 +145,26 @@ namespace CedForecastDB
             }
             cantidadFilas = lista.Count;
             return lista;
+        }
+        private string ObtenerClaveXTipoReporte(DataRow dr, string TipoReporte)
+        {
+            string idClave = "";
+            switch (TipoReporte)
+            {
+                case "Articulos-Clientes-Vendedores":
+                    idClave = dr["IdArticulo"].ToString() + dr["IdCliente"].ToString() + dr["IdCuenta"].ToString();
+                    break;
+                case "Articulos-Clientes":
+                    idClave = dr["IdArticulo"].ToString() + dr["IdCliente"].ToString();
+                    break;
+                case "Articulos-Vendedores":
+                    idClave = dr["IdArticulo"].ToString() + dr["IdCuenta"].ToString();
+                    break;
+                case "Articulos":
+                    idClave = dr["IdArticulo"].ToString();
+                    break;
+            }
+            return idClave;
         }
         public List<CedForecastEntidades.RFoPA> TotalProyectado(CedForecastEntidades.RFoPA Forecast)
         { 
@@ -198,46 +230,46 @@ namespace CedForecastDB
             switch (Mes)
             {
                 case 1:
-                    Hasta.Cantidad1 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad1 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 2:
-                    Hasta.Cantidad2 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad2 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 3:
-                    Hasta.Cantidad3 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad3 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 4:
-                    Hasta.Cantidad4 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad4 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 5:
-                    Hasta.Cantidad5 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad5 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 6:
-                    Hasta.Cantidad6 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad6 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 7:
-                    Hasta.Cantidad7 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad7 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 8:
-                    Hasta.Cantidad8 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad8 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 9:
-                    Hasta.Cantidad9 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad9 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 10:
-                    Hasta.Cantidad10 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad10 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 11:
-                    Hasta.Cantidad11 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad11 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 12:
-                    Hasta.Cantidad12 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad12 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 13:
-                    Hasta.Cantidad13 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad13 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
                 case 14:
-                    Hasta.Cantidad14 = Convert.ToDecimal(Desde["Cantidad"]);
+                    Hasta.Cantidad14 += Convert.ToDecimal(Desde["Cantidad"]);
                     break;
             }
         }
