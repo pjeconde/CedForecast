@@ -58,6 +58,8 @@ namespace CedForecast
             this.RecibirPanel = new System.Windows.Forms.Panel();
             this.RecibirTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.FamiliaArticuloUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
+            this.FamiliaArticuloUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -71,7 +73,7 @@ namespace CedForecast
             this.FondoNicePanel.Controls.Add(this.EnviarPanel);
             this.FondoNicePanel.Controls.Add(this.pictureBox1);
             this.FondoNicePanel.Controls.Add(this.BotonesPanel);
-            this.FondoNicePanel.Size = new System.Drawing.Size(411, 391);
+            this.FondoNicePanel.Size = new System.Drawing.Size(411, 415);
             // 
             // BotonesPanel
             // 
@@ -79,7 +81,7 @@ namespace CedForecast
             this.BotonesPanel.Controls.Add(this.SalirUiButton);
             this.BotonesPanel.Controls.Add(this.AceptarUiButton);
             this.BotonesPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BotonesPanel.Location = new System.Drawing.Point(0, 356);
+            this.BotonesPanel.Location = new System.Drawing.Point(0, 380);
             this.BotonesPanel.Name = "BotonesPanel";
             this.BotonesPanel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
             this.BotonesPanel.Size = new System.Drawing.Size(411, 35);
@@ -411,6 +413,8 @@ namespace CedForecast
             // EnviarPanel
             // 
             this.EnviarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EnviarPanel.Controls.Add(this.FamiliaArticuloUiProgressBar);
+            this.EnviarPanel.Controls.Add(this.FamiliaArticuloUiCheckBox);
             this.EnviarPanel.Controls.Add(this.EnviarTodoUiCheckBox);
             this.EnviarPanel.Controls.Add(this.label8);
             this.EnviarPanel.Controls.Add(this.ArticuloUiCheckBox);
@@ -426,7 +430,7 @@ namespace CedForecast
             this.EnviarPanel.Controls.Add(this.VentaUiCheckBox);
             this.EnviarPanel.Location = new System.Drawing.Point(12, 101);
             this.EnviarPanel.Name = "EnviarPanel";
-            this.EnviarPanel.Size = new System.Drawing.Size(386, 157);
+            this.EnviarPanel.Size = new System.Drawing.Size(386, 185);
             this.EnviarPanel.TabIndex = 9039;
             // 
             // EnviarTodoUiCheckBox
@@ -465,7 +469,7 @@ namespace CedForecast
             this.RecibirPanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
             this.RecibirPanel.Controls.Add(this.ProyeccionAnualUiCheckBox);
             this.RecibirPanel.Controls.Add(this.label1);
-            this.RecibirPanel.Location = new System.Drawing.Point(12, 264);
+            this.RecibirPanel.Location = new System.Drawing.Point(12, 292);
             this.RecibirPanel.Name = "RecibirPanel";
             this.RecibirPanel.Size = new System.Drawing.Size(386, 87);
             this.RecibirPanel.TabIndex = 9040;
@@ -494,9 +498,35 @@ namespace CedForecast
             this.label1.TabIndex = 9025;
             this.label1.Text = "Recibir";
             // 
+            // FamiliaArticuloUiCheckBox
+            // 
+            this.FamiliaArticuloUiCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.FamiliaArticuloUiCheckBox.Location = new System.Drawing.Point(11, 150);
+            this.FamiliaArticuloUiCheckBox.Name = "FamiliaArticuloUiCheckBox";
+            this.FamiliaArticuloUiCheckBox.ShowFocusRectangle = false;
+            this.FamiliaArticuloUiCheckBox.Size = new System.Drawing.Size(136, 20);
+            this.FamiliaArticuloUiCheckBox.TabIndex = 9036;
+            this.FamiliaArticuloUiCheckBox.Text = "Familias de Artículos";
+            this.FamiliaArticuloUiCheckBox.UseThemes = false;
+            this.FamiliaArticuloUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            // 
+            // FamiliaArticuloUiProgressBar
+            // 
+            this.FamiliaArticuloUiProgressBar.BackgroundFormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.FamiliaArticuloUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
+            this.FamiliaArticuloUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
+            this.FamiliaArticuloUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.FamiliaArticuloUiProgressBar.Location = new System.Drawing.Point(241, 150);
+            this.FamiliaArticuloUiProgressBar.Name = "FamiliaArticuloUiProgressBar";
+            this.FamiliaArticuloUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.FamiliaArticuloUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
+            this.FamiliaArticuloUiProgressBar.Size = new System.Drawing.Size(129, 20);
+            this.FamiliaArticuloUiProgressBar.TabIndex = 9037;
+            this.FamiliaArticuloUiProgressBar.UseThemes = false;
+            // 
             // SincronizacionForm
             // 
-            this.ClientSize = new System.Drawing.Size(411, 391);
+            this.ClientSize = new System.Drawing.Size(411, 415);
             this.Name = "SincronizacionForm";
             this.FondoNicePanel.ResumeLayout(false);
             this.BotonesPanel.ResumeLayout(false);
@@ -540,5 +570,7 @@ namespace CedForecast
         private System.Windows.Forms.Label label1;
         private Janus.Windows.EditControls.UICheckBox EnviarTodoUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox RecibirTodoUiCheckBox;
+        private Janus.Windows.EditControls.UIProgressBar FamiliaArticuloUiProgressBar;
+        private Janus.Windows.EditControls.UICheckBox FamiliaArticuloUiCheckBox;
     }
 }

@@ -37,6 +37,8 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Articulo.cs" />
     <Compile Include="ConfirmacionCarga.cs" />
+    <Compile Include="FamiliaArticulo.cs" />
+    <Compile Include="FamiliaArticuloXArticulo.cs" />
     <Compile Include="Forecast.cs" />
     <Compile Include="Periodo.cs" />
     <Compile Include="GrupoArticulo.cs" />
