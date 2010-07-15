@@ -38,6 +38,7 @@
     <Compile Include="Articulo.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Cuenta.cs" />
+    <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="Proceso.cs" />
     <Compile Include="ProyeccionAnual.cs" />
     <Compile Include="Reporte.cs" />
@@ -83,10 +84,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52586/sincronizacion.asmx">
+    <WebReferenceUrl Include="http://localhost:3000/Sincronizacion.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WS\</RelPath>
-      <UpdateFromURL>http://localhost:52586/sincronizacion.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:3000/Sincronizacion.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

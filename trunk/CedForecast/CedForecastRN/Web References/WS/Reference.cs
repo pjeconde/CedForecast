@@ -51,6 +51,14 @@ namespace CedForecastRN.WS {
         
         private System.Threading.SendOrPostCallback EnviarZonaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback EliminarFamiliasArticuloOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EnviarFamiliaArticuloOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EliminarFamiliasArticuloXArticuloOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback EnviarFamiliaArticuloXArticuloOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RecibirRollingForecastOperationCompleted;
         
         private System.Threading.SendOrPostCallback RecibirProyeccionAnualOperationCompleted;
@@ -125,6 +133,18 @@ namespace CedForecastRN.WS {
         
         /// <remarks/>
         public event EnviarZonaCompletedEventHandler EnviarZonaCompleted;
+        
+        /// <remarks/>
+        public event EliminarFamiliasArticuloCompletedEventHandler EliminarFamiliasArticuloCompleted;
+        
+        /// <remarks/>
+        public event EnviarFamiliaArticuloCompletedEventHandler EnviarFamiliaArticuloCompleted;
+        
+        /// <remarks/>
+        public event EliminarFamiliasArticuloXArticuloCompletedEventHandler EliminarFamiliasArticuloXArticuloCompleted;
+        
+        /// <remarks/>
+        public event EnviarFamiliaArticuloXArticuloCompletedEventHandler EnviarFamiliaArticuloXArticuloCompleted;
         
         /// <remarks/>
         public event RecibirRollingForecastCompletedEventHandler RecibirRollingForecastCompleted;
@@ -429,6 +449,114 @@ namespace CedForecastRN.WS {
             if ((this.EnviarZonaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.EnviarZonaCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EliminarFamiliasArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EliminarFamiliasArticulo() {
+            this.Invoke("EliminarFamiliasArticulo", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void EliminarFamiliasArticuloAsync() {
+            this.EliminarFamiliasArticuloAsync(null);
+        }
+        
+        /// <remarks/>
+        public void EliminarFamiliasArticuloAsync(object userState) {
+            if ((this.EliminarFamiliasArticuloOperationCompleted == null)) {
+                this.EliminarFamiliasArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEliminarFamiliasArticuloOperationCompleted);
+            }
+            this.InvokeAsync("EliminarFamiliasArticulo", new object[0], this.EliminarFamiliasArticuloOperationCompleted, userState);
+        }
+        
+        private void OnEliminarFamiliasArticuloOperationCompleted(object arg) {
+            if ((this.EliminarFamiliasArticuloCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EliminarFamiliasArticuloCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarFamiliaArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarFamiliaArticulo(FamiliaArticulo Elemento) {
+            this.Invoke("EnviarFamiliaArticulo", new object[] {
+                        Elemento});
+        }
+        
+        /// <remarks/>
+        public void EnviarFamiliaArticuloAsync(FamiliaArticulo Elemento) {
+            this.EnviarFamiliaArticuloAsync(Elemento, null);
+        }
+        
+        /// <remarks/>
+        public void EnviarFamiliaArticuloAsync(FamiliaArticulo Elemento, object userState) {
+            if ((this.EnviarFamiliaArticuloOperationCompleted == null)) {
+                this.EnviarFamiliaArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarFamiliaArticuloOperationCompleted);
+            }
+            this.InvokeAsync("EnviarFamiliaArticulo", new object[] {
+                        Elemento}, this.EnviarFamiliaArticuloOperationCompleted, userState);
+        }
+        
+        private void OnEnviarFamiliaArticuloOperationCompleted(object arg) {
+            if ((this.EnviarFamiliaArticuloCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EnviarFamiliaArticuloCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EliminarFamiliasArticuloXArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EliminarFamiliasArticuloXArticulo() {
+            this.Invoke("EliminarFamiliasArticuloXArticulo", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void EliminarFamiliasArticuloXArticuloAsync() {
+            this.EliminarFamiliasArticuloXArticuloAsync(null);
+        }
+        
+        /// <remarks/>
+        public void EliminarFamiliasArticuloXArticuloAsync(object userState) {
+            if ((this.EliminarFamiliasArticuloXArticuloOperationCompleted == null)) {
+                this.EliminarFamiliasArticuloXArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEliminarFamiliasArticuloXArticuloOperationCompleted);
+            }
+            this.InvokeAsync("EliminarFamiliasArticuloXArticulo", new object[0], this.EliminarFamiliasArticuloXArticuloOperationCompleted, userState);
+        }
+        
+        private void OnEliminarFamiliasArticuloXArticuloOperationCompleted(object arg) {
+            if ((this.EliminarFamiliasArticuloXArticuloCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EliminarFamiliasArticuloXArticuloCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://cedeira.com.ar/EnviarFamiliaArticuloXArticulo", RequestNamespace="http://cedeira.com.ar/", ResponseNamespace="http://cedeira.com.ar/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void EnviarFamiliaArticuloXArticulo(FamiliaArticuloXArticulo Elemento) {
+            this.Invoke("EnviarFamiliaArticuloXArticulo", new object[] {
+                        Elemento});
+        }
+        
+        /// <remarks/>
+        public void EnviarFamiliaArticuloXArticuloAsync(FamiliaArticuloXArticulo Elemento) {
+            this.EnviarFamiliaArticuloXArticuloAsync(Elemento, null);
+        }
+        
+        /// <remarks/>
+        public void EnviarFamiliaArticuloXArticuloAsync(FamiliaArticuloXArticulo Elemento, object userState) {
+            if ((this.EnviarFamiliaArticuloXArticuloOperationCompleted == null)) {
+                this.EnviarFamiliaArticuloXArticuloOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarFamiliaArticuloXArticuloOperationCompleted);
+            }
+            this.InvokeAsync("EnviarFamiliaArticuloXArticulo", new object[] {
+                        Elemento}, this.EnviarFamiliaArticuloXArticuloOperationCompleted, userState);
+        }
+        
+        private void OnEnviarFamiliaArticuloXArticuloOperationCompleted(object arg) {
+            if ((this.EnviarFamiliaArticuloXArticuloCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.EnviarFamiliaArticuloXArticuloCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -883,6 +1011,72 @@ namespace CedForecastRN.WS {
             }
             set {
                 this.fechaUltModifField = value;
+            }
+        }
+    }
+    
+    /// <comentarios/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
+    public partial class FamiliaArticuloXArticulo {
+        
+        private string idField;
+        
+        private FamiliaArticulo familiaField;
+        
+        /// <comentarios/>
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public FamiliaArticulo Familia {
+            get {
+                return this.familiaField;
+            }
+            set {
+                this.familiaField = value;
+            }
+        }
+    }
+    
+    /// <comentarios/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cedeira.com.ar/")]
+    public partial class FamiliaArticulo {
+        
+        private string idField;
+        
+        private string descrField;
+        
+        /// <comentarios/>
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <comentarios/>
+        public string Descr {
+            get {
+                return this.descrField;
+            }
+            set {
+                this.descrField = value;
             }
         }
     }
@@ -1411,6 +1605,22 @@ namespace CedForecastRN.WS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
     public delegate void EnviarZonaCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void EliminarFamiliasArticuloCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void EnviarFamiliaArticuloCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void EliminarFamiliasArticuloXArticuloCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void EnviarFamiliaArticuloXArticuloCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]

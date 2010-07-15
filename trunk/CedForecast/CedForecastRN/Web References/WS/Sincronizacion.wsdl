@@ -194,6 +194,50 @@
       <s:element name="EnviarZonaResponse">
         <s:complexType />
       </s:element>
+      <s:element name="EliminarFamiliasArticulo">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarFamiliasArticuloResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarFamiliaArticulo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:FamiliaArticulo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FamiliaArticulo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarFamiliaArticuloResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarFamiliasArticuloXArticulo">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarFamiliasArticuloXArticuloResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EnviarFamiliaArticuloXArticulo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Elemento" type="tns:FamiliaArticuloXArticulo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FamiliaArticuloXArticulo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Familia" type="tns:FamiliaArticulo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EnviarFamiliaArticuloXArticuloResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="RecibirRollingForecast">
         <s:complexType>
           <s:sequence>
@@ -305,6 +349,30 @@
   <wsdl:message name="EnviarZonaSoapOut">
     <wsdl:part name="parameters" element="tns:EnviarZonaResponse" />
   </wsdl:message>
+  <wsdl:message name="EliminarFamiliasArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarFamiliasArticulo" />
+  </wsdl:message>
+  <wsdl:message name="EliminarFamiliasArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarFamiliasArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarFamiliaArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarFamiliaArticulo" />
+  </wsdl:message>
+  <wsdl:message name="EnviarFamiliaArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarFamiliaArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarFamiliasArticuloXArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarFamiliasArticuloXArticulo" />
+  </wsdl:message>
+  <wsdl:message name="EliminarFamiliasArticuloXArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarFamiliasArticuloXArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarFamiliaArticuloXArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarFamiliaArticuloXArticulo" />
+  </wsdl:message>
+  <wsdl:message name="EnviarFamiliaArticuloXArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarFamiliaArticuloXArticuloResponse" />
+  </wsdl:message>
   <wsdl:message name="RecibirRollingForecastSoapIn">
     <wsdl:part name="parameters" element="tns:RecibirRollingForecast" />
   </wsdl:message>
@@ -361,6 +429,22 @@
     <wsdl:operation name="EnviarZona">
       <wsdl:input message="tns:EnviarZonaSoapIn" />
       <wsdl:output message="tns:EnviarZonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticulo">
+      <wsdl:input message="tns:EliminarFamiliasArticuloSoapIn" />
+      <wsdl:output message="tns:EliminarFamiliasArticuloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticulo">
+      <wsdl:input message="tns:EnviarFamiliaArticuloSoapIn" />
+      <wsdl:output message="tns:EnviarFamiliaArticuloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticuloXArticulo">
+      <wsdl:input message="tns:EliminarFamiliasArticuloXArticuloSoapIn" />
+      <wsdl:output message="tns:EliminarFamiliasArticuloXArticuloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticuloXArticulo">
+      <wsdl:input message="tns:EnviarFamiliaArticuloXArticuloSoapIn" />
+      <wsdl:output message="tns:EnviarFamiliaArticuloXArticuloSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="RecibirRollingForecast">
       <wsdl:input message="tns:RecibirRollingForecastSoapIn" />
@@ -465,6 +549,42 @@
     </wsdl:operation>
     <wsdl:operation name="EnviarZona">
       <soap:operation soapAction="http://cedeira.com.ar/EnviarZona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticulo">
+      <soap:operation soapAction="http://cedeira.com.ar/EliminarFamiliasArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticulo">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarFamiliaArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticuloXArticulo">
+      <soap:operation soapAction="http://cedeira.com.ar/EliminarFamiliasArticuloXArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticuloXArticulo">
+      <soap:operation soapAction="http://cedeira.com.ar/EnviarFamiliaArticuloXArticulo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -592,6 +712,42 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticulo">
+      <soap12:operation soapAction="http://cedeira.com.ar/EliminarFamiliasArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticulo">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarFamiliaArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarFamiliasArticuloXArticulo">
+      <soap12:operation soapAction="http://cedeira.com.ar/EliminarFamiliasArticuloXArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarFamiliaArticuloXArticulo">
+      <soap12:operation soapAction="http://cedeira.com.ar/EnviarFamiliaArticuloXArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RecibirRollingForecast">
       <soap12:operation soapAction="http://cedeira.com.ar/RecibirRollingForecast" style="document" />
       <wsdl:input>
@@ -613,10 +769,10 @@
   </wsdl:binding>
   <wsdl:service name="Sincronizacion">
     <wsdl:port name="SincronizacionSoap" binding="tns:SincronizacionSoap">
-      <soap:address location="http://localhost:52586/sincronizacion.asmx" />
+      <soap:address location="http://localhost:3000/Sincronizacion.asmx" />
     </wsdl:port>
     <wsdl:port name="SincronizacionSoap12" binding="tns:SincronizacionSoap12">
-      <soap12:address location="http://localhost:52586/sincronizacion.asmx" />
+      <soap12:address location="http://localhost:3000/Sincronizacion.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

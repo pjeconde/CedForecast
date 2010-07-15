@@ -79,6 +79,30 @@ namespace CedForecast.WS
             datos.Actualizar(Elemento);
         }
         [WebMethod]
+        public void EliminarFamiliasArticulo()
+        {
+            CedForecastWebDB.FamiliaArticulo datos = new CedForecastWebDB.FamiliaArticulo(Sesion());
+            datos.EliminarTodas();
+        }
+        [WebMethod]
+        public void EnviarFamiliaArticulo(CedForecastWebEntidades.FamiliaArticulo Elemento)
+        {
+            CedForecastWebDB.FamiliaArticulo datos = new CedForecastWebDB.FamiliaArticulo(Sesion());
+            datos.Actualizar(Elemento);
+        }
+        [WebMethod]
+        public void EliminarFamiliasArticuloXArticulo()
+        {
+            CedForecastWebDB.FamiliaArticuloXArticulo datos = new CedForecastWebDB.FamiliaArticuloXArticulo(Sesion());
+            datos.EliminarTodas();
+        }
+        [WebMethod]
+        public void EnviarFamiliaArticuloXArticulo(CedForecastWebEntidades.FamiliaArticuloXArticulo Elemento)
+        {
+            CedForecastWebDB.FamiliaArticuloXArticulo datos = new CedForecastWebDB.FamiliaArticuloXArticulo(Sesion());
+            datos.Actualizar(Elemento);
+        }
+        [WebMethod]
         public List<CedForecastWebEntidades.Forecast> RecibirRollingForecast(string Periodo)
         {
             CedForecastWebDB.Forecast datos = new CedForecastWebDB.Forecast(Sesion());
