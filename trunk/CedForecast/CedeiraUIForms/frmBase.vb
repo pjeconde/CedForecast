@@ -1,6 +1,8 @@
 
 Public Class frmBase
     Inherits System.Windows.Forms.Form
+    Protected tituloOriginal As String
+
 
     Public ReadOnly Property Titulo() As String
         Get
@@ -22,6 +24,7 @@ Public Class frmBase
         Me.New()
         FondoNicePanel.HeaderText = Titulo
         Me.Text = Titulo
+        tituloOriginal = Titulo
     End Sub
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
