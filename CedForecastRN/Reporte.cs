@@ -90,7 +90,7 @@ namespace CedForecastRN
                     CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (familiaXArticulo == null)
                     {
-                        dr["Familia"] = "Otros";
+                        dr["Familia"] = "<<<Desconocida>>>";
                     }
                     else
                     {
