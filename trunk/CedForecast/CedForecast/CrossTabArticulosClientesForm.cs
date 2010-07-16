@@ -24,6 +24,7 @@ namespace CedForecast
             ArticulosUiCheckBox.Checked = true;
             ClientesUiCheckBox.Checked = true;
             VendedoresUiCheckBox.Checked = true;
+            TipoReporte_CheckedChanged((object)ArticulosyVendedoresUiRadioButton, EventArgs.Empty);
         }
         private void ConfigurarFiltros()
         {
@@ -109,7 +110,10 @@ namespace CedForecast
                                 BrowserGridEX.RootTable.Columns[elemento].Width = 250;
                                 break;
                             case "Vendedor":
-                                BrowserGridEX.RootTable.Columns[elemento].Width = 150;
+                                BrowserGridEX.RootTable.Columns[elemento].Width = 170;
+                                break;
+                            case "Familia":
+                                BrowserGridEX.RootTable.Columns[elemento].Width = 120;
                                 break;
                         }
                         break;
@@ -130,14 +134,18 @@ namespace CedForecast
             //Cortes de control
             if (ArmaGruposUiCheckBox.Checked)
             {
-                switch (TipoReporteNicePanel.Tag.ToString())
+                BrowserGridEX.RootTable.Groups.Clear();
+                Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
+                grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                BrowserGridEX.RootTable.Groups.Add(grupo1);
+                BrowserGridEX.RootTable.Columns[0].Visible = false; switch (TipoReporteNicePanel.Tag.ToString())
                 {
                     case "Artículos-Vendedores":
                     case "Vendedores-Artículos":
-                        Janus.Windows.GridEX.GridEXGroup grupo = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
-                        grupo.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
-                        BrowserGridEX.RootTable.Groups.Add(grupo);
-                        BrowserGridEX.RootTable.Columns[0].Visible = false;
+                        Janus.Windows.GridEX.GridEXGroup grupo2 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[1]);
+                        grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                        BrowserGridEX.RootTable.Groups.Add(grupo2);
+                        BrowserGridEX.RootTable.Columns[1].Visible = false;
                         break;
                     case "Sólo Artículos":
                         break;
@@ -192,19 +200,23 @@ namespace CedForecast
         private void TipoReporte_CheckedChanged(object sender, EventArgs e)
         {
             TipoReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Text;
-            if (((Janus.Windows.EditControls.UIRadioButton)sender).Text == "Sólo Artículos")
+            switch (((Janus.Windows.EditControls.UIRadioButton)sender).Text)
             {
-                VendedoresNicePanel.Enabled = false;
-                VendedoresUiCheckBox.Checked = false;
-                ArmaGruposUiCheckBox.Checked = false;
-                ArmaGruposUiCheckBox.Enabled = false;
-            }
-            else
-            {
-                VendedoresNicePanel.Enabled = true;
-                VendedoresUiCheckBox.Checked = true;
-                ArmaGruposUiCheckBox.Checked = true;
-                ArmaGruposUiCheckBox.Enabled = true;
+                case "Artículos-Vendedores":
+                    VendedoresNicePanel.Enabled = true;
+                    VendedoresUiCheckBox.Checked = true;
+                    ArmaGruposUiCheckBox.Text = "Agrupa por familia de artículos y artículo";
+                    break;
+                case "Vendedores-Artículos":
+                    VendedoresNicePanel.Enabled = true;
+                    VendedoresUiCheckBox.Checked = true;
+                    ArmaGruposUiCheckBox.Text = "Agrupa por vendedor y familia de artículos";
+                    break;
+                case "Sólo Artículos":
+                    VendedoresNicePanel.Enabled = false;
+                    VendedoresUiCheckBox.Checked = false;
+                    ArmaGruposUiCheckBox.Text = "Agrupa por familia de artículos";
+                    break;
             }
         }
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
