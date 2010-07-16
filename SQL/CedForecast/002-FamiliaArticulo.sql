@@ -55,8 +55,6 @@ insert FamiliaArticulo values ('LibC', 'LIB. CONTROLADA')
 go
 insert FamiliaArticulo values ('LibL', 'LIB. LENTA')
 go
-insert FamiliaArticulo values ('Otros', 'Otros')
-go
 insert FamiliaArticuloXArticulo values ('20600001', 'BioE')
 go
 insert FamiliaArticuloXArticulo values ('20600002', 'BioE')
