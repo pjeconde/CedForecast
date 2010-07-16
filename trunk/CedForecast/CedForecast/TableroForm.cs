@@ -25,7 +25,8 @@ namespace CedForecast
             List<CedForecastEntidades.Opcion> opciones = new List<CedForecastEntidades.Opcion>();
             switch (((Janus.Windows.EditControls.UIButton)sender).Tag.ToString())
             {
-                case "ConfigDBasicos":
+                case "Config.datos básicos":
+                    opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos"));
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("CrossTabArticulosClientes", "Crosstab Articulos-Clientes"));
@@ -57,7 +58,17 @@ namespace CedForecast
                         string aux;
                         switch (TipoOpcionLabel.Tag.ToString())
                         {
-                            case "ConfigDBasicos":
+                            case "Config.datos básicos":
+                                aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
+                                switch (aux)
+                                {
+                                    case "FamiliaArticulo":
+                                        oFrm = new FamiliaArticuloForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    default:
+                                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+                                }
                                 break;
                             case "Consultas":
                                 aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
