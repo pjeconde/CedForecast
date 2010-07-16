@@ -332,7 +332,7 @@
             this.ValorizadoNicePanel.HeaderText = "";
             this.ValorizadoNicePanel.HeaderVisible = false;
             this.ValorizadoNicePanel.IsExpanded = true;
-            this.ValorizadoNicePanel.Location = new System.Drawing.Point(8, 238);
+            this.ValorizadoNicePanel.Location = new System.Drawing.Point(8, 253);
             this.ValorizadoNicePanel.Name = "ValorizadoNicePanel";
             this.ValorizadoNicePanel.OriginalFooterVisible = false;
             this.ValorizadoNicePanel.OriginalHeight = 0;
@@ -452,7 +452,7 @@
             this.nicePanel1.OriginalFooterVisible = false;
             this.nicePanel1.OriginalHeight = 0;
             this.nicePanel1.ShowChildFocus = false;
-            this.nicePanel1.Size = new System.Drawing.Size(144, 33);
+            this.nicePanel1.Size = new System.Drawing.Size(144, 48);
             containerStyle2.BackColor = System.Drawing.Color.Transparent;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Brown;
@@ -498,12 +498,12 @@
             this.ArmaGruposUiCheckBox.Checked = true;
             this.ArmaGruposUiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ArmaGruposUiCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.ArmaGruposUiCheckBox.Location = new System.Drawing.Point(8, 9);
+            this.ArmaGruposUiCheckBox.Location = new System.Drawing.Point(8, 6);
             this.ArmaGruposUiCheckBox.Name = "ArmaGruposUiCheckBox";
             this.ArmaGruposUiCheckBox.ShowFocusRectangle = false;
-            this.ArmaGruposUiCheckBox.Size = new System.Drawing.Size(130, 16);
+            this.ArmaGruposUiCheckBox.Size = new System.Drawing.Size(130, 36);
             this.ArmaGruposUiCheckBox.TabIndex = 9013;
-            this.ArmaGruposUiCheckBox.Text = "Arma grupos";
+            this.ArmaGruposUiCheckBox.Text = "Agrupa por ...";
             this.ArmaGruposUiCheckBox.UseThemes = false;
             this.ArmaGruposUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 

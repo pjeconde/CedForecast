@@ -40,22 +40,26 @@ namespace CedForecastRN
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Sesion).LeerLista(dtArticulos);
             List<CedForecastEntidades.Bejerman.Vendedor> vendedores = new CedForecastDB.Bejerman.Vendedor(Sesion).LeerLista(dtVendedores);
             List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista(dtClientes);
+            List<CedForecastEntidades.Articulo> familiaXArticulos = new CedForecastDB.Articulo(Sesion).LeerLista();
             //Crear crosstab
             DataTable dt = new DataTable();
             bool incluyeVendedor = false;
             switch (TipoReporte)
             {
                 case "Artículos-Vendedores":
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"], "Familia", "Familia"));
                     dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
                     dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
                     incluyeVendedor = true;
                     break;
                 case "Vendedores-Artículos":
                     dt.Columns.Add(ClonarColumna(dtDatos.Columns["Vendedor"]));
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"], "Familia", "Familia"));
                     dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
                     incluyeVendedor = true;
                     break;
                 case "Sólo Artículos":
+                    dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"], "Familia", "Familia"));
                     dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
                     break;
             }
@@ -83,6 +87,15 @@ namespace CedForecastRN
                 if (claveAnterior != claveActual)
                 {
                     DataRow dr=dt.NewRow();
+                    CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
+                    if (familiaXArticulo == null)
+                    {
+                        dr["Familia"] = "Otros";
+                    }
+                    else
+                    {
+                        dr["Familia"] = familiaXArticulo.Familia.Descr;
+                    }
                     CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen==Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (articulo == null)
                     {
