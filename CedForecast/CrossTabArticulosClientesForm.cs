@@ -184,7 +184,6 @@ namespace CedForecast
                     break;
             }
         }
-
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
