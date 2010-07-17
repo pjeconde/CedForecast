@@ -123,9 +123,6 @@
   <metadata name="EnviarAUiContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="gridEXLayout1.LayoutString" xml:space="preserve">
-    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true"&gt;&lt;Column0 ID="Id"&gt;&lt;Caption&gt;Id&lt;/Caption&gt;&lt;DataMember&gt;Id&lt;/DataMember&gt;&lt;Key&gt;Id&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="Descr"&gt;&lt;Caption&gt;Descr&lt;/Caption&gt;&lt;DataMember&gt;Descr&lt;/DataMember&gt;&lt;Key&gt;Descr&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;200&lt;/Width&gt;&lt;/Column1&gt;&lt;/Columns&gt;&lt;GridLineColor&gt;Silver&lt;/GridLineColor&gt;&lt;GroupCondition ID="" /&gt;&lt;ShowGroupConditionCount&gt;True&lt;/ShowGroupConditionCount&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="AltaUiButton.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -606,5 +603,8 @@
         AQCAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAIAAAQCAAAMAwAAHAMAA
         DwDgAB8A+AA/AP4A/wA=
 </value>
+  </data>
+  <data name="gridEXLayout2.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true"&gt;&lt;Column0 ID="Id"&gt;&lt;Caption&gt;Id&lt;/Caption&gt;&lt;DataMember&gt;Id&lt;/DataMember&gt;&lt;Key&gt;Id&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;60&lt;/Width&gt;&lt;/Column0&gt;&lt;Column1 ID="Descr"&gt;&lt;Caption&gt;Descr&lt;/Caption&gt;&lt;DataMember&gt;Descr&lt;/DataMember&gt;&lt;Key&gt;Descr&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;200&lt;/Width&gt;&lt;/Column1&gt;&lt;/Columns&gt;&lt;GridLineColor&gt;Silver&lt;/GridLineColor&gt;&lt;GroupCondition ID="" /&gt;&lt;ShowGroupConditionCount&gt;True&lt;/ShowGroupConditionCount&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
   </data>
 </root>

@@ -63,7 +63,7 @@ namespace CedForecast
                                 switch (aux)
                                 {
                                     case "FamiliaArticulo":
-                                        oFrm = new FamiliaArticuloForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
                                     default:
