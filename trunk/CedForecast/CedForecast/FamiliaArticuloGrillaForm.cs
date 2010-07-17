@@ -61,6 +61,11 @@ namespace CedForecast
             MinimizarUiButton.Visible = false;
             MaximizarUiButton.Visible = true;
         }
+        private void AltaUiButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Alta de Familia de Articulos", "Alta");
+            oFrm.ShowDialog();
+        }
     }
 }
 

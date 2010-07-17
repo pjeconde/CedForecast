@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FamiliaArticuloForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FamiliaArticuloForm.Designer.cs">
+      <DependentUpon>FamiliaArticuloForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FamiliaArticuloGrillaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,10 @@
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FamiliaArticuloForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FamiliaArticuloForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FamiliaArticuloGrillaForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FamiliaArticuloGrillaForm.cs</DependentUpon>
