@@ -15,7 +15,7 @@ namespace CedForecastWebDB
         public void Leer(CedForecastWebEntidades.Articulo Articulo)
         {
             StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select  Articulo.IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
+            a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("where Articulo.IdArticulo='" + Articulo.Id.ToString() + "'");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
@@ -31,7 +31,7 @@ namespace CedForecastWebDB
         public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Articulo.IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
+            a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("where GrupoArticulo.IdDivision = '" + Division.Id + "'");
             DataTable dt = new DataTable();
@@ -83,7 +83,7 @@ namespace CedForecastWebDB
         public void Actualizar(CedForecastWebEntidades.Articulo Elemento)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("if exists (select IdArticulo from Articulo where IdArticulo='" + Elemento.Id + "') ");
+            a.Append("if exists (select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo from Articulo where IdArticulo='" + Elemento.Id + "') ");
             a.Append("update Articulo set ");
             a.Append("DescrArticulo='" + Elemento.Descr + "', ");
             a.Append("IdGrupoArticulo='" + Elemento.GrupoArticulo.IdGrupoArticulo + "', ");
