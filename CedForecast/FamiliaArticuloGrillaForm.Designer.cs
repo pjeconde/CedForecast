@@ -28,8 +28,8 @@ namespace CedForecast
         /// </summary>
         private void InitializeComponent()
         {
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FamiliaArticuloGrillaForm));
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultauiButton = new Janus.Windows.EditControls.UIButton();
@@ -116,6 +116,7 @@ namespace CedForecast
             this.ConsultauiButton.Size = new System.Drawing.Size(88, 24);
             this.ConsultauiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.ConsultauiButton.TabIndex = 25;
+            this.ConsultauiButton.Tag = "Consulta";
             this.ConsultauiButton.Text = "Consultar";
             this.ConsultauiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ConsultauiButton.UseThemes = false;
@@ -132,6 +133,7 @@ namespace CedForecast
             this.ModificacionUiButton.Size = new System.Drawing.Size(88, 24);
             this.ModificacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.ModificacionUiButton.TabIndex = 24;
+            this.ModificacionUiButton.Tag = "Modificacion";
             this.ModificacionUiButton.Text = "Modificar";
             this.ModificacionUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ModificacionUiButton.UseThemes = false;
@@ -148,7 +150,8 @@ namespace CedForecast
             this.BajaUiButton.Size = new System.Drawing.Size(88, 24);
             this.BajaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.BajaUiButton.TabIndex = 23;
-            this.BajaUiButton.Text = "Dar de Baja";
+            this.BajaUiButton.Tag = "Baja";
+            this.BajaUiButton.Text = "Eliminar";
             this.BajaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.BajaUiButton.UseThemes = false;
             // 
@@ -164,9 +167,11 @@ namespace CedForecast
             this.AltaUiButton.Size = new System.Drawing.Size(88, 24);
             this.AltaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AltaUiButton.TabIndex = 22;
+            this.AltaUiButton.Tag = "Alta";
             this.AltaUiButton.Text = "Agregar";
             this.AltaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AltaUiButton.UseThemes = false;
+            this.AltaUiButton.Click += new System.EventHandler(this.AltaUiButton_Click);
             // 
             // panel1
             // 
@@ -260,8 +265,8 @@ namespace CedForecast
             this.ListaGridEX.BlendColor = System.Drawing.Color.White;
             this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
+            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
             this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
@@ -290,10 +295,10 @@ namespace CedForecast
             this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
-            // FamiliaArticuloForm
+            // FamiliaArticuloGrillaForm
             // 
             this.ClientSize = new System.Drawing.Size(602, 391);
-            this.Name = "FamiliaArticuloForm";
+            this.Name = "FamiliaArticuloGrillaForm";
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
             this.FondoNicePanel.ResumeLayout(false);
