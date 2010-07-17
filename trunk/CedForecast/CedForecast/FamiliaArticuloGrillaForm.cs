@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace CedForecast
 {
-    public partial class FamiliaArticuloForm : Cedeira.UI.frmBaseEnviarA
+    public partial class FamiliaArticuloGrillaForm : Cedeira.UI.frmBaseEnviarA
     {
-        public FamiliaArticuloForm(string Titulo) : base(Titulo)
+        public FamiliaArticuloGrillaForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
             ActualizarGrilla();
