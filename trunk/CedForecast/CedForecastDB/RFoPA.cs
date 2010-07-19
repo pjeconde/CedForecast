@@ -19,9 +19,10 @@ namespace CedForecastDB
         {
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Forecast.Cantidad, isnull(FamiliaArticulo.IdFamiliaArticulo, '') as IdFamiliaArticulo, isnull(FamiliaArticulo.DescrFamiliaArticulo, '') as DescrFamiliaArticulo ");
             //Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision,
-            a.Append("from Forecast ");
+            a.Append("from Forecast left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo = FamiliaArticuloXArticulo.IdArticulo ");
+            a.Append("left outer join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo = FamiliaArticulo.IdFamiliaArticulo ");
             //, Articulo, GrupoArticulo, Division ");
             a.Append("where Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' ");
             //Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision
@@ -61,6 +62,9 @@ namespace CedForecastDB
                     break;
                 case "Articulos-Vendedores":
                     a.Append("order by IdArticulo asc, IdCuenta asc, IdCliente asc, IdPeriodo asc ");
+                    break;
+                case "Familia":
+                    a.Append("order by IdFamiliaArticulo asc, IdArticulo asc, IdCuenta asc, IdCliente asc, IdPeriodo asc ");
                     break;
             }
             DataTable dt = new DataTable();  
@@ -163,6 +167,9 @@ namespace CedForecastDB
                 case "Articulos":
                     idClave = dr["IdArticulo"].ToString();
                     break;
+                case "Familia":
+                    idClave = dr["IdFamiliaArticulo"].ToString();
+                    break;
             }
             return idClave;
         }
@@ -213,7 +220,10 @@ namespace CedForecastDB
             Hasta.Cliente.Cli_Cod = Convert.ToString(Desde["IdCliente"]);
             Hasta.Articulo = new CedForecastEntidades.Bejerman.Articulos();
             Hasta.Articulo.Art_CodGen = Convert.ToString(Desde["IdArticulo"]);
-            //Hasta.Articulo.Art_DescGen = Convert.ToString(Desde["Art_DescGen"]);
+            Hasta.FamiliaArticulo = new CedForecastEntidades.Articulo();
+            Hasta.FamiliaArticulo.Id = Convert.ToString(Desde["IdArticulo"]);
+            Hasta.FamiliaArticulo.Familia.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
+            Hasta.FamiliaArticulo.Familia.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
             //Hasta.Articulo.GrupoArticulo.IdGrupoArticulo = Convert.ToString(Desde["IdGrupoArticulo"]);
             //Hasta.Articulo.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
             //Hasta.Articulo.Artda2_cod = Convert.ToString(Desde["IdDivision"]);
