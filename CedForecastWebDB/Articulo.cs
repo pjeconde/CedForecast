@@ -28,12 +28,17 @@ namespace CedForecastWebDB
                 Copiar(dt.Rows[0], Articulo);
             }
         }
-        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division)
+        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division, string IdFamiliaArticulo)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
+            a.Append("inner join FamiliaArticuloXArticulo on Articulo.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
             a.Append("where GrupoArticulo.IdDivision = '" + Division.Id + "'");
+            if (IdFamiliaArticulo != "")
+            {
+                a.Append(" and FamiliaArticuloXArticulo.IdFamiliaArticulo = '" + IdFamiliaArticulo + "'");
+            }
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Articulo> lista = new List<CedForecastWebEntidades.Articulo>();
