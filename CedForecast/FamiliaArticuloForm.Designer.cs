@@ -28,17 +28,18 @@ namespace CedForecast
         /// </summary>
         private void InitializeComponent()
         {
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FamiliaArticuloForm));
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout4 = new Janus.Windows.GridEX.GridEXLayout();
             this.panel1 = new System.Windows.Forms.Panel();
             this.AltaUiButton = new Janus.Windows.EditControls.UIButton();
             this.BajaUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.ArticulosGridEX = new Janus.Windows.GridEX.GridEX();
@@ -48,17 +49,16 @@ namespace CedForecast
             this.DescrFamiliaArticuloEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.IdLabel = new System.Windows.Forms.Label();
             this.IdFamiliaArticuloEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ArticulosGridEX)).BeginInit();
             this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnviarAUiCommandManager
@@ -152,6 +152,54 @@ namespace CedForecast
             this.panel2.Size = new System.Drawing.Size(567, 30);
             this.panel2.TabIndex = 0;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.MaximizarUiButton);
+            this.panel3.Controls.Add(this.MinimizarUiButton);
+            this.panel3.Controls.Add(this.SalirUiButton);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(467, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(95, 24);
+            this.panel3.TabIndex = 39;
+            // 
+            // MaximizarUiButton
+            // 
+            this.MaximizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MaximizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MaximizarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
+            this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
+            this.MaximizarUiButton.Location = new System.Drawing.Point(20, 0);
+            this.MaximizarUiButton.Name = "MaximizarUiButton";
+            this.MaximizarUiButton.ShowFocusRectangle = false;
+            this.MaximizarUiButton.Size = new System.Drawing.Size(20, 24);
+            this.MaximizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.TabIndex = 35;
+            this.MaximizarUiButton.Tag = "Max";
+            this.MaximizarUiButton.UseThemes = false;
+            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
+            // 
+            // MinimizarUiButton
+            // 
+            this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MinimizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinimizarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
+            this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
+            this.MinimizarUiButton.Location = new System.Drawing.Point(0, 0);
+            this.MinimizarUiButton.Name = "MinimizarUiButton";
+            this.MinimizarUiButton.ShowFocusRectangle = false;
+            this.MinimizarUiButton.Size = new System.Drawing.Size(20, 24);
+            this.MinimizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.TabIndex = 36;
+            this.MinimizarUiButton.Tag = "Min";
+            this.MinimizarUiButton.UseThemes = false;
+            this.MinimizarUiButton.Visible = false;
+            this.MinimizarUiButton.Click += new System.EventHandler(this.MinimizarUiButton_Click);
+            // 
             // SalirUiButton
             // 
             this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -194,43 +242,6 @@ namespace CedForecast
             this.AceptarUiButton.UseThemes = false;
             this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
             // 
-            // MinimizarUiButton
-            // 
-            this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.MinimizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MinimizarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
-            this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
-            this.MinimizarUiButton.Location = new System.Drawing.Point(0, 0);
-            this.MinimizarUiButton.Name = "MinimizarUiButton";
-            this.MinimizarUiButton.ShowFocusRectangle = false;
-            this.MinimizarUiButton.Size = new System.Drawing.Size(20, 24);
-            this.MinimizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.MinimizarUiButton.TabIndex = 36;
-            this.MinimizarUiButton.Tag = "Min";
-            this.MinimizarUiButton.UseThemes = false;
-            this.MinimizarUiButton.Visible = false;
-            this.MinimizarUiButton.Click += new System.EventHandler(this.MinimizarUiButton_Click);
-            // 
-            // MaximizarUiButton
-            // 
-            this.MaximizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.MaximizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MaximizarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
-            this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
-            this.MaximizarUiButton.Location = new System.Drawing.Point(20, 0);
-            this.MaximizarUiButton.Name = "MaximizarUiButton";
-            this.MaximizarUiButton.ShowFocusRectangle = false;
-            this.MaximizarUiButton.Size = new System.Drawing.Size(20, 24);
-            this.MaximizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.MaximizarUiButton.TabIndex = 35;
-            this.MaximizarUiButton.Tag = "Max";
-            this.MaximizarUiButton.UseThemes = false;
-            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
@@ -268,8 +279,8 @@ namespace CedForecast
             this.ArticulosGridEX.BlendColor = System.Drawing.Color.White;
             this.ArticulosGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ArticulosGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout4.LayoutString = resources.GetString("gridEXLayout4.LayoutString");
-            this.ArticulosGridEX.DesignTimeLayout = gridEXLayout4;
+            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
+            this.ArticulosGridEX.DesignTimeLayout = gridEXLayout1;
             this.ArticulosGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ArticulosGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ArticulosGridEX.FlatBorderColor = System.Drawing.Color.Brown;
@@ -372,17 +383,6 @@ namespace CedForecast
             this.IdFamiliaArticuloEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.IdFamiliaArticuloEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.MaximizarUiButton);
-            this.panel3.Controls.Add(this.MinimizarUiButton);
-            this.panel3.Controls.Add(this.SalirUiButton);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(467, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(95, 24);
-            this.panel3.TabIndex = 39;
-            // 
             // FamiliaArticuloForm
             // 
             this.ClientSize = new System.Drawing.Size(572, 598);
@@ -392,11 +392,11 @@ namespace CedForecast
             this.FondoNicePanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ArticulosGridEX)).EndInit();
             this.panel5.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

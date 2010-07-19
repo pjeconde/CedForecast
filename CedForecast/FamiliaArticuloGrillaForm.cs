@@ -14,6 +14,7 @@ namespace CedForecast
         {
             InitializeComponent();
             ActualizarGrilla();
+            SalirUiButton.Focus();
         }
         private void ActualizarGrilla()
         {
@@ -73,6 +74,10 @@ namespace CedForecast
                 System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Baja de Familia de Articulos", "Baja", (CedForecastEntidades.FamiliaArticulo) ListaGridEX.SelectedItems[0].GetRow().DataRow);
                 oFrm.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void ModificacionUiButton_Click(object sender, EventArgs e)
         {
@@ -81,6 +86,10 @@ namespace CedForecast
                 System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Modificación de Familia de Articulos", "Modificacion", (CedForecastEntidades.FamiliaArticulo)ListaGridEX.SelectedItems[0].GetRow().DataRow);
                 oFrm.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea modificar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void ConsultauiButton_Click(object sender, EventArgs e)
         {
@@ -88,6 +97,10 @@ namespace CedForecast
             {
                 System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Consulta de Familia de Articulos", "Consulta", (CedForecastEntidades.FamiliaArticulo)ListaGridEX.SelectedItems[0].GetRow().DataRow);
                 oFrm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea consultar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
