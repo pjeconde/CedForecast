@@ -18,7 +18,7 @@ namespace CedForecast
             TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
             TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk; 
             TabBrowserUiTabPage.TabVisible = false;
-            CancelarUiButton.Text = "Salir";
+            CancelarUiButton.Visible = false;
             volverATabBrowser = false;
             ConfigurarFiltros();
             ArticulosUiCheckBox.Checked = true;
@@ -157,6 +157,13 @@ namespace CedForecast
             if (BrowserUiTab.SelectedTab == TabFiltroUiTabPage)
             {
                 TabBrowserUiTabPage.TabVisible = false;
+                EnviarAUiButton.Visible = false;
+                CancelarUiButton.Visible = true;
+                CancelarUiButton.Text = "Cancelar";
+            }
+            else
+            {
+                EnviarAUiButton.Visible = true;
             }
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)

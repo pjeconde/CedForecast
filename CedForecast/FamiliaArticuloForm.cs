@@ -10,23 +10,124 @@ namespace CedForecast
 {
     public partial class FamiliaArticuloForm : Cedeira.UI.frmBaseEnviarA
     {
+        CedForecastEntidades.FamiliaArticulo familia;
         string evento;
-        public FamiliaArticuloForm(string Titulo, string Evento) : base(Titulo)
+
+        public FamiliaArticuloForm(string Titulo) : base(Titulo)
         {
-            evento = Evento;
+            familia = new CedForecastEntidades.FamiliaArticulo();
+            evento = "Alta";
             InitializeComponent();
+            BindearControles();
+        }
+        public FamiliaArticuloForm(string Titulo, string Evento, CedForecastEntidades.FamiliaArticulo Familia) : base(Titulo)
+        {
+            InitializeComponent();
+            CedForecastRN.FamiliaArticulo accion = new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion);
+            accion.Leer(Familia);
+            familia = Familia;
+            evento = Evento;
+            IdFamiliaArticuloEditBox.Text = familia.Id;
+            IdFamiliaArticuloEditBox.Enabled = false;
+            DescrFamiliaArticuloEditBox.Text = familia.Descr;
+            BindearControles();
             switch (evento)
             {
-                case "Alta":
-                    break;
                 case "Baja":
-                    break;
-                case "Modificacion":
+                    DescrFamiliaArticuloEditBox.Enabled = false;
+                    AltaUiButton.Enabled = false;
+                    BajaUiButton.Enabled = false;
                     break;
                 case "Consulta":
+                    DescrFamiliaArticuloEditBox.Enabled = false;
+                    AltaUiButton.Enabled = false;
+                    BajaUiButton.Enabled = false;
+                    SalirUiButton.Text = "Salir";
+                    AceptarUiButton.Visible = false;
+                    break;
+            }
+        }
+        private void BindearControles()
+        {
+            ArticulosGridEX.DataSource = familia.Articulos;
+        }
+        private void MaxMinUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            MinimizarUiButton.Visible = true;
+            MaximizarUiButton.Visible = false;
+        }
+        private void MinimizarUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            MinimizarUiButton.Visible = false;
+            MaximizarUiButton.Visible = true;
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+                familia.Id = IdFamiliaArticuloEditBox.Text;
+                familia.Descr = DescrFamiliaArticuloEditBox.Text;
+                CedForecastRN.FamiliaArticulo accion = new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion);
+                switch (evento)
+                {
+                    case "Alta":
+                        accion.Crear(familia);
+                        break;
+                    case "Baja":
+                        accion.Eliminar(familia);
+                        break;
+                    case "Modificacion":
+                        accion.Modificar(familia);
+                        break;
+                    case "Consulta":
+                        break;
+                }
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+            }
+            finally
+            {
+                Cursor.Current = System.Windows.Forms.Cursors.Default;
+            }
+        }
+        private void AltaUiButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void BajaUiButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
+        {
+            switch (e.Command.Key)
+            {
+                case "Impresora":
+                    Cedeira.SV.Fun.ImprimirGrilla(this, ArticulosGridEX, Aplicacion.Titulo, true);
+                    break;
+                case "Planilla":
+                    try
+                    {
+                        Cedeira.SV.Export planilla = new Cedeira.SV.Export();
+                        Cursor = Cursors.WaitCursor;
+                        planilla.ExportDetails(ArticulosGridEX, Cedeira.SV.Export.ExportFormat.Excel, "Articulos de " + familia.Descr + " " + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                    }
+                    catch (Exception ex)
+                    {
+                        Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                    }
+                    finally
+                    {
+                        Cursor = Cursors.Default;
+                    }
                     break;
             }
         }
     }
 }
-
