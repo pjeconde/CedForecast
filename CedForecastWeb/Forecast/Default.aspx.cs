@@ -45,6 +45,11 @@ namespace CedForecastWeb.Forecast
                         DivisionDropDownList.DataSource = CedForecastWebRN.Division.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
 
+                        FamiliaArticuloDropDownList.DataValueField = "Id";
+                        FamiliaArticuloDropDownList.DataTextField = "Descr";
+                        FamiliaArticuloDropDownList.DataSource = CedForecastWebRN.FamiliaArticulo.ListaConFamiliaArticuloSinInformar((CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                        FamiliaArticuloDropDownList.SelectedIndex = -1;
+
                         CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
                         periodo.IdTipoPlanilla = "RollingForecast";
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
@@ -133,7 +138,7 @@ namespace CedForecastWeb.Forecast
         {
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "Id";
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "DescrCombo";
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataBind();
         }
         protected void detalleGridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -354,7 +359,7 @@ namespace CedForecastWeb.Forecast
                         l.Articulo = new CedForecastWebEntidades.Articulo();
                         l.Articulo.Id = auxIdArticulo;
                         List<CedForecastWebEntidades.Articulo> ArticuloLista = new List<CedForecastWebEntidades.Articulo>();
-                        ArticuloLista = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                        ArticuloLista = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
                         CedForecastWebEntidades.Articulo articulo = new CedForecastWebEntidades.Articulo();
                         articulo = ArticuloLista.Find((delegate(CedForecastWebEntidades.Articulo e1) { return e1.Id == auxIdArticulo; }));
                         l.Articulo.Descr = articulo.Descr;
@@ -548,7 +553,7 @@ namespace CedForecastWeb.Forecast
             BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])); 
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "Id";
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrCombo";
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             try
             {
@@ -673,6 +678,11 @@ namespace CedForecastWeb.Forecast
             detalleGridView.FooterRow.Cells.RemoveAt(0);
             detalleGridView.FooterRow.Cells.AddAt(0, cell1);
             detalleGridView.FooterRow.Cells.AddAt(1, cell0);
+        }
+
+        protected void FamiliaArticuloDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindearDropDownLists();
         }
     }
 }

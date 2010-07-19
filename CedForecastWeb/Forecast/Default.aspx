@@ -112,6 +112,10 @@
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td style="height: 10px;">
+                                                    </td>
+                                                </tr>
                                             </table>
                                         </asp:Panel>
                                     </td>
@@ -126,7 +130,33 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 10px;">
+                                    <td style="height: 5px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="">
+                                        <table border="0" cellpadding="0" cellspacing="0" id="Table4">
+                                            <tr>
+                                                <td style="width: 10px;">
+                                                </td>
+                                                <td align="right" style="width: 100px; height: 10px;" valign="middle">
+                                                    <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td align="left" style="" valign="top">
+                                                    <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="670px" OnSelectedIndexChanged="FamiliaArticuloDropDownList_SelectedIndexChanged">
+                                                    </asp:DropDownList>
+                                                </td>
+                                                <td>
+                                                <asp:Button ID="ActualizarButton" runat="server" OnClick="FamiliaArticuloDropDownList_SelectedIndexChanged" Text="Actualizar" Height="22px" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 5px;">
                                     </td>
                                 </tr>
                             </table>
