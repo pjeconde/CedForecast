@@ -18,7 +18,8 @@ namespace CedForecast
             familia = new CedForecastEntidades.FamiliaArticulo();
             evento = "Alta";
             InitializeComponent();
-            BindearControles();
+            BindearGrilla();
+            SalirUiButton.Focus();
         }
         public FamiliaArticuloForm(string Titulo, string Evento, CedForecastEntidades.FamiliaArticulo Familia) : base(Titulo)
         {
@@ -30,7 +31,7 @@ namespace CedForecast
             IdFamiliaArticuloEditBox.Text = familia.Id;
             IdFamiliaArticuloEditBox.Enabled = false;
             DescrFamiliaArticuloEditBox.Text = familia.Descr;
-            BindearControles();
+            BindearGrilla();
             switch (evento)
             {
                 case "Baja":
@@ -47,9 +48,11 @@ namespace CedForecast
                     break;
             }
         }
-        private void BindearControles()
+        private void BindearGrilla()
         {
+            ArticulosGridEX.DataSource = null;
             ArticulosGridEX.DataSource = familia.Articulos;
+            ArticulosGridEX.SelectedItems.Clear();
         }
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
@@ -102,7 +105,15 @@ namespace CedForecast
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
-
+            if (ArticulosGridEX.SelectedItems.Count > 0)
+            {
+                familia.Articulos.Remove((CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
+                BindearGrilla();
+            }
+            else
+            {
+                MessageBox.Show("Primero seleccione, en la grilla, el Artículo que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
         {
