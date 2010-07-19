@@ -111,6 +111,9 @@ namespace CedForecast
         {
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
+            BrowserGridEX.RootTable.Columns.Add("DescrFamiliaArticulo", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["DescrFamiliaArticulo"].Caption = "Familia";
+            BrowserGridEX.RootTable.Columns["DescrFamiliaArticulo"].Width = 100;
             BrowserGridEX.RootTable.Columns.Add("DescrArticulo", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrArticulo"].Caption = "Articulo";
             BrowserGridEX.RootTable.Columns["DescrArticulo"].Width = 200;
@@ -122,17 +125,22 @@ namespace CedForecast
             BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 75;
             switch (TipoReporteNicePanel.Tag.ToString())
             {
-                case "Articulos-Clientes-Vendedores":
+                case "FamArtCliVen":
                     break;
-                case "Articulos-Clientes":
+                case "FamArtCli":
                     BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
                     break;
-                case "Articulos-Vendedores":
+                case "FamArtVen":
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
                     break;
-                case "Articulos":
+                case "FamArt":
                     BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
+                    break;
+                case "Fam":
+                    BrowserGridEX.RootTable.Columns["DescrArticulo"].Visible = false;
+                    BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
+                    BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;    
                     break;
             }
             if (RFUiRadioButton.Checked)
@@ -259,21 +267,25 @@ namespace CedForecast
         }
         private void TipoReporteUiRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (ArticulosClientesyVendedoresUiRadioButton.Checked)
+            if (FamArtCliVenUiRadioButton.Checked)
             {
-                TipoReporteNicePanel.Tag = "Articulos-Clientes-Vendedores";
+                TipoReporteNicePanel.Tag = "FamArtCliVen";
             }
-            else if (ArticulosyClientesUiRadioButton.Checked)
+            else if (FamArtCliUiRadioButton.Checked)
             {
-                TipoReporteNicePanel.Tag = "Articulos-Clientes";
+                TipoReporteNicePanel.Tag = "FamArtCli";
             }
-            else if (ArticulosyVendedoresUiRadioButton.Checked)
+            else if (FamArtVenUiRadioButton.Checked)
             {
-                TipoReporteNicePanel.Tag = "Articulos-Vendedores";
+                TipoReporteNicePanel.Tag = "FamArtVen";
+            }
+            else if (FamArtUiRadioButton.Checked)
+            {
+                TipoReporteNicePanel.Tag = "FamArt";
             }
             else
             {
-                TipoReporteNicePanel.Tag = "Articulos";
+                TipoReporteNicePanel.Tag = "Fam";
             }
         }
     }
