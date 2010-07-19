@@ -135,7 +135,7 @@ namespace CedForecastWeb.Forecast
         {
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "Id";
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "DescrCombo";
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], "");
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataBind();
         }
 
@@ -568,7 +568,7 @@ namespace CedForecastWeb.Forecast
                 BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]));
                 ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "Id";
                 ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrCombo";
-                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], "");
                 ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             
                 ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString());
