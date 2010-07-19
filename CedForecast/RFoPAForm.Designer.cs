@@ -77,10 +77,11 @@
             this.ClientesUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ClientesTreeView = new System.Windows.Forms.TreeView();
             this.TipoReporteNicePanel = new PureComponents.NicePanel.NicePanel();
-            this.ArticulosyVendedoresUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
-            this.ArticulosyClientesUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
-            this.ArticulosClientesyVendedoresUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
-            this.ArticulosUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.ArtUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.FamArtVenUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.FamArtCliUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.FamArtCliVenUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.FamArtUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.ArticulosNicePanel = new PureComponents.NicePanel.NicePanel();
             this.ArticulosUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ArticulosTreeView = new System.Windows.Forms.TreeView();
@@ -387,10 +388,11 @@
             containerImage2.Transparency = 50;
             this.TipoReporteNicePanel.ContainerImage = containerImage2;
             this.TipoReporteNicePanel.ContextMenuButton = false;
-            this.TipoReporteNicePanel.Controls.Add(this.ArticulosyVendedoresUiRadioButton);
-            this.TipoReporteNicePanel.Controls.Add(this.ArticulosyClientesUiRadioButton);
-            this.TipoReporteNicePanel.Controls.Add(this.ArticulosClientesyVendedoresUiRadioButton);
-            this.TipoReporteNicePanel.Controls.Add(this.ArticulosUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.ArtUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.FamArtVenUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.FamArtCliUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.FamArtCliVenUiRadioButton);
+            this.TipoReporteNicePanel.Controls.Add(this.FamArtUiRadioButton);
             headerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage3.Image = null;
             this.TipoReporteNicePanel.FooterImage = headerImage3;
@@ -407,7 +409,7 @@
             this.TipoReporteNicePanel.OriginalFooterVisible = false;
             this.TipoReporteNicePanel.OriginalHeight = 0;
             this.TipoReporteNicePanel.ShowChildFocus = false;
-            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 136);
+            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 183);
             containerStyle2.BackColor = System.Drawing.Color.Transparent;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Brown;
@@ -448,53 +450,64 @@
             this.TipoReporteNicePanel.TabIndex = 9033;
             this.TipoReporteNicePanel.Tag = "Artículos-Clientes-Vendedores";
             // 
-            // ArticulosyVendedoresUiRadioButton
+            // ArtUiRadioButton
             // 
-            this.ArticulosyVendedoresUiRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosyVendedoresUiRadioButton.Location = new System.Drawing.Point(8, 84);
-            this.ArticulosyVendedoresUiRadioButton.Name = "ArticulosyVendedoresUiRadioButton";
-            this.ArticulosyVendedoresUiRadioButton.Size = new System.Drawing.Size(130, 16);
-            this.ArticulosyVendedoresUiRadioButton.TabIndex = 5;
-            this.ArticulosyVendedoresUiRadioButton.TabStop = false;
-            this.ArticulosyVendedoresUiRadioButton.Text = "Artículos-Vendedores";
-            this.ArticulosyVendedoresUiRadioButton.UseThemes = false;
-            this.ArticulosyVendedoresUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
+            this.ArtUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.ArtUiRadioButton.Location = new System.Drawing.Point(8, 151);
+            this.ArtUiRadioButton.Name = "ArtUiRadioButton";
+            this.ArtUiRadioButton.Size = new System.Drawing.Size(130, 16);
+            this.ArtUiRadioButton.TabIndex = 6;
+            this.ArtUiRadioButton.TabStop = false;
+            this.ArtUiRadioButton.Text = "Sólo Familia";
+            this.ArtUiRadioButton.UseThemes = false;
             // 
-            // ArticulosyClientesUiRadioButton
+            // FamArtVenUiRadioButton
             // 
-            this.ArticulosyClientesUiRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosyClientesUiRadioButton.Location = new System.Drawing.Point(8, 62);
-            this.ArticulosyClientesUiRadioButton.Name = "ArticulosyClientesUiRadioButton";
-            this.ArticulosyClientesUiRadioButton.Size = new System.Drawing.Size(130, 16);
-            this.ArticulosyClientesUiRadioButton.TabIndex = 4;
-            this.ArticulosyClientesUiRadioButton.TabStop = false;
-            this.ArticulosyClientesUiRadioButton.Text = "Artículos-Clientes";
-            this.ArticulosyClientesUiRadioButton.UseThemes = false;
-            this.ArticulosyClientesUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
+            this.FamArtVenUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.FamArtVenUiRadioButton.Location = new System.Drawing.Point(8, 89);
+            this.FamArtVenUiRadioButton.Name = "FamArtVenUiRadioButton";
+            this.FamArtVenUiRadioButton.Size = new System.Drawing.Size(130, 26);
+            this.FamArtVenUiRadioButton.TabIndex = 5;
+            this.FamArtVenUiRadioButton.TabStop = false;
+            this.FamArtVenUiRadioButton.Text = "Familia-Artículos-Vendedores";
+            this.FamArtVenUiRadioButton.UseThemes = false;
+            this.FamArtVenUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
-            // ArticulosClientesyVendedoresUiRadioButton
+            // FamArtCliUiRadioButton
             // 
-            this.ArticulosClientesyVendedoresUiRadioButton.Checked = true;
-            this.ArticulosClientesyVendedoresUiRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosClientesyVendedoresUiRadioButton.Location = new System.Drawing.Point(8, 30);
-            this.ArticulosClientesyVendedoresUiRadioButton.Name = "ArticulosClientesyVendedoresUiRadioButton";
-            this.ArticulosClientesyVendedoresUiRadioButton.Size = new System.Drawing.Size(130, 26);
-            this.ArticulosClientesyVendedoresUiRadioButton.TabIndex = 2;
-            this.ArticulosClientesyVendedoresUiRadioButton.Text = "Artículos-Clientes-Vendedores";
-            this.ArticulosClientesyVendedoresUiRadioButton.UseThemes = false;
-            this.ArticulosClientesyVendedoresUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
+            this.FamArtCliUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.FamArtCliUiRadioButton.Location = new System.Drawing.Point(8, 59);
+            this.FamArtCliUiRadioButton.Name = "FamArtCliUiRadioButton";
+            this.FamArtCliUiRadioButton.Size = new System.Drawing.Size(130, 27);
+            this.FamArtCliUiRadioButton.TabIndex = 4;
+            this.FamArtCliUiRadioButton.TabStop = false;
+            this.FamArtCliUiRadioButton.Text = "Familia-Artículos-Clientes";
+            this.FamArtCliUiRadioButton.UseThemes = false;
+            this.FamArtCliUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
-            // ArticulosUiRadioButton
+            // FamArtCliVenUiRadioButton
             // 
-            this.ArticulosUiRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosUiRadioButton.Location = new System.Drawing.Point(8, 108);
-            this.ArticulosUiRadioButton.Name = "ArticulosUiRadioButton";
-            this.ArticulosUiRadioButton.Size = new System.Drawing.Size(130, 16);
-            this.ArticulosUiRadioButton.TabIndex = 1;
-            this.ArticulosUiRadioButton.TabStop = false;
-            this.ArticulosUiRadioButton.Text = "Sólo Artículos";
-            this.ArticulosUiRadioButton.UseThemes = false;
-            this.ArticulosUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
+            this.FamArtCliVenUiRadioButton.Checked = true;
+            this.FamArtCliVenUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.FamArtCliVenUiRadioButton.Location = new System.Drawing.Point(8, 30);
+            this.FamArtCliVenUiRadioButton.Name = "FamArtCliVenUiRadioButton";
+            this.FamArtCliVenUiRadioButton.Size = new System.Drawing.Size(130, 26);
+            this.FamArtCliVenUiRadioButton.TabIndex = 2;
+            this.FamArtCliVenUiRadioButton.Text = "Familia-Artículos-Clientes-Vendedores";
+            this.FamArtCliVenUiRadioButton.UseThemes = false;
+            this.FamArtCliVenUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
+            // 
+            // FamArtUiRadioButton
+            // 
+            this.FamArtUiRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.FamArtUiRadioButton.Location = new System.Drawing.Point(8, 123);
+            this.FamArtUiRadioButton.Name = "FamArtUiRadioButton";
+            this.FamArtUiRadioButton.Size = new System.Drawing.Size(130, 16);
+            this.FamArtUiRadioButton.TabIndex = 1;
+            this.FamArtUiRadioButton.TabStop = false;
+            this.FamArtUiRadioButton.Text = "Familia-Artículos";
+            this.FamArtUiRadioButton.UseThemes = false;
+            this.FamArtUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporteUiRadioButton_CheckedChanged);
             // 
             // ArticulosNicePanel
             // 
@@ -1028,12 +1041,13 @@
         private System.Windows.Forms.TreeView ArticulosTreeView;
         private Janus.Windows.CalendarCombo.CalendarCombo PeriodoRFCalendarCombo;
         private PureComponents.NicePanel.NicePanel TipoReporteNicePanel;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosyClientesUiRadioButton;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosClientesyVendedoresUiRadioButton;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosUiRadioButton;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosyVendedoresUiRadioButton;
+        private Janus.Windows.EditControls.UIRadioButton FamArtCliUiRadioButton;
+        private Janus.Windows.EditControls.UIRadioButton FamArtCliVenUiRadioButton;
+        private Janus.Windows.EditControls.UIRadioButton FamArtUiRadioButton;
+        private Janus.Windows.EditControls.UIRadioButton FamArtVenUiRadioButton;
         private PureComponents.NicePanel.NicePanel ClientesNicePanel;
         private Janus.Windows.EditControls.UICheckBox ClientesUiCheckBox;
         private System.Windows.Forms.TreeView ClientesTreeView;
+        private Janus.Windows.EditControls.UIRadioButton ArtUiRadioButton;
     }
 }
