@@ -14,6 +14,10 @@ namespace CedForecastRN
             sesion = Sesion;
             cedForecastWSRUL = CedForecastWSRUL;
         }
+        public FamiliaArticulo(CedEntidades.Sesion Sesion)
+        {
+            sesion = Sesion;
+        }
         public void Enviar()
         {
             try
@@ -52,6 +56,32 @@ namespace CedForecastRN
             catch (Exception Ex)
             {
                 errores.Add(Ex);
+            }
+        }
+        public void Leer(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            new CedForecastDB.FamiliaArticulo(sesion).Leer(Familia);
+        }
+        public void Crear(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            Validar(Familia);
+        }
+        public void Eliminar(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+        }
+        public void Modificar(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            Validar(Familia);
+        }
+        private void Validar(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            if (Familia.Id.Equals(String.Empty))
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Id");
+            }
+            if (Familia.Descr.Equals(String.Empty))
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Descripción");
             }
         }
     }

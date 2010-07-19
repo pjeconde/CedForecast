@@ -8,6 +8,7 @@ namespace CedForecastEntidades
     public class Articulo
     {
         private string id;
+        private string descr;
         private FamiliaArticulo familia;
 
         public Articulo()
@@ -23,6 +24,17 @@ namespace CedForecastEntidades
             get
             {
                 return id;
+            }
+        }
+        public string Descr
+        {
+            set
+            {
+                descr = value;
+            }
+            get
+            {
+                return descr;
             }
         }
         public FamiliaArticulo Familia

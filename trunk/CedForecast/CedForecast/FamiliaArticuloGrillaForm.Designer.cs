@@ -28,8 +28,8 @@ namespace CedForecast
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FamiliaArticuloGrillaForm));
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultauiButton = new Janus.Windows.EditControls.UIButton();
@@ -57,6 +57,7 @@ namespace CedForecast
             // 
             this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.BackColor = System.Drawing.Color.PeachPuff;
             this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.EnviarAUiCommandManager.CommandClick += new Janus.Windows.UI.CommandBars.CommandEventHandler(this.EnviarAUiCommandManager_CommandClick);
             // 
             // EnviarAUiContextMenu
             // 
@@ -76,7 +77,7 @@ namespace CedForecast
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(6, 30);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(6, 127);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
             this.EnviarAUiButton.Size = new System.Drawing.Size(88, 24);
@@ -94,10 +95,10 @@ namespace CedForecast
             this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(6, 54);
+            this.SalirUiButton.Location = new System.Drawing.Point(40, 5);
             this.SalirUiButton.Name = "SalirUiButton";
             this.SalirUiButton.ShowFocusRectangle = false;
-            this.SalirUiButton.Size = new System.Drawing.Size(88, 24);
+            this.SalirUiButton.Size = new System.Drawing.Size(54, 24);
             this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.TabIndex = 26;
             this.SalirUiButton.Text = "Salir";
@@ -120,6 +121,7 @@ namespace CedForecast
             this.ConsultauiButton.Text = "Consultar";
             this.ConsultauiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ConsultauiButton.UseThemes = false;
+            this.ConsultauiButton.Click += new System.EventHandler(this.ConsultauiButton_Click);
             // 
             // ModificacionUiButton
             // 
@@ -137,6 +139,7 @@ namespace CedForecast
             this.ModificacionUiButton.Text = "Modificar";
             this.ModificacionUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ModificacionUiButton.UseThemes = false;
+            this.ModificacionUiButton.Click += new System.EventHandler(this.ModificacionUiButton_Click);
             // 
             // BajaUiButton
             // 
@@ -154,6 +157,7 @@ namespace CedForecast
             this.BajaUiButton.Text = "Eliminar";
             this.BajaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.BajaUiButton.UseThemes = false;
+            this.BajaUiButton.Click += new System.EventHandler(this.BajaUiButton_Click);
             // 
             // AltaUiButton
             // 
@@ -188,24 +192,24 @@ namespace CedForecast
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.AltaUiButton);
             this.panel3.Controls.Add(this.BajaUiButton);
+            this.panel3.Controls.Add(this.EnviarAUiButton);
             this.panel3.Controls.Add(this.ModificacionUiButton);
             this.panel3.Controls.Add(this.ConsultauiButton);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(100, 310);
+            this.panel3.Size = new System.Drawing.Size(100, 356);
             this.panel3.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.MinimizarUiButton);
             this.panel2.Controls.Add(this.MaximizarUiButton);
-            this.panel2.Controls.Add(this.EnviarAUiButton);
             this.panel2.Controls.Add(this.SalirUiButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 310);
+            this.panel2.Location = new System.Drawing.Point(0, 356);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 81);
+            this.panel2.Size = new System.Drawing.Size(100, 35);
             this.panel2.TabIndex = 0;
             // 
             // MinimizarUiButton
@@ -215,7 +219,7 @@ namespace CedForecast
             this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
             this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
-            this.MinimizarUiButton.Location = new System.Drawing.Point(6, 6);
+            this.MinimizarUiButton.Location = new System.Drawing.Point(6, 7);
             this.MinimizarUiButton.Name = "MinimizarUiButton";
             this.MinimizarUiButton.ShowFocusRectangle = false;
             this.MinimizarUiButton.Size = new System.Drawing.Size(20, 20);
@@ -233,7 +237,7 @@ namespace CedForecast
             this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
             this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
-            this.MaximizarUiButton.Location = new System.Drawing.Point(6, 6);
+            this.MaximizarUiButton.Location = new System.Drawing.Point(6, 7);
             this.MaximizarUiButton.Name = "MaximizarUiButton";
             this.MaximizarUiButton.ShowFocusRectangle = false;
             this.MaximizarUiButton.Size = new System.Drawing.Size(20, 20);
@@ -265,8 +269,8 @@ namespace CedForecast
             this.ListaGridEX.BlendColor = System.Drawing.Color.White;
             this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
             this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;

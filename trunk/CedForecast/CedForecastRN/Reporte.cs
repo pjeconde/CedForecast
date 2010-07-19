@@ -99,7 +99,7 @@ namespace CedForecastRN
                     CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen==Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (articulo == null)
                     {
-                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-Desconocido";
+                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-<<<Desconocido>>>";
                     }
                     else
                     {
@@ -110,7 +110,7 @@ namespace CedForecastRN
                         CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
                         if (vendedor == null)
                         {
-                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-Desconocido";
+                            dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-<<<Desconocido>>>";
                         }
                         else
                         {

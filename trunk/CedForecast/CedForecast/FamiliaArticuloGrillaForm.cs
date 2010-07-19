@@ -63,8 +63,57 @@ namespace CedForecast
         }
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Alta de Familia de Articulos", "Alta");
+            System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Alta de Familia de Articulos");
             oFrm.ShowDialog();
+        }
+        private void BajaUiButton_Click(object sender, EventArgs e)
+        {
+            if (ListaGridEX.SelectedItems.Count > 0)
+            {
+                System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Baja de Familia de Articulos", "Baja", (CedForecastEntidades.FamiliaArticulo) ListaGridEX.SelectedItems[0].GetRow().DataRow);
+                oFrm.ShowDialog();
+            }
+        }
+        private void ModificacionUiButton_Click(object sender, EventArgs e)
+        {
+            if (ListaGridEX.SelectedItems.Count > 0)
+            {
+                System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Modificación de Familia de Articulos", "Modificacion", (CedForecastEntidades.FamiliaArticulo)ListaGridEX.SelectedItems[0].GetRow().DataRow);
+                oFrm.ShowDialog();
+            }
+        }
+        private void ConsultauiButton_Click(object sender, EventArgs e)
+        {
+            if (ListaGridEX.SelectedItems.Count > 0)
+            {
+                System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Consulta de Familia de Articulos", "Consulta", (CedForecastEntidades.FamiliaArticulo)ListaGridEX.SelectedItems[0].GetRow().DataRow);
+                oFrm.ShowDialog();
+            }
+        }
+        private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
+        {
+            switch (e.Command.Key)
+            {
+                case "Impresora":
+                    Cedeira.SV.Fun.ImprimirGrilla(this, ListaGridEX, Aplicacion.Titulo, true);
+                    break;
+                case "Planilla":
+                    try
+                    {
+                        Cedeira.SV.Export planilla = new Cedeira.SV.Export();
+                        Cursor = Cursors.WaitCursor;
+                        planilla.ExportDetails(ListaGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                    }
+                    catch (Exception ex)
+                    {
+                        Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                    }
+                    finally
+                    {
+                        Cursor = Cursors.Default;
+                    }
+                    break;
+            }
         }
     }
 }
