@@ -13,6 +13,7 @@ namespace CedForecastEntidades
         private string idCliente;
         private Bejerman.Clientes cliente;
         private Bejerman.Articulos articulo;
+        private CedForecastEntidades.Articulo familiaArticulo;
         private string idPeriodo;
         private decimal ventas;
         private decimal proyectado;
@@ -115,6 +116,32 @@ namespace CedForecastEntidades
             get
             {
                 return articulo.Art_DescGen;
+            }
+        }
+        public CedForecastEntidades.Articulo FamiliaArticulo
+        {
+            set
+            {
+                familiaArticulo = value;
+            }
+            get
+            {
+                return familiaArticulo;
+            }
+        }
+        public string DescrFamiliaArticulo
+        {
+            get
+            {
+                return familiaArticulo.Familia.Descr;
+            }
+        }
+
+        public string IdFamiliaArticulo
+        {
+            get
+            {
+                return familiaArticulo.Familia.Id;
             }
         }
         public string IdPeriodo
