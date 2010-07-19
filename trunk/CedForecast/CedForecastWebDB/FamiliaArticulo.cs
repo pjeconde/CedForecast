@@ -30,6 +30,25 @@ namespace CedForecastWebDB
             }
             return lista;
         }
+        public List<CedForecastWebEntidades.FamiliaArticulo> ListaConFamiliaArticuloSinInformar()
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo from FamiliaArticulo ");
+            DataTable dt = new DataTable();
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            List<CedForecastWebEntidades.FamiliaArticulo> lista = new List<CedForecastWebEntidades.FamiliaArticulo>();
+            if (dt.Rows.Count != 0)
+            {
+                lista.Add(new CedForecastWebEntidades.FamiliaArticulo());
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastWebEntidades.FamiliaArticulo elemento = new CedForecastWebEntidades.FamiliaArticulo();
+                    Copiar(dt.Rows[i], elemento);
+                    lista.Add(elemento);
+                }
+            }
+            return lista;
+        }
         private void Copiar(DataRow Desde, CedForecastWebEntidades.FamiliaArticulo Hasta)
         {
             Hasta.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
