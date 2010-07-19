@@ -25,7 +25,7 @@ namespace CedForecast
             ArticulosUiCheckBox.Checked = true;
             ClientesUiCheckBox.Checked = true;
             VendedoresUiCheckBox.Checked = true;
-            TipoReporteNicePanel.Tag = "Articulos-Clientes-Vendedores";
+            TipoReporteNicePanel.Tag = "FamArtCliVen";
         }
         private void ConfigurarFiltros()
         {
@@ -111,18 +111,33 @@ namespace CedForecast
         {
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
+            BrowserGridEX.RootTable.Columns.Add("IdFamiliaArticulo", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["IdFamiliaArticulo"].Caption = "Id.Familia";
+            BrowserGridEX.RootTable.Columns["IdFamiliaArticulo"].Width = 60;
             BrowserGridEX.RootTable.Columns.Add("DescrFamiliaArticulo", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrFamiliaArticulo"].Caption = "Familia";
             BrowserGridEX.RootTable.Columns["DescrFamiliaArticulo"].Width = 100;
+            BrowserGridEX.RootTable.Columns.Add("IdArticulo", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["IdArticulo"].Caption = "Id.Articulo";
+            BrowserGridEX.RootTable.Columns["IdArticulo"].Width = 60;
             BrowserGridEX.RootTable.Columns.Add("DescrArticulo", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrArticulo"].Caption = "Articulo";
             BrowserGridEX.RootTable.Columns["DescrArticulo"].Width = 200;
+            BrowserGridEX.RootTable.Columns.Add("IdCliente", Janus.Windows.GridEX.ColumnType.Text);
+            BrowserGridEX.RootTable.Columns["IdCliente"].Caption = "Id.Cliente";
+            BrowserGridEX.RootTable.Columns["IdCliente"].Width = 60;
             BrowserGridEX.RootTable.Columns.Add("DescrCliente", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["DescrCliente"].Caption = "Cliente";
             BrowserGridEX.RootTable.Columns["DescrCliente"].Width = 200;
             BrowserGridEX.RootTable.Columns.Add("IdCuenta", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["IdCuenta"].Caption = "Vendedor";
-            BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 75;
+            BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 60;
+            if (!VisualizarCodigosUiCheckBox.Checked)
+            {
+                BrowserGridEX.RootTable.Columns["IdFamiliaArticulo"].Visible = false;
+                BrowserGridEX.RootTable.Columns["IdArticulo"].Visible = false;
+                BrowserGridEX.RootTable.Columns["IdCliente"].Visible = false;
+            }
             switch (TipoReporteNicePanel.Tag.ToString())
             {
                 case "FamArtCliVen":
@@ -131,19 +146,23 @@ namespace CedForecast
                     BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
                     break;
                 case "FamArtVen":
+                    BrowserGridEX.RootTable.Columns["IdCliente"].Visible = false;
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
                     break;
                 case "FamArt":
                     BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
+                    BrowserGridEX.RootTable.Columns["IdCliente"].Visible = false;
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;
                     break;
                 case "Fam":
+                    BrowserGridEX.RootTable.Columns["IdArticulo"].Visible = false;
                     BrowserGridEX.RootTable.Columns["DescrArticulo"].Visible = false;
                     BrowserGridEX.RootTable.Columns["IdCuenta"].Visible = false;
+                    BrowserGridEX.RootTable.Columns["IdCliente"].Visible = false;
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;    
                     break;
             }
-            if (RFUiRadioButton.Checked)
+            if (RFUiRadioButton.Checked && TipoReporteNicePanel.Tag.ToString() == "FamArtCli")
             {
                 BrowserGridEX.RootTable.Columns.Add("Proyectado", Janus.Windows.GridEX.ColumnType.Text);
                 FormatoColumna("Proyectado", 75);

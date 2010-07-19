@@ -55,15 +55,15 @@ namespace CedForecastDB
             a.Append("and IdPeriodo <= '" + periodo + "' ");
             switch (TipoReporte)
             {
-                case "Articulos-Clientes-Vendedores":
-                case "Articulos-Clientes":
-                case "Articulos":
+                case "FamArtCliVen":
+                case "FamArtCli":
+                case "FamArt":
                     a.Append("order by IdArticulo asc, IdCliente asc, IdCuenta asc, IdPeriodo asc ");
                     break;
-                case "Articulos-Vendedores":
+                case "FamArtVen":
                     a.Append("order by IdArticulo asc, IdCuenta asc, IdCliente asc, IdPeriodo asc ");
                     break;
-                case "Familia":
+                case "Fam":
                     a.Append("order by IdFamiliaArticulo asc, IdArticulo asc, IdCuenta asc, IdCliente asc, IdPeriodo asc ");
                     break;
             }
@@ -82,9 +82,17 @@ namespace CedForecastDB
                 if (Forecast.IdTipoPlanilla == "RollingForecast")
                 {
                     CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
-                    ventas = db.LeerParaRF(Forecast.IdPeriodo);
+                    ventas = db.LeerParaRF(Forecast.IdPeriodo, TipoReporte);
                     CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
-                    venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[0]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
+                    switch (TipoReporte)
+                    {
+                        case "FamArtCli":
+                            venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[0]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
+                            break;
+                        //case "FamArt":
+                        //    venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Sdvart_CodGen == dt.Rows[0]["IdArticulo"].ToString(); }));
+                        //    break;
+                    }
                     if (venta != null)
                     {
                         forecast.Ventas = venta.Sdv_CantUM1;
@@ -127,9 +135,17 @@ namespace CedForecastDB
                         {
                             //Buscar ventas reales
                             CedForecastDB.Bejerman.Ventas db = new CedForecastDB.Bejerman.Ventas(sesion);
-                            ventas = db.LeerParaRF(Forecast.IdPeriodo);
+                            ventas = db.LeerParaRF(Forecast.IdPeriodo, TipoReporte);
                             CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
-                            venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[i]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
+                             switch (TipoReporte)
+                            {
+                                case "FamArtCli":
+                                    venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Cve_CodCli == dt.Rows[i]["IdCliente"].ToString() && e.Sdvart_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
+                                    break;
+                                //case "FamArt":
+                                //    venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Sdvart_CodGen == dt.Rows[i]["IdArticulo"].ToString(); }));
+                                //    break;
+                            }
                             if (venta != null)
                             {
                                 forecast.Ventas = venta.Sdv_CantUM1;
@@ -155,19 +171,19 @@ namespace CedForecastDB
             string idClave = "";
             switch (TipoReporte)
             {
-                case "Articulos-Clientes-Vendedores":
+                case "FamArtCliVen":
                     idClave = dr["IdArticulo"].ToString() + dr["IdCliente"].ToString() + dr["IdCuenta"].ToString();
                     break;
-                case "Articulos-Clientes":
+                case "FamArtCli":
                     idClave = dr["IdArticulo"].ToString() + dr["IdCliente"].ToString();
                     break;
-                case "Articulos-Vendedores":
+                case "FamArtVen":
                     idClave = dr["IdArticulo"].ToString() + dr["IdCuenta"].ToString();
                     break;
-                case "Articulos":
+                case "FamArt":
                     idClave = dr["IdArticulo"].ToString();
                     break;
-                case "Familia":
+                case "Fam":
                     idClave = dr["IdFamiliaArticulo"].ToString();
                     break;
             }

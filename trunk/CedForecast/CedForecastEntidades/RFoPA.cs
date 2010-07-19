@@ -111,6 +111,13 @@ namespace CedForecastEntidades
                 return articulo;
             }
         }
+        public string IdArticulo
+        {
+            get
+            {
+                return articulo.Art_CodGen;
+            }
+        }
         public string DescrArticulo
         {
             get
@@ -129,19 +136,18 @@ namespace CedForecastEntidades
                 return familiaArticulo;
             }
         }
-        public string DescrFamiliaArticulo
-        {
-            get
-            {
-                return familiaArticulo.Familia.Descr;
-            }
-        }
-
         public string IdFamiliaArticulo
         {
             get
             {
                 return familiaArticulo.Familia.Id;
+            }
+        }
+        public string DescrFamiliaArticulo
+        {
+            get
+            {
+                return familiaArticulo.Familia.Descr;
             }
         }
         public string IdPeriodo
