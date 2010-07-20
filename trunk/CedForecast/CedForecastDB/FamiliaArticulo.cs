@@ -51,6 +51,7 @@ namespace CedForecastDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select IdArticulo from FamiliaArticuloXArticulo where IdFamiliaArticulo='" + FamiliaArticulo.Id + "' order by IdArticulo");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            FamiliaArticulo.Articulos.Clear();
             if (dt.Rows.Count != 0)
             {
                 List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerLista();
