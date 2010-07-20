@@ -84,5 +84,13 @@ namespace CedForecastRN
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Descripción");
             }
         }
+        public void AgregarArticulo(CedForecastEntidades.FamiliaArticulo Familia, CedForecastEntidades.Articulo Articulo)
+        {
+            Familia.Articulos.Add(Articulo);
+        }
+        public void EliminarArticulo(CedForecastEntidades.FamiliaArticulo Familia, CedForecastEntidades.Articulo Articulo)
+        {
+            Familia.Articulos.Remove(Articulo);
+        }
     }
 }
