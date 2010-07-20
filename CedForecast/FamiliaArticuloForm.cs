@@ -18,7 +18,7 @@ namespace CedForecast
             familia = new CedForecastEntidades.FamiliaArticulo();
             evento = "Alta";
             InitializeComponent();
-            BindearGrilla();
+            BindearControles();
             SalirUiButton.Focus();
         }
         public FamiliaArticuloForm(string Titulo, string Evento, CedForecastEntidades.FamiliaArticulo Familia) : base(Titulo)
@@ -31,7 +31,7 @@ namespace CedForecast
             IdFamiliaArticuloEditBox.Text = familia.Id;
             IdFamiliaArticuloEditBox.Enabled = false;
             DescrFamiliaArticuloEditBox.Text = familia.Descr;
-            BindearGrilla();
+            BindearControles();
             switch (evento)
             {
                 case "Baja":
@@ -53,6 +53,15 @@ namespace CedForecast
             ArticulosGridEX.DataSource = null;
             ArticulosGridEX.DataSource = familia.Articulos;
             ArticulosGridEX.SelectedItems.Clear();
+
+        }
+        private void BindearControles()
+        {
+            BindearGrilla();
+            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Aplicacion.Sesion).LeerLista();
+            NuevoArticuloMultiColumnCombo.DataSource = articulos;
+            NuevoArticuloMultiColumnCombo.DisplayMember = "Art_CodGen";
+            NuevoArticuloMultiColumnCombo.ValueMember = "Art_DescGen";
         }
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
@@ -101,13 +110,25 @@ namespace CedForecast
         }
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
-
+            if (NuevoArticuloMultiColumnCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Primero seleccione, en el combo, el Nuevo Artículo que desea agregar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                CedForecastEntidades.Articulo nuevoArticulo = new CedForecastEntidades.Articulo();
+                nuevoArticulo.Id = NuevoArticuloMultiColumnCombo.Text;
+                nuevoArticulo.Descr = NuevoArticuloMultiColumnCombo.Value.ToString();
+                new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).AgregarArticulo(familia, nuevoArticulo);
+                BindearGrilla();
+                NuevoArticuloMultiColumnCombo.SelectedIndex = -1;
+            }
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
             if (ArticulosGridEX.SelectedItems.Count > 0)
             {
-                familia.Articulos.Remove((CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
+                new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).EliminarArticulo(familia, (CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
                 BindearGrilla();
             }
             else

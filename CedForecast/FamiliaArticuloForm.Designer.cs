@@ -28,9 +28,12 @@ namespace CedForecast
         /// </summary>
         private void InitializeComponent()
         {
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FamiliaArticuloForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NuevoArticuloLabel = new System.Windows.Forms.Label();
+            this.NuevoArticuloMultiColumnCombo = new Janus.Windows.GridEX.EditControls.MultiColumnCombo();
             this.AltaUiButton = new Janus.Windows.EditControls.UIButton();
             this.BajaUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
@@ -79,6 +82,8 @@ namespace CedForecast
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.NuevoArticuloLabel);
+            this.panel1.Controls.Add(this.NuevoArticuloMultiColumnCombo);
             this.panel1.Controls.Add(this.AltaUiButton);
             this.panel1.Controls.Add(this.BajaUiButton);
             this.panel1.Controls.Add(this.EnviarAUiButton);
@@ -88,13 +93,41 @@ namespace CedForecast
             this.panel1.Size = new System.Drawing.Size(100, 457);
             this.panel1.TabIndex = 29;
             // 
+            // NuevoArticuloLabel
+            // 
+            this.NuevoArticuloLabel.CausesValidation = false;
+            this.NuevoArticuloLabel.ForeColor = System.Drawing.Color.Navy;
+            this.NuevoArticuloLabel.Location = new System.Drawing.Point(6, 3);
+            this.NuevoArticuloLabel.Name = "NuevoArticuloLabel";
+            this.NuevoArticuloLabel.Size = new System.Drawing.Size(89, 20);
+            this.NuevoArticuloLabel.TabIndex = 29;
+            this.NuevoArticuloLabel.Text = "Nuevo Artículo";
+            this.NuevoArticuloLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // NuevoArticuloMultiColumnCombo
+            // 
+            this.NuevoArticuloMultiColumnCombo.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.NuevoArticuloMultiColumnCombo.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.NuevoArticuloMultiColumnCombo.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
+            this.NuevoArticuloMultiColumnCombo.ComboStyle = Janus.Windows.GridEX.ComboStyle.DropDownList;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.NuevoArticuloMultiColumnCombo.DesignTimeLayout = gridEXLayout2;
+            this.NuevoArticuloMultiColumnCombo.ForeColor = System.Drawing.Color.Navy;
+            this.NuevoArticuloMultiColumnCombo.Location = new System.Drawing.Point(7, 30);
+            this.NuevoArticuloMultiColumnCombo.Name = "NuevoArticuloMultiColumnCombo";
+            this.NuevoArticuloMultiColumnCombo.SelectedItem = null;
+            this.NuevoArticuloMultiColumnCombo.Size = new System.Drawing.Size(88, 20);
+            this.NuevoArticuloMultiColumnCombo.TabIndex = 28;
+            this.NuevoArticuloMultiColumnCombo.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
+            this.NuevoArticuloMultiColumnCombo.Value = null;
+            // 
             // AltaUiButton
             // 
             this.AltaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.AltaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AltaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.AltaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AltaUiButton.Icon")));
-            this.AltaUiButton.Location = new System.Drawing.Point(7, 6);
+            this.AltaUiButton.Location = new System.Drawing.Point(7, 54);
             this.AltaUiButton.Name = "AltaUiButton";
             this.AltaUiButton.ShowFocusRectangle = false;
             this.AltaUiButton.Size = new System.Drawing.Size(88, 24);
@@ -111,7 +144,7 @@ namespace CedForecast
             this.BajaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BajaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.BajaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("BajaUiButton.Icon")));
-            this.BajaUiButton.Location = new System.Drawing.Point(7, 30);
+            this.BajaUiButton.Location = new System.Drawing.Point(7, 78);
             this.BajaUiButton.Name = "BajaUiButton";
             this.BajaUiButton.ShowFocusRectangle = false;
             this.BajaUiButton.Size = new System.Drawing.Size(88, 24);
@@ -130,7 +163,7 @@ namespace CedForecast
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(7, 54);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(7, 102);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
             this.EnviarAUiButton.Size = new System.Drawing.Size(88, 24);
@@ -422,5 +455,7 @@ namespace CedForecast
         public Janus.Windows.EditControls.UIButton SalirUiButton;
         protected Janus.Windows.EditControls.UIButton AceptarUiButton;
         private System.Windows.Forms.Panel panel3;
+        private Janus.Windows.GridEX.EditControls.MultiColumnCombo NuevoArticuloMultiColumnCombo;
+        private System.Windows.Forms.Label NuevoArticuloLabel;
     }
 }
