@@ -35,7 +35,7 @@ namespace CedForecast
                 bool seChequeoAlgo = false;
                 bool huboErrores = false;
                 int cantidadMilisegundos = 100;
-                #region Articulos
+                #region Articulos / Familias de Articulos
                 if (ArticuloUiCheckBox.Checked)
                 {
                     CedForecastRN.Articulo proceso = new CedForecastRN.Articulo(Aplicacion.Sesion, cedForecastWSURL);
@@ -44,6 +44,17 @@ namespace CedForecast
                     while (true)
                     {
                         BarraActualizar(ArticuloUIProgressBar, proceso);
+                        this.Refresh();
+                        this.BringToFront();
+                        Thread.Sleep(cantidadMilisegundos);
+                        if (thread.ThreadState == ThreadState.Stopped) { break; }
+                    }
+                    CedForecastRN.FamiliaArticulo procesoFamilias = new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion, cedForecastWSURL);
+                    thread = new Thread(new ThreadStart(procesoFamilias.Enviar));
+                    thread.Start();
+                    while (true)
+                    {
+                        BarraActualizar(ArticuloUIProgressBar, procesoFamilias);
                         this.Refresh();
                         this.BringToFront();
                         Thread.Sleep(cantidadMilisegundos);
@@ -59,6 +70,18 @@ namespace CedForecast
                         else
                         {
                             MostrarMensajeError(proceso.Errores()[0]);
+                        }
+                    }
+                    if (procesoFamilias.Errores().Count != 0)
+                    {
+                        huboErrores = true;
+                        if (procesoFamilias.Errores()[0].InnerException != null)
+                        {
+                            MostrarMensajeError(procesoFamilias.Errores()[0].InnerException);
+                        }
+                        else
+                        {
+                            MostrarMensajeError(procesoFamilias.Errores()[0]);
                         }
                     } 
                     seChequeoAlgo = true;
@@ -180,35 +203,6 @@ namespace CedForecast
                     seChequeoAlgo = true;
                 }
                 #endregion
-                #region FamiliaArticulo
-                if (FamiliaArticuloUiCheckBox.Checked)
-                {
-                    CedForecastRN.FamiliaArticulo proceso = new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion, cedForecastWSURL);
-                    thread = new Thread(new ThreadStart(proceso.Enviar));
-                    thread.Start();
-                    while (true)
-                    {
-                        BarraActualizar(FamiliaArticuloUiProgressBar, proceso);
-                        this.Refresh();
-                        this.BringToFront();
-                        Thread.Sleep(cantidadMilisegundos);
-                        if (thread.ThreadState == ThreadState.Stopped) { break; }
-                    }
-                    if (proceso.Errores().Count != 0)
-                    {
-                        huboErrores = true;
-                        if (proceso.Errores()[0].InnerException != null)
-                        {
-                            MostrarMensajeError(proceso.Errores()[0].InnerException);
-                        }
-                        else
-                        {
-                            MostrarMensajeError(proceso.Errores()[0]);
-                        }
-                    }
-                    seChequeoAlgo = true;
-                }
-                #endregion                
                 #region Proyección Anual
                 if (ProyeccionAnualUiCheckBox.Checked)
                 {
@@ -311,7 +305,6 @@ namespace CedForecast
             CuentaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
             VentaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
             ZonaUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
-            FamiliaArticuloUiCheckBox.Checked = EnviarTodoUiCheckBox.Checked;
         }
         private void RecibirTodoUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
