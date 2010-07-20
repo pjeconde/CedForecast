@@ -58,8 +58,6 @@ namespace CedForecast
             this.RecibirPanel = new System.Windows.Forms.Panel();
             this.RecibirTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.FamiliaArticuloUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
-            this.FamiliaArticuloUiProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -73,7 +71,7 @@ namespace CedForecast
             this.FondoNicePanel.Controls.Add(this.EnviarPanel);
             this.FondoNicePanel.Controls.Add(this.pictureBox1);
             this.FondoNicePanel.Controls.Add(this.BotonesPanel);
-            this.FondoNicePanel.Size = new System.Drawing.Size(411, 415);
+            this.FondoNicePanel.Size = new System.Drawing.Size(411, 380);
             // 
             // BotonesPanel
             // 
@@ -81,7 +79,7 @@ namespace CedForecast
             this.BotonesPanel.Controls.Add(this.SalirUiButton);
             this.BotonesPanel.Controls.Add(this.AceptarUiButton);
             this.BotonesPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BotonesPanel.Location = new System.Drawing.Point(0, 380);
+            this.BotonesPanel.Location = new System.Drawing.Point(0, 345);
             this.BotonesPanel.Name = "BotonesPanel";
             this.BotonesPanel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
             this.BotonesPanel.Size = new System.Drawing.Size(411, 35);
@@ -90,9 +88,9 @@ namespace CedForecast
             // OtrosBotonesPanel
             // 
             this.OtrosBotonesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OtrosBotonesPanel.Location = new System.Drawing.Point(104, 5);
+            this.OtrosBotonesPanel.Location = new System.Drawing.Point(78, 5);
             this.OtrosBotonesPanel.Name = "OtrosBotonesPanel";
-            this.OtrosBotonesPanel.Size = new System.Drawing.Size(225, 25);
+            this.OtrosBotonesPanel.Size = new System.Drawing.Size(271, 25);
             this.OtrosBotonesPanel.TabIndex = 2;
             // 
             // SalirUiButton
@@ -104,15 +102,15 @@ namespace CedForecast
             this.SalirUiButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(329, 5);
+            this.SalirUiButton.Location = new System.Drawing.Point(349, 5);
             this.SalirUiButton.Name = "SalirUiButton";
             this.SalirUiButton.ShowFocusRectangle = false;
-            this.SalirUiButton.Size = new System.Drawing.Size(72, 25);
+            this.SalirUiButton.Size = new System.Drawing.Size(52, 25);
             this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.SalirUiButton.TabIndex = 1;
             this.SalirUiButton.TabStop = false;
-            this.SalirUiButton.Text = "Cancelar";
+            this.SalirUiButton.Text = "Salir";
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
             this.SalirUiButton.UseThemes = false;
             this.SalirUiButton.Click += new System.EventHandler(this.SalirUiButton_Click);
@@ -128,7 +126,7 @@ namespace CedForecast
             this.AceptarUiButton.Location = new System.Drawing.Point(10, 5);
             this.AceptarUiButton.Name = "AceptarUiButton";
             this.AceptarUiButton.ShowFocusRectangle = false;
-            this.AceptarUiButton.Size = new System.Drawing.Size(94, 25);
+            this.AceptarUiButton.Size = new System.Drawing.Size(68, 25);
             this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.AceptarUiButton.TabIndex = 0;
@@ -144,9 +142,9 @@ namespace CedForecast
             this.ArticuloUiCheckBox.Location = new System.Drawing.Point(11, 28);
             this.ArticuloUiCheckBox.Name = "ArticuloUiCheckBox";
             this.ArticuloUiCheckBox.ShowFocusRectangle = false;
-            this.ArticuloUiCheckBox.Size = new System.Drawing.Size(118, 20);
+            this.ArticuloUiCheckBox.Size = new System.Drawing.Size(182, 20);
             this.ArticuloUiCheckBox.TabIndex = 9014;
-            this.ArticuloUiCheckBox.Text = "Articulos";
+            this.ArticuloUiCheckBox.Text = "Articulos / Familias de Artículos";
             this.ArticuloUiCheckBox.UseThemes = false;
             this.ArticuloUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
@@ -230,7 +228,7 @@ namespace CedForecast
             this.ArticuloUIProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ArticuloUIProgressBar.Location = new System.Drawing.Point(241, 28);
             this.ArticuloUIProgressBar.Name = "ArticuloUIProgressBar";
-            this.ArticuloUIProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ArticuloUIProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.ArticuloUIProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.ArticuloUIProgressBar.Size = new System.Drawing.Size(129, 20);
             this.ArticuloUIProgressBar.TabIndex = 9027;
@@ -244,7 +242,7 @@ namespace CedForecast
             this.ClienteUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ClienteUiProgressBar.Location = new System.Drawing.Point(241, 52);
             this.ClienteUiProgressBar.Name = "ClienteUiProgressBar";
-            this.ClienteUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ClienteUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.ClienteUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.ClienteUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.ClienteUiProgressBar.TabIndex = 9028;
@@ -258,7 +256,7 @@ namespace CedForecast
             this.CuentaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.CuentaUiProgressBar.Location = new System.Drawing.Point(241, 76);
             this.CuentaUiProgressBar.Name = "CuentaUiProgressBar";
-            this.CuentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.CuentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.CuentaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.CuentaUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.CuentaUiProgressBar.TabIndex = 9029;
@@ -272,7 +270,7 @@ namespace CedForecast
             this.ZonaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ZonaUiProgressBar.Location = new System.Drawing.Point(241, 124);
             this.ZonaUiProgressBar.Name = "ZonaUiProgressBar";
-            this.ZonaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ZonaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.ZonaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.ZonaUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.ZonaUiProgressBar.TabIndex = 9030;
@@ -286,7 +284,7 @@ namespace CedForecast
             this.VentaUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.VentaUiProgressBar.Location = new System.Drawing.Point(241, 100);
             this.VentaUiProgressBar.Name = "VentaUiProgressBar";
-            this.VentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.VentaUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.VentaUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.VentaUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.VentaUiProgressBar.TabIndex = 9031;
@@ -300,7 +298,7 @@ namespace CedForecast
             this.ProyeccionAnualUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ProyeccionAnualUiProgressBar.Location = new System.Drawing.Point(241, 34);
             this.ProyeccionAnualUiProgressBar.Name = "ProyeccionAnualUiProgressBar";
-            this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.ProyeccionAnualUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.ProyeccionAnualUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.ProyeccionAnualUiProgressBar.TabIndex = 9032;
@@ -314,7 +312,7 @@ namespace CedForecast
             this.RollingForecastUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
             this.RollingForecastUiProgressBar.Location = new System.Drawing.Point(241, 58);
             this.RollingForecastUiProgressBar.Name = "RollingForecastUiProgressBar";
-            this.RollingForecastUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.RollingForecastUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Peru;
             this.RollingForecastUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
             this.RollingForecastUiProgressBar.Size = new System.Drawing.Size(129, 20);
             this.RollingForecastUiProgressBar.TabIndex = 9033;
@@ -413,8 +411,6 @@ namespace CedForecast
             // EnviarPanel
             // 
             this.EnviarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EnviarPanel.Controls.Add(this.FamiliaArticuloUiProgressBar);
-            this.EnviarPanel.Controls.Add(this.FamiliaArticuloUiCheckBox);
             this.EnviarPanel.Controls.Add(this.EnviarTodoUiCheckBox);
             this.EnviarPanel.Controls.Add(this.label8);
             this.EnviarPanel.Controls.Add(this.ArticuloUiCheckBox);
@@ -430,7 +426,7 @@ namespace CedForecast
             this.EnviarPanel.Controls.Add(this.VentaUiCheckBox);
             this.EnviarPanel.Location = new System.Drawing.Point(12, 101);
             this.EnviarPanel.Name = "EnviarPanel";
-            this.EnviarPanel.Size = new System.Drawing.Size(386, 185);
+            this.EnviarPanel.Size = new System.Drawing.Size(386, 151);
             this.EnviarPanel.TabIndex = 9039;
             // 
             // EnviarTodoUiCheckBox
@@ -469,7 +465,7 @@ namespace CedForecast
             this.RecibirPanel.Controls.Add(this.ProyeccionAnualCalendarCombo);
             this.RecibirPanel.Controls.Add(this.ProyeccionAnualUiCheckBox);
             this.RecibirPanel.Controls.Add(this.label1);
-            this.RecibirPanel.Location = new System.Drawing.Point(12, 292);
+            this.RecibirPanel.Location = new System.Drawing.Point(12, 258);
             this.RecibirPanel.Name = "RecibirPanel";
             this.RecibirPanel.Size = new System.Drawing.Size(386, 87);
             this.RecibirPanel.TabIndex = 9040;
@@ -498,35 +494,9 @@ namespace CedForecast
             this.label1.TabIndex = 9025;
             this.label1.Text = "Recibir";
             // 
-            // FamiliaArticuloUiCheckBox
-            // 
-            this.FamiliaArticuloUiCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.FamiliaArticuloUiCheckBox.Location = new System.Drawing.Point(11, 150);
-            this.FamiliaArticuloUiCheckBox.Name = "FamiliaArticuloUiCheckBox";
-            this.FamiliaArticuloUiCheckBox.ShowFocusRectangle = false;
-            this.FamiliaArticuloUiCheckBox.Size = new System.Drawing.Size(136, 20);
-            this.FamiliaArticuloUiCheckBox.TabIndex = 9036;
-            this.FamiliaArticuloUiCheckBox.Text = "Familias de Artículos";
-            this.FamiliaArticuloUiCheckBox.UseThemes = false;
-            this.FamiliaArticuloUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
-            // 
-            // FamiliaArticuloUiProgressBar
-            // 
-            this.FamiliaArticuloUiProgressBar.BackgroundFormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.FamiliaArticuloUiProgressBar.BackgroundFormatStyle.BackColorGradient = System.Drawing.Color.Transparent;
-            this.FamiliaArticuloUiProgressBar.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
-            this.FamiliaArticuloUiProgressBar.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.FamiliaArticuloUiProgressBar.Location = new System.Drawing.Point(241, 150);
-            this.FamiliaArticuloUiProgressBar.Name = "FamiliaArticuloUiProgressBar";
-            this.FamiliaArticuloUiProgressBar.ProgressFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.FamiliaArticuloUiProgressBar.ProgressFormatStyle.ForeColor = System.Drawing.Color.Brown;
-            this.FamiliaArticuloUiProgressBar.Size = new System.Drawing.Size(129, 20);
-            this.FamiliaArticuloUiProgressBar.TabIndex = 9037;
-            this.FamiliaArticuloUiProgressBar.UseThemes = false;
-            // 
             // SincronizacionForm
             // 
-            this.ClientSize = new System.Drawing.Size(411, 415);
+            this.ClientSize = new System.Drawing.Size(411, 380);
             this.Name = "SincronizacionForm";
             this.FondoNicePanel.ResumeLayout(false);
             this.BotonesPanel.ResumeLayout(false);
@@ -570,7 +540,5 @@ namespace CedForecast
         private System.Windows.Forms.Label label1;
         private Janus.Windows.EditControls.UICheckBox EnviarTodoUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox RecibirTodoUiCheckBox;
-        private Janus.Windows.EditControls.UIProgressBar FamiliaArticuloUiProgressBar;
-        private Janus.Windows.EditControls.UICheckBox FamiliaArticuloUiCheckBox;
     }
 }
