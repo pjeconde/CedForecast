@@ -35,25 +35,28 @@ namespace CedForecast
             switch (evento)
             {
                 case "Baja":
-                    DescrFamiliaArticuloEditBox.Enabled = false;
-                    AltaUiButton.Enabled = false;
-                    BajaUiButton.Enabled = false;
+                    InhabilitarControles();
                     break;
                 case "Consulta":
-                    DescrFamiliaArticuloEditBox.Enabled = false;
-                    AltaUiButton.Enabled = false;
-                    BajaUiButton.Enabled = false;
+                    InhabilitarControles();
                     SalirUiButton.Text = "Salir";
                     AceptarUiButton.Visible = false;
                     break;
             }
+        }
+        private void InhabilitarControles()
+        {
+            DescrFamiliaArticuloEditBox.Enabled = false;
+            AltaUiButton.Enabled = false;
+            BajaUiButton.Enabled = false;
+            NuevoArticuloLabel.Enabled = false;
+            NuevoArticuloMultiColumnCombo.Enabled = false;
         }
         private void BindearGrilla()
         {
             ArticulosGridEX.DataSource = null;
             ArticulosGridEX.DataSource = familia.Articulos;
             ArticulosGridEX.SelectedItems.Clear();
-
         }
         private void BindearControles()
         {
@@ -110,30 +113,44 @@ namespace CedForecast
         }
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
-            if (NuevoArticuloMultiColumnCombo.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Primero seleccione, en el combo, el Nuevo Artículo que desea agregar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (NuevoArticuloMultiColumnCombo.SelectedItem == null)
+                {
+                    MessageBox.Show("Primero seleccione, en el combo, el Nuevo Artículo que desea agregar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    CedForecastEntidades.Articulo nuevoArticulo = new CedForecastEntidades.Articulo();
+                    nuevoArticulo.Id = NuevoArticuloMultiColumnCombo.Text;
+                    nuevoArticulo.Descr = NuevoArticuloMultiColumnCombo.Value.ToString();
+                    new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).AgregarArticulo(familia, nuevoArticulo);
+                    BindearGrilla();
+                    NuevoArticuloMultiColumnCombo.SelectedIndex = -1;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CedForecastEntidades.Articulo nuevoArticulo = new CedForecastEntidades.Articulo();
-                nuevoArticulo.Id = NuevoArticuloMultiColumnCombo.Text;
-                nuevoArticulo.Descr = NuevoArticuloMultiColumnCombo.Value.ToString();
-                new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).AgregarArticulo(familia, nuevoArticulo);
-                BindearGrilla();
-                NuevoArticuloMultiColumnCombo.SelectedIndex = -1;
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
-            if (ArticulosGridEX.SelectedItems.Count > 0)
+            try
             {
-                new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).EliminarArticulo(familia, (CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
-                BindearGrilla();
+                if (ArticulosGridEX.SelectedItems.Count > 0)
+                {
+                    new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).EliminarArticulo(familia, (CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
+                    BindearGrilla();
+                }
+                else
+                {
+                    MessageBox.Show("Primero seleccione, en la grilla, el Artículo que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Primero seleccione, en la grilla, el Artículo que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
