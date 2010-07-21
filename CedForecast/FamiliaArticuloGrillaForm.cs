@@ -66,6 +66,7 @@ namespace CedForecast
         {
             System.Windows.Forms.Form oFrm = new FamiliaArticuloForm("Alta de Familia de Articulos");
             oFrm.ShowDialog();
+            ActualizarGrilla();
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
@@ -78,6 +79,7 @@ namespace CedForecast
             {
                 MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            ActualizarGrilla();
         }
         private void ModificacionUiButton_Click(object sender, EventArgs e)
         {
@@ -90,6 +92,7 @@ namespace CedForecast
             {
                 MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea modificar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            ActualizarGrilla();
         }
         private void ConsultauiButton_Click(object sender, EventArgs e)
         {
@@ -102,6 +105,7 @@ namespace CedForecast
             {
                 MessageBox.Show("Primero seleccione, en la grilla, la Familia que desea consultar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            ActualizarGrilla();
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
         {
