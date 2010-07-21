@@ -610,27 +610,57 @@ namespace Microsoft.ApplicationBlocks.ExceptionManagement
 			{
 			}
 		}
-		[Serializable]
-		public class ElementoInexistente : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.BaseApplicationException
-		{
-			static string TextoError = "Inexistente";
-			public ElementoInexistente(IDescrClase Elemento) : base(Elemento._Descripcion + " " + TextoError)
-			{
-			}
-			public ElementoInexistente(IDescrClase Elemento, string Valor) : base(Elemento._Descripcion + " " + Valor + " " + TextoError)
-			{
-			}
-			public ElementoInexistente(string Descripcion) : base(Descripcion + " " + TextoError)
-			{
-			}
-			public ElementoInexistente(Exception inner) : base(TextoError, inner)
-			{
-			}
-			public ElementoInexistente(SerializationInfo info, StreamingContext context) : base(info, context)
-			{
-			}
-		}
-		[Serializable]
+        [Serializable]
+        public class ElementoInexistente : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.BaseApplicationException
+        {
+            static string TextoError = "Inexistente";
+            public ElementoInexistente(IDescrClase Elemento)
+                : base(Elemento._Descripcion + " " + TextoError)
+            {
+            }
+            public ElementoInexistente(IDescrClase Elemento, string Valor)
+                : base(Elemento._Descripcion + " " + Valor + " " + TextoError)
+            {
+            }
+            public ElementoInexistente(string Descripcion)
+                : base(Descripcion + " " + TextoError)
+            {
+            }
+            public ElementoInexistente(Exception inner)
+                : base(TextoError, inner)
+            {
+            }
+            public ElementoInexistente(SerializationInfo info, StreamingContext context)
+                : base(info, context)
+            {
+            }
+        }
+        [Serializable]
+        public class ElementoExistente : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.BaseApplicationException
+        {
+            static string TextoError = "ya existente";
+            public ElementoExistente(IDescrClase Elemento)
+                : base(Elemento._Descripcion + " " + TextoError)
+            {
+            }
+            public ElementoExistente(IDescrClase Elemento, string Valor)
+                : base(Elemento._Descripcion + " " + Valor + " " + TextoError)
+            {
+            }
+            public ElementoExistente(string Descripcion)
+                : base(Descripcion + " " + TextoError)
+            {
+            }
+            public ElementoExistente(Exception inner)
+                : base(TextoError, inner)
+            {
+            }
+            public ElementoExistente(SerializationInfo info, StreamingContext context)
+                : base(info, context)
+            {
+            }
+        }
+        [Serializable]
 		public class AjustePrecision : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.BaseApplicationException
 		{
 			static string TextoError = "No se puede ajustar ";

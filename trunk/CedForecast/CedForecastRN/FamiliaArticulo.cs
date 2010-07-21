@@ -86,7 +86,15 @@ namespace CedForecastRN
         }
         public void AgregarArticulo(CedForecastEntidades.FamiliaArticulo Familia, CedForecastEntidades.Articulo Articulo)
         {
-            Familia.Articulos.Add(Articulo);
+            CedForecastEntidades.Articulo articuloEncontrado = Familia.Articulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Articulo.Id; });
+            if (articuloEncontrado != null)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoExistente("Artículo");
+            }
+            else
+            {
+                Familia.Articulos.Add(Articulo);
+            }
         }
         public void EliminarArticulo(CedForecastEntidades.FamiliaArticulo Familia, CedForecastEntidades.Articulo Articulo)
         {
