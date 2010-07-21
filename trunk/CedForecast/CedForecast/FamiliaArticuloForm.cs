@@ -19,7 +19,7 @@ namespace CedForecast
             evento = "Alta";
             InitializeComponent();
             BindearControles();
-            SalirUiButton.Focus();
+            IdFamiliaArticuloEditBox.Focus();
         }
         public FamiliaArticuloForm(string Titulo, string Evento, CedForecastEntidades.FamiliaArticulo Familia) : base(Titulo)
         {
@@ -36,11 +36,16 @@ namespace CedForecast
             {
                 case "Baja":
                     InhabilitarControles();
+                    AceptarUiButton.Focus();
                     break;
                 case "Consulta":
                     InhabilitarControles();
                     SalirUiButton.Text = "Salir";
                     AceptarUiButton.Visible = false;
+                    SalirUiButton.Focus();
+                    break;
+                case "Modificacion":
+                    DescrFamiliaArticuloEditBox.Focus();
                     break;
             }
         }

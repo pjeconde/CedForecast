@@ -73,5 +73,56 @@ namespace CedForecastDB
                 }
             }
         }
+        public void Crear(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append(DeleteArticulosProximosHandler(Familia.Articulos));
+            a.Append(InsertHandler(Familia));
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void Eliminar(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append(DeleteArticulosAnterioresHandler(Familia.Id));
+            a.Append("delete FamiliaArticulo where IdFamiliaArticulo='" + Familia.Id + "'");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void Modificar(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append(DeleteArticulosAnterioresHandler(Familia.Id));
+            a.Append(DeleteArticulosProximosHandler(Familia.Articulos));
+            a.Append("delete FamiliaArticulo where IdFamiliaArticulo='" + Familia.Id + "'");
+            a.Append(InsertHandler(Familia));
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        private string DeleteArticulosAnterioresHandler(string IdFamilia)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("delete FamiliaArticuloXArticulo where IdFamiliaArticulo='" + IdFamilia + "' ");
+            return a.ToString();
+        }
+        private string DeleteArticulosProximosHandler(List<CedForecastEntidades.Articulo> Articulos)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("delete FamiliaArticuloXArticulo where IdArticulo in (");
+            for (int i = 0; i < Articulos.Count; i++)
+            {
+                a.Append("'" + Articulos[i].Id + "'");
+                if (i != (Articulos.Count - 1)) a.Append(", ");
+            }
+            a.Append(") ");
+            return a.ToString();
+        }
+        private string InsertHandler(CedForecastEntidades.FamiliaArticulo Familia)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("insert FamiliaArticulo values ('" + Familia.Id + "', '" + Familia.Descr + "') ");
+            for (int i = 0; i < Familia.Articulos.Count; i++)
+            {
+                a.Append("insert FamiliaArticuloXArticulo values ('" + Familia.Articulos[i].Id + "', '" + Familia.Id + "') ");
+            }
+            return a.ToString();
+        }
     }
 }

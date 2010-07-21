@@ -65,13 +65,16 @@ namespace CedForecastRN
         public void Crear(CedForecastEntidades.FamiliaArticulo Familia)
         {
             Validar(Familia);
+            new CedForecastDB.FamiliaArticulo(sesion).Crear(Familia);
         }
         public void Eliminar(CedForecastEntidades.FamiliaArticulo Familia)
         {
+            new CedForecastDB.FamiliaArticulo(sesion).Eliminar(Familia);
         }
         public void Modificar(CedForecastEntidades.FamiliaArticulo Familia)
         {
             Validar(Familia);
+            new CedForecastDB.FamiliaArticulo(sesion).Modificar(Familia);
         }
         private void Validar(CedForecastEntidades.FamiliaArticulo Familia)
         {
