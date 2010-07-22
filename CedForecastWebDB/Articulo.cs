@@ -12,32 +12,37 @@ namespace CedForecastWebDB
         {
         }
 
-        public void Leer(CedForecastWebEntidades.Articulo Articulo)
-        {
-            StringBuilder a = new StringBuilder(string.Empty);
-            a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
-            a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where Articulo.IdArticulo='" + Articulo.Id.ToString() + "'");
-            DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
-            if (dt.Rows.Count == 0)
-            {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Articulo " + Articulo.Id.ToString());
-            }
-            else
-            {
-                Copiar(dt.Rows[0], Articulo);
-            }
-        }
-        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division, string IdFamiliaArticulo)
+        //public void Leer(CedForecastWebEntidades.Articulo Articulo)
+        //{
+        //    StringBuilder a = new StringBuilder(string.Empty);
+        //    a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
+        //    a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
+        //    a.Append("where Articulo.IdArticulo='" + Articulo.Id.ToString() + "'");
+        //    DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+        //    if (dt.Rows.Count == 0)
+        //    {
+        //        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Articulo " + Articulo.Id.ToString());
+        //    }
+        //    else
+        //    {
+        //        Copiar(dt.Rows[0], Articulo);
+        //    }
+        //}
+        public List<CedForecastWebEntidades.Articulo> Lista(bool ConArticuloSinInformar, CedForecastWebEntidades.Division Division, string IdFamiliaArticulo, string ListaArticulosADescartar)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision ");
+            a.Append("select ltrim(rtrim(Articulo.IdArticulo)) as IdArticulo, Articulo.DescrArticulo, Articulo.PesoBruto, Articulo.UnidadMedida, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Articulo.Habilitado, Articulo.FechaUltModif, GrupoArticulo.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo ");
             a.Append("from Articulo inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("inner join FamiliaArticuloXArticulo on Articulo.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+            a.Append("inner join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
             a.Append("where GrupoArticulo.IdDivision = '" + Division.Id + "'");
             if (IdFamiliaArticulo != "")
             {
                 a.Append(" and FamiliaArticuloXArticulo.IdFamiliaArticulo = '" + IdFamiliaArticulo + "'");
+                if (ListaArticulosADescartar != "")
+                {
+                    a.Append(" and Articulo.IdArticulo not in (" + ListaArticulosADescartar + ") ");
+                }
             }
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
@@ -69,6 +74,8 @@ namespace CedForecastWebDB
             Hasta.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
             Hasta.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
             Hasta.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.FamiliaArticulo.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
+            Hasta.FamiliaArticulo.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
         }
         public DateTime FechaUltimaSincronizacion()
         {

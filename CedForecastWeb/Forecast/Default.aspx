@@ -22,7 +22,7 @@
                     <tr>
                         <td valign="top">
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
-                            <table border="0" cellpadding="0" cellspacing="0" id="TablaTit" onclick="">
+                            <table border="0" cellpadding="0" cellspacing="0" id="TablaTit" onclick="" style="">
         						<tr>
                                     <td style="width: 20px; vertical-align:top;">
                                         <table border="0" cellpadding="0" cellspacing="0" id="Table3">
@@ -38,82 +38,65 @@
                                            
                                         </table>   
                                     </td>
-                                    <td style="width: 870px">
+                                    <td style="width: 870px; height:35px">
                                         <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Rolling Forecast"></asp:Label>&nbsp;&nbsp;
                                         <asp:Label ID="MsgLabel" runat="server" Width="600px"></asp:Label>
                                         <hr />
                                     </td>
                                </tr>
                            </table>
-                           <table border="0" cellpadding="0" cellspacing="0" id="TablaDet">    
+                           <table border="0" cellpadding="0" cellspacing="0" id="TablaDet" style="">    
                                 <tr>
-                                    <td colspan="4" style="">
-                                        <asp:Panel ID="CabeceraFijaPanel" runat="server" Enabled="false">
-                                            <table border="0" cellpadding="0" cellspacing="0" id="CabeceraFijaTable">
+                                    <td style="WIDTH: 871px; height: 30px">
+                                        <asp:Panel ID="CabeceraFijaPanel" runat="server" Enabled="false" Height="10px">
+                                            <table border="0" cellpadding="0" cellspacing="0" style="" id="CabeceraFijaTable">
                                                 <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td align="right" style="height: 10px" valign="middle">
+                                                    <td align="left" style="width: 120px; padding-right:5px" valign="middle">
                                                         <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
                                                     </td>
-                                                    <td>
+                                                    <td align="left" style="width: 60px;" valign="top">
+                                                        <asp:TextBox ID="PeriodoTextBox" runat="server" Width="60px"></asp:TextBox>
                                                     </td>
-                                                    <td align="left" style="width: 392px;" valign="top">
-                                                        <asp:TextBox ID="PeriodoTextBox" runat="server" Width="75px"></asp:TextBox>&nbsp;&nbsp;
-                                                        <asp:Label ID="FechaVtoConfimacionCargaLabel" runat="server" SkinID="TituloMediano" Font-Bold="False"  ></asp:Label>
+                                                    <td align="left" style="width: 435px; padding-left: 5px" valign="top">
+                                                        <asp:Label ID="FechaVtoConfimacionCargaLabel" Width="435px" runat="server" SkinID="TituloMediano" Font-Bold="False"></asp:Label>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 10px;">
+                                                    <td style="width: 40px" valign="top">&nbsp;
                                                     </td>
-                                                    <td align="left" style="width: 100px; height: 5px" valign="middle">
+                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
+                                                        <asp:Label ID="DivisionLabel" runat="server" SkinID="TituloMediano" Text="División:"></asp:Label>
                                                     </td>
-                                                    <td>
-                                                    </td>
-                                                    <td align="left" style="width: 392px;" valign="top">
-                                                        &nbsp;
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td align="right" style="height: 10px" valign="middle">
-                                                        <asp:Label ID="DivisionLabel" runat="server" SkinID="TituloMediano" Text="División: "></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td align="left" style="width: 392px;" valign="top"><asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="388px" OnSelectedIndexChanged="DivisionDropDownList_SelectedIndexChanged">
-                                                    </asp:DropDownList></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td align="left" style="height: 5px" valign="middle">
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td align="left" style="width: 392px;" valign="top">
-                                                        &nbsp;</td>
-                                                </tr>
-                                            </table>
-                                         </asp:Panel>
-                                         <asp:Panel ID="SeleccionPanel" runat="server" Enabled="true">
-                                            <table border="0" cellpadding="0" cellspacing="0" id="SeleccionTable">
-                                                <tr>
-                                                    <td style="width: 10px;">
-                                                    </td>
-                                                    <td align="right" style="width: 100px; height: 10px;" valign="middle">
-                                                        <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:"></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td align="left" style="width: 392px;" valign="top">
-                                                        <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="388px" OnSelectedIndexChanged="ClienteDropDownList_SelectedIndexChanged">
+                                                    <td align="left" style="width: 200px;" valign="top">
+                                                        <asp:DropDownList ID="DivisionDropDownList" runat="server" TabIndex="9" Width="200px" OnSelectedIndexChanged="DivisionDropDownList_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
+                                            </table> 
+                                        </asp:Panel>
+                                     </td>
+                                 </tr>
+                             </table>
+                             <table border="0" cellpadding="0" cellspacing="0" id="Table2" style="">    
+                                <tr>
+                                    <td style="WIDTH: 871px; height: 40px">
+                                        <asp:Panel ID="PanelSeleccion" runat="server" Enabled="false" Height="10px">
+                                            <table border="0" cellpadding="0" cellspacing="0" id="SeleccionTable" style="height:10px;">
                                                 <tr>
-                                                    <td style="height: 10px;">
+                                                    <td align="left" style="width: 120px; padding-right:5px" valign="middle">
+                                                        <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:">
+                                                        </asp:Label>
+                                                    </td>
+                                                    <td align="left" style="width: 500px; height: 25px;" valign="top">
+                                                        <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="500px" OnSelectedIndexChanged="ClienteDropDownList_SelectedIndexChanged">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td style="width: 40px" valign="top">&nbsp;
+                                                    </td>
+                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
+                                                        <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
+                                                    </td>
+                                                    <td align="left" style="width: 200px;" valign="top">
+                                                        <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="200px" OnSelectedIndexChanged="FamiliaArticuloDropDownList_SelectedIndexChanged">
+                                                        </asp:DropDownList>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -121,42 +104,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="height: 10px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" style="" valign="middle">
+                                    <td style="WIDTH: 871px" valign="middle">
                                         <asp:Button ID="LeerButton" runat="server" OnClick="LeerButton_Click" Text="Leer" Width="870px" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 5px;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="">
-                                        <table border="0" cellpadding="0" cellspacing="0" id="Table4">
-                                            <tr>
-                                                <td style="width: 10px;">
-                                                </td>
-                                                <td align="right" style="width: 100px; height: 10px;" valign="middle">
-                                                    <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td align="left" style="" valign="top">
-                                                    <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="670px" OnSelectedIndexChanged="FamiliaArticuloDropDownList_SelectedIndexChanged">
-                                                    </asp:DropDownList>
-                                                </td>
-                                                <td>
-                                                <asp:Button ID="ActualizarButton" runat="server" OnClick="FamiliaArticuloDropDownList_SelectedIndexChanged" Text="Actualizar" Height="22px" />
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 5px;">
+                                    <td style="height: 5px; width: 871px;">
                                     </td>
                                 </tr>
                             </table>
@@ -165,7 +118,7 @@
                                     <td colspan="3">
                                         <asp:UpdatePanel ID="detalleUpdatePanel" runat="server">
                                             <ContentTemplate>
-										        <asp:Panel ID="detallePanel" runat="server" BorderStyle="Ridge" Height="200px" ScrollBars="Auto" Width="865px" Wrap="true">
+										        <asp:Panel ID="detallePanel" runat="server" BorderStyle="Ridge" Height="250px" ScrollBars="Auto" Width="865px" Wrap="true">
 											        <asp:GridView ID="detalleGridView" runat="server" AutoGenerateColumns="False" BorderColor="Gray" 
 												        BorderStyle="Solid" BorderWidth="1px" EditRowStyle-ForeColor="#071F70" EmptyDataRowStyle-ForeColor="#071F70" Font-Bold="False" ForeColor="#071F70"
 												        HeaderStyle-ForeColor="#A52A2A" OnRowCancelingEdit="detalleGridView_RowCancelingEdit" GridLines="Both" 

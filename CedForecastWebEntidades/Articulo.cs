@@ -14,10 +14,12 @@ namespace CedForecastWebEntidades
         private bool habilitado; 
         private DateTime fechaUltModif;
         private CedForecastWebEntidades.GrupoArticulo grupoArticulo;
+        private CedForecastWebEntidades.FamiliaArticulo familiaArticulo;
 
         public Articulo()
         {
             grupoArticulo = new GrupoArticulo();
+            familiaArticulo = new FamiliaArticulo();
         }
         public string Id
         {
@@ -110,6 +112,17 @@ namespace CedForecastWebEntidades
             get
             {
                 return grupoArticulo;
+            }
+        }
+        public CedForecastWebEntidades.FamiliaArticulo FamiliaArticulo
+        {
+            set
+            {
+                familiaArticulo = value;
+            }
+            get
+            {
+                return familiaArticulo;
             }
         }
     }
