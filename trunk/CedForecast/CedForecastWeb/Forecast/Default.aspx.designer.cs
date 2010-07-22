@@ -110,13 +110,13 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.DropDownList DivisionDropDownList;
         
         /// <summary>
-        /// Control SeleccionPanel.
+        /// Control PanelSeleccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel SeleccionPanel;
+        protected global::System.Web.UI.WebControls.Panel PanelSeleccion;
         
         /// <summary>
         /// Control ClienteLabel.
@@ -137,15 +137,6 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.DropDownList ClienteDropDownList;
         
         /// <summary>
-        /// Control LeerButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LeerButton;
-        
-        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -164,13 +155,13 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.DropDownList FamiliaArticuloDropDownList;
         
         /// <summary>
-        /// Control ActualizarButton.
+        /// Control LeerButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ActualizarButton;
+        protected global::System.Web.UI.WebControls.Button LeerButton;
         
         /// <summary>
         /// Control detalleUpdatePanel.

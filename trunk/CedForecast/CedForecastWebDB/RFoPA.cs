@@ -18,12 +18,18 @@ namespace CedForecastWebDB
         {
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
-            a.Append("from Forecast, Articulo, GrupoArticulo, Division ");
-            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
+            a.Append("from Forecast, Articulo, GrupoArticulo, Division, FamiliaArticulo, FamiliaArticuloXArticulo ");
+            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision ");
+            a.Append("and Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("and Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
+            }
+            if (Forecast.Articulo.FamiliaArticulo.Id != null && Forecast.Articulo.FamiliaArticulo.Id != "")
+            {
+                a.Append("and FamiliaArticulo.IdFamiliaArticulo='" + Forecast.Articulo.FamiliaArticulo.Id + "' ");
             }
             string periodo = "";
             if (Forecast.IdTipoPlanilla=="Proyectado")
@@ -167,6 +173,8 @@ namespace CedForecastWebDB
             Hasta.Articulo.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
             Hasta.Articulo.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
             Hasta.Articulo.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.Articulo.FamiliaArticulo.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
+            Hasta.Articulo.FamiliaArticulo.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
             Hasta.IdPeriodo = PeriodoInicial;
             if (Hasta.IdTipoPlanilla == "RollingForecast")
             {

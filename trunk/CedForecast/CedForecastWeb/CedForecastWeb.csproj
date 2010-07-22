@@ -335,6 +335,7 @@
     <Content Include="Forecast\ExploradorForecastProyectado.aspx" />
     <Content Include="Forecast\ExploradorForecast.aspx" />
     <Content Include="Forecast\Proyectado.aspx" />
+    <Content Include="Imagenes\CabeceraCompoExpert.jpg" />
     <Content Include="Sincronizacion.asmx" />
   </ItemGroup>
   <ItemGroup>

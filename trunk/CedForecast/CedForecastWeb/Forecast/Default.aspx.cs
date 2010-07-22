@@ -83,6 +83,7 @@ namespace CedForecastWeb.Forecast
                         LeerButton.Enabled = false;
                         ClienteDropDownList.Enabled = false;
                         ClienteLabel.Enabled = false;
+                        PanelSeleccion.Enabled = true;
                         if ((!periodo.CargaHabilitada) || periodo.FechaInhabilitacionCarga < DateTime.Today)
                         {
                             ClienteDropDownList.Enabled = false;
@@ -136,10 +137,24 @@ namespace CedForecastWeb.Forecast
         }
         private void BindearDropDownLists()
         {
+            string listaArticulosADescartar = ListaArticulosADescartar();
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataValueField = "Id";
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataTextField = "DescrCombo";
-            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
+            ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue, listaArticulosADescartar);
             ((DropDownList)detalleGridView.FooterRow.FindControl("ddlIdArticulo")).DataBind();
+        }
+        private string ListaArticulosADescartar()
+        {
+            string listaArticulosADescartar = "";
+            for (int i = 0; i < ((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]).Count; i++)
+            {
+                listaArticulosADescartar += "'" + ((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])[i].Articulo.Id + "', ";
+            }
+            if (listaArticulosADescartar != "")
+            {
+                listaArticulosADescartar = listaArticulosADescartar.Substring(0, listaArticulosADescartar.Length - 2);
+            }
+            return listaArticulosADescartar;
         }
         protected void detalleGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -359,7 +374,8 @@ namespace CedForecastWeb.Forecast
                         l.Articulo = new CedForecastWebEntidades.Articulo();
                         l.Articulo.Id = auxIdArticulo;
                         List<CedForecastWebEntidades.Articulo> ArticuloLista = new List<CedForecastWebEntidades.Articulo>();
-                        ArticuloLista = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
+                        string listaArticulosADescartar = ListaArticulosADescartar();
+                        ArticuloLista = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue, listaArticulosADescartar);
                         CedForecastWebEntidades.Articulo articulo = new CedForecastWebEntidades.Articulo();
                         articulo = ArticuloLista.Find((delegate(CedForecastWebEntidades.Articulo e1) { return e1.Id == auxIdArticulo; }));
                         l.Articulo.Descr = articulo.Descr;
@@ -550,10 +566,11 @@ namespace CedForecastWeb.Forecast
             detalleGridView.EditIndex = e.NewEditIndex;
             detalleGridView.DataSource = ViewState["lineas"];
             detalleGridView.DataBind();
-            BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])); 
+            BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]));
+            string listaArticulosADescartar = ListaArticulosADescartar();
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "Id";
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrCombo";
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue);
+            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue, listaArticulosADescartar);
             ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
             try
             {
@@ -620,6 +637,10 @@ namespace CedForecastWeb.Forecast
                 {
                     throw new Exception("División no seleccionada");
                 }
+                if (!FamiliaArticuloDropDownList.SelectedValue.Equals(string.Empty))
+                {
+                    forecast.Articulo.FamiliaArticulo.Id = FamiliaArticuloDropDownList.SelectedValue;
+                }
                 List<CedForecastWebEntidades.RFoPA> forecastLista = CedForecastWebRN.RFoPA.Lista(forecast, (CedEntidades.Sesion)Session["Sesion"]);
                 //Si no hay datos ingresados para el forecast, buscar información inicial del proyectado
                 //if (forecastLista == null)
@@ -627,7 +648,7 @@ namespace CedForecastWeb.Forecast
                 BindearGrillayDropDownLists(forecastLista);
                
                 LeerButton.Enabled = false;
-                SeleccionPanel.Enabled = false;
+                PanelSeleccion.Enabled = false;
                 detalleGridView.Enabled = true;
                 CancelarButton.Enabled = true;
                 AceptarButton.Enabled = true;
@@ -645,11 +666,12 @@ namespace CedForecastWeb.Forecast
             ViewState["lineas"] = forecast;
             BindearGrillayDropDownLists(forecast);
             LeerButton.Enabled = true;
-            SeleccionPanel.Enabled = true;
+            PanelSeleccion.Enabled = true;
             detalleGridView.Enabled = false;
             CancelarButton.Enabled = false;
             AceptarButton.Enabled = false;
-            ClienteDropDownList.SelectedIndex = -1;
+            //ClienteDropDownList.SelectedIndex = -1;
+            //FamiliaArticuloDropDownList.SelectedIndex = -1;
         }
 
         protected void CancelarButton_Click(object sender, EventArgs e)
@@ -658,11 +680,12 @@ namespace CedForecastWeb.Forecast
             ViewState["lineas"] = forecast;
             BindearGrillayDropDownLists(forecast);
             LeerButton.Enabled = true;
-            SeleccionPanel.Enabled = true;
+            PanelSeleccion.Enabled = true;
             detalleGridView.Enabled = false;
             CancelarButton.Enabled = false;
             AceptarButton.Enabled = false;
-            ClienteDropDownList.SelectedIndex = -1;
+            //ClienteDropDownList.SelectedIndex = -1;
+            //FamiliaArticuloDropDownList.SelectedIndex = -1;
         }
 
         protected void DivisionDropDownList_SelectedIndexChanged(object sender, EventArgs e)
