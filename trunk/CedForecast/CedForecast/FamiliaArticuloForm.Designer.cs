@@ -212,7 +212,7 @@ namespace CedForecast
             this.MaximizarUiButton.TabIndex = 35;
             this.MaximizarUiButton.Tag = "Max";
             this.MaximizarUiButton.UseThemes = false;
-            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
+            this.MaximizarUiButton.Click += new System.EventHandler(this.MaximizarUiButton_Click);
             // 
             // MinimizarUiButton
             // 

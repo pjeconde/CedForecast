@@ -138,7 +138,8 @@ namespace CedForecast
                 Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
                 grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
                 BrowserGridEX.RootTable.Groups.Add(grupo1);
-                BrowserGridEX.RootTable.Columns[0].Visible = false; switch (TipoReporteNicePanel.Tag.ToString())
+                BrowserGridEX.RootTable.Columns[0].Visible = false;
+                switch (TipoReporteNicePanel.Tag.ToString())
                 {
                     case "Artículos-Vendedores":
                     case "Vendedores-Artículos":
@@ -229,7 +230,6 @@ namespace CedForecast
         {
             Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView, ArticulosUiCheckBox.Checked);
         }
-
         private void ClientesUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView, ClientesUiCheckBox.Checked);
