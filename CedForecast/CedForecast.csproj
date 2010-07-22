@@ -83,6 +83,12 @@
     <Compile Include="FamiliaArticuloGrillaForm.Designer.cs">
       <DependentUpon>FamiliaArticuloGrillaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FamiliaArticuloXArticuloForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FamiliaArticuloXArticuloForm.Designer.cs">
+      <DependentUpon>FamiliaArticuloXArticuloForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RFoPAForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,10 @@
     <EmbeddedResource Include="FamiliaArticuloGrillaForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FamiliaArticuloGrillaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FamiliaArticuloXArticuloForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FamiliaArticuloXArticuloForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RFoPAForm.resx">
       <DependentUpon>RFoPAForm.cs</DependentUpon>

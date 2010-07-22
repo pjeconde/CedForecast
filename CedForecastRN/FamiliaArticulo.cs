@@ -102,6 +102,14 @@ namespace CedForecastRN
         public void EliminarArticulo(CedForecastEntidades.FamiliaArticulo Familia, CedForecastEntidades.Articulo Articulo)
         {
             Familia.Articulos.Remove(Articulo);
+            //La colección, después del remove, queda con problemas para bindearla a una grilla.
+            //Para evitarlo, vuelvo a generar de cero la colección.
+            List<CedForecastEntidades.Articulo> nuevaLista=new List<CedForecastEntidades.Articulo>();
+            for (int i = 0; i < Familia.Articulos.Count; i++)
+            {
+                nuevaLista.Add(Familia.Articulos[i]);
+            }
+            Familia.Articulos = nuevaLista;
         }
     }
 }

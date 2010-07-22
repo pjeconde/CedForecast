@@ -59,9 +59,9 @@ namespace CedForecast
         }
         private void BindearGrilla()
         {
+            ArticulosGridEX.SelectedItems.Clear();
             ArticulosGridEX.DataSource = null;
             ArticulosGridEX.DataSource = familia.Articulos;
-            ArticulosGridEX.SelectedItems.Clear();
         }
         private void BindearControles()
         {
@@ -71,7 +71,7 @@ namespace CedForecast
             NuevoArticuloMultiColumnCombo.DisplayMember = "Art_CodGen";
             NuevoArticuloMultiColumnCombo.ValueMember = "Art_DescGen";
         }
-        private void MaxMinUiButton_Click(object sender, EventArgs e)
+        private void MaximizarUiButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
             MinimizarUiButton.Visible = true;

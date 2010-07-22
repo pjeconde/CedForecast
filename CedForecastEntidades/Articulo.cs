@@ -48,5 +48,27 @@ namespace CedForecastEntidades
                 return familia;
             }
         }
+        public string IdFamilia
+        {
+            set
+            {
+                Familia.Id = value;
+            }
+            get
+            {
+                return Familia.Id;
+            }
+        }
+        public string DescrFamilia
+        {
+            set
+            {
+                Familia.Descr = value;
+            }
+            get
+            {
+                return Familia.Descr;
+            }
+        }
     }
 }
