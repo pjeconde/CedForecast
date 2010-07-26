@@ -72,7 +72,7 @@ namespace CedForecastWeb.Forecast
                         BindearGrillayDropDownLists(forecast);
 
                         CancelarButton.Attributes.Add("onclick", "return confirm('Confirmar la cancelación de los datos ?');");
-                        CancelarButton.Attributes.Add("title", "Cancela los datos ingresados en la grilla.");;
+                        CancelarButton.Attributes.Add("title", "Cancela los datos ingresados en la grilla.");
                         AceptarButton.Attributes.Add("onclick", "return confirm('Confirmar la aceptación de los datos ?');");
 
                         CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();

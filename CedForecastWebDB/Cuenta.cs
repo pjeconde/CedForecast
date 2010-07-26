@@ -154,6 +154,30 @@ namespace CedForecastWebDB
             }
             return lista;
         }
+        public List<CedForecastWebEntidades.Cuenta> Lista(bool ConCuentaSinInformar)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("Select Cuenta.IdCuenta, Cuenta.Nombre, Cuenta.Telefono, Cuenta.Email, Cuenta.IdDivision, Division.DescrDivision, Cuenta.Password, Cuenta.Pregunta, Cuenta.Respuesta, Cuenta.IdTipoCuenta, TipoCuenta.DescrTipoCuenta, Cuenta.IdEstadoCuenta, EstadoCuenta.DescrEstadoCuenta, Cuenta.FechaAlta, Cuenta.CantidadEnviosMail, Cuenta.FechaUltimoReenvioMail, Cuenta.EmailSMS, Cuenta.RecibeAvisoAltaCuenta, Cuenta.IdPaginaDefault, PaginaDefault.DescrPaginaDefault, PaginaDefault.URL ");
+            a.Append("from Cuenta, TipoCuenta, EstadoCuenta, PaginaDefault, Division ");
+            a.Append("where Cuenta.IdTipoCuenta=TipoCuenta.IdTipoCuenta and Cuenta.IdEstadoCuenta=EstadoCuenta.IdEstadoCuenta and Cuenta.IdPaginaDefault=PaginaDefault.IdPaginaDefault and Cuenta.IdDivision = Division.IdDivision ");
+            DataTable dt = new DataTable();
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            List<CedForecastWebEntidades.Cuenta> lista = new List<CedForecastWebEntidades.Cuenta>();
+            if (dt.Rows.Count != 0)
+            {
+                if (ConCuentaSinInformar)
+                {
+                    lista.Add(new CedForecastWebEntidades.Cuenta());
+                }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastWebEntidades.Cuenta cuenta = new CedForecastWebEntidades.Cuenta();
+                    Copiar(dt.Rows[i], cuenta);
+                    lista.Add(cuenta);
+                }
+            }
+            return lista;
+        }
         public int CantidadDeFilas()
         {
             return CantidadDeFilas(true);

@@ -313,6 +313,11 @@ namespace CedForecastWebRN
             }
             return cuenta.Lista(IndicePagina, TamañoPagina, OrderBy);
         }
+        public static List<CedForecastWebEntidades.Cuenta> Lista(bool ConCuentaSinInformar, CedEntidades.Sesion Sesion)
+        {
+            CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);
+            return cuenta.Lista(ConCuentaSinInformar);
+        }
         public static int CantidadDeFilas(CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.Cuenta cuenta = new CedForecastWebDB.Cuenta(Sesion);

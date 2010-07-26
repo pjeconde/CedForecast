@@ -22,7 +22,11 @@ namespace CedForecastWebDB
             a.Append("from Forecast, Articulo, GrupoArticulo, Division, FamiliaArticulo, FamiliaArticuloXArticulo ");
             a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("and Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
-            a.Append("and Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("and Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' ");
+            if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
+            {
+                a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            }
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
@@ -230,7 +234,7 @@ namespace CedForecastWebDB
                     break;
             }
         }
-        private string UltimoMesForecast(string Periodo)
+        public static string UltimoMesForecast(string Periodo)
         {
             DateTime fechaUltimoMesForecast = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), Convert.ToInt32(Periodo.Substring(4, 2)), 1);
             fechaUltimoMesForecast = fechaUltimoMesForecast.AddMonths(11);
@@ -255,7 +259,7 @@ namespace CedForecastWebDB
             }
             return i;
         }
-        private string PeriodoAProcesar(int i, string PeriodoInicial)
+        public static string PeriodoAProcesar(int i, string PeriodoInicial)
         {
             DateTime fechaAux = new DateTime(Convert.ToInt32(PeriodoInicial.Substring(0, 4)), Convert.ToInt32(PeriodoInicial.Substring(4, 2)), 1);
             fechaAux = fechaAux.AddMonths(i);
@@ -355,11 +359,11 @@ namespace CedForecastWebDB
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("CREATE TABLE #Forecast" + SessionID +"( ");
-            a.Append("[IdTipoPlanilla] [varchar](15) NOT NULL, ");
-            a.Append("[IdCuenta] [varchar](50) NOT NULL, ");
-            a.Append("[IdCliente] [varchar](6) NOT NULL, ");
-            a.Append("[IdArticulo] [varchar](20) NOT NULL, ");
-            a.Append("[IdPeriodo] [varchar](6) NOT NULL, ");
+            a.Append("[IdTipoPlanilla] [varchar](15) collate database_default NOT NULL, ");
+            a.Append("[IdCuenta] [varchar](50) collate database_default NOT NULL, ");
+            a.Append("[IdCliente] [varchar](6) collate database_default NOT NULL, ");
+            a.Append("[IdArticulo] [varchar](20) collate database_default NOT NULL, ");
+            a.Append("[IdPeriodo] [varchar](6) collate database_default NOT NULL, ");
             a.Append("[Proyectado] [decimal](18, 0) NOT NULL, ");
             a.Append("[Ventas] [decimal](18, 0) NOT NULL, ");
             a.Append("[Cantidad1] [decimal](18, 0) NOT NULL, ");

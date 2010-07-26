@@ -64,6 +64,27 @@
     <Compile Include="Admin\Administracion.Master.designer.cs">
       <DependentUpon>Administracion.Master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ForecastReasignar\Consulta.aspx.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ForecastReasignar\Consulta.aspx.designer.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forecast\Consulta.aspx.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Forecast\Consulta.aspx.designer.cs">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Forecast\ExploradorForecast.aspx.cs">
+      <DependentUpon>ExploradorForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Forecast\ExploradorForecast.aspx.designer.cs">
+      <DependentUpon>ExploradorForecast.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Periodo.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Periodo.aspx</DependentUpon>
@@ -161,6 +182,13 @@
     </Compile>
     <Compile Include="Forecast\Consulta.aspx.designer.cs">
       <DependentUpon>Consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ForecastReasignar\RollingForecast.aspx.cs">
+      <DependentUpon>RollingForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ForecastReasignar\RollingForecast.aspx.designer.cs">
+      <DependentUpon>RollingForecast.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forecast\ExploradorForecastProyectado.aspx.cs">
       <DependentUpon>ExploradorForecastProyectado.aspx</DependentUpon>
@@ -325,6 +353,9 @@
     <Content Include="Forecast\ConfirmacionCarga.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\ForecastReasignar\Consulta.aspx" />
+    <Content Include="Admin\Forecast\Consulta.aspx" />
+    <Content Include="Admin\Forecast\ExploradorForecast.aspx" />
     <Content Include="Captcha.ashx" />
     <Content Include="Configuracion.aspx" />
     <Content Include="Forecast\Confirmacion.aspx" />
@@ -332,6 +363,7 @@
     <Content Include="CuentaConfiguracion.aspx" />
     <Content Include="Forecast\ConfirmacionCargaProyectado.aspx" />
     <Content Include="Forecast\Consulta.aspx" />
+    <Content Include="Admin\ForecastReasignar\RollingForecast.aspx" />
     <Content Include="Forecast\ExploradorForecastProyectado.aspx" />
     <Content Include="Forecast\ExploradorForecast.aspx" />
     <Content Include="Forecast\Proyectado.aspx" />

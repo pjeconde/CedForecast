@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace CedForecastWeb.Forecast
+namespace CedForecastWeb.Admin.Forecast
 {
 	public partial class ExploradorForecast : System.Web.UI.Page
 	{
@@ -17,27 +17,32 @@ namespace CedForecastWeb.Forecast
 		{
 			try
 			{
-				((LinkButton)Master.FindControl("ConsultaLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
-				if (!IsPostBack)
-				{
-					if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
-					{
-                        CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosOperForecast.aspx");
-					}
-					else
-					{
-						if (CedForecastWebRN.Fun.NoEstaLogueadoUnOperForecast((CedForecastWebEntidades.Sesion)Session["Sesion"]))
-						{
-							CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosOperForecast.aspx");
-						}
-						else
-						{
+                ((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
+                if (!IsPostBack)
+                {
+                    if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
+                    {
+                        CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosAdministradores.aspx");
+                    }
+                    else
+                    {
+                        if (CedForecastWebRN.Fun.NoEstaLogueadoUnAdministrador((CedForecastWebEntidades.Sesion)Session["Sesion"]))
+                        {
+                            CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosAdministradores.aspx");
+                        }
+                        else
+                        {
 							ForecastPagingGridView.PageSize = 10;
 
                             ClienteDropDownList.DataValueField = "Id";
                             ClienteDropDownList.DataTextField = "DescrCombo";
                             ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteDropDownList.SelectedIndex = -1;
+
+                            CuentaDropDownList.DataValueField = "Id";
+                            CuentaDropDownList.DataTextField = "DescrCombo";
+                            CuentaDropDownList.DataSource = CedForecastWebRN.Cuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                            CuentaDropDownList.SelectedIndex = -1;
                             
                             DataBind();
 
@@ -76,7 +81,7 @@ namespace CedForecastWeb.Forecast
                 
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.ToString().Trim();
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
@@ -108,7 +113,7 @@ namespace CedForecastWeb.Forecast
                 
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.ToString().Trim();
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
@@ -136,7 +141,7 @@ namespace CedForecastWeb.Forecast
 
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.ToString().Trim();
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
