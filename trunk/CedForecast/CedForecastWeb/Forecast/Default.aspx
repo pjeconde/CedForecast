@@ -38,7 +38,7 @@
                                            
                                         </table>   
                                     </td>
-                                    <td style="width: 870px; height:35px">
+                                    <td style="width: 870px">
                                         <asp:Label ID="TituloLabel" SkinID="TituloPagina" runat="server" Text="Rolling Forecast"></asp:Label>&nbsp;&nbsp;
                                         <asp:Label ID="MsgLabel" runat="server" Width="600px"></asp:Label>
                                         <hr />
@@ -51,7 +51,7 @@
                                         <asp:Panel ID="CabeceraFijaPanel" runat="server" Enabled="false" Height="10px">
                                             <table border="0" cellpadding="0" cellspacing="0" style="" id="CabeceraFijaTable">
                                                 <tr>
-                                                    <td align="left" style="width: 120px; padding-right:5px" valign="middle">
+                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
                                                         <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
                                                     </td>
                                                     <td align="left" style="width: 60px;" valign="top">
@@ -81,11 +81,11 @@
                                         <asp:Panel ID="PanelSeleccion" runat="server" Enabled="false" Height="10px">
                                             <table border="0" cellpadding="0" cellspacing="0" id="SeleccionTable" style="height:10px;">
                                                 <tr>
-                                                    <td align="left" style="width: 120px; padding-right:5px" valign="middle">
+                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
                                                         <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:">
                                                         </asp:Label>
                                                     </td>
-                                                    <td align="left" style="width: 500px; height: 25px;" valign="top">
+                                                    <td align="left" style="width: 500px;" valign="top">
                                                         <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="500px" OnSelectedIndexChanged="ClienteDropDownList_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </td>

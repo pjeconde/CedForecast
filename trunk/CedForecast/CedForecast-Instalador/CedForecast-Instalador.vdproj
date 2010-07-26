@@ -1111,14 +1111,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CedForecast"
-        "ProductCode" = "8:{6427E614-E1B9-42DB-9034-C32272C95CF9}"
-        "PackageCode" = "8:{C833CDE0-FAC2-455E-9B18-62E231214561}"
+        "ProductCode" = "8:{ABE93ABE-BAFF-43FA-AC47-BB78A72EA6FF}"
+        "PackageCode" = "8:{4A203111-E707-4D77-AF2E-52CE72BACD85}"
         "UpgradeCode" = "8:{C92B25DD-1E53-4D49-9423-050AD204A177}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.11"
+        "ProductVersion" = "8:1.0.12"
         "Manufacturer" = "8:Cedeira"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.cedeira.com.ar"
@@ -1233,7 +1233,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_794BD4D2019F4FF196884B97AEB5E4B8"
             {
-            "Name" = "8:CedForecast v1.0.11"
+            "Name" = "8:CedForecast v1.0.12"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"

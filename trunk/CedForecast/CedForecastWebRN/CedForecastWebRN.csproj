@@ -41,6 +41,7 @@
     <Compile Include="Articulo.cs" />
     <Compile Include="ConfirmacionCarga.cs" />
     <Compile Include="FamiliaArticulo.cs" />
+    <Compile Include="ForecastReasignar.cs" />
     <Compile Include="TipoCuenta.cs" />
     <Compile Include="Periodo.cs" />
     <Compile Include="Venta.cs" />

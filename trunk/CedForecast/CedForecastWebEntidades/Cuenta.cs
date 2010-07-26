@@ -57,6 +57,18 @@ namespace CedForecastWebEntidades
                 return nombre;
             }
         }
+        public string DescrCombo
+        {
+            get
+            {
+                string descripcion = "";
+                if (nombre != null && nombre != "")
+                {
+                    descripcion = nombre + " (" + id + ")";
+                }
+                return descripcion;
+            }
+        }
         public string Telefono
         {
             set

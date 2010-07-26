@@ -21,10 +21,10 @@
                             <!-- @@@ TITULO DE LA PAGINA @@@-->
                             <table border="0" cellpadding="0" cellspacing="0">
 								<tr>
-                                    <td colspan="2" style="HEIGHT: 50px">
+                                    <td colspan="2" style="HEIGHT: 25px">
                                         <table border="0" cellpadding="0" cellspacing="0" id="TablaEnca">
                                             <tr>
-                                                <td style="width: 20px; vertical-align:top;">
+                                                <td style="width: 20px; vertical-align:top; height: 25px;">
         						                    <table border="0" cellpadding="0" cellspacing="0" id="TableEnca1">
         						                        <tr>
                                                             <td style="height: 3px">
@@ -37,7 +37,7 @@
                                                         </tr>
                                                     </table>
                                                 </td>
-                                                <td>
+                                                <td style="height: 25px">
                                                     <table border="0" cellpadding="0" cellspacing="0" id="TablaEnca2">
                                                         <tr>
                                                             <td style="width: 800px; vertical-align:top;">
@@ -55,16 +55,42 @@
                                     <td style="height: 26px">
                                     </td>
                                     <td align="left" style="padding-top: 10px; height: 26px;" valign="middle">
-                                        Explorador de:
-                                        <asp:HyperLink ID="PeriodoHiperLink" runat="server" NavigateUrl="~/Admin/Periodo.aspx"
-                                            SkinID="LinkMedianoClaro">Periodo</asp:HyperLink>
-                                        <asp:Label ID="PeriodoLabel" runat="server" SkinID="TextoMediano" Text=", " Width="3px"></asp:Label>
-                                        <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/Cuenta/Explorador.aspx"
-                                            SkinID="LinkMedianoClaro">Cuentas</asp:HyperLink>
-                                        <asp:Label ID="CuentasLabel" runat="server" SkinID="TextoMediano" Text="( ), "></asp:Label>
-                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/ConfirmacionCarga/Explorador.aspx"
-                                            SkinID="LinkMedianoClaro">Confirmación de Carga</asp:HyperLink>
-                                        </td>
+                                        <table border="0" cellpadding="0" cellspacing="0" id="Table1">
+                                            <tr>
+                                                <td style="height: 3px; padding-right:3px; vertical-align: top">
+                                                    Explorador de:
+                                                </td>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" id="Table2">
+                                                        <tr>
+                                                            <td style="height: 3px; vertical-align: top">
+                                                                <asp:HyperLink ID="PeriodoHiperLink" runat="server" NavigateUrl="~/Admin/Periodo.aspx"
+                                                                    SkinID="LinkMedianoClaro">Periodo</asp:HyperLink>
+                                                                <asp:Label ID="PeriodoLabel" runat="server" SkinID="TextoMediano" Text=", " Width="3px"></asp:Label>
+                                                                <asp:HyperLink ID="ExploradorCuentasHyperLink" runat="server" NavigateUrl="~/Admin/Cuenta/Explorador.aspx"
+                                                                    SkinID="LinkMedianoClaro">Cuentas</asp:HyperLink>
+                                                                <asp:Label ID="CuentasLabel" runat="server" SkinID="TextoMediano" Text="( ), "></asp:Label>
+                                                                <asp:HyperLink ID="ExploradorConfirmacionCargaHyperLink" runat="server" NavigateUrl="~/Admin/ConfirmacionCarga/Explorador.aspx"
+                                                                    SkinID="LinkMedianoClaro">Confirmación de Carga</asp:HyperLink><br />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height: 3px; padding-top:5px; vertical-align: top">
+                                                                <asp:HyperLink ID="ConsultaRFoPAHyperLink" runat="server" NavigateUrl="~/Admin/Forecast/Consulta.aspx"
+                                                                    SkinID="LinkMedianoClaro">Consulta de Rolling Forecast o Proyectado Anual</asp:HyperLink>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height: 3px; padding-top:5px; vertical-align: top">
+                                                                <asp:HyperLink ID="ForecastReasignarHyperLink" runat="server" NavigateUrl="~/Admin/ForecastReasignar/Consulta.aspx"
+                                                                    SkinID="LinkMedianoClaro">Reasignación de datos del Rolling Forecast o Proyectado Anual</asp:HyperLink>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td align="right" style="padding-top: 5px; padding-right: 3px" valign="top">
