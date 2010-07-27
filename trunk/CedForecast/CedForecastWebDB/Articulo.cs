@@ -39,10 +39,10 @@ namespace CedForecastWebDB
             if (IdFamiliaArticulo != "")
             {
                 a.Append(" and FamiliaArticuloXArticulo.IdFamiliaArticulo = '" + IdFamiliaArticulo + "'");
-                if (ListaArticulosADescartar != "")
-                {
-                    a.Append(" and Articulo.IdArticulo not in (" + ListaArticulosADescartar + ") ");
-                }
+            }
+            if (ListaArticulosADescartar != "")
+            {
+                a.Append(" and Articulo.IdArticulo not in (" + ListaArticulosADescartar + ") ");
             }
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
