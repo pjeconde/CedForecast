@@ -95,7 +95,7 @@
                                                         <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
                                                     </td>
                                                     <td align="left" style="width: 200px;" valign="top">
-                                                        <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="200px" OnSelectedIndexChanged="FamiliaArticuloDropDownList_SelectedIndexChanged">
+                                                        <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="200px">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
