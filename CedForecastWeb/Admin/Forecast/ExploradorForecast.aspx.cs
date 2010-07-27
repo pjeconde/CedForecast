@@ -51,7 +51,7 @@ namespace CedForecastWeb.Admin.Forecast
                             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             PeriodoTextBox.Text = periodo.IdPeriodo;
 
-                            int colFijas = 4; //Es 0 y 1.
+                            int colFijas = 6; //Es 0 y 1.
                             for (int i = 1; i <= 12; i++)
                             {
                                 ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);

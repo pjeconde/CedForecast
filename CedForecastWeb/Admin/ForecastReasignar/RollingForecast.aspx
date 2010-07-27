@@ -98,11 +98,18 @@
                                     VirtualItemCount="-1">
                                     <PagerSettings Mode="NumericFirstLast" />
                                     <Columns>
+                                        <asp:BoundField DataField="IdArticulo" HeaderText="Id.Art&#237;culo" SortExpression="IdArticulo">
+                                            <headerstyle horizontalalign="Left" wrap="False" />
+                                            <itemstyle horizontalalign="Left" width="300px" wrap="False" />
+                                        </asp:BoundField>
                                         <asp:BoundField DataField="DescrArticulo" HeaderText="Art&#237;culo" SortExpression="DescrArticulo">
                                             <headerstyle horizontalalign="Left" wrap="False" />
                                             <itemstyle horizontalalign="Left" width="300px" wrap="False" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="IdCliente" HeaderText="Id.Cliente" SortExpression="IdCliente" />
+                                        <asp:BoundField DataField="IdCliente" HeaderText="Id.Cliente" SortExpression="IdCliente">
+                                            <headerstyle horizontalalign="Left" wrap="False" />
+                                            <itemstyle horizontalalign="Left" width="80px" wrap="False" />
+                                        </asp:BoundField>
                                         <asp:BoundField DataField="DescrCliente" HeaderText="Cliente" SortExpression="DescrCliente">
                                             <headerstyle horizontalalign="Left" wrap="False" />
                                             <itemstyle horizontalalign="Left" width="300px" wrap="False" />

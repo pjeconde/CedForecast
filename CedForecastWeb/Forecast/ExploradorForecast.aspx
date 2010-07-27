@@ -78,7 +78,7 @@
                                     OnSorting="ForecastPagingGridView_Sorting" AllowPaging="True" AllowSorting="True"
                                     VirtualItemCount="-1">
                                     <Columns>
-                                        <asp:BoundField DataField="DescrArticulo" HeaderText="Artículo" SortExpression="DescrArticulo">
+                                        <asp:BoundField DataField="DescrArticulo" HeaderText="Artículo" SortExpression="DescrArticuloCombo">
                                             <headerstyle horizontalalign="Left" wrap="False" />
                                             <itemstyle horizontalalign="Left" width="300px" wrap="False" />
                                         </asp:BoundField>

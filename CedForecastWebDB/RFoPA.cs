@@ -19,10 +19,12 @@ namespace CedForecastWebDB
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
-            a.Append("from Forecast, Articulo, GrupoArticulo, Division, FamiliaArticulo, FamiliaArticuloXArticulo ");
-            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("and Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
-            a.Append("and Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' ");
+            a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
+            a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
+            a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
+            a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+            a.Append("left outer join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("where Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' ");
             if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
             {
                 a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
@@ -130,8 +132,10 @@ namespace CedForecastWebDB
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
-            a.Append("from Forecast, Articulo, GrupoArticulo, Division ");
-            a.Append("where Forecast.IdArticulo=Articulo.IdArticulo and Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo and GrupoArticulo.IdDivision=Division.IdDivision and Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
+            a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
+            a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
+            a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");

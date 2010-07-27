@@ -101,7 +101,21 @@ namespace CedForecastWebEntidades
                 return articulo;
             }
         }
+        public string IdArticulo
+        {
+            get
+            {
+                return Articulo.Id;
+            }
+        }
         public string DescrArticulo
+        {
+            get
+            {
+                return Articulo.Descr;
+            }
+        }
+        public string DescrArticuloCombo
         {
             get
             {

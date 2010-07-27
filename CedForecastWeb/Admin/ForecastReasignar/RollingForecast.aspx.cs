@@ -98,7 +98,7 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 }
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-                int colFijas = 4; //Es 0 y 1.
+                int colFijas = 6; //Es 0 y 1.
                 for (int i = 1; i <= 12; i++)
                 {
                     ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);

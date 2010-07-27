@@ -143,7 +143,7 @@
 														    </asp:TemplateField>
 													        <asp:TemplateField HeaderText="Descripci&#243;n del Art&#237;culo">
 														        <ItemTemplate>
-															        <asp:Label ID="lblIdArticulo" runat="server" Text='<%# Eval("DescrArticulo") %>'
+															        <asp:Label ID="lblIdArticulo" runat="server" Text='<%# Eval("DescrArticuloCombo") %>'
 																        Width="230px"></asp:Label>
 														        </ItemTemplate>
 														        <EditItemTemplate>
