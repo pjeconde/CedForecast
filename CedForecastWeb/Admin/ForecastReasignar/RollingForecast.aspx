@@ -192,12 +192,20 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="text-align: right; padding-right: 3px; padding-left:15px; vertical-align: middle;">
-                                        <asp:Label ID="VendedorHastaLabel" runat="server" SkinID="TituloMediano" Text="Asignar al Vendedor:"></asp:Label>
+                                        <asp:Label ID="VendedorHastaLabel" runat="server" SkinID="TituloMediano" Text="Vendedor:"></asp:Label>
                                     </td>
                                     <td align="left" style="" valign="top">
-                                        <asp:DropDownList ID="CuentaAReasignarDropDownList" runat="server" TabIndex="10"
-                                            Width="324px">
+                                        <asp:DropDownList ID="CuentaAReasignarDropDownList" runat="server" TabIndex="10" Width="324px">
                                         </asp:DropDownList>&nbsp;
+                                    </td>
+                                    <td style="width: 80px">
+                                    </td>
+                                    <td style="text-align: right; padding-right: 3px; padding-left:15px; vertical-align: middle;">
+                                        <asp:Label ID="Label2" runat="server" SkinID="TituloMediano" Text="Cliente:"></asp:Label>
+                                    </td>
+                                    <td align="left" style="" valign="top">
+                                        <asp:DropDownList ID="ClienteAReasignarDropDownList" runat="server" TabIndex="10" Width="324px">
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
