@@ -146,6 +146,24 @@ namespace CedForecastWeb.Admin.ForecastReasignar {
         protected global::System.Web.UI.WebControls.DropDownList CuentaAReasignarDropDownList;
         
         /// <summary>
+        /// Control Label2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// Control ClienteAReasignarDropDownList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ClienteAReasignarDropDownList;
+        
+        /// <summary>
         /// Control AceptarButton.
         /// </summary>
         /// <remarks>

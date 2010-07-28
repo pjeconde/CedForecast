@@ -49,6 +49,11 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                             CuentaAReasignarDropDownList.DataSource = CedForecastWebRN.Cuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             CuentaAReasignarDropDownList.SelectedIndex = -1;
 
+                            ClienteAReasignarDropDownList.DataValueField = "Id";
+                            ClienteAReasignarDropDownList.DataTextField = "DescrCombo";
+                            ClienteAReasignarDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                            ClienteAReasignarDropDownList.SelectedIndex = -1;
+
                             CancelarButton.Attributes.Add("onclick", "return confirm('Confirma la cancelación de los datos a reasignar ?');");
                             AceptarButton.Attributes.Add("onclick", "return confirm('Confirma la aceptación de los datos a reasignar ?');");
 
@@ -59,6 +64,7 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                             AceptarButton.Enabled = false;
                             CancelarButton.Enabled = false;
                             CuentaAReasignarDropDownList.Enabled = false;
+                            ClienteAReasignarDropDownList.Enabled = false;
 						}
 					}
 				}
@@ -113,7 +119,9 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 PanelSeleccion.Enabled = false;
                 LeerButton.Enabled = false;
                 CuentaAReasignarDropDownList.Enabled = true;
+                ClienteAReasignarDropDownList.Enabled = true;
                 CuentaAReasignarDropDownList.SelectedIndex = -1;
+                ClienteAReasignarDropDownList.SelectedIndex = -1;
 			}
 			catch (System.Threading.ThreadAbortException)
 			{
@@ -205,6 +213,7 @@ namespace CedForecastWeb.Admin.ForecastReasignar
             AceptarButton.Enabled = false;
             CancelarButton.Enabled = false;
             CuentaAReasignarDropDownList.Enabled = false;
+            ClienteAReasignarDropDownList.Enabled = false;
             PanelSeleccion.Enabled = true;
             LeerButton.Enabled = true;
 		}
@@ -224,10 +233,13 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue;
-                string cuentaAReasignar = CuentaAReasignarDropDownList.SelectedValue;
-                if (cuentaAReasignar.Trim() == "")
+                if (CuentaAReasignarDropDownList.SelectedValue.Trim() != "" && ClienteAReasignarDropDownList.SelectedValue.Trim() != "")
                 {
-                    throw new Exception("Seleccione el vendedor, al cual le asignan los datos.");
+                    throw new Exception("Seleccione un vendedor o un cliente, no ambos.");
+                }
+                if (CuentaAReasignarDropDownList.SelectedValue.Trim() == "" && ClienteAReasignarDropDownList.SelectedValue.Trim() == "")
+                {
+                    throw new Exception("Seleccione un vendedor o un cliente, al cual asignar los datos.");
                 }
                 lista = CedForecastWebRN.RFoPA.Lista(Forecast, (CedEntidades.Sesion)Session["Sesion"]);
                 if (lista.Count == 0)
@@ -236,7 +248,14 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 }
                 else
                 {
-                    CedForecastWebRN.ForecastReasignar.Modificar(lista, CuentaAReasignarDropDownList.SelectedValue.ToString().Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                    if (CuentaAReasignarDropDownList.SelectedValue != "")
+                    {
+                        CedForecastWebRN.ForecastReasignar.Modificar(lista, "Cuenta", CuentaAReasignarDropDownList.SelectedValue.Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                    }
+                    else
+                    {
+                        CedForecastWebRN.ForecastReasignar.Modificar(lista, "Cliente", ClienteAReasignarDropDownList.SelectedValue.Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                    }
                 }
             }
             catch (System.Threading.ThreadAbortException)
@@ -252,6 +271,7 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 AceptarButton.Enabled = false;
                 CancelarButton.Enabled = false;
                 CuentaAReasignarDropDownList.Enabled = false;
+                ClienteAReasignarDropDownList.Enabled = false;
                 PanelSeleccion.Enabled = true;
                 LeerButton.Enabled = true;
                 MsgErrorLabel.Text = "El cambio se ha realizado correctamente.";
