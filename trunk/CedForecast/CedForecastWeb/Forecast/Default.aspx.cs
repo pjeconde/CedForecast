@@ -665,7 +665,7 @@ namespace CedForecastWeb.Forecast
 
         protected void AceptarButton_Click(object sender, EventArgs e)
         {
-            CedForecastWebRN.RFoPA.Guardar((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"], "RollingForecast", ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue.ToString(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+            CedForecastWebRN.RFoPA.Guardar((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"], "RollingForecast", ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue.ToString(), FamiliaArticuloDropDownList.SelectedValue.ToString().Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
             List<CedForecastWebEntidades.RFoPA> forecast = new List<CedForecastWebEntidades.RFoPA>();
             ViewState["lineas"] = forecast;
             BindearGrillayDropDownLists(forecast, "");

@@ -269,10 +269,18 @@ namespace CedForecastWebDB
             fechaAux = fechaAux.AddMonths(i);
             return fechaAux.ToString("yyyyMM");
         }
-        public void Guardar(List<CedForecastWebEntidades.RFoPA> ForecastLista, string IdTipoPlanilla, string IdCuenta, string IdCliente, string Periodo)
+        public void Guardar(List<CedForecastWebEntidades.RFoPA> ForecastLista, string IdTipoPlanilla, string IdCuenta, string IdCliente, string IdFamiliaArticulo, string Periodo)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("delete Forecast where IdCuenta = '" + IdCuenta + "' and IdCliente = '" + IdCliente + "' and IdTipoPlanilla = '" + IdTipoPlanilla + "' ");
+            //, FamiliaArticuloXArticulo, FamiliaArticulo where Forecast.IdArticulo = FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo='Fert' and"
+            if (IdFamiliaArticulo == null || IdFamiliaArticulo == "")
+            {
+                a.Append("delete Forecast where IdCuenta = '" + IdCuenta + "' and IdCliente = '" + IdCliente + "' and IdTipoPlanilla = '" + IdTipoPlanilla + "' ");
+            }
+            else
+            {
+                a.Append("delete Forecast from Forecast, FamiliaArticuloXArticulo, FamiliaArticulo where Forecast.IdArticulo = FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo = FamiliaArticulo.IdFamiliaArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo = '" + IdFamiliaArticulo + "' and IdCuenta = '" + IdCuenta + "' and IdCliente = '" + IdCliente + "' and IdTipoPlanilla = '" + IdTipoPlanilla + "' ");
+            }
             string periodo = "";
             if (IdTipoPlanilla == "Proyectado")
             {
