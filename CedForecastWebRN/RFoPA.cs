@@ -14,10 +14,10 @@ namespace CedForecastWebRN
             CedForecastWebDB.RFoPA forecast = new CedForecastWebDB.RFoPA(Sesion);
             return forecast.Lista(Forecast);
         }
-        public static void Guardar(List<CedForecastWebEntidades.RFoPA> Forecast, string IdTipoPlanilla, string IdCuenta, string IdCliente, string Periodo, CedEntidades.Sesion Sesion)
+        public static void Guardar(List<CedForecastWebEntidades.RFoPA> Forecast, string IdTipoPlanilla, string IdCuenta, string IdCliente, string IdFamiliaArticulo, string Periodo, CedEntidades.Sesion Sesion)
         {
             CedForecastWebDB.RFoPA forecast = new CedForecastWebDB.RFoPA(Sesion);
-            forecast.Guardar(Forecast, IdTipoPlanilla, IdCuenta, IdCliente, Periodo);
+            forecast.Guardar(Forecast, IdTipoPlanilla, IdCuenta, IdCliente, IdFamiliaArticulo, Periodo);
         }
         public static List<CedForecastWebEntidades.RFoPA> Lista(out int CantidadFilas, int IndicePagina, int TamañoPagina, string OrderBy, CedForecastWebEntidades.RFoPA Forecast, string SessionID, CedEntidades.Sesion Sesion)
         {
