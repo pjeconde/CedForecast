@@ -23,6 +23,7 @@ namespace CedForecastDB
                 {
                     CedForecastEntidades.FamiliaArticulo elemento = new CedForecastEntidades.FamiliaArticulo();
                     Copiar(dt.Rows[i], elemento);
+                    LeerArticulos(elemento);
                     lista.Add(elemento);
                 }
             }

@@ -30,14 +30,21 @@ namespace CedForecast
         {
 
             ArticulosTreeView.Nodes.Clear();
-            CedForecastDB.Bejerman.Articulos articulos = new CedForecastDB.Bejerman.Articulos(Aplicacion.Sesion);
-            List<CedForecastEntidades.Bejerman.Articulos> listaArticulos = articulos.LeerLista();
-            for (int i = 0; i < listaArticulos.Count; i++)
+            CedForecastDB.FamiliaArticulo familias = new CedForecastDB.FamiliaArticulo(Aplicacion.Sesion);
+            List<CedForecastEntidades.FamiliaArticulo> listaFamilias = familias.LeerLista();
+            for (int i = 0; i < listaFamilias.Count; i++)
             {
-                TreeNode nd = new TreeNode(listaArticulos[i].Art_CodGen + "-" + listaArticulos[i].Art_DescGen);
-                nd.Tag = listaArticulos[i].Art_CodGen;
-                ArticulosTreeView.Nodes.Add(nd);
+                TreeNode ndFamilia = new TreeNode(listaFamilias[i].Descr);
+                ndFamilia.Tag = String.Empty;
+                for (int j = 0; j < listaFamilias[i].Articulos.Count; j++)
+                {
+                    TreeNode ndArticulo = new TreeNode(listaFamilias[i].Articulos[j].Id + "-" + listaFamilias[i].Articulos[j].Descr);
+                    ndArticulo.Tag = listaFamilias[i].Articulos[j].Id;
+                    ndFamilia.Nodes.Add(ndArticulo);
+                }
+                ArticulosTreeView.Nodes.Add(ndFamilia);
             }
+            ArticulosTreeView.ExpandAll();
             ClientesTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Clientes clientes = new CedForecastDB.Bejerman.Clientes(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Clientes> listaClientes = clientes.LeerLista();
@@ -228,15 +235,26 @@ namespace CedForecast
         }
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView, ArticulosUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView.Nodes, ArticulosUiCheckBox.Checked);
         }
         private void ClientesUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView, ClientesUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView.Nodes, ClientesUiCheckBox.Checked);
         }
         private void VendedoresUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView, VendedoresUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView.Nodes, VendedoresUiCheckBox.Checked);
+        }
+        private void ArticulosTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+        }
+
+        private void ArticulosTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Nodes.Count > 0)
+            {
+                Cedeira.UI.Fun.ChequeoNodosTreeView(e.Node.Nodes, e.Node.Checked);
+            }
         }
     }
 }

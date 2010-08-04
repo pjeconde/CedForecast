@@ -38,7 +38,7 @@ namespace CedForecast
         }
         private void FamiliaArticuloUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(FamiliaArticuloTreeView, FamiliaArticuloUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(FamiliaArticuloTreeView.Nodes, FamiliaArticuloUiCheckBox.Checked);
         }
         private void CancelarUiButton_Click(object sender, EventArgs e)
         {
