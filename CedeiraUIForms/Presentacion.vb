@@ -155,19 +155,31 @@ Public Class Mostrar
     End Sub
 End Class
 Public Class Fun
-    Public Shared Sub ChequeoNodosTreeView(ByVal tvw As TreeView, ByVal Valor As Boolean)
+    Public Shared Sub ChequeoNodosTreeView(ByVal tvw As TreeNodeCollection, ByVal Valor As Boolean)
         Dim i As Integer
-        For i = 0 To tvw.Nodes.Count - 1
-            tvw.Nodes(i).Checked = Valor
+        For i = 0 To tvw.Count - 1
+            tvw(i).Checked = Valor
+            'Tratamiento de subnodos
+            If tvw(i).Nodes.Count > 0 Then
+                ChequeoNodosTreeView(tvw(i).Nodes, Valor)
+            End If
         Next i
     End Sub
     Public Shared Function ListaTreeView(ByVal tvw As TreeView) As String
         Dim lista As String
-        Dim i As Integer
+        Dim i As Integer, j As Integer
         lista = String.Empty
         For i = 0 To tvw.Nodes.Count - 1
-            If tvw.Nodes(i).Checked Then
-                lista = lista & "'" & Convert.ToString(tvw.Nodes(i).Tag) & "', "
+            If tvw.Nodes(i).Nodes.Count = 0 Then
+                If tvw.Nodes(i).Checked Then
+                    lista = lista & "'" & Convert.ToString(tvw.Nodes(i).Tag) & "', "
+                End If
+            Else
+                For j = 0 To tvw.Nodes(i).Nodes.Count - 1
+                    If tvw.Nodes(i).Nodes(j).Checked Then
+                        lista = lista & "'" & Convert.ToString(tvw.Nodes(i).Nodes(j).Tag) & "', "
+                    End If
+                Next j
             End If
         Next i
         If lista <> "" Then

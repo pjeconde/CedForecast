@@ -274,15 +274,15 @@ namespace CedForecast
         //}
         private void VendedoresUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-			Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView, VendedoresUiCheckBox.Checked);
+			Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView.Nodes, VendedoresUiCheckBox.Checked);
         }
         private void ClientesUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView, ClientesUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ClientesTreeView.Nodes, ClientesUiCheckBox.Checked);
         }
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView, ArticulosUiCheckBox.Checked);
+            Cedeira.UI.Fun.ChequeoNodosTreeView(ArticulosTreeView.Nodes, ArticulosUiCheckBox.Checked);
         }
         private void TipoReporteUiRadioButton_CheckedChanged(object sender, EventArgs e)
         {
