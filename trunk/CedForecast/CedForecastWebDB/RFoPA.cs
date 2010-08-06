@@ -18,8 +18,9 @@ namespace CedForecastWebDB
         {
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
             a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
+            a.Append("inner join Cliente on Forecast.IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
@@ -131,8 +132,9 @@ namespace CedForecastWebDB
         { 
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
             a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
+            a.Append("inner join Cliente on Forecast.IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
@@ -173,16 +175,26 @@ namespace CedForecastWebDB
         {
             Hasta.IdTipoPlanilla = Convert.ToString(Desde["IdTipoPlanilla"]);
             Hasta.IdCuenta = Convert.ToString(Desde["IdCuenta"]);
-            Hasta.Cliente.Id = Convert.ToString(Desde["IdCliente"]);
-            Hasta.Articulo = new CedForecastWebEntidades.Articulo();
-            Hasta.Articulo.Id = Convert.ToString(Desde["IdArticulo"]);
-            Hasta.Articulo.Descr = Convert.ToString(Desde["DescrArticulo"]);
-            Hasta.Articulo.GrupoArticulo.IdGrupoArticulo = Convert.ToString(Desde["IdGrupoArticulo"]);
-            Hasta.Articulo.GrupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
-            Hasta.Articulo.GrupoArticulo.Division.Id = Convert.ToString(Desde["IdDivision"]);
-            Hasta.Articulo.GrupoArticulo.Division.Descr = Convert.ToString(Desde["DescrDivision"]);
-            Hasta.Articulo.FamiliaArticulo.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
-            Hasta.Articulo.FamiliaArticulo.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
+            CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
+            cliente.Id = Convert.ToString(Desde["IdCliente"]);
+            cliente.Descr = Convert.ToString(Desde["DescrCliente"]);
+            Hasta.Cliente = cliente;
+            CedForecastWebEntidades.Articulo articulo = new CedForecastWebEntidades.Articulo();
+            articulo.Id = Convert.ToString(Desde["IdArticulo"]);
+            articulo.Descr = Convert.ToString(Desde["DescrArticulo"]);
+            Hasta.Articulo = articulo;
+            CedForecastWebEntidades.GrupoArticulo grupoArticulo = new CedForecastWebEntidades.GrupoArticulo();
+            grupoArticulo.IdGrupoArticulo = Convert.ToString(Desde["IdGrupoArticulo"]);
+            grupoArticulo.DescrGrupoArticulo = Convert.ToString(Desde["DescrGrupoArticulo"]);
+            Hasta.Articulo.GrupoArticulo = grupoArticulo;
+            CedForecastWebEntidades.Division division = new CedForecastWebEntidades.Division();
+            division.Id = Convert.ToString(Desde["IdDivision"]);
+            division.Descr = Convert.ToString(Desde["DescrDivision"]);
+            Hasta.Articulo.GrupoArticulo.Division = division;
+            CedForecastWebEntidades.FamiliaArticulo familiaArticulo = new CedForecastWebEntidades.FamiliaArticulo();
+            familiaArticulo.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
+            familiaArticulo.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
+            Hasta.Articulo.FamiliaArticulo = familiaArticulo;
             Hasta.IdPeriodo = PeriodoInicial;
             if (Hasta.IdTipoPlanilla == "RollingForecast")
             {
@@ -447,10 +459,14 @@ namespace CedForecastWebDB
                     forecast.IdTipoPlanilla = dt.Rows[i]["IdTipoPlanilla"].ToString();
                     forecast.IdPeriodo = dt.Rows[i]["IdPeriodo"].ToString();
                     forecast.IdCuenta = dt.Rows[i]["IdCuenta"].ToString();
-                    forecast.Cliente.Id = dt.Rows[i]["IdCliente"].ToString();
-                    forecast.Cliente.Descr = dt.Rows[i]["DescrCliente"].ToString();
-                    forecast.Articulo.Id = dt.Rows[i]["IdArticulo"].ToString();
-                    forecast.Articulo.Descr = dt.Rows[i]["DescrArticulo"].ToString();
+                    CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
+                    cliente.Id = dt.Rows[i]["IdCliente"].ToString();
+                    cliente.Descr = dt.Rows[i]["DescrCliente"].ToString();
+                    forecast.Cliente = cliente;
+                    CedForecastWebEntidades.Articulo articulo = new CedForecastWebEntidades.Articulo();
+                    articulo.Id = dt.Rows[i]["IdArticulo"].ToString();
+                    articulo.Descr = dt.Rows[i]["DescrArticulo"].ToString();
+                    forecast.Articulo = articulo;
                     forecast.Proyectado = Convert.ToDecimal(dt.Rows[i]["Proyectado"].ToString());
                     forecast.Ventas = Convert.ToDecimal(dt.Rows[i]["Ventas"].ToString());
                     forecast.Cantidad1 = Convert.ToDecimal(dt.Rows[i]["Cantidad1"].ToString());
