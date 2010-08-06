@@ -190,6 +190,20 @@
     <Compile Include="Admin\ForecastReasignar\RollingForecast.aspx.designer.cs">
       <DependentUpon>RollingForecast.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forecast\ExploradorProyectado.aspx.cs">
+      <DependentUpon>ExploradorProyectado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ExploradorProyectado.aspx.designer.cs">
+      <DependentUpon>ExploradorProyectado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forecast\ExploradorRollingForecast.aspx.cs">
+      <DependentUpon>ExploradorRollingForecast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forecast\ExploradorRollingForecast.aspx.designer.cs">
+      <DependentUpon>ExploradorRollingForecast.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forecast\ExploradorForecastProyectado.aspx.cs">
       <DependentUpon>ExploradorForecastProyectado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -329,6 +343,10 @@
       <Project>{0E25A061-E78C-4141-8590-892C2CAC08B5}</Project>
       <Name>CedForecastWebRN</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.2005.csproj">
+      <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
+      <Name>FileHelpers.2005</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Administracion.Master" />
@@ -364,6 +382,8 @@
     <Content Include="Forecast\ConfirmacionCargaProyectado.aspx" />
     <Content Include="Forecast\Consulta.aspx" />
     <Content Include="Admin\ForecastReasignar\RollingForecast.aspx" />
+    <Content Include="Forecast\ExploradorProyectado.aspx" />
+    <Content Include="Forecast\ExploradorRollingForecast.aspx" />
     <Content Include="Forecast\ExploradorForecastProyectado.aspx" />
     <Content Include="Forecast\ExploradorForecast.aspx" />
     <Content Include="Forecast\Proyectado.aspx" />
