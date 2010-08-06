@@ -40,6 +40,8 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Articulo.cs" />
     <Compile Include="ConfirmacionCarga.cs" />
+    <Compile Include="Proyectado.cs" />
+    <Compile Include="RollingForecast.cs" />
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="ForecastReasignar.cs" />
     <Compile Include="TipoCuenta.cs" />

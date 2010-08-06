@@ -46,9 +46,11 @@
     <Compile Include="Cuenta.cs" />
     <Compile Include="EstadoCuenta.cs" />
     <Compile Include="Flag.cs" />
+    <Compile Include="Proyectado.cs" />
     <Compile Include="RFoPA.cs" />
     <Compile Include="PaginaDefault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RollingForecast.cs" />
     <Compile Include="Sesion.cs" />
     <Compile Include="Texto.cs" />
     <Compile Include="TipoCuenta.cs" />
@@ -59,6 +61,10 @@
     <ProjectReference Include="..\CedEntidades\CedEntidades.csproj">
       <Project>{2D17A63F-789D-4C01-864A-C15411D577A7}</Project>
       <Name>CedEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.2005.csproj">
+      <Project>{EB8633FF-CEED-40EE-8D1A-CA1BF5678C42}</Project>
+      <Name>FileHelpers.2005</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -52,13 +52,13 @@
                     </tr>
                     <tr>
                         <td align="left" style="padding-top: 10px; padding-left: 20px" valign="middle">
-                            <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Forecast/ExploradorForecastProyectado.aspx"
+                            <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Forecast/ExploradorProyectado.aspx"
                                 SkinID="LinkGrandeClaro">Proyectado Anual</asp:HyperLink>
                         </td>
                     </tr>
                     <tr>
                         <td align="left" style="padding-top: 10px; padding-left: 20px">
-                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Forecast/ExploradorForecast.aspx"
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Forecast/ExploradorRollingForecast.aspx"
                                 SkinID="LinkGrandeClaro">Rolling Forecast</asp:HyperLink>
                         </td>
                     </tr>
