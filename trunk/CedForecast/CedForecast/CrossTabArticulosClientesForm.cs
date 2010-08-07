@@ -44,16 +44,23 @@ namespace CedForecast
                 }
                 ArticulosTreeView.Nodes.Add(ndFamilia);
             }
-            ArticulosTreeView.ExpandAll();
+            //ArticulosTreeView.ExpandAll();
             ClientesTreeView.Nodes.Clear();
-            CedForecastDB.Bejerman.Clientes clientes = new CedForecastDB.Bejerman.Clientes(Aplicacion.Sesion);
-            List<CedForecastEntidades.Bejerman.Clientes> listaClientes = clientes.LeerLista();
-            for (int i = 0; i < listaClientes.Count; i++)
+            CedForecastDB.Bejerman.Zona zonas = new CedForecastDB.Bejerman.Zona(Aplicacion.Sesion);
+            List<CedForecastEntidades.Bejerman.Zona> listaZonas = zonas.LeerLista();
+            for (int i = 0; i < listaZonas.Count; i++)
             {
-                TreeNode nd = new TreeNode(listaClientes[i].Cli_Cod + "-" + listaClientes[i].Cli_RazSoc);
-                nd.Tag = listaClientes[i].Cli_Cod;
-                ClientesTreeView.Nodes.Add(nd);
-            }
+                TreeNode ndZona = new TreeNode(listaZonas[i].Zon_Desc);
+                ndZona.Tag = String.Empty;
+                for (int j = 0; j < listaZonas[i].Clientes.Count; j++)
+                {
+                    TreeNode ndCliente = new TreeNode(listaZonas[i].Clientes[j].Cli_Cod + "-" + listaZonas[i].Clientes[j].Cli_RazSoc);
+                    ndCliente.Tag = listaZonas[i].Clientes[j].Cli_Cod;
+                    ndZona.Nodes.Add(ndCliente);
+                }
+                ClientesTreeView.Nodes.Add(ndZona);
+            } 
+            //ClientesTreeView.ExpandAll();
             VendedoresTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Vendedor vendedores = new CedForecastDB.Bejerman.Vendedor(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Vendedor> listaVendedores = vendedores.LeerLista();
@@ -245,11 +252,7 @@ namespace CedForecast
         {
             Cedeira.UI.Fun.ChequeoNodosTreeView(VendedoresTreeView.Nodes, VendedoresUiCheckBox.Checked);
         }
-        private void ArticulosTreeView_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-        }
-
-        private void ArticulosTreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Nodes.Count > 0)
             {
