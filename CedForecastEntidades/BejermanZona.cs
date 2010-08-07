@@ -10,9 +10,11 @@ namespace CedForecastEntidades.Bejerman
         private string zon_Cod;
         private string zon_Desc;
         private DateTime zon_FecMod;
+        private List<Clientes> clientes;
 
         public Zona()
         {
+            clientes = new List<Clientes>();
         }
         public string Zon_Cod
         {
@@ -45,6 +47,17 @@ namespace CedForecastEntidades.Bejerman
             get
             {
                 return zon_FecMod;
+            }
+        }
+        public List<Clientes> Clientes
+        {
+            set
+            {
+                clientes = value;
+            }
+            get
+            {
+                return clientes;
             }
         }
     }

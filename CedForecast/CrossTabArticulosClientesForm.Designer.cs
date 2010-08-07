@@ -490,7 +490,7 @@
             headerImage6.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage6.Image = null;
             this.ClientesNicePanel.HeaderImage = headerImage6;
-            this.ClientesNicePanel.HeaderText = "Cliente(s)";
+            this.ClientesNicePanel.HeaderText = "Zonas / Clientes";
             this.ClientesNicePanel.IsExpanded = true;
             this.ClientesNicePanel.Location = new System.Drawing.Point(420, 8);
             this.ClientesNicePanel.Name = "ClientesNicePanel";
@@ -560,9 +560,9 @@
             this.ClientesTreeView.FullRowSelect = true;
             this.ClientesTreeView.Location = new System.Drawing.Point(8, 24);
             this.ClientesTreeView.Name = "ClientesTreeView";
-            this.ClientesTreeView.ShowRootLines = false;
             this.ClientesTreeView.Size = new System.Drawing.Size(240, 370);
             this.ClientesTreeView.TabIndex = 3;
+            this.ClientesTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCheck);
             // 
             // ArticulosNicePanel
             // 
@@ -586,7 +586,7 @@
             headerImage8.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage8.Image = null;
             this.ArticulosNicePanel.HeaderImage = headerImage8;
-            this.ArticulosNicePanel.HeaderText = "Artículo(s)";
+            this.ArticulosNicePanel.HeaderText = "Familias / Artículos";
             this.ArticulosNicePanel.IsExpanded = true;
             this.ArticulosNicePanel.Location = new System.Drawing.Point(158, 8);
             this.ArticulosNicePanel.Name = "ArticulosNicePanel";
@@ -658,8 +658,7 @@
             this.ArticulosTreeView.Name = "ArticulosTreeView";
             this.ArticulosTreeView.Size = new System.Drawing.Size(240, 370);
             this.ArticulosTreeView.TabIndex = 3;
-            this.ArticulosTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.ArticulosTreeView_AfterCheck);
-            this.ArticulosTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ArticulosTreeView_AfterSelect);
+            this.ArticulosTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCheck);
             // 
             // VendedoresNicePanel
             // 
@@ -683,7 +682,7 @@
             headerImage10.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage10.Image = null;
             this.VendedoresNicePanel.HeaderImage = headerImage10;
-            this.VendedoresNicePanel.HeaderText = "Vendedor(es)";
+            this.VendedoresNicePanel.HeaderText = "Vendedores";
             this.VendedoresNicePanel.IsExpanded = true;
             this.VendedoresNicePanel.Location = new System.Drawing.Point(682, 8);
             this.VendedoresNicePanel.Name = "VendedoresNicePanel";
