@@ -92,7 +92,7 @@
                                                     <td style="width: 40px" valign="top">&nbsp;
                                                     </td>
                                                     <td align="right" style="width: 120px; padding-right:5px" valign="middle">
-                                                        <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
+                                                        <asp:Label ID="FamiliaLabel" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
                                                     </td>
                                                     <td align="left" style="width: 200px;" valign="top">
                                                         <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="200px">

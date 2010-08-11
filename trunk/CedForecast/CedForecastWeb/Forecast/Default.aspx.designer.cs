@@ -137,13 +137,13 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.DropDownList ClienteDropDownList;
         
         /// <summary>
-        /// Control Label1.
+        /// Control FamiliaLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label FamiliaLabel;
         
         /// <summary>
         /// Control FamiliaArticuloDropDownList.
