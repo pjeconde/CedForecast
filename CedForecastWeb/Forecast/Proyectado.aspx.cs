@@ -80,12 +80,13 @@ namespace CedForecastWeb.Forecast
                         confirmacionCarga.Cuenta.Id = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
                         CedForecastWebRN.ConfirmacionCarga.Leer(confirmacionCarga, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         LeerButton.Enabled = false;
-                        ClienteDropDownList.Enabled = false;
                         ClienteLabel.Enabled = false;
+                        ClienteDropDownList.Enabled = false;
+                        FamiliaLabel.Enabled = false;
+                        FamiliaArticuloDropDownList.Enabled = false;
                         PanelSeleccion.Enabled = true;
                         if ((!periodo.CargaHabilitada) || periodo.FechaInhabilitacionCarga < DateTime.Today)
                         {
-                            ClienteDropDownList.Enabled = false;
                             MsgLabel.Text = " (Carga inhabilitada).";
                         }
                         else
@@ -95,8 +96,10 @@ namespace CedForecastWeb.Forecast
                                 case "Baja":
                                 case null:
                                     LeerButton.Enabled = true;
-                                    ClienteDropDownList.Enabled = true;
                                     ClienteLabel.Enabled = true;
+                                    ClienteDropDownList.Enabled = true;
+                                    FamiliaLabel.Enabled = true;
+                                    FamiliaArticuloDropDownList.Enabled = true;
                                     break;
                                 default:
                                     MsgLabel.Text = " (No es posible modificar los datos en el estado actual).";

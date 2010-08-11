@@ -62,10 +62,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="right" style="height: 10px; width: 150px;" valign="middle">
-                                                        <asp:Label ID="Label2" runat="server" SkinID="TituloMediano" Text="Fecha de Confirmación:"></asp:Label>
+                                                        <asp:Label ID="Label2" runat="server" SkinID="TituloMediano" Text="Fecha:"></asp:Label>
                                                     </td>
                                                     <td align="left" style="width: 712px" valign="top">
-                                                        <asp:TextBox ID="FechaConfirmacionCargaTextBox" runat="server" Width="139px" Enabled="False"></asp:TextBox>
+                                                        <asp:TextBox ID="FechaConfirmacionCargaTextBox" runat="server" Width="150px" Enabled="False"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -74,10 +74,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="right" style="height: 10px; width: 150px;" valign="middle">
-                                                        <asp:Label ID="Label4" runat="server" SkinID="TituloMediano" Text="Estado actual:"></asp:Label>
+                                                        <asp:Label ID="Label4" runat="server" SkinID="TituloMediano" Text="Estado:"></asp:Label>
                                                     </td>
                                                     <td align="left" style="width: 712px" valign="top">
-                                                        <asp:TextBox ID="IdEstadoConfirmacionCargaTextBox" runat="server" Width="75px" Enabled="False"></asp:TextBox></td>
+                                                        <asp:TextBox ID="IdEstadoConfirmacionCargaTextBox" runat="server" Width="150px" Enabled="False"></asp:TextBox></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" style="height:10px; width: 10px;">

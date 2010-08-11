@@ -81,20 +81,20 @@
                                         <asp:Panel ID="PanelSeleccion" runat="server" Enabled="false" Height="10px">
                                             <table border="0" cellpadding="0" cellspacing="0" id="SeleccionTable" style="height:10px;">
                                                 <tr>
-                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
+                                                    <td align="right" style="width: 120px; padding-right:5px; height: 22px;" valign="middle">
                                                         <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:">
                                                         </asp:Label>
                                                     </td>
-                                                    <td align="left" style="width: 500px;" valign="top">
+                                                    <td align="left" style="width: 500px; height: 22px;" valign="top">
                                                         <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="500px" OnSelectedIndexChanged="ClienteDropDownList_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </td>
-                                                    <td style="width: 40px" valign="top">&nbsp;
+                                                    <td style="width: 40px; height: 22px;" valign="top">&nbsp;
                                                     </td>
-                                                    <td align="right" style="width: 120px; padding-right:5px" valign="middle">
-                                                        <asp:Label ID="Label1" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
+                                                    <td align="right" style="width: 120px; padding-right:5px; height: 22px;" valign="middle">
+                                                        <asp:Label ID="FamiliaLabel" runat="server" SkinID="TituloMediano" Text="Familia:"></asp:Label>
                                                     </td>
-                                                    <td align="left" style="width: 200px;" valign="top">
+                                                    <td align="left" style="width: 200px; height: 22px;" valign="top">
                                                         <asp:DropDownList ID="FamiliaArticuloDropDownList" runat="server" TabIndex="10" Width="200px">
                                                         </asp:DropDownList>
                                                     </td>

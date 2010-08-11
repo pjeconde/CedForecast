@@ -234,7 +234,7 @@ namespace CedForecastWeb.Forecast
             {
                 archivo += TextoCantidadHeader(i, PeriodoTextBox.Text) + "; ";
             }
-            archivo += "Total " + PeriodoTextBox.Text;
+            archivo += "Total " + PeriodoTextBox.Text + "; ";
             archivo += "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString() + "; ";
             archivo += "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString() + "; ";
             archivo += "\r\n";
