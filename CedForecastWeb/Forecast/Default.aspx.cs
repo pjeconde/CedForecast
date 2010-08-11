@@ -17,7 +17,6 @@ namespace CedForecastWeb.Forecast
 {
     public partial class Default : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             ((LinkButton)Master.FindControl("ForecastLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
@@ -55,10 +54,8 @@ namespace CedForecastWeb.Forecast
                         CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                         PeriodoTextBox.Text = periodo.IdPeriodo;
                         PeriodoTextBox.ReadOnly = true;
-                                               
-                        DivisionDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Division.Id;
-                        
                         FechaVtoConfimacionCargaLabel.Text = "Carga habilitada hasta el día: " + periodo.FechaInhabilitacionCarga.ToString("dd/MM/yyyy") + " inclusive.";
+
                         int colFijas = 5;
                         for (int i = 1; i <= 12; i++)
                         {
@@ -326,7 +323,6 @@ namespace CedForecastWeb.Forecast
                 {
                     throw new Exception("Detalle no actualizado porque el separador de decimales debe ser el punto");
                 }
-
                 detalleGridView.EditIndex = -1;
                 detalleGridView.DataSource = ViewState["lineas"];
                 detalleGridView.DataBind();
@@ -566,16 +562,23 @@ namespace CedForecastWeb.Forecast
         }
         protected void detalleGridView_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            detalleGridView.EditIndex = e.NewEditIndex;
-            detalleGridView.DataSource = ViewState["lineas"];
-            detalleGridView.DataBind();
-            string idArticuloAModficar = ((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString();
-            BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]), idArticuloAModficar);
-            string listaArticulosADescartar = ListaArticulosADescartar(idArticuloAModficar);
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "Id";
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrCombo";
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue, listaArticulosADescartar);
-            ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
+            try
+            {
+                detalleGridView.EditIndex = e.NewEditIndex;
+                detalleGridView.DataSource = ViewState["lineas"];
+                detalleGridView.DataBind();
+                string idArticuloAModficar = ((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString();
+                BindearGrillayDropDownLists(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"]), idArticuloAModficar);
+                string listaArticulosADescartar = ListaArticulosADescartar(idArticuloAModficar);
+                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataValueField = "Id";
+                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataTextField = "DescrCombo";
+                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataSource = CedForecastWebRN.Articulo.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"], FamiliaArticuloDropDownList.SelectedValue, listaArticulosADescartar);
+                ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "Message", "<SCRIPT LANGUAGE='javascript'>alert('" + ex.Message.ToString().Replace("'", "") + "');</SCRIPT>", false);
+            }
             try
             {
                 ListItem liUnidad = ((DropDownList)((GridView)sender).Rows[e.NewEditIndex].FindControl("ddlIdArticuloEdit")).Items.FindByValue(((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"])[e.NewEditIndex].Articulo.Id.ToString());
@@ -616,7 +619,6 @@ namespace CedForecastWeb.Forecast
                 e.ExceptionHandled = true;
             }
         }
-
         protected void LeerButton_Click(object sender, EventArgs e)
         {
             try
@@ -646,9 +648,6 @@ namespace CedForecastWeb.Forecast
                     forecast.Articulo.FamiliaArticulo.Id = FamiliaArticuloDropDownList.SelectedValue;
                 }
                 List<CedForecastWebEntidades.RFoPA> forecastLista = CedForecastWebRN.RFoPA.Lista(forecast, (CedEntidades.Sesion)Session["Sesion"]);
-                //Si no hay datos ingresados para el forecast, buscar información inicial del proyectado
-                //if (forecastLista == null)
-
                 BindearGrillayDropDownLists(forecastLista, "");
                
                 LeerButton.Enabled = false;
@@ -662,7 +661,6 @@ namespace CedForecastWeb.Forecast
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "Message", "<SCRIPT LANGUAGE='javascript'>alert('" + ex.Message.ToString().Replace("'", "") + "');</SCRIPT>", false);
             }
         }
-
         protected void AceptarButton_Click(object sender, EventArgs e)
         {
             CedForecastWebRN.RFoPA.Guardar((List<CedForecastWebEntidades.RFoPA>)ViewState["lineas"], "RollingForecast", ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id, ClienteDropDownList.SelectedValue.ToString(), FamiliaArticuloDropDownList.SelectedValue.ToString().Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
@@ -677,7 +675,6 @@ namespace CedForecastWeb.Forecast
             //ClienteDropDownList.SelectedIndex = -1;
             //FamiliaArticuloDropDownList.SelectedIndex = -1;
         }
-
         protected void CancelarButton_Click(object sender, EventArgs e)
         {
             List<CedForecastWebEntidades.RFoPA> forecast = new List<CedForecastWebEntidades.RFoPA>();
@@ -691,7 +688,6 @@ namespace CedForecastWeb.Forecast
             //ClienteDropDownList.SelectedIndex = -1;
             //FamiliaArticuloDropDownList.SelectedIndex = -1;
         }
-
         protected void DivisionDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
 

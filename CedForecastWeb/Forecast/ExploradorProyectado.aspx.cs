@@ -81,8 +81,10 @@ namespace CedForecastWeb.Forecast
                 Proyectado.IdTipoPlanilla = "Proyectado";
                 Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
-                Proyectado.IdPeriodo = PeriodoTextBox.Text + "01";
-                Proyectado.Cliente.Id = ClienteDropDownList.SelectedValue;
+                Proyectado.IdPeriodo = PeriodoTextBox.Text;
+                CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
+                cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
+                Proyectado.Cliente = cliente;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.Proyectado.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Proyectado, Session.SessionID, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                 ForecastPagingGridView.VirtualItemCount = CantidadFilas;
@@ -115,7 +117,7 @@ namespace CedForecastWeb.Forecast
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
                 Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                Proyectado.IdPeriodo = PeriodoTextBox.Text + "01";
+                Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.Proyectado.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Proyectado, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
                 ForecastPagingGridView.VirtualItemCount = CantidadFilas;
@@ -142,7 +144,7 @@ namespace CedForecastWeb.Forecast
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
                 Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                Proyectado.IdPeriodo = PeriodoTextBox.Text + "01";
+                Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.Proyectado.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Proyectado, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
 				ViewState["lista"] = lista;
@@ -224,7 +226,7 @@ namespace CedForecastWeb.Forecast
             cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
             Proyectado.Cliente = cliente;
             CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
-            Proyectado.IdPeriodo = PeriodoTextBox.Text + "01";
+            Proyectado.IdPeriodo = PeriodoTextBox.Text;
             lista = CedForecastWebRN.Proyectado.Lista(Proyectado, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             string archivo = "Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; ";
             int colFijas = 4;
