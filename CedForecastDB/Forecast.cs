@@ -66,9 +66,32 @@ namespace CedForecastDB
                     break;
                 default:
                     throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
-                    break;
             }
             return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
+        }
+        public List<CedForecastEntidades.Articulo> LeerArticulosSinFamilia()
+        {
+            List<CedForecastEntidades.Articulo> lista = new List<CedForecastEntidades.Articulo>();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select IdArticulo as Articulo from Forecast where IdArticulo not in (select IdArticulo from FamiliaArticuloXArticulo) and IdTipoPlanilla='RollingForecast' ");
+            DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerLista(dt);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                CedForecastEntidades.Articulo elemento = new CedForecastEntidades.Articulo();
+                elemento.Id = Convert.ToString(dt.Rows[i]["Articulo"]);
+                CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dt.Rows[i]["Articulo"]); });
+                if (articulo == null)
+                {
+                    elemento.Descr = Convert.ToString(dt.Rows[i]["Articulo"]) + "-<<<Desconocido>>>";
+                }
+                else
+                {
+                    elemento.Descr = Convert.ToString(dt.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
+                }
+                lista.Add(elemento);
+            }
+            return lista;
         }
     }
 }

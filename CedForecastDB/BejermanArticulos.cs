@@ -26,7 +26,9 @@ namespace CedForecastDB.Bejerman
             {
                 DataTable dt = new DataTable();
                 System.Text.StringBuilder a = new StringBuilder();
-                a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where ltrim(rtrim(art_CodGen)) in (");
+                a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod, isnull(lpr_Precio, 0) as lpr_Precio ");
+                a.Append("from Articulos left outer join ListaPrec on (Articulos.art_CodGen=ListaPrec.lprart_CodGen and ListaPrec.lprdlp_Cod=4) ");
+                a.Append("where ltrim(rtrim(art_CodGen)) in (");
                 for (int i = 0; i < Articulos.Rows.Count; i++)
                 {
                     a.Append("'" + Articulos.Rows[i]["Articulo"] + "'");
@@ -34,7 +36,9 @@ namespace CedForecastDB.Bejerman
                     {
                         a.Append(", ");
                     }
-                } a.Append(") order by ltrim(rtrim(art_CodGen)) ");
+                }
+                a.Append(") ");
+                a.Append("order by ltrim(rtrim(art_CodGen)) ");
                 dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
                 lista = Lista(dt);
             }
@@ -70,6 +74,13 @@ namespace CedForecastDB.Bejerman
             Hasta.Artcla_Cod = Convert.ToString(Desde["artcla_Cod"]);
             Hasta.Artda2_cod = Convert.ToString(Desde["artda2_cod"]);
             Hasta.Art_FecMod = Convert.ToDateTime(Desde["art_FecMod"]);
+            try
+            {
+                Hasta.Lpr_Precio = Convert.ToDecimal(Desde["lpr_Precio"]);
+            }
+            catch
+            {
+            }
         }
     }
 }
