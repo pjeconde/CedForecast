@@ -56,7 +56,7 @@ namespace CedForecastWeb.Forecast
         {
             CedForecastWebEntidades.ConfirmacionCarga confirmacionCarga = new CedForecastWebEntidades.ConfirmacionCarga();
             CompletarDatosEntidad(confirmacionCarga);
-            confirmacionCarga.IdEstadoConfirmacionCarga = "Baja";
+            confirmacionCarga.IdEstadoConfirmacionCarga = "Anulada";
             CedForecastWebRN.ConfirmacionCarga.AnularConfirmacion(confirmacionCarga, IdEstadoConfirmacionCargaTextBox.Text, ((CedForecastWebEntidades.Sesion)Session["Sesion"]));
             Leer();
         }
@@ -96,7 +96,7 @@ namespace CedForecastWeb.Forecast
                         AnularConfirmacionButton.Enabled = true;
                         ConfirmarButton.Enabled = false;
                         break;
-                    case "Baja":
+                    case "Anulada":
                     case null:
                         AnularConfirmacionButton.Enabled = false;
                         ConfirmarButton.Enabled = true;

@@ -35,6 +35,7 @@ namespace CedForecastWebEntidades
         private decimal cantidad10;
         private decimal cantidad11;
         private decimal cantidad12;
+        private decimal cantidadTotal;
         private decimal cantidad13;
         private decimal cantidad14;
 
@@ -280,8 +281,8 @@ namespace CedForecastWebEntidades
         {
             get
             {
-                decimal suma = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad9 + cantidad10 + cantidad11 + cantidad12;
-                return suma;
+                cantidadTotal = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad9 + cantidad10 + cantidad11 + cantidad12;
+                return cantidadTotal;
             }
         }
         public decimal Cantidad13
