@@ -79,13 +79,12 @@
             PureComponents.NicePanel.ContainerStyle containerStyle7 = new PureComponents.NicePanel.ContainerStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle13 = new PureComponents.NicePanel.PanelHeaderStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle14 = new PureComponents.NicePanel.PanelHeaderStyle();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             this.BrowserUiTab = new Janus.Windows.UI.Tab.UITab();
-            this.TabBrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
+            this.BrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.BrowserPanel = new System.Windows.Forms.Panel();
-            this.BrowserGridsPanel = new System.Windows.Forms.Panel();
-            this.BrowserGridPanel = new System.Windows.Forms.Panel();
             this.BrowserGridEX = new Janus.Windows.GridEX.GridEX();
-            this.TabFiltroUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
+            this.FiltroUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.FiltroPanel = new System.Windows.Forms.Panel();
             this.ValorizadoNicePanel = new PureComponents.NicePanel.NicePanel();
             this.ValorizadoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
@@ -111,6 +110,9 @@
             this.PeriodoDesdeCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.FechaLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.MensajesUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
+            this.MensajesPanel = new System.Windows.Forms.Panel();
+            this.MensajesGridEX = new Janus.Windows.GridEX.GridEX();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -122,12 +124,10 @@
             this.FondoNicePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).BeginInit();
             this.BrowserUiTab.SuspendLayout();
-            this.TabBrowserUiTabPage.SuspendLayout();
+            this.BrowserUiTabPage.SuspendLayout();
             this.BrowserPanel.SuspendLayout();
-            this.BrowserGridsPanel.SuspendLayout();
-            this.BrowserGridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrowserGridEX)).BeginInit();
-            this.TabFiltroUiTabPage.SuspendLayout();
+            this.FiltroUiTabPage.SuspendLayout();
             this.FiltroPanel.SuspendLayout();
             this.ValorizadoNicePanel.SuspendLayout();
             this.nicePanel1.SuspendLayout();
@@ -136,6 +136,9 @@
             this.VendedoresNicePanel.SuspendLayout();
             this.TipoReporteNicePanel.SuspendLayout();
             this.PeriodoNicePanel.SuspendLayout();
+            this.MensajesUiTabPage.SuspendLayout();
+            this.MensajesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MensajesGridEX)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -160,8 +163,9 @@
             // BrowserUiTab
             // 
             this.BrowserUiTab.BackColor = System.Drawing.Color.Transparent;
-            this.BrowserUiTab.Controls.Add(this.TabBrowserUiTabPage);
-            this.BrowserUiTab.Controls.Add(this.TabFiltroUiTabPage);
+            this.BrowserUiTab.Controls.Add(this.BrowserUiTabPage);
+            this.BrowserUiTab.Controls.Add(this.FiltroUiTabPage);
+            this.BrowserUiTab.Controls.Add(this.MensajesUiTabPage);
             this.BrowserUiTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserUiTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrowserUiTab.Location = new System.Drawing.Point(5, 30);
@@ -172,8 +176,9 @@
             this.BrowserUiTab.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.BrowserUiTab.TabIndex = 10;
             this.BrowserUiTab.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
-            this.TabBrowserUiTabPage,
-            this.TabFiltroUiTabPage});
+            this.BrowserUiTabPage,
+            this.FiltroUiTabPage,
+            this.MensajesUiTabPage});
             this.BrowserUiTab.TabsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.DimGray;
             this.BrowserUiTab.TabsStateStyles.SelectedFormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.BrowserUiTab.TabStripFormatStyle.FontBold = Janus.Windows.UI.TriState.True;
@@ -182,49 +187,28 @@
             this.BrowserUiTab.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.Office2003;
             this.BrowserUiTab.SelectedTabChanged += new Janus.Windows.UI.Tab.TabEventHandler(this.BrowserUiTab_SelectedTabChanged);
             // 
-            // TabBrowserUiTabPage
+            // BrowserUiTabPage
             // 
-            this.TabBrowserUiTabPage.Controls.Add(this.BrowserPanel);
-            this.TabBrowserUiTabPage.Key = "Datos";
-            this.TabBrowserUiTabPage.Location = new System.Drawing.Point(1, 21);
-            this.TabBrowserUiTabPage.Name = "TabBrowserUiTabPage";
-            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(946, 414);
-            this.TabBrowserUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.TabBrowserUiTabPage.TabIndex = 1;
-            this.TabBrowserUiTabPage.Tag = "";
-            this.TabBrowserUiTabPage.Text = "Datos";
+            this.BrowserUiTabPage.Controls.Add(this.BrowserPanel);
+            this.BrowserUiTabPage.Key = "Datos";
+            this.BrowserUiTabPage.Location = new System.Drawing.Point(1, 21);
+            this.BrowserUiTabPage.Name = "BrowserUiTabPage";
+            this.BrowserUiTabPage.Size = new System.Drawing.Size(946, 414);
+            this.BrowserUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.BrowserUiTabPage.TabIndex = 1;
+            this.BrowserUiTabPage.Tag = "";
+            this.BrowserUiTabPage.Text = "Datos";
             // 
             // BrowserPanel
             // 
             this.BrowserPanel.BackColor = System.Drawing.Color.PeachPuff;
-            this.BrowserPanel.Controls.Add(this.BrowserGridsPanel);
+            this.BrowserPanel.Controls.Add(this.BrowserGridEX);
             this.BrowserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserPanel.Name = "BrowserPanel";
             this.BrowserPanel.Padding = new System.Windows.Forms.Padding(5);
             this.BrowserPanel.Size = new System.Drawing.Size(946, 414);
             this.BrowserPanel.TabIndex = 5;
-            // 
-            // BrowserGridsPanel
-            // 
-            this.BrowserGridsPanel.BackColor = System.Drawing.Color.PeachPuff;
-            this.BrowserGridsPanel.Controls.Add(this.BrowserGridPanel);
-            this.BrowserGridsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BrowserGridsPanel.Location = new System.Drawing.Point(5, 5);
-            this.BrowserGridsPanel.Name = "BrowserGridsPanel";
-            this.BrowserGridsPanel.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.BrowserGridsPanel.Size = new System.Drawing.Size(936, 404);
-            this.BrowserGridsPanel.TabIndex = 6;
-            // 
-            // BrowserGridPanel
-            // 
-            this.BrowserGridPanel.BackColor = System.Drawing.Color.PeachPuff;
-            this.BrowserGridPanel.Controls.Add(this.BrowserGridEX);
-            this.BrowserGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BrowserGridPanel.Location = new System.Drawing.Point(0, 0);
-            this.BrowserGridPanel.Name = "BrowserGridPanel";
-            this.BrowserGridPanel.Size = new System.Drawing.Size(932, 404);
-            this.BrowserGridPanel.TabIndex = 9;
             // 
             // BrowserGridEX
             // 
@@ -257,30 +241,30 @@
             this.BrowserGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.BrowserGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.BrowserGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.BrowserGridEX.Location = new System.Drawing.Point(0, 0);
+            this.BrowserGridEX.Location = new System.Drawing.Point(5, 5);
             this.BrowserGridEX.Name = "BrowserGridEX";
             this.BrowserGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
             this.BrowserGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Gold;
             this.BrowserGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
             this.BrowserGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.BrowserGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.BrowserGridEX.Size = new System.Drawing.Size(932, 404);
-            this.BrowserGridEX.TabIndex = 6;
+            this.BrowserGridEX.Size = new System.Drawing.Size(936, 404);
+            this.BrowserGridEX.TabIndex = 7;
             this.BrowserGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.BrowserGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
-            // TabFiltroUiTabPage
+            // FiltroUiTabPage
             // 
-            this.TabFiltroUiTabPage.Controls.Add(this.FiltroPanel);
-            this.TabFiltroUiTabPage.Key = "Filtro";
-            this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
-            this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
-            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(946, 414);
-            this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.TabFiltroUiTabPage.TabIndex = 0;
-            this.TabFiltroUiTabPage.Tag = "";
-            this.TabFiltroUiTabPage.Text = "Filtro avanzado";
-            this.TabFiltroUiTabPage.Visible = false;
+            this.FiltroUiTabPage.Controls.Add(this.FiltroPanel);
+            this.FiltroUiTabPage.Key = "Filtro";
+            this.FiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
+            this.FiltroUiTabPage.Name = "FiltroUiTabPage";
+            this.FiltroUiTabPage.Size = new System.Drawing.Size(946, 414);
+            this.FiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.FiltroUiTabPage.TabIndex = 0;
+            this.FiltroUiTabPage.Tag = "";
+            this.FiltroUiTabPage.Text = "Filtro avanzado";
+            this.FiltroUiTabPage.Visible = false;
             // 
             // FiltroPanel
             // 
@@ -313,7 +297,6 @@
             this.ValorizadoNicePanel.ContainerImage = containerImage1;
             this.ValorizadoNicePanel.ContextMenuButton = false;
             this.ValorizadoNicePanel.Controls.Add(this.ValorizadoUiCheckBox);
-            this.ValorizadoNicePanel.Enabled = false;
             headerImage1.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage1.Image = null;
             this.ValorizadoNicePanel.FooterImage = headerImage1;
@@ -374,6 +357,8 @@
             // 
             // ValorizadoUiCheckBox
             // 
+            this.ValorizadoUiCheckBox.Checked = true;
+            this.ValorizadoUiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ValorizadoUiCheckBox.ForeColor = System.Drawing.Color.Navy;
             this.ValorizadoUiCheckBox.Location = new System.Drawing.Point(8, 7);
             this.ValorizadoUiCheckBox.Name = "ValorizadoUiCheckBox";
@@ -1043,6 +1028,69 @@
             this.label4.Text = "al";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // MensajesUiTabPage
+            // 
+            this.MensajesUiTabPage.Controls.Add(this.MensajesPanel);
+            this.MensajesUiTabPage.Key = "Mensajes";
+            this.MensajesUiTabPage.Location = new System.Drawing.Point(1, 21);
+            this.MensajesUiTabPage.Name = "MensajesUiTabPage";
+            this.MensajesUiTabPage.Size = new System.Drawing.Size(946, 414);
+            this.MensajesUiTabPage.TabIndex = 2;
+            this.MensajesUiTabPage.TabVisible = false;
+            this.MensajesUiTabPage.Text = "Avisos / Advertencias / Errores";
+            // 
+            // MensajesPanel
+            // 
+            this.MensajesPanel.BackColor = System.Drawing.Color.LightCoral;
+            this.MensajesPanel.Controls.Add(this.MensajesGridEX);
+            this.MensajesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MensajesPanel.Location = new System.Drawing.Point(0, 0);
+            this.MensajesPanel.Name = "MensajesPanel";
+            this.MensajesPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.MensajesPanel.Size = new System.Drawing.Size(946, 414);
+            this.MensajesPanel.TabIndex = 6;
+            // 
+            // MensajesGridEX
+            // 
+            this.MensajesGridEX.AllowColumnDrag = false;
+            this.MensajesGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.MensajesGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.MensajesGridEX.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
+            this.MensajesGridEX.BlendColor = System.Drawing.Color.White;
+            this.MensajesGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.MensajesGridEX.DesignTimeLayout = gridEXLayout2;
+            this.MensajesGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MensajesGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
+            this.MensajesGridEX.ExpandableCards = false;
+            this.MensajesGridEX.FlatBorderColor = System.Drawing.Color.Brown;
+            this.MensajesGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.MensajesGridEX.GridLineColor = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
+            this.MensajesGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
+            this.MensajesGridEX.GroupByBoxVisible = false;
+            this.MensajesGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
+            this.MensajesGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.MensajesGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.MensajesGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.MensajesGridEX.Location = new System.Drawing.Point(5, 5);
+            this.MensajesGridEX.Name = "MensajesGridEX";
+            this.MensajesGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.MensajesGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.MensajesGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.MensajesGridEX.Size = new System.Drawing.Size(936, 404);
+            this.MensajesGridEX.TabIndex = 7;
+            this.MensajesGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
+            this.MensajesGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
             // SalirUiButton
             // 
             this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -1153,12 +1201,10 @@
             this.FondoNicePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).EndInit();
             this.BrowserUiTab.ResumeLayout(false);
-            this.TabBrowserUiTabPage.ResumeLayout(false);
+            this.BrowserUiTabPage.ResumeLayout(false);
             this.BrowserPanel.ResumeLayout(false);
-            this.BrowserGridsPanel.ResumeLayout(false);
-            this.BrowserGridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BrowserGridEX)).EndInit();
-            this.TabFiltroUiTabPage.ResumeLayout(false);
+            this.FiltroUiTabPage.ResumeLayout(false);
             this.FiltroPanel.ResumeLayout(false);
             this.ValorizadoNicePanel.ResumeLayout(false);
             this.nicePanel1.ResumeLayout(false);
@@ -1167,6 +1213,9 @@
             this.VendedoresNicePanel.ResumeLayout(false);
             this.TipoReporteNicePanel.ResumeLayout(false);
             this.PeriodoNicePanel.ResumeLayout(false);
+            this.MensajesUiTabPage.ResumeLayout(false);
+            this.MensajesPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MensajesGridEX)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1176,12 +1225,9 @@
         #endregion
 
         private Janus.Windows.UI.Tab.UITab BrowserUiTab;
-        private Janus.Windows.UI.Tab.UITabPage TabBrowserUiTabPage;
+        private Janus.Windows.UI.Tab.UITabPage BrowserUiTabPage;
         private System.Windows.Forms.Panel BrowserPanel;
-        private System.Windows.Forms.Panel BrowserGridsPanel;
-        private System.Windows.Forms.Panel BrowserGridPanel;
-        private Janus.Windows.GridEX.GridEX BrowserGridEX;
-        private Janus.Windows.UI.Tab.UITabPage TabFiltroUiTabPage;
+        private Janus.Windows.UI.Tab.UITabPage FiltroUiTabPage;
         private System.Windows.Forms.Panel FiltroPanel;
         private PureComponents.NicePanel.NicePanel TipoReporteNicePanel;
         private Janus.Windows.EditControls.UIRadioButton ArticulosyVendedoresUiRadioButton;
@@ -1213,5 +1259,9 @@
         private Janus.Windows.EditControls.UICheckBox ArmaGruposUiCheckBox;
         private PureComponents.NicePanel.NicePanel ValorizadoNicePanel;
         private Janus.Windows.EditControls.UICheckBox ValorizadoUiCheckBox;
+        private Janus.Windows.UI.Tab.UITabPage MensajesUiTabPage;
+        private Janus.Windows.GridEX.GridEX BrowserGridEX;
+        private System.Windows.Forms.Panel MensajesPanel;
+        private Janus.Windows.GridEX.GridEX MensajesGridEX;
     }
 }

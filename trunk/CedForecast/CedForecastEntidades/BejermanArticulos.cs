@@ -13,6 +13,7 @@ namespace CedForecastEntidades.Bejerman
         private string artcla_Cod;
         private string artda2_cod;
         private DateTime art_FecMod;
+        private decimal lpr_Precio;
 
         public Articulos()
         {
@@ -81,6 +82,17 @@ namespace CedForecastEntidades.Bejerman
             get
             {
                 return art_FecMod;
+            }
+        }
+        public decimal Lpr_Precio
+        {
+            set
+            {
+                lpr_Precio = value;
+            }
+            get
+            {
+                return lpr_Precio;
             }
         }
     }

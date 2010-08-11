@@ -15,9 +15,10 @@ namespace CedForecast
         public CrossTabArticulosClientesForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
-            TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
-            TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk; 
-            TabBrowserUiTabPage.TabVisible = false;
+            BrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
+            FiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk;
+            MensajesUiTabPage.StateStyles.FormatStyle.BackColor = Color.LightCoral;
+            BrowserUiTabPage.TabVisible = false;
             CancelarUiButton.Visible = false;
             volverATabBrowser = false;
             ConfigurarFiltros();
@@ -44,7 +45,21 @@ namespace CedForecast
                 }
                 ArticulosTreeView.Nodes.Add(ndFamilia);
             }
-            //ArticulosTreeView.ExpandAll();
+            //Agrego Articulos sin Familia
+            CedForecastDB.Forecast db = new CedForecastDB.Forecast(Aplicacion.Sesion);
+            List<CedForecastEntidades.Articulo> listaArticulosSinFamilia = db.LeerArticulosSinFamilia();
+            if (listaArticulosSinFamilia.Count > 0)
+            {
+                TreeNode ndSinFamilia = new TreeNode("<<<Desconocida>>>");
+                ndSinFamilia.Tag = String.Empty;
+                for (int j = 0; j < listaArticulosSinFamilia.Count; j++)
+                {
+                    TreeNode ndArticuloSinFamilia = new TreeNode(listaArticulosSinFamilia[j].Id + "-" + listaArticulosSinFamilia[j].Descr);
+                    ndArticuloSinFamilia.Tag = listaArticulosSinFamilia[j].Id;
+                    ndSinFamilia.Nodes.Add(ndArticuloSinFamilia);
+                }
+                ArticulosTreeView.Nodes.Add(ndSinFamilia);
+            }
             ClientesTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Zona zonas = new CedForecastDB.Bejerman.Zona(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Zona> listaZonas = zonas.LeerLista();
@@ -60,7 +75,6 @@ namespace CedForecast
                 }
                 ClientesTreeView.Nodes.Add(ndZona);
             } 
-            //ClientesTreeView.ExpandAll();
             VendedoresTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Vendedor vendedores = new CedForecastDB.Bejerman.Vendedor(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Vendedor> listaVendedores = vendedores.LeerLista();
@@ -75,8 +89,9 @@ namespace CedForecast
         {
             if (volverATabBrowser)
             {
-                TabBrowserUiTabPage.TabVisible = true;
-                BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
+                BrowserUiTabPage.TabVisible = true;
+                MensajesUiTabPage.TabVisible = true;
+                BrowserUiTab.SelectedTab = BrowserUiTabPage;
             }
             else
             {
@@ -88,12 +103,39 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
-                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
+                List<CedForecastEntidades.Advertencia> advertencias;
+                DataTable dt = CedForecastRN.Reporte.CrossTabArticulosClientes(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), PeriodoHastaCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), ValorizadoUiCheckBox.Checked, Aplicacion.Sesion, out advertencias);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
-                TabBrowserUiTabPage.TabVisible = true;
-                BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
+                BrowserUiTabPage.TabVisible = true;
+                MensajesUiTabPage.TabVisible = (advertencias.Count > 0);
+                if (MensajesUiTabPage.TabVisible)
+                {
+                    MensajesGridEX.DataSource = advertencias;
+                    CedForecastEntidades.Advertencia error = advertencias.Find(delegate(CedForecastEntidades.Advertencia a) { return a.Tipo == CedForecastEntidades.Advertencia.TipoSeveridad.Error.ToString(); });
+                    if (error != null)
+                    {
+                        BrowserUiTab.SelectedTab = MensajesUiTabPage;
+                    }
+                    else
+                    {
+                        BrowserUiTab.SelectedTab = BrowserUiTabPage;
+                    }
+                }
+                else
+                {
+                    MensajesGridEX.DataSource = null;
+                    BrowserUiTab.SelectedTab = BrowserUiTabPage;
+                }
                 volverATabBrowser = true;
+                if (ValorizadoUiCheckBox.Checked)
+                {
+                    FondoNicePanel.HeaderText = this.Text + " (valorizado)";
+                }
+                else
+                {
+                    FondoNicePanel.HeaderText = this.Text + " (cantidades)";
+                }
             }
             catch (Exception ex)
             {
@@ -169,12 +211,14 @@ namespace CedForecast
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
         {
-            if (BrowserUiTab.SelectedTab == TabFiltroUiTabPage)
+            if (BrowserUiTab.SelectedTab == FiltroUiTabPage)
             {
-                TabBrowserUiTabPage.TabVisible = false;
+                BrowserUiTabPage.TabVisible = false;
+                MensajesUiTabPage.TabVisible = false;
                 EnviarAUiButton.Visible = false;
                 CancelarUiButton.Visible = true;
                 CancelarUiButton.Text = "Cancelar";
+                FondoNicePanel.HeaderText = this.Text;
             }
             else
             {

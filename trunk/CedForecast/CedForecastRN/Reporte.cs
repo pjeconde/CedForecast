@@ -7,8 +7,9 @@ namespace CedForecastRN
 {
     public static class Reporte
     {
-        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, CedEntidades.Sesion Sesion)
+        public static DataTable CrossTabArticulosClientes(string IdPeriodoDesde, string IdPeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, bool Valorizado, CedEntidades.Sesion Sesion, out List<CedForecastEntidades.Advertencia> Advertencias)
         {
+            Advertencias = new List<CedForecastEntidades.Advertencia>();
             //Validacion de parámetros
             if (ListaArticulos == String.Empty)
             {
@@ -36,7 +37,6 @@ namespace CedForecastRN
             DataTable dtClientes = ds.Tables[2];
             DataTable dtDatos = ds.Tables[3];
             //Leer datos Bejerman
-            DateTime todos = new DateTime(1980, 1, 1);
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Sesion).LeerLista(dtArticulos);
             List<CedForecastEntidades.Bejerman.Vendedor> vendedores = new CedForecastDB.Bejerman.Vendedor(Sesion).LeerLista(dtVendedores);
             List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista(dtClientes);
@@ -77,6 +77,7 @@ namespace CedForecastRN
             }
             //Llenar crosstab
             string claveAnterior = String.Empty;
+            decimal precio = -1;
             for (int i = 0; i < dtDatos.Rows.Count; i++)
             {
                 string claveActual=Convert.ToString(dtDatos.Rows[i]["Articulo"]);
@@ -86,11 +87,16 @@ namespace CedForecastRN
                 }
                 if (claveAnterior != claveActual)
                 {
-                    DataRow dr=dt.NewRow();
+                    if (precio == 0)
+                    {
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dt.Rows[dt.Rows.Count - 1]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
+                    }
+                    DataRow dr = dt.NewRow();
                     CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (familiaXArticulo == null)
                     {
                         dr["Familia"] = "<<<Desconocida>>>";
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-01", "Artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]) + " sin familia definida", CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                     }
                     else
                     {
@@ -100,10 +106,28 @@ namespace CedForecastRN
                     if (articulo == null)
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-<<<Desconocido>>>";
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-02", "Descripción no encontrada para el artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                        precio = 0;
                     }
                     else
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen + " ("+articulo.Artcla_Cod+")";
+                        precio = articulo.Lpr_Precio;
+                    }
+                    if (!Valorizado)
+                    {
+                        precio = 1;
+                    }
+                    else
+                    {
+                        if (articulo == null)
+                        {
+                            precio = 0;
+                        }
+                        else
+                        {
+                            precio = articulo.Lpr_Precio;
+                        }
                     }
                     if (incluyeVendedor) 
                     {
@@ -121,8 +145,9 @@ namespace CedForecastRN
                     dt.Rows.Add(dr);
                     claveAnterior = claveActual;
                 }
-                dt.Rows[dt.Rows.Count - 1][Convert.ToString(dtDatos.Rows[i]["Cliente"])] = Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]);
-                dt.Rows[dt.Rows.Count - 1]["Total"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total"]) + Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]);
+                decimal valor = Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]) * precio;
+                dt.Rows[dt.Rows.Count - 1][Convert.ToString(dtDatos.Rows[i]["Cliente"])] = valor;
+                dt.Rows[dt.Rows.Count - 1]["Total"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total"]) + valor;
                 dt.AcceptChanges();
             }
             return dt;

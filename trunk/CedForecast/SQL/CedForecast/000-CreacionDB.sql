@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[Forecast](
 	[IdArticulo] [varchar](20) NOT NULL,
 	[IdPeriodo] [varchar](6) NOT NULL,
 	[Cantidad] [decimal](18, 0) NOT NULL,
- CONSTRAINT [PK_Forecast_1] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Forecast] PRIMARY KEY CLUSTERED 
 (
 	[IdTipoPlanilla] ASC,
 	[IdCuenta] ASC,
