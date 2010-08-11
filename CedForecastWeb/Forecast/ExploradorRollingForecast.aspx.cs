@@ -48,12 +48,7 @@ namespace CedForecastWeb.Forecast
                             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             PeriodoTextBox.Text = periodo.IdPeriodo;
 
-                            int colFijas = 4; //Es 0 y 1.
-                            for (int i = 1; i <= 12; i++)
-                            {
-                                ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
-                            }
-                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
+                            ArmarTextoHeader();
 
                             LeerPeriodoActual();
                             BindPagingGrid();
@@ -70,11 +65,21 @@ namespace CedForecastWeb.Forecast
 				MsgErrorLabel.Text = CedeiraUIWebForms.Excepciones.Detalle(ex);
 			}
 		}
+        private void ArmarTextoHeader()
+        {
+            int colFijas = 4; //Es 0 y 1.
+            for (int i = 1; i <= 12; i++)
+            {
+                ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
+            }
+            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
+        }
 		private void BindPagingGrid()
 		{
 			try
 			{
-				System.Collections.Generic.List<CedForecastWebEntidades.RollingForecast> lista;
+                ArmarTextoHeader();
+                System.Collections.Generic.List<CedForecastWebEntidades.RollingForecast> lista;
                 CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
                 Forecast.IdTipoPlanilla = "RollingForecast";
                 Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
@@ -181,7 +186,7 @@ namespace CedForecastWeb.Forecast
 		}
 		protected void SalirButton_Click(object sender, EventArgs e)
 		{
-			Server.Transfer("~/Admin/Default.aspx");
+			Server.Transfer("~/Forecast/Consulta.aspx");
 		}
         protected void LeerButton_Click(object sender, EventArgs e)
         {
