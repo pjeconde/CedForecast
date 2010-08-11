@@ -48,15 +48,8 @@ namespace CedForecastWeb.Forecast
                             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             PeriodoTextBox.Text = periodo.IdPeriodo;
 
-                            int colFijas = 1; //Es 0 y 1.
-                            for (int i = 1; i <= 12; i++)
-                            {
-                                ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
-                            }
-                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text;
-                            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
-                            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
-
+                            ArmarTextoHeader();
+                            
                             LeerPeriodoActual();
                             BindPagingGrid();
 						}
@@ -72,10 +65,22 @@ namespace CedForecastWeb.Forecast
 				MsgErrorLabel.Text = CedeiraUIWebForms.Excepciones.Detalle(ex);
 			}
 		}
+        private void ArmarTextoHeader()
+        {
+            int colFijas = 1; //Es 0 y 1.
+            for (int i = 1; i <= 12; i++)
+            {
+                ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
+            }
+            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text;
+            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
+            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
+        }
 		private void BindPagingGrid()
 		{
 			try
 			{
+                ArmarTextoHeader();
 				System.Collections.Generic.List<CedForecastWebEntidades.Proyectado> lista;
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
@@ -194,7 +199,7 @@ namespace CedForecastWeb.Forecast
 		}
 		protected void SalirButton_Click(object sender, EventArgs e)
 		{
-			Server.Transfer("~/Admin/Default.aspx");
+			Server.Transfer("~/Forecast/Consulta.aspx");
 		}
         protected void LeerButton_Click(object sender, EventArgs e)
         {
