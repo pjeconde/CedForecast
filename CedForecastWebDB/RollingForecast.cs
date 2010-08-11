@@ -101,11 +101,17 @@ namespace CedForecastWebDB
                         }
                     }
                     CopiarDet(dt.Rows[i], forecast, mes);
+                    CalcularDesvio(forecast);
                  }
                  lista.Add(forecast);
             }
             cantidadFilas = lista.Count;
             return lista;
+        }
+        private void CalcularDesvio(CedForecastWebEntidades.RollingForecast Forecast)
+        {
+            //Esta llamada a la consulta de Desvio, completa el atributo desvio para el FileHelper.
+            decimal d = Forecast.Desvio;
         }
         public List<CedForecastWebEntidades.RollingForecast> TotalProyectado(CedForecastWebEntidades.RollingForecast Forecast)
         { 
@@ -417,6 +423,7 @@ namespace CedForecastWebDB
                     forecast.Cantidad10 = Convert.ToDecimal(dt.Rows[i]["Cantidad10"].ToString());
                     forecast.Cantidad11 = Convert.ToDecimal(dt.Rows[i]["Cantidad11"].ToString());
                     forecast.Cantidad12 = Convert.ToDecimal(dt.Rows[i]["Cantidad12"].ToString());
+                    CalcularDesvio(forecast);
                     lista.Add(forecast);
                 }
             }

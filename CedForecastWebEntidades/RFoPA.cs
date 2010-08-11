@@ -4,20 +4,13 @@ using System.Text;
 
 namespace CedForecastWebEntidades
 {
-    /// <comentarios/>
     [Serializable]
-    [FileHelpers.DelimitedRecord(";")]
     public class RFoPA
     {
         private string idTipoPlanilla;
         private string idCuenta;
         private string idCliente;
-        private string descrCliente;
-        [FileHelpers.FieldIgnored()]
         private CedForecastWebEntidades.Cliente cliente;
-        private string idArticulo;
-        private string descrArticulo;
-        [FileHelpers.FieldIgnored()]
         private CedForecastWebEntidades.Articulo articulo;
         private string idPeriodo;
         private decimal ventas;
@@ -35,9 +28,7 @@ namespace CedForecastWebEntidades
         private decimal cantidad10;
         private decimal cantidad11;
         private decimal cantidad12;
-        [FileHelpers.FieldOptional]
         private decimal cantidad13;
-        [FileHelpers.FieldOptional]
         private decimal cantidad14;
 
         public RFoPA()
@@ -79,8 +70,6 @@ namespace CedForecastWebEntidades
             set
             {
                 cliente = value;
-                idCliente = cliente.Id;
-                descrCliente = cliente.Descr;
             }
             get
             {
@@ -91,14 +80,14 @@ namespace CedForecastWebEntidades
         {
             get
             {
-                return idCliente;
+                return cliente.Id;
             }
         }
         public string DescrCliente
         {
             get
             {
-                return descrCliente;
+                return cliente.Descr;
             }
         }
         public CedForecastWebEntidades.Articulo Articulo
@@ -106,8 +95,6 @@ namespace CedForecastWebEntidades
             set
             {
                 articulo = value;
-                idArticulo = articulo.Id;
-                descrArticulo = articulo.Descr;
             }
             get
             {
@@ -118,14 +105,14 @@ namespace CedForecastWebEntidades
         {
             get
             {
-                return idArticulo;
+                return Articulo.Id;
             }
         }
         public string DescrArticulo
         {
             get
             {
-                return descrArticulo;
+                return Articulo.Descr;
             }
         }
         public string DescrArticuloCombo

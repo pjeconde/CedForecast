@@ -39,7 +39,7 @@ namespace CedForecastWebDB
                 a.Append("and FamiliaArticulo.IdFamiliaArticulo='" + Proyectado.Articulo.FamiliaArticulo.Id + "' ");
             }
             string periodo = "";
-            periodo = UltimoMesForecast(Proyectado.IdPeriodo);
+            periodo = Proyectado.IdPeriodo + "99";
             a.Append("and IdPeriodo >= '" + Proyectado.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
             a.Append("order by IdArticulo asc, IdPeriodo asc");
@@ -55,7 +55,7 @@ namespace CedForecastWebDB
                 {
                     string periodoInicial = proyectado.IdPeriodo;
                     int mes = 0;
-                    mes = Convert.ToInt32(periodoInicial.Substring(4, 2));
+                    mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
                     if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
                     {
                         idArticulo = dt.Rows[i]["IdArticulo"].ToString();
@@ -64,11 +64,17 @@ namespace CedForecastWebDB
                         CopiarCab(dt.Rows[i], proyectado, Proyectado.IdPeriodo);
                     }
                     CopiarDet(dt.Rows[i], proyectado, mes);
+                    CalcularCantidadTotal(proyectado);
                  }
                  lista.Add(proyectado);
             }
             cantidadFilas = lista.Count;
             return lista;
+        }
+        private void CalcularCantidadTotal(CedForecastWebEntidades.Proyectado Proyectado)
+        {
+            //Esta llamada a la consulta de Desvio, completa el atributo desvio para el FileHelper.
+            decimal d = Proyectado.CantidadTotal;
         }
         private void CopiarCab(DataRow Desde, CedForecastWebEntidades.Proyectado Hasta, string PeriodoInicial)
         {
@@ -154,6 +160,18 @@ namespace CedForecastWebDB
         {
             DateTime primerMes = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), 1, 1);
             return primerMes.ToString("yyyyMM");
+        }
+        private int MesAProcesar(string PeriodoAProcesar, string PeriodoInicial)
+        {
+            int i = 0;
+            for (i = 1; i <= 14; i++)
+            {
+                if (Convert.ToInt32(PeriodoInicial.Substring(0, 4)) + i == Convert.ToInt32(PeriodoAProcesar.Substring(0, 4)) + Convert.ToInt32(PeriodoAProcesar.Substring(4, 2)))
+                {
+                    break;
+                }
+            }
+            return i;
         }
         public static string PeriodoAProcesar(int i, string PeriodoInicial)
         {
@@ -335,6 +353,7 @@ namespace CedForecastWebDB
                     proyectado.Cantidad12 = Convert.ToDecimal(dt.Rows[i]["Cantidad12"].ToString());
                     proyectado.Cantidad13 = Convert.ToDecimal(dt.Rows[i]["Cantidad13"].ToString());
                     proyectado.Cantidad14 = Convert.ToDecimal(dt.Rows[i]["Cantidad14"].ToString());
+                    CalcularCantidadTotal(proyectado);
                     lista.Add(proyectado);
                 }
             }
