@@ -219,7 +219,7 @@ namespace CedForecastWeb.Forecast
             CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
             Forecast.IdPeriodo = PeriodoTextBox.Text;
             lista = CedForecastWebRN.RollingForecast.Lista(Forecast, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-            string archivo = "Tipo de Planilla; Vendedor; Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; Proyectado; Ventas; Desvío; ";
+            string archivo = "Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; Proyectado; Ventas; Desvío; ";
             int colFijas = 4;
             for (int i = 1; i <= 12; i++)
             {
