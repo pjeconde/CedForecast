@@ -29,6 +29,7 @@ namespace CedForecastWeb.Admin
 						AdministracionLinkButton.Visible = true;
 						break;
 					case "OperForecast":
+                    case "SupForecast":
                         //Operador
 						break;
 				}

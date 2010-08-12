@@ -93,7 +93,7 @@ namespace CedForecastWeb.Forecast
                         {
                             switch (confirmacionCarga.IdEstadoConfirmacionCarga)
                             {
-                                case "Baja":
+                                case "Anulada":
                                 case null:
                                     LeerButton.Enabled = true;
                                     ClienteLabel.Enabled = true;

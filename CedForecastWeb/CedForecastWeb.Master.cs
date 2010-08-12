@@ -35,6 +35,7 @@ namespace CedForecastWeb
                         AdministracionLinkButton.Enabled = true;
                         break;
                     case "OperForecast":
+                    case "SupForecast":
                         switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
                         {
                             case "Vigente":

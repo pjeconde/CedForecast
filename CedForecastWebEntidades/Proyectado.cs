@@ -11,7 +11,6 @@ namespace CedForecastWebEntidades
     {
         [FileHelpers.FieldIgnored()]
         private string idTipoPlanilla;
-        [FileHelpers.FieldIgnored()]
         private string idCuenta;
         private string idCliente;
         private string descrCliente;
