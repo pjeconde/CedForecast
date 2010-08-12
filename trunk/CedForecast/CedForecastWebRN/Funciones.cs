@@ -19,7 +19,7 @@ namespace CedForecastWebRN
         }
         public static bool NoEstaLogueadoUnOperForecast(CedForecastWebEntidades.Sesion Sesion)
         {
-            bool b = (Sesion.Cuenta.TipoCuenta.Id != "OperForecast" || Sesion.Cuenta.EstadoCuenta.Id != "Vigente");
+            bool b = (!((Sesion.Cuenta.TipoCuenta.Id == "OperForecast" && Sesion.Cuenta.EstadoCuenta.Id == "Vigente") || (Sesion.Cuenta.TipoCuenta.Id == "SupForecast" && Sesion.Cuenta.EstadoCuenta.Id == "Vigente")));
             return b;
         }
         //public static bool EstaLogueadoUnUsuarioPremium(CedForecastWebEntidades.Sesion Sesion)

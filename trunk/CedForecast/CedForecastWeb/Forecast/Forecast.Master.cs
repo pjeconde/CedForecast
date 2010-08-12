@@ -26,6 +26,7 @@ namespace CedForecastWeb.Forecast
 				switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.TipoCuenta.Id)
 				{
                     case "OperForecast":
+                    case "SupForecast":
 						switch (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.EstadoCuenta.Id)
 						{
                             case "Vigente":

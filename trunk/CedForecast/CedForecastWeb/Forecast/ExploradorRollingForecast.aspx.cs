@@ -40,7 +40,18 @@ namespace CedForecastWeb.Forecast
                             ClienteDropDownList.DataTextField = "DescrCombo";
                             ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteDropDownList.SelectedIndex = -1;
-                            
+
+                            CuentaDropDownList.DataValueField = "Id";
+                            CuentaDropDownList.DataTextField = "DescrCombo";
+                            CuentaDropDownList.DataSource = CedForecastWebRN.Cuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                            CuentaDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+
+                            CuentaDropDownList.Enabled = false;
+                            if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.IdTipoCuenta == "SupForecast")
+                            {
+                                CuentaDropDownList.Enabled = true;
+                            }
+
                             DataBind();
 
                             CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
@@ -82,9 +93,9 @@ namespace CedForecastWeb.Forecast
                 System.Collections.Generic.List<CedForecastWebEntidades.RollingForecast> lista;
                 CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
-                cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
+                cliente.Id = ClienteDropDownList.SelectedValue.Trim();
                 Forecast.Cliente = cliente;
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
@@ -116,7 +127,7 @@ namespace CedForecastWeb.Forecast
                 
                 CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
                 cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
                 Forecast.Cliente = cliente;
@@ -146,7 +157,7 @@ namespace CedForecastWeb.Forecast
 
                 CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
                 cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
                 Forecast.Cliente = cliente;
@@ -217,14 +228,14 @@ namespace CedForecastWeb.Forecast
             System.Collections.Generic.List<CedForecastWebEntidades.RollingForecast> lista;
             CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
             Forecast.IdTipoPlanilla = "RollingForecast";
-            Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+            Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
             CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
             cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
             Forecast.Cliente = cliente;
             CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
             Forecast.IdPeriodo = PeriodoTextBox.Text;
             lista = CedForecastWebRN.RollingForecast.Lista(Forecast, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-            string archivo = "Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; Proyectado; Ventas; Desvío; ";
+            string archivo = "Id.Vendedor; Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; Proyectado; Ventas; Desvío; ";
             int colFijas = 4;
             for (int i = 1; i <= 12; i++)
             {

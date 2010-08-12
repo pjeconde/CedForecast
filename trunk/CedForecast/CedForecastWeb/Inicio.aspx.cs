@@ -52,7 +52,7 @@ namespace CedForecastWeb
                     //CedForecastWebRN.Cuenta.Depurar(sesion);
                     Response.Redirect("~/Admin/" + sesion.Cuenta.PaginaDefault.URL + ".aspx");
                 }
-                if (sesion.Cuenta.TipoCuenta.Id == "OperForecast")
+                if (sesion.Cuenta.TipoCuenta.Id == "OperForecast" || sesion.Cuenta.TipoCuenta.Id == "SupForecast")
                 {
                     Response.Redirect("~/Forecast/" + sesion.Cuenta.PaginaDefault.URL + ".aspx");
                 }

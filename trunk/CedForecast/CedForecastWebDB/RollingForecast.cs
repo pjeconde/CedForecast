@@ -26,13 +26,13 @@ namespace CedForecastWebDB
             a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
             a.Append("left outer join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
             a.Append("where Forecast.IdTipoPlanilla='" + Forecast.IdTipoPlanilla + "' ");
-            if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
-            {
-                a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
-            }
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
+            }
+            if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
+            {
+                a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
             }
             if (Forecast.Articulo.FamiliaArticulo.Id != null && Forecast.Articulo.FamiliaArticulo.Id != "")
             {
@@ -42,14 +42,15 @@ namespace CedForecastWebDB
             periodo = UltimoMesForecast(Forecast.IdPeriodo);
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
-            a.Append("order by IdArticulo asc, IdPeriodo asc");
+            a.Append("order by IdCuenta asc, IdCliente asc, IdArticulo asc, IdPeriodo asc ");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.RollingForecast> lista = new List<CedForecastWebEntidades.RollingForecast>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastWebEntidades.RollingForecast forecast = new CedForecastWebEntidades.RollingForecast();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idClave = "";
+                idClave = dt.Rows[0]["IdCuenta"].ToString() + dt.Rows[0]["IdCliente"].ToString() + dt.Rows[0]["IdArticulo"].ToString(); ;
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 //Lista de ventas para Rolling Forecast
                 List<CedForecastWebEntidades.Venta> ventaLista = new List<CedForecastWebEntidades.Venta>();
@@ -78,9 +79,11 @@ namespace CedForecastWebDB
                     string periodoInicial = Forecast.IdPeriodo;
                     int mes = 0;
                     mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
-                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                    //Clave para armado de info según agrupamiento
+                    string claveAux = dt.Rows[i]["IdCuenta"].ToString() + dt.Rows[i]["IdCliente"].ToString() + dt.Rows[i]["IdArticulo"].ToString();
+                    if (idClave != claveAux)
                     {
-                        idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                        idClave = claveAux;
                         lista.Add(forecast);
                         forecast = new CedForecastWebEntidades.RollingForecast();
                         CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
