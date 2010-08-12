@@ -49,7 +49,7 @@
                                                     <asp:Label ID="VendedorLabel" runat="server" SkinID="TituloMediano" Text="Vendedor:"></asp:Label>
                                                 </td>
                                                 <td align="left" style="vertical-align: top;">
-                                                    <asp:DropDownList ID="CuentaDropDownList" runat="server" TabIndex="10" Width="320px">
+                                                    <asp:DropDownList ID="CuentaDropDownList" runat="server" TabIndex="10" Width="318px">
                                                     </asp:DropDownList>
                                                 </td>
                                             </tr>
