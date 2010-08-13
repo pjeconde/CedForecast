@@ -38,7 +38,22 @@
                                         <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
                                     </td>
                                     <td align="left" style="" valign="top">
-                                        <asp:TextBox ID="PeriodoTextBox" runat="server" Width="75px"></asp:TextBox><br />
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <asp:TextBox ID="PeriodoTextBox" runat="server" Width="75px"></asp:TextBox>
+                                                </td>
+                                                <td style="width: 40px;">
+                                                </td>
+                                                <td style="text-align: right; padding-right: 3px; vertical-align: middle;">
+                                                    <asp:Label ID="VendedorLabel" runat="server" SkinID="TituloMediano" Text="Vendedor:"></asp:Label>
+                                                </td>
+                                                <td align="left" style="vertical-align: top;">
+                                                    <asp:DropDownList ID="CuentaDropDownList" runat="server" TabIndex="10" Width="318px">
+                                                    </asp:DropDownList>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>

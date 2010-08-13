@@ -40,6 +40,17 @@ namespace CedForecastWeb.Forecast
                             ClienteDropDownList.DataTextField = "DescrCombo";
                             ClienteDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteDropDownList.SelectedIndex = -1;
+
+                            CuentaDropDownList.DataValueField = "Id";
+                            CuentaDropDownList.DataTextField = "DescrCombo";
+                            CuentaDropDownList.DataSource = CedForecastWebRN.Cuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+                            CuentaDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+
+                            CuentaDropDownList.Enabled = false;
+                            if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.IdTipoCuenta == "SupForecast")
+                            {
+                                CuentaDropDownList.Enabled = true;
+                            }
                             
                             DataBind();
 
@@ -84,7 +95,7 @@ namespace CedForecastWeb.Forecast
 				System.Collections.Generic.List<CedForecastWebEntidades.Proyectado> lista;
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
-                Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Proyectado.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
                 Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
@@ -121,7 +132,7 @@ namespace CedForecastWeb.Forecast
 				System.Collections.Generic.List<CedForecastWebEntidades.Proyectado> lista;
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
-                Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Proyectado.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.Proyectado.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Proyectado, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
@@ -148,7 +159,7 @@ namespace CedForecastWeb.Forecast
 
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
-                Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Proyectado.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
                 Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.Proyectado.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Proyectado, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
@@ -226,7 +237,7 @@ namespace CedForecastWeb.Forecast
             System.Collections.Generic.List<CedForecastWebEntidades.Proyectado> lista;
             CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
             Proyectado.IdTipoPlanilla = "Proyectado";
-            Proyectado.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+            Proyectado.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
             CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
             cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
             Proyectado.Cliente = cliente;
