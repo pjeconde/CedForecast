@@ -32,58 +32,48 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>
+                                    </td>
+                                    <td style="text-align: right; padding-right: 3px; vertical-align: middle; height: 10px;">
+                                        <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
+                                    </td>
+                                    <td align="left" style="" valign="top">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <asp:TextBox ID="PeriodoTextBox" runat="server" Width="75px"></asp:TextBox>
+                                                </td>
+                                                <td style="width: 40px;">
+                                                </td>
+                                                <td style="text-align: right; padding-right: 3px; vertical-align: middle;">
+                                                    <asp:Label ID="VendedorLabel" runat="server" SkinID="TituloMediano" Text="Vendedor:"></asp:Label>
+                                                </td>
+                                                <td align="left" style="vertical-align: top;">
+                                                    <asp:DropDownList ID="CuentaDropDownList" runat="server" TabIndex="10" Width="318px">
+                                                    </asp:DropDownList>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td style="height: 10px;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                     </td>
-                                    <td colspan="2" style="vertical-align: top;">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="text-align: right; padding-right: 3px; vertical-align: middle; width: 80px;">
-                                                    <asp:Label ID="CuentaLabel" runat="server" SkinID="TituloMediano" Text="Vendedor:"></asp:Label>
-                                                </td>
-                                                <td align="left" style="" valign="top">
-                                                    <asp:DropDownList ID="CuentaDropDownList" runat="server" TabIndex="10" Width="388px">
-                                                    </asp:DropDownList>
-                                                </td>
-                                                <td style="width:40px;">
-                                                </td>
-                                                <td style="text-align: right; padding-right: 3px; vertical-align: middle; height: 10px;">
-                                                    <asp:Label ID="FechaLabel" runat="server" SkinID="TituloMediano" Text="Período:"></asp:Label>
-                                                </td>
-                                                <td align="left" style="" valign="top">
-                                                    <asp:TextBox ID="PeriodoTextBox" runat="server" Width="70px"></asp:TextBox><br />
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <td style="text-align: right; padding-right: 3px; vertical-align: middle;">
+                                        <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:"></asp:Label>
+                                    </td>
+                                    <td align="left" style="" valign="top">
+                                        <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="500px">
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 5px;">
+                                    <td style="height: 10px;">
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td colspan="2" style="vertical-align: top;">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td style="text-align: right; padding-right: 3px; vertical-align: middle; width: 80px;">
-                                                    <asp:Label ID="ClienteLabel" runat="server" SkinID="TituloMediano" Text="Cliente:"></asp:Label>
-                                                </td>
-                                                <td align="left" valign="top">
-                                                    <asp:DropDownList ID="ClienteDropDownList" runat="server" TabIndex="10" Width="388px">
-                                                    </asp:DropDownList>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 5px;">
-                                      </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" align="left" style="padding-top: 10px;">
@@ -194,9 +184,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right">
-                            <asp:Button ID="SalirButton" runat="server" OnClick="SalirButton_Click" Text="Salir"
-                                Width="100px" />
+                        <td style="text-align: right; padding-left:10px">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <asp:Button ID="ExportarButton" runat="server" Text="Exportar" Width="100px" OnClick="ExportarButton_Click" />
+                                    </td>
+                                    <td style="width: 660px;">
+                                    </td>
+                                    <td style="vertical-align: top;">
+                                        <asp:Button ID="SalirButton" runat="server" OnClick="SalirButton_Click" Text="Salir"
+                                            Width="100px" />
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                     <tr>

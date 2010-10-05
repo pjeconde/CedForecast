@@ -85,6 +85,13 @@
     <Compile Include="Admin\Forecast\ExploradorForecast.aspx.designer.cs">
       <DependentUpon>ExploradorForecast.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Forecast\ExploradorProyectado.aspx.cs">
+      <DependentUpon>ExploradorProyectado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Forecast\ExploradorProyectado.aspx.designer.cs">
+      <DependentUpon>ExploradorProyectado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Periodo.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Periodo.aspx</DependentUpon>
@@ -374,6 +381,7 @@
     <Content Include="Admin\ForecastReasignar\Consulta.aspx" />
     <Content Include="Admin\Forecast\Consulta.aspx" />
     <Content Include="Admin\Forecast\ExploradorForecast.aspx" />
+    <Content Include="Admin\Forecast\ExploradorProyectado.aspx" />
     <Content Include="Captcha.ashx" />
     <Content Include="Configuracion.aspx" />
     <Content Include="Forecast\Confirmacion.aspx" />
