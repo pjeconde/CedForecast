@@ -1,8 +1,8 @@
-<%@ Page AutoEventWireup="true" Codebehind="ExploradorProyectado.aspx.cs" Inherits="CedForecastWeb.Forecast.ExploradorProyectado"
-    Language="C#" MasterPageFile="~/Forecast/Forecast.Master" StylesheetTheme="Cedeira" %>
+<%@ Page AutoEventWireup="true" Codebehind="ExploradorProyectado.aspx.cs" Inherits="CedForecastWeb.Admin.Forecast.ExploradorProyectado"
+    Language="C#" MasterPageFile="~/Admin/Administracion.Master" StylesheetTheme="Cedeira" %>
 
 <%@ Register Assembly="CedeiraUIWebForms" Namespace="CedeiraUIWebForms" TagPrefix="cc1" %>
-<asp:Content ID="ExploradorForecastContent" runat="Server" ContentPlaceHolderID="ForecastContentPlaceHolder">
+<asp:Content ID="ExploradorForecastContent" runat="Server" ContentPlaceHolderID="AdministracionContentPlaceHolder">
     <table border="0" cellpadding="0" cellspacing="0" class="TextoComun" style="height: 500px;
         width: 890px; text-align: left; background-color: White;">
         <tr>

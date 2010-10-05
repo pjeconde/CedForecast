@@ -12,12 +12,12 @@ namespace CedForecastWeb.Admin.Forecast {
     
     
     /// <summary>
-    /// Clase ExploradorForecast.
+    /// Clase ExploradorProyectado.
     /// </summary>
     /// <remarks>
     /// Clase generada automáticamente.
     /// </remarks>
-    public partial class ExploradorForecast {
+    public partial class ExploradorProyectado {
         
         /// <summary>
         /// Control Image2.

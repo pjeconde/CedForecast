@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using FileHelpers;
+using FileHelpers.RunTime;
 
 namespace CedForecastWeb.Admin.Forecast
 {
@@ -179,7 +181,7 @@ namespace CedForecastWeb.Admin.Forecast
 		}
 		protected void SalirButton_Click(object sender, EventArgs e)
 		{
-			Server.Transfer("~/Admin/Default.aspx");
+            Server.Transfer("~/Admin/Forecast/Consulta.aspx");
 		}
          protected void LeerButton_Click(object sender, EventArgs e)
         {
@@ -203,6 +205,39 @@ namespace CedForecastWeb.Admin.Forecast
 			{
 				CedeiraUIWebForms.Excepciones.Redireccionar(ex, "~/Excepcion.aspx");
 			}
+        }
+
+        protected void ExportarButton_Click(object sender, EventArgs e)
+        {
+            System.Collections.Generic.List<CedForecastWebEntidades.RollingForecast> lista;
+            CedForecastWebEntidades.RollingForecast Forecast = new CedForecastWebEntidades.RollingForecast();
+            Forecast.IdTipoPlanilla = "RollingForecast";
+            Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
+            CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
+            cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
+            Forecast.Cliente = cliente;
+            CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
+            Forecast.IdPeriodo = PeriodoTextBox.Text;
+            lista = CedForecastWebRN.RollingForecast.Lista(Forecast, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+            string archivo = "Id.Vendedor; Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; Proyectado; Ventas; Desvío; ";
+            int colFijas = 4;
+            for (int i = 1; i <= 12; i++)
+            {
+                archivo += TextoCantidadHeader(i, PeriodoTextBox.Text) + "; ";
+            }
+            archivo += "\r\n";
+            FileHelperEngine fhe = new FileHelperEngine(typeof(CedForecastWebEntidades.RollingForecast));
+            archivo += fhe.WriteString(lista);
+            byte[] a = System.Text.Encoding.GetEncoding("iso-8859-1").GetBytes(archivo);
+            System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+            Byte[] byteArray = m.ToArray();
+            m.Flush();
+            m.Close();
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachment; filename=RollingForecast.csv");
+            Response.ContentType = "application/octet-stream";
+            Response.BinaryWrite(byteArray);
+            Response.End();
         }
 	}
 }

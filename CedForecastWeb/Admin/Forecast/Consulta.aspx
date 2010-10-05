@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td align="left" style="padding-top: 10px; padding-left: 20px" valign="middle">
-                            <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/Forecast/ExploradorForecastProyectado.aspx"
+                            <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Admin/Forecast/ExploradorProyectado.aspx"
                                 SkinID="LinkGrandeClaro">Proyectado Anual</asp:HyperLink>
                         </td>
                     </tr>

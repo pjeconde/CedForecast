@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using FileHelpers;
 using FileHelpers.RunTime;
 
-namespace CedForecastWeb.Forecast
+namespace CedForecastWeb.Admin.Forecast
 {
     public partial class ExploradorProyectado : System.Web.UI.Page
 	{
@@ -19,19 +19,19 @@ namespace CedForecastWeb.Forecast
 		{
 			try
 			{
-				((LinkButton)Master.FindControl("ConsultaLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
-				if (!IsPostBack)
-				{
-					if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
-					{
-                        CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosOperForecast.aspx");
-					}
-					else
-					{
-						if (CedForecastWebRN.Fun.NoEstaLogueadoUnOperForecast((CedForecastWebEntidades.Sesion)Session["Sesion"]))
-						{
-							CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosOperForecast.aspx");
-						}
+                ((LinkButton)Master.FindControl("AdministracionLinkButton")).ForeColor = System.Drawing.Color.DarkBlue;
+                if (!IsPostBack)
+                {
+                    if (CedForecastWebRN.Fun.NoHayNadieLogueado((CedForecastWebEntidades.Sesion)Session["Sesion"]))
+                    {
+                        CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosAdministradores.aspx");
+                    }
+                    else
+                    {
+                        if (CedForecastWebRN.Fun.NoEstaLogueadoUnAdministrador((CedForecastWebEntidades.Sesion)Session["Sesion"]))
+                        {
+                            CedeiraUIWebForms.Excepciones.Redireccionar("Opcion", TituloLabel.Text, "~/SoloDispPUsuariosAdministradores.aspx");
+                        }
 						else
 						{
 							ForecastPagingGridView.PageSize = 10;
@@ -44,10 +44,10 @@ namespace CedForecastWeb.Forecast
                             CuentaDropDownList.DataValueField = "Id";
                             CuentaDropDownList.DataTextField = "DescrCombo";
                             CuentaDropDownList.DataSource = CedForecastWebRN.Cuenta.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
-                            CuentaDropDownList.SelectedValue = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-
+                            CuentaDropDownList.SelectedIndex = -1;
+                            
                             CuentaDropDownList.Enabled = false;
-                            if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.IdTipoCuenta == "SupForecast")
+                            if (((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.IdTipoCuenta == "Admin")
                             {
                                 CuentaDropDownList.Enabled = true;
                             }
@@ -210,7 +210,7 @@ namespace CedForecastWeb.Forecast
 		}
 		protected void SalirButton_Click(object sender, EventArgs e)
 		{
-			Server.Transfer("~/Forecast/Consulta.aspx");
+			Server.Transfer("~/Admin/Forecast/Consulta.aspx");
 		}
         protected void LeerButton_Click(object sender, EventArgs e)
         {
