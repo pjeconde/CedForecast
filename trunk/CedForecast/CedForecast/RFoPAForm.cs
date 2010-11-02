@@ -16,9 +16,9 @@ namespace CedForecast
             : base(Titulo)
         {
             InitializeComponent();
-            TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
-            TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk; 
-            TabBrowserUiTabPage.TabVisible = false;
+            BrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
+            FiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk; 
+            BrowserUiTabPage.TabVisible = false;
             CancelarUiButton.Text = "Salir";
             volverATabBrowser = false;
             ConfigurarFiltros();
@@ -61,8 +61,8 @@ namespace CedForecast
         {
             if (volverATabBrowser)
             {
-                TabBrowserUiTabPage.TabVisible = true;
-                BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
+                BrowserUiTabPage.TabVisible = true;
+                BrowserUiTab.SelectedTab = BrowserUiTabPage;
             }
             else
             {
@@ -74,6 +74,7 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
+                List<CedForecastEntidades.Advertencia> advertencias;
                 CedForecastEntidades.RFoPA forecast = new CedForecastEntidades.RFoPA();
                 if (RFUiRadioButton.Checked)
                 {
@@ -85,11 +86,29 @@ namespace CedForecast
                     forecast.IdTipoPlanilla = "Proyectado";
                     forecast.IdPeriodo = PeriodoPACalendarCombo.Value.ToString("yyyy");
                 }
-                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion);
+                List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion, out advertencias);
                 PersonalizarGrilla(l);
                 BrowserGridEX.DataSource = l;
-                TabBrowserUiTabPage.TabVisible = true;
-                BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
+                BrowserUiTabPage.TabVisible = true; 
+                MensajesUiTabPage.TabVisible = (advertencias.Count > 0);
+                if (MensajesUiTabPage.TabVisible)
+                {
+                    MensajesGridEX.DataSource = advertencias;
+                    CedForecastEntidades.Advertencia error = advertencias.Find(delegate(CedForecastEntidades.Advertencia a) { return a.Tipo == CedForecastEntidades.Advertencia.TipoSeveridad.Error.ToString(); });
+                    if (error != null)
+                    {
+                        BrowserUiTab.SelectedTab = MensajesUiTabPage;
+                    }
+                    else
+                    {
+                        BrowserUiTab.SelectedTab = BrowserUiTabPage;
+                    }
+                }
+                else
+                {
+                    MensajesGridEX.DataSource = null;
+                    BrowserUiTab.SelectedTab = BrowserUiTabPage;
+                }
                 volverATabBrowser = true;
             }
             catch (Exception ex)
@@ -162,7 +181,7 @@ namespace CedForecast
                     BrowserGridEX.RootTable.Columns["DescrCliente"].Visible = false;    
                     break;
             }
-            if (RFUiRadioButton.Checked && TipoReporteNicePanel.Tag.ToString() == "FamArtCli")
+            if (RFUiRadioButton.Checked && (TipoReporteNicePanel.Tag.ToString() == "FamArtCli" || TipoReporteNicePanel.Tag.ToString() == "FamArt"))
             {
                 BrowserGridEX.RootTable.Columns.Add("Proyectado", Janus.Windows.GridEX.ColumnType.Text);
                 FormatoColumna("Proyectado", 75);
@@ -215,9 +234,9 @@ namespace CedForecast
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
         {
-            if (BrowserUiTab.SelectedTab == TabFiltroUiTabPage)
+            if (BrowserUiTab.SelectedTab == FiltroUiTabPage)
             {
-                TabBrowserUiTabPage.TabVisible = false;
+                BrowserUiTabPage.TabVisible = false;
             }
         }
         private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)

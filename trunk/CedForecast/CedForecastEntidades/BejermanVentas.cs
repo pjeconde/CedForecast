@@ -10,6 +10,7 @@ namespace CedForecastEntidades.Bejerman
         private string sdvart_CodGen;
         private string cve_CodCli;
         private decimal sdv_CantUM1;
+        private string periodoEmision;
 
         public Ventas()
         {
@@ -45,6 +46,17 @@ namespace CedForecastEntidades.Bejerman
             get
             {
                 return sdv_CantUM1;
+            }
+        }
+        public string PeriodoEmision
+        {
+            set
+            {
+                periodoEmision = value;
+            }
+            get
+            {
+                return periodoEmision;
             }
         }
     }
