@@ -67,7 +67,7 @@ namespace Cedeira.SV
             }
         }
 
-        private string ReemplazarAcentos(string aux)
+        public string ReemplazarAcentos(string aux)
         {
             aux = aux.Replace("á", "a");
             aux = aux.Replace("é", "e");
@@ -82,7 +82,7 @@ namespace Cedeira.SV
             return aux;
         }
 
-        private string ReemplazarCaracteresMalos(string aux)
+        public string ReemplazarCaracteresMalos(string aux)
         {
             aux = aux.Replace("\\", string.Empty);
             aux = aux.Replace("/", string.Empty);
@@ -96,7 +96,7 @@ namespace Cedeira.SV
             return aux;
         }
 
-        private string ReemplazarXPath(string aux)
+        public string ReemplazarXPath(string aux)
         {
             aux = aux.Replace("\"", "'");
             aux = aux.Replace("N°", "Nro");
@@ -112,8 +112,7 @@ namespace Cedeira.SV
             return ReemplazarAcentos(aux);
         }
 
-
-        private string ReemplazarEspaciosyAcentos(string aux)
+        public string ReemplazarEspaciosyAcentos(string aux)
         {
             aux = aux.Replace("/", "-");
             aux = aux.Replace(" ", "_");
@@ -262,7 +261,7 @@ namespace Cedeira.SV
         // Arguments : dsExport, sHeaders, sFileds, FormatType, FileName
         // Purpose   : Exports dataset into CSV / Excel format
 
-        private void Export_with_XSLT_Windows(DataSet dsExport, string[] sHeaders, string[] sFileds, ExportFormat FormatType, string FileName)
+        public void Export_with_XSLT_Windows(DataSet dsExport, string[] sHeaders, string[] sFileds, ExportFormat FormatType, string FileName)
         {
             try
             {

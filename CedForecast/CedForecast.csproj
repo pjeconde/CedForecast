@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResumenArgentinaXZonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResumenArgentinaXZonas.Designer.cs">
+      <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FamiliaArticuloForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,10 @@
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ResumenArgentinaXZonas.resx">
+      <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FamiliaArticuloForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FamiliaArticuloForm.cs</DependentUpon>
@@ -168,8 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ConfigFiles\appSettings.config" />
-    <None Include="ConfigFiles\connectionStrings.config" />
+    <None Include="ConfigFiles\appSettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ConfigFiles\connectionStrings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cedeira.ico" />
