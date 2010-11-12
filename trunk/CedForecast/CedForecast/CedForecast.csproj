@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Financiero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Financiero.Designer.cs">
+      <DependentUpon>Financiero.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResumenArgentinaXZonas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,10 @@
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Financiero.resx">
+      <DependentUpon>Financiero.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResumenArgentinaXZonas.resx">
       <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>
       <SubType>Designer</SubType>

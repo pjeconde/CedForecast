@@ -35,6 +35,36 @@ namespace CedForecastDB
             a.Append(") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
+        public DataSet LeerDatosParaFinanciero(string IdPeriodo, string TipoReporte, string ListaClientes)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            switch (TipoReporte)
+            {
+                case "Zona-Cliente":
+                    a.Append("Select Zona, Cliente, Descr, FecVto, Saldo into #Financiero from (");
+                    a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, ");
+                    a.Append("CabVenta.cvetco_Cod + '-' + CabVenta.cve_CodPvt + '-' + CabVenta.cve_Nro + '-Fec.Emi:' + convert(varchar(10), CabVenta.cve_FEmision, 103) + '-Imp.Orig:' + ltrim(rtrim(convert(varchar(30), CabVenta.cve_ImpMonLoc))) as Descr, ");
+                    a.Append("CabVenta.cve_FVto as FecVto, ");
+                    a.Append("CabVenta.cve_SaldoMonLoc as Saldo ");
+                    a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod "); 
+                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'RC') and CabVenta.cve_CodCli <> '' ");
+                    a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") "); 
+                    a.Append("UNION "); 
+                    a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
+                    a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descr, ");
+                    a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
+                    a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
+                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ")) go ");
+                    a.Append("select distinct Zona from #Financiero order by Zona ");
+                    a.Append("select distinct Cliente from #Financiero order by Cliente ");
+                    a.Append("select Zona, Cliente, Descr, FecVto, Saldo from #Financiero order by Zona, Cliente, FecVto asc ");
+                    a.Append("drop table #Financiero ");
+                    break;
+                default:
+                    throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+            }
+            return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
+        }
         public DataSet LeerDatosParaResumenArgentinaXZonas(string IdPeriodo, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             System.Text.StringBuilder a = new StringBuilder();
@@ -112,7 +142,7 @@ namespace CedForecastDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select IdArticulo as Articulo from Forecast where IdArticulo not in (select IdArticulo from FamiliaArticuloXArticulo) and IdTipoPlanilla='RollingForecast' ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
-            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerLista(dt);
+            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerListaConPrecios(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 CedForecastEntidades.Articulo elemento = new CedForecastEntidades.Articulo();
