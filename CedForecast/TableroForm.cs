@@ -32,6 +32,7 @@ namespace CedForecast
                     opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));
                     opciones.Add(new CedForecastEntidades.Opcion("CrossTabArticulosClientes", "Crosstab Articulos-Clientes"));
                     opciones.Add(new CedForecastEntidades.Opcion("ResumenArgentinaXZonas", "Resumen Argentina por Zonas"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Financiero", "Financiero"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticuloXArticulo", "Familias de Artículos"));
                      break;
                 case "Exploradores":
@@ -86,6 +87,10 @@ namespace CedForecast
                                         break;
                                     case "ResumenArgentinaXZonas":
                                         oFrm = new ResumenArgentinaXZonasForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    case "Financiero":
+                                        oFrm = new FinancieroForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
                                     case "RFoPA":

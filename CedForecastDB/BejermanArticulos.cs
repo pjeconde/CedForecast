@@ -19,7 +19,17 @@ namespace CedForecastDB.Bejerman
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             return Lista(dt);
         }
-        public List<CedForecastEntidades.Bejerman.Articulos> LeerLista(DataTable Articulos)
+        public List<CedForecastEntidades.Bejerman.Articulos> LeerListaConPrecios()
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod, isnull(lpr_Precio, 0) as lpr_Precio ");
+            a.Append("from Articulos left outer join ListaPrec on (Articulos.art_CodGen=ListaPrec.lprart_CodGen and ListaPrec.lprdlp_Cod=4) ");
+            a.Append("order by ltrim(rtrim(art_CodGen)) ");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            return Lista(dt);
+        }
+        public List<CedForecastEntidades.Bejerman.Articulos> LeerListaConPrecios(DataTable Articulos)
         {
             List<CedForecastEntidades.Bejerman.Articulos> lista = new List<CedForecastEntidades.Bejerman.Articulos>();
             if (Articulos.Rows.Count != 0)
