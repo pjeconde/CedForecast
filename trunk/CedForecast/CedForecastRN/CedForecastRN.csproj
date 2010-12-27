@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cotizacion.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="Proceso.cs" />

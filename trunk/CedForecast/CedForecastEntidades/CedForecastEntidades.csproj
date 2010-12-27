@@ -40,6 +40,7 @@
     <Compile Include="BejermanVendedor.cs" />
     <Compile Include="BejermanVentas.cs" />
     <Compile Include="BejermanZona.cs" />
+    <Compile Include="BejermanCotizacion.cs" />
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="Forecast.cs" />
     <Compile Include="Opcion.cs" />

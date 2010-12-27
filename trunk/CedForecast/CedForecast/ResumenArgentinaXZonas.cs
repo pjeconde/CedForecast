@@ -105,7 +105,20 @@ namespace CedForecast
             {
                 Cursor = Cursors.WaitCursor;
                 List<CedForecastEntidades.Advertencia> advertencias;
-                DataTable dt = CedForecastRN.Reporte.ResumenArgentinaXZonas(PeriodoDesdeCalendarCombo.Value.ToString("yyyy"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), ValorizadoUiCheckBox.Checked, Aplicacion.Sesion, out advertencias);
+                string periodoDesde;
+                string periodoHasta;
+                if (PeriodoAnualUIRadioButton.Checked)
+                {
+                    periodoDesde = PeriodoDesdeCalendarCombo.Value.ToString("yyyy") + "01";
+                    periodoHasta = PeriodoDesdeCalendarCombo.Value.ToString("yyyy") + "12";
+                }
+                else
+                {
+                    ValidarRangoFechas(PeriodoRangoDesdeCalendarCombo, PeriodoRangoHastaCalendarCombo);
+                    periodoDesde = PeriodoRangoDesdeCalendarCombo.Value.ToString("yyyyMM");
+                    periodoHasta = PeriodoRangoHastaCalendarCombo.Value.ToString("yyyyMM");
+                }
+                DataTable dt = CedForecastRN.Reporte.ResumenArgentinaXZonas(periodoDesde, periodoHasta, TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), ValorizadoUiCheckBox.Checked, Aplicacion.Sesion, out advertencias);
                 PersonalizarGrilla(dt);
                 BrowserGridEX.DataSource = dt;
                 //ModificarTotalDesvioGridEx(BrowserGridEX);
@@ -205,15 +218,21 @@ namespace CedForecast
             if (ArmaGruposUiCheckBox.Checked)
             {
                 BrowserGridEX.RootTable.Groups.Clear();
-                Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
-                grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
-                BrowserGridEX.RootTable.Groups.Add(grupo1);
+
+                Janus.Windows.GridEX.GridEXGroup grupo0 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
+                grupo0.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                BrowserGridEX.RootTable.Groups.Add(grupo0);
                 BrowserGridEX.RootTable.Columns[0].Visible = false;
 
-                Janus.Windows.GridEX.GridEXGroup grupo2 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[1]);
+                Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[1]);
+                grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                BrowserGridEX.RootTable.Groups.Add(grupo1);
+                BrowserGridEX.RootTable.Columns[1].Visible = false;
+
+                Janus.Windows.GridEX.GridEXGroup grupo2 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[2]);
                 grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
                 BrowserGridEX.RootTable.Groups.Add(grupo2);
-                BrowserGridEX.RootTable.Columns[1].Visible = false;
+                BrowserGridEX.RootTable.Columns[2].Visible = false;
             }
         }
 
@@ -394,6 +413,13 @@ namespace CedForecast
             if (e.Node.Nodes.Count > 0)
             {
                 Cedeira.UI.Fun.ChequeoNodosTreeView(e.Node.Nodes, e.Node.Checked);
+            }
+        }
+        private void ValidarRangoFechas(Janus.Windows.CalendarCombo.CalendarCombo desde, Janus.Windows.CalendarCombo.CalendarCombo hasta)
+        {
+            if (Convert.ToInt32(desde.Value.ToString("yyyyMM")) > Convert.ToInt32(hasta.Value.ToString("yyyyMM")))
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Rango de fechas");
             }
         }
     }
