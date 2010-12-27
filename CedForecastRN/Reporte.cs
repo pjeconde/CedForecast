@@ -109,7 +109,7 @@ namespace CedForecastRN
             return dt;
         }
 
-        public static DataTable ResumenArgentinaXZonas(string IdPeriodo, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, bool Valorizado, CedEntidades.Sesion Sesion, out List<CedForecastEntidades.Advertencia> Advertencias)
+        public static DataTable ResumenArgentinaXZonas(string PeriodoDesde, string PeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, bool Valorizado, CedEntidades.Sesion Sesion, out List<CedForecastEntidades.Advertencia> Advertencias)
         {
             Advertencias = new List<CedForecastEntidades.Advertencia>();
             //Validacion de parámetros
@@ -123,7 +123,7 @@ namespace CedForecastRN
             }
             //Leer datos Forecast
             CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
-            DataSet ds = db.LeerDatosParaResumenArgentinaXZonas(IdPeriodo, TipoReporte, ListaArticulos, ListaClientes, ListaVendedores);
+            DataSet ds = db.LeerDatosParaResumenArgentinaXZonas(PeriodoDesde, PeriodoHasta, TipoReporte, ListaArticulos, ListaClientes, ListaVendedores);
             DataTable dtZona;
             DataTable dtVendedor;
             switch (TipoReporte)
@@ -145,23 +145,32 @@ namespace CedForecastRN
             List<CedForecastEntidades.Articulo> familiaXArticulos = new CedForecastDB.Articulo(Sesion).LeerLista();
             //Crear crosstab
             DataTable dt = new DataTable();
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns[0])); //Zona o Vendedor
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns[0])); //Empresa
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns[1])); //Zona o Vendedor
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Familia"]));
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
-            for (int i = 1; i <= 12; i++)
+            string idPeriodo = "";
+            DateTime periodoDesde = Convert.ToDateTime("01/" + PeriodoDesde.Substring(4, 2) + "/" + PeriodoDesde.Substring(0, 4));
+            DateTime periodoHasta = Convert.ToDateTime("01/" + PeriodoHasta.Substring(4, 2) + "/" + PeriodoHasta.Substring(0, 4));
+            int meses = periodoHasta.Month - periodoDesde.Month + 1;
+            int años = periodoHasta.Year - periodoDesde.Year;
+            meses += años * 12;
+            idPeriodo = periodoDesde.ToString("yyyyMM");
+            for (int i = 1; i <= meses; i++)
             {
-                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Plan-" + IdPeriodo + i.ToString("00"), "Plan-" + IdPeriodo + i.ToString("00")));
-                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Real-" + IdPeriodo + i.ToString("00"), "Real-" + IdPeriodo + i.ToString("00")));
+                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Plan-" + idPeriodo, "Plan-" + idPeriodo));
+                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Real-" + idPeriodo, "Real-" + idPeriodo));
+                idPeriodo = periodoDesde.AddMonths(i).ToString("yyyyMM");
             }
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total Plan-" + IdPeriodo, "Total Plan-" + IdPeriodo));
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total Real-" + IdPeriodo, "Total Real-" + IdPeriodo));
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Desvio Plan-" + IdPeriodo, "Desvio Plan-" + IdPeriodo));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total Plan", "Total Plan"));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Total Real", "Total Real"));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cantidad"], "Desvio Plan", "Desvio Plan"));
             //Llenar crosstab
             string claveAnterior = String.Empty;
             //Buscar Ventas
             CedForecastDB.Bejerman.Ventas dbVentas = new CedForecastDB.Bejerman.Ventas(Sesion);
-            List<CedForecastEntidades.Bejerman.Ventas> ventas = dbVentas.LeerParaResumenArgentinaXZonas(TipoReporte, IdPeriodo, ListaArticulos, ListaClientes, ListaVendedores);
-            decimal precio = -1;
+            List<CedForecastEntidades.Bejerman.Ventas> ventas = dbVentas.LeerParaResumenArgentinaXZonas(TipoReporte, PeriodoDesde, PeriodoHasta, ListaArticulos, ListaClientes, ListaVendedores);
+            decimal precio = 0;
             for (int i = 0; i < ventas.Count; i++)
             {
                 DataRow[] drv;
@@ -171,28 +180,25 @@ namespace CedForecastRN
                         drv = dtDatos.Select("Zona = '" + ventas[i].Zona + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
                         if (drv.Length == 0)
                         {
-                            dtDatos.Rows.Add(ventas[i].Zona, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+                            dtDatos.Rows.Add("Empresa", ventas[i].Zona, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                     case "Vendedor-Familia-Articulo":
                         drv = dtDatos.Select("Vendedor = '" + ventas[i].Vendedor + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
                         if (drv.Length == 0)
                         {
-                            dtDatos.Rows.Add(ventas[i].Vendedor, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+                            dtDatos.Rows.Add("Empresa", ventas[i].Vendedor, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                 }
             }
             for (int i = 0; i < dtDatos.Rows.Count; i++)
             {
-                string claveActual = Convert.ToString(dtDatos.Rows[i][0]) + Convert.ToString(dtDatos.Rows[i]["Familia"]) + Convert.ToString(dtDatos.Rows[i]["Articulo"]);
+                string claveActual = Convert.ToString(dtDatos.Rows[i][1]) + Convert.ToString(dtDatos.Rows[i]["Familia"]) + Convert.ToString(dtDatos.Rows[i]["Articulo"]);
                 if (claveAnterior != claveActual)
                 {
-                    if (precio == 0)
-                    {
-                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dt.Rows[dt.Rows.Count - 1]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
-                    }
                     DataRow dr = dt.NewRow();
+                    dr["Empresa"] = "Empresa";
                     CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (familiaXArticulo == null)
                     {
@@ -214,6 +220,10 @@ namespace CedForecastRN
                     {
                         dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
                         precio = articulo.Lpr_Precio;
+                    }
+                    if (precio == 0)
+                    {
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
                     }
                     switch (TipoReporte)
                     {
@@ -258,8 +268,8 @@ namespace CedForecastRN
                             precio = articulo.Lpr_Precio;
                         }
                     }
-                    dr["Total Plan-" + IdPeriodo] = 0;
-                    dr["Total Real-" + IdPeriodo] = 0;
+                    dr["Total Plan"] = 0;
+                    dr["Total Real"] = 0;
                     dt.Rows.Add(dr);
                     claveAnterior = claveActual;
                 }
@@ -280,16 +290,23 @@ namespace CedForecastRN
                 decimal valorReal = 0;
                 if (venta != null)
                 {
-                    valorReal = venta.Sdv_CantUM1 * precio;
+                    if (Valorizado)
+                    {
+                        valorReal = venta.Sdv_ImpTot;
+                    }
+                    else
+                    {
+                        valorReal = venta.Sdv_CantUM1;
+                    }
                     dt.Rows[dt.Rows.Count - 1]["Real-" + dtDatos.Rows[i]["Periodo"].ToString()] = valorReal;
                 }
                 //Sumar a Total
-                dt.Rows[dt.Rows.Count - 1]["Total Plan-" + IdPeriodo] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan-" + IdPeriodo]) + valor;
-                dt.Rows[dt.Rows.Count - 1]["Total Real-" + IdPeriodo] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Real-" + IdPeriodo]) + valorReal;
-                dt.Rows[dt.Rows.Count - 1]["Desvio Plan-" + IdPeriodo] = 0;
-                if (Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan-" + IdPeriodo]) > 0)
+                dt.Rows[dt.Rows.Count - 1]["Total Plan"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan"]) + valor;
+                dt.Rows[dt.Rows.Count - 1]["Total Real"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Real"]) + valorReal;
+                dt.Rows[dt.Rows.Count - 1]["Desvio Plan"] = 0;
+                if (Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan"]) > 0)
                 {
-                    dt.Rows[dt.Rows.Count - 1]["Desvio Plan-" + IdPeriodo] = (Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Real-" + IdPeriodo]) / Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan-" + IdPeriodo]) - 1) * 100;
+                    dt.Rows[dt.Rows.Count - 1]["Desvio Plan"] = (Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Real"]) / Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan"]) - 1) * 100;
                 }
                 dt.AcceptChanges();
             }

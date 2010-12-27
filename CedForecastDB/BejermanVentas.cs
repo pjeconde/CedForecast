@@ -130,16 +130,17 @@ namespace CedForecastDB.Bejerman
             }
             Hasta.Sdv_CantUM1 = Convert.ToDecimal(Desde["sdv_CantUM1"]);
         }
-        public List<CedForecastEntidades.Bejerman.Ventas> LeerParaResumenArgentinaXZonas(string TipoReporte, string Periodo, string ListaArticulos, string ListaClientes, string ListaVendedores)
+        public List<CedForecastEntidades.Bejerman.Ventas> LeerParaResumenArgentinaXZonas(string TipoReporte, string PeriodoDesde, string PeriodoHasta, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
-            DateTime fechaDsd = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), 1, 1);
-            DateTime fechaHst = new DateTime(Convert.ToInt32(fechaDsd.ToString("yyyy")), 12, 31);
+            DateTime fechaDsd = new DateTime(Convert.ToInt32(PeriodoDesde.Substring(0, 4)), Convert.ToInt32(PeriodoDesde.Substring(4, 2)), 1);
+            DateTime fechaHst = new DateTime(Convert.ToInt32(PeriodoHasta.Substring(0, 4)), Convert.ToInt32(PeriodoHasta.Substring(4, 2)), 1);
+            fechaHst = fechaHst.AddMonths(1).AddDays(-1);  
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
             switch (TipoReporte)
             {
                 case "Zona-Familia-Articulo":
-                    a.Append("SELECT ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, clizon_cod as Zona, Convert(varchar(6), CabVenta.cve_FEmision, 112) as Periodo, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1 ");
+                    a.Append("SELECT clizon_cod as Zona, cvemon_codigo, ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, CabVenta.cve_FEmision, Convert(varchar(6), CabVenta.cve_FEmision, 112) as Periodo, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1, Sum(SegDetV.sdv_ImpTot) as sdv_ImpTot ");
                     a.Append("FROM CabVenta, SegCabV, SegDetV, Clientes ");
                     a.Append("WHERE CabVenta.cveemp_CodigoSCV=SegCabV.scvemp_Codigo ");
                     a.Append("and CabVenta.cvesuc_CodSCV=SegCabV.scvsuc_Cod ");
@@ -153,12 +154,12 @@ namespace CedForecastDB.Bejerman
                     a.Append("and SegDetV.sdvart_CodGen!='50000004' ");
                     a.Append("and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and CabVenta.cveven_Cod in (" + ListaVendedores + ") ");
-                    a.Append("group by clizon_cod, sdvart_CodGen, Convert(varchar(6), CabVenta.cve_FEmision, 112) ");
+                    a.Append("group by clizon_cod, cvemon_codigo, sdvart_CodGen, cve_FEmision ");
                     a.Append("having sum(SegDetV.sdv_CantUM1)<>0 ");
-                    a.Append("order by clizon_cod, sdvart_CodGen, Periodo ");
+                    a.Append("order by clizon_cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
                     break;
                 case "Vendedor-Familia-Articulo":
-                    a.Append("SELECT ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, cveven_Cod as Vendedor, Convert(varchar(6), CabVenta.cve_FEmision, 112) as Periodo, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1 ");
+                    a.Append("SELECT cveven_Cod as Vendedor, cvemon_Codigo, ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, CabVenta.cve_FEmision, Convert(varchar(6), CabVenta.cve_FEmision, 112) as Periodo, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1, Sum(SegDetV.sdv_ImpTot) as sdv_ImpTot ");
                     a.Append("FROM CabVenta, SegCabV, SegDetV, Clientes ");
                     a.Append("WHERE CabVenta.cveemp_CodigoSCV=SegCabV.scvemp_Codigo ");
                     a.Append("and CabVenta.cvesuc_CodSCV=SegCabV.scvsuc_Cod ");
@@ -172,29 +173,69 @@ namespace CedForecastDB.Bejerman
                     a.Append("and (CabVenta.cve_FEmision between '" + fechaDsd.ToString("yyyyMMdd") + "' and '" + fechaHst.ToString("yyyyMMdd") + "') ");
                     a.Append("and SegDetV.sdvart_CodGen is not NULL ");
                     a.Append("and sdvart_CodGen!='50000004' ");
-                    a.Append("group by cveven_Cod, sdvart_CodGen, Convert(varchar(6), CabVenta.cve_FEmision, 112) ");
+                    a.Append("group by cveven_Cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
                     a.Append("having sum(SegDetV.sdv_CantUM1)<>0 ");
-                    a.Append("order by cveven_Cod, sdvart_CodGen, Periodo ");
+                    a.Append("order by cveven_Cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
                     break;
             }
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             List<CedForecastEntidades.Bejerman.Ventas> lista = new List<CedForecastEntidades.Bejerman.Ventas>();
             if (dt.Rows.Count != 0)
             {
+                List<CedForecastEntidades.Bejerman.Cotizacion> cotizaciones = new List<CedForecastEntidades.Bejerman.Cotizacion>();
+                CedForecastDB.Bejerman.Cotizacion dbCotiz = new Cotizacion(sesion);
+                cotizaciones = dbCotiz.LeerLista("DVT");
+
+                CedForecastEntidades.Bejerman.Ventas elemento = new CedForecastEntidades.Bejerman.Ventas();
+                string ClaveAnterior = "";
+                switch (TipoReporte)
+                {
+                    case "Zona-Familia-Articulo":
+                        ClaveAnterior = dt.Rows[0]["Zona"].ToString() + dt.Rows[0]["sdvart_CodGen"].ToString() + dt.Rows[0]["Periodo"].ToString(); 
+                        break;
+                    case "Vendedor-Familia-Articulo":
+                        ClaveAnterior = dt.Rows[0]["Vendedor"].ToString() + dt.Rows[0]["sdvart_CodGen"].ToString() + dt.Rows[0]["Periodo"].ToString();
+                        break;
+                }
+                string ClaveActual = "";
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    CedForecastEntidades.Bejerman.Ventas elemento = new CedForecastEntidades.Bejerman.Ventas();
-                    CopiarResumenArgentinaXZonas(TipoReporte, dt.Rows[i], elemento);
-                    lista.Add(elemento);
+                    switch (TipoReporte)
+                    {
+                        case "Zona-Familia-Articulo":
+                            ClaveActual = dt.Rows[i]["Zona"].ToString() + dt.Rows[i]["sdvart_CodGen"].ToString() + dt.Rows[i]["Periodo"].ToString(); 
+                            break;
+                        case "Vendedor-Familia-Articulo":
+                            ClaveActual = dt.Rows[i]["Vendedor"].ToString() + dt.Rows[i]["sdvart_CodGen"].ToString() + dt.Rows[i]["Periodo"].ToString();
+                            break;
+                    }
+                    if (ClaveAnterior != ClaveActual)
+                    {
+                        lista.Add(elemento);
+                        elemento = new CedForecastEntidades.Bejerman.Ventas();
+                        ClaveAnterior = ClaveActual;
+                    }
+                    CopiarResumenArgentinaXZonas(TipoReporte, cotizaciones, dt.Rows[i], elemento);
                 }
+                lista.Add(elemento);
             }
             return lista;
         }
-        private void CopiarResumenArgentinaXZonas(string TipoReporte, DataRow Desde, CedForecastEntidades.Bejerman.Ventas Hasta)
+        private void CopiarResumenArgentinaXZonas(string TipoReporte, List<CedForecastEntidades.Bejerman.Cotizacion> cotizaciones, DataRow Desde, CedForecastEntidades.Bejerman.Ventas Hasta)
         {
             Hasta.Sdvart_CodGen = Convert.ToString(Desde["sdvart_CodGen"]);
+            Hasta.Cve_FEmision = Convert.ToDateTime(Desde["cve_FEmision"]);
             Hasta.Periodo = Convert.ToString(Desde["Periodo"]);
-            Hasta.Sdv_CantUM1 = Convert.ToDecimal(Desde["sdv_CantUM1"]);
+            Hasta.Sdv_CantUM1 += Convert.ToDecimal(Desde["sdv_CantUM1"]);
+            Hasta.Cvemon_Codigo = Convert.ToString(Desde["cvemon_Codigo"]);
+            decimal cotiz = 1;
+            if (Hasta.Cvemon_Codigo == "1")
+            {
+                List<CedForecastEntidades.Bejerman.Cotizacion> cotizacionesPeriodo = new List<CedForecastEntidades.Bejerman.Cotizacion>();
+                cotizacionesPeriodo = cotizaciones.FindAll((delegate(CedForecastEntidades.Bejerman.Cotizacion e) { return Convert.ToInt32(e.Mcot_fecha.ToString("yyyyMMdd")) <= Convert.ToInt32(Hasta.Cve_FEmision.ToString("yyyyMMdd")) && e.Mon_codigo == "DVT"; }));
+                cotiz = cotizacionesPeriodo[0].Mcot_cotiza;
+            }
+            Hasta.Sdv_ImpTot += Convert.ToDecimal(Desde["sdv_ImpTot"]) * cotiz;
             switch (TipoReporte)
             {
                 case "Zona-Familia-Articulo":

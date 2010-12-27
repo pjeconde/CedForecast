@@ -10,7 +10,10 @@ namespace CedForecastEntidades.Bejerman
         private string sdvart_CodGen;
         private string cve_CodCli;
         private decimal sdv_CantUM1;
-        private string periodo;         //
+        private decimal sdv_ImpTot;
+        private DateTime cve_FEmision;
+        private string periodo;
+        private string cvemon_Codigo;
         private string zona;            //clizon_Cod
         private string vendedor;        //cveven_Cod
 
@@ -50,6 +53,29 @@ namespace CedForecastEntidades.Bejerman
                 return sdv_CantUM1;
             }
         }
+        public decimal Sdv_ImpTot
+        {
+            set
+            {
+                sdv_ImpTot = value;
+            }
+            get
+            {
+                return sdv_ImpTot;
+            }
+        }
+
+        public DateTime Cve_FEmision
+        {
+            set
+            {
+                cve_FEmision = value;
+            }
+            get
+            {
+                return cve_FEmision;
+            }
+        }
         public string Periodo
         {
             set
@@ -59,6 +85,17 @@ namespace CedForecastEntidades.Bejerman
             get
             {
                 return periodo;
+            }
+        }
+        public string Cvemon_Codigo
+        {
+            set
+            {
+                cvemon_Codigo = value;
+            }
+            get
+            {
+                return cvemon_Codigo;
             }
         }
         public string Zona

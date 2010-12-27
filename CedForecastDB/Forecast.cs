@@ -47,7 +47,7 @@ namespace CedForecastDB
                     a.Append("CabVenta.cve_FVto as FecVto, ");
                     a.Append("CabVenta.cve_SaldoMonLoc as Saldo ");
                     a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod "); 
-                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'RC') and CabVenta.cve_CodCli <> '' ");
+                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
                     a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") "); 
                     a.Append("UNION "); 
                     a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
@@ -65,37 +65,37 @@ namespace CedForecastDB
             }
             return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
         }
-        public DataSet LeerDatosParaResumenArgentinaXZonas(string IdPeriodo, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
+        public DataSet LeerDatosParaResumenArgentinaXZonas(string PeriodoDesde, string PeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             System.Text.StringBuilder a = new StringBuilder();
             switch (TipoReporte)
             {
                 case "Zona-Familia-Articulo":
-                    a.Append("Select SBDAFERT.dbo.Clientes.clizon_Cod as Zona, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
+                    a.Append("Select convert(varchar(8), 'Empresa') as Empresa, SBDAFERT.dbo.Clientes.clizon_Cod as Zona, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join SBDAFERT.dbo.Vendedor on Forecast.IdCuenta = SBDAFERT.dbo.Vendedor.ven_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
                     a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and SBDAFERT.dbo.Vendedor.ven_Cod in (" + ListaVendedores + ") ");
-                    a.Append("and IdPeriodo>='" + IdPeriodo + "01' and IdPeriodo<='" + IdPeriodo + "12' group by SBDAFERT.dbo.Clientes.clizon_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");
+                    a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Clientes.clizon_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");
                     a.Append("select distinct Zona from #ForecastAux order by Zona ");
                     a.Append("select distinct Familia from #ForecastAux order by Familia ");
                     a.Append("select distinct Articulo from #ForecastAux order by Articulo ");
-                    a.Append("select Zona, Familia, IdArticulo, Articulo, Periodo, Cantidad from #ForecastAux order by Zona, Familia, Articulo, Periodo asc ");
+                    a.Append("select Empresa, Zona, Familia, IdArticulo, Articulo, Periodo, Cantidad from #ForecastAux order by Zona, Familia, Articulo, Periodo asc ");
                     a.Append("drop table #ForecastAux ");
                     break;
                 case "Vendedor-Familia-Articulo":
-                    a.Append("Select SBDAFERT.dbo.Vendedor.ven_Cod as Vendedor, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
+                    a.Append("Select convert(varchar(8), 'Empresa') as Empresa, SBDAFERT.dbo.Vendedor.ven_Cod as Vendedor, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join SBDAFERT.dbo.Vendedor on Forecast.IdCuenta = SBDAFERT.dbo.Vendedor.ven_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
                     a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and SBDAFERT.dbo.Vendedor.ven_Cod in (" + ListaVendedores + ") ");
-                    a.Append("and IdPeriodo>='" + IdPeriodo + "01' and IdPeriodo<='" + IdPeriodo + "12' group by SBDAFERT.dbo.Vendedor.ven_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");
+                    a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Vendedor.ven_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");
                     a.Append("select distinct Vendedor from #ForecastAux order by Vendedor ");
                     a.Append("select distinct Familia from #ForecastAux order by Familia ");
                     a.Append("select distinct Articulo from #ForecastAux order by Articulo ");
-                    a.Append("select Vendedor, Familia, IdArticulo, Articulo, Periodo, Cantidad from #ForecastAux order by Vendedor, Familia, Articulo, Periodo asc ");
+                    a.Append("select Empresa, Vendedor, Familia, IdArticulo, Articulo, Periodo, Cantidad from #ForecastAux order by Vendedor, Familia, Articulo, Periodo asc ");
                     a.Append("drop table #ForecastAux ");
                     break;
                 default:
