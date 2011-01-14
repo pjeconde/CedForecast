@@ -41,23 +41,87 @@ namespace CedForecastDB
             switch (TipoReporte)
             {
                 case "Zona-Cliente":
-                    a.Append("Select Zona, Cliente, Descr, FecVto, Saldo into #Financiero from (");
+                    a.Append("Select Zona, Cliente, TipoDato, Descr, FecVto, Saldo into #Financiero from (");
                     a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, ");
+                    a.Append("convert(varchar(50), 'CtaCte') as TipoDato, ");
                     a.Append("CabVenta.cvetco_Cod + '-' + CabVenta.cve_CodPvt + '-' + CabVenta.cve_Nro + '-Fec.Emi:' + convert(varchar(10), CabVenta.cve_FEmision, 103) + '-Imp.Orig:' + ltrim(rtrim(convert(varchar(30), CabVenta.cve_ImpMonLoc))) as Descr, ");
                     a.Append("CabVenta.cve_FVto as FecVto, ");
                     a.Append("CabVenta.cve_SaldoMonLoc as Saldo ");
                     a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod "); 
-                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
+                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'FCE', 'NDE', 'NCE', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
                     a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") "); 
                     a.Append("UNION "); 
                     a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
+                    a.Append("convert(varchar(50), 'Cheques') as TipoDato, ");
                     a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descr, ");
                     a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
-                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ")) go ");
+                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    //a.Append("UNION ");
+                    a.Append(" ) go ");
                     a.Append("select distinct Zona from #Financiero order by Zona ");
                     a.Append("select distinct Cliente from #Financiero order by Cliente ");
-                    a.Append("select Zona, Cliente, Descr, FecVto, Saldo from #Financiero order by Zona, Cliente, FecVto asc ");
+                    a.Append("select Zona, Cliente, TipoDato, Descr, FecVto, Saldo from #Financiero order by Zona, Cliente, TipoDato, Descr, FecVto asc ");
+                    a.Append("drop table #Financiero ");
+                    break;
+                default:
+                    throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+            }
+            return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
+        }
+        public DataSet LeerDatosParaFinancieroDs(string IdPeriodo, string TipoReporte, string ListaClientes)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            switch (TipoReporte)
+            {
+                case "Zona-Cliente":
+                    a.Append("Select Zona, Cliente, TipoDato, Descr, FecVto, Saldo into #Financiero from (");
+                    a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, ");
+                    a.Append("convert(varchar(50), 'CtaCte') as TipoDato, ");
+                    a.Append("CabVenta.cvetco_Cod + '-' + CabVenta.cve_CodPvt + '-' + CabVenta.cve_Nro + '-Fec.Emi:' + convert(varchar(10), CabVenta.cve_FEmision, 103) + '-Imp.Orig:' + ltrim(rtrim(convert(varchar(30), CabVenta.cve_ImpMonLoc))) as Descr, ");
+                    a.Append("CabVenta.cve_FVto as FecVto, ");
+                    a.Append("CabVenta.cve_SaldoMonLoc as Saldo ");
+                    a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod ");
+                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'FCE', 'NDE', 'NCE', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
+                    a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") ");
+                    a.Append("UNION ");
+                    a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
+                    a.Append("convert(varchar(50), 'Cheques') as TipoDato, ");
+                    a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descr, ");
+                    a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
+                    a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
+                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    a.Append(" ) go ");
+                    a.Append("select distinct Zona from #Financiero order by Zona ");
+                    a.Append("select distinct Zona, Cliente from #Financiero order by Zona, Cliente ");
+                    a.Append("select Zona, Cliente, TipoDato, Descr, FecVto, Saldo from #Financiero order by Zona, Cliente, TipoDato, Descr, FecVto asc ");
+
+                    a.Append("Select Zona, Cliente, TipoDato, Descr, Saldo into #FinancieroT from (select Clientes.clizon_cod as Zona, Clientes.cli_Cod as Cliente, ");
+                    a.Append("convert(varchar(50), 'Credito') as TipoDato, ");
+                    a.Append("convert(varchar(50), 'Crédito Máximo Otorgado') as Descr, ");
+                    a.Append("sum(sfc_CredMax) as Saldo ");
+                    a.Append("from SBDAFERT.dbo.SitFcieraC left outer join SBDAFERT.dbo.Clientes on SitFcieraC.sfccli_Cod = Clientes.cli_Cod ");
+                    a.Append("where Clientes.cli_Cod in (" + ListaClientes + ") and sfc_CredMax <> 0 ");
+                    a.Append("Group by Clientes.clizon_cod, Clientes.cli_Cod ");
+                    a.Append("UNION ");
+                    a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, ");
+                    a.Append("convert(varchar(50), 'Exposicion') as TipoDato, ");
+                    a.Append("convert(varchar(50), 'Exposición') as Descr, ");
+                    a.Append("Sum(CabVenta.cve_SaldoMonLoc * -1) as Saldo ");
+                    a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod ");
+                    a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'FCE', 'NDE', 'NCE', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
+                    a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") ");
+                    a.Append("Group by Clientes.clizon_cod, CabVenta.cve_CodCli ");
+                    a.Append("UNION ");
+                    a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
+                    a.Append("convert(varchar(50), 'Exposicion') as TipoDato, ");
+                    a.Append("convert(varchar(50), 'Exposición') as Descr, ");
+                    a.Append("sum(ch3_Importe * -1) as Saldo ");
+                    a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
+                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    a.Append("Group by Clientes.clizon_cod, ch3cli_Cod ) GO ");
+                    a.Append("select Zona, Cliente, TipoDato, Descr, sum(Saldo) from #financieroT group by Zona, Cliente, TipoDato, Descr ");
+                    a.Append("drop table #financieroT ");
                     a.Append("drop table #Financiero ");
                     break;
                 default:

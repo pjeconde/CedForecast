@@ -85,6 +85,9 @@ namespace CedForecast
                 nd.Tag = listaVendedores[i].Ven_Cod;
                 VendedoresTreeView.Nodes.Add(nd);
             }
+            PeriodoDesdeCalendarCombo.Value = DateTime.Today;
+            PeriodoRangoDesdeCalendarCombo.Value = DateTime.Today;
+            PeriodoRangoHastaCalendarCombo.Value = DateTime.Today;
         }
         private void CancelarUiButton_Click(object sender, EventArgs e)
         {

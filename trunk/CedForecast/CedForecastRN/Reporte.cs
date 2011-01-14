@@ -35,6 +35,7 @@ namespace CedForecastRN
             DataTable dt = new DataTable();
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Zona"]));     //Zona
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cliente"]));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["TipoDato"]));
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Descr"]));
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["FecVto"]));
             DateTime fechaInicio = Convert.ToDateTime("01/" + IdPeriodo.Substring(4, 2) + "/" + IdPeriodo.Substring(0, 4));
@@ -77,6 +78,7 @@ namespace CedForecastRN
                         dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]) + "-" + cliente.Cli_RazSoc;
                     }
                     dr["FecVto"] = Convert.ToString(dtDatos.Rows[i]["FecVto"]);
+                    dr["TipoDato"] = Convert.ToString(dtDatos.Rows[i]["TipoDato"]);
                     dr["Descr"] = Convert.ToString(dtDatos.Rows[i]["Descr"]);
                     dt.Rows.Add(dr);
                     //claveAnterior = claveActual;
@@ -108,7 +110,139 @@ namespace CedForecastRN
             }
             return dt;
         }
+        public static DataSet FinancieroDs(string IdPeriodo, string TipoReporte, string ListaClientes, CedEntidades.Sesion Sesion, out List<CedForecastEntidades.Advertencia> Advertencias)
+        {
+            Advertencias = new List<CedForecastEntidades.Advertencia>();
+            //Validacion de parámetros
+            if (ListaClientes == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Cliente(s)");
+            }
+            //Leer datos Forecast
+            CedForecastDB.Forecast db = new CedForecastDB.Forecast(Sesion);
+            DataSet ds = db.LeerDatosParaFinancieroDs(IdPeriodo, TipoReporte, ListaClientes);
+            DataTable dtZona = new DataTable();
+            switch (TipoReporte)
+            {
+                case "Zona-Cliente":
+                    dtZona = ds.Tables[0].Copy();
+                    break;
+            }
+            DataTable dtClientes = ds.Tables[1].Copy();
+            DataTable dtDatos = ds.Tables[2].Copy();
+            DataTable dtDatosT = ds.Tables[3].Copy();
 
+            //Creamos el DataSet con modificaciones de campos para la Grilla.
+            ds = new DataSet();
+            ds.Tables.Add(dtZona);
+            ds.Tables[0].TableName = "Finan1";
+            ds.Tables.Add(dtClientes);
+            ds.Tables[1].TableName = "Finan2";
+            
+            //Leer datos Bejerman
+            List<CedForecastEntidades.Bejerman.Zona> zonas = new CedForecastDB.Bejerman.Zona(Sesion).LeerLista();
+            List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Zona"]));     //Zona
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cliente"]));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["TipoDato"]));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Descr"]));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["FecVto"]));
+            DateTime fechaInicio = Convert.ToDateTime("01/" + IdPeriodo.Substring(4, 2) + "/" + IdPeriodo.Substring(0, 4));
+            DateTime periodoColumna = fechaInicio;
+            for (int i = 0; i < 12; i++)
+            {
+                dt.Columns.Add(ClonarColumna(dtDatos.Columns["Saldo"], " " + periodoColumna.ToString("MM-yyyy"), " " + periodoColumna.ToString("MM-yyyy")));
+                periodoColumna = periodoColumna.AddMonths(1);
+            }
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Saldo"], "Total Saldo", "Total Saldo"));
+
+            //Llenar crosstab
+            string claveAnterior = String.Empty;
+            for (int i = 0; i < dtDatos.Rows.Count; i++)
+            {
+                //string claveActual = Convert.ToString(dtDatos.Rows[i]["Zona"]) + Convert.ToString(dtDatos.Rows[i]["Cliente"]);
+                //if (claveAnterior != claveActual)
+                //{
+                //Zona
+                DataRow dr = dt.NewRow();
+                CedForecastEntidades.Bejerman.Zona zona = zonas.Find(delegate(CedForecastEntidades.Bejerman.Zona c) { return c.Zon_Cod == Convert.ToString(dtDatos.Rows[i]["Zona"]); });
+                if (zona == null)
+                {
+                    dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]) + "-<<<Desconocido>>>";
+                    Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-01", "Descripción no encontrada para la zona " + Convert.ToString(dtDatos.Rows[i]["Zona"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                }
+                else
+                {
+                    dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]) + "-" + zona.Zon_Desc;
+                }
+                //Cliente
+                CedForecastEntidades.Bejerman.Clientes cliente = clientes.Find(delegate(CedForecastEntidades.Bejerman.Clientes c) { return c.Cli_Cod == Convert.ToString(dtDatos.Rows[i]["Cliente"]); });
+                if (cliente == null)
+                {
+                    dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]) + "-<<<Desconocido>>>";
+                    Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-02", "Descripción no encontrada para el cliente " + Convert.ToString(dtDatos.Rows[i]["Cliente"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                }
+                else
+                {
+                    dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]); // + "-" + cliente.Cli_RazSoc;
+                }
+                dr["FecVto"] = Convert.ToString(dtDatos.Rows[i]["FecVto"]);
+                dr["TipoDato"] = Convert.ToString(dtDatos.Rows[i]["TipoDato"]);
+                dr["Descr"] = Convert.ToString(dtDatos.Rows[i]["Descr"]);
+                dt.Rows.Add(dr);
+                //claveAnterior = claveActual;
+                //}
+                decimal valor = Convert.ToDecimal(dtDatos.Rows[i]["Saldo"]);
+                string periodo = Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("MM-yyyy");
+                if (Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]) < fechaInicio)
+                {
+                    if (dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")].ToString() == "")
+                    {
+                        dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")] = "0";
+                    }
+                    dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")]) + valor;
+                }
+                else
+                {
+                    if (dt.Rows[dt.Rows.Count - 1][" " + periodo].ToString() == "")
+                    {
+                        dt.Rows[dt.Rows.Count - 1][" " + periodo] = "0";
+                    }
+                    dt.Rows[dt.Rows.Count - 1][" " + periodo] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + periodo]) + valor;
+                }
+                if (dt.Rows[dt.Rows.Count - 1]["Total Saldo"].ToString() == "")
+                {
+                    dt.Rows[dt.Rows.Count - 1]["Total Saldo"] = "0";
+                }
+                dt.Rows[dt.Rows.Count - 1]["Total Saldo"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Saldo"]) + valor;
+                dt.AcceptChanges();
+            }
+            ds.Tables.Add(dt);
+            ds.Tables[2].TableName = "Finan3";
+            ds.Tables.Add(dtDatosT);
+            ds.Tables[3].TableName = "Finan4";
+
+            //DataTable dtDatos2 = ds.Tables[4];
+            ////for (int i = 0; i < dtDatos2.Rows.Count; i++)
+            ////{
+            ////}
+            //DataTable dt2 = new DataTable("FinanNivel2");
+            //dt2.Columns.Add(ClonarColumna(dtDatos.Columns["Zona"]));     
+            //dt2.Columns.Add(ClonarColumna(dtDatos.Columns["Cliente"]));
+            //dt2.Columns.Add(ClonarColumna(dtDatos.Columns["Descr"]));
+            //DataRow dr2 = dt2.NewRow();
+            //dr2["Zona"] = Convert.ToString(dtDatos2.Rows[0]["Zona"]);
+            //dr2["Cliente"] = Convert.ToString(dtDatos2.Rows[0]["Cliente"]);
+            //dr2["Descr"] = Convert.ToString(dtDatos2.Rows[0]["Descr"]);
+            //dt2.Rows.Add(dr2);
+            //ds.Tables.Add(dt2);
+            ds.Relations.Add("Finan1_Finan2", ds.Tables["Finan1"].Columns["Zona"], ds.Tables["Finan2"].Columns["Zona"]);
+            ds.Relations.Add("Finan2_Finan3", ds.Tables["Finan2"].Columns["Cliente"], ds.Tables["Finan3"].Columns["Cliente"]);
+            ds.Relations.Add("Finan2_Finan4", ds.Tables["Finan2"].Columns["Cliente"], ds.Tables["Finan4"].Columns["Cliente"]);
+            return ds;
+        }
         public static DataTable ResumenArgentinaXZonas(string PeriodoDesde, string PeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores, bool Valorizado, CedEntidades.Sesion Sesion, out List<CedForecastEntidades.Advertencia> Advertencias)
         {
             Advertencias = new List<CedForecastEntidades.Advertencia>();

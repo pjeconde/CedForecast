@@ -65,9 +65,25 @@ namespace CedForecast
             {
                 Cursor = Cursors.WaitCursor;
                 List<CedForecastEntidades.Advertencia> advertencias;
-                DataTable dt = CedForecastRN.Reporte.Financiero(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Aplicacion.Sesion, out advertencias);
-                PersonalizarGrilla(dt);
-                BrowserGridEX.DataSource = dt;
+                if (JerarquicaUiCheckBox.Checked)
+                {
+                    DataSet ds = CedForecastRN.Reporte.FinancieroDs(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Aplicacion.Sesion, out advertencias);
+                    PersonalizarGrillaDs(ds);
+                    if (ds.Tables.Count != 0)
+                    {
+                        BrowserGridEX.DataSource = ds.Tables["Finan1"];
+                    }
+                    else
+                    {
+                        BrowserGridEX.DataSource = ds;
+                    }
+                }
+                else
+                {
+                    DataTable dt = CedForecastRN.Reporte.Financiero(PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM"), TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Aplicacion.Sesion, out advertencias);
+                    PersonalizarGrilla(dt);
+                    BrowserGridEX.DataSource = dt;
+                }
                 
                 BrowserUiTabPage.TabVisible = true;
                 MensajesUiTabPage.TabVisible = (advertencias.Count > 0);
@@ -171,6 +187,8 @@ namespace CedForecast
             //Cortes de control
             if (ArmaGruposUiCheckBox.Checked)
             {
+                BrowserGridEX.Hierarchical = true;
+
                 BrowserGridEX.RootTable.Groups.Clear();
                 Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[0]);
                 grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
@@ -181,6 +199,135 @@ namespace CedForecast
                 grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
                 BrowserGridEX.RootTable.Groups.Add(grupo2);
                 BrowserGridEX.RootTable.Columns[1].Visible = false;
+
+                Janus.Windows.GridEX.GridEXGroup grupo3 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.Columns[2]);
+                grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                BrowserGridEX.RootTable.Groups.Add(grupo3);
+                BrowserGridEX.RootTable.Columns[2].Visible = false;
+            }
+        }
+        private void PersonalizarGrillaDs(DataSet Datos)
+        {
+            //Columnas
+            BrowserGridEX.RootTable.Columns.Clear();
+            if (BrowserGridEX.RootTable.ChildTables.Count != 0)
+            {
+                BrowserGridEX.RootTable.ChildTables.Clear();
+            }
+            BrowserGridEX.Hierarchical = true;
+            BrowserGridEX.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            BrowserGridEX.RootTable.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
+            for (int t = 0; t < Datos.Tables.Count; t++)
+            {
+                if (t == 1)
+                {
+                    Janus.Windows.GridEX.GridEXTable table = new Janus.Windows.GridEX.GridEXTable();
+                    BrowserGridEX.RootTable.ChildTables.Add(table);
+                    BrowserGridEX.RootTable.ChildTables[t - 1].Key = "Finan" + Convert.ToString(t + 1);
+                    BrowserGridEX.RootTable.ChildTables[t - 1].Caption = "Finan" + Convert.ToString(t + 1);
+                    
+                }
+                else if (t > 1)
+                {
+                    Janus.Windows.GridEX.GridEXTable table = new Janus.Windows.GridEX.GridEXTable();
+                    BrowserGridEX.RootTable.ChildTables[0].ChildTables.Add(table);
+                    BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Key = "Finan" + Convert.ToString(t + 1);
+                    BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Caption = "Finan" + Convert.ToString(t + 1);
+                }
+                for (int i = 0; i < Datos.Tables[t].Columns.Count; i++)
+                {
+                    string nombre = Datos.Tables[t].Columns[i].ColumnName;
+                    if (t == 1)
+                    {
+                        BrowserGridEX.RootTable.ChildTables[t - 1].Columns.Add(nombre, Janus.Windows.GridEX.ColumnType.Text);
+                        int elemento = BrowserGridEX.RootTable.ChildTables[t - 1].Columns.Count - 1;
+                        BrowserGridEX.RootTable.ChildTables[t - 1].Columns[elemento].Caption = Datos.Tables[t].Columns[i].Caption;
+                        if (elemento == 1)
+                        {
+                            BrowserGridEX.RootTable.ChildTables[0].Columns[elemento].Width = 250;
+                        }
+                    }
+                    else if (t > 1)
+                    {
+                        BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns.Add(nombre, Janus.Windows.GridEX.ColumnType.Text);
+                        int elemento = BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns.Count - 1;
+                        BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Caption = Datos.Tables[t].Columns[i].Caption;
+                        string tipo = Datos.Tables[t].Columns[i].DataType.Name;
+                        switch (tipo)
+                        {
+                            case "String":
+                                switch (nombre)
+                                {
+                                    case "Descr":
+                                        BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Width = 350;
+                                        break;
+                                }
+                                break;
+                            case "Double":
+                            case "Decimal":
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].FormatString = "######,##0.00;(-######,##0.00)";
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].DefaultGroupFormatString = "######,##0.00;(-######,##0.00)";
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].TotalFormatString = "######,##0.00;(-######,##0.00)";
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].AggregateFunction = Janus.Windows.GridEX.AggregateFunction.Sum;
+                                switch (nombre)
+                                {
+                                    case "Total Saldo":
+                                        BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Width = 95;
+                                        break;
+                                    default:
+                                        BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Width = 75;
+                                        break;
+                                }
+                                break;
+                            case "DateTime":
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable;
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].FormatString = "dd/MM/yyyy";
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Width = 75;
+                                BrowserGridEX.RootTable.ChildTables[0].ChildTables[t - 2].Columns[elemento].Visible = true;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        BrowserGridEX.RootTable.Columns.Add(nombre, Janus.Windows.GridEX.ColumnType.Text);
+                        int elemento = BrowserGridEX.RootTable.Columns.Count - 1;
+                        BrowserGridEX.RootTable.Key = "Finan1";
+                        BrowserGridEX.RootTable.Caption = "Finan1";
+                        BrowserGridEX.RootTable.Columns[elemento].Width = 100;
+                        BrowserGridEX.RootTable.Columns[elemento].Caption = Datos.Tables[t].Columns[i].Caption;
+                    }
+                }
+            }
+            BrowserGridEX.BindingContext = new BindingContext();
+            BrowserGridEX.RootTable.ChildTables["Finan2"].DataMember = "Finan1_Finan2";
+            BrowserGridEX.RootTable.ChildTables["Finan2"].ChildTables["Finan3"].DataMember = "Finan2_Finan3";
+            BrowserGridEX.RootTable.ChildTables["Finan2"].ChildTables["Finan4"].DataMember = "Finan2_Finan4";
+
+            BrowserGridEX.RootTable.ChildTables[0].Columns[0].Visible = false;
+            BrowserGridEX.RootTable.Groups.Clear();
+            Janus.Windows.GridEX.GridEXGroup grupo1 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[1]);
+            grupo1.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups.Add(grupo1);
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups[0].GroupPrefix = "Total Cliente:";
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups[0].HeaderCaption = "";
+
+            Janus.Windows.GridEX.GridEXGroup grupo2 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[2]);
+            grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups.Add(grupo2);
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups[1].GroupPrefix = "";
+            
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[0].Visible = false;
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[1].Visible = false;
+            BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[2].Visible = false;
+
+            if (BrowserGridEX.RootTable.ChildTables[0].ChildTables.Count > 1)
+            {
+                BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[0].Visible = false;
+                BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[1].Visible = false;
+                BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[2].Visible = false;
             }
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
