@@ -121,6 +121,7 @@ namespace CedForecast
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
             BrowserGridEX.RootTable.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
+            BrowserGridEX.Hierarchical = true;
             for (int i = 0; i<Datos.Columns.Count; i++)
             {
                 string nombre = Datos.Columns[i].ColumnName;
@@ -225,7 +226,6 @@ namespace CedForecast
                     BrowserGridEX.RootTable.ChildTables.Add(table);
                     BrowserGridEX.RootTable.ChildTables[t - 1].Key = "Finan" + Convert.ToString(t + 1);
                     BrowserGridEX.RootTable.ChildTables[t - 1].Caption = "Finan" + Convert.ToString(t + 1);
-                    
                 }
                 else if (t > 1)
                 {
@@ -242,9 +242,9 @@ namespace CedForecast
                         BrowserGridEX.RootTable.ChildTables[t - 1].Columns.Add(nombre, Janus.Windows.GridEX.ColumnType.Text);
                         int elemento = BrowserGridEX.RootTable.ChildTables[t - 1].Columns.Count - 1;
                         BrowserGridEX.RootTable.ChildTables[t - 1].Columns[elemento].Caption = Datos.Tables[t].Columns[i].Caption;
-                        if (elemento == 1)
+                        if (elemento == 2)
                         {
-                            BrowserGridEX.RootTable.ChildTables[0].Columns[elemento].Width = 250;
+                            BrowserGridEX.RootTable.ChildTables[0].Columns[elemento].Width = 300;
                         }
                     }
                     else if (t > 1)
@@ -322,12 +322,17 @@ namespace CedForecast
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[0].Visible = false;
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[1].Visible = false;
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[2].Visible = false;
-
+ 
             if (BrowserGridEX.RootTable.ChildTables[0].ChildTables.Count > 1)
             {
                 BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[0].Visible = false;
                 BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[1].Visible = false;
                 BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[2].Visible = false;
+                
+                Janus.Windows.GridEX.GridEXGroup grupo3 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[1]);
+                grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
+                BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Groups.Add(grupo3);
+                BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Groups[0].GroupPrefix = "Crédito Disponible Cliente:";
             }
         }
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
@@ -358,7 +363,7 @@ namespace CedForecast
                     {
                         Cedeira.SV.Export planilla = new Cedeira.SV.Export();
                         Cursor = Cursors.WaitCursor;
-                        ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                        ExportDetailsDS(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
                     }
                     catch (Exception ex)
                     {
@@ -418,7 +423,56 @@ namespace CedForecast
                 throw Ex;
             }
         }
-
+        public void ExportDetailsDS(Janus.Windows.GridEX.GridEX Grilla, Cedeira.SV.Export.ExportFormat FormatType, string FileName)
+        {
+            Cedeira.SV.Export export = new Cedeira.SV.Export();
+            System.Diagnostics.Process loProcess = System.Diagnostics.Process.GetCurrentProcess();
+            loProcess.MaxWorkingSet = (IntPtr)10000000;
+            loProcess.MinWorkingSet = (IntPtr)5000000;
+            try
+            {
+                DataSet dsExport = Cedeira.SV.Fun.GetDataSetFromJanusGridExDS(Grilla, FileName);
+                dsExport.DataSetName = "Export";
+                //dsExport.Tables[0].TableName = "Values";
+                string[] sHeaders = new string[3]; 
+                string[] sFileds = new string[3];  
+                for (int t = 0; t < dsExport.Tables.Count; t++)
+                {
+                    for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
+                    {
+                        dsExport.Tables[t].Columns[i].ColumnName = Convert.ToString(i);
+                    }
+                    for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
+                    {
+                        sHeaders[i] = export.ReemplazarEspaciosyAcentos(dsExport.Tables[t].Columns[i].Caption);
+                        dsExport.Tables[t].Columns[i].ColumnName = sHeaders[i];
+                        sFileds[i] = sHeaders[i];
+                    }
+                    int columnas = dsExport.Tables[t].Columns.Count;
+                    for (int l = 0; l < dsExport.Tables[t].Rows.Count; l++)
+                    {
+                        for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
+                        {
+                            string aux = export.ReemplazarXPath(Convert.ToString(dsExport.Tables[t].Rows[l].ItemArray[i]));
+                            dsExport.Tables[t].Rows[l][i] = aux;
+                            dsExport.Tables[t].Rows[l].AcceptChanges();
+                        }
+                    }
+                }
+                string dir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "\\CedForecast\\";
+                if (!System.IO.Directory.Exists(dir))
+                {
+                    System.IO.Directory.CreateDirectory(dir);
+                }
+                FileName = dir + export.ReemplazarCaracteresMalos(FileName);
+                export.Export_with_XSLT_WindowsDS(dsExport, FormatType, FileName);
+                System.Diagnostics.Process.Start(FileName);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;

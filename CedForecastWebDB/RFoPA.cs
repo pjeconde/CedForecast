@@ -49,14 +49,14 @@ namespace CedForecastWebDB
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
-            a.Append("order by IdArticulo asc, IdPeriodo asc");
+            a.Append("order by Forecast.IdArticulo asc, Forecast.IdCliente asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.RFoPA> lista = new List<CedForecastWebEntidades.RFoPA>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastWebEntidades.RFoPA forecast = new CedForecastWebEntidades.RFoPA();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idArticulo = dt.Rows[0]["IdArticulo"].ToString() + dt.Rows[0]["IdCliente"].ToString();
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 //Lista de ventas para Rolling Forecast
                 List<CedForecastWebEntidades.Venta> ventaLista = new List<CedForecastWebEntidades.Venta>();
@@ -97,9 +97,9 @@ namespace CedForecastWebDB
                     {
                         mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
                     }
-                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString())
                     {
-                        idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                        idArticulo = dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString();
                         lista.Add(forecast);
                         forecast = new CedForecastWebEntidades.RFoPA();
                         CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
@@ -132,34 +132,40 @@ namespace CedForecastWebDB
         { 
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
             a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
             a.Append("inner join Cliente on Forecast.IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+            a.Append("left outer join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("where Forecast.IdTipoPlanilla='Proyectado' ");
+            if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
+            {
+                a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            }
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0,4) + "01' ");
             a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0,4) + "99' ");
-            a.Append("order by IdArticulo asc, IdPeriodo asc");
+            a.Append("order by IdArticulo asc, IdCliente asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.RFoPA> lista = new List<CedForecastWebEntidades.RFoPA>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastWebEntidades.RFoPA forecast = new CedForecastWebEntidades.RFoPA();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idArticulo = dt.Rows[0]["IdArticulo"].ToString() + dt.Rows[0]["IdCliente"].ToString();
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     if (!(dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "13" || dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "14"))
                     {
-                        if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                        if (idArticulo != dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString())
                         {
-                            idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                            idArticulo = dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString();
                             lista.Add(forecast);
                             forecast = new CedForecastWebEntidades.RFoPA();
                             CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
@@ -447,6 +453,14 @@ namespace CedForecastWebDB
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
             a.Append("ORDER BY ROW_NUM) innerSelect WHERE ROW_NUM > {2} ");
             a.Append("DROP TABLE #Forecast" + SessionID);
+            if (OrderBy.Trim().ToUpper() == "IDARTICULO" || OrderBy.Trim().ToUpper() == "IDARTICULO DESC" || OrderBy.Trim().ToUpper() == "IDARTICULO ASC")
+            {
+                OrderBy = "#Forecast" + SessionID + "." + OrderBy;
+            }
+            if (OrderBy.Trim().ToUpper() == "IDCLIENTE" || OrderBy.Trim().ToUpper() == "IDCLIENTE DESC" || OrderBy.Trim().ToUpper() == "IDCLIENTE ASC")
+            {
+                OrderBy = "#Forecast" + SessionID + "." + OrderBy;
+            }
             string commandText = string.Format(a.ToString(), ((IndicePagina + 1) * TamañoPagina), OrderBy, (IndicePagina * TamañoPagina));
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(commandText.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);

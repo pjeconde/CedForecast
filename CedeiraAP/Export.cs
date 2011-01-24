@@ -307,6 +307,51 @@ namespace Cedeira.SV
             }
         }
 
+        public void Export_with_XSLT_WindowsDS(DataSet dsExport, ExportFormat FormatType, string FileName)
+        {
+            try
+            {
+                // XSLT to use for transforming this dataset.						
+                MemoryStream stream = new MemoryStream();
+                System.Text.Encoding encod = System.Text.Encoding.GetEncoding("ISO-8859-1");
+                XmlTextWriter writer = new XmlTextWriter(stream, encod);
+                CreateStylesheetDS(writer, dsExport, FormatType);
+                writer.Flush();
+                stream.Seek(0, SeekOrigin.Begin);
+                XmlDocument xmlDoc = new XmlDocument();
+                XmlDeclaration xmldecl;
+                xmldecl = xmlDoc.CreateXmlDeclaration("1.0", "ISO-8859-1", "yes");
+                XmlElement root = xmlDoc.DocumentElement;
+                xmlDoc.InsertBefore(xmldecl, root);
+                xmlDoc.LoadXml(dsExport.GetXml());
+                XslTransform xslTran = new XslTransform();
+
+                StreamReader reader = new StreamReader(stream, encod);
+                XmlTextReader xmlTxtReader = new XmlTextReader(reader);
+
+                xslTran.Load(xmlTxtReader, null, null);
+
+                System.IO.StringWriter sw = new System.IO.StringWriter();
+                xslTran.Transform(xmlDoc, null, sw, null);
+
+                //Writeout the Content									
+                StreamWriter strwriter = new StreamWriter(FileName);
+                if (dsExport.ExtendedProperties.ContainsKey("Nombre"))
+                {
+                    strwriter.WriteLine(dsExport.ExtendedProperties["Nombre"].ToString());
+                }
+                strwriter.WriteLine(sw.ToString());
+                strwriter.Close();
+
+                sw.Close();
+                writer.Close();
+                stream.Close();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
         #endregion // Export_with_XSLT
 
         #region CreateStylesheet
@@ -366,6 +411,79 @@ namespace Cedeira.SV
                 }
 
                 writer.WriteEndElement(); // xsl:for-each
+                writer.WriteEndElement(); // xsl-template
+                writer.WriteEndElement(); // xsl:stylesheet
+                writer.WriteEndDocument();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        private void CreateStylesheetDS(XmlTextWriter writer, DataSet dsExport, ExportFormat FormatType)
+        {
+            try
+            {
+                // xsl:stylesheet
+                string ns = "http://www.w3.org/1999/XSL/Transform";
+                writer.Formatting = Formatting.Indented;
+                writer.WriteStartDocument();
+
+                writer.WriteStartElement("xsl", "stylesheet", ns);
+                writer.WriteAttributeString("version", "1.0");
+
+                writer.WriteStartElement("xsl:output");
+                writer.WriteAttributeString("method", "text");
+                writer.WriteAttributeString("version", "4.0");
+                writer.WriteAttributeString("encoding", "ISO-8859-1");
+
+                writer.WriteEndElement();
+                
+                    // xsl-template
+                    writer.WriteStartElement("xsl:template");
+                    writer.WriteAttributeString("match", "/");  //dsExport.Tables[0].TableName
+
+                    // xsl:value-of for headers
+                    for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
+                    {
+                        writer.WriteString("\"");
+                        writer.WriteStartElement("xsl:value-of");
+                        writer.WriteAttributeString("select", "'" + dsExport.Tables[0].Columns[i].ColumnName + " titulo'");
+                        writer.WriteEndElement(); // xsl:value-of
+                        writer.WriteString("\"");
+                        if (i != dsExport.Tables[0].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
+                    }
+                    
+                for (int t = 0; t < dsExport.Tables.Count; t++)
+                {
+                    // xsl:value-of for headers
+                    for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
+                    {
+                        writer.WriteString("\"");
+                        writer.WriteStartElement("xsl:value-of");
+                        writer.WriteAttributeString("select", "'" + dsExport.Tables[t].Columns[i].ColumnName + "'");
+                        writer.WriteEndElement(); // xsl:value-of
+                        writer.WriteString("\"");
+                        if (i != dsExport.Tables[t].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
+                    }
+                    writer.WriteString("\r\n");
+                    // xsl:for-each
+                    writer.WriteStartElement("xsl:for-each");
+                    writer.WriteAttributeString("select", "Export/" + dsExport.Tables[t].TableName);
+                    writer.WriteString("\r\n");
+                    // xsl:value-of for data fields
+                    for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
+                    {
+                        writer.WriteString("\"");
+                        writer.WriteStartElement("xsl:value-of");
+                        writer.WriteAttributeString("select", dsExport.Tables[t].Columns[i].ColumnName);
+                        writer.WriteEndElement(); // xsl:value-of
+                        writer.WriteString("\"");
+                        if (i != dsExport.Tables[t].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
+                    }
+                    writer.WriteEndElement(); // xsl:for-each
+                }
                 writer.WriteEndElement(); // xsl-template
                 writer.WriteEndElement(); // xsl:stylesheet
                 writer.WriteEndDocument();
