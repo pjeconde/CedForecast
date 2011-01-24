@@ -120,12 +120,18 @@ namespace CedForecastWebDB
         { 
             cantidadFilas = 0;
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, Forecast.Cantidad ");
+            a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdPeriodo, Forecast.IdArticulo, Articulo.DescrArticulo, Articulo.IdGrupoArticulo, Cliente.DescrCliente, GrupoArticulo.DescrGrupoArticulo, Division.IdDivision, Division.DescrDivision, FamiliaArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, Forecast.Cantidad ");
             a.Append("from Forecast inner join Articulo on Forecast.IdArticulo=Articulo.IdArticulo ");
             a.Append("inner join Cliente on Forecast.IdCliente=Cliente.IdCliente ");
             a.Append("inner join GrupoArticulo on Articulo.IdGrupoArticulo=GrupoArticulo.IdGrupoArticulo ");
             a.Append("inner join Division on GrupoArticulo.IdDivision=Division.IdDivision ");
-            a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+            a.Append("left outer join FamiliaArticulo on FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("where Forecast.IdTipoPlanilla='Proyectado' ");
+            if (Forecast.IdCuenta != null && Forecast.IdCuenta != "")
+            {
+                a.Append("and Forecast.IdCuenta='" + Forecast.IdCuenta + "' ");
+            }
             if (Forecast.IdCliente != null && Forecast.IdCliente != "")
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
@@ -139,15 +145,15 @@ namespace CedForecastWebDB
             if (dt.Rows.Count != 0)
             {
                 CedForecastWebEntidades.RollingForecast forecast = new CedForecastWebEntidades.RollingForecast();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idArticulo = dt.Rows[0]["IdArticulo"].ToString() + dt.Rows[0]["IdCliente"].ToString();
                 CopiarCab(dt.Rows[0], forecast, Forecast.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     if (!(Convert.ToInt32(dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2)) > 12))
                     {
-                        if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                        if (idArticulo != dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString())
                         {
-                            idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                            idArticulo = dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString();
                             lista.Add(forecast);
                             forecast = new CedForecastWebEntidades.RollingForecast();
                             CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);

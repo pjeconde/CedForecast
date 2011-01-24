@@ -42,23 +42,23 @@ namespace CedForecastWebDB
             periodo = Proyectado.IdPeriodo + "99";
             a.Append("and IdPeriodo >= '" + Proyectado.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
-            a.Append("order by IdArticulo asc, IdPeriodo asc");
+            a.Append("order by IdArticulo asc, IdCliente asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Proyectado> lista = new List<CedForecastWebEntidades.Proyectado>();
             if (dt.Rows.Count != 0)
             {
                 CedForecastWebEntidades.Proyectado proyectado = new CedForecastWebEntidades.Proyectado();
-                string idArticulo = dt.Rows[0]["IdArticulo"].ToString();
+                string idArticulo = dt.Rows[0]["IdArticulo"].ToString() + dt.Rows[0]["IdCliente"].ToString();
                 CopiarCab(dt.Rows[0], proyectado, Proyectado.IdPeriodo);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string periodoInicial = proyectado.IdPeriodo;
                     int mes = 0;
                     mes = MesAProcesar(dt.Rows[i]["IdPeriodo"].ToString(), periodoInicial);
-                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString())
+                    if (idArticulo != dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString())
                     {
-                        idArticulo = dt.Rows[i]["IdArticulo"].ToString();
+                        idArticulo = dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString();
                         lista.Add(proyectado);
                         proyectado = new CedForecastWebEntidades.Proyectado();
                         CopiarCab(dt.Rows[i], proyectado, Proyectado.IdPeriodo);

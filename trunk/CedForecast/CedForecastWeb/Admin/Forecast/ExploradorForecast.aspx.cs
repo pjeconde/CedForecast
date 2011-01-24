@@ -53,13 +53,6 @@ namespace CedForecastWeb.Admin.Forecast
                             CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             PeriodoTextBox.Text = periodo.IdPeriodo;
 
-                            int colFijas = 6; //Es 0 y 1.
-                            for (int i = 1; i <= 12; i++)
-                            {
-                                ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
-                            }
-                            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
-
                             LeerPeriodoActual();
                             BindPagingGrid();
 						}
@@ -92,7 +85,13 @@ namespace CedForecastWeb.Admin.Forecast
                 ForecastPagingGridView.VirtualItemCount = CantidadFilas;
 				ViewState["lista"] = lista;
 				ForecastPagingGridView.DataSource = (System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>)ViewState["lista"];
-				ForecastPagingGridView.DataBind();
+                int colFijas = 6; //Es 0 y 1.
+                for (int i = 1; i <= 12; i++)
+                {
+                    ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
+                }
+                ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
+                ForecastPagingGridView.DataBind();
 			}
 			catch (System.Threading.ThreadAbortException)
 			{
@@ -123,6 +122,12 @@ namespace CedForecastWeb.Admin.Forecast
                 ForecastPagingGridView.VirtualItemCount = CantidadFilas;
 				ViewState["lista"] = lista;
 				ForecastPagingGridView.DataSource = lista;
+                int colFijas = 6; //Es 0 y 1.
+                for (int i = 1; i <= 12; i++)
+                {
+                    ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
+                }
+                ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total";
 				ForecastPagingGridView.DataBind();
 			}
 			catch (System.Threading.ThreadAbortException)
