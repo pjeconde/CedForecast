@@ -636,48 +636,92 @@ namespace Cedeira.SV
         public static DataSet GetDataSetFromJanusGridExDS(Janus.Windows.GridEX.GridEX JanusGridEx, string tableName)
         {
             DataSet JanusDataSet = new DataSet();
-            DataTable JanusDataTable = new DataTable("Pepe"); //tableName
+            DataTable JanusDataTable = new DataTable();
             DataRow JanusDataRow = null;
             Janus.Windows.GridEX.GridEXRow[] JanusRows;
             JanusRows = JanusGridEx.GetRows();
             int columnas = JanusGridEx.RootTable.Columns.Count;
+            int nivelAnterior = 0;
             for (int registros = 0; registros < JanusGridEx.RowCount; registros++)
             {
-                if (JanusGridEx.GetRow(registros).Parent == null)
+                if (JanusGridEx.GetRow(registros).Cells.Count != nivelAnterior)
                 {
-                    columnas = JanusGridEx.RootTable.Columns.Count;
-                    for (int q = 0; q < columnas; q++)
+                    if (JanusDataTable.Columns.Count > 0)
                     {
-                        if (JanusGridEx.RootTable.Columns[q].Visible == true)
+                        JanusDataSet.Tables.Add(JanusDataTable);
+                    }
+                    nivelAnterior = JanusGridEx.GetRow(registros).Cells.Count;
+                    JanusDataTable = new DataTable("TablaColumnas" + registros.ToString());
+                    if (JanusGridEx.GetRow(registros).Cells.Count == 1)
+                    {
+                        columnas = JanusGridEx.RootTable.Columns.Count;
+                        for (int q = 0; q < columnas; q++)
                         {
-                            Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.Columns[q];
-                            System.Data.DataColumn dc = new DataColumn();
-                            dc.ColumnName = gec.Key;
-                            dc.Caption = gec.Caption;
-                            if (!JanusDataTable.Columns.Contains(gec.Key))
+                            if (JanusGridEx.RootTable.Columns[q].Visible == true)
                             {
-                                JanusDataTable.Columns.Add(dc);
+                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.Columns[q];
+                                System.Data.DataColumn dc = new DataColumn();
+                                dc.ColumnName = gec.Key;
+                                dc.Caption = gec.Caption;
+                                if (!JanusDataTable.Columns.Contains(gec.Key))
+                                {
+                                    JanusDataTable.Columns.Add(dc);
+                                }
                             }
                         }
                     }
-                    JanusDataTable.AcceptChanges();
-                }
-                else
-                {
-                    JanusDataSet.Tables.Add(JanusDataTable);
-                    JanusDataTable = new DataTable("Table" + JanusDataSet.Tables.Count.ToString());
-                    columnas = JanusGridEx.RootTable.ChildTables[0].Columns.Count;
-                    for (int q = 0; q < columnas; q++)
+                    if (JanusGridEx.GetRow(registros).Cells.Count == 3)
                     {
-                        if (JanusGridEx.RootTable.ChildTables[0].Columns[q].Visible == true)
+                        columnas = JanusGridEx.RootTable.ChildTables[0].Columns.Count;
+                        for (int q = 0; q < columnas; q++)
                         {
-                            Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.ChildTables[0].Columns[q];
-                            System.Data.DataColumn dc = new DataColumn();
-                            dc.ColumnName = gec.Key;
-                            dc.Caption = gec.Caption;
-                            if (!JanusDataTable.Columns.Contains(gec.Key))
+                            if (JanusGridEx.RootTable.ChildTables[0].Columns[q].Visible == true)
                             {
-                                JanusDataTable.Columns.Add(dc);
+                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.ChildTables[0].Columns[q];
+                                System.Data.DataColumn dc = new DataColumn();
+                                dc.ColumnName = gec.Key;
+                                dc.Caption = gec.Caption;
+                                if (!JanusDataTable.Columns.Contains(gec.Key))
+                                {
+                                    JanusDataTable.Columns.Add(dc);
+                                }
+                            }
+                        }
+                    }
+                    if (JanusGridEx.GetRow(registros).Cells.Count == 18)
+                    {
+                        columnas = JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns.Count;
+                        for (int q = 0; q < columnas; q++)
+                        {
+                            if (JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns[q].Visible == true)
+                            {
+                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns[q];
+                                System.Data.DataColumn dc = new DataColumn();
+                                dc.ColumnName = gec.Key;
+                                dc.Caption = gec.Caption;
+                                if (!JanusDataTable.Columns.Contains(gec.Key))
+                                {
+                                    JanusDataTable.Columns.Add(dc);
+                                }
+                            }
+                        }
+                    }
+                    if (JanusGridEx.GetRow(registros).Cells.Count == 5)
+                    {
+                        columnas = JanusGridEx.GetRow(registros).Cells.Count;
+                        for (int q = 0; q < columnas; q++)
+                        {
+
+                            if (JanusGridEx.GetRow(registros).Cells[q].Column.Visible == true)
+                            {
+                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.GetRow(registros).Cells[q].Column;
+                                System.Data.DataColumn dc = new DataColumn();
+                                dc.ColumnName = gec.Key;
+                                dc.Caption = gec.Caption;
+                                if (!JanusDataTable.Columns.Contains(gec.Key))
+                                {
+                                    JanusDataTable.Columns.Add(dc);
+                                }
                             }
                         }
                     }
@@ -687,65 +731,32 @@ namespace Cedeira.SV
                 for (int counter = 0; counter < columnas; counter++)
                 {
                     string columna = "";
-                    if (JanusGridEx.GetRow(registros).Parent == null)
+                    columna = Convert.ToString(JanusGridEx.GetRow(registros).Cells[counter].Column.Key);
+                    if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
                     {
-                        columna = Convert.ToString(JanusGridEx.RootTable.Columns[counter].Key);
-                        if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
+                        string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
+                        auxValor += Convert.ToString(JanusDataRow[0]);
+                        if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
                         {
-                            string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
-                            auxValor += Convert.ToString(JanusDataRow[0]);
-                            if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
-                            {
-                                JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
-                            }
-                            else
-                            {
-                                JanusDataRow[0] = auxValor;
-                            }
-                            break;
+                            JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
                         }
-                        else if (JanusGridEx.RootTable.Columns[columna].Visible == true)
+                        else
                         {
-                            if (JanusGridEx.GetRow(registros).Cells[columna].Value != null && JanusGridEx.GetRow(registros).Cells[columna].Value.GetType() == System.Type.GetType("System.DateTime"))
-                            {
-                                JanusDataRow[columna] = ((DateTime)JanusGridEx.GetRow(registros).Cells[columna].Value).ToString("MM/dd/yyyy");
-                            }
-                            else
-                            {
-                                JanusDataRow[columna] = JanusGridEx.GetRow(registros).Cells[columna].Text;
-                            }
+                            JanusDataRow[0] = auxValor;
+                        }
+                        break;
+                    }
+                    else if (JanusGridEx.GetRow(registros).Cells[columna].Column.Visible == true)
+                    {
+                        if (JanusGridEx.GetRow(registros).Cells[columna].Value != null && JanusGridEx.GetRow(registros).Cells[columna].Value.GetType() == System.Type.GetType("System.DateTime"))
+                        {
+                            JanusDataRow[columna] = ((DateTime)JanusGridEx.GetRow(registros).Cells[columna].Value).ToString("MM/dd/yyyy");
+                        }
+                        else
+                        {
+                            JanusDataRow[columna] = JanusGridEx.GetRow(registros).Cells[columna].Text;
                         }
                     }
-                    else
-                    {
-                        columna = Convert.ToString(JanusGridEx.RootTable.ChildTables[0].Columns[counter].Key);
-                        if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
-                        {
-                            string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
-                            auxValor += Convert.ToString(JanusDataRow[0]);
-                            if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
-                            {
-                                JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
-                            }
-                            else
-                            {
-                                JanusDataRow[0] = auxValor;
-                            }
-                            break;
-                        }
-                        else if (JanusGridEx.RootTable.ChildTables[0].Columns[columna].Visible == true)
-                        {
-                            if (JanusGridEx.GetRow(registros).Cells[columna].Value != null && JanusGridEx.GetRow(registros).Cells[columna].Value.GetType() == System.Type.GetType("System.DateTime"))
-                            {
-                                JanusDataRow[columna] = ((DateTime)JanusGridEx.GetRow(registros).Cells[columna].Value).ToString("MM/dd/yyyy");
-                            }
-                            else
-                            {
-                                JanusDataRow[columna] = JanusGridEx.GetRow(registros).Cells[columna].Text;
-                            }
-                        }
-                    }
-
                 }
                 JanusDataTable.Rows.Add(JanusDataRow);
                 JanusDataTable.AcceptChanges();
