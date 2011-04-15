@@ -56,14 +56,14 @@ CREATE TABLE [dbo].[ArticuloInfoSeguimientoOrdenCompra](
 	IdSENASA varchar(20) NOT NULL,
 	IdPresentacion varchar(20) NOT NULL,
 	CantidadXPresentacion int NOT NULL,
-	CantidadXContenedor int NOT NULL,
 	UnidadMedida varchar(2) NOT NULL,
-	Comentario varchar(255) NOT NULL,
+	CantidadXContenedor int NOT NULL,
+	CantidadStockSeguridad int NOT NULL,
+	PlazoAvisoStockSeguridad int NOT NULL,
 	Precio decimal NOT NULL,
 	FechaVigenciaPrecio datetime NOT NULL,
 	GastosNacionalizacion decimal NOT NULL,
-	StockSeguridad int NOT NULL,
-	PlazoAvisoStockSeguridad int NOT NULL,
+	Comentario varchar(255) NOT NULL,
  CONSTRAINT [PK_Table_ArticuloInfoSeguimientoOrdenCompra] PRIMARY KEY CLUSTERED 
 (
 	IdArticulo  ASC
