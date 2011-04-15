@@ -48,12 +48,13 @@ insert WF_Circuito values ('NA', 'No aplica')
 go
 insert WF_NivSeg values (0, 'No aplica')
 go
-CREATE TABLE [dbo].[ArticuloInfoSeguimientoEmbarques](
+CREATE TABLE [dbo].[ArticuloInfoSeguimientoOrdenCompra](
 	IdArticulo varchar(20) NOT NULL,
 	IdArticuloOrigen varchar(20) NOT NULL,
 	IdRENAR varchar(20) NOT NULL,
 	DescrRENAR varchar(60) NOT NULL,
 	IdSENASA varchar(20) NOT NULL,
+	IdPresentacion varchar(20) NOT NULL,
 	CantidadXPresentacion int NOT NULL,
 	CantidadXContenedor int NOT NULL,
 	UnidadMedida varchar(2) NOT NULL,
@@ -63,12 +64,12 @@ CREATE TABLE [dbo].[ArticuloInfoSeguimientoEmbarques](
 	GastosNacionalizacion decimal NOT NULL,
 	StockSeguridad int NOT NULL,
 	PlazoAvisoStockSeguridad int NOT NULL,
- CONSTRAINT [PK_Table_ArticuloInfoSeguimientoEmbarques] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Table_ArticuloInfoSeguimientoOrdenCompra] PRIMARY KEY CLUSTERED 
 (
 	IdArticulo  ASC
 )WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 go
-GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.ArticuloInfoSeguimientoEmbarques TO ce_update
+GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.ArticuloInfoSeguimientoOrdenCompra TO ce_update
 go
 
