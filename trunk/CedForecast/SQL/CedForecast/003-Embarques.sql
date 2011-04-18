@@ -24,7 +24,7 @@ insert WF_EstadoXFlow values ('Embarque', 'PteDesp', 0)
 go
 insert WF_EstadoXFlow values ('Embarque', 'PteInspRenar', 0)
 go
-insert WF_Estado values ('Embarque', 'PteIngrADep', 0)
+insert WF_EstadoXFlow values ('Embarque', 'PteIngrADep', 0)
 go
 insert WF_EstadoXFlow values ('Embarque', 'Concluida', 1)
 go
