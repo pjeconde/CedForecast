@@ -50,7 +50,7 @@ namespace CedForecastDB
         {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select IdArticulo from FamiliaArticuloXArticulo where IdFamiliaArticulo='" + FamiliaArticulo.Id + "' order by IdArticulo");
+            a.Append("select IdArticulo from ArticuloInfoAdicional where IdFamiliaArticulo='" + FamiliaArticulo.Id + "' order by IdArticulo");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             FamiliaArticulo.Articulos.Clear();
             if (dt.Rows.Count != 0)

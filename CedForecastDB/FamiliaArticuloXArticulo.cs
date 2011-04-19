@@ -17,11 +17,11 @@ namespace CedForecastDB
             {
                 DataTable dt = new DataTable();
                 System.Text.StringBuilder a = new StringBuilder();
-                a.Append("select FamiliaArticuloXArticulo.IdArticulo, FamiliaArticuloXArticulo.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo ");
-                a.Append("from FamiliaArticuloXArticulo, FamiliaArticulo ");
-                a.Append("where FamiliaArticuloXArticulo.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
-                a.Append("and FamiliaArticuloXArticulo.IdFamiliaArticulo in (" + ListaFamilias.ToString() + ") ");
-                a.Append("order by FamiliaArticulo.DescrFamiliaArticulo, FamiliaArticuloXArticulo.IdArticulo ");
+                a.Append("select ArticuloInfoAdicional.IdArticulo, ArticuloInfoAdicional.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo ");
+                a.Append("from ArticuloInfoAdicional, FamiliaArticulo ");
+                a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+                a.Append("and ArticuloInfoAdicional.IdFamiliaArticulo in (" + ListaFamilias.ToString() + ") ");
+                a.Append("order by FamiliaArticulo.DescrFamiliaArticulo, ArticuloInfoAdicional.IdArticulo ");
                 dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
                 if (dt.Rows.Count != 0)
                 {
