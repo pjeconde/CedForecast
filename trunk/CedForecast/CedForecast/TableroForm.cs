@@ -28,7 +28,9 @@ namespace CedForecast
                 case "Config.datos básicos":
                     opciones.Add(new CedForecastEntidades.Opcion("ArticuloInfoAdicional", "Artículos Info Adicional"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos"));
-                    opciones.Add(new CedForecastEntidades.Opcion("Tabla", "Tablas"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Moneda", "Monedas"));
+                    opciones.Add(new CedForecastEntidades.Opcion("PaisOrigen", "Paises de origen"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Proveedor", "Proveedores"));
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));
@@ -75,7 +77,15 @@ namespace CedForecast
                                         oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
-                                    case "Tabla":
+                                    case "Moneda":
+                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        //oFrm.ShowDialog();
+                                        break;
+                                    case "PaisOrigen":
+                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        //oFrm.ShowDialog();
+                                        break;
+                                    case "Proveedor":
                                         //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         //oFrm.ShowDialog();
                                         break;
