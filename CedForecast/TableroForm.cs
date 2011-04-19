@@ -26,7 +26,9 @@ namespace CedForecast
             switch (((Janus.Windows.EditControls.UIButton)sender).Tag.ToString())
             {
                 case "Config.datos básicos":
+                    opciones.Add(new CedForecastEntidades.Opcion("ArticuloInfoAdicional", "Artículos Info Adicional"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Tabla", "Tablas"));
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));
@@ -36,6 +38,7 @@ namespace CedForecast
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticuloXArticulo", "Familias de Artículos"));
                      break;
                 case "Exploradores":
+                    opciones.Add(new CedForecastEntidades.Opcion("OrdenCompra", "Órdenes de Compra"));
                     break;
                 case "Graficos":
                     break;
@@ -58,23 +61,29 @@ namespace CedForecast
                 {
                     if (OpcionGridEX.Row >= 0)
                     {
-                        string aux;
+                        string aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
                         switch (TipoOpcionLabel.Tag.ToString())
                         {
                             case "Config.datos básicos":
-                                aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
                                 switch (aux)
                                 {
+                                    case "ArticuloInfoAdicional":
+                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        //oFrm.ShowDialog();
+                                        break;
                                     case "FamiliaArticulo":
                                         oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
+                                        break;
+                                    case "Tabla":
+                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        //oFrm.ShowDialog();
                                         break;
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
                                 }
                                 break;
                             case "Consultas":
-                                aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
                                 switch (aux)
                                 {
                                     case "FamiliaArticuloXArticulo":
@@ -102,10 +111,28 @@ namespace CedForecast
                                 }
                                 break;
                             case "Exploradores":
-                                break;
+                                switch (aux)
+                                {
+                                    case "OrdenCompra":
+                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        //oFrm.ShowDialog();
+                                        break;
+                                    default:
+                                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+                                } break;
                             case "Graficos":
+                                switch (aux)
+                                {
+                                    default:
+                                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+                                } break;
                                 break;
                             case "Interfaces":
+                                switch (aux)
+                                {
+                                    default:
+                                        throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+                                } break;
                                 break;
                             case "Procesos":
                                 aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;

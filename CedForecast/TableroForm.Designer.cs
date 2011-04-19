@@ -49,13 +49,6 @@ namespace CedForecast
             PureComponents.NicePanel.ContainerStyle containerStyle2 = new PureComponents.NicePanel.ContainerStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle3 = new PureComponents.NicePanel.PanelHeaderStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle4 = new PureComponents.NicePanel.PanelHeaderStyle();
-            PureComponents.NicePanel.ContainerImage containerImage3 = new PureComponents.NicePanel.ContainerImage();
-            PureComponents.NicePanel.HeaderImage headerImage5 = new PureComponents.NicePanel.HeaderImage();
-            PureComponents.NicePanel.HeaderImage headerImage6 = new PureComponents.NicePanel.HeaderImage();
-            PureComponents.NicePanel.PanelStyle panelStyle3 = new PureComponents.NicePanel.PanelStyle();
-            PureComponents.NicePanel.ContainerStyle containerStyle3 = new PureComponents.NicePanel.ContainerStyle();
-            PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle5 = new PureComponents.NicePanel.PanelHeaderStyle();
-            PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle6 = new PureComponents.NicePanel.PanelHeaderStyle();
             this.BarraUIProgressBar = new Janus.Windows.EditControls.UIProgressBar();
             this.BarraEstado = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
@@ -68,22 +61,20 @@ namespace CedForecast
             this.ConsultasUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConfigDBasicosUiButton = new Janus.Windows.EditControls.UIButton();
             this.TipoOpcionLabel = new System.Windows.Forms.Label();
-            this.ProcesoNicePanel = new PureComponents.NicePanel.NicePanel();
-            this.VersionVerticalLabel = new Cedeira.UI.CustomControls.VerticalLabel();
             this.NotificacionesNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.VersionVerticalLabel = new Cedeira.UI.CustomControls.VerticalLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.FondoNicePanel.SuspendLayout();
             this.BarraEstado.SuspendLayout();
             this.nicePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OpcionGridEX)).BeginInit();
-            this.ProcesoNicePanel.SuspendLayout();
+            this.NotificacionesNicePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FondoNicePanel
             // 
             this.FondoNicePanel.Controls.Add(this.SalirUiButton);
             this.FondoNicePanel.Controls.Add(this.nicePanel);
-            this.FondoNicePanel.Controls.Add(this.ProcesoNicePanel);
             this.FondoNicePanel.Controls.Add(this.NotificacionesNicePanel);
             this.FondoNicePanel.Controls.Add(this.BarraEstado);
             this.FondoNicePanel.Size = new System.Drawing.Size(785, 537);
@@ -199,7 +190,7 @@ namespace CedForecast
             this.nicePanel.OriginalFooterVisible = false;
             this.nicePanel.OriginalHeight = 0;
             this.nicePanel.ShowChildFocus = false;
-            this.nicePanel.Size = new System.Drawing.Size(220, 303);
+            this.nicePanel.Size = new System.Drawing.Size(220, 442);
             containerStyle1.BackColor = System.Drawing.Color.PeachPuff;
             containerStyle1.BaseColor = System.Drawing.Color.Transparent;
             containerStyle1.BorderColor = System.Drawing.Color.Peru;
@@ -266,7 +257,7 @@ namespace CedForecast
             this.OpcionGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
             this.OpcionGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.Empty;
             this.OpcionGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.OpcionGridEX.Size = new System.Drawing.Size(208, 254);
+            this.OpcionGridEX.Size = new System.Drawing.Size(208, 382);
             this.OpcionGridEX.TabIndex = 136;
             this.OpcionGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.OpcionGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -403,35 +394,35 @@ namespace CedForecast
             this.TipoOpcionLabel.TabIndex = 130;
             this.TipoOpcionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ProcesoNicePanel
+            // NotificacionesNicePanel
             // 
-            this.ProcesoNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.ProcesoNicePanel.CollapseButton = false;
+            this.NotificacionesNicePanel.BackColor = System.Drawing.Color.Transparent;
+            this.NotificacionesNicePanel.CollapseButton = false;
             containerImage2.Alignment = System.Drawing.ContentAlignment.BottomRight;
             containerImage2.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             containerImage2.Image = null;
             containerImage2.Size = PureComponents.NicePanel.ContainerImageSize.Small;
             containerImage2.Transparency = 50;
-            this.ProcesoNicePanel.ContainerImage = containerImage2;
-            this.ProcesoNicePanel.ContextMenuButton = false;
-            this.ProcesoNicePanel.Controls.Add(this.VersionVerticalLabel);
+            this.NotificacionesNicePanel.ContainerImage = containerImage2;
+            this.NotificacionesNicePanel.ContextMenuButton = false;
+            this.NotificacionesNicePanel.Controls.Add(this.VersionVerticalLabel);
             headerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage3.Image = null;
-            this.ProcesoNicePanel.FooterImage = headerImage3;
-            this.ProcesoNicePanel.FooterText = "";
-            this.ProcesoNicePanel.FooterVisible = false;
-            this.ProcesoNicePanel.ForeColor = System.Drawing.Color.Black;
+            this.NotificacionesNicePanel.FooterImage = headerImage3;
+            this.NotificacionesNicePanel.FooterText = "";
+            this.NotificacionesNicePanel.FooterVisible = false;
+            this.NotificacionesNicePanel.ForeColor = System.Drawing.Color.Black;
             headerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage4.Image = null;
-            this.ProcesoNicePanel.HeaderImage = headerImage4;
-            this.ProcesoNicePanel.HeaderText = "Tablero de Control";
-            this.ProcesoNicePanel.IsExpanded = true;
-            this.ProcesoNicePanel.Location = new System.Drawing.Point(8, 33);
-            this.ProcesoNicePanel.Name = "ProcesoNicePanel";
-            this.ProcesoNicePanel.OriginalFooterVisible = false;
-            this.ProcesoNicePanel.OriginalHeight = 0;
-            this.ProcesoNicePanel.ShowChildFocus = false;
-            this.ProcesoNicePanel.Size = new System.Drawing.Size(541, 472);
+            this.NotificacionesNicePanel.HeaderImage = headerImage4;
+            this.NotificacionesNicePanel.HeaderText = "Notificaciones";
+            this.NotificacionesNicePanel.IsExpanded = true;
+            this.NotificacionesNicePanel.Location = new System.Drawing.Point(8, 33);
+            this.NotificacionesNicePanel.Name = "NotificacionesNicePanel";
+            this.NotificacionesNicePanel.OriginalFooterVisible = false;
+            this.NotificacionesNicePanel.OriginalHeight = 0;
+            this.NotificacionesNicePanel.ShowChildFocus = false;
+            this.NotificacionesNicePanel.Size = new System.Drawing.Size(541, 472);
             containerStyle2.BackColor = System.Drawing.Color.White;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Navy;
@@ -468,8 +459,8 @@ namespace CedForecast
             panelHeaderStyle4.Size = PureComponents.NicePanel.PanelHeaderSize.Medium;
             panelHeaderStyle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             panelStyle2.HeaderStyle = panelHeaderStyle4;
-            this.ProcesoNicePanel.Style = panelStyle2;
-            this.ProcesoNicePanel.TabIndex = 132;
+            this.NotificacionesNicePanel.Style = panelStyle2;
+            this.NotificacionesNicePanel.TabIndex = 132;
             // 
             // VersionVerticalLabel
             // 
@@ -483,72 +474,6 @@ namespace CedForecast
             this.VersionVerticalLabel.TabIndex = 130;
             this.VersionVerticalLabel.Text = "Versión";
             this.VersionVerticalLabel.TextDrawMode = Cedeira.UI.CustomControls.DrawMode.BottomUp;
-            // 
-            // NotificacionesNicePanel
-            // 
-            this.NotificacionesNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.NotificacionesNicePanel.CollapseButton = false;
-            containerImage3.Alignment = System.Drawing.ContentAlignment.BottomRight;
-            containerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            containerImage3.Image = null;
-            containerImage3.Size = PureComponents.NicePanel.ContainerImageSize.Small;
-            containerImage3.Transparency = 50;
-            this.NotificacionesNicePanel.ContainerImage = containerImage3;
-            this.NotificacionesNicePanel.ContextMenuButton = false;
-            headerImage5.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage5.Image = null;
-            this.NotificacionesNicePanel.FooterImage = headerImage5;
-            this.NotificacionesNicePanel.FooterText = "";
-            this.NotificacionesNicePanel.FooterVisible = false;
-            this.NotificacionesNicePanel.ForeColor = System.Drawing.Color.Navy;
-            headerImage6.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage6.Image = null;
-            this.NotificacionesNicePanel.HeaderImage = headerImage6;
-            this.NotificacionesNicePanel.HeaderText = "Notificaciones";
-            this.NotificacionesNicePanel.IsExpanded = true;
-            this.NotificacionesNicePanel.Location = new System.Drawing.Point(555, 342);
-            this.NotificacionesNicePanel.Name = "NotificacionesNicePanel";
-            this.NotificacionesNicePanel.OriginalFooterVisible = false;
-            this.NotificacionesNicePanel.OriginalHeight = 0;
-            this.NotificacionesNicePanel.ShowChildFocus = false;
-            this.NotificacionesNicePanel.Size = new System.Drawing.Size(220, 139);
-            containerStyle3.BackColor = System.Drawing.Color.PeachPuff;
-            containerStyle3.BaseColor = System.Drawing.Color.Transparent;
-            containerStyle3.BorderColor = System.Drawing.Color.Peru;
-            containerStyle3.BorderStyle = PureComponents.NicePanel.BorderStyle.Double;
-            containerStyle3.CaptionAlign = PureComponents.NicePanel.CaptionAlign.Left;
-            containerStyle3.FadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(207)))), ((int)(((byte)(152)))));
-            containerStyle3.FillStyle = PureComponents.NicePanel.FillStyle.Flat;
-            containerStyle3.FlashItemBackColor = System.Drawing.Color.Red;
-            containerStyle3.FocusItemBackColor = System.Drawing.Color.White;
-            containerStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            containerStyle3.ForeColor = System.Drawing.Color.Navy;
-            containerStyle3.Shape = PureComponents.NicePanel.Shape.Rounded;
-            panelStyle3.ContainerStyle = containerStyle3;
-            panelHeaderStyle5.BackColor = System.Drawing.Color.ForestGreen;
-            panelHeaderStyle5.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            panelHeaderStyle5.FadeColor = System.Drawing.Color.LightGreen;
-            panelHeaderStyle5.FillStyle = PureComponents.NicePanel.FillStyle.HorizontalFading;
-            panelHeaderStyle5.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle5.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle5.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            panelHeaderStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
-            panelHeaderStyle5.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
-            panelStyle3.FooterStyle = panelHeaderStyle5;
-            panelHeaderStyle6.BackColor = System.Drawing.Color.PeachPuff;
-            panelHeaderStyle6.ButtonColor = System.Drawing.Color.Navy;
-            panelHeaderStyle6.FadeColor = System.Drawing.Color.Peru;
-            panelHeaderStyle6.FillStyle = PureComponents.NicePanel.FillStyle.DiagonalBackward;
-            panelHeaderStyle6.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle6.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle6.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            panelHeaderStyle6.ForeColor = System.Drawing.Color.White;
-            panelHeaderStyle6.Size = PureComponents.NicePanel.PanelHeaderSize.Medium;
-            panelStyle3.HeaderStyle = panelHeaderStyle6;
-            this.NotificacionesNicePanel.Style = panelStyle3;
-            this.NotificacionesNicePanel.TabIndex = 135;
             // 
             // imageList1
             // 
@@ -568,7 +493,7 @@ namespace CedForecast
             this.BarraEstado.ResumeLayout(false);
             this.nicePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OpcionGridEX)).EndInit();
-            this.ProcesoNicePanel.ResumeLayout(false);
+            this.NotificacionesNicePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -586,9 +511,8 @@ namespace CedForecast
         protected Janus.Windows.EditControls.UIButton ConsultasUiButton;
         protected Janus.Windows.EditControls.UIButton ConfigDBasicosUiButton;
         private System.Windows.Forms.Label TipoOpcionLabel;
-        private PureComponents.NicePanel.NicePanel ProcesoNicePanel;
-        private Cedeira.UI.CustomControls.VerticalLabel VersionVerticalLabel;
         private PureComponents.NicePanel.NicePanel NotificacionesNicePanel;
+        private Cedeira.UI.CustomControls.VerticalLabel VersionVerticalLabel;
         private System.Windows.Forms.ImageList imageList1;
         protected Janus.Windows.GridEX.GridEX OpcionGridEX;
     }
