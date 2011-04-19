@@ -1,4 +1,16 @@
-insert WF_Flow values ('Embarque', 'Embarques')
+delete WF_Flow
+go
+delete WF_Estado
+go
+delete WF_EstadoXFlow
+go
+delete WF_Evento
+go
+delete WF_Circuito
+go
+delete WF_NivSeg
+go
+insert WF_Flow values ('OrdenCpra', 'Ordenes de compra')
 go
 insert WF_Estado values ('PteInfoEmb', 'Pendiente informacion de embarque', 0)
 go
@@ -16,33 +28,33 @@ insert WF_Estado values ('Anulada', 'Anulada', 0)
 go
 insert WF_Estado values ('<Cualquiera>', 'Cualquier estado', 1)
 go
-insert WF_EstadoXFlow values ('Embarque', 'PteInfoEmb', 0)
+insert WF_EstadoXFlow values ('OrdenCpra', 'PteInfoEmb', 0)
 go
-insert WF_EstadoXFlow values ('Embarque', 'PteRecepDocs', 0)
+insert WF_EstadoXFlow values ('OrdenCpra', 'PteRecepDocs', 0)
 go
-insert WF_EstadoXFlow values ('Embarque', 'PteDesp', 0)
+insert WF_EstadoXFlow values ('OrdenCpra', 'PteDesp', 0)
 go
-insert WF_EstadoXFlow values ('Embarque', 'PteInspRenar', 0)
+insert WF_EstadoXFlow values ('OrdenCpra', 'PteInspRenar', 0)
 go
-insert WF_EstadoXFlow values ('Embarque', 'PteIngrADep', 0)
+insert WF_EstadoXFlow values ('OrdenCpra', 'PteIngrADep', 0)
 go
-insert WF_EstadoXFlow values ('Embarque', 'Concluida', 1)
+insert WF_EstadoXFlow values ('OrdenCpra', 'Concluida', 1)
 go
-insert WF_EstadoXFlow values ('Embarque', 'Anulada', 1)
+insert WF_EstadoXFlow values ('OrdenCpra', 'Anulada', 1)
 go
-insert WF_Evento values ('Embarque', 'Alta', 'Alta', 'Agregar', NULL, 'PteInfoEmb', 0, 0, 0)
+insert WF_Evento values ('OrdenCpra', 'Alta', 'Alta', 'Agregar', NULL, 'PteInfoEmb', 0, 0, 0)
 go
-insert WF_Evento values ('Embarque', 'ActInfoEmb', 'Actualización Info Embarque (planilla proveedor)', 'Registrar Info Embarque (aut)', 'PteInfoEmb', 'PteRecepDocs', 1, 0, 0)
+insert WF_Evento values ('OrdenCpra', 'ActInfoEmb', 'Actualización Info Embarque (planilla proveedor)', 'Registrar Info Embarque (aut)', 'PteInfoEmb', 'PteRecepDocs', 1, 0, 0)
 go
-insert WF_Evento values ('Embarque', 'IngInfoEmb', 'Ingreso Info Embarque', 'Ingresar Info Embarque', 'PteInfoEmb', 'PteRecepDocs', 0, 0, 1)
+insert WF_Evento values ('OrdenCpra', 'IngInfoEmb', 'Ingreso Info Embarque', 'Ingresar Info Embarque', 'PteInfoEmb', 'PteRecepDocs', 0, 0, 1)
 go
-insert WF_Evento values ('Embarque', 'RecepDocs', 'Recepción Documentos', 'Recibir Documentos', 'PteRecepDocs', 'PteDesp', 0, 0, 1)
+insert WF_Evento values ('OrdenCpra', 'RecepDocs', 'Recepción Documentos', 'Recibir Documentos', 'PteRecepDocs', 'PteDesp', 0, 0, 1)
 go
-insert WF_Evento values ('Embarque', 'RegDesp', 'Registro Despacho', 'Registrar Despacho', 'PteDesp', NULL, 0, 0, 1)
+insert WF_Evento values ('OrdenCpra', 'RegDesp', 'Registro Despacho', 'Registrar Despacho', 'PteDesp', NULL, 0, 0, 1)
 go
-insert WF_Evento values ('Embarque', 'InspRenar', 'Inspección RENAR', 'Registrar Inspección RENAR', 'PteInspRenar', 'PteIngrADep', 0, 0, 1)
+insert WF_Evento values ('OrdenCpra', 'InspRenar', 'Inspección RENAR', 'Registrar Inspección RENAR', 'PteInspRenar', 'PteIngrADep', 0, 0, 1)
 go
-insert WF_Evento values ('Embarque', 'IngrADep', 'Ingreso a Depósito', 'Ingresar a Depósito', 'PteIngrADep', 'Concluida', 0, 0, 1)
+insert WF_Evento values ('OrdenCpra', 'IngrADep', 'Ingreso a Depósito', 'Ingresar a Depósito', 'PteIngrADep', 'Concluida', 0, 0, 1)
 go
 insert WF_Circuito values ('NA', 'No aplica')
 go
