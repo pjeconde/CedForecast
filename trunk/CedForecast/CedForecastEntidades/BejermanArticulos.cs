@@ -40,6 +40,13 @@ namespace CedForecastEntidades.Bejerman
                 return art_DescGen;
             }
         }
+        public string Art_CodDescGen
+        {
+            get
+            {
+                return art_CodGen + "-" + art_DescGen;
+            }
+        }
         public decimal Art_PesoBruto
         {
             set
