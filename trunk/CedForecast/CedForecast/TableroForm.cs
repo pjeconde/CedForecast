@@ -70,8 +70,8 @@ namespace CedForecast
                                 switch (aux)
                                 {
                                     case "ArticuloInfoAdicional":
-                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
-                                        //oFrm.ShowDialog();
+                                        oFrm = new ArticuloInfoAdicionalGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
                                         break;
                                     case "FamiliaArticulo":
                                         oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
@@ -129,21 +129,20 @@ namespace CedForecast
                                         break;
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
-                                } break;
+                                }
+                                break;
                             case "Graficos":
                                 switch (aux)
                                 {
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
-                                } break;
-                                break;
+                                }
                             case "Interfaces":
                                 switch (aux)
                                 {
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
-                                } break;
-                                break;
+                                }
                             case "Procesos":
                                 aux = ((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Id;
                                 switch (aux)
