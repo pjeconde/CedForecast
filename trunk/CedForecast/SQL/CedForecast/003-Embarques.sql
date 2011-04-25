@@ -91,10 +91,10 @@ REFERENCES [dbo].[FamiliaArticulo] ([IdFamiliaArticulo])
 GO
 ALTER TABLE [dbo].[ArticuloInfoAdicional] CHECK CONSTRAINT [FK_ArticuloInfoAdicional_FamiliaArticulo]
 GO
-insert ArticuloInfoAdicional select IdArticulo, IdFamiliaArticulo, '', '', '', '', '', 0, 0, '', 0, '', '20000101', 0, 0, 90, '' from FamiliaArticuloXArticulo
+insert ArticuloInfoAdicional select IdArticulo, IdFamiliaArticulo, '', '', '', '', '', 0, 0, '', 0, 'USD', '20000101', 0, 0, 90, '' from FamiliaArticuloXArticulo
 go
-drop table dbo.FamiliaArticuloXArticulo
-go
+/* drop table dbo.FamiliaArticuloXArticulo
+go*/
 CREATE TABLE [dbo].[Tabla](
 	Tabla varchar(20) NOT NULL,
 	Id varchar(3) NOT NULL,
@@ -163,3 +163,4 @@ CREATE TABLE [dbo].[OrdenCompra](
 go
 GRANT INSERT, DELETE, UPDATE, SELECT, REFERENCES ON dbo.OrdenCompra TO ce_update
 go
+
