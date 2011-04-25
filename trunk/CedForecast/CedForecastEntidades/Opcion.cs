@@ -7,14 +7,18 @@ namespace CedForecastEntidades
     [Serializable]
     public class Opcion
     {
-        private string id;
-        private string descr;
+        protected string id;
+        protected string descr;
 
+        public Opcion()
+        {
+        }
         public Opcion(string Id, string Descr)
         {
             id = Id;
             descr = Descr;
         }
+
         public string Id
         {
             set
