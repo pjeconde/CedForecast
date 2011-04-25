@@ -84,6 +84,26 @@ namespace CedForecastDB
         }
         public void Crear(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
         {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("insert ArticuloInfoAdicional (IdArticulo, IdFamiliaArticulo, IdArticuloOrigen, IdRENAR, DescrRENAR, IdSENASA, IdPresentacion, CantidadXPresentacion, CantidadXContenedor, UnidadMedida, Precio, IdMoneda, FechaVigenciaPrecio, CoeficienteGastosNacionalizacion, CantidadStockSeguridad, PlazoAvisoStockSeguridad, Comentario) values (");
+            a.Append("'" + ArticuloInfoAdicional.IdArticulo + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdFamiliaArticulo + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdArticuloOrigen + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdRENAR + "', ");
+            a.Append("'" + ArticuloInfoAdicional.DescrRENAR + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdSENASA + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdPresentacion + "', ");
+            a.Append(ArticuloInfoAdicional.CantidadXPresentacion.ToString() + ", ");
+            a.Append(ArticuloInfoAdicional.CantidadXContenedor.ToString() + ", ");
+            a.Append("'" + ArticuloInfoAdicional.UnidadMedida + "', ");
+            a.Append(ArticuloInfoAdicional.Precio.ToString() + ", ");
+            a.Append("'" + ArticuloInfoAdicional.IdMoneda + "', ");
+            a.Append("'" + ArticuloInfoAdicional.FechaVigenciaPrecio.ToString("yyyyMMdd HH:mm:ss") + "', ");
+            a.Append(ArticuloInfoAdicional.CoeficienteGastosNacionalizacion.ToString() + ", ");
+            a.Append(ArticuloInfoAdicional.CantidadStockSeguridad.ToString() + ", ");
+            a.Append(ArticuloInfoAdicional.PlazoAvisoStockSeguridad.ToString() + ", ");
+            a.Append("'" + ArticuloInfoAdicional.Comentario + "') ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
         public void Modificar(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
         {
@@ -100,7 +120,7 @@ namespace CedForecastDB
             a.Append("UnidadMedida='" + ArticuloInfoAdicional.UnidadMedida + "', ");
             a.Append("Precio=" + ArticuloInfoAdicional.Precio.ToString() + ", ");
             a.Append("IdMoneda='" + ArticuloInfoAdicional.IdMoneda + "', ");
-            a.Append("FechaVigenciaPrecio='" + ArticuloInfoAdicional.FechaVigenciaPrecio.ToString("yyyyMMdd HH:mm") + "', ");
+            a.Append("FechaVigenciaPrecio='" + ArticuloInfoAdicional.FechaVigenciaPrecio.ToString("yyyyMMdd HH:mm:ss") + "', ");
             a.Append("CoeficienteGastosNacionalizacion=" + ArticuloInfoAdicional.CoeficienteGastosNacionalizacion.ToString() + ", ");
             a.Append("CantidadStockSeguridad=" + ArticuloInfoAdicional.CantidadStockSeguridad.ToString() + ", ");
             a.Append("PlazoAvisoStockSeguridad=" + ArticuloInfoAdicional.PlazoAvisoStockSeguridad.ToString() + ", ");
@@ -110,6 +130,10 @@ namespace CedForecastDB
         }
         public void Eliminar(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
         {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("delete ArticuloInfoAdicional ");
+            a.Append("where IdArticulo='" + ArticuloInfoAdicional.IdArticulo + "'");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }

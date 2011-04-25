@@ -35,6 +35,7 @@
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.FechaVigenciaPrecioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.IdMonedaUiComboBox = new Janus.Windows.EditControls.UIComboBox();
             this.IdFamiliaArticuloUiComboBox = new Janus.Windows.EditControls.UIComboBox();
             this.IdArticuloUiComboBox = new Janus.Windows.EditControls.UIComboBox();
@@ -44,7 +45,6 @@
             this.CantidadXContenedorNumericEditBox = new Janus.Windows.GridEX.EditControls.NumericEditBox();
             this.CantidadXPresentacionNumericEditBox = new Janus.Windows.GridEX.EditControls.NumericEditBox();
             this.PrecioNumericEditBox = new Janus.Windows.GridEX.EditControls.NumericEditBox();
-            this.FechaVigenciaPrecioCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label15 = new System.Windows.Forms.Label();
             this.ComentarioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@
             this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
             this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.TabIndex = 40;
+            this.AceptarUiButton.TabIndex = 16;
             this.AceptarUiButton.TabStop = false;
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
@@ -149,7 +149,7 @@
             this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
             this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.SalirUiButton.TabIndex = 41;
+            this.SalirUiButton.TabIndex = 17;
             this.SalirUiButton.TabStop = false;
             this.SalirUiButton.Text = "Cancelar";
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
@@ -169,6 +169,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.FechaVigenciaPrecioEditBox);
             this.panel5.Controls.Add(this.IdMonedaUiComboBox);
             this.panel5.Controls.Add(this.IdFamiliaArticuloUiComboBox);
             this.panel5.Controls.Add(this.IdArticuloUiComboBox);
@@ -178,7 +179,6 @@
             this.panel5.Controls.Add(this.CantidadXContenedorNumericEditBox);
             this.panel5.Controls.Add(this.CantidadXPresentacionNumericEditBox);
             this.panel5.Controls.Add(this.PrecioNumericEditBox);
-            this.panel5.Controls.Add(this.FechaVigenciaPrecioCalendarCombo);
             this.panel5.Controls.Add(this.label15);
             this.panel5.Controls.Add(this.ComentarioEditBox);
             this.panel5.Controls.Add(this.label14);
@@ -209,14 +209,30 @@
             this.panel5.Size = new System.Drawing.Size(567, 370);
             this.panel5.TabIndex = 8;
             // 
+            // FechaVigenciaPrecioEditBox
+            // 
+            this.FechaVigenciaPrecioEditBox.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.FechaVigenciaPrecioEditBox.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.FechaVigenciaPrecioEditBox.BackColor = System.Drawing.Color.White;
+            this.FechaVigenciaPrecioEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
+            this.FechaVigenciaPrecioEditBox.Enabled = false;
+            this.FechaVigenciaPrecioEditBox.FlatBorderColor = System.Drawing.Color.Black;
+            this.FechaVigenciaPrecioEditBox.ForeColor = System.Drawing.Color.Black;
+            this.FechaVigenciaPrecioEditBox.Location = new System.Drawing.Point(361, 209);
+            this.FechaVigenciaPrecioEditBox.Name = "FechaVigenciaPrecioEditBox";
+            this.FechaVigenciaPrecioEditBox.Size = new System.Drawing.Size(158, 20);
+            this.FechaVigenciaPrecioEditBox.TabIndex = 9064;
+            this.FechaVigenciaPrecioEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
+            this.FechaVigenciaPrecioEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
             // IdMonedaUiComboBox
             // 
             this.IdMonedaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdMonedaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 235);
             this.IdMonedaUiComboBox.Name = "IdMonedaUiComboBox";
-            this.IdMonedaUiComboBox.Size = new System.Drawing.Size(47, 20);
-            this.IdMonedaUiComboBox.TabIndex = 9063;
+            this.IdMonedaUiComboBox.Size = new System.Drawing.Size(150, 20);
+            this.IdMonedaUiComboBox.TabIndex = 12;
             this.IdMonedaUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // IdFamiliaArticuloUiComboBox
@@ -225,8 +241,8 @@
             this.IdFamiliaArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdFamiliaArticuloUiComboBox.Location = new System.Drawing.Point(134, 27);
             this.IdFamiliaArticuloUiComboBox.Name = "IdFamiliaArticuloUiComboBox";
-            this.IdFamiliaArticuloUiComboBox.Size = new System.Drawing.Size(206, 20);
-            this.IdFamiliaArticuloUiComboBox.TabIndex = 9062;
+            this.IdFamiliaArticuloUiComboBox.Size = new System.Drawing.Size(150, 20);
+            this.IdFamiliaArticuloUiComboBox.TabIndex = 2;
             this.IdFamiliaArticuloUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // IdArticuloUiComboBox
@@ -236,7 +252,7 @@
             this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 3);
             this.IdArticuloUiComboBox.Name = "IdArticuloUiComboBox";
             this.IdArticuloUiComboBox.Size = new System.Drawing.Size(421, 20);
-            this.IdArticuloUiComboBox.TabIndex = 9061;
+            this.IdArticuloUiComboBox.TabIndex = 1;
             this.IdArticuloUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // PlazoAvisoStockSeguridadNumericEditBox
@@ -249,10 +265,10 @@
             this.PlazoAvisoStockSeguridadNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.PlazoAvisoStockSeguridadNumericEditBox.ForeColor = System.Drawing.Color.Black;
             this.PlazoAvisoStockSeguridadNumericEditBox.Location = new System.Drawing.Point(361, 287);
-            this.PlazoAvisoStockSeguridadNumericEditBox.MaxLength = 3;
+            this.PlazoAvisoStockSeguridadNumericEditBox.MaxLength = 5;
             this.PlazoAvisoStockSeguridadNumericEditBox.Name = "PlazoAvisoStockSeguridadNumericEditBox";
             this.PlazoAvisoStockSeguridadNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.PlazoAvisoStockSeguridadNumericEditBox.TabIndex = 9052;
+            this.PlazoAvisoStockSeguridadNumericEditBox.TabIndex = 15;
             this.PlazoAvisoStockSeguridadNumericEditBox.Text = "0";
             this.PlazoAvisoStockSeguridadNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PlazoAvisoStockSeguridadNumericEditBox.Value = 0;
@@ -273,7 +289,7 @@
             this.CoeficienteGastosNacionalizacionNumericEditBox.MaxLength = 16;
             this.CoeficienteGastosNacionalizacionNumericEditBox.Name = "CoeficienteGastosNacionalizacionNumericEditBox";
             this.CoeficienteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
-            this.CoeficienteGastosNacionalizacionNumericEditBox.TabIndex = 9051;
+            this.CoeficienteGastosNacionalizacionNumericEditBox.TabIndex = 13;
             this.CoeficienteGastosNacionalizacionNumericEditBox.Text = "0,0000";
             this.CoeficienteGastosNacionalizacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CoeficienteGastosNacionalizacionNumericEditBox.Value = new decimal(new int[] {
@@ -293,10 +309,10 @@
             this.CantidadStockSeguridadNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadStockSeguridadNumericEditBox.ForeColor = System.Drawing.Color.Black;
             this.CantidadStockSeguridadNumericEditBox.Location = new System.Drawing.Point(134, 287);
-            this.CantidadStockSeguridadNumericEditBox.MaxLength = 3;
+            this.CantidadStockSeguridadNumericEditBox.MaxLength = 5;
             this.CantidadStockSeguridadNumericEditBox.Name = "CantidadStockSeguridadNumericEditBox";
             this.CantidadStockSeguridadNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadStockSeguridadNumericEditBox.TabIndex = 9050;
+            this.CantidadStockSeguridadNumericEditBox.TabIndex = 14;
             this.CantidadStockSeguridadNumericEditBox.Text = "0";
             this.CantidadStockSeguridadNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadStockSeguridadNumericEditBox.Value = 0;
@@ -313,10 +329,10 @@
             this.CantidadXContenedorNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadXContenedorNumericEditBox.ForeColor = System.Drawing.Color.Black;
             this.CantidadXContenedorNumericEditBox.Location = new System.Drawing.Point(361, 157);
-            this.CantidadXContenedorNumericEditBox.MaxLength = 3;
+            this.CantidadXContenedorNumericEditBox.MaxLength = 5;
             this.CantidadXContenedorNumericEditBox.Name = "CantidadXContenedorNumericEditBox";
             this.CantidadXContenedorNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadXContenedorNumericEditBox.TabIndex = 9049;
+            this.CantidadXContenedorNumericEditBox.TabIndex = 9;
             this.CantidadXContenedorNumericEditBox.Text = "0";
             this.CantidadXContenedorNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadXContenedorNumericEditBox.Value = 0;
@@ -333,10 +349,10 @@
             this.CantidadXPresentacionNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadXPresentacionNumericEditBox.ForeColor = System.Drawing.Color.Black;
             this.CantidadXPresentacionNumericEditBox.Location = new System.Drawing.Point(134, 157);
-            this.CantidadXPresentacionNumericEditBox.MaxLength = 3;
+            this.CantidadXPresentacionNumericEditBox.MaxLength = 5;
             this.CantidadXPresentacionNumericEditBox.Name = "CantidadXPresentacionNumericEditBox";
             this.CantidadXPresentacionNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadXPresentacionNumericEditBox.TabIndex = 9048;
+            this.CantidadXPresentacionNumericEditBox.TabIndex = 8;
             this.CantidadXPresentacionNumericEditBox.Text = "0";
             this.CantidadXPresentacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadXPresentacionNumericEditBox.Value = 0;
@@ -357,7 +373,7 @@
             this.PrecioNumericEditBox.MaxLength = 16;
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
-            this.PrecioNumericEditBox.TabIndex = 9047;
+            this.PrecioNumericEditBox.TabIndex = 11;
             this.PrecioNumericEditBox.Text = "0,0000";
             this.PrecioNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PrecioNumericEditBox.Value = new decimal(new int[] {
@@ -366,32 +382,6 @@
             0,
             262144});
             this.PrecioNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
-            // 
-            // FechaVigenciaPrecioCalendarCombo
-            // 
-            this.FechaVigenciaPrecioCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.FechaVigenciaPrecioCalendarCombo.BorderStyle = Janus.Windows.CalendarCombo.BorderStyle.Sunken;
-            this.FechaVigenciaPrecioCalendarCombo.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.FechaVigenciaPrecioCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
-            // 
-            // 
-            // 
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.Name = "";
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.FechaVigenciaPrecioCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.FechaVigenciaPrecioCalendarCombo.Enabled = false;
-            this.FechaVigenciaPrecioCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.FechaVigenciaPrecioCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.FechaVigenciaPrecioCalendarCombo.Location = new System.Drawing.Point(361, 209);
-            this.FechaVigenciaPrecioCalendarCombo.Name = "FechaVigenciaPrecioCalendarCombo";
-            this.FechaVigenciaPrecioCalendarCombo.Size = new System.Drawing.Size(128, 20);
-            this.FechaVigenciaPrecioCalendarCombo.TabIndex = 9046;
-            this.FechaVigenciaPrecioCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.FechaVigenciaPrecioCalendarCombo.TodayButtonText = "Hoy";
-            this.FechaVigenciaPrecioCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             // 
             // label15
             // 
@@ -414,7 +404,7 @@
             this.ComentarioEditBox.Location = new System.Drawing.Point(134, 313);
             this.ComentarioEditBox.Name = "ComentarioEditBox";
             this.ComentarioEditBox.Size = new System.Drawing.Size(421, 20);
-            this.ComentarioEditBox.TabIndex = 35;
+            this.ComentarioEditBox.TabIndex = 16;
             this.ComentarioEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.ComentarioEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -479,7 +469,7 @@
             this.DescrRENAREditBox.Location = new System.Drawing.Point(305, 79);
             this.DescrRENAREditBox.Name = "DescrRENAREditBox";
             this.DescrRENAREditBox.Size = new System.Drawing.Size(250, 20);
-            this.DescrRENAREditBox.TabIndex = 24;
+            this.DescrRENAREditBox.TabIndex = 5;
             this.DescrRENAREditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.DescrRENAREditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -522,9 +512,10 @@
             this.UnidadMedidaEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.UnidadMedidaEditBox.ForeColor = System.Drawing.Color.Black;
             this.UnidadMedidaEditBox.Location = new System.Drawing.Point(134, 183);
+            this.UnidadMedidaEditBox.MaxLength = 2;
             this.UnidadMedidaEditBox.Name = "UnidadMedidaEditBox";
-            this.UnidadMedidaEditBox.Size = new System.Drawing.Size(120, 20);
-            this.UnidadMedidaEditBox.TabIndex = 19;
+            this.UnidadMedidaEditBox.Size = new System.Drawing.Size(32, 20);
+            this.UnidadMedidaEditBox.TabIndex = 10;
             this.UnidadMedidaEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.UnidadMedidaEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -569,7 +560,7 @@
             this.IdPresentacionEditBox.Location = new System.Drawing.Point(134, 131);
             this.IdPresentacionEditBox.Name = "IdPresentacionEditBox";
             this.IdPresentacionEditBox.Size = new System.Drawing.Size(120, 20);
-            this.IdPresentacionEditBox.TabIndex = 13;
+            this.IdPresentacionEditBox.TabIndex = 7;
             this.IdPresentacionEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.IdPresentacionEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -594,7 +585,7 @@
             this.IdSENASAEditBox.Location = new System.Drawing.Point(134, 105);
             this.IdSENASAEditBox.Name = "IdSENASAEditBox";
             this.IdSENASAEditBox.Size = new System.Drawing.Size(120, 20);
-            this.IdSENASAEditBox.TabIndex = 11;
+            this.IdSENASAEditBox.TabIndex = 6;
             this.IdSENASAEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.IdSENASAEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -619,7 +610,7 @@
             this.IdRENAREditBox.Location = new System.Drawing.Point(134, 79);
             this.IdRENAREditBox.Name = "IdRENAREditBox";
             this.IdRENAREditBox.Size = new System.Drawing.Size(120, 20);
-            this.IdRENAREditBox.TabIndex = 9;
+            this.IdRENAREditBox.TabIndex = 4;
             this.IdRENAREditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.IdRENAREditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -644,7 +635,7 @@
             this.IdArticuloOrigenEditBox.Location = new System.Drawing.Point(134, 53);
             this.IdArticuloOrigenEditBox.Name = "IdArticuloOrigenEditBox";
             this.IdArticuloOrigenEditBox.Size = new System.Drawing.Size(120, 20);
-            this.IdArticuloOrigenEditBox.TabIndex = 7;
+            this.IdArticuloOrigenEditBox.TabIndex = 3;
             this.IdArticuloOrigenEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.IdArticuloOrigenEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -716,7 +707,6 @@
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label label15;
         private Janus.Windows.GridEX.EditControls.EditBox ComentarioEditBox;
-        protected Janus.Windows.CalendarCombo.CalendarCombo FechaVigenciaPrecioCalendarCombo;
         protected Janus.Windows.GridEX.EditControls.NumericEditBox PlazoAvisoStockSeguridadNumericEditBox;
         protected Janus.Windows.GridEX.EditControls.NumericEditBox CoeficienteGastosNacionalizacionNumericEditBox;
         protected Janus.Windows.GridEX.EditControls.NumericEditBox CantidadStockSeguridadNumericEditBox;
@@ -726,5 +716,6 @@
         private Janus.Windows.EditControls.UIComboBox IdArticuloUiComboBox;
         private Janus.Windows.EditControls.UIComboBox IdFamiliaArticuloUiComboBox;
         private Janus.Windows.EditControls.UIComboBox IdMonedaUiComboBox;
+        private Janus.Windows.GridEX.EditControls.EditBox FechaVigenciaPrecioEditBox;
     }
 }
