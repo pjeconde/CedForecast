@@ -65,7 +65,7 @@ namespace CedForecast
             IdFamiliaArticuloUiComboBox.ValueMember = "Id";
             IdFamiliaArticuloUiComboBox.DisplayMember = "Descr";
             List<CedForecastEntidades.Codigo> monedas = CedForecastRN.Tabla.Leer("Moneda", Aplicacion.Sesion);
-            IdMonedaUiComboBox.DataSource = familiaArticulos;
+            IdMonedaUiComboBox.DataSource = monedas;
             IdMonedaUiComboBox.ValueMember = "Id";
             IdMonedaUiComboBox.DisplayMember = "Descr";
         }
@@ -82,7 +82,7 @@ namespace CedForecast
             CantidadXContenedorNumericEditBox.Value = articuloInfoAdicional.CantidadXContenedor;
             UnidadMedidaEditBox.Text = articuloInfoAdicional.UnidadMedida;
             PrecioNumericEditBox.Value = articuloInfoAdicional.Precio;
-            FechaVigenciaPrecioCalendarCombo.Value = articuloInfoAdicional.FechaVigenciaPrecio;
+            FechaVigenciaPrecioEditBox.Text = articuloInfoAdicional.FechaVigenciaPrecio.ToString("dd/MM/yyyy HH:mm:ss");
             IdMonedaUiComboBox.SelectedValue = articuloInfoAdicional.IdMoneda;
             CoeficienteGastosNacionalizacionNumericEditBox.Value = articuloInfoAdicional.CoeficienteGastosNacionalizacion;
             CantidadStockSeguridadNumericEditBox.Value = articuloInfoAdicional.CantidadStockSeguridad;
@@ -102,7 +102,6 @@ namespace CedForecast
             CantidadXContenedorNumericEditBox.Enabled = false;
             UnidadMedidaEditBox.Enabled = false;
             PrecioNumericEditBox.Enabled = false;
-            FechaVigenciaPrecioCalendarCombo.Enabled = false;
             IdMonedaUiComboBox.Enabled = false;
             CoeficienteGastosNacionalizacionNumericEditBox.Enabled = false;
             CantidadStockSeguridadNumericEditBox.Enabled = false;
@@ -114,39 +113,45 @@ namespace CedForecast
             try
             {
                 Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
-                articuloInfoAdicional.IdArticulo = IdArticuloUiComboBox.SelectedValue.ToString();
-                articuloInfoAdicional.IdFamiliaArticulo = IdFamiliaArticuloUiComboBox.SelectedValue.ToString();
-                articuloInfoAdicional.IdArticuloOrigen = IdArticuloOrigenEditBox.Text;
-                articuloInfoAdicional.IdRENAR = IdRENAREditBox.Text;
-                articuloInfoAdicional.DescrRENAR = DescrRENAREditBox.Text;
-                articuloInfoAdicional.IdSENASA = IdSENASAEditBox.Text;
-                articuloInfoAdicional.IdPresentacion = IdPresentacionEditBox.Text;
-                articuloInfoAdicional.CantidadXPresentacion = Convert.ToInt32(CantidadXPresentacionNumericEditBox.Value);
-                articuloInfoAdicional.CantidadXContenedor = Convert.ToInt32(CantidadXContenedorNumericEditBox.Value);
-                articuloInfoAdicional.UnidadMedida = UnidadMedidaEditBox.Text;
-                if (articuloInfoAdicional.Precio != Convert.ToDecimal(PrecioNumericEditBox.Value))
-                {
-                    FechaVigenciaPrecioCalendarCombo.Value = DateTime.Now;
-                }
-                articuloInfoAdicional.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
-                articuloInfoAdicional.FechaVigenciaPrecio = FechaVigenciaPrecioCalendarCombo.Value;
-                articuloInfoAdicional.IdMoneda = IdMonedaUiComboBox.Text;
-                articuloInfoAdicional.CoeficienteGastosNacionalizacion = Convert.ToDecimal(CoeficienteGastosNacionalizacionNumericEditBox.Value);
-                articuloInfoAdicional.CantidadStockSeguridad = Convert.ToInt32(CantidadStockSeguridadNumericEditBox.Value);
-                articuloInfoAdicional.PlazoAvisoStockSeguridad = Convert.ToInt32(PlazoAvisoStockSeguridadNumericEditBox.Value);
-                articuloInfoAdicional.Comentario = ComentarioEditBox.Text; 
                 switch (evento)
                 {
                     case "Alta":
-                        CedForecastRN.ArticuloInfoAdicional.Crear(articuloInfoAdicional, Aplicacion.Sesion);
+                    case "Modificacion":
+                        articuloInfoAdicional.DescrArticulo = ((CedForecastEntidades.Bejerman.Articulos)IdArticuloUiComboBox.SelectedItem.DataRow).Art_DescGen.ToString();
+                        articuloInfoAdicional.IdFamiliaArticulo = IdFamiliaArticuloUiComboBox.SelectedValue.ToString();
+                        articuloInfoAdicional.IdArticuloOrigen = IdArticuloOrigenEditBox.Text;
+                        articuloInfoAdicional.IdRENAR = IdRENAREditBox.Text;
+                        articuloInfoAdicional.DescrRENAR = DescrRENAREditBox.Text;
+                        articuloInfoAdicional.IdSENASA = IdSENASAEditBox.Text;
+                        articuloInfoAdicional.IdPresentacion = IdPresentacionEditBox.Text;
+                        articuloInfoAdicional.CantidadXPresentacion = Convert.ToInt32(CantidadXPresentacionNumericEditBox.Value);
+                        articuloInfoAdicional.CantidadXContenedor = Convert.ToInt32(CantidadXContenedorNumericEditBox.Value);
+                        articuloInfoAdicional.UnidadMedida = UnidadMedidaEditBox.Text;
+                        if (articuloInfoAdicional.Precio != Convert.ToDecimal(PrecioNumericEditBox.Value))
+                        {
+                            FechaVigenciaPrecioEditBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        articuloInfoAdicional.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
+                        articuloInfoAdicional.FechaVigenciaPrecio = FechaHora(FechaVigenciaPrecioEditBox.Text);
+                        articuloInfoAdicional.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+                        articuloInfoAdicional.CoeficienteGastosNacionalizacion = Convert.ToDecimal(CoeficienteGastosNacionalizacionNumericEditBox.Value);
+                        articuloInfoAdicional.CantidadStockSeguridad = Convert.ToInt32(CantidadStockSeguridadNumericEditBox.Value);
+                        articuloInfoAdicional.PlazoAvisoStockSeguridad = Convert.ToInt32(PlazoAvisoStockSeguridadNumericEditBox.Value);
+                        articuloInfoAdicional.Comentario = ComentarioEditBox.Text;
+                        if (evento == "Alta")
+                        {
+                            articuloInfoAdicional.IdArticulo = IdArticuloUiComboBox.SelectedValue.ToString();
+                            CedForecastRN.ArticuloInfoAdicional.Crear(articuloInfoAdicional, Aplicacion.Sesion);
+                        }
+                        else
+                        {
+                            CedForecastRN.ArticuloInfoAdicional.Modificar(articuloInfoAdicional, Aplicacion.Sesion);
+                        }
                         break;
                     case "Baja":
                         CedForecastRN.ArticuloInfoAdicional.Eliminar(articuloInfoAdicional, Aplicacion.Sesion);
                         break;
-                    case "Modificacion":
-                        CedForecastRN.ArticuloInfoAdicional.Modificar(articuloInfoAdicional, Aplicacion.Sesion);
-                        break;
-                    case "Consulta":
+                    default:
                         break;
                 }
                 this.DialogResult = DialogResult.OK;
@@ -159,6 +164,11 @@ namespace CedForecast
             {
                 Cursor.Current = System.Windows.Forms.Cursors.Default;
             }
+        }
+        private DateTime FechaHora(string FechaStr)
+        {
+            DateTime fechaHora = new DateTime(Convert.ToInt32(FechaStr.Substring(6, 4)), Convert.ToInt32(FechaStr.Substring(3, 2)), Convert.ToInt32(FechaStr.Substring(0, 2)), Convert.ToInt32(FechaStr.Substring(11, 2)), Convert.ToInt32(FechaStr.Substring(14, 2)), Convert.ToInt32(FechaStr.Substring(17, 2)));
+            return fechaHora;
         }
     }
 }
