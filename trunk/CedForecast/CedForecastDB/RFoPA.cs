@@ -8,7 +8,6 @@ namespace CedForecastDB
     public class RFoPA: db
     {
         private int cantidadFilas;
-        private string icm;
         public RFoPA(CedEntidades.Sesion Sesion)
             : base(Sesion)
         {
