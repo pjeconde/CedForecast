@@ -62,6 +62,22 @@ namespace CedForecastDB.Bejerman
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
             return Lista(dt);
         }
+        public List<CedForecastEntidades.Bejerman.Articulos> LeerLista(string ListaArticulosANoIncluir)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where ltrim(rtrim(art_CodGen)) not in (" + ListaArticulosANoIncluir + ") order by art_CodGen");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            return Lista(dt);
+        }
+        public List<CedForecastEntidades.Bejerman.Articulos> Leer(string Art_CodGen)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(art_CodGen)) as art_CodGen, art_DescGen, art_PesoBruto, artcla_Cod, art_FecMod, artda2_cod from Articulos where art_CodGen='" + Art_CodGen + "'");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            return Lista(dt);
+        }
         private List<CedForecastEntidades.Bejerman.Articulos> Lista(DataTable Datos)
         {
             List<CedForecastEntidades.Bejerman.Articulos> lista = new List<CedForecastEntidades.Bejerman.Articulos>();
