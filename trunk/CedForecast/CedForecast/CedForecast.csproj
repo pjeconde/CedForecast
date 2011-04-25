@@ -71,6 +71,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticuloInfoAdicionalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArticuloInfoAdicionalForm.Designer.cs">
+      <DependentUpon>ArticuloInfoAdicionalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArticuloInfoAdicionalGrillaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArticuloInfoAdicionalGrillaForm.Designer.cs">
+      <DependentUpon>ArticuloInfoAdicionalGrillaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Financiero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,14 @@
     </Compile>
     <Compile Include="CedForecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ArticuloInfoAdicionalForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArticuloInfoAdicionalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArticuloInfoAdicionalGrillaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArticuloInfoAdicionalGrillaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Financiero.resx">
       <DependentUpon>Financiero.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -179,6 +199,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SingleApplication.cs" />
+    <Compile Include="TablaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaForm.Designer.cs">
+      <DependentUpon>TablaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablaGrillaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaGrillaForm.Designer.cs">
+      <DependentUpon>TablaGrillaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableroForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -35,12 +35,14 @@
   <ItemGroup>
     <Compile Include="Advertencia.cs" />
     <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloInfoAdicional.cs" />
     <Compile Include="BejermanArticulos.cs" />
     <Compile Include="BejermanClientes.cs" />
     <Compile Include="BejermanVendedor.cs" />
     <Compile Include="BejermanVentas.cs" />
     <Compile Include="BejermanZona.cs" />
     <Compile Include="BejermanCotizacion.cs" />
+    <Compile Include="Codigo.cs" />
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="Forecast.cs" />
     <Compile Include="Opcion.cs" />
