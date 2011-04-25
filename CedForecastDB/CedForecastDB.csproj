@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloInfoAdicional.cs" />
     <Compile Include="BejermanArticulos.cs" />
     <Compile Include="BejermanClientes.cs" />
     <Compile Include="BejermanCotizacion.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Forecast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFoPA.cs" />
+    <Compile Include="Tabla.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CedeiraAP\CedeiraAP.csproj">

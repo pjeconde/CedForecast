@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloInfoAdicional.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Cotizacion.cs" />
     <Compile Include="Cuenta.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Reporte.cs" />
     <Compile Include="RFoPA.cs" />
     <Compile Include="RollingForecast.cs" />
+    <Compile Include="Tabla.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="Zona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
