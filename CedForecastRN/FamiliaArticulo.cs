@@ -39,17 +39,17 @@ namespace CedForecastRN
                     ws.EnviarFamiliaArticulo(elemento);
                 }
                 //FamiliaArticuloXArticulo
-                CedForecastDB.Articulo datosArticulo = new CedForecastDB.Articulo(sesion);
-                List<CedForecastEntidades.Articulo> listaArticulo = datosArticulo.LeerLista();
+                CedForecastDB.ArticuloInfoAdicional datosArticulo = new CedForecastDB.ArticuloInfoAdicional(sesion);
+                List<CedForecastEntidades.ArticuloInfoAdicional> listaArticulo = datosArticulo.LeerLista();
                 contador = 0;
                 contadorTope = listaArticulo.Count;
                 for (contador = 0; contador < contadorTope; contador++)
                 {
                     WS.FamiliaArticuloXArticulo elemento = new WS.FamiliaArticuloXArticulo();
-                    elemento.Id = listaArticulo[contador].Id;
+                    elemento.Id = listaArticulo[contador].IdArticulo;
                     elemento.Familia = new WS.FamiliaArticulo();
-                    elemento.Familia.Id = listaArticulo[contador].Familia.Id;
-                    elemento.Familia.Descr = listaArticulo[contador].Familia.Descr;
+                    elemento.Familia.Id = listaArticulo[contador].IdFamiliaArticulo;
+                    elemento.Familia.Descr = listaArticulo[contador].DescrFamiliaArticulo;
                     ws.EnviarFamiliaArticuloXArticulo(elemento);
                 }
             }
