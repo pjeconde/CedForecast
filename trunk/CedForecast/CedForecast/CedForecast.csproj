@@ -180,6 +180,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>SincronizacionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TablaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TablaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablaGrillaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TablaGrillaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TableroForm.resx">
       <DependentUpon>TableroForm.cs</DependentUpon>
       <SubType>Designer</SubType>

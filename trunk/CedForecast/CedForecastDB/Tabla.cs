@@ -7,14 +7,17 @@ namespace CedForecastDB
 {
     public class Tabla : db
     {
-        public Tabla(CedEntidades.Sesion Sesion) : base(Sesion)
+        string nombreTabla;
+
+        public Tabla(CedEntidades.Sesion Sesion, string NombreTabla) : base(Sesion)
         {
+            nombreTabla = NombreTabla;
         }
-        public List<CedForecastEntidades.Codigo> Leer(string Tabla)
+        public List<CedForecastEntidades.Codigo> Leer()
         {
             DataTable dt = new DataTable();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select * from Tabla where Tabla='"+Tabla+"' order by Descr");
+            a.Append("select * from Tabla where Tabla='"+nombreTabla+"' order by Descr");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastEntidades.Codigo> lista = new List<CedForecastEntidades.Codigo>();
             if (dt.Rows.Count != 0)
@@ -32,6 +35,30 @@ namespace CedForecastDB
         {
             Hasta.Id = Convert.ToString(Desde["Id"]);
             Hasta.Descr = Convert.ToString(Desde["Descr"]);
+        }
+        public void Crear(CedForecastEntidades.Codigo Codigo)
+        {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("insert Tabla (Tabla, Id, Descr) values (");
+            a.Append("'" + nombreTabla + "', ");
+            a.Append("'" + Codigo.Id + "', ");
+            a.Append("'" + Codigo.Descr + "') ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
+        }
+        public void Modificar(CedForecastEntidades.Codigo Codigo)
+        {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("update Tabla set ");
+            a.Append("Descr='" + Codigo.Descr + "' ");
+            a.Append("where Tabla='" + nombreTabla + "' and Id='" + Codigo.Id + "' ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
+        }
+        public void Eliminar(CedForecastEntidades.Codigo Codigo)
+        {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("delete Tabla ");
+            a.Append("where Tabla='" + nombreTabla + "' and Id='" + Codigo.Id + "' ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }
