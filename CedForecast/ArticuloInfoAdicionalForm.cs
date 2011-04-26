@@ -24,19 +24,16 @@ namespace CedForecast
         {
             InitializeComponent();
             articuloInfoAdicional = ArticuloInfoAdicional;
-            CedForecastRN.ArticuloInfoAdicional.Leer(articuloInfoAdicional, Aplicacion.Sesion);
             evento = Evento;
             LlenarCombos(evento);
             LlenarCampos();
-            IdArticuloUiComboBox.Enabled = false;
+            InhabilitarCampos();
             switch (evento)
             {
                 case "Baja":
-                    InhabilitarCampos();
                     AceptarUiButton.Focus();
                     break;
                 case "Consulta":
-                    InhabilitarCampos();
                     SalirUiButton.Text = "Salir";
                     AceptarUiButton.Visible = false;
                     SalirUiButton.Focus();
@@ -64,6 +61,10 @@ namespace CedForecast
             IdFamiliaArticuloUiComboBox.DataSource = familiaArticulos;
             IdFamiliaArticuloUiComboBox.ValueMember = "Id";
             IdFamiliaArticuloUiComboBox.DisplayMember = "Descr";
+            LlenarComboMonedas();
+        }
+        private void LlenarComboMonedas()
+        {
             List<CedForecastEntidades.Codigo> monedas = CedForecastRN.Tabla.Leer("Moneda", Aplicacion.Sesion);
             IdMonedaUiComboBox.DataSource = monedas;
             IdMonedaUiComboBox.ValueMember = "Id";
@@ -92,21 +93,24 @@ namespace CedForecast
         private void InhabilitarCampos()
         {
             IdArticuloUiComboBox.Enabled = false;
-            IdFamiliaArticuloUiComboBox.Enabled = false;
-            IdArticuloOrigenEditBox.Enabled = false;
-            IdRENAREditBox.Enabled = false;
-            DescrRENAREditBox.Enabled = false;
-            IdSENASAEditBox.Enabled = false;
-            IdPresentacionEditBox.Enabled = false;
-            CantidadXPresentacionNumericEditBox.Enabled = false;
-            CantidadXContenedorNumericEditBox.Enabled = false;
-            UnidadMedidaEditBox.Enabled = false;
-            PrecioNumericEditBox.Enabled = false;
-            IdMonedaUiComboBox.Enabled = false;
-            CoeficienteGastosNacionalizacionNumericEditBox.Enabled = false;
-            CantidadStockSeguridadNumericEditBox.Enabled = false;
-            PlazoAvisoStockSeguridadNumericEditBox.Enabled = false;
-            ComentarioEditBox.Enabled = false;
+            if (evento != "Modificacion")
+            {
+                IdFamiliaArticuloUiComboBox.Enabled = false;
+                IdArticuloOrigenEditBox.Enabled = false;
+                IdRENAREditBox.Enabled = false;
+                DescrRENAREditBox.Enabled = false;
+                IdSENASAEditBox.Enabled = false;
+                IdPresentacionEditBox.Enabled = false;
+                CantidadXPresentacionNumericEditBox.Enabled = false;
+                CantidadXContenedorNumericEditBox.Enabled = false;
+                UnidadMedidaEditBox.Enabled = false;
+                PrecioNumericEditBox.Enabled = false;
+                IdMonedaUiComboBox.Enabled = false;
+                CoeficienteGastosNacionalizacionNumericEditBox.Enabled = false;
+                CantidadStockSeguridadNumericEditBox.Enabled = false;
+                PlazoAvisoStockSeguridadNumericEditBox.Enabled = false;
+                ComentarioEditBox.Enabled = false;
+            }
         }
         private void AceptarUiButton_Click(object sender, EventArgs e)
         {
@@ -169,6 +173,12 @@ namespace CedForecast
         {
             DateTime fechaHora = new DateTime(Convert.ToInt32(FechaStr.Substring(6, 4)), Convert.ToInt32(FechaStr.Substring(3, 2)), Convert.ToInt32(FechaStr.Substring(0, 2)), Convert.ToInt32(FechaStr.Substring(11, 2)), Convert.ToInt32(FechaStr.Substring(14, 2)), Convert.ToInt32(FechaStr.Substring(17, 2)));
             return fechaHora;
+        }
+        private void IdMonedaUiButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form oFrm = new TablaGrillaForm(new CedForecastEntidades.Opcion("Moneda", "Tabla de Monedas"));
+            oFrm.ShowDialog();
+            LlenarComboMonedas();
         }
     }
 }

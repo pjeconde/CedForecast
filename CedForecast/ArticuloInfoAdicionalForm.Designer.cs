@@ -69,6 +69,7 @@
             this.IdArticuloOrigenEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.DescripcionLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
+            this.IdMonedaUiButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -169,6 +170,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.IdMonedaUiButton);
             this.panel5.Controls.Add(this.FechaVigenciaPrecioEditBox);
             this.panel5.Controls.Add(this.IdMonedaUiComboBox);
             this.panel5.Controls.Add(this.IdFamiliaArticuloUiComboBox);
@@ -660,6 +662,27 @@
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // IdMonedaUiButton
+            // 
+            this.IdMonedaUiButton.AccessibleDescription = "";
+            this.IdMonedaUiButton.AccessibleName = "";
+            this.IdMonedaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdMonedaUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdMonedaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdMonedaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdMonedaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdMonedaUiButton.Icon")));
+            this.IdMonedaUiButton.Location = new System.Drawing.Point(290, 235);
+            this.IdMonedaUiButton.Name = "IdMonedaUiButton";
+            this.IdMonedaUiButton.ShowFocusRectangle = false;
+            this.IdMonedaUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdMonedaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdMonedaUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdMonedaUiButton.TabIndex = 9065;
+            this.IdMonedaUiButton.Tag = "";
+            this.IdMonedaUiButton.ToolTipText = "Abrir Tabla de Monedas";
+            this.IdMonedaUiButton.UseThemes = false;
+            this.IdMonedaUiButton.Click += new System.EventHandler(this.IdMonedaUiButton_Click);
+            // 
             // ArticuloInfoAdicionalForm
             // 
             this.ClientSize = new System.Drawing.Size(572, 405);
@@ -717,5 +740,6 @@
         private Janus.Windows.EditControls.UIComboBox IdFamiliaArticuloUiComboBox;
         private Janus.Windows.EditControls.UIComboBox IdMonedaUiComboBox;
         private Janus.Windows.GridEX.EditControls.EditBox FechaVigenciaPrecioEditBox;
+        protected Janus.Windows.EditControls.UIButton IdMonedaUiButton;
     }
 }
