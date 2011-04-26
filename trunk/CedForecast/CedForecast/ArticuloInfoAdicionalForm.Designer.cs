@@ -35,6 +35,7 @@
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.IdMonedaUiButton = new Janus.Windows.EditControls.UIButton();
             this.FechaVigenciaPrecioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.IdMonedaUiComboBox = new Janus.Windows.EditControls.UIComboBox();
             this.IdFamiliaArticuloUiComboBox = new Janus.Windows.EditControls.UIComboBox();
@@ -69,7 +70,7 @@
             this.IdArticuloOrigenEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.DescripcionLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
-            this.IdMonedaUiButton = new Janus.Windows.EditControls.UIButton();
+            this.IdFamiliaArticuloUiButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.IdFamiliaArticuloUiButton);
             this.panel5.Controls.Add(this.IdMonedaUiButton);
             this.panel5.Controls.Add(this.FechaVigenciaPrecioEditBox);
             this.panel5.Controls.Add(this.IdMonedaUiComboBox);
@@ -210,6 +212,27 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(567, 370);
             this.panel5.TabIndex = 8;
+            // 
+            // IdMonedaUiButton
+            // 
+            this.IdMonedaUiButton.AccessibleDescription = "";
+            this.IdMonedaUiButton.AccessibleName = "";
+            this.IdMonedaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdMonedaUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdMonedaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdMonedaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdMonedaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdMonedaUiButton.Icon")));
+            this.IdMonedaUiButton.Location = new System.Drawing.Point(290, 235);
+            this.IdMonedaUiButton.Name = "IdMonedaUiButton";
+            this.IdMonedaUiButton.ShowFocusRectangle = false;
+            this.IdMonedaUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdMonedaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdMonedaUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdMonedaUiButton.TabIndex = 9065;
+            this.IdMonedaUiButton.Tag = "";
+            this.IdMonedaUiButton.ToolTipText = "Abrir Monedas";
+            this.IdMonedaUiButton.UseThemes = false;
+            this.IdMonedaUiButton.Click += new System.EventHandler(this.IdMonedaUiButton_Click);
             // 
             // FechaVigenciaPrecioEditBox
             // 
@@ -662,26 +685,26 @@
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // IdMonedaUiButton
+            // IdFamiliaArticuloUiButton
             // 
-            this.IdMonedaUiButton.AccessibleDescription = "";
-            this.IdMonedaUiButton.AccessibleName = "";
-            this.IdMonedaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.IdMonedaUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.IdMonedaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.IdMonedaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.IdMonedaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdMonedaUiButton.Icon")));
-            this.IdMonedaUiButton.Location = new System.Drawing.Point(290, 235);
-            this.IdMonedaUiButton.Name = "IdMonedaUiButton";
-            this.IdMonedaUiButton.ShowFocusRectangle = false;
-            this.IdMonedaUiButton.Size = new System.Drawing.Size(22, 22);
-            this.IdMonedaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.IdMonedaUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.IdMonedaUiButton.TabIndex = 9065;
-            this.IdMonedaUiButton.Tag = "";
-            this.IdMonedaUiButton.ToolTipText = "Abrir Tabla de Monedas";
-            this.IdMonedaUiButton.UseThemes = false;
-            this.IdMonedaUiButton.Click += new System.EventHandler(this.IdMonedaUiButton_Click);
+            this.IdFamiliaArticuloUiButton.AccessibleDescription = "";
+            this.IdFamiliaArticuloUiButton.AccessibleName = "";
+            this.IdFamiliaArticuloUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdFamiliaArticuloUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdFamiliaArticuloUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdFamiliaArticuloUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdFamiliaArticuloUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdFamiliaArticuloUiButton.Icon")));
+            this.IdFamiliaArticuloUiButton.Location = new System.Drawing.Point(290, 27);
+            this.IdFamiliaArticuloUiButton.Name = "IdFamiliaArticuloUiButton";
+            this.IdFamiliaArticuloUiButton.ShowFocusRectangle = false;
+            this.IdFamiliaArticuloUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdFamiliaArticuloUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdFamiliaArticuloUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdFamiliaArticuloUiButton.TabIndex = 9066;
+            this.IdFamiliaArticuloUiButton.Tag = "";
+            this.IdFamiliaArticuloUiButton.ToolTipText = "Abrir Monedas";
+            this.IdFamiliaArticuloUiButton.UseThemes = false;
+            this.IdFamiliaArticuloUiButton.Click += new System.EventHandler(this.IdFamiliaArticuloUiButton_Click);
             // 
             // ArticuloInfoAdicionalForm
             // 
@@ -741,5 +764,6 @@
         private Janus.Windows.EditControls.UIComboBox IdMonedaUiComboBox;
         private Janus.Windows.GridEX.EditControls.EditBox FechaVigenciaPrecioEditBox;
         protected Janus.Windows.EditControls.UIButton IdMonedaUiButton;
+        protected Janus.Windows.EditControls.UIButton IdFamiliaArticuloUiButton;
     }
 }

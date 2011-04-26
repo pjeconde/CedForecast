@@ -18,7 +18,6 @@ namespace CedForecast
             familia = new CedForecastEntidades.FamiliaArticulo();
             evento = "Alta";
             InitializeComponent();
-            BindearControles();
             IdFamiliaArticuloEditBox.Focus();
         }
         public FamiliaArticuloForm(string Titulo, string Evento, CedForecastEntidades.FamiliaArticulo Familia) : base(Titulo)
@@ -31,7 +30,6 @@ namespace CedForecast
             IdFamiliaArticuloEditBox.Text = familia.Id;
             IdFamiliaArticuloEditBox.Enabled = false;
             DescrFamiliaArticuloEditBox.Text = familia.Descr;
-            BindearControles();
             switch (evento)
             {
                 case "Baja":
@@ -52,24 +50,6 @@ namespace CedForecast
         private void InhabilitarControles()
         {
             DescrFamiliaArticuloEditBox.Enabled = false;
-            AltaUiButton.Enabled = false;
-            BajaUiButton.Enabled = false;
-            NuevoArticuloLabel.Enabled = false;
-            NuevoArticuloMultiColumnCombo.Enabled = false;
-        }
-        private void BindearGrilla()
-        {
-            ArticulosGridEX.SelectedItems.Clear();
-            ArticulosGridEX.DataSource = null;
-            ArticulosGridEX.DataSource = familia.Articulos;
-        }
-        private void BindearControles()
-        {
-            BindearGrilla();
-            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Aplicacion.Sesion).LeerLista();
-            NuevoArticuloMultiColumnCombo.DataSource = articulos;
-            NuevoArticuloMultiColumnCombo.DisplayMember = "Art_CodGen";
-            NuevoArticuloMultiColumnCombo.ValueMember = "Art_DescGen";
         }
         private void MaximizarUiButton_Click(object sender, EventArgs e)
         {
@@ -109,78 +89,18 @@ namespace CedForecast
             }
             catch (Exception ex)
             {
-                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                if (ex.InnerException != null && ex.InnerException.Message.Substring(0, 60) == "Instrucción DELETE en conflicto con la restricción REFERENCE")
+                {
+                    MessageBox.Show("Esta Familia todavía tiene Artículos asociados.  Asocie estos Artículos a otra Familia, antes de volver a intentar eliminarla.", "ADVERTENCIA");
+                }
+                else
+                {
+                    Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                }
             }
             finally
             {
                 Cursor.Current = System.Windows.Forms.Cursors.Default;
-            }
-        }
-        private void AltaUiButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (NuevoArticuloMultiColumnCombo.SelectedItem == null)
-                {
-                    MessageBox.Show("Primero seleccione, en el combo, el Nuevo Artículo que desea agregar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    CedForecastEntidades.Articulo nuevoArticulo = new CedForecastEntidades.Articulo();
-                    nuevoArticulo.Id = NuevoArticuloMultiColumnCombo.Text;
-                    nuevoArticulo.Descr = NuevoArticuloMultiColumnCombo.Value.ToString();
-                    new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).AgregarArticulo(familia, nuevoArticulo);
-                    BindearGrilla();
-                    NuevoArticuloMultiColumnCombo.SelectedIndex = -1;
-                }
-            }
-            catch (Exception ex)
-            {
-                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
-            }
-        }
-        private void BajaUiButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ArticulosGridEX.SelectedItems.Count > 0)
-                {
-                    new CedForecastRN.FamiliaArticulo(Aplicacion.Sesion).EliminarArticulo(familia, (CedForecastEntidades.Articulo)ArticulosGridEX.SelectedItems[0].GetRow().DataRow);
-                    BindearGrilla();
-                }
-                else
-                {
-                    MessageBox.Show("Primero seleccione, en la grilla, el Artículo que desea eliminar.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
-            }
-        }
-        private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
-        {
-            switch (e.Command.Key)
-            {
-                case "Impresora":
-                    Cedeira.SV.Fun.ImprimirGrilla(this, ArticulosGridEX, Aplicacion.Titulo, true);
-                    break;
-                case "Planilla":
-                    try
-                    {
-                        Cedeira.SV.Export planilla = new Cedeira.SV.Export();
-                        Cursor = Cursors.WaitCursor;
-                        planilla.ExportDetails(ArticulosGridEX, Cedeira.SV.Export.ExportFormat.Excel, "Articulos de " + familia.Descr + " " + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
-                    }
-                    catch (Exception ex)
-                    {
-                        Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
-                    }
-                    finally
-                    {
-                        Cursor = Cursors.Default;
-                    }
-                    break;
             }
         }
     }
