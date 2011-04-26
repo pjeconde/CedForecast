@@ -28,9 +28,9 @@ namespace CedForecast
                 case "Config.datos básicos":
                     opciones.Add(new CedForecastEntidades.Opcion("ArticuloInfoAdicional", "Artículos Info Adicional"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos"));
-                    opciones.Add(new CedForecastEntidades.Opcion("Moneda", "Tabla de Monedas"));
-                    opciones.Add(new CedForecastEntidades.Opcion("PaisOrigen", "Tabla de Paises de origen"));
-                    opciones.Add(new CedForecastEntidades.Opcion("Proveedor", "Tabla de Proveedores"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Moneda", "Monedas"));
+                    opciones.Add(new CedForecastEntidades.Opcion("PaisOrigen", "Paises de origen"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Proveedor", "Proveedores"));
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));

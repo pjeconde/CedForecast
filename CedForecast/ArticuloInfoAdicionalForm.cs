@@ -57,11 +57,15 @@ namespace CedForecast
             IdArticuloUiComboBox.DataSource = articulos;
             IdArticuloUiComboBox.ValueMember = "Art_CodGen";
             IdArticuloUiComboBox.DisplayMember = "Art_CodDescGen";
+            LlenarComboFamilias();
+            LlenarComboMonedas();
+        }
+        private void LlenarComboFamilias()
+        {
             List<CedForecastEntidades.FamiliaArticulo> familiaArticulos = new CedForecastDB.FamiliaArticulo(Aplicacion.Sesion).LeerLista();
             IdFamiliaArticuloUiComboBox.DataSource = familiaArticulos;
             IdFamiliaArticuloUiComboBox.ValueMember = "Id";
             IdFamiliaArticuloUiComboBox.DisplayMember = "Descr";
-            LlenarComboMonedas();
         }
         private void LlenarComboMonedas()
         {
@@ -176,9 +180,15 @@ namespace CedForecast
         }
         private void IdMonedaUiButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Form oFrm = new TablaGrillaForm(new CedForecastEntidades.Opcion("Moneda", "Tabla de Monedas"));
+            System.Windows.Forms.Form oFrm = new TablaGrillaForm(new CedForecastEntidades.Opcion("Moneda", "Monedas"));
             oFrm.ShowDialog();
             LlenarComboMonedas();
+        }
+        private void IdFamiliaArticuloUiButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form oFrm = new FamiliaArticuloGrillaForm(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos").Descr);
+            oFrm.ShowDialog();
+            LlenarComboFamilias();
         }
     }
 }
