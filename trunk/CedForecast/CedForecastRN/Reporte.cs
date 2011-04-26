@@ -276,7 +276,7 @@ namespace CedForecastRN
             List<CedForecastEntidades.Bejerman.Zona> zonas = new CedForecastDB.Bejerman.Zona(Sesion).LeerLista();
             List<CedForecastEntidades.Bejerman.Vendedor> vendedores = new CedForecastDB.Bejerman.Vendedor(Sesion).LeerLista();
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Sesion).LeerListaConPrecios();
-            List<CedForecastEntidades.Articulo> familiaXArticulos = new CedForecastDB.Articulo(Sesion).LeerLista();
+            List<CedForecastEntidades.ArticuloInfoAdicional> familiaXArticulos = new CedForecastDB.ArticuloInfoAdicional(Sesion).LeerLista();
             //Crear crosstab
             DataTable dt = new DataTable();
             dt.Columns.Add(ClonarColumna(dtDatos.Columns[0])); //Empresa
@@ -333,7 +333,7 @@ namespace CedForecastRN
                 {
                     DataRow dr = dt.NewRow();
                     dr["Empresa"] = "Empresa";
-                    CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
+                    CedForecastEntidades.ArticuloInfoAdicional familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.ArticuloInfoAdicional c) { return c.IdArticulo == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (familiaXArticulo == null)
                     {
                         dr["Familia"] = "<<<Desconocida>>>";
@@ -341,7 +341,7 @@ namespace CedForecastRN
                     }
                     else
                     {
-                        dr["Familia"] = familiaXArticulo.Familia.Descr;
+                        dr["Familia"] = familiaXArticulo.DescrFamiliaArticulo;
                     }
                     CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (articulo == null)
@@ -479,7 +479,7 @@ namespace CedForecastRN
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(Sesion).LeerListaConPrecios(dtArticulos);
             List<CedForecastEntidades.Bejerman.Vendedor> vendedores = new CedForecastDB.Bejerman.Vendedor(Sesion).LeerLista(dtVendedores);
             List<CedForecastEntidades.Bejerman.Clientes> clientes = new CedForecastDB.Bejerman.Clientes(Sesion).LeerLista(dtClientes);
-            List<CedForecastEntidades.Articulo> familiaXArticulos = new CedForecastDB.Articulo(Sesion).LeerLista();
+            List<CedForecastEntidades.ArticuloInfoAdicional> familiaXArticulos = new CedForecastDB.ArticuloInfoAdicional(Sesion).LeerLista();
             //Crear crosstab
             DataTable dt = new DataTable();
             bool incluyeVendedor = false;
@@ -531,15 +531,15 @@ namespace CedForecastRN
                         Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dt.Rows[dt.Rows.Count - 1]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
                     }
                     DataRow dr = dt.NewRow();
-                    CedForecastEntidades.Articulo familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.Articulo c) { return c.Id == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
-                    if (familiaXArticulo == null)
+                    CedForecastEntidades.ArticuloInfoAdicional articuloConFamilia = familiaXArticulos.Find(delegate(CedForecastEntidades.ArticuloInfoAdicional c) { return c.IdArticulo == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
+                    if (articuloConFamilia == null)
                     {
                         dr["Familia"] = "<<<Desconocida>>>";
                         Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-01", "Artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]) + " sin familia definida", CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                     }
                     else
                     {
-                        dr["Familia"] = familiaXArticulo.Familia.Descr;
+                        dr["Familia"] = articuloConFamilia.DescrFamiliaArticulo;
                     }
                     CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen==Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
                     if (articulo == null)
