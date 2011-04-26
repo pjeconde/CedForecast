@@ -57,7 +57,7 @@ namespace CedForecast
             try
             {
                 Cursor = Cursors.WaitCursor;
-                List<CedForecastEntidades.Articulo> lista = new CedForecastDB.FamiliaArticuloXArticulo(Aplicacion.Sesion).LeerLista(Cedeira.UI.Fun.ListaTreeView(FamiliaArticuloTreeView));
+                List<CedForecastEntidades.Articulo> lista = new CedForecastDB.ArticuloInfoAdicional(Aplicacion.Sesion).LeerListaXFamilia(Cedeira.UI.Fun.ListaTreeView(FamiliaArticuloTreeView));
                 BrowserGridEX.DataSource = lista;
                 PersonalizarGrilla();
                 TabBrowserUiTabPage.TabVisible = true;
