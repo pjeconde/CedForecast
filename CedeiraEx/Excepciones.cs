@@ -1126,7 +1126,6 @@ namespace Microsoft.ApplicationBlocks.ExceptionManagement
 				{
 				}
 			}
-
 			[Serializable]
 			public class FechaMesInvalido : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.Fechas.BaseApplicationException
 			{
@@ -1161,7 +1160,24 @@ namespace Microsoft.ApplicationBlocks.ExceptionManagement
 				{
 				}
 			}
-		}
+            [Serializable]
+            public class FechaDsdMayorAHst : Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.Fechas.BaseApplicationException
+            {
+                static string TextoError = "La FechaDesde es mayor que la FechaHasta";
+                public FechaDsdMayorAHst()
+					: base(TextoError)
+				{
+				}
+                public FechaDsdMayorAHst(Exception inner)
+                    : base(TextoError, inner)
+                {
+                }
+                public FechaDsdMayorAHst(SerializationInfo info, StreamingContext context)
+                    : base(info, context)
+                {
+                }
+            }
+        }
 		namespace Cuentas
 		{
 			[Serializable]

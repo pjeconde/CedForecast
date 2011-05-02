@@ -46,6 +46,7 @@
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="Forecast.cs" />
     <Compile Include="Opcion.cs" />
+    <Compile Include="OrdenCompra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFoPA.cs" />
   </ItemGroup>

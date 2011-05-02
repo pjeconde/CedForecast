@@ -83,11 +83,66 @@
     <Compile Include="ArticuloInfoAdicionalGrillaForm.Designer.cs">
       <DependentUpon>ArticuloInfoAdicionalGrillaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enum.cs" />
     <Compile Include="Financiero.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Financiero.Designer.cs">
       <DependentUpon>Financiero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraAltaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraAltaForm.Designer.cs">
+      <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraBrowserForm.Designer.cs">
+      <DependentUpon>OrdenCompraBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.Designer.cs">
+      <DependentUpon>OrdenCompraActualizacionInfoEmbarqueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraAltaGrillaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraAltaGrillaForm.Designer.cs">
+      <DependentUpon>OrdenCompraAltaGrillaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraIngresoADepositoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraIngresoADepositoForm.Designer.cs">
+      <DependentUpon>OrdenCompraIngresoADepositoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraIngresoInfoEmbarqueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraIngresoInfoEmbarqueForm.Designer.cs">
+      <DependentUpon>OrdenCompraIngresoInfoEmbarqueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraInspeccionRENARForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraInspeccionRENARForm.Designer.cs">
+      <DependentUpon>OrdenCompraInspeccionRENARForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraRecepcionDocumentosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraRecepcionDocumentosForm.Designer.cs">
+      <DependentUpon>OrdenCompraRecepcionDocumentosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompraRegistroDespachoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraRegistroDespachoForm.Designer.cs">
+      <DependentUpon>OrdenCompraRegistroDespachoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ResumenArgentinaXZonas.cs">
       <SubType>Form</SubType>
@@ -145,6 +200,14 @@
     <EmbeddedResource Include="Financiero.resx">
       <DependentUpon>Financiero.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraAltaGrillaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraAltaGrillaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraBrowserForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResumenArgentinaXZonas.resx">
       <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>
