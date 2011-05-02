@@ -150,13 +150,14 @@ namespace CedForecastDB.Bejerman
                     a.Append("and SegCabV.scv_ID =SegDetV.sdvscv_id ");
                     a.Append("and CabVenta.cve_CodCli = Clientes.cli_Cod ");
                     a.Append("and (CabVenta.cve_FEmision between '" + fechaDsd.ToString("yyyyMMdd") + "' and '" + fechaHst.ToString("yyyyMMdd") + "') ");
+                    a.Append("and (cve_NroCuota=1 or cve_NroCuota='') ");
                     a.Append("and SegDetV.sdvart_CodGen is not NULL ");
                     a.Append("and SegDetV.sdvart_CodGen!='50000004' ");
                     a.Append("and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and CabVenta.cveven_Cod in (" + ListaVendedores + ") ");
-                    a.Append("group by clizon_cod, cvemon_codigo, sdvart_CodGen, cve_FEmision ");
+                    a.Append("group by clizon_cod, sdvart_CodGen, cve_FEmision, cvemon_codigo ");
                     a.Append("having sum(SegDetV.sdv_CantUM1)<>0 ");
-                    a.Append("order by clizon_cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
+                    a.Append("order by clizon_cod, sdvart_CodGen, cve_FEmision, cvemon_Codigo ");
                     break;
                 case "Vendedor-Familia-Articulo":
                     a.Append("SELECT cveven_Cod as Vendedor, cvemon_Codigo, ltrim(rtrim(SegDetV.sdvart_CodGen)) as sdvart_CodGen, CabVenta.cve_FEmision, Convert(varchar(6), CabVenta.cve_FEmision, 112) as Periodo, sum(SegDetV.sdv_CantUM1) as sdv_CantUM1, Sum(SegDetV.sdv_ImpTot) as sdv_ImpTot ");
@@ -171,11 +172,12 @@ namespace CedForecastDB.Bejerman
                     a.Append("and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and CabVenta.cveven_Cod in (" + ListaVendedores + ") ");
                     a.Append("and (CabVenta.cve_FEmision between '" + fechaDsd.ToString("yyyyMMdd") + "' and '" + fechaHst.ToString("yyyyMMdd") + "') ");
+                    a.Append("and (cve_NroCuota=1 or cve_NroCuota='') ");
                     a.Append("and SegDetV.sdvart_CodGen is not NULL ");
                     a.Append("and sdvart_CodGen!='50000004' ");
-                    a.Append("group by cveven_Cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
+                    a.Append("group by cveven_Cod, sdvart_CodGen, cve_FEmision, cvemon_Codigo ");
                     a.Append("having sum(SegDetV.sdv_CantUM1)<>0 ");
-                    a.Append("order by cveven_Cod, cvemon_Codigo, sdvart_CodGen, cve_FEmision ");
+                    a.Append("order by cveven_Cod, sdvart_CodGen, cve_FEmision, cvemon_Codigo ");
                     break;
             }
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);

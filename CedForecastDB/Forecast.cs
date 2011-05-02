@@ -75,30 +75,30 @@ namespace CedForecastDB
             switch (TipoReporte)
             {
                 case "Zona-Cliente":
-                    a.Append("Select Zona, Cliente, ClienteNombre, TipoDato, Descr, FecVto, Saldo into #Financiero from (");
-                    a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, Clientes.cli_RazSoc as ClienteNombre, ");
+                    a.Append("Select Zona, Cliente, Nombre, TipoDato, Descripcion, FecVto, Saldo into #Financiero from (");
+                    a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, Clientes.cli_RazSoc as Nombre, ");
                     a.Append("convert(varchar(50), 'CtaCte') as TipoDato, ");
-                    a.Append("CabVenta.cvetco_Cod + '-' + CabVenta.cve_CodPvt + '-' + CabVenta.cve_Nro + '-Fec.Emi:' + convert(varchar(10), CabVenta.cve_FEmision, 103) + '-Imp.Orig:' + ltrim(rtrim(convert(varchar(30), CabVenta.cve_ImpMonLoc))) as Descr, ");
+                    a.Append("CabVenta.cvetco_Cod + '-' + CabVenta.cve_CodPvt + '-' + CabVenta.cve_Nro + '-Fec.Emi:' + convert(varchar(10), CabVenta.cve_FEmision, 103) + '-Imp.Orig:' + ltrim(rtrim(convert(varchar(30), CabVenta.cve_ImpMonLoc))) as Descripcion, ");
                     a.Append("CabVenta.cve_FVto as FecVto, ");
                     a.Append("CabVenta.cve_SaldoMonLoc as Saldo ");
                     a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod ");
                     a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'FCE', 'NDE', 'NCE', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
                     a.Append("and CabVenta.cve_SaldoMonLoc <> 0 and CabVenta.cve_CodCli in (" + ListaClientes + ") ");
                     a.Append("UNION ");
-                    a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, Clientes.cli_RazSoc as ClienteNombre, ");
+                    a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, Clientes.cli_RazSoc as Nombre, ");
                     a.Append("convert(varchar(50), 'Cheques') as TipoDato, ");
-                    a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descr, ");
+                    a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descripcion, ");
                     a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
                     a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
                     a.Append(" ) go ");
                     a.Append("select distinct Zona from #Financiero order by Zona ");
-                    a.Append("select distinct Zona, Cliente, ClienteNombre from #Financiero order by Zona, Cliente ");
-                    a.Append("select Zona, Cliente, ClienteNombre, TipoDato, Descr, FecVto, Saldo from #Financiero order by Zona, Cliente, TipoDato, Descr, FecVto asc ");
+                    a.Append("select distinct Zona, Cliente, Nombre from #Financiero order by Zona, Cliente ");
+                    a.Append("select Zona, Cliente, Nombre, TipoDato, Descripcion, FecVto, Saldo from #Financiero order by Zona, Cliente, TipoDato, Descripcion, FecVto asc ");
 
-                    a.Append("Select Zona, Cliente, TipoDato, Descr, Saldo into #FinancieroT from (select Clientes.clizon_cod as Zona, Clientes.cli_Cod as Cliente, ");
+                    a.Append("Select Zona, Cliente, TipoDato, Descripcion, Saldo into #FinancieroT from (select Clientes.clizon_cod as Zona, Clientes.cli_Cod as Cliente, ");
                     a.Append("convert(varchar(50), 'Credito') as TipoDato, ");
-                    a.Append("convert(varchar(50), 'Crédito Máximo Otorgado') as Descr, ");
+                    a.Append("convert(varchar(50), 'Crédito Máximo Otorgado') as Descripcion, ");
                     a.Append("sum(sfc_CredMax) as Saldo ");
                     a.Append("from SBDAFERT.dbo.SitFcieraC left outer join SBDAFERT.dbo.Clientes on SitFcieraC.sfccli_Cod = Clientes.cli_Cod ");
                     a.Append("where Clientes.cli_Cod in (" + ListaClientes + ") and sfc_CredMax <> 0 ");
@@ -106,7 +106,7 @@ namespace CedForecastDB
                     a.Append("UNION ");
                     a.Append("Select Clientes.clizon_cod as Zona, CabVenta.cve_CodCli as Cliente, ");
                     a.Append("convert(varchar(50), 'Exposicion') as TipoDato, ");
-                    a.Append("convert(varchar(50), 'Exposición') as Descr, ");
+                    a.Append("convert(varchar(50), 'Exposición') as Descripcion, ");
                     a.Append("Sum(CabVenta.cve_SaldoMonLoc * -1) as Saldo ");
                     a.Append("from SBDAFERT.dbo.CabVenta left outer join SBDAFERT.dbo.Clientes on CabVenta.cve_CodCli=Clientes.cli_Cod ");
                     a.Append("where cvetco_Cod in ('FC', 'ND', 'NC', 'FCE', 'NDE', 'NCE', 'RC', 'FCT', 'LIA', 'ACF', 'ADF', 'AJC', 'AJD') and CabVenta.cve_CodCli <> '' ");
@@ -115,12 +115,12 @@ namespace CedForecastDB
                     a.Append("UNION ");
                     a.Append("Select Clientes.clizon_cod as Zona, ch3cli_Cod as Cliente, ");
                     a.Append("convert(varchar(50), 'Exposicion') as TipoDato, ");
-                    a.Append("convert(varchar(50), 'Exposición') as Descr, ");
+                    a.Append("convert(varchar(50), 'Exposición') as Descripcion, ");
                     a.Append("sum(ch3_Importe * -1) as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
                     a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
                     a.Append("Group by Clientes.clizon_cod, ch3cli_Cod ) GO ");
-                    a.Append("select Zona, Cliente, TipoDato, Descr, sum(Saldo) as Monto from #financieroT where Cliente in (select distinct #Financiero.Cliente from #Financiero) group by Zona, Cliente, TipoDato, Descr ");
+                    a.Append("select Zona, Cliente, TipoDato, Descripcion, sum(Saldo) as Monto from #financieroT where Cliente in (select distinct #Financiero.Cliente from #Financiero) group by Zona, Cliente, TipoDato, Descripcion ");
                     a.Append("drop table #financieroT ");
                     a.Append("drop table #Financiero ");
                     break;
@@ -200,29 +200,19 @@ namespace CedForecastDB
             }
             return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
         }
-        public List<CedForecastEntidades.Articulo> LeerArticulosSinFamilia()
+
+        public DataSet LeerDatosForecastParaFinancieroDS(string PeriodoDesde, string PeriodoHasta, string ListaClientes)
         {
-            List<CedForecastEntidades.Articulo> lista = new List<CedForecastEntidades.Articulo>();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select IdArticulo as Articulo from Forecast where IdArticulo not in (select IdArticulo from FamiliaArticuloXArticulo) and IdTipoPlanilla='RollingForecast' ");
-            DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
-            List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerListaConPrecios(dt);
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                CedForecastEntidades.Articulo elemento = new CedForecastEntidades.Articulo();
-                elemento.Id = Convert.ToString(dt.Rows[i]["Articulo"]);
-                CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dt.Rows[i]["Articulo"]); });
-                if (articulo == null)
-                {
-                    elemento.Descr = Convert.ToString(dt.Rows[i]["Articulo"]) + "-<<<Desconocido>>>";
-                }
-                else
-                {
-                    elemento.Descr = Convert.ToString(dt.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
-                }
-                lista.Add(elemento);
-            }
-            return lista;
+            //"Zona-Cliente+CondicionDeVenta"
+            a.Append("Select SBDAFERT.dbo.Clientes.clizon_Cod as Zona, SBDAFERT.dbo.Clientes.cli_Cod as Cliente, SBDAFERT.dbo.CondVta.cvt_CantDias as CondVta, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
+            a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
+            a.Append("left outer join SBDAFERT.dbo.CondVta on Clientes.clicvt_Cod = CondVta.cvt_Cod collate SQL_Latin1_General_CP1_CS_AS ");
+            a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
+            a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Clientes.clizon_Cod, SBDAFERT.dbo.Clientes.cli_Cod, SBDAFERT.dbo.CondVta.cvt_CantDias, Forecast.IdArticulo, Forecast.IdPeriodo ");
+            a.Append("select Zona, Cliente, CondVta, Periodo, Articulo, Cantidad from #ForecastAux order by Zona, Cliente, CondVta, Articulo asc, Periodo asc ");
+            a.Append("drop table #ForecastAux ");
+            return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
         }
     }
 }

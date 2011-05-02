@@ -641,87 +641,43 @@ namespace Cedeira.SV
             Janus.Windows.GridEX.GridEXRow[] JanusRows;
             JanusRows = JanusGridEx.GetRows();
             int columnas = JanusGridEx.RootTable.Columns.Count;
-            int nivelAnterior = 0;
+            string nivelAnterior = "";
             for (int registros = 0; registros < JanusGridEx.RowCount; registros++)
             {
-                if (JanusGridEx.GetRow(registros).Cells.Count != nivelAnterior)
+                if (JanusGridEx.GetRow(registros).Table.Caption != nivelAnterior)
                 {
                     if (JanusDataTable.Columns.Count > 0)
                     {
                         JanusDataSet.Tables.Add(JanusDataTable);
                     }
-                    nivelAnterior = JanusGridEx.GetRow(registros).Cells.Count;
+                    nivelAnterior = JanusGridEx.GetRow(registros).Table.Caption;
                     JanusDataTable = new DataTable("TablaColumnas" + registros.ToString());
-                    if (JanusGridEx.GetRow(registros).Cells.Count == 1)
+                    columnas = JanusGridEx.GetRow(registros).Cells.Count;
+                    if (JanusGridEx.GetRow(registros).Table.Caption != "Finan1")
                     {
-                        columnas = JanusGridEx.RootTable.Columns.Count;
-                        for (int q = 0; q < columnas; q++)
+                        int nivel = Convert.ToInt32(JanusGridEx.GetRow(registros).Table.Caption.Substring(5, 1));
+                        for (int nroNivel = 1; nroNivel < nivel; nroNivel++)
                         {
-                            if (JanusGridEx.RootTable.Columns[q].Visible == true)
+                            System.Data.DataColumn dcParaTabular = new DataColumn();
+                            dcParaTabular.ColumnName = "n" + nroNivel.ToString();
+                            dcParaTabular.Caption = "";
+                            if (!JanusDataTable.Columns.Contains("n" + nroNivel.ToString()))
                             {
-                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.Columns[q];
-                                System.Data.DataColumn dc = new DataColumn();
-                                dc.ColumnName = gec.Key;
-                                dc.Caption = gec.Caption;
-                                if (!JanusDataTable.Columns.Contains(gec.Key))
-                                {
-                                    JanusDataTable.Columns.Add(dc);
-                                }
+                                JanusDataTable.Columns.Add(dcParaTabular);
                             }
                         }
                     }
-                    if (JanusGridEx.GetRow(registros).Cells.Count == 3)
+                    for (int q = 0; q < columnas; q++)
                     {
-                        columnas = JanusGridEx.RootTable.ChildTables[0].Columns.Count;
-                        for (int q = 0; q < columnas; q++)
+                        if (JanusGridEx.GetRow(registros).Cells[q].Column.Visible == true)
                         {
-                            if (JanusGridEx.RootTable.ChildTables[0].Columns[q].Visible == true)
+                            Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.GetRow(registros).Cells[q].Column;
+                            System.Data.DataColumn dc = new DataColumn();
+                            dc.ColumnName = gec.Key;
+                            dc.Caption = gec.Caption;
+                            if (!JanusDataTable.Columns.Contains(gec.Key))
                             {
-                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.ChildTables[0].Columns[q];
-                                System.Data.DataColumn dc = new DataColumn();
-                                dc.ColumnName = gec.Key;
-                                dc.Caption = gec.Caption;
-                                if (!JanusDataTable.Columns.Contains(gec.Key))
-                                {
-                                    JanusDataTable.Columns.Add(dc);
-                                }
-                            }
-                        }
-                    }
-                    if (JanusGridEx.GetRow(registros).Cells.Count == 18)
-                    {
-                        columnas = JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns.Count;
-                        for (int q = 0; q < columnas; q++)
-                        {
-                            if (JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns[q].Visible == true)
-                            {
-                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.RootTable.ChildTables[0].ChildTables[0].Columns[q];
-                                System.Data.DataColumn dc = new DataColumn();
-                                dc.ColumnName = gec.Key;
-                                dc.Caption = gec.Caption;
-                                if (!JanusDataTable.Columns.Contains(gec.Key))
-                                {
-                                    JanusDataTable.Columns.Add(dc);
-                                }
-                            }
-                        }
-                    }
-                    if (JanusGridEx.GetRow(registros).Cells.Count == 5)
-                    {
-                        columnas = JanusGridEx.GetRow(registros).Cells.Count;
-                        for (int q = 0; q < columnas; q++)
-                        {
-
-                            if (JanusGridEx.GetRow(registros).Cells[q].Column.Visible == true)
-                            {
-                                Janus.Windows.GridEX.GridEXColumn gec = JanusGridEx.GetRow(registros).Cells[q].Column;
-                                System.Data.DataColumn dc = new DataColumn();
-                                dc.ColumnName = gec.Key;
-                                dc.Caption = gec.Caption;
-                                if (!JanusDataTable.Columns.Contains(gec.Key))
-                                {
-                                    JanusDataTable.Columns.Add(dc);
-                                }
+                                JanusDataTable.Columns.Add(dc);
                             }
                         }
                     }
@@ -735,14 +691,15 @@ namespace Cedeira.SV
                     if (EsFilaDeAgrupamiento(JanusGridEx.GetRow(registros)))
                     {
                         string auxValor = Convert.ToString(JanusGridEx.GetRow(registros).GroupValue);
-                        auxValor += Convert.ToString(JanusDataRow[0]);
+                        int nivel = Convert.ToInt32(JanusGridEx.GetRow(registros).Table.Caption.Substring(5, 1));
+                        auxValor += Convert.ToString(JanusDataRow[nivel - 1]);
                         if (JanusGridEx.GetRow(registros).GroupValue != null && JanusGridEx.GetRow(registros).GroupValue.GetType() == System.Type.GetType("System.DateTime"))
                         {
-                            JanusDataRow[0] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
+                            JanusDataRow[nivel - 1] = ((DateTime)JanusGridEx.GetRow(registros).GroupValue).ToString("MM/dd/yyyy") + Convert.ToString(JanusDataRow[0]);
                         }
                         else
                         {
-                            JanusDataRow[0] = auxValor;
+                            JanusDataRow[nivel - 1] = auxValor;
                         }
                         break;
                     }

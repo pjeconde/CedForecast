@@ -71,5 +71,13 @@ namespace CedForecastDB.Bejerman
             Hasta.Cli_Habilitado = Convert.ToBoolean(Desde["cli_Habilitado"]);
             Hasta.Cli_FecMod = Convert.ToDateTime(Desde["cli_FecMod"]);
         }
+        public List<CedForecastEntidades.Bejerman.Clientes> LeerClientesSinZona()
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ltrim(rtrim(cli_Cod)) as cli_Cod, cli_RazSoc, clizon_Cod, cli_Habilitado, cli_FecMod from Clientes where cliZon_Cod is null order by ltrim(rtrim(cli_Cod)) ");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStrAplicExterna);
+            return Lista(dt);
+        }
     }
 }

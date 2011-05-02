@@ -437,37 +437,25 @@ namespace Cedeira.SV
                 writer.WriteAttributeString("method", "text");
                 writer.WriteAttributeString("version", "4.0");
                 writer.WriteAttributeString("encoding", "ISO-8859-1");
-
                 writer.WriteEndElement();
                 
-                    // xsl-template
-                    writer.WriteStartElement("xsl:template");
-                    writer.WriteAttributeString("match", "/");  //dsExport.Tables[0].TableName
+                // xsl-template
+                writer.WriteStartElement("xsl:template");
+                writer.WriteAttributeString("match", "/");  
 
-                    // xsl:value-of for headers
-                    for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
-                    {
-                        writer.WriteString("\"");
-                        writer.WriteStartElement("xsl:value-of");
-                        writer.WriteAttributeString("select", "'" + dsExport.Tables[0].Columns[i].ColumnName + " titulo'");
-                        writer.WriteEndElement(); // xsl:value-of
-                        writer.WriteString("\"");
-                        if (i != dsExport.Tables[0].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
-                    }
-                    
                 for (int t = 0; t < dsExport.Tables.Count; t++)
                 {
-                    // xsl:value-of for headers
-                    for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
+                    for (int d = 0; d < dsExport.Tables[t].Columns.Count; d++)
                     {
-                        writer.WriteString("\"");
-                        writer.WriteStartElement("xsl:value-of");
-                        writer.WriteAttributeString("select", "'" + dsExport.Tables[t].Columns[i].ColumnName + "'");
-                        writer.WriteEndElement(); // xsl:value-of
-                        writer.WriteString("\"");
-                        if (i != dsExport.Tables[t].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
+                        if (dsExport.Tables[t].Columns[d].ColumnName == "n1" || dsExport.Tables[t].Columns[d].ColumnName == "n2" || dsExport.Tables[t].Columns[d].ColumnName == "n3")
+                        {
+                            writer.WriteString("" + "\t");
+                        }
+                        else
+                        {
+                            writer.WriteString(dsExport.Tables[t].Columns[d].ColumnName + "\t");
+                        }
                     }
-                    writer.WriteString("\r\n");
                     // xsl:for-each
                     writer.WriteStartElement("xsl:for-each");
                     writer.WriteAttributeString("select", "Export/" + dsExport.Tables[t].TableName);
@@ -483,6 +471,7 @@ namespace Cedeira.SV
                         if (i != dsExport.Tables[t].Columns.Count - 1) writer.WriteString((FormatType == ExportFormat.CSV) ? "," : "	");
                     }
                     writer.WriteEndElement(); // xsl:for-each
+                    writer.WriteString("\r\n");
                 }
                 writer.WriteEndElement(); // xsl-template
                 writer.WriteEndElement(); // xsl:stylesheet
