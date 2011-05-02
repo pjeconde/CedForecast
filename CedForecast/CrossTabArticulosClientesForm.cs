@@ -46,7 +46,7 @@ namespace CedForecast
                 ArticulosTreeView.Nodes.Add(ndFamilia);
             }
             //Agrego Articulos sin Familia
-            CedForecastDB.Articulo db = new CedForecastDB.Articulo(Aplicacion.Sesion);
+            CedForecastDB.ArticuloInfoAdicional db = new CedForecastDB.ArticuloInfoAdicional(Aplicacion.Sesion);
             List<CedForecastEntidades.Articulo> listaArticulosSinFamilia = db.LeerArticulosSinFamilia();
             if (listaArticulosSinFamilia.Count > 0)
             {
