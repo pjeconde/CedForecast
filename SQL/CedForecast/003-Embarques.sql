@@ -120,6 +120,12 @@ insert Tabla values ('Proveedor', 'COM', 'Compo')
 go
 insert Tabla values ('Proveedor', 'NIT', 'K+S Nitrogen')
 go
+insert Tabla values ('UnidadMedida', 'Uni', 'Unidades')
+go
+insert Tabla values ('UnidadMedida', 'Kg', 'Kilogramos')
+go
+insert Tabla values ('UnidadMedida', 'Lt', 'Litros')
+go
 CREATE TABLE [dbo].[OrdenCompra](
 	Prefijo varchar(3) NOT NULL,
 	Id int NOT NULL,
