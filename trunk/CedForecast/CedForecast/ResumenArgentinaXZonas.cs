@@ -30,7 +30,6 @@ namespace CedForecast
         }
         private void ConfigurarFiltros()
         {
-
             ArticulosTreeView.Nodes.Clear();
             CedForecastDB.FamiliaArticulo familias = new CedForecastDB.FamiliaArticulo(Aplicacion.Sesion);
             List<CedForecastEntidades.FamiliaArticulo> listaFamilias = familias.LeerLista();
@@ -47,7 +46,7 @@ namespace CedForecast
                 ArticulosTreeView.Nodes.Add(ndFamilia);
             }
             //Agrego Articulos sin Familia
-            CedForecastDB.Forecast db = new CedForecastDB.Forecast(Aplicacion.Sesion);
+            CedForecastDB.Articulo db = new CedForecastDB.Articulo(Aplicacion.Sesion);
             List<CedForecastEntidades.Articulo> listaArticulosSinFamilia = db.LeerArticulosSinFamilia();
             if (listaArticulosSinFamilia.Count > 0)
             {
@@ -62,6 +61,7 @@ namespace CedForecast
                 ArticulosTreeView.Nodes.Add(ndSinFamilia);
             }
             ClientesTreeView.Nodes.Clear();
+
             CedForecastDB.Bejerman.Zona zonas = new CedForecastDB.Bejerman.Zona(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Zona> listaZonas = zonas.LeerLista();
             for (int i = 0; i < listaZonas.Count; i++)
@@ -76,6 +76,22 @@ namespace CedForecast
                 }
                 ClientesTreeView.Nodes.Add(ndZona);
             }
+            //Agrego Clientes sin Zona
+            CedForecastDB.Bejerman.Clientes dbClientes = new CedForecastDB.Bejerman.Clientes(Aplicacion.Sesion);
+            List<CedForecastEntidades.Bejerman.Clientes> listaClientesSinZona = dbClientes.LeerClientesSinZona();
+            if (listaClientesSinZona.Count > 0)
+            {
+                TreeNode ndSinZona = new TreeNode("<<<Desconocida>>>");
+                ndSinZona.Tag = String.Empty;
+                for (int j = 0; j < listaClientesSinZona.Count; j++)
+                {
+                    TreeNode ndClienteSinZona = new TreeNode(listaClientesSinZona[j].Cli_Cod + "-" + listaClientesSinZona[j].Cli_RazSoc);
+                    ndClienteSinZona.Tag = listaClientesSinZona[j].Cli_Cod;
+                    ndSinZona.Nodes.Add(ndClienteSinZona);
+                }
+                ClientesTreeView.Nodes.Add(ndSinZona);
+            }
+
             VendedoresTreeView.Nodes.Clear();
             CedForecastDB.Bejerman.Vendedor vendedores = new CedForecastDB.Bejerman.Vendedor(Aplicacion.Sesion);
             List<CedForecastEntidades.Bejerman.Vendedor> listaVendedores = vendedores.LeerLista();

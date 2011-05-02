@@ -433,20 +433,21 @@ namespace CedForecast
             {
                 DataSet dsExport = Cedeira.SV.Fun.GetDataSetFromJanusGridExDS(Grilla, FileName);
                 dsExport.DataSetName = "Export";
-                //dsExport.Tables[0].TableName = "Values";
-                string[] sHeaders = new string[3]; 
-                string[] sFileds = new string[3];  
                 for (int t = 0; t < dsExport.Tables.Count; t++)
                 {
                     for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
                     {
-                        dsExport.Tables[t].Columns[i].ColumnName = Convert.ToString(i);
+                        if (dsExport.Tables[t].Columns[i].Caption != "")
+                        {
+                            dsExport.Tables[t].Columns[i].ColumnName = Convert.ToString(i);
+                        }
                     }
                     for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
                     {
-                        sHeaders[i] = export.ReemplazarEspaciosyAcentos(dsExport.Tables[t].Columns[i].Caption);
-                        dsExport.Tables[t].Columns[i].ColumnName = sHeaders[i];
-                        sFileds[i] = sHeaders[i];
+                        if (dsExport.Tables[t].Columns[i].Caption != "")
+                        {
+                            dsExport.Tables[t].Columns[i].ColumnName = export.ReemplazarEspaciosyAcentos(dsExport.Tables[t].Columns[i].Caption);
+                        }
                     }
                     int columnas = dsExport.Tables[t].Columns.Count;
                     for (int l = 0; l < dsExport.Tables[t].Rows.Count; l++)
