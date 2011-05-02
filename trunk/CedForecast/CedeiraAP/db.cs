@@ -837,7 +837,7 @@ namespace Cedeira.SV
 		}
 		public List<CedEntidades.Estado> WF_Estado_qry(string IdFlow)
 		{
-            string a = "select WF_Estado.IdEstado as Id, WF_Estado.DescrEstado as Descr from WF_Estado, WF_EstadoXFlow where WF_Estado.IdEstado=WF_EstadoXFlow.IdEstado and WF_EstadoXFlow.IdFlow='" + IdFlow + "' and WF_Estado.Virtual<>1 order by DescrEstado ";
+            string a = "select WF_Estado.IdEstado as Id, WF_Estado.DescrEstado as Descr, WF_EstadoXFlow.EstadoFinal from WF_Estado, WF_EstadoXFlow where WF_Estado.IdEstado=WF_EstadoXFlow.IdEstado and WF_EstadoXFlow.IdFlow='" + IdFlow + "' and WF_Estado.Virtual<>1 order by DescrEstado ";
 			DataView dv = (DataView)Ejecutar(a,
 				TipoRetorno.DV,
 				Transaccion.NoAcepta,
@@ -849,6 +849,7 @@ namespace Cedeira.SV
 				e.IdEstado = Convert.ToString(dv.Table.Rows[i]["Id"]);
 				e.DescrEstado = Convert.ToString(dv.Table.Rows[i]["Descr"]);
 				e.VirtuaL = false;
+                e.Final = Convert.ToBoolean(dv.Table.Rows[i]["EstadoFinal"]);
 				estados.Add(e);
 			}
 			return estados;

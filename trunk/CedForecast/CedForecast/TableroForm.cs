@@ -38,7 +38,8 @@ namespace CedForecast
                     opciones.Add(new CedForecastEntidades.Opcion("ResumenArgentinaXZonas", "Resumen Argentina por Zonas"));
                     opciones.Add(new CedForecastEntidades.Opcion("Financiero", "Financiero"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticuloXArticulo", "Familias de Artículos"));
-                     break;
+                    opciones.Add(new CedForecastEntidades.Opcion("OrdenCompra", "Órdenes de Compra"));
+                    break;
                 case "Exploradores":
                     opciones.Add(new CedForecastEntidades.Opcion("OrdenCompra", "Órdenes de Compra"));
                     break;
@@ -48,6 +49,7 @@ namespace CedForecast
                     break;
                 case "Procesos":
                     opciones.Add(new CedForecastEntidades.Opcion("Sincronizacion", "Sincronización"));
+                    opciones.Add(new CedForecastEntidades.Opcion("ActualizacionInfoEmbarque", "Actualiz.Info Embarque (planilla prov.)"));
                     break;
             }
             OpcionGridEX.DataSource=opciones;
@@ -110,6 +112,10 @@ namespace CedForecast
                                         oFrm = new RFoPAForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
+                                    case "OrdenCompra":
+                                        oFrm = new OrdenCompraBrowserForm(BrowserModoEnum.Consulta);
+                                        oFrm.ShowDialog();
+                                        break;
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
                                 }
@@ -118,8 +124,8 @@ namespace CedForecast
                                 switch (aux)
                                 {
                                     case "OrdenCompra":
-                                        //oFrm = new FamiliaArticuloGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
-                                        //oFrm.ShowDialog();
+                                        oFrm = new OrdenCompraBrowserForm(BrowserModoEnum.Exploracion);
+                                        oFrm.ShowDialog();
                                         break;
                                     default:
                                         throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
@@ -143,6 +149,10 @@ namespace CedForecast
                                 {
                                     case "Sincronizacion":
                                         oFrm = new SincronizacionForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    case "ActualizacionInfoEmbarque":
+                                        oFrm = new OrdenCompraActualizacionInfoEmbarqueForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
                                     default:

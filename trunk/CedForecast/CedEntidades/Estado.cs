@@ -10,7 +10,8 @@ namespace CedEntidades
 		#region Atributos
 		string idEstado;
 		string descrEstado;
-		bool virtuaL; 
+		bool virtuaL;
+        bool final;
 		#endregion
 
 		#region Propiedades
@@ -38,17 +39,28 @@ namespace CedEntidades
 			}
 		}
 
-		public bool VirtuaL
-		{
-			get
-			{
-				return virtuaL;
-			}
-			set
-			{
-				virtuaL = value;
-			}
-		} 
+        public bool VirtuaL
+        {
+            get
+            {
+                return virtuaL;
+            }
+            set
+            {
+                virtuaL = value;
+            }
+        }
+        public bool Final
+        {
+            get
+            {
+                return final;
+            }
+            set
+            {
+                final = value;
+            }
+        } 
 		#endregion
 	}
 }
