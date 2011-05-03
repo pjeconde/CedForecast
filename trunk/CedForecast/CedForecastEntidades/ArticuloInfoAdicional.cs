@@ -17,7 +17,7 @@ namespace CedForecastEntidades
         private string idPresentacion;
         private int cantidadXPresentacion;
         private int cantidadXContenedor;
-        private string unidadMedida;
+        private string idUnidadMedida;
         private decimal precio;
         private string idMoneda;
         private DateTime fechaVigenciaPrecio;
@@ -151,15 +151,15 @@ namespace CedForecastEntidades
                 return cantidadXContenedor;
             }
         }
-        public string UnidadMedida
+        public string IdUnidadMedida
         {
             set
             {
-                unidadMedida = value;
+                idUnidadMedida = value;
             }
             get
             {
-                return unidadMedida;
+                return idUnidadMedida;
             }
         }
         public decimal Precio

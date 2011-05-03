@@ -201,6 +201,10 @@
       <DependentUpon>Financiero.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraAltaForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrdenCompraAltaGrillaForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OrdenCompraAltaGrillaForm.cs</DependentUpon>
