@@ -54,7 +54,7 @@ namespace CedForecastDB
             Hasta.IdPresentacion = Convert.ToString(Desde["IdPresentacion"]);
             Hasta.CantidadXPresentacion = Convert.ToInt32(Desde["CantidadXPresentacion"]);
             Hasta.CantidadXContenedor = Convert.ToInt32(Desde["CantidadXContenedor"]);
-            Hasta.UnidadMedida = Convert.ToString(Desde["UnidadMedida"]);
+            Hasta.IdUnidadMedida = Convert.ToString(Desde["UnidadMedida"]);
             Hasta.Precio = Convert.ToDecimal(Desde["Precio"]);
             Hasta.IdMoneda = Convert.ToString(Desde["IdMoneda"]);
             Hasta.FechaVigenciaPrecio = Convert.ToDateTime(Desde["FechaVigenciaPrecio"]);
@@ -157,7 +157,7 @@ namespace CedForecastDB
             a.Append("'" + ArticuloInfoAdicional.IdPresentacion + "', ");
             a.Append(ArticuloInfoAdicional.CantidadXPresentacion.ToString() + ", ");
             a.Append(ArticuloInfoAdicional.CantidadXContenedor.ToString() + ", ");
-            a.Append("'" + ArticuloInfoAdicional.UnidadMedida + "', ");
+            a.Append("'" + ArticuloInfoAdicional.IdUnidadMedida + "', ");
             a.Append(ArticuloInfoAdicional.Precio.ToString() + ", ");
             a.Append("'" + ArticuloInfoAdicional.IdMoneda + "', ");
             a.Append("'" + ArticuloInfoAdicional.FechaVigenciaPrecio.ToString("yyyyMMdd HH:mm:ss") + "', ");
@@ -179,7 +179,7 @@ namespace CedForecastDB
             a.Append("IdPresentacion='" + ArticuloInfoAdicional.IdPresentacion + "', ");
             a.Append("CantidadXPresentacion=" + ArticuloInfoAdicional.CantidadXPresentacion.ToString() + ", ");
             a.Append("CantidadXContenedor=" + ArticuloInfoAdicional.CantidadXContenedor.ToString() + ", ");
-            a.Append("UnidadMedida='" + ArticuloInfoAdicional.UnidadMedida + "', ");
+            a.Append("UnidadMedida='" + ArticuloInfoAdicional.IdUnidadMedida + "', ");
             a.Append("Precio=" + ArticuloInfoAdicional.Precio.ToString() + ", ");
             a.Append("IdMoneda='" + ArticuloInfoAdicional.IdMoneda + "', ");
             a.Append("FechaVigenciaPrecio='" + ArticuloInfoAdicional.FechaVigenciaPrecio.ToString("yyyyMMdd HH:mm:ss") + "', ");

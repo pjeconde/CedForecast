@@ -59,6 +59,7 @@ namespace CedForecast
             IdArticuloUiComboBox.DisplayMember = "Art_CodDescGen";
             LlenarComboFamilias();
             LlenarComboMonedas();
+            LlenarComboUnidadesMedida();
         }
         private void LlenarComboFamilias()
         {
@@ -74,6 +75,13 @@ namespace CedForecast
             IdMonedaUiComboBox.ValueMember = "Id";
             IdMonedaUiComboBox.DisplayMember = "Descr";
         }
+        private void LlenarComboUnidadesMedida()
+        {
+            List<CedForecastEntidades.Codigo> unidadesMedida = CedForecastRN.Tabla.Leer("UnidadMedida", Aplicacion.Sesion);
+            IdUnidadMedidaUiComboBox.DataSource = unidadesMedida;
+            IdUnidadMedidaUiComboBox.ValueMember = "Id";
+            IdUnidadMedidaUiComboBox.DisplayMember = "Descr";
+        }
         private void LlenarCampos()
         {
             IdArticuloUiComboBox.SelectedValue = articuloInfoAdicional.IdArticulo;
@@ -85,7 +93,7 @@ namespace CedForecast
             IdPresentacionEditBox.Text = articuloInfoAdicional.IdPresentacion;
             CantidadXPresentacionNumericEditBox.Value = articuloInfoAdicional.CantidadXPresentacion;
             CantidadXContenedorNumericEditBox.Value = articuloInfoAdicional.CantidadXContenedor;
-            UnidadMedidaEditBox.Text = articuloInfoAdicional.UnidadMedida;
+            IdUnidadMedidaUiComboBox.SelectedValue = articuloInfoAdicional.IdUnidadMedida;
             PrecioNumericEditBox.Value = articuloInfoAdicional.Precio;
             FechaVigenciaPrecioEditBox.Text = articuloInfoAdicional.FechaVigenciaPrecio.ToString("dd/MM/yyyy HH:mm:ss");
             IdMonedaUiComboBox.SelectedValue = articuloInfoAdicional.IdMoneda;
@@ -107,7 +115,7 @@ namespace CedForecast
                 IdPresentacionEditBox.Enabled = false;
                 CantidadXPresentacionNumericEditBox.Enabled = false;
                 CantidadXContenedorNumericEditBox.Enabled = false;
-                UnidadMedidaEditBox.Enabled = false;
+                IdUnidadMedidaUiComboBox.Enabled = false;
                 PrecioNumericEditBox.Enabled = false;
                 IdMonedaUiComboBox.Enabled = false;
                 CoeficienteGastosNacionalizacionNumericEditBox.Enabled = false;
@@ -134,7 +142,7 @@ namespace CedForecast
                         articuloInfoAdicional.IdPresentacion = IdPresentacionEditBox.Text;
                         articuloInfoAdicional.CantidadXPresentacion = Convert.ToInt32(CantidadXPresentacionNumericEditBox.Value);
                         articuloInfoAdicional.CantidadXContenedor = Convert.ToInt32(CantidadXContenedorNumericEditBox.Value);
-                        articuloInfoAdicional.UnidadMedida = UnidadMedidaEditBox.Text;
+                        articuloInfoAdicional.IdUnidadMedida = IdUnidadMedidaUiComboBox.SelectedValue.ToString();
                         if (articuloInfoAdicional.Precio != Convert.ToDecimal(PrecioNumericEditBox.Value))
                         {
                             FechaVigenciaPrecioEditBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
@@ -189,6 +197,12 @@ namespace CedForecast
             System.Windows.Forms.Form oFrm = new FamiliaArticuloGrillaForm(new CedForecastEntidades.Opcion("FamiliaArticulo", "Familias de artículos").Descr);
             oFrm.ShowDialog();
             LlenarComboFamilias();
+        }
+        private void IdUnidadMedidaUiButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form oFrm = new TablaGrillaForm(new CedForecastEntidades.Opcion("UnidadMedida", "Unidades de medidas"));
+            oFrm.ShowDialog();
+            LlenarComboUnidadesMedida();
         }
     }
 }

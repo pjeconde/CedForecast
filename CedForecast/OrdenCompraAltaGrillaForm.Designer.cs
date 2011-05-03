@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraAltaGrillaForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.ListaGridEX = new Janus.Windows.GridEX.GridEX();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultauiButton = new Janus.Windows.EditControls.UIButton();
             this.ModificacionUiButton = new Janus.Windows.EditControls.UIButton();
             this.BajaUiButton = new Janus.Windows.EditControls.UIButton();
             this.AltaUiButton = new Janus.Windows.EditControls.UIButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.ListaGridEX = new Janus.Windows.GridEX.GridEX();
+            this.FechaDsdCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -67,7 +69,7 @@
             // 
             this.FondoNicePanel.Controls.Add(this.panel4);
             this.FondoNicePanel.Controls.Add(this.panel1);
-            this.FondoNicePanel.Size = new System.Drawing.Size(607, 239);
+            this.FondoNicePanel.Size = new System.Drawing.Size(607, 293);
             // 
             // panel1
             // 
@@ -76,7 +78,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(507, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 239);
+            this.panel1.Size = new System.Drawing.Size(100, 293);
             this.panel1.TabIndex = 28;
             // 
             // panel3
@@ -90,71 +92,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(100, 204);
+            this.panel3.Size = new System.Drawing.Size(100, 258);
             this.panel3.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.MinimizarUiButton);
-            this.panel2.Controls.Add(this.MaximizarUiButton);
-            this.panel2.Controls.Add(this.SalirUiButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 204);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 35);
-            this.panel2.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.ListaGridEX);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 0, 5);
-            this.panel4.Size = new System.Drawing.Size(507, 239);
-            this.panel4.TabIndex = 29;
-            // 
-            // ListaGridEX
-            // 
-            this.ListaGridEX.AllowColumnDrag = false;
-            this.ListaGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
-            this.ListaGridEX.AlternatingColors = true;
-            this.ListaGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.ListaGridEX.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
-            this.ListaGridEX.BlendColor = System.Drawing.Color.White;
-            this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
-            this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
-            this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
-            this.ListaGridEX.FocusCellFormatStyle.BackColor = System.Drawing.Color.Gold;
-            this.ListaGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.ListaGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
-            this.ListaGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
-            this.ListaGridEX.GroupByBoxVisible = false;
-            this.ListaGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
-            this.ListaGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.ListaGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
-            this.ListaGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.ListaGridEX.Location = new System.Drawing.Point(5, 30);
-            this.ListaGridEX.Name = "ListaGridEX";
-            this.ListaGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
-            this.ListaGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Gold;
-            this.ListaGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.ListaGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ListaGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.ListaGridEX.Size = new System.Drawing.Size(502, 204);
-            this.ListaGridEX.TabIndex = 9;
-            this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
-            this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
             // EnviarAUiButton
             // 
@@ -243,6 +182,17 @@
             this.AltaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AltaUiButton.UseThemes = false;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.MinimizarUiButton);
+            this.panel2.Controls.Add(this.MaximizarUiButton);
+            this.panel2.Controls.Add(this.SalirUiButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 258);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(100, 35);
+            this.panel2.TabIndex = 0;
+            // 
             // MinimizarUiButton
             // 
             this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -293,10 +243,95 @@
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.SalirUiButton.UseThemes = false;
             // 
-            // OrdenCompraAltaForm
+            // panel4
             // 
-            this.ClientSize = new System.Drawing.Size(607, 239);
-            this.Name = "OrdenCompraAltaForm";
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.FechaDsdCalendarCombo);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.ListaGridEX);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 0, 5);
+            this.panel4.Size = new System.Drawing.Size(507, 293);
+            this.panel4.TabIndex = 29;
+            // 
+            // ListaGridEX
+            // 
+            this.ListaGridEX.AllowColumnDrag = false;
+            this.ListaGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.ListaGridEX.AlternatingColors = true;
+            this.ListaGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ListaGridEX.BackColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
+            this.ListaGridEX.BlendColor = System.Drawing.Color.White;
+            this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
+            this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
+            this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
+            this.ListaGridEX.FocusCellFormatStyle.BackColor = System.Drawing.Color.Gold;
+            this.ListaGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.ListaGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
+            this.ListaGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
+            this.ListaGridEX.GroupByBoxVisible = false;
+            this.ListaGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
+            this.ListaGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.ListaGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.ListaGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.ListaGridEX.Location = new System.Drawing.Point(3, 81);
+            this.ListaGridEX.Name = "ListaGridEX";
+            this.ListaGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
+            this.ListaGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Gold;
+            this.ListaGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.ListaGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.ListaGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.ListaGridEX.Size = new System.Drawing.Size(502, 204);
+            this.ListaGridEX.TabIndex = 9;
+            this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
+            this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
+            // FechaDsdCalendarCombo
+            // 
+            this.FechaDsdCalendarCombo.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.FechaDsdCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
+            this.FechaDsdCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
+            this.FechaDsdCalendarCombo.DropDownCalendar.Name = "";
+            this.FechaDsdCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.FechaDsdCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.FechaDsdCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.FechaDsdCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.FechaDsdCalendarCombo.ForeColor = System.Drawing.Color.Black;
+            this.FechaDsdCalendarCombo.Location = new System.Drawing.Point(146, 30);
+            this.FechaDsdCalendarCombo.Name = "FechaDsdCalendarCombo";
+            this.FechaDsdCalendarCombo.Size = new System.Drawing.Size(96, 20);
+            this.FechaDsdCalendarCombo.TabIndex = 9077;
+            this.FechaDsdCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.FechaDsdCalendarCombo.TodayButtonText = "Hoy";
+            this.FechaDsdCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
+            // label1
+            // 
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(15, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 20);
+            this.label1.TabIndex = 9076;
+            this.label1.Text = "Fecha de alta";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // OrdenCompraAltaGrillaForm
+            // 
+            this.ClientSize = new System.Drawing.Size(607, 293);
+            this.Name = "OrdenCompraAltaGrillaForm";
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
             this.FondoNicePanel.ResumeLayout(false);
@@ -324,5 +359,7 @@
         private Janus.Windows.EditControls.UIButton MinimizarUiButton;
         private Janus.Windows.EditControls.UIButton MaximizarUiButton;
         protected Janus.Windows.EditControls.UIButton SalirUiButton;
+        private Janus.Windows.CalendarCombo.CalendarCombo FechaDsdCalendarCombo;
+        protected System.Windows.Forms.Label label1;
     }
 }
