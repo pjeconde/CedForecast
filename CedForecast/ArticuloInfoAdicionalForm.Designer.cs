@@ -35,6 +35,8 @@
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.IdUnidadMedidaUiButton = new Janus.Windows.EditControls.UIButton();
+            this.IdUnidadMedidaUiComboBox = new Janus.Windows.EditControls.UIComboBox();
             this.IdFamiliaArticuloUiButton = new Janus.Windows.EditControls.UIButton();
             this.IdMonedaUiButton = new Janus.Windows.EditControls.UIButton();
             this.FechaVigenciaPrecioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -70,8 +72,6 @@
             this.IdArticuloOrigenEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.DescripcionLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
-            this.IdUnidadMedidaUiComboBox = new Janus.Windows.EditControls.UIComboBox();
-            this.IdUnidadMedidaUiButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -94,14 +94,14 @@
             // FondoNicePanel
             // 
             this.FondoNicePanel.Controls.Add(this.panel4);
-            this.FondoNicePanel.Size = new System.Drawing.Size(572, 405);
+            this.FondoNicePanel.Size = new System.Drawing.Size(572, 391);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.AceptarUiButton);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(5, 370);
+            this.panel2.Location = new System.Drawing.Point(5, 356);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 5, 3);
             this.panel2.Size = new System.Drawing.Size(567, 30);
@@ -167,7 +167,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 0, 5);
-            this.panel4.Size = new System.Drawing.Size(572, 405);
+            this.panel4.Size = new System.Drawing.Size(572, 391);
             this.panel4.TabIndex = 30;
             // 
             // panel5
@@ -212,8 +212,39 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(5, 30);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(567, 370);
+            this.panel5.Size = new System.Drawing.Size(567, 356);
             this.panel5.TabIndex = 8;
+            // 
+            // IdUnidadMedidaUiButton
+            // 
+            this.IdUnidadMedidaUiButton.AccessibleDescription = "";
+            this.IdUnidadMedidaUiButton.AccessibleName = "";
+            this.IdUnidadMedidaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdUnidadMedidaUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdUnidadMedidaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdUnidadMedidaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdUnidadMedidaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdUnidadMedidaUiButton.Icon")));
+            this.IdUnidadMedidaUiButton.Location = new System.Drawing.Point(290, 175);
+            this.IdUnidadMedidaUiButton.Name = "IdUnidadMedidaUiButton";
+            this.IdUnidadMedidaUiButton.ShowFocusRectangle = false;
+            this.IdUnidadMedidaUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdUnidadMedidaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdUnidadMedidaUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdUnidadMedidaUiButton.TabIndex = 9068;
+            this.IdUnidadMedidaUiButton.Tag = "";
+            this.IdUnidadMedidaUiButton.ToolTipText = "Abrir Monedas";
+            this.IdUnidadMedidaUiButton.UseThemes = false;
+            this.IdUnidadMedidaUiButton.Click += new System.EventHandler(this.IdUnidadMedidaUiButton_Click);
+            // 
+            // IdUnidadMedidaUiComboBox
+            // 
+            this.IdUnidadMedidaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdUnidadMedidaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.IdUnidadMedidaUiComboBox.Location = new System.Drawing.Point(134, 175);
+            this.IdUnidadMedidaUiComboBox.Name = "IdUnidadMedidaUiComboBox";
+            this.IdUnidadMedidaUiComboBox.Size = new System.Drawing.Size(150, 20);
+            this.IdUnidadMedidaUiComboBox.TabIndex = 9067;
+            this.IdUnidadMedidaUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // IdFamiliaArticuloUiButton
             // 
@@ -224,7 +255,7 @@
             this.IdFamiliaArticuloUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.IdFamiliaArticuloUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.IdFamiliaArticuloUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdFamiliaArticuloUiButton.Icon")));
-            this.IdFamiliaArticuloUiButton.Location = new System.Drawing.Point(290, 27);
+            this.IdFamiliaArticuloUiButton.Location = new System.Drawing.Point(290, 25);
             this.IdFamiliaArticuloUiButton.Name = "IdFamiliaArticuloUiButton";
             this.IdFamiliaArticuloUiButton.ShowFocusRectangle = false;
             this.IdFamiliaArticuloUiButton.Size = new System.Drawing.Size(22, 22);
@@ -245,7 +276,7 @@
             this.IdMonedaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.IdMonedaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.IdMonedaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdMonedaUiButton.Icon")));
-            this.IdMonedaUiButton.Location = new System.Drawing.Point(290, 235);
+            this.IdMonedaUiButton.Location = new System.Drawing.Point(290, 225);
             this.IdMonedaUiButton.Name = "IdMonedaUiButton";
             this.IdMonedaUiButton.ShowFocusRectangle = false;
             this.IdMonedaUiButton.Size = new System.Drawing.Size(22, 22);
@@ -266,7 +297,7 @@
             this.FechaVigenciaPrecioEditBox.Enabled = false;
             this.FechaVigenciaPrecioEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.FechaVigenciaPrecioEditBox.ForeColor = System.Drawing.Color.Black;
-            this.FechaVigenciaPrecioEditBox.Location = new System.Drawing.Point(361, 209);
+            this.FechaVigenciaPrecioEditBox.Location = new System.Drawing.Point(361, 200);
             this.FechaVigenciaPrecioEditBox.Name = "FechaVigenciaPrecioEditBox";
             this.FechaVigenciaPrecioEditBox.Size = new System.Drawing.Size(158, 20);
             this.FechaVigenciaPrecioEditBox.TabIndex = 9064;
@@ -277,7 +308,7 @@
             // 
             this.IdMonedaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdMonedaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 235);
+            this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 225);
             this.IdMonedaUiComboBox.Name = "IdMonedaUiComboBox";
             this.IdMonedaUiComboBox.Size = new System.Drawing.Size(150, 20);
             this.IdMonedaUiComboBox.TabIndex = 12;
@@ -287,7 +318,7 @@
             // 
             this.IdFamiliaArticuloUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdFamiliaArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdFamiliaArticuloUiComboBox.Location = new System.Drawing.Point(134, 27);
+            this.IdFamiliaArticuloUiComboBox.Location = new System.Drawing.Point(134, 25);
             this.IdFamiliaArticuloUiComboBox.Name = "IdFamiliaArticuloUiComboBox";
             this.IdFamiliaArticuloUiComboBox.Size = new System.Drawing.Size(150, 20);
             this.IdFamiliaArticuloUiComboBox.TabIndex = 2;
@@ -297,7 +328,7 @@
             // 
             this.IdArticuloUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 3);
+            this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 0);
             this.IdArticuloUiComboBox.Name = "IdArticuloUiComboBox";
             this.IdArticuloUiComboBox.Size = new System.Drawing.Size(421, 20);
             this.IdArticuloUiComboBox.TabIndex = 1;
@@ -312,7 +343,7 @@
             this.PlazoAvisoStockSeguridadNumericEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.PlazoAvisoStockSeguridadNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.PlazoAvisoStockSeguridadNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.PlazoAvisoStockSeguridadNumericEditBox.Location = new System.Drawing.Point(361, 287);
+            this.PlazoAvisoStockSeguridadNumericEditBox.Location = new System.Drawing.Point(361, 275);
             this.PlazoAvisoStockSeguridadNumericEditBox.MaxLength = 5;
             this.PlazoAvisoStockSeguridadNumericEditBox.Name = "PlazoAvisoStockSeguridadNumericEditBox";
             this.PlazoAvisoStockSeguridadNumericEditBox.Size = new System.Drawing.Size(88, 20);
@@ -333,7 +364,7 @@
             this.CoeficienteGastosNacionalizacionNumericEditBox.DecimalDigits = 4;
             this.CoeficienteGastosNacionalizacionNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CoeficienteGastosNacionalizacionNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.CoeficienteGastosNacionalizacionNumericEditBox.Location = new System.Drawing.Point(134, 261);
+            this.CoeficienteGastosNacionalizacionNumericEditBox.Location = new System.Drawing.Point(134, 250);
             this.CoeficienteGastosNacionalizacionNumericEditBox.MaxLength = 16;
             this.CoeficienteGastosNacionalizacionNumericEditBox.Name = "CoeficienteGastosNacionalizacionNumericEditBox";
             this.CoeficienteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
@@ -356,7 +387,7 @@
             this.CantidadStockSeguridadNumericEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.CantidadStockSeguridadNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadStockSeguridadNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.CantidadStockSeguridadNumericEditBox.Location = new System.Drawing.Point(134, 287);
+            this.CantidadStockSeguridadNumericEditBox.Location = new System.Drawing.Point(134, 275);
             this.CantidadStockSeguridadNumericEditBox.MaxLength = 5;
             this.CantidadStockSeguridadNumericEditBox.Name = "CantidadStockSeguridadNumericEditBox";
             this.CantidadStockSeguridadNumericEditBox.Size = new System.Drawing.Size(88, 20);
@@ -376,7 +407,7 @@
             this.CantidadXContenedorNumericEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.CantidadXContenedorNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadXContenedorNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.CantidadXContenedorNumericEditBox.Location = new System.Drawing.Point(361, 157);
+            this.CantidadXContenedorNumericEditBox.Location = new System.Drawing.Point(361, 150);
             this.CantidadXContenedorNumericEditBox.MaxLength = 5;
             this.CantidadXContenedorNumericEditBox.Name = "CantidadXContenedorNumericEditBox";
             this.CantidadXContenedorNumericEditBox.Size = new System.Drawing.Size(88, 20);
@@ -396,7 +427,7 @@
             this.CantidadXPresentacionNumericEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.CantidadXPresentacionNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.CantidadXPresentacionNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.CantidadXPresentacionNumericEditBox.Location = new System.Drawing.Point(134, 157);
+            this.CantidadXPresentacionNumericEditBox.Location = new System.Drawing.Point(134, 150);
             this.CantidadXPresentacionNumericEditBox.MaxLength = 5;
             this.CantidadXPresentacionNumericEditBox.Name = "CantidadXPresentacionNumericEditBox";
             this.CantidadXPresentacionNumericEditBox.Size = new System.Drawing.Size(88, 20);
@@ -417,7 +448,7 @@
             this.PrecioNumericEditBox.DecimalDigits = 4;
             this.PrecioNumericEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.PrecioNumericEditBox.ForeColor = System.Drawing.Color.Black;
-            this.PrecioNumericEditBox.Location = new System.Drawing.Point(134, 209);
+            this.PrecioNumericEditBox.Location = new System.Drawing.Point(134, 200);
             this.PrecioNumericEditBox.MaxLength = 16;
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
@@ -434,7 +465,7 @@
             // label15
             // 
             this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(3, 313);
+            this.label15.Location = new System.Drawing.Point(3, 300);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(128, 20);
             this.label15.TabIndex = 34;
@@ -449,7 +480,7 @@
             this.ComentarioEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.ComentarioEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.ComentarioEditBox.ForeColor = System.Drawing.Color.Black;
-            this.ComentarioEditBox.Location = new System.Drawing.Point(134, 313);
+            this.ComentarioEditBox.Location = new System.Drawing.Point(134, 300);
             this.ComentarioEditBox.Name = "ComentarioEditBox";
             this.ComentarioEditBox.Size = new System.Drawing.Size(421, 20);
             this.ComentarioEditBox.TabIndex = 16;
@@ -459,7 +490,7 @@
             // label14
             // 
             this.label14.ForeColor = System.Drawing.Color.Navy;
-            this.label14.Location = new System.Drawing.Point(266, 287);
+            this.label14.Location = new System.Drawing.Point(266, 275);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(95, 20);
             this.label14.TabIndex = 32;
@@ -469,7 +500,7 @@
             // label13
             // 
             this.label13.ForeColor = System.Drawing.Color.Navy;
-            this.label13.Location = new System.Drawing.Point(3, 287);
+            this.label13.Location = new System.Drawing.Point(3, 275);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(128, 20);
             this.label13.TabIndex = 30;
@@ -479,7 +510,7 @@
             // label12
             // 
             this.label12.ForeColor = System.Drawing.Color.Navy;
-            this.label12.Location = new System.Drawing.Point(3, 261);
+            this.label12.Location = new System.Drawing.Point(3, 250);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(128, 20);
             this.label12.TabIndex = 28;
@@ -489,7 +520,7 @@
             // label11
             // 
             this.label11.ForeColor = System.Drawing.Color.Navy;
-            this.label11.Location = new System.Drawing.Point(280, 209);
+            this.label11.Location = new System.Drawing.Point(280, 200);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 20);
             this.label11.TabIndex = 26;
@@ -499,7 +530,7 @@
             // label10
             // 
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(266, 79);
+            this.label10.Location = new System.Drawing.Point(266, 75);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 20);
             this.label10.TabIndex = 25;
@@ -514,7 +545,7 @@
             this.DescrRENAREditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.DescrRENAREditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.DescrRENAREditBox.ForeColor = System.Drawing.Color.Black;
-            this.DescrRENAREditBox.Location = new System.Drawing.Point(305, 79);
+            this.DescrRENAREditBox.Location = new System.Drawing.Point(305, 75);
             this.DescrRENAREditBox.Name = "DescrRENAREditBox";
             this.DescrRENAREditBox.Size = new System.Drawing.Size(250, 20);
             this.DescrRENAREditBox.TabIndex = 5;
@@ -524,7 +555,7 @@
             // label9
             // 
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(3, 235);
+            this.label9.Location = new System.Drawing.Point(3, 225);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 20);
             this.label9.TabIndex = 22;
@@ -534,7 +565,7 @@
             // label8
             // 
             this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(3, 209);
+            this.label8.Location = new System.Drawing.Point(3, 200);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(128, 20);
             this.label8.TabIndex = 20;
@@ -544,7 +575,7 @@
             // label7
             // 
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(3, 183);
+            this.label7.Location = new System.Drawing.Point(3, 175);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 20);
             this.label7.TabIndex = 18;
@@ -554,7 +585,7 @@
             // label6
             // 
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(257, 157);
+            this.label6.Location = new System.Drawing.Point(257, 150);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 20);
             this.label6.TabIndex = 16;
@@ -564,7 +595,7 @@
             // label5
             // 
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(3, 157);
+            this.label5.Location = new System.Drawing.Point(3, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(128, 20);
             this.label5.TabIndex = 14;
@@ -574,7 +605,7 @@
             // label4
             // 
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(3, 131);
+            this.label4.Location = new System.Drawing.Point(3, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 20);
             this.label4.TabIndex = 12;
@@ -589,7 +620,7 @@
             this.IdPresentacionEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.IdPresentacionEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdPresentacionEditBox.ForeColor = System.Drawing.Color.Black;
-            this.IdPresentacionEditBox.Location = new System.Drawing.Point(134, 131);
+            this.IdPresentacionEditBox.Location = new System.Drawing.Point(134, 125);
             this.IdPresentacionEditBox.Name = "IdPresentacionEditBox";
             this.IdPresentacionEditBox.Size = new System.Drawing.Size(120, 20);
             this.IdPresentacionEditBox.TabIndex = 7;
@@ -599,7 +630,7 @@
             // label3
             // 
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(3, 105);
+            this.label3.Location = new System.Drawing.Point(3, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 20);
             this.label3.TabIndex = 10;
@@ -614,7 +645,7 @@
             this.IdSENASAEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.IdSENASAEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdSENASAEditBox.ForeColor = System.Drawing.Color.Black;
-            this.IdSENASAEditBox.Location = new System.Drawing.Point(134, 105);
+            this.IdSENASAEditBox.Location = new System.Drawing.Point(134, 100);
             this.IdSENASAEditBox.Name = "IdSENASAEditBox";
             this.IdSENASAEditBox.Size = new System.Drawing.Size(120, 20);
             this.IdSENASAEditBox.TabIndex = 6;
@@ -624,7 +655,7 @@
             // label2
             // 
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(3, 79);
+            this.label2.Location = new System.Drawing.Point(3, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 20);
             this.label2.TabIndex = 8;
@@ -639,7 +670,7 @@
             this.IdRENAREditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.IdRENAREditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdRENAREditBox.ForeColor = System.Drawing.Color.Black;
-            this.IdRENAREditBox.Location = new System.Drawing.Point(134, 79);
+            this.IdRENAREditBox.Location = new System.Drawing.Point(134, 75);
             this.IdRENAREditBox.Name = "IdRENAREditBox";
             this.IdRENAREditBox.Size = new System.Drawing.Size(120, 20);
             this.IdRENAREditBox.TabIndex = 4;
@@ -649,7 +680,7 @@
             // label1
             // 
             this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(3, 53);
+            this.label1.Location = new System.Drawing.Point(3, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.TabIndex = 6;
@@ -664,7 +695,7 @@
             this.IdArticuloOrigenEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
             this.IdArticuloOrigenEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdArticuloOrigenEditBox.ForeColor = System.Drawing.Color.Black;
-            this.IdArticuloOrigenEditBox.Location = new System.Drawing.Point(134, 53);
+            this.IdArticuloOrigenEditBox.Location = new System.Drawing.Point(134, 50);
             this.IdArticuloOrigenEditBox.Name = "IdArticuloOrigenEditBox";
             this.IdArticuloOrigenEditBox.Size = new System.Drawing.Size(120, 20);
             this.IdArticuloOrigenEditBox.TabIndex = 3;
@@ -674,7 +705,7 @@
             // DescripcionLabel
             // 
             this.DescripcionLabel.ForeColor = System.Drawing.Color.Navy;
-            this.DescripcionLabel.Location = new System.Drawing.Point(3, 27);
+            this.DescripcionLabel.Location = new System.Drawing.Point(3, 25);
             this.DescripcionLabel.Name = "DescripcionLabel";
             this.DescripcionLabel.Size = new System.Drawing.Size(128, 20);
             this.DescripcionLabel.TabIndex = 4;
@@ -685,47 +716,16 @@
             // 
             this.IdLabel.CausesValidation = false;
             this.IdLabel.ForeColor = System.Drawing.Color.Navy;
-            this.IdLabel.Location = new System.Drawing.Point(3, 3);
+            this.IdLabel.Location = new System.Drawing.Point(3, 0);
             this.IdLabel.Name = "IdLabel";
             this.IdLabel.Size = new System.Drawing.Size(128, 20);
             this.IdLabel.TabIndex = 2;
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // IdUnidadMedidaUiComboBox
-            // 
-            this.IdUnidadMedidaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
-            this.IdUnidadMedidaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdUnidadMedidaUiComboBox.Location = new System.Drawing.Point(134, 183);
-            this.IdUnidadMedidaUiComboBox.Name = "IdUnidadMedidaUiComboBox";
-            this.IdUnidadMedidaUiComboBox.Size = new System.Drawing.Size(150, 20);
-            this.IdUnidadMedidaUiComboBox.TabIndex = 9067;
-            this.IdUnidadMedidaUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
-            // 
-            // IdUnidadMedidaUiButton
-            // 
-            this.IdUnidadMedidaUiButton.AccessibleDescription = "";
-            this.IdUnidadMedidaUiButton.AccessibleName = "";
-            this.IdUnidadMedidaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.IdUnidadMedidaUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.IdUnidadMedidaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.IdUnidadMedidaUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.IdUnidadMedidaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdUnidadMedidaUiButton.Icon")));
-            this.IdUnidadMedidaUiButton.Location = new System.Drawing.Point(290, 183);
-            this.IdUnidadMedidaUiButton.Name = "IdUnidadMedidaUiButton";
-            this.IdUnidadMedidaUiButton.ShowFocusRectangle = false;
-            this.IdUnidadMedidaUiButton.Size = new System.Drawing.Size(22, 22);
-            this.IdUnidadMedidaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.IdUnidadMedidaUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.IdUnidadMedidaUiButton.TabIndex = 9068;
-            this.IdUnidadMedidaUiButton.Tag = "";
-            this.IdUnidadMedidaUiButton.ToolTipText = "Abrir Monedas";
-            this.IdUnidadMedidaUiButton.UseThemes = false;
-            this.IdUnidadMedidaUiButton.Click += new System.EventHandler(this.IdUnidadMedidaUiButton_Click);
-            // 
             // ArticuloInfoAdicionalForm
             // 
-            this.ClientSize = new System.Drawing.Size(572, 405);
+            this.ClientSize = new System.Drawing.Size(572, 391);
             this.Name = "ArticuloInfoAdicionalForm";
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();

@@ -201,6 +201,10 @@
       <DependentUpon>Financiero.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraActualizacionInfoEmbarqueForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraActualizacionInfoEmbarqueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrdenCompraAltaForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
@@ -212,6 +216,26 @@
     <EmbeddedResource Include="OrdenCompraBrowserForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OrdenCompraBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraIngresoADepositoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraIngresoADepositoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraIngresoInfoEmbarqueForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraIngresoInfoEmbarqueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraInspeccionRENARForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraInspeccionRENARForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraRecepcionDocumentosForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraRecepcionDocumentosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraRegistroDespachoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraRegistroDespachoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResumenArgentinaXZonas.resx">
       <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>

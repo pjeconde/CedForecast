@@ -633,7 +633,7 @@ namespace CedForecast
             this.FechaHstCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
             this.FechaHstCalendarCombo.DropDownCalendar.TabIndex = 0;
             this.FechaHstCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.FechaHstCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.FechaHstCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.FechaHstCalendarCombo.ForeColor = System.Drawing.Color.Black;
             this.FechaHstCalendarCombo.Location = new System.Drawing.Point(48, 64);
             this.FechaHstCalendarCombo.Name = "FechaHstCalendarCombo";
@@ -655,7 +655,7 @@ namespace CedForecast
             this.FechaDsdCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
             this.FechaDsdCalendarCombo.DropDownCalendar.TabIndex = 0;
             this.FechaDsdCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.FechaDsdCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.FechaDsdCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.FechaDsdCalendarCombo.ForeColor = System.Drawing.Color.Black;
             this.FechaDsdCalendarCombo.Location = new System.Drawing.Point(48, 40);
             this.FechaDsdCalendarCombo.Name = "FechaDsdCalendarCombo";
