@@ -255,5 +255,33 @@ namespace CedForecastWeb.Forecast
             Response.BinaryWrite(byteArray);
             Response.End();
         }
+
+        protected void ExportarDinamicaButton1_Click(object sender, EventArgs e)
+        {
+            System.Collections.Generic.List<CedForecastWebEntidades.Forecast> lista;
+            CedForecastWebEntidades.Forecast Forecast = new CedForecastWebEntidades.Forecast();
+            Forecast.IdTipoPlanilla = "RollingForecast";
+            Forecast.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
+            CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
+            cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
+            Forecast.Cliente = cliente;
+            CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
+            Forecast.IdPeriodo = PeriodoTextBox.Text;
+            lista = CedForecastWebRN.Forecast.Lista(Forecast, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
+            string archivo = "Id.Cliente; Nombre Cliente; Familia Artículo; Id.Artículo; Nombre Artículo; Periodo; Volumen";
+            archivo += "\r\n";
+            FileHelperEngine fhe = new FileHelperEngine(typeof(CedForecastWebEntidades.Forecast));
+            archivo += fhe.WriteString(lista);
+            byte[] a = System.Text.Encoding.GetEncoding("iso-8859-1").GetBytes(archivo);
+            System.IO.MemoryStream m = new System.IO.MemoryStream(a);
+            Byte[] byteArray = m.ToArray();
+            m.Flush();
+            m.Close();
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", "attachment; filename=RollingForecastDinamico.csv");
+            Response.ContentType = "application/octet-stream";
+            Response.BinaryWrite(byteArray);
+            Response.End();
+        }
 	}
 }

@@ -179,13 +179,19 @@
                         <td style="text-align: right; padding-left:10px">
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td style="vertical-align: top;">
+                                    <td style="vertical-align: top; height: 24px;">
                                         <asp:Button ID="ExportarButton" runat="server" Text="Exportar"
                                             Width="100px" OnClick="ExportarButton_Click" />
                                     </td>
-                                    <td style="width: 660px;">
+                                    <td style="width: 10px; height: 24px;">
                                     </td>
-                                    <td style="vertical-align: top;">
+                                    <td style="vertical-align: top; height: 24px;">
+                                        <asp:Button ID="ExportarDinamicaButton1" runat="server" Text="Exportar (D)"
+                                            Width="100px" OnClick="ExportarDinamicaButton1_Click" />
+                                    </td>
+                                    <td style="width: 550px; height: 24px;">
+                                    </td>
+                                    <td style="vertical-align: top; height: 24px;">
                                         <asp:Button ID="SalirButton" runat="server" OnClick="SalirButton_Click" Text="Salir"
                                             Width="100px" />
                                     </td>
