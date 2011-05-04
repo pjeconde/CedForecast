@@ -128,6 +128,15 @@ namespace CedForecastWeb.Forecast {
         protected global::System.Web.UI.WebControls.Button ExportarButton;
         
         /// <summary>
+        /// Control ExportarDinamicaButton1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificar, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ExportarDinamicaButton1;
+        
+        /// <summary>
         /// Control SalirButton.
         /// </summary>
         /// <remarks>
