@@ -47,6 +47,13 @@
     <Compile Include="Forecast.cs" />
     <Compile Include="Opcion.cs" />
     <Compile Include="OrdenCompra.cs" />
+    <Compile Include="OrdenCompraInfoAlta.cs" />
+    <Compile Include="OrdenCompraInfoAltaMinuta.cs" />
+    <Compile Include="OrdenCompraInfoEmbarque.cs" />
+    <Compile Include="OrdenCompraInfoIngresoADeposito.cs" />
+    <Compile Include="OrdenCompraInfoInspeccionRENAR.cs" />
+    <Compile Include="OrdenCompraInfoRecepcionDocumentos.cs" />
+    <Compile Include="OrdenCompraInfoRegistroDespacho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFoPA.cs" />
   </ItemGroup>
