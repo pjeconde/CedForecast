@@ -8,11 +8,9 @@ using System.Windows.Forms;
 
 namespace CedForecast
 {
-    public partial class OrdenCompraAltaGrillaForm : Cedeira.UI.frmBaseEnviarA
+    public partial class OrdenCompraAltaMinutaForm : Cedeira.UI.frmBase
     {
-        static string titulo = "Alta de Orden de Compra";
-
-        public OrdenCompraAltaGrillaForm() : base(titulo)
+        public OrdenCompraAltaMinutaForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
         }

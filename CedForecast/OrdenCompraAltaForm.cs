@@ -14,5 +14,17 @@ namespace CedForecast
         {
             InitializeComponent();
         }
+        private void MaxMinUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            MinimizarUiButton.Visible = true;
+            MaximizarUiButton.Visible = false;
+        }
+        private void MinimizarUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            MinimizarUiButton.Visible = false;
+            MaximizarUiButton.Visible = true;
+        }
     }
 }
