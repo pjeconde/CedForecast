@@ -74,6 +74,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers.ExcelStorage.20
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedForecastWeb", "CedForecastWeb\CedForecastWeb.csproj", "{AF45BC73-5AB0-4440-BDFC-152258195500}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -258,6 +264,21 @@ Global
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B3F2B976-73D5-49C7-BEAA-BF62E233132A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Cedeira|.NET.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Cedeira|Any CPU.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Cedeira|Any CPU.Build.0 = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Cedeira|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Cedeira|Mixed Platforms.Build.0 = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Release|.NET.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AF45BC73-5AB0-4440-BDFC-152258195500}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
