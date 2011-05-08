@@ -72,24 +72,12 @@
             this.IdArticuloOrigenEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.DescripcionLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // EnviarAUiCommandManager
-            // 
-            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            // 
-            // EnviarAUiContextMenu
-            // 
-            this.EnviarAUiContextMenu.UseThemes = Janus.Windows.UI.InheritableBoolean.False;
-            this.EnviarAUiContextMenu.VisualStyle = Janus.Windows.UI.VisualStyle.Standard;
             // 
             // FondoNicePanel
             // 
@@ -727,8 +715,6 @@
             // 
             this.ClientSize = new System.Drawing.Size(572, 391);
             this.Name = "ArticuloInfoAdicionalForm";
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
             this.FondoNicePanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

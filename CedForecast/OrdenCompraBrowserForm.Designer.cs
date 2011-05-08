@@ -64,6 +64,10 @@ namespace CedForecast
             this.BrowserGridEX = new Janus.Windows.GridEX.GridEX();
             this.HerramientasUiPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.HerramientasUiPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.AnulacionUiButton = new Janus.Windows.EditControls.UIButton();
             this.IngrADepUiButton = new Janus.Windows.EditControls.UIButton();
             this.InspRenarUiButton = new Janus.Windows.EditControls.UIButton();
@@ -88,10 +92,6 @@ namespace CedForecast
             this.EstadoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.EstadoTreeView = new System.Windows.Forms.TreeView();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -103,6 +103,7 @@ namespace CedForecast
             ((System.ComponentModel.ISupportInitialize)(this.HerramientasUiPanel)).BeginInit();
             this.HerramientasUiPanel.SuspendLayout();
             this.HerramientasUiPanelContainer.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).BeginInit();
             this.BrowserUiTab.SuspendLayout();
             this.TabBrowserUiTabPage.SuspendLayout();
@@ -111,7 +112,6 @@ namespace CedForecast
             this.nicePanel3.SuspendLayout();
             this.nicePanel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnviarAUiCommandManager
@@ -119,6 +119,7 @@ namespace CedForecast
             this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.BackColor = System.Drawing.Color.PeachPuff;
             this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.EnviarAUiCommandManager.UseThemes = false;
+            this.EnviarAUiCommandManager.CommandClick += new Janus.Windows.UI.CommandBars.CommandEventHandler(this.EnviarAUiCommandManager_CommandClick);
             // 
             // EnviarAUiContextMenu
             // 
@@ -268,6 +269,69 @@ namespace CedForecast
             this.HerramientasUiPanelContainer.Name = "HerramientasUiPanelContainer";
             this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 415);
             this.HerramientasUiPanelContainer.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.MinimizarUiButton);
+            this.panel1.Controls.Add(this.MaximizarUiButton);
+            this.panel1.Controls.Add(this.SalirUiButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 385);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(175, 30);
+            this.panel1.TabIndex = 40;
+            // 
+            // MinimizarUiButton
+            // 
+            this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MinimizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
+            this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
+            this.MinimizarUiButton.Location = new System.Drawing.Point(7, 6);
+            this.MinimizarUiButton.Name = "MinimizarUiButton";
+            this.MinimizarUiButton.ShowFocusRectangle = false;
+            this.MinimizarUiButton.Size = new System.Drawing.Size(20, 20);
+            this.MinimizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.TabIndex = 42;
+            this.MinimizarUiButton.Tag = "Min";
+            this.MinimizarUiButton.UseThemes = false;
+            this.MinimizarUiButton.Visible = false;
+            this.MinimizarUiButton.Click += new System.EventHandler(this.MinimizarUiButton_Click);
+            // 
+            // MaximizarUiButton
+            // 
+            this.MaximizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MaximizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
+            this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
+            this.MaximizarUiButton.Location = new System.Drawing.Point(7, 6);
+            this.MaximizarUiButton.Name = "MaximizarUiButton";
+            this.MaximizarUiButton.ShowFocusRectangle = false;
+            this.MaximizarUiButton.Size = new System.Drawing.Size(20, 20);
+            this.MaximizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.TabIndex = 41;
+            this.MaximizarUiButton.Tag = "Max";
+            this.MaximizarUiButton.UseThemes = false;
+            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
+            // 
+            // SalirUiButton
+            // 
+            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
+            this.SalirUiButton.Location = new System.Drawing.Point(112, 4);
+            this.SalirUiButton.Name = "SalirUiButton";
+            this.SalirUiButton.ShowFocusRectangle = false;
+            this.SalirUiButton.Size = new System.Drawing.Size(54, 24);
+            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.SalirUiButton.TabIndex = 40;
+            this.SalirUiButton.Text = "Salir";
+            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
+            this.SalirUiButton.UseThemes = false;
             // 
             // AnulacionUiButton
             // 
@@ -768,69 +832,6 @@ namespace CedForecast
             this.panel4.Size = new System.Drawing.Size(958, 503);
             this.panel4.TabIndex = 31;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.MinimizarUiButton);
-            this.panel1.Controls.Add(this.MaximizarUiButton);
-            this.panel1.Controls.Add(this.SalirUiButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 385);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(175, 30);
-            this.panel1.TabIndex = 40;
-            // 
-            // MinimizarUiButton
-            // 
-            this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.MinimizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
-            this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
-            this.MinimizarUiButton.Location = new System.Drawing.Point(7, 6);
-            this.MinimizarUiButton.Name = "MinimizarUiButton";
-            this.MinimizarUiButton.ShowFocusRectangle = false;
-            this.MinimizarUiButton.Size = new System.Drawing.Size(20, 20);
-            this.MinimizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.MinimizarUiButton.TabIndex = 42;
-            this.MinimizarUiButton.Tag = "Min";
-            this.MinimizarUiButton.UseThemes = false;
-            this.MinimizarUiButton.Visible = false;
-            this.MinimizarUiButton.Click += new System.EventHandler(this.MinimizarUiButton_Click);
-            // 
-            // MaximizarUiButton
-            // 
-            this.MaximizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.MaximizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
-            this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
-            this.MaximizarUiButton.Location = new System.Drawing.Point(7, 6);
-            this.MaximizarUiButton.Name = "MaximizarUiButton";
-            this.MaximizarUiButton.ShowFocusRectangle = false;
-            this.MaximizarUiButton.Size = new System.Drawing.Size(20, 20);
-            this.MaximizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.MaximizarUiButton.TabIndex = 41;
-            this.MaximizarUiButton.Tag = "Max";
-            this.MaximizarUiButton.UseThemes = false;
-            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
-            // 
-            // SalirUiButton
-            // 
-            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(112, 4);
-            this.SalirUiButton.Name = "SalirUiButton";
-            this.SalirUiButton.ShowFocusRectangle = false;
-            this.SalirUiButton.Size = new System.Drawing.Size(54, 24);
-            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.SalirUiButton.TabIndex = 40;
-            this.SalirUiButton.Text = "Salir";
-            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
-            this.SalirUiButton.UseThemes = false;
-            // 
             // OrdenCompraBrowserForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -848,6 +849,7 @@ namespace CedForecast
             ((System.ComponentModel.ISupportInitialize)(this.HerramientasUiPanel)).EndInit();
             this.HerramientasUiPanel.ResumeLayout(false);
             this.HerramientasUiPanelContainer.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).EndInit();
             this.BrowserUiTab.ResumeLayout(false);
             this.TabBrowserUiTabPage.ResumeLayout(false);
@@ -856,7 +858,6 @@ namespace CedForecast
             this.nicePanel3.ResumeLayout(false);
             this.nicePanel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

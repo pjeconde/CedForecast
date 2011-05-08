@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CedForecast
 {
-    public partial class ArticuloInfoAdicionalForm : Cedeira.UI.frmBaseEnviarA
+    public partial class ArticuloInfoAdicionalForm : Cedeira.UI.frmBase
     {
         CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicional;
         string evento;

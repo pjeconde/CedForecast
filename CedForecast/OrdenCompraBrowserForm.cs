@@ -347,7 +347,7 @@ namespace CedForecast
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraAltaForm("");
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaForm();
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -384,32 +384,31 @@ namespace CedForecast
         //    TabBrowserUiTabPage.TabVisible = true;
         //    BrowserUiTab.SelectedTab = TabBrowserUiTabPage;
         //}
-        //private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
-        //{
-        //    switch (e.Command.Key)
-        //    {
-        //        case "Impresora":
-        //            Cedeira.SV.Fun.ImprimirGrilla(this, BrowserGridEX, Aplicacion.Titulo, false);
-        //            break;
-        //        case "Planilla":
-        //            try
-        //            {
-        //                Cedeira.SV.Export exc = new Cedeira.SV.Export();
-        //                Cursor = Cursors.WaitCursor;
-        //                exc.ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, titulo + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Cedeira.Ex.ExceptionManager.Publish(ex);
-        //            }
-        //            finally
-        //            {
-        //                Cursor = Cursors.Default;
-        //            }
-
-        //            break;
-        //    }
-        //}
+        private void EnviarAUiCommandManager_CommandClick(object sender, Janus.Windows.UI.CommandBars.CommandEventArgs e)
+        {
+            switch (e.Command.Key)
+            {
+                case "Impresora":
+                    Cedeira.SV.Fun.ImprimirGrilla(this, BrowserGridEX, Aplicacion.Titulo, false);
+                    break;
+                case "Planilla":
+                    try
+                    {
+                        Cedeira.SV.Export exc = new Cedeira.SV.Export();
+                        Cursor = Cursors.WaitCursor;
+                        exc.ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, titulo + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                    }
+                    catch (Exception ex)
+                    {
+                        Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                    }
+                    finally
+                    {
+                        Cursor = Cursors.Default;
+                    }
+                    break;
+            }
+        }
         //private void IncorporarPtesIngUiButton_Click(object sender, System.EventArgs e)
         //{
         //    Cursor = Cursors.WaitCursor;
