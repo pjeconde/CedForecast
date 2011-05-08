@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraAltaForm));
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -42,6 +42,13 @@
             this.ModificacionUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultauiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ComentarioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.FechaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PrefijoEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.IdProveedorUiButton = new Janus.Windows.EditControls.UIButton();
             this.IdPaisOrigenUiButton = new Janus.Windows.EditControls.UIButton();
             this.FechaEstimadaArriboRequeridaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
@@ -56,13 +63,8 @@
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PrefijoEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.FechaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ComentarioEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -74,6 +76,17 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // EnviarAUiCommandManager
+            // 
+            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.EnviarAUiCommandManager.CommandsStateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.EnviarAUiCommandManager.CommandClick += new Janus.Windows.UI.CommandBars.CommandEventHandler(this.EnviarAUiCommandManager_CommandClick);
+            // 
+            // EnviarAUiContextMenu
+            // 
+            this.EnviarAUiContextMenu.UseThemes = Janus.Windows.UI.InheritableBoolean.False;
+            this.EnviarAUiContextMenu.VisualStyle = Janus.Windows.UI.VisualStyle.Standard;
             // 
             // FondoNicePanel
             // 
@@ -135,8 +148,8 @@
             this.ListaGridEX.BlendColor = System.Drawing.Color.White;
             this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
+            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
             this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
@@ -196,11 +209,13 @@
             this.AltaUiButton.Text = "Agregar";
             this.AltaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AltaUiButton.UseThemes = false;
+            this.AltaUiButton.Click += new System.EventHandler(this.AltaUiButton_Click);
             // 
             // BajaUiButton
             // 
             this.BajaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.BajaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BajaUiButton.Enabled = false;
             this.BajaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.BajaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("BajaUiButton.Icon")));
             this.BajaUiButton.Location = new System.Drawing.Point(6, 24);
@@ -219,6 +234,7 @@
             this.EnviarAUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.EnviarAUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.DropDownButton;
             this.EnviarAUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
             this.EnviarAUiButton.Location = new System.Drawing.Point(6, 96);
@@ -236,6 +252,7 @@
             // 
             this.ModificacionUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ModificacionUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModificacionUiButton.Enabled = false;
             this.ModificacionUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ModificacionUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ModificacionUiButton.Icon")));
             this.ModificacionUiButton.Location = new System.Drawing.Point(6, 48);
@@ -253,6 +270,7 @@
             // 
             this.ConsultauiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ConsultauiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ConsultauiButton.Enabled = false;
             this.ConsultauiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ConsultauiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ConsultauiButton.Icon")));
             this.ConsultauiButton.Location = new System.Drawing.Point(6, 72);
@@ -289,6 +307,99 @@
             this.panel1.Size = new System.Drawing.Size(670, 97);
             this.panel1.TabIndex = 11;
             // 
+            // ComentarioEditBox
+            // 
+            this.ComentarioEditBox.AcceptsReturn = true;
+            this.ComentarioEditBox.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.ComentarioEditBox.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.ComentarioEditBox.BackColor = System.Drawing.Color.White;
+            this.ComentarioEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
+            this.ComentarioEditBox.FlatBorderColor = System.Drawing.Color.Black;
+            this.ComentarioEditBox.ForeColor = System.Drawing.Color.Black;
+            this.ComentarioEditBox.Location = new System.Drawing.Point(62, 50);
+            this.ComentarioEditBox.Name = "ComentarioEditBox";
+            this.ComentarioEditBox.Size = new System.Drawing.Size(602, 20);
+            this.ComentarioEditBox.TabIndex = 5;
+            this.ComentarioEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
+            this.ComentarioEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
+            // label4
+            // 
+            this.label4.ForeColor = System.Drawing.Color.Navy;
+            this.label4.Location = new System.Drawing.Point(0, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.TabIndex = 9105;
+            this.label4.Text = "Comentario";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(0, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 20);
+            this.label3.TabIndex = 9104;
+            this.label3.Text = "DETALLE";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FechaCalendarCombo
+            // 
+            this.FechaCalendarCombo.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.FechaCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
+            this.FechaCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
+            this.FechaCalendarCombo.DropDownCalendar.Name = "";
+            this.FechaCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.FechaCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.FechaCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.FechaCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.FechaCalendarCombo.ForeColor = System.Drawing.Color.Black;
+            this.FechaCalendarCombo.Location = new System.Drawing.Point(62, 0);
+            this.FechaCalendarCombo.Name = "FechaCalendarCombo";
+            this.FechaCalendarCombo.Size = new System.Drawing.Size(96, 20);
+            this.FechaCalendarCombo.TabIndex = 0;
+            this.FechaCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.FechaCalendarCombo.TodayButtonText = "Hoy";
+            this.FechaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
+            // label2
+            // 
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.TabIndex = 9102;
+            this.label2.Text = "Fecha";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(583, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 20);
+            this.label1.TabIndex = 9101;
+            this.label1.Text = "Prefijo";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // PrefijoEditBox
+            // 
+            this.PrefijoEditBox.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.PrefijoEditBox.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.PrefijoEditBox.BackColor = System.Drawing.Color.White;
+            this.PrefijoEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
+            this.PrefijoEditBox.FlatBorderColor = System.Drawing.Color.Black;
+            this.PrefijoEditBox.ForeColor = System.Drawing.Color.Black;
+            this.PrefijoEditBox.Location = new System.Drawing.Point(629, 25);
+            this.PrefijoEditBox.Name = "PrefijoEditBox";
+            this.PrefijoEditBox.Size = new System.Drawing.Size(35, 20);
+            this.PrefijoEditBox.TabIndex = 4;
+            this.PrefijoEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
+            this.PrefijoEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
             // IdProveedorUiButton
             // 
             this.IdProveedorUiButton.AccessibleDescription = "";
@@ -298,7 +409,7 @@
             this.IdProveedorUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.IdProveedorUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.IdProveedorUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdProveedorUiButton.Icon")));
-            this.IdProveedorUiButton.Location = new System.Drawing.Point(225, 25);
+            this.IdProveedorUiButton.Location = new System.Drawing.Point(218, 25);
             this.IdProveedorUiButton.Name = "IdProveedorUiButton";
             this.IdProveedorUiButton.ShowFocusRectangle = false;
             this.IdProveedorUiButton.Size = new System.Drawing.Size(22, 22);
@@ -308,6 +419,7 @@
             this.IdProveedorUiButton.Tag = "";
             this.IdProveedorUiButton.ToolTipText = "Abrir Monedas";
             this.IdProveedorUiButton.UseThemes = false;
+            this.IdProveedorUiButton.Click += new System.EventHandler(this.IdProveedorUiButton_Click);
             // 
             // IdPaisOrigenUiButton
             // 
@@ -318,7 +430,7 @@
             this.IdPaisOrigenUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.IdPaisOrigenUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.IdPaisOrigenUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdPaisOrigenUiButton.Icon")));
-            this.IdPaisOrigenUiButton.Location = new System.Drawing.Point(495, 25);
+            this.IdPaisOrigenUiButton.Location = new System.Drawing.Point(548, 25);
             this.IdPaisOrigenUiButton.Name = "IdPaisOrigenUiButton";
             this.IdPaisOrigenUiButton.ShowFocusRectangle = false;
             this.IdPaisOrigenUiButton.Size = new System.Drawing.Size(22, 22);
@@ -328,6 +440,7 @@
             this.IdPaisOrigenUiButton.Tag = "";
             this.IdPaisOrigenUiButton.ToolTipText = "Abrir Monedas";
             this.IdPaisOrigenUiButton.UseThemes = false;
+            this.IdPaisOrigenUiButton.Click += new System.EventHandler(this.IdPaisOrigenUiButton_Click);
             // 
             // FechaEstimadaArriboRequeridaCalendarCombo
             // 
@@ -343,10 +456,10 @@
             this.FechaEstimadaArriboRequeridaCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.FechaEstimadaArriboRequeridaCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.FechaEstimadaArriboRequeridaCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.FechaEstimadaArriboRequeridaCalendarCombo.Location = new System.Drawing.Point(339, 0);
+            this.FechaEstimadaArriboRequeridaCalendarCombo.Location = new System.Drawing.Point(335, 0);
             this.FechaEstimadaArriboRequeridaCalendarCombo.Name = "FechaEstimadaArriboRequeridaCalendarCombo";
             this.FechaEstimadaArriboRequeridaCalendarCombo.Size = new System.Drawing.Size(96, 20);
-            this.FechaEstimadaArriboRequeridaCalendarCombo.TabIndex = 9097;
+            this.FechaEstimadaArriboRequeridaCalendarCombo.TabIndex = 1;
             this.FechaEstimadaArriboRequeridaCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
             this.FechaEstimadaArriboRequeridaCalendarCombo.TodayButtonText = "Hoy";
             this.FechaEstimadaArriboRequeridaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
@@ -354,7 +467,7 @@
             // FechaLabel
             // 
             this.FechaLabel.ForeColor = System.Drawing.Color.Navy;
-            this.FechaLabel.Location = new System.Drawing.Point(211, 0);
+            this.FechaLabel.Location = new System.Drawing.Point(207, 0);
             this.FechaLabel.Name = "FechaLabel";
             this.FechaLabel.Size = new System.Drawing.Size(125, 20);
             this.FechaLabel.TabIndex = 9096;
@@ -365,16 +478,16 @@
             // 
             this.IdProveedorUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdProveedorUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdProveedorUiComboBox.Location = new System.Drawing.Point(69, 25);
+            this.IdProveedorUiComboBox.Location = new System.Drawing.Point(62, 25);
             this.IdProveedorUiComboBox.Name = "IdProveedorUiComboBox";
             this.IdProveedorUiComboBox.Size = new System.Drawing.Size(150, 20);
-            this.IdProveedorUiComboBox.TabIndex = 9092;
+            this.IdProveedorUiComboBox.TabIndex = 2;
             this.IdProveedorUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // label16
             // 
             this.label16.ForeColor = System.Drawing.Color.Navy;
-            this.label16.Location = new System.Drawing.Point(5, 25);
+            this.label16.Location = new System.Drawing.Point(0, 25);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(56, 20);
             this.label16.TabIndex = 9093;
@@ -385,16 +498,16 @@
             // 
             this.IdPaisOrigenUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.IdPaisOrigenUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.IdPaisOrigenUiComboBox.Location = new System.Drawing.Point(339, 25);
+            this.IdPaisOrigenUiComboBox.Location = new System.Drawing.Point(335, 25);
             this.IdPaisOrigenUiComboBox.Name = "IdPaisOrigenUiComboBox";
-            this.IdPaisOrigenUiComboBox.Size = new System.Drawing.Size(150, 20);
-            this.IdPaisOrigenUiComboBox.TabIndex = 9090;
+            this.IdPaisOrigenUiComboBox.Size = new System.Drawing.Size(207, 20);
+            this.IdPaisOrigenUiComboBox.TabIndex = 3;
             this.IdPaisOrigenUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // DescripcionLabel
             // 
             this.DescripcionLabel.ForeColor = System.Drawing.Color.Navy;
-            this.DescripcionLabel.Location = new System.Drawing.Point(255, 25);
+            this.DescripcionLabel.Location = new System.Drawing.Point(251, 25);
             this.DescripcionLabel.Name = "DescripcionLabel";
             this.DescripcionLabel.Size = new System.Drawing.Size(78, 20);
             this.DescripcionLabel.TabIndex = 9091;
@@ -408,7 +521,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 367);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 3, 5, 3);
+            this.panel2.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.panel2.Size = new System.Drawing.Size(675, 30);
             this.panel2.TabIndex = 31;
             // 
@@ -475,7 +588,7 @@
             this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
             this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.SalirUiButton.TabIndex = 38;
+            this.SalirUiButton.TabIndex = 7;
             this.SalirUiButton.TabStop = false;
             this.SalirUiButton.Text = "Cancelar";
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
@@ -489,115 +602,24 @@
             this.AceptarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.AceptarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.AceptarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AceptarUiButton.Icon")));
-            this.AceptarUiButton.Location = new System.Drawing.Point(0, 3);
+            this.AceptarUiButton.Location = new System.Drawing.Point(5, 3);
             this.AceptarUiButton.Name = "AceptarUiButton";
             this.AceptarUiButton.ShowFocusRectangle = false;
             this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
             this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.TabIndex = 37;
+            this.AceptarUiButton.TabIndex = 6;
             this.AceptarUiButton.TabStop = false;
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
             // 
-            // label1
-            // 
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(528, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 20);
-            this.label1.TabIndex = 9101;
-            this.label1.Text = "Prefijo";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // PrefijoEditBox
-            // 
-            this.PrefijoEditBox.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.PrefijoEditBox.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.PrefijoEditBox.BackColor = System.Drawing.Color.White;
-            this.PrefijoEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
-            this.PrefijoEditBox.FlatBorderColor = System.Drawing.Color.Black;
-            this.PrefijoEditBox.ForeColor = System.Drawing.Color.Black;
-            this.PrefijoEditBox.Location = new System.Drawing.Point(574, 25);
-            this.PrefijoEditBox.Name = "PrefijoEditBox";
-            this.PrefijoEditBox.Size = new System.Drawing.Size(35, 20);
-            this.PrefijoEditBox.TabIndex = 9100;
-            this.PrefijoEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
-            this.PrefijoEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
-            // 
-            // FechaCalendarCombo
-            // 
-            this.FechaCalendarCombo.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.FechaCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
-            this.FechaCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
-            this.FechaCalendarCombo.DropDownCalendar.Name = "";
-            this.FechaCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.FechaCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.FechaCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.FechaCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.FechaCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.FechaCalendarCombo.Location = new System.Drawing.Point(69, 0);
-            this.FechaCalendarCombo.Name = "FechaCalendarCombo";
-            this.FechaCalendarCombo.Size = new System.Drawing.Size(96, 20);
-            this.FechaCalendarCombo.TabIndex = 9103;
-            this.FechaCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.FechaCalendarCombo.TodayButtonText = "Hoy";
-            this.FechaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            // 
-            // label2
-            // 
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 20);
-            this.label2.TabIndex = 9102;
-            this.label2.Text = "Fecha";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(4, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 20);
-            this.label3.TabIndex = 9104;
-            this.label3.Text = "DETALLE";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(5, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
-            this.label4.TabIndex = 9105;
-            this.label4.Text = "Comentario";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ComentarioEditBox
-            // 
-            this.ComentarioEditBox.AcceptsReturn = true;
-            this.ComentarioEditBox.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.ComentarioEditBox.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.ComentarioEditBox.BackColor = System.Drawing.Color.White;
-            this.ComentarioEditBox.ControlThemedAreas = Janus.Windows.GridEX.ControlThemedAreas.None;
-            this.ComentarioEditBox.FlatBorderColor = System.Drawing.Color.Black;
-            this.ComentarioEditBox.ForeColor = System.Drawing.Color.Black;
-            this.ComentarioEditBox.Location = new System.Drawing.Point(69, 50);
-            this.ComentarioEditBox.Name = "ComentarioEditBox";
-            this.ComentarioEditBox.Size = new System.Drawing.Size(541, 20);
-            this.ComentarioEditBox.TabIndex = 9106;
-            this.ComentarioEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
-            this.ComentarioEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
-            // 
             // OrdenCompraAltaForm
             // 
             this.ClientSize = new System.Drawing.Size(675, 397);
             this.Name = "OrdenCompraAltaForm";
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).EndInit();
             this.FondoNicePanel.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);

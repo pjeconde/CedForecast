@@ -14,7 +14,7 @@ namespace CedForecast
         {
             InitializeComponent();
             VersionVerticalLabel.Text = "Versión " + Aplicacion.Version;
-            TipoOpcion_Click(ConfigDBasicosUiButton, EventArgs.Empty);
+            TipoOpcion_Click(ExploradoresUiButton, EventArgs.Empty);
         }
         private void SalirUiButton_Click(object sender, EventArgs e)
         {

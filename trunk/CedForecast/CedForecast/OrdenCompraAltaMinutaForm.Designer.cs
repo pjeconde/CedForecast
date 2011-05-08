@@ -56,6 +56,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
+            this.IdArticuloUiButton = new Janus.Windows.EditControls.UIButton();
             this.FondoNicePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,7 +94,7 @@
             this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
             this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.TabIndex = 41;
+            this.AceptarUiButton.TabIndex = 10;
             this.AceptarUiButton.TabStop = false;
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
@@ -123,7 +124,7 @@
             this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
             this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.SalirUiButton.TabIndex = 19;
+            this.SalirUiButton.TabIndex = 11;
             this.SalirUiButton.TabStop = false;
             this.SalirUiButton.Text = "Cancelar";
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
@@ -143,6 +144,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.IdArticuloUiButton);
             this.panel5.Controls.Add(this.IdMonedaUiButton);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.ImporteNumericEditBox);
@@ -189,6 +191,7 @@
             this.IdMonedaUiButton.Tag = "";
             this.IdMonedaUiButton.ToolTipText = "Abrir Monedas";
             this.IdMonedaUiButton.UseThemes = false;
+            this.IdMonedaUiButton.Click += new System.EventHandler(this.IdMonedaUiButton_Click);
             // 
             // label3
             // 
@@ -214,7 +217,7 @@
             this.ImporteNumericEditBox.MaxLength = 16;
             this.ImporteNumericEditBox.Name = "ImporteNumericEditBox";
             this.ImporteNumericEditBox.Size = new System.Drawing.Size(120, 20);
-            this.ImporteNumericEditBox.TabIndex = 9083;
+            this.ImporteNumericEditBox.TabIndex = 8;
             this.ImporteNumericEditBox.Text = "0,00";
             this.ImporteNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteNumericEditBox.Value = new decimal(new int[] {
@@ -257,7 +260,7 @@
             this.CantidadNumericEditBox.MaxLength = 5;
             this.CantidadNumericEditBox.Name = "CantidadNumericEditBox";
             this.CantidadNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadNumericEditBox.TabIndex = 9079;
+            this.CantidadNumericEditBox.TabIndex = 5;
             this.CantidadNumericEditBox.Text = "0";
             this.CantidadNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadNumericEditBox.Value = 0;
@@ -281,7 +284,7 @@
             this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 100);
             this.IdMonedaUiComboBox.Name = "IdMonedaUiComboBox";
             this.IdMonedaUiComboBox.Size = new System.Drawing.Size(150, 20);
-            this.IdMonedaUiComboBox.TabIndex = 12;
+            this.IdMonedaUiComboBox.TabIndex = 6;
             this.IdMonedaUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // IdArticuloUiComboBox
@@ -290,9 +293,10 @@
             this.IdArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 0);
             this.IdArticuloUiComboBox.Name = "IdArticuloUiComboBox";
-            this.IdArticuloUiComboBox.Size = new System.Drawing.Size(421, 20);
+            this.IdArticuloUiComboBox.Size = new System.Drawing.Size(394, 20);
             this.IdArticuloUiComboBox.TabIndex = 1;
             this.IdArticuloUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
+            this.IdArticuloUiComboBox.SelectedIndexChanged += new System.EventHandler(this.IdArticuloUiComboBox_SelectedIndexChanged);
             // 
             // ImporteGastosNacionalizacionNumericEditBox
             // 
@@ -308,7 +312,7 @@
             this.ImporteGastosNacionalizacionNumericEditBox.MaxLength = 16;
             this.ImporteGastosNacionalizacionNumericEditBox.Name = "ImporteGastosNacionalizacionNumericEditBox";
             this.ImporteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
-            this.ImporteGastosNacionalizacionNumericEditBox.TabIndex = 13;
+            this.ImporteGastosNacionalizacionNumericEditBox.TabIndex = 9;
             this.ImporteGastosNacionalizacionNumericEditBox.Text = "0,00";
             this.ImporteGastosNacionalizacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteGastosNacionalizacionNumericEditBox.Value = new decimal(new int[] {
@@ -331,7 +335,7 @@
             this.CantidadContenedoresNumericEditBox.MaxLength = 5;
             this.CantidadContenedoresNumericEditBox.Name = "CantidadContenedoresNumericEditBox";
             this.CantidadContenedoresNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadContenedoresNumericEditBox.TabIndex = 9;
+            this.CantidadContenedoresNumericEditBox.TabIndex = 2;
             this.CantidadContenedoresNumericEditBox.Text = "0";
             this.CantidadContenedoresNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadContenedoresNumericEditBox.Value = 0;
@@ -351,7 +355,7 @@
             this.CantidadPresentacionNumericEditBox.MaxLength = 5;
             this.CantidadPresentacionNumericEditBox.Name = "CantidadPresentacionNumericEditBox";
             this.CantidadPresentacionNumericEditBox.Size = new System.Drawing.Size(88, 20);
-            this.CantidadPresentacionNumericEditBox.TabIndex = 8;
+            this.CantidadPresentacionNumericEditBox.TabIndex = 4;
             this.CantidadPresentacionNumericEditBox.Text = "0";
             this.CantidadPresentacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadPresentacionNumericEditBox.Value = 0;
@@ -372,7 +376,7 @@
             this.PrecioNumericEditBox.MaxLength = 16;
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
-            this.PrecioNumericEditBox.TabIndex = 11;
+            this.PrecioNumericEditBox.TabIndex = 7;
             this.PrecioNumericEditBox.Text = "0,0000";
             this.PrecioNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PrecioNumericEditBox.Value = new decimal(new int[] {
@@ -403,7 +407,7 @@
             this.ComentarioContenedoresEditBox.Location = new System.Drawing.Point(275, 27);
             this.ComentarioContenedoresEditBox.Name = "ComentarioContenedoresEditBox";
             this.ComentarioContenedoresEditBox.Size = new System.Drawing.Size(280, 20);
-            this.ComentarioContenedoresEditBox.TabIndex = 16;
+            this.ComentarioContenedoresEditBox.TabIndex = 3;
             this.ComentarioContenedoresEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.ComentarioContenedoresEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -468,6 +472,27 @@
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // IdArticuloUiButton
+            // 
+            this.IdArticuloUiButton.AccessibleDescription = "";
+            this.IdArticuloUiButton.AccessibleName = "";
+            this.IdArticuloUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdArticuloUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdArticuloUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdArticuloUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdArticuloUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdArticuloUiButton.Icon")));
+            this.IdArticuloUiButton.Location = new System.Drawing.Point(533, 0);
+            this.IdArticuloUiButton.Name = "IdArticuloUiButton";
+            this.IdArticuloUiButton.ShowFocusRectangle = false;
+            this.IdArticuloUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdArticuloUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdArticuloUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdArticuloUiButton.TabIndex = 9088;
+            this.IdArticuloUiButton.Tag = "";
+            this.IdArticuloUiButton.ToolTipText = "Abrir Monedas";
+            this.IdArticuloUiButton.UseThemes = false;
+            this.IdArticuloUiButton.Click += new System.EventHandler(this.IdArticuloUiButton_Click);
+            // 
             // OrdenCompraAltaMinutaForm
             // 
             this.ClientSize = new System.Drawing.Size(572, 260);
@@ -510,5 +535,6 @@
         protected Janus.Windows.EditControls.UIButton AceptarUiButton;
         public Janus.Windows.EditControls.UIButton SalirUiButton;
         protected Janus.Windows.EditControls.UIButton IdMonedaUiButton;
+        protected Janus.Windows.EditControls.UIButton IdArticuloUiButton;
     }
 }

@@ -52,6 +52,13 @@ namespace CedForecastEntidades
                 return descrArticulo;
             }
         }
+        public string IdDescrArticulo
+        {
+            get
+            {
+                return idArticulo + " - " + descrArticulo;
+            }
+        }
         public string IdFamiliaArticulo
         {
             set
