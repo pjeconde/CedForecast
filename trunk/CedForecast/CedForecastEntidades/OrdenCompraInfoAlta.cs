@@ -15,10 +15,12 @@ namespace CedForecastEntidades
         string descrPaisOrigen;                 //varchar(30)
         DateTime fechaEstimadaArriboRequerida;
         string comentario;                      //varchar(255)
+        List<CedForecastEntidades.OrdenCompraInfoAltaMinuta> minutas;
         int idOpWF;
 
         public OrdenCompraInfoAlta()
-        { 
+        {
+            minutas = new List<OrdenCompraInfoAltaMinuta>();
         }
 
         public string Prefijo
@@ -118,6 +120,17 @@ namespace CedForecastEntidades
             set
             {
                 comentario = value;
+            }
+        }
+        public List<CedForecastEntidades.OrdenCompraInfoAltaMinuta> Minutas
+        {
+            get
+            {
+                return minutas;
+            }
+            set
+            {
+                minutas = value;
             }
         }
         public int IdOpWF

@@ -22,7 +22,6 @@ namespace CedForecast
         private System.Windows.Forms.TreeView EstadoTreeView;
         private Janus.Windows.UI.Dock.UIPanel HerramientasUiPanel;
         private Janus.Windows.UI.Dock.UIPanelInnerContainer HerramientasUiPanelContainer;
-        private System.Windows.Forms.Label ModoLabel;
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.Panel BrowserPanel;
         private System.Windows.Forms.Panel BrowserGridsPanel;
@@ -72,7 +71,6 @@ namespace CedForecast
             this.RecepDocsUiButton = new Janus.Windows.EditControls.UIButton();
             this.IngInfoEmbUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
-            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.AltaUiButton = new Janus.Windows.EditControls.UIButton();
             this.BrowserUiTab = new Janus.Windows.UI.Tab.UITab();
             this.TabBrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
@@ -89,7 +87,11 @@ namespace CedForecast
             this.nicePanel2 = new PureComponents.NicePanel.NicePanel();
             this.EstadoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.EstadoTreeView = new System.Windows.Forms.TreeView();
-            this.ModoLabel = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -108,6 +110,8 @@ namespace CedForecast
             this.FiltroPanel.SuspendLayout();
             this.nicePanel3.SuspendLayout();
             this.nicePanel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnviarAUiCommandManager
@@ -123,8 +127,7 @@ namespace CedForecast
             // 
             // FondoNicePanel
             // 
-            this.FondoNicePanel.Controls.Add(this.ModoLabel);
-            this.FondoNicePanel.Controls.Add(this.BrowserUiTab);
+            this.FondoNicePanel.Controls.Add(this.panel4);
             this.FondoNicePanel.Size = new System.Drawing.Size(958, 503);
             // 
             // BotonesUiPanelManager
@@ -160,7 +163,7 @@ namespace CedForecast
             // Design Time Panel Info:
             // 
             this.BotonesUiPanelManager.BeginPanelInfo();
-            this.BotonesUiPanelManager.AddDockPanelInfo(new System.Guid("6ee79d23-0754-4daa-993e-d43b72175136"), Janus.Windows.UI.Dock.PanelDockStyle.Right, new System.Drawing.Size(178, 439), true);
+            this.BotonesUiPanelManager.AddDockPanelInfo(new System.Guid("6ee79d23-0754-4daa-993e-d43b72175136"), Janus.Windows.UI.Dock.PanelDockStyle.Right, new System.Drawing.Size(178, 436), true);
             this.BotonesUiPanelManager.AddFloatingPanelInfo(new System.Guid("6ee79d23-0754-4daa-993e-d43b72175136"), new System.Drawing.Point(-1, -1), new System.Drawing.Size(-1, -1), false);
             this.BotonesUiPanelManager.EndPanelInfo();
             // 
@@ -173,7 +176,7 @@ namespace CedForecast
             this.BrowserPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserPanel.Name = "BrowserPanel";
             this.BrowserPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.BrowserPanel.Size = new System.Drawing.Size(945, 449);
+            this.BrowserPanel.Size = new System.Drawing.Size(951, 446);
             this.BrowserPanel.TabIndex = 5;
             // 
             // BrowserGridsPanel
@@ -184,7 +187,7 @@ namespace CedForecast
             this.BrowserGridsPanel.Location = new System.Drawing.Point(5, 5);
             this.BrowserGridsPanel.Name = "BrowserGridsPanel";
             this.BrowserGridsPanel.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.BrowserGridsPanel.Size = new System.Drawing.Size(757, 439);
+            this.BrowserGridsPanel.Size = new System.Drawing.Size(763, 436);
             this.BrowserGridsPanel.TabIndex = 6;
             // 
             // BrowserGridPanel
@@ -194,7 +197,7 @@ namespace CedForecast
             this.BrowserGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserGridPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserGridPanel.Name = "BrowserGridPanel";
-            this.BrowserGridPanel.Size = new System.Drawing.Size(753, 439);
+            this.BrowserGridPanel.Size = new System.Drawing.Size(759, 436);
             this.BrowserGridPanel.TabIndex = 9;
             // 
             // BrowserGridEX
@@ -230,7 +233,7 @@ namespace CedForecast
             this.BrowserGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.BrowserGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
             this.BrowserGridEX.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
-            this.BrowserGridEX.Size = new System.Drawing.Size(753, 439);
+            this.BrowserGridEX.Size = new System.Drawing.Size(759, 436);
             this.BrowserGridEX.TabIndex = 6;
             this.BrowserGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.BrowserGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -243,14 +246,15 @@ namespace CedForecast
             this.HerramientasUiPanel.CaptionHeight = 20;
             this.HerramientasUiPanel.CloseButtonVisible = Janus.Windows.UI.InheritableBoolean.False;
             this.HerramientasUiPanel.InnerContainer = this.HerramientasUiPanelContainer;
-            this.HerramientasUiPanel.Location = new System.Drawing.Point(762, 5);
+            this.HerramientasUiPanel.Location = new System.Drawing.Point(768, 5);
             this.HerramientasUiPanel.Name = "HerramientasUiPanel";
-            this.HerramientasUiPanel.Size = new System.Drawing.Size(178, 439);
+            this.HerramientasUiPanel.Size = new System.Drawing.Size(178, 436);
             this.HerramientasUiPanel.TabIndex = 4;
             this.HerramientasUiPanel.Text = "Herramientas";
             // 
             // HerramientasUiPanelContainer
             // 
+            this.HerramientasUiPanelContainer.Controls.Add(this.panel1);
             this.HerramientasUiPanelContainer.Controls.Add(this.AnulacionUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.IngrADepUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.InspRenarUiButton);
@@ -258,12 +262,11 @@ namespace CedForecast
             this.HerramientasUiPanelContainer.Controls.Add(this.RecepDocsUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.IngInfoEmbUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.EnviarAUiButton);
-            this.HerramientasUiPanelContainer.Controls.Add(this.SalirUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.AltaUiButton);
             this.HerramientasUiPanelContainer.ForeColor = System.Drawing.Color.Navy;
             this.HerramientasUiPanelContainer.Location = new System.Drawing.Point(2, 20);
             this.HerramientasUiPanelContainer.Name = "HerramientasUiPanelContainer";
-            this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 418);
+            this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 415);
             this.HerramientasUiPanelContainer.TabIndex = 0;
             // 
             // AnulacionUiButton
@@ -393,23 +396,6 @@ namespace CedForecast
             this.EnviarAUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.EnviarAUiButton.UseThemes = false;
             // 
-            // SalirUiButton
-            // 
-            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
-            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(8, 391);
-            this.SalirUiButton.Name = "SalirUiButton";
-            this.SalirUiButton.ShowFocusRectangle = false;
-            this.SalirUiButton.Size = new System.Drawing.Size(158, 24);
-            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.SalirUiButton.TabIndex = 25;
-            this.SalirUiButton.Text = "Salir";
-            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
-            this.SalirUiButton.UseThemes = false;
-            // 
             // AltaUiButton
             // 
             this.AltaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -433,12 +419,13 @@ namespace CedForecast
             this.BrowserUiTab.BackColor = System.Drawing.Color.Transparent;
             this.BrowserUiTab.Controls.Add(this.TabBrowserUiTabPage);
             this.BrowserUiTab.Controls.Add(this.TabFiltroUiTabPage);
+            this.BrowserUiTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserUiTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BrowserUiTab.Location = new System.Drawing.Point(5, 28);
+            this.BrowserUiTab.Location = new System.Drawing.Point(5, 30);
             this.BrowserUiTab.MultiLine = true;
             this.BrowserUiTab.Name = "BrowserUiTab";
             this.BrowserUiTab.ShowFocusRectangle = false;
-            this.BrowserUiTab.Size = new System.Drawing.Size(947, 471);
+            this.BrowserUiTab.Size = new System.Drawing.Size(953, 468);
             this.BrowserUiTab.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.BrowserUiTab.TabIndex = 9;
             this.BrowserUiTab.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
@@ -457,7 +444,7 @@ namespace CedForecast
             this.TabBrowserUiTabPage.Key = "OrdenCompra";
             this.TabBrowserUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabBrowserUiTabPage.Name = "TabBrowserUiTabPage";
-            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(945, 449);
+            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(951, 446);
             this.TabBrowserUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
             this.TabBrowserUiTabPage.TabIndex = 1;
             this.TabBrowserUiTabPage.Tag = "Detalle";
@@ -469,7 +456,7 @@ namespace CedForecast
             this.TabFiltroUiTabPage.Key = "Filtro";
             this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
-            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(945, 449);
+            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(956, 481);
             this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.TabFiltroUiTabPage.TabIndex = 0;
             this.TabFiltroUiTabPage.Tag = "Detalle";
@@ -487,7 +474,7 @@ namespace CedForecast
             this.FiltroPanel.Location = new System.Drawing.Point(0, 0);
             this.FiltroPanel.Name = "FiltroPanel";
             this.FiltroPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.FiltroPanel.Size = new System.Drawing.Size(945, 449);
+            this.FiltroPanel.Size = new System.Drawing.Size(956, 481);
             this.FiltroPanel.TabIndex = 5;
             // 
             // EjecutarSeleccionUiButton
@@ -770,15 +757,79 @@ namespace CedForecast
             this.EstadoTreeView.Size = new System.Drawing.Size(363, 286);
             this.EstadoTreeView.TabIndex = 2;
             // 
-            // ModoLabel
+            // panel4
             // 
-            this.ModoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModoLabel.ForeColor = System.Drawing.Color.White;
-            this.ModoLabel.Location = new System.Drawing.Point(759, 0);
-            this.ModoLabel.Name = "ModoLabel";
-            this.ModoLabel.Size = new System.Drawing.Size(192, 24);
-            this.ModoLabel.TabIndex = 10;
-            this.ModoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.BrowserUiTab);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 0, 5);
+            this.panel4.Size = new System.Drawing.Size(958, 503);
+            this.panel4.TabIndex = 31;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.MinimizarUiButton);
+            this.panel1.Controls.Add(this.MaximizarUiButton);
+            this.panel1.Controls.Add(this.SalirUiButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 385);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(175, 30);
+            this.panel1.TabIndex = 40;
+            // 
+            // MinimizarUiButton
+            // 
+            this.MinimizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MinimizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinimizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizarUiButton.Image")));
+            this.MinimizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
+            this.MinimizarUiButton.Location = new System.Drawing.Point(7, 6);
+            this.MinimizarUiButton.Name = "MinimizarUiButton";
+            this.MinimizarUiButton.ShowFocusRectangle = false;
+            this.MinimizarUiButton.Size = new System.Drawing.Size(20, 20);
+            this.MinimizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MinimizarUiButton.TabIndex = 42;
+            this.MinimizarUiButton.Tag = "Min";
+            this.MinimizarUiButton.UseThemes = false;
+            this.MinimizarUiButton.Visible = false;
+            this.MinimizarUiButton.Click += new System.EventHandler(this.MinimizarUiButton_Click);
+            // 
+            // MaximizarUiButton
+            // 
+            this.MaximizarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.MaximizarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MaximizarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.Image = ((System.Drawing.Image)(resources.GetObject("MaximizarUiButton.Image")));
+            this.MaximizarUiButton.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
+            this.MaximizarUiButton.Location = new System.Drawing.Point(7, 6);
+            this.MaximizarUiButton.Name = "MaximizarUiButton";
+            this.MaximizarUiButton.ShowFocusRectangle = false;
+            this.MaximizarUiButton.Size = new System.Drawing.Size(20, 20);
+            this.MaximizarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.MaximizarUiButton.TabIndex = 41;
+            this.MaximizarUiButton.Tag = "Max";
+            this.MaximizarUiButton.UseThemes = false;
+            this.MaximizarUiButton.Click += new System.EventHandler(this.MaxMinUiButton_Click);
+            // 
+            // SalirUiButton
+            // 
+            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
+            this.SalirUiButton.Location = new System.Drawing.Point(112, 4);
+            this.SalirUiButton.Name = "SalirUiButton";
+            this.SalirUiButton.ShowFocusRectangle = false;
+            this.SalirUiButton.Size = new System.Drawing.Size(54, 24);
+            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.SalirUiButton.TabIndex = 40;
+            this.SalirUiButton.Text = "Salir";
+            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
+            this.SalirUiButton.UseThemes = false;
             // 
             // OrdenCompraBrowserForm
             // 
@@ -804,6 +855,8 @@ namespace CedForecast
             this.FiltroPanel.ResumeLayout(false);
             this.nicePanel3.ResumeLayout(false);
             this.nicePanel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -825,7 +878,6 @@ namespace CedForecast
         }
 
         private Janus.Windows.EditControls.UIButton EnviarAUiButton;
-        private Janus.Windows.EditControls.UIButton SalirUiButton;
         public Janus.Windows.EditControls.UIButton AltaUiButton;
         protected Janus.Windows.EditControls.UIButton EjecutarSeleccionUiButton;
         private Janus.Windows.EditControls.UIButton CancelarUiButton;
@@ -835,5 +887,10 @@ namespace CedForecast
         public Janus.Windows.EditControls.UIButton RecepDocsUiButton;
         public Janus.Windows.EditControls.UIButton IngInfoEmbUiButton;
         protected Janus.Windows.EditControls.UIButton AnulacionUiButton;
+        private Panel panel4;
+        private Panel panel1;
+        private Janus.Windows.EditControls.UIButton MinimizarUiButton;
+        private Janus.Windows.EditControls.UIButton MaximizarUiButton;
+        protected Janus.Windows.EditControls.UIButton SalirUiButton;
     }
 }

@@ -96,6 +96,12 @@
     <Compile Include="OrdenCompraAltaForm.Designer.cs">
       <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrdenCompraAltaMinutaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraAltaMinutaForm.Designer.cs">
+      <DependentUpon>OrdenCompraAltaMinutaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrdenCompraBrowserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,12 +113,6 @@
     </Compile>
     <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.Designer.cs">
       <DependentUpon>OrdenCompraActualizacionInfoEmbarqueForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrdenCompraAltaGrillaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrdenCompraAltaGrillaForm.Designer.cs">
-      <DependentUpon>OrdenCompraAltaGrillaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraIngresoADepositoForm.cs">
       <SubType>Form</SubType>
@@ -209,9 +209,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrdenCompraAltaGrillaForm.resx">
+    <EmbeddedResource Include="OrdenCompraAltaMinutaForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>OrdenCompraAltaGrillaForm.cs</DependentUpon>
+      <DependentUpon>OrdenCompraAltaMinutaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrdenCompraBrowserForm.resx">
       <SubType>Designer</SubType>

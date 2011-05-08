@@ -71,5 +71,45 @@ namespace CedForecastDB
             Hasta.Comentario = Convert.ToString(Desde["Comentario"]);
             Hasta.IdOpWF = Convert.ToInt32(Desde["IdOpWF"]);
         }
+        public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta)
+        {
+            StringBuilder a = new StringBuilder();
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("update OrdenCompra ");
+            a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void IngresoInfoEmbarque(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque OrdenCompraInfoEmbarque)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("update OrdenCompra ");
+            a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void InspeccionRENAR(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR OrdenCompraInfoInspeccionRENAR)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("update OrdenCompra ");
+            a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void RecepcionDocumentos(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos OrdenCompraInfoRecepcionDocumentos)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("update OrdenCompra ");
+            a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void RegistroDespacho(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho OrdenCompraInfoRegistroDespacho)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append("update OrdenCompra ");
+            a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
     }
 }

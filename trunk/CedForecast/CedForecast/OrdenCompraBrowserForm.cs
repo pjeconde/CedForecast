@@ -62,21 +62,16 @@ namespace CedForecast
             //}
             modo = Modo;
             CantidadControlesFijos = HerramientasUiPanelContainer.Controls.Count;
-            FondoNicePanel.HeaderText = titulo;
-            Text = titulo;
             TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
             TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk;
             ConfigurarFiltros();
-            switch (modo)
+            if (modo == BrowserModoEnum.Consulta)
             {
-                case BrowserModoEnum.Exploracion:
-                    ModoLabel.Text = "Modo: Exploración";
-                    break;
-                case BrowserModoEnum.Consulta:
-                    ModoLabel.Text = "Modo: Consulta";
-                    AltaUiButton.Enabled = false;
-                    break;
+                titulo += " - Modo Consulta";
+                AltaUiButton.Enabled = false;
             }
+            Text = titulo;
+            FondoNicePanel.HeaderText = titulo;
             EstadoUiCheckBox.Checked = true;
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
         }
@@ -352,7 +347,7 @@ namespace CedForecast
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraAltaGrillaForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaForm("");
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -486,5 +481,17 @@ namespace CedForecast
         //        HerramientasUiPanelContainer.Controls.Remove(HerramientasUiPanelContainer.Controls[CantidadControlesFijos]);
         //    }
         //}
+        private void MaxMinUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            MinimizarUiButton.Visible = true;
+            MaximizarUiButton.Visible = false;
+        }
+        private void MinimizarUiButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            MinimizarUiButton.Visible = false;
+            MaximizarUiButton.Visible = true;
+        }
     }
 }
