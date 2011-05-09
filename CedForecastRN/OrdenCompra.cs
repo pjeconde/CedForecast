@@ -10,6 +10,9 @@ namespace CedForecastRN
         {
             return new CedForecastDB.OrdenCompra(Sesion).LeerLista(FechaDsd, FechaHst, Estados);
         }
+        public static void ValidacionMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
+        {
+        }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {
             new CedForecastDB.OrdenCompra(Sesion).Alta(OrdenCompraInfoAlta);

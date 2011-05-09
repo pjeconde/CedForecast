@@ -35,6 +35,7 @@
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.IdArticuloUiButton = new Janus.Windows.EditControls.UIButton();
             this.IdMonedaUiButton = new Janus.Windows.EditControls.UIButton();
             this.label3 = new System.Windows.Forms.Label();
             this.ImporteNumericEditBox = new Janus.Windows.GridEX.EditControls.NumericEditBox();
@@ -56,7 +57,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
-            this.IdArticuloUiButton = new Janus.Windows.EditControls.UIButton();
             this.FondoNicePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,6 +99,7 @@
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
+            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
             // 
             // panel3
             // 
@@ -171,6 +172,27 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(567, 225);
             this.panel5.TabIndex = 8;
+            // 
+            // IdArticuloUiButton
+            // 
+            this.IdArticuloUiButton.AccessibleDescription = "";
+            this.IdArticuloUiButton.AccessibleName = "";
+            this.IdArticuloUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.IdArticuloUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.IdArticuloUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IdArticuloUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.IdArticuloUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdArticuloUiButton.Icon")));
+            this.IdArticuloUiButton.Location = new System.Drawing.Point(533, 0);
+            this.IdArticuloUiButton.Name = "IdArticuloUiButton";
+            this.IdArticuloUiButton.ShowFocusRectangle = false;
+            this.IdArticuloUiButton.Size = new System.Drawing.Size(22, 22);
+            this.IdArticuloUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.IdArticuloUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.IdArticuloUiButton.TabIndex = 9088;
+            this.IdArticuloUiButton.Tag = "";
+            this.IdArticuloUiButton.ToolTipText = "Abrir Monedas";
+            this.IdArticuloUiButton.UseThemes = false;
+            this.IdArticuloUiButton.Click += new System.EventHandler(this.IdArticuloUiButton_Click);
             // 
             // IdMonedaUiButton
             // 
@@ -471,27 +493,6 @@
             this.IdLabel.TabIndex = 2;
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // IdArticuloUiButton
-            // 
-            this.IdArticuloUiButton.AccessibleDescription = "";
-            this.IdArticuloUiButton.AccessibleName = "";
-            this.IdArticuloUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.IdArticuloUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.IdArticuloUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.IdArticuloUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.IdArticuloUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IdArticuloUiButton.Icon")));
-            this.IdArticuloUiButton.Location = new System.Drawing.Point(533, 0);
-            this.IdArticuloUiButton.Name = "IdArticuloUiButton";
-            this.IdArticuloUiButton.ShowFocusRectangle = false;
-            this.IdArticuloUiButton.Size = new System.Drawing.Size(22, 22);
-            this.IdArticuloUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.IdArticuloUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.IdArticuloUiButton.TabIndex = 9088;
-            this.IdArticuloUiButton.Tag = "";
-            this.IdArticuloUiButton.ToolTipText = "Abrir Monedas";
-            this.IdArticuloUiButton.UseThemes = false;
-            this.IdArticuloUiButton.Click += new System.EventHandler(this.IdArticuloUiButton_Click);
             // 
             // OrdenCompraAltaMinutaForm
             // 
