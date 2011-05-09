@@ -228,6 +228,7 @@
             this.BajaUiButton.Text = "Eliminar";
             this.BajaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.BajaUiButton.UseThemes = false;
+            this.BajaUiButton.Click += new System.EventHandler(this.BajaUiButton_Click);
             // 
             // EnviarAUiButton
             // 

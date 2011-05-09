@@ -11,6 +11,7 @@ namespace CedForecast
     public partial class OrdenCompraAltaForm : Cedeira.UI.frmBaseEnviarA
     {
         static string titulo = "Alta de Orden de Compra";
+        CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta;
 
         public OrdenCompraAltaForm() : base(titulo)
         {
@@ -19,6 +20,7 @@ namespace CedForecast
             IdProveedorUiComboBox.SelectedValue = "COM";
             IdPaisOrigenUiComboBox.SelectedValue = "A";
             FechaEstimadaArriboRequeridaCalendarCombo.Focus();
+            ordenCompraInfoAlta = new CedForecastEntidades.OrdenCompraInfoAlta();
         }
         private void LlenarCombos()
         {
@@ -91,9 +93,29 @@ namespace CedForecast
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm("Alta de minuta de Orden de Compra");
+
+            ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
+            ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
+            ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
+            ordenCompraInfoAlta.Fecha = FechaCalendarCombo.Value.Date;
+            ordenCompraInfoAlta.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
+            ordenCompraInfoAlta.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
+            ordenCompraInfoAlta.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
+            ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, "Alta de minuta de Orden de Compra");
             oFrm.ShowDialog();
             Cursor = Cursors.Default;
+            if (ordenCompraInfoAlta.Minutas.Count == 9)
+            {
+                AltaUiButton.Enabled = false;
+            }
+        }
+        private void BajaUiButton_Click(object sender, EventArgs e)
+        {
+            if (ordenCompraInfoAlta.Minutas.Count < 9)
+            {
+                AltaUiButton.Enabled = true;
+            }
         }
     }
 }

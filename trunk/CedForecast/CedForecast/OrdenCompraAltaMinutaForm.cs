@@ -12,13 +12,15 @@ namespace CedForecast
     {
         string evento;
         CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicionalSeleccionado = new CedForecastEntidades.ArticuloInfoAdicional();
+        CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta;
 
-        public OrdenCompraAltaMinutaForm(string Titulo) : base(Titulo)
+        public OrdenCompraAltaMinutaForm(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string Titulo) : base(Titulo)
         {
             InitializeComponent();
             LlenarCombos();
             evento = "Alta";
             Inhabilitarcontroles();
+            ordenCompraInfoAlta = OrdenCompraInfoAlta;
         }
         private void Inhabilitarcontroles()
         {
@@ -85,6 +87,30 @@ namespace CedForecast
             System.Windows.Forms.Form oFrm = new ArticuloInfoAdicionalGrillaForm("Artículos Info Adicional");
             oFrm.ShowDialog();
             LlenarComboArticulo();
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CedForecastEntidades.OrdenCompraInfoAltaMinuta minuta = new CedForecastEntidades.OrdenCompraInfoAltaMinuta();
+                minuta.IdArticulo = articuloInfoAdicionalSeleccionado.IdArticulo;
+                minuta.DescrArticulo = articuloInfoAdicionalSeleccionado.DescrArticulo;
+                minuta.CantidadContenedores = Convert.ToInt32(CantidadContenedoresNumericEditBox.Value);
+                minuta.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
+                minuta.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
+                minuta.Cantidad = Convert.ToInt32(CantidadNumericEditBox.Value);
+                minuta.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+                minuta.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
+                minuta.Importe = Convert.ToDecimal(ImporteNumericEditBox.Value);
+                minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
+                ordenCompraInfoAlta.Minutas.Add(minuta);
+                CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, Aplicacion.Sesion);
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                ordenCompraInfoAlta.Minutas.Remove(ordenCompraInfoAlta.Minutas[ordenCompraInfoAlta.Minutas.Count - 1]);
+            }
         }
     }
 }
