@@ -204,6 +204,7 @@ namespace CedForecast
             // BrowserGridEX
             // 
             this.BrowserGridEX.AllowColumnDrag = false;
+            this.BrowserGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
             this.BrowserGridEX.AlternatingColors = true;
             this.BrowserGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.BrowserGridEX.BackColor = System.Drawing.Color.PeachPuff;
@@ -218,6 +219,7 @@ namespace CedForecast
             this.BrowserGridEX.FlatBorderColor = System.Drawing.Color.Brown;
             this.BrowserGridEX.FocusCellFormatStyle.BackColor = System.Drawing.Color.Gold;
             this.BrowserGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.BrowserGridEX.FrozenColumns = 3;
             this.BrowserGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
             this.BrowserGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
             this.BrowserGridEX.GroupByBoxVisible = false;

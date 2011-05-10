@@ -9,7 +9,7 @@ namespace CedForecastEntidades
         string idItem;                          //varchar(1)
         string idArticulo;                      //varchar(20)
         string descrArticulo;                   //varchar(50)
-        int cantidadContenedores;
+        decimal cantidadContenedores;
         string comentarioContenedores;          //varchar(255)
         int cantidadPresentacion;
         int cantidad;
@@ -55,7 +55,7 @@ namespace CedForecastEntidades
                 descrArticulo = value;
             }
         }
-        public int CantidadContenedores
+        public decimal CantidadContenedores
         {
             get
             {

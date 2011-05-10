@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraAltaForm));
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ListaGridEX = new Janus.Windows.GridEX.GridEX();
             this.panel7 = new System.Windows.Forms.Panel();
             this.AltaUiButton = new Janus.Windows.EditControls.UIButton();
             this.BajaUiButton = new Janus.Windows.EditControls.UIButton();
@@ -63,6 +62,7 @@
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.ListaGridEX = new Janus.Windows.GridEX.GridEX();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -70,11 +70,11 @@
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListaGridEX)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaGridEX)).BeginInit();
             this.SuspendLayout();
             // 
             // EnviarAUiCommandManager
@@ -136,47 +136,6 @@
             this.panel8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             this.panel8.Size = new System.Drawing.Size(570, 265);
             this.panel8.TabIndex = 14;
-            // 
-            // ListaGridEX
-            // 
-            this.ListaGridEX.AllowColumnDrag = false;
-            this.ListaGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
-            this.ListaGridEX.AlternatingColors = true;
-            this.ListaGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.ListaGridEX.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
-            this.ListaGridEX.BlendColor = System.Drawing.Color.White;
-            this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
-            this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
-            this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
-            this.ListaGridEX.FocusCellFormatStyle.BackColor = System.Drawing.Color.Gold;
-            this.ListaGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.ListaGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
-            this.ListaGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
-            this.ListaGridEX.GroupByBoxVisible = false;
-            this.ListaGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
-            this.ListaGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
-            this.ListaGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.ListaGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
-            this.ListaGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.ListaGridEX.Location = new System.Drawing.Point(0, 0);
-            this.ListaGridEX.Name = "ListaGridEX";
-            this.ListaGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
-            this.ListaGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Gold;
-            this.ListaGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.ListaGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ListaGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.ListaGridEX.Size = new System.Drawing.Size(570, 235);
-            this.ListaGridEX.TabIndex = 8;
-            this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
-            this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
             // panel7
             // 
@@ -504,6 +463,7 @@
             this.IdPaisOrigenUiComboBox.Size = new System.Drawing.Size(207, 20);
             this.IdPaisOrigenUiComboBox.TabIndex = 3;
             this.IdPaisOrigenUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
+            this.IdPaisOrigenUiComboBox.SelectedIndexChanged += new System.EventHandler(this.IdPaisOrigenUiComboBox_SelectedIndexChanged);
             // 
             // DescripcionLabel
             // 
@@ -615,6 +575,46 @@
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
             // 
+            // ListaGridEX
+            // 
+            this.ListaGridEX.AllowColumnDrag = false;
+            this.ListaGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.ListaGridEX.AlternatingColors = true;
+            this.ListaGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.ListaGridEX.BackColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
+            this.ListaGridEX.BlendColor = System.Drawing.Color.White;
+            this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
+            this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
+            this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
+            this.ListaGridEX.FocusCellFormatStyle.BackColor = System.Drawing.Color.Gold;
+            this.ListaGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.ListaGridEX.FrozenColumns = 3;
+            this.ListaGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
+            this.ListaGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
+            this.ListaGridEX.GroupByBoxVisible = false;
+            this.ListaGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
+            this.ListaGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.ListaGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.ListaGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.ListaGridEX.Location = new System.Drawing.Point(0, 0);
+            this.ListaGridEX.Name = "ListaGridEX";
+            this.ListaGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
+            this.ListaGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.Gold;
+            this.ListaGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.ListaGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.ListaGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.ListaGridEX.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
+            this.ListaGridEX.Size = new System.Drawing.Size(570, 235);
+            this.ListaGridEX.TabIndex = 7;
+            this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
+            this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
             // OrdenCompraAltaForm
             // 
             this.ClientSize = new System.Drawing.Size(675, 397);
@@ -626,11 +626,11 @@
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ListaGridEX)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ListaGridEX)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -643,7 +643,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel1;
-        private Janus.Windows.GridEX.GridEX ListaGridEX;
         public Janus.Windows.EditControls.UIButton AltaUiButton;
         protected Janus.Windows.EditControls.UIButton BajaUiButton;
         protected Janus.Windows.EditControls.UIButton EnviarAUiButton;
@@ -670,5 +669,6 @@
         protected System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label label4;
         private Janus.Windows.GridEX.EditControls.EditBox ComentarioEditBox;
+        private Janus.Windows.GridEX.GridEX ListaGridEX;
     }
 }
