@@ -105,12 +105,37 @@ namespace CedForecast
                 minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
                 ordenCompraInfoAlta.Minutas.Add(minuta);
                 CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, Aplicacion.Sesion);
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
                 Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
                 ordenCompraInfoAlta.Minutas.Remove(ordenCompraInfoAlta.Minutas[ordenCompraInfoAlta.Minutas.Count - 1]);
             }
+        }
+        private void CantidadContenedoresNumericEditBox_ValueChanged(object sender, EventArgs e)
+        {
+            CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXContenedor);
+            if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            {
+                CantidadPresentacionNumericEditBox.Value = Convert.ToInt32(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
+            }
+            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
+            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+        }
+        private void CantidadNumericEditBox_ValueChanged(object sender, EventArgs e)
+        {
+            if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            {
+                CantidadPresentacionNumericEditBox.Value = Convert.ToInt32(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
+            }
+            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
+            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+        }
+        private void PrecioNumericEditBox_ValueChanged(object sender, EventArgs e)
+        {
+            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
+            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
         }
     }
 }

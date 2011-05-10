@@ -238,6 +238,7 @@
             this.ImporteNumericEditBox.Location = new System.Drawing.Point(134, 150);
             this.ImporteNumericEditBox.MaxLength = 16;
             this.ImporteNumericEditBox.Name = "ImporteNumericEditBox";
+            this.ImporteNumericEditBox.ReadOnly = true;
             this.ImporteNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteNumericEditBox.TabIndex = 8;
             this.ImporteNumericEditBox.Text = "0,00";
@@ -288,6 +289,7 @@
             this.CantidadNumericEditBox.Value = 0;
             this.CantidadNumericEditBox.ValueType = Janus.Windows.GridEX.NumericEditValueType.Int32;
             this.CantidadNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.CantidadNumericEditBox.ValueChanged += new System.EventHandler(this.CantidadNumericEditBox_ValueChanged);
             // 
             // label2
             // 
@@ -363,6 +365,7 @@
             this.CantidadContenedoresNumericEditBox.Value = 0;
             this.CantidadContenedoresNumericEditBox.ValueType = Janus.Windows.GridEX.NumericEditValueType.Int32;
             this.CantidadContenedoresNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.CantidadContenedoresNumericEditBox.ValueChanged += new System.EventHandler(this.CantidadContenedoresNumericEditBox_ValueChanged);
             // 
             // CantidadPresentacionNumericEditBox
             // 
@@ -407,6 +410,7 @@
             0,
             262144});
             this.PrecioNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.PrecioNumericEditBox.ValueChanged += new System.EventHandler(this.PrecioNumericEditBox_ValueChanged);
             // 
             // label15
             // 

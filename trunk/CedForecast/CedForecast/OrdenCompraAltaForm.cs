@@ -21,6 +21,7 @@ namespace CedForecast
             IdPaisOrigenUiComboBox.SelectedValue = "A";
             FechaEstimadaArriboRequeridaCalendarCombo.Focus();
             ordenCompraInfoAlta = new CedForecastEntidades.OrdenCompraInfoAlta();
+            ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
         }
         private void LlenarCombos()
         {
@@ -93,7 +94,6 @@ namespace CedForecast
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
             ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
             ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
@@ -104,11 +104,14 @@ namespace CedForecast
             ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, "Alta de minuta de Orden de Compra");
             oFrm.ShowDialog();
-            Cursor = Cursors.Default;
+            ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
             if (ordenCompraInfoAlta.Minutas.Count == 9)
             {
                 AltaUiButton.Enabled = false;
             }
+            ListaGridEX.Update();
+            this.Update();
+            Cursor = Cursors.Default;
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
@@ -116,6 +119,10 @@ namespace CedForecast
             {
                 AltaUiButton.Enabled = true;
             }
+        }
+        private void IdPaisOrigenUiComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PrefijoEditBox.Text = IdPaisOrigenUiComboBox.SelectedValue.ToString();
         }
     }
 }
