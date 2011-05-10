@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout3 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraAltaForm));
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -148,8 +148,8 @@
             this.ListaGridEX.BlendColor = System.Drawing.Color.White;
             this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout2;
+            gridEXLayout3.LayoutString = resources.GetString("gridEXLayout3.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout3;
             this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
@@ -176,6 +176,7 @@
             this.ListaGridEX.TabIndex = 7;
             this.ListaGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.ListaGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.ListaGridEX.SelectionChanged += new System.EventHandler(this.ListaGridEX_SelectionChanged);
             // 
             // panel7
             // 
@@ -265,6 +266,7 @@
             this.ModificacionUiButton.Text = "Modificar";
             this.ModificacionUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ModificacionUiButton.UseThemes = false;
+            this.ModificacionUiButton.Click += new System.EventHandler(this.ModificacionUiButton_Click);
             // 
             // ConsultauiButton
             // 
@@ -283,6 +285,7 @@
             this.ConsultauiButton.Text = "Consultar";
             this.ConsultauiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ConsultauiButton.UseThemes = false;
+            this.ConsultauiButton.Click += new System.EventHandler(this.ConsultauiButton_Click);
             // 
             // panel1
             // 

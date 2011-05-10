@@ -13,7 +13,7 @@ namespace CedForecast
         string evento;
         CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicionalSeleccionado = new CedForecastEntidades.ArticuloInfoAdicional();
         CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta;
-
+        int idMinuta;
         public OrdenCompraAltaMinutaForm(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string Titulo) : base(Titulo)
         {
             InitializeComponent();
@@ -21,6 +21,38 @@ namespace CedForecast
             evento = "Alta";
             Inhabilitarcontroles();
             ordenCompraInfoAlta = OrdenCompraInfoAlta;
+        }
+        public OrdenCompraAltaMinutaForm(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, int IdMinuta, string Evento) : base(Evento + " de minuta de Orden de Compra")
+        {
+            InitializeComponent();
+            LlenarCombos();
+            evento = Evento;
+            if (evento == "Baja" || evento == "Consulta")
+            {
+                Inhabilitarcontroles();
+            }
+            if (evento == "Consulta")
+            {
+                AceptarUiButton.Visible = false;
+                SalirUiButton.Text = "Salir";
+            }
+            ordenCompraInfoAlta = OrdenCompraInfoAlta;
+            idMinuta = IdMinuta;
+            AsignarCampos();
+        }
+        private void AsignarCampos()
+        {
+            CedForecastEntidades.OrdenCompraInfoAltaMinuta minuta = ordenCompraInfoAlta.Minutas[idMinuta];
+            IdArticuloUiComboBox.SelectedValue = minuta.IdArticulo;
+            articuloInfoAdicionalSeleccionado = ((List<CedForecastEntidades.ArticuloInfoAdicional>)IdArticuloUiComboBox.Tag)[IdArticuloUiComboBox.SelectedIndex];
+            CantidadContenedoresNumericEditBox.Value = minuta.CantidadContenedores;
+            ComentarioContenedoresEditBox.Text = minuta.ComentarioContenedores;
+            CantidadPresentacionNumericEditBox.Value = minuta.CantidadPresentacion;
+            CantidadNumericEditBox.Value = minuta.Cantidad;
+            IdMonedaUiComboBox.SelectedValue = minuta.IdMoneda;
+            PrecioNumericEditBox.Value = minuta.Precio;
+            ImporteNumericEditBox.Value = minuta.Importe;
+            ImporteGastosNacionalizacionNumericEditBox.Value = minuta.ImporteGastosNacionalizacion;
         }
         private void Inhabilitarcontroles()
         {
@@ -92,19 +124,46 @@ namespace CedForecast
         {
             try
             {
-                CedForecastEntidades.OrdenCompraInfoAltaMinuta minuta = new CedForecastEntidades.OrdenCompraInfoAltaMinuta();
-                minuta.IdArticulo = articuloInfoAdicionalSeleccionado.IdArticulo;
-                minuta.DescrArticulo = articuloInfoAdicionalSeleccionado.DescrArticulo;
-                minuta.CantidadContenedores = Convert.ToInt32(CantidadContenedoresNumericEditBox.Value);
-                minuta.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
-                minuta.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
-                minuta.Cantidad = Convert.ToInt32(CantidadNumericEditBox.Value);
-                minuta.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
-                minuta.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
-                minuta.Importe = Convert.ToDecimal(ImporteNumericEditBox.Value);
-                minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
-                ordenCompraInfoAlta.Minutas.Add(minuta);
-                CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, Aplicacion.Sesion);
+                switch (evento)
+                {
+                    case "Alta":
+                    case "Modificación":
+                        CedForecastEntidades.OrdenCompraInfoAltaMinuta minuta;
+                        minuta = new CedForecastEntidades.OrdenCompraInfoAltaMinuta();
+                        minuta.IdArticulo = articuloInfoAdicionalSeleccionado.IdArticulo;
+                        minuta.DescrArticulo = articuloInfoAdicionalSeleccionado.DescrArticulo;
+                        minuta.CantidadContenedores = Convert.ToInt32(CantidadContenedoresNumericEditBox.Value);
+                        minuta.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
+                        minuta.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
+                        minuta.Cantidad = Convert.ToInt32(CantidadNumericEditBox.Value);
+                        minuta.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+                        minuta.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
+                        minuta.Importe = Convert.ToDecimal(ImporteNumericEditBox.Value);
+                        minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
+                        if (evento == "Alta")
+                        {
+                            CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, Aplicacion.Sesion);
+                            ordenCompraInfoAlta.Minutas.Add(minuta);
+                        }
+                        else
+                        {
+                            CedForecastRN.OrdenCompra.ValidacionMinutaExistente(ordenCompraInfoAlta, idMinuta, Aplicacion.Sesion);
+                            ordenCompraInfoAlta.Minutas[idMinuta].IdArticulo = minuta.IdArticulo;
+                            ordenCompraInfoAlta.Minutas[idMinuta].DescrArticulo = minuta.DescrArticulo;
+                            ordenCompraInfoAlta.Minutas[idMinuta].CantidadContenedores = minuta.CantidadContenedores;
+                            ordenCompraInfoAlta.Minutas[idMinuta].ComentarioContenedores = minuta.ComentarioContenedores;
+                            ordenCompraInfoAlta.Minutas[idMinuta].CantidadPresentacion = minuta.CantidadPresentacion;
+                            ordenCompraInfoAlta.Minutas[idMinuta].Cantidad = minuta.Cantidad;
+                            ordenCompraInfoAlta.Minutas[idMinuta].IdMoneda = minuta.IdMoneda;
+                            ordenCompraInfoAlta.Minutas[idMinuta].Precio = minuta.Precio;
+                            ordenCompraInfoAlta.Minutas[idMinuta].Importe = minuta.Importe;
+                            ordenCompraInfoAlta.Minutas[idMinuta].ImporteGastosNacionalizacion = minuta.ImporteGastosNacionalizacion;
+                        }
+                        break;
+                    case "Baja":
+                        ordenCompraInfoAlta.Minutas.Remove(ordenCompraInfoAlta.Minutas[idMinuta]);
+                        break;
+                }
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
