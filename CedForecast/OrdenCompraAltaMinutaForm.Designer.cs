@@ -304,6 +304,7 @@
             // IdMonedaUiComboBox
             // 
             this.IdMonedaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdMonedaUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdMonedaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 100);
             this.IdMonedaUiComboBox.Name = "IdMonedaUiComboBox";
@@ -314,6 +315,7 @@
             // IdArticuloUiComboBox
             // 
             this.IdArticuloUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdArticuloUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 0);
             this.IdArticuloUiComboBox.Name = "IdArticuloUiComboBox";

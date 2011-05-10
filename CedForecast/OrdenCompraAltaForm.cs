@@ -21,7 +21,6 @@ namespace CedForecast
             IdPaisOrigenUiComboBox.SelectedValue = "A";
             FechaEstimadaArriboRequeridaCalendarCombo.Focus();
             ordenCompraInfoAlta = new CedForecastEntidades.OrdenCompraInfoAlta();
-            ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
         }
         private void LlenarCombos()
         {
@@ -104,6 +103,7 @@ namespace CedForecast
             ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, "Alta de minuta de Orden de Compra");
             oFrm.ShowDialog();
+            ListaGridEX.DataSource = null;
             ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
             if (ordenCompraInfoAlta.Minutas.Count == 9)
             {
