@@ -109,20 +109,55 @@ namespace CedForecast
             {
                 AltaUiButton.Enabled = false;
             }
-            ListaGridEX.Update();
-            this.Update();
             Cursor = Cursors.Default;
         }
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Baja");
+            oFrm.ShowDialog(); 
             if (ordenCompraInfoAlta.Minutas.Count < 9)
             {
                 AltaUiButton.Enabled = true;
             }
+            ListaGridEX.DataSource = null;
+            ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
+            Cursor = Cursors.Default;
+        }
+        private void ModificacionUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Modificación");
+            oFrm.ShowDialog();
+            ListaGridEX.DataSource = null;
+            ListaGridEX.DataSource = ordenCompraInfoAlta.Minutas;
+            Cursor = Cursors.Default;
+        }
+        private void ConsultauiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Consulta");
+            oFrm.ShowDialog();
+            Cursor = Cursors.Default;
         }
         private void IdPaisOrigenUiComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PrefijoEditBox.Text = IdPaisOrigenUiComboBox.SelectedValue.ToString();
+        }
+        private void ListaGridEX_SelectionChanged(object sender, EventArgs e)
+        {
+            if (ListaGridEX.SelectedItems.Count != 0)
+            {
+                BajaUiButton.Enabled = true;
+                ModificacionUiButton.Enabled = true;
+                ConsultauiButton.Enabled = true;
+            }
+            else
+            {
+                BajaUiButton.Enabled = false;
+                ModificacionUiButton.Enabled = false;
+                ConsultauiButton.Enabled = false;
+            }
         }
     }
 }

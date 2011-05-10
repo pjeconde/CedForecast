@@ -12,6 +12,10 @@ namespace CedForecastRN
         }
         public static void ValidacionMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {
+            ValidacionMinutaExistente(OrdenCompraInfoAlta, OrdenCompraInfoAlta.Minutas.Count - 1, Sesion);
+        }
+        public static void ValidacionMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, int IdMinuta, CedEntidades.Sesion Sesion)
+        {
         }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {
