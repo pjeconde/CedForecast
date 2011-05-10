@@ -227,6 +227,7 @@
             // IdUnidadMedidaUiComboBox
             // 
             this.IdUnidadMedidaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdUnidadMedidaUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdUnidadMedidaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdUnidadMedidaUiComboBox.Location = new System.Drawing.Point(134, 175);
             this.IdUnidadMedidaUiComboBox.Name = "IdUnidadMedidaUiComboBox";
@@ -295,6 +296,7 @@
             // IdMonedaUiComboBox
             // 
             this.IdMonedaUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdMonedaUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdMonedaUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdMonedaUiComboBox.Location = new System.Drawing.Point(134, 225);
             this.IdMonedaUiComboBox.Name = "IdMonedaUiComboBox";
@@ -305,6 +307,7 @@
             // IdFamiliaArticuloUiComboBox
             // 
             this.IdFamiliaArticuloUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdFamiliaArticuloUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdFamiliaArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdFamiliaArticuloUiComboBox.Location = new System.Drawing.Point(134, 25);
             this.IdFamiliaArticuloUiComboBox.Name = "IdFamiliaArticuloUiComboBox";
@@ -315,6 +318,7 @@
             // IdArticuloUiComboBox
             // 
             this.IdArticuloUiComboBox.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
+            this.IdArticuloUiComboBox.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.IdArticuloUiComboBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.IdArticuloUiComboBox.Location = new System.Drawing.Point(134, 0);
             this.IdArticuloUiComboBox.Name = "IdArticuloUiComboBox";
