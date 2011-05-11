@@ -890,10 +890,10 @@ namespace Cedeira.SV
 		public string WF_Op_insHandler(string IdFlow, string IdCircuito, int IdNivSeg, string IdEstado, string DescrOp, string IdEvento, string IdUsuario, string Comentario, string IdGrupo, bool Supervisor, byte SupervisorNivel)
 		{
 			return
-				"insert WF_Op values ('" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEstado + "', '" + DescrOp + "', null) " +
+                "insert WF_Op (IdFlow, IdCircuito, IdNivSeg, IdEstado, DescrOp, UltActualiz, DatoActual) values ('" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEstado + "', '" + DescrOp + "', null, 1) " +
 				"declare @IdOp int " +
 				"select @IdOp=@@Identity " +
-				"insert WF_Log values (@IdOp, '" + IdUsuario + "', '" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEvento + "', getdate(), '" + Comentario + "', '" + IdEstado + "', '" + IdGrupo + "', " + System.Math.Abs(Convert.ToSByte(Supervisor)) + ", " + SupervisorNivel + ") ";
+                "insert WF_Log (IdOp, IdUsuario, IdFlow, IdCircuito, IdNivSeg, IdEvento, Fecha, Comentario, IdEstado, IdGrupo, Supervisor, SupervisorNivel, DatoActual) values (@IdOp, '" + IdUsuario + "', '" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEvento + "', getdate(), '" + Comentario + "', '" + IdEstado + "', '" + IdGrupo + "', " + System.Math.Abs(Convert.ToSByte(Supervisor)) + ", " + SupervisorNivel + ", 1) ";
 		}
 		public int WF_Op_ins(string IdFlow, string IdCircuito, int IdNivSeg, string IdEstado, string DescrOp, string IdEvento, string IdUsuario, string Comentario, string IdGrupo, bool Supervisor, byte SupervisorNivel)
 		{

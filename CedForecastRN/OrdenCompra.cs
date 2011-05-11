@@ -59,7 +59,11 @@ namespace CedForecastRN
             {
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("DETALLE");
             }
-            if (OrdenCompra.Fecha == OrdenCompra.FechaEstimadaArriboRequerida)
+            if (OrdenCompra.Fecha > DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha");
+            }
+            if (OrdenCompra.FechaEstimadaArriboRequerida <= OrdenCompra.Fecha)
             {
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estim.arribo req.");
             }

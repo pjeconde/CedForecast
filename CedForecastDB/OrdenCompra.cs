@@ -75,6 +75,7 @@ namespace CedForecastDB
         {
             StringBuilder a = new StringBuilder("declare @IdOp int ");
             a.Append("declare @IdOrdenCompra int ");
+            a.Append("update WF_Parm set @IdOrdenCompra=ValorInt=ValorInt+1 where IdParm='UltNroOrdenCompra' ");
             string handlerWF = HandlerWF.Replace("declare @IdOp int ", String.Empty);
             for (int i = 0; i < OrdenCompraInfoAlta.Minutas.Count; i++)
             {
@@ -114,43 +115,50 @@ namespace CedForecastDB
                 a.Append("           ,ImporteGastosNacionalizacion ");
                 a.Append("           ,Comentario ");
                 a.Append("           ,IdOpWF) ");
-                a.Append("     VALUES ");
-                a.Append("           (<Prefijo, varchar(3),> ");
+                a.Append("     VALUES (");
+                a.Append("           '" + OrdenCompraInfoAlta.Prefijo + "' ");
                 a.Append("           ,@IdOrdenCompra ");
-                a.Append("           ,<IdItem, varchar(1),> ");
-                a.Append("           ,<IdProveedor, varchar(3),> ");
-                a.Append("           ,<DescrProveedor, varchar(30),> ");
-                a.Append("           ,<Fecha, datetime,> ");
-                a.Append("           ,<IdPaisOrigen, varchar(3),> ");
-                a.Append("           ,<DescrPaisOrigen, varchar(30),> ");
-                a.Append("           ,<IdArticulo, varchar(20),> ");
-                a.Append("           ,<DescrArticulo, varchar(50),> ");
-                a.Append("           ,<FechaEstimadaArriboRequerida, datetime,> ");
-                a.Append("           ,<CantidadContenedores, int,> ");
-                a.Append("           ,<ComentarioContenedores, varchar(255),> ");
-                a.Append("           ,<CantidadPresentacion, int,> ");
-                a.Append("           ,<Cantidad, int,> ");
-                a.Append("           ,<IdMoneda, varchar(3),> ");
-                a.Append("           ,<Precio, decimal(18,4),> ");
-                a.Append("           ,<Importe, decimal(18,2),> ");
-                a.Append("           ,<IdReferenciaSAP, varchar(20),> ");
-                a.Append("           ,<FechaEstimadaSalida, datetime,> ");
-                a.Append("           ,<Vapor, varchar(20),> ");
-                a.Append("           ,<FechaEstimadaArribo, datetime,> ");
-                a.Append("           ,<NroConocimientoEmbarque, varchar(20),> ");
-                a.Append("           ,<Factura, varchar(20),> ");
-                a.Append("           ,<FechaRecepcionDocumentos, datetime,> ");
-                a.Append("           ,<FechaIngresoAPuerto, datetime,> ");
-                a.Append("           ,<NroDespacho, varchar(20),> ");
-                a.Append("           ,<FechaOficializacion, datetime,> ");
-                a.Append("           ,<FechaInspeccionRENAR, datetime,> ");
-                a.Append("           ,<FechaIngresoDeposito, datetime,> ");
-                a.Append("           ,<ImporteGastosNacionalizacion, decimal(18,2),> ");
-                a.Append("           ,<Comentario, varchar(255),> ");
-                a.Append("           ,@IdOp ");
+                if (OrdenCompraInfoAlta.Minutas.Count == 1)
+                {
+                    a.Append("           ,'0' ");
+                }
+                else
+                {
+                    a.Append("           ," + i.ToString() + " ");
+                }
+                a.Append("           ,'" + OrdenCompraInfoAlta.IdProveedor + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.DescrProveedor + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Fecha.ToString("yyyyMMdd") + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.IdPaisOrigen + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.DescrPaisOrigen + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].IdArticulo + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].DescrArticulo + "' ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.FechaEstimadaArriboRequerida.ToString("yyyyMMdd") + "' ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].CantidadContenedores.ToString() + " ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].ComentarioContenedores + "' ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].CantidadPresentacion.ToString() + " ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Cantidad.ToString() + " ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].IdMoneda + "' ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Precio.ToString() + " ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Importe.ToString() + " ");
+                a.Append("           ,'' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'' ");
+                a.Append("           ,'' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ,'20000101' ");
+                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].ImporteGastosNacionalizacion.ToString() + " ");
+                a.Append("           ,'" + OrdenCompraInfoAlta.Comentario + "' ");
+                a.Append("           ,@IdOp) ");
             }
-            a.Append("select @IdOrdenCompra as IdOrdenCompra "); 
-            DataTable tb= Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.Usa, sesion.CnnStr);
+            a.Append("select @IdOrdenCompra as IdOrdenCompra ");
+            DataTable tb = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.Usa, sesion.CnnStr);
             OrdenCompraInfoAlta.Id = Convert.ToInt32(tb.Rows[0]["IdOrdenCompra"]);
         }
         public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito)
