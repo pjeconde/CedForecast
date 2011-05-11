@@ -93,14 +93,7 @@ namespace CedForecast
         private void AltaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
-            ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
-            ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
-            ordenCompraInfoAlta.Fecha = FechaCalendarCombo.Value.Date;
-            ordenCompraInfoAlta.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
-            ordenCompraInfoAlta.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
-            ordenCompraInfoAlta.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
-            ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
+            LlenarCampos();
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, "Alta de minuta de Orden de Compra");
             oFrm.ShowDialog();
             ListaGridEX.DataSource = null;
@@ -114,6 +107,7 @@ namespace CedForecast
         private void BajaUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            LlenarCampos();
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Baja");
             oFrm.ShowDialog(); 
             if (ordenCompraInfoAlta.Minutas.Count < 9)
@@ -127,6 +121,7 @@ namespace CedForecast
         private void ModificacionUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            LlenarCampos();
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Modificación");
             oFrm.ShowDialog();
             ListaGridEX.DataSource = null;
@@ -136,9 +131,37 @@ namespace CedForecast
         private void ConsultauiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            LlenarCampos();
             System.Windows.Forms.Form oFrm = new OrdenCompraAltaMinutaForm(ordenCompraInfoAlta, ListaGridEX.SelectedItems[0].Position, "Consulta");
             oFrm.ShowDialog();
             Cursor = Cursors.Default;
+        }
+        private void LlenarCampos()
+        {
+            ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
+            if (IdProveedorUiComboBox.SelectedIndex != -1)
+            {
+                ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
+                ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
+            }
+            else
+            {
+                ordenCompraInfoAlta.IdProveedor = String.Empty;
+                ordenCompraInfoAlta.DescrProveedor = String.Empty;
+            }
+            ordenCompraInfoAlta.Fecha = FechaCalendarCombo.Value.Date;
+            if (IdPaisOrigenUiComboBox.SelectedIndex != -1)
+            {
+                ordenCompraInfoAlta.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
+                ordenCompraInfoAlta.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
+            }
+            else
+            {
+                ordenCompraInfoAlta.IdPaisOrigen = String.Empty;
+                ordenCompraInfoAlta.DescrPaisOrigen = String.Empty;
+            }
+            ordenCompraInfoAlta.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
+            ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
         }
         private void IdPaisOrigenUiComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -157,6 +180,18 @@ namespace CedForecast
                 BajaUiButton.Enabled = false;
                 ModificacionUiButton.Enabled = false;
                 ConsultauiButton.Enabled = false;
+            }
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenarCampos();
+                CedForecastRN.OrdenCompra.Alta(ordenCompraInfoAlta, Aplicacion.Sesion);
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
         }
     }

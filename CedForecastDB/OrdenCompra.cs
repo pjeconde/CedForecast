@@ -71,9 +71,82 @@ namespace CedForecastDB
             Hasta.Comentario = Convert.ToString(Desde["Comentario"]);
             Hasta.IdOpWF = Convert.ToInt32(Desde["IdOpWF"]);
         }
-        public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta)
+        public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string HandlerWF)
         {
-            StringBuilder a = new StringBuilder();
+            StringBuilder a = new StringBuilder("declare @IdOp int ");
+            string handlerWF = HandlerWF.Replace("declare @IdOp int ", String.Empty);
+            for (int i = 0; i < OrdenCompraInfoAlta.Minutas.Count; i++)
+            {
+                a.Append(handlerWF + " ");
+                a.Append("INSERT OrdenCompra ");
+                a.Append("           (Prefijo ");
+                a.Append("           ,Id ");
+                a.Append("           ,IdItem ");
+                a.Append("           ,IdProveedor ");
+                a.Append("           ,DescrProveedor ");
+                a.Append("           ,Fecha ");
+                a.Append("           ,IdPaisOrigen ");
+                a.Append("           ,DescrPaisOrigen ");
+                a.Append("           ,IdArticulo ");
+                a.Append("           ,DescrArticulo ");
+                a.Append("           ,FechaEstimadaArriboRequerida ");
+                a.Append("           ,CantidadContenedores ");
+                a.Append("           ,ComentarioContenedores ");
+                a.Append("           ,CantidadPresentacion ");
+                a.Append("           ,Cantidad ");
+                a.Append("           ,IdMoneda ");
+                a.Append("           ,Precio ");
+                a.Append("           ,Importe ");
+                a.Append("           ,IdReferenciaSAP ");
+                a.Append("           ,FechaEstimadaSalida ");
+                a.Append("           ,Vapor ");
+                a.Append("           ,FechaEstimadaArribo ");
+                a.Append("           ,NroConocimientoEmbarque ");
+                a.Append("           ,Factura ");
+                a.Append("           ,FechaRecepcionDocumentos ");
+                a.Append("           ,FechaIngresoAPuerto ");
+                a.Append("           ,NroDespacho ");
+                a.Append("           ,FechaOficializacion ");
+                a.Append("           ,FechaInspeccionRENAR ");
+                a.Append("           ,FechaIngresoDeposito ");
+                a.Append("           ,ImporteGastosNacionalizacion ");
+                a.Append("           ,Comentario ");
+                a.Append("           ,IdOpWF) ");
+                a.Append("     VALUES ");
+                a.Append("           (<Prefijo, varchar(3),> ");
+                a.Append("           ,<Id, int,> ");
+                a.Append("           ,<IdItem, varchar(1),> ");
+                a.Append("           ,<IdProveedor, varchar(3),> ");
+                a.Append("           ,<DescrProveedor, varchar(30),> ");
+                a.Append("           ,<Fecha, datetime,> ");
+                a.Append("           ,<IdPaisOrigen, varchar(3),> ");
+                a.Append("           ,<DescrPaisOrigen, varchar(30),> ");
+                a.Append("           ,<IdArticulo, varchar(20),> ");
+                a.Append("           ,<DescrArticulo, varchar(50),> ");
+                a.Append("           ,<FechaEstimadaArriboRequerida, datetime,> ");
+                a.Append("           ,<CantidadContenedores, int,> ");
+                a.Append("           ,<ComentarioContenedores, varchar(255),> ");
+                a.Append("           ,<CantidadPresentacion, int,> ");
+                a.Append("           ,<Cantidad, int,> ");
+                a.Append("           ,<IdMoneda, varchar(3),> ");
+                a.Append("           ,<Precio, decimal(18,4),> ");
+                a.Append("           ,<Importe, decimal(18,2),> ");
+                a.Append("           ,<IdReferenciaSAP, varchar(20),> ");
+                a.Append("           ,<FechaEstimadaSalida, datetime,> ");
+                a.Append("           ,<Vapor, varchar(20),> ");
+                a.Append("           ,<FechaEstimadaArribo, datetime,> ");
+                a.Append("           ,<NroConocimientoEmbarque, varchar(20),> ");
+                a.Append("           ,<Factura, varchar(20),> ");
+                a.Append("           ,<FechaRecepcionDocumentos, datetime,> ");
+                a.Append("           ,<FechaIngresoAPuerto, datetime,> ");
+                a.Append("           ,<NroDespacho, varchar(20),> ");
+                a.Append("           ,<FechaOficializacion, datetime,> ");
+                a.Append("           ,<FechaInspeccionRENAR, datetime,> ");
+                a.Append("           ,<FechaIngresoDeposito, datetime,> ");
+                a.Append("           ,<ImporteGastosNacionalizacion, decimal(18,2),> ");
+                a.Append("           ,<Comentario, varchar(255),> ");
+                a.Append("           ,@IdOp ");
+            }
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
         public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito)

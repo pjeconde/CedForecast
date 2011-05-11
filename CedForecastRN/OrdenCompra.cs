@@ -10,11 +10,11 @@ namespace CedForecastRN
         {
             return new CedForecastDB.OrdenCompra(Sesion).LeerLista(FechaDsd, FechaHst, Estados);
         }
-        public static void ValidacionMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
+        public static void ValidacionOrdenCompraAltaMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
         {
-            ValidacionMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
+            ValidacionOrdenCompraAltaMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
         }
-        public static void ValidacionMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, int IdMinuta, CedEntidades.Sesion Sesion)
+        public static void ValidacionOrdenCompraAltaMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, int IdMinuta, CedEntidades.Sesion Sesion)
         {
             if (Minuta.IdArticulo == String.Empty)
             {
@@ -45,9 +45,35 @@ namespace CedForecastRN
                 }
             }
         }
+        public static void ValidacionOrdenCompraAlta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedEntidades.Sesion Sesion)
+        {
+            if (OrdenCompra.IdProveedor == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Proveedor");
+            }
+            if (OrdenCompra.IdPaisOrigen == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("País de origen");
+            }
+            if (OrdenCompra.Minutas.Count == 0)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("DETALLE");
+            }
+            if (OrdenCompra.Fecha == OrdenCompra.FechaEstimadaArriboRequerida)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estim.arribo req.");
+            }
+        }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).Alta(OrdenCompraInfoAlta);
+            ValidacionOrdenCompraAlta(OrdenCompraInfoAlta, Sesion);
+            CedEntidades.WF wF = Cedeira.SV.WF.Nueva("OrdenCpra", "NA", 0, String.Empty, Sesion);
+            CedEntidades.Evento eventoWF=new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = wF.IdFlow;
+            eventoWF.Id = "Alta";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            string handler = Cedeira.SV.WF.EjecutarEvento(wF, eventoWF, true);
+            new CedForecastDB.OrdenCompra(Sesion).Alta(OrdenCompraInfoAlta, handler);
         }
         public static void IngresoADeposito(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito, CedEntidades.Sesion Sesion)
         {
