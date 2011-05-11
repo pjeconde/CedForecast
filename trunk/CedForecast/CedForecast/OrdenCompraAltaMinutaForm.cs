@@ -20,6 +20,7 @@ namespace CedForecast
             LlenarCombos();
             evento = "Alta";
             Inhabilitarcontroles();
+            AceptarUiButton.Enabled = false;
             ordenCompraInfoAlta = OrdenCompraInfoAlta;
         }
         public OrdenCompraAltaMinutaForm(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, int IdMinuta, string Evento) : base(Evento + " de minuta de Orden de Compra")
@@ -112,6 +113,7 @@ namespace CedForecast
             if (evento == "Alta")
             {
                 Habilitarcontroles();
+                AceptarUiButton.Enabled = true;
             }
         }
         private void IdArticuloUiButton_Click(object sender, EventArgs e)
@@ -142,12 +144,12 @@ namespace CedForecast
                         minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
                         if (evento == "Alta")
                         {
-                            CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, Aplicacion.Sesion);
+                            CedForecastRN.OrdenCompra.ValidacionMinutaNueva(ordenCompraInfoAlta, minuta, Aplicacion.Sesion);
                             ordenCompraInfoAlta.Minutas.Add(minuta);
                         }
                         else
                         {
-                            CedForecastRN.OrdenCompra.ValidacionMinutaExistente(ordenCompraInfoAlta, idMinuta, Aplicacion.Sesion);
+                            CedForecastRN.OrdenCompra.ValidacionMinutaExistente(ordenCompraInfoAlta, minuta, idMinuta, Aplicacion.Sesion);
                             ordenCompraInfoAlta.Minutas[idMinuta].IdArticulo = minuta.IdArticulo;
                             ordenCompraInfoAlta.Minutas[idMinuta].DescrArticulo = minuta.DescrArticulo;
                             ordenCompraInfoAlta.Minutas[idMinuta].CantidadContenedores = minuta.CantidadContenedores;
@@ -169,32 +171,85 @@ namespace CedForecast
             catch (Exception ex)
             {
                 Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
-                ordenCompraInfoAlta.Minutas.Remove(ordenCompraInfoAlta.Minutas[ordenCompraInfoAlta.Minutas.Count - 1]);
             }
         }
-        private void CantidadContenedoresNumericEditBox_ValueChanged(object sender, EventArgs e)
+        private void CantidadContenedoresNumericEditBox_Leave(object sender, EventArgs e)
         {
-            CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXContenedor);
-            if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            try
             {
-                CantidadPresentacionNumericEditBox.Value = Convert.ToInt32(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
+                CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXContenedor);
+                if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+                {
+                    CantidadPresentacionNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion), 0);
+                }
+                else
+                {
+                    CantidadPresentacionNumericEditBox.Value = 0;
+                }
+                ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+                ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
             }
-            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
-            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
-        }
-        private void CantidadNumericEditBox_ValueChanged(object sender, EventArgs e)
-        {
-            if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            catch
             {
-                CantidadPresentacionNumericEditBox.Value = Convert.ToInt32(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
             }
-            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
-            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
         }
-        private void PrecioNumericEditBox_ValueChanged(object sender, EventArgs e)
+        private void CantidadNumericEditBox_Leave(object sender, EventArgs e)
         {
-            ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.Precio);
-            ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            try
+            {
+                if (articuloInfoAdicionalSeleccionado.CantidadXContenedor != 0)
+                {
+                    CantidadContenedoresNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXContenedor), 4);
+                }
+                else
+                {
+                    CantidadContenedoresNumericEditBox.Value = 0;
+                }
+                if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+                {
+                    CantidadPresentacionNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion), 0);
+                }
+                else
+                {
+                    CantidadPresentacionNumericEditBox.Value = 0;
+                }
+                ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+                ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            }
+            catch
+            {
+            }
+        }
+        private void PrecioNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+                ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            }
+            catch
+            {
+            }
+        }
+        private void CantidadPresentacionNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadPresentacionNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
+                if (articuloInfoAdicionalSeleccionado.CantidadXContenedor != 0)
+                {
+                    CantidadContenedoresNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXContenedor), 4);
+                }
+                else
+                {
+                    CantidadContenedoresNumericEditBox.Value = 0;
+                }
+                ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+                ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            }
+            catch
+            {
+            }
         }
     }
 }
