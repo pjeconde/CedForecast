@@ -19,7 +19,8 @@ namespace CedForecast
             InitializeComponent();
             LlenarCombos();
             evento = "Alta";
-            Inhabilitarcontroles();
+            InhabilitarControles();
+            IdArticuloUiComboBox.Enabled = true;
             AceptarUiButton.Enabled = false;
             ordenCompraInfoAlta = OrdenCompraInfoAlta;
         }
@@ -30,7 +31,7 @@ namespace CedForecast
             evento = Evento;
             if (evento == "Baja" || evento == "Consulta")
             {
-                Inhabilitarcontroles();
+                InhabilitarControles();
             }
             if (evento == "Consulta")
             {
@@ -55,8 +56,9 @@ namespace CedForecast
             ImporteNumericEditBox.Value = minuta.Importe;
             ImporteGastosNacionalizacionNumericEditBox.Value = minuta.ImporteGastosNacionalizacion;
         }
-        private void Inhabilitarcontroles()
+        private void InhabilitarControles()
         {
+            IdArticuloUiComboBox.Enabled = false;
             CantidadContenedoresNumericEditBox.Enabled = false;
             ComentarioContenedoresEditBox.Enabled = false;
             CantidadPresentacionNumericEditBox.Enabled = false;
@@ -66,8 +68,9 @@ namespace CedForecast
             ImporteNumericEditBox.Enabled = false;
             ImporteGastosNacionalizacionNumericEditBox.Enabled = false;
         }
-        private void Habilitarcontroles()
+        private void HabilitarControles()
         {
+            IdArticuloUiComboBox.Enabled = true;
             CantidadContenedoresNumericEditBox.Enabled = true;
             ComentarioContenedoresEditBox.Enabled = true;
             CantidadPresentacionNumericEditBox.Enabled = true;
@@ -112,7 +115,7 @@ namespace CedForecast
             UnidadMedidaLabel.Text = articuloInfoAdicionalSeleccionado.IdUnidadMedida;
             if (evento == "Alta")
             {
-                Habilitarcontroles();
+                HabilitarControles();
                 AceptarUiButton.Enabled = true;
             }
         }
@@ -134,7 +137,7 @@ namespace CedForecast
                         minuta = new CedForecastEntidades.OrdenCompraInfoAltaMinuta();
                         minuta.IdArticulo = articuloInfoAdicionalSeleccionado.IdArticulo;
                         minuta.DescrArticulo = articuloInfoAdicionalSeleccionado.DescrArticulo;
-                        minuta.CantidadContenedores = Convert.ToInt32(CantidadContenedoresNumericEditBox.Value);
+                        minuta.CantidadContenedores = Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value);
                         minuta.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
                         minuta.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
                         minuta.Cantidad = Convert.ToInt32(CantidadNumericEditBox.Value);
