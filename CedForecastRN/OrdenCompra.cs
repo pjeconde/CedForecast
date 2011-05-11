@@ -10,12 +10,40 @@ namespace CedForecastRN
         {
             return new CedForecastDB.OrdenCompra(Sesion).LeerLista(FechaDsd, FechaHst, Estados);
         }
-        public static void ValidacionMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
+        public static void ValidacionMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
         {
-            ValidacionMinutaExistente(OrdenCompraInfoAlta, OrdenCompraInfoAlta.Minutas.Count - 1, Sesion);
+            ValidacionMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
         }
-        public static void ValidacionMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, int IdMinuta, CedEntidades.Sesion Sesion)
+        public static void ValidacionMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, int IdMinuta, CedEntidades.Sesion Sesion)
         {
+            if (Minuta.IdArticulo == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("IdArticulo");
+            }
+            if (Minuta.Cantidad == 0)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Cantidad");
+            }
+            if (Minuta.IdMoneda == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("IdMoneda");
+            }
+            if (Minuta.Precio == 0)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Precio");
+            }
+            if (Minuta.Importe == 0)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Importe");
+            }
+            for (int i = 0; i < OrdenCompra.Minutas.Count; i++)
+            {
+                bool verificarDuplicacionDeArticulo = IdMinuta == -1 || i != IdMinuta;
+                if (verificarDuplicacionDeArticulo && OrdenCompra.Minutas[i].IdArticulo == Minuta.IdArticulo)
+                {
+                    throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoExistente("Artículo " + Minuta.IdArticulo);
+                }
+            }
         }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {

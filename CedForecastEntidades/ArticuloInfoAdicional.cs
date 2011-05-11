@@ -16,7 +16,7 @@ namespace CedForecastEntidades
         private string idSENASA;
         private string idPresentacion;
         private int cantidadXPresentacion;
-        private int cantidadXContenedor;
+        private decimal cantidadXContenedor;
         private string idUnidadMedida;
         private decimal precio;
         private string idMoneda;
@@ -147,7 +147,7 @@ namespace CedForecastEntidades
                 return cantidadXPresentacion;
             }
         }
-        public int CantidadXContenedor
+        public decimal CantidadXContenedor
         {
             set
             {
