@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout3 = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout gridEXLayout1 = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraAltaForm));
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -148,8 +148,8 @@
             this.ListaGridEX.BlendColor = System.Drawing.Color.White;
             this.ListaGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.ListaGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout3.LayoutString = resources.GetString("gridEXLayout3.LayoutString");
-            this.ListaGridEX.DesignTimeLayout = gridEXLayout3;
+            gridEXLayout1.LayoutString = resources.GetString("gridEXLayout1.LayoutString");
+            this.ListaGridEX.DesignTimeLayout = gridEXLayout1;
             this.ListaGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListaGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.ListaGridEX.FlatBorderColor = System.Drawing.Color.Brown;
@@ -619,6 +619,7 @@
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
+            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
             // 
             // OrdenCompraAltaForm
             // 
