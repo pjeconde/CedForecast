@@ -74,9 +74,11 @@ namespace CedForecastDB
         public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string HandlerWF)
         {
             StringBuilder a = new StringBuilder("declare @IdOp int ");
+            a.Append("declare @IdOrdenCompra int ");
             string handlerWF = HandlerWF.Replace("declare @IdOp int ", String.Empty);
             for (int i = 0; i < OrdenCompraInfoAlta.Minutas.Count; i++)
             {
+                //Cambiar UltimaOrdenCompra y guardarla en @IdOrdenCompra
                 a.Append(handlerWF + " ");
                 a.Append("INSERT OrdenCompra ");
                 a.Append("           (Prefijo ");
@@ -114,7 +116,7 @@ namespace CedForecastDB
                 a.Append("           ,IdOpWF) ");
                 a.Append("     VALUES ");
                 a.Append("           (<Prefijo, varchar(3),> ");
-                a.Append("           ,<Id, int,> ");
+                a.Append("           ,@IdOrdenCompra ");
                 a.Append("           ,<IdItem, varchar(1),> ");
                 a.Append("           ,<IdProveedor, varchar(3),> ");
                 a.Append("           ,<DescrProveedor, varchar(30),> ");
@@ -147,7 +149,9 @@ namespace CedForecastDB
                 a.Append("           ,<Comentario, varchar(255),> ");
                 a.Append("           ,@IdOp ");
             }
-            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+            a.Append("select @IdOrdenCompra as IdOrdenCompra "); 
+            DataTable tb= Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.Usa, sesion.CnnStr);
+            OrdenCompraInfoAlta.Id = Convert.ToInt32(tb.Rows[0]["IdOrdenCompra"]);
         }
         public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito)
         {
