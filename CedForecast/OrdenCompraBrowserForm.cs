@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,40 +17,6 @@ namespace CedForecast
         public OrdenCompraBrowserForm(BrowserModoEnum Modo)
 		{
 			InitializeComponent();
-            ////Cargo ImageList                                                                                                                         
-            //iconos = new ImageList();
-            //iconos.ImageSize = new Size(16, 16);
-            //iconos.ColorDepth = ColorDepth.Depth8Bit;
-
-            //System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            ////ordeno por nombre de archivo para cargar en orden
-            //string[] resNames = a.GetManifestResourceNames();
-            //int i = 0;
-            //int j = 0;
-            //while (i < resNames.Length)
-            //{
-            //    j = i + 1;
-            //    while (j < resNames.Length)
-            //    {
-            //        if (String.CompareOrdinal(resNames[i], resNames[j]) > 0)
-            //        {
-            //            string auxnom;
-            //            auxnom = resNames[j];
-            //            resNames[j] = resNames[i];
-            //            resNames[i] = auxnom;
-            //        }
-            //        j++;
-            //    }
-            //    i++;
-            //}
-            //foreach (string s in resNames)
-            //{
-            //    int auxIndex = s.IndexOf("PrecioBrowserForm");
-            //    if (s.EndsWith("ico") && auxIndex > 0)
-            //    {
-            //        iconos.Images.Add(new System.Drawing.Icon(a.GetManifestResourceStream(@s)));
-            //    }
-            //}
             modo = Modo;
             TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
             TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk;
@@ -90,41 +57,97 @@ namespace CedForecast
         }
         private void BrowserGridEX_SelectionChanged(object sender, System.EventArgs e)
         {
-            //if (BrowserGridEX.SelectedItems.Count > 0)
-            //{
-            //    try
-            //    {
-            //        Cursor = Cursors.Default;
-            //        EliminarBotonesConfigurables();
-            //        if (BrowserGridEX.SelectedItems.Count == 1)
-            //        {
-            //            // Creo botones nuevos
-            //            Precio precio = new Precio(Convert.ToDateTime(BrowserGridEX.SelectedItems[0].GetRow().Cells["Fecha"].Value), Convert.ToInt32(BrowserGridEX.SelectedItems[0].GetRow().Cells["IdEspecie"].Value), Aplicacion.Sesion, "Consulta");
-            //            DataTable dt = precio.EventosPosibles;
-            //            int Orden = 0;
-            //            for (int i = 0; i < dt.Rows.Count; i++)
-            //            {
-            //                if (!Convert.ToBoolean(dt.Rows[i]["Automatico"]))
-            //                {
-            //                    CrearBotonEvento(dt.Rows[i]["TextoAccion"].ToString(), dt.Rows[i]["IdEvento"].ToString(), Orden++, false);
-            //                }
-            //            }
-            //            CrearBotonEvento("Consultar", "Consulta", Orden++, false);
-            //        }
-            //        else
-            //        {
-            //            ConfigBotonesEventosXLote();
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Cedeira.Ex.ExceptionManager.Publish(ex);
-            //    }
-            //    finally
-            //    {
-            //        Cursor = Cursors.Default;
-            //    }
-            //}
+            DeshabilitarBotones();
+            if (BrowserGridEX.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    Cursor = Cursors.Default;
+                    CedForecastEntidades.OrdenCompra ordenCompra;
+                    if (BrowserGridEX.SelectedItems.Count == 1)
+                    {
+                        ordenCompra = ((List<CedForecastEntidades.OrdenCompra>)BrowserGridEX.Tag)[BrowserGridEX.SelectedItems[0].Position];
+                        for (int j = 0; j < ordenCompra.WF.EventosXLotePosibles.Count; j++)
+                        {
+                            HabilitarBoton(ordenCompra.WF.EventosXLotePosibles[j].Id, false);
+                        }
+                    }
+                    else
+                    {
+                        List<EventoReferencia> eventosPosiblesEnComun = new List<EventoReferencia>();
+                        List<CedEntidades.Evento> eventos = Cedeira.SV.WF.EventosXLote("OrdenCpra", Aplicacion.Sesion);
+                        for (int i = 0; i < eventos.Count; i++)
+                        {
+                            eventosPosiblesEnComun.Add(new EventoReferencia(eventos[i]));
+                        }
+                        for (int i = 0; i < BrowserGridEX.SelectedItems.Count; i++)
+                        {
+                            ordenCompra = ((List<CedForecastEntidades.OrdenCompra>)BrowserGridEX.Tag)[BrowserGridEX.SelectedItems[i].Position];
+                            for (int j = 0; j < ordenCompra.WF.EventosXLotePosibles.Count; j++)
+                            {
+                                EventoReferencia eventoPosibleEnComun = eventosPosiblesEnComun.Find(delegate(EventoReferencia r) { return r.Evento.Id == ordenCompra.WF.EventosXLotePosibles[j].Id; });
+                                eventoPosibleEnComun.Cantidad++;
+                            }
+                        }
+                        for (int i = 0; i < eventosPosiblesEnComun.Count; i++)
+                        {
+                            if (eventosPosiblesEnComun[i].Cantidad == BrowserGridEX.SelectedItems.Count)
+                            {
+                                HabilitarBoton(eventosPosiblesEnComun[i].Evento.Id, true);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+        private void HabilitarBoton(string IdEvento, bool XLote)
+        {
+            switch (IdEvento)
+            {
+                case "IngInfoEmb":
+                    IngInfoEmbUiButton.Enabled = true;
+                    if (XLote) IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "IngrADep":
+                    IngrADepUiButton.Enabled = true;
+                    if (XLote) IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "InspRenar":
+                    InspRenarUiButton.Enabled = true;
+                    if (XLote) InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "RecepDocs":
+                    RecepDocsUiButton.Enabled = true;
+                    if (XLote) RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "RegDesp":
+                    RegDespUiButton.Enabled = true;
+                    if (XLote) RegDespUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void DeshabilitarBotones()
+        {
+            IngInfoEmbUiButton.Enabled = false;
+            IngrADepUiButton.Enabled = false;
+            InspRenarUiButton.Enabled = false;
+            RecepDocsUiButton.Enabled = false;
+            RegDespUiButton.Enabled = false;
+            IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            RegDespUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
         }
         private void ActualizarBrowserGrid(object sender, System.EventArgs e)
         {
@@ -141,7 +164,9 @@ namespace CedForecast
                 fr = BrowserGridEX.FirstRow;
                 cr = BrowserGridEX.Row;
                 Janus.Windows.GridEX.IFilterCondition fc = BrowserGridEX.RootTable.FilterCondition;
-                BrowserGridEX.DataSource = CedForecastRN.OrdenCompra.LeerLista(FechaDsdCalendarCombo.Value, FechaHstCalendarCombo.Value, Cedeira.UI.Fun.ListaTreeView(EstadoTreeView), Aplicacion.Sesion);
+                List<CedForecastEntidades.OrdenCompra> lista = CedForecastRN.OrdenCompra.LeerLista(FechaDsdCalendarCombo.Value, FechaHstCalendarCombo.Value, Cedeira.UI.Fun.ListaTreeView(EstadoTreeView), Aplicacion.Sesion);
+                BrowserGridEX.Tag = lista;
+                BrowserGridEX.DataSource = lista;
                 BrowserGridEX.RootTable.FilterCondition = fc;
                 try
                 {
@@ -218,62 +243,6 @@ namespace CedForecast
                     break;
             }
         }
-        private void ConfigBotonesEventosXLote()
-        {
-            //try
-            //{
-            //    Cursor = Cursors.WaitCursor;
-            //    // Determinacion de eventos (XLote) comunes a todas las operaciones seleccionadas
-            //    DataTable eventosXLote = null;
-            //    for (int i = 0; i < BrowserGridEX.SelectedItems.Count; i++)
-            //    {
-            //        Precio precio = new Precio(Convert.ToDateTime(BrowserGridEX.SelectedItems[i].GetRow().Cells["Fecha"].Value), Convert.ToInt32(BrowserGridEX.SelectedItems[i].GetRow().Cells["IdEspecie"].Value), Aplicacion.Sesion, "Consulta");
-            //        if (i == 0)
-            //        {
-            //            eventosXLote = precio.EventosXLotePosibles;
-            //            for (int k = 0; k < eventosXLote.Rows.Count; k++)
-            //            {
-            //                string idEventoXLote = Convert.ToString(eventosXLote.Rows[k]["IdEvento"]);
-            //                if (!precio.IntervencionPermitida(idEventoXLote))
-            //                {
-            //                    eventosXLote.Rows[k].Delete();
-            //                }
-            //            }
-            //            eventosXLote.AcceptChanges();
-            //        }
-            //        else
-            //        {
-            //            DataTable eventosXLoteCHK = precio.EventosXLotePosibles;
-            //            for (int k = 0; k < eventosXLote.Rows.Count; k++)
-            //            {
-            //                string idEventoXLote = Convert.ToString(eventosXLote.Rows[k]["IdEvento"]);
-            //                if (eventosXLoteCHK.Select("IdEvento='" + idEventoXLote + "'").Length == 0 && !precio.IntervencionPermitida(idEventoXLote))
-            //                {
-            //                    eventosXLote.Rows[k].Delete();
-            //                }
-            //            }
-            //        }
-            //    }
-            //    eventosXLote.AcceptChanges();
-            //    // Botones X Lote
-            //    if (eventosXLote != null && eventosXLote.Rows.Count != 0)
-            //    {
-            //        int CantBotones = eventosXLote.Rows.Count;
-            //        for (int i = 1; i <= CantBotones; i++)
-            //        {
-            //            CrearBotonEvento(Convert.ToString(eventosXLote.Rows[i - 1]["TextoAccion"]), Convert.ToString(eventosXLote.Rows[i - 1]["IdEvento"]), i - 1, true);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Cedeira.Ex.ExceptionManager.Publish(ex);
-            //}
-            //finally
-            //{
-            //    Cursor = System.Windows.Forms.Cursors.Default;
-            //}
-        }
         private void MaxMinUiButton_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
@@ -285,6 +254,39 @@ namespace CedForecast
             WindowState = FormWindowState.Normal;
             MinimizarUiButton.Visible = false;
             MaximizarUiButton.Visible = true;
+        }
+    }
+    public class EventoReferencia
+    {
+        protected CedEntidades.Evento evento;
+        protected int cantidad;
+
+        public EventoReferencia(CedEntidades.Evento Evento)
+        {
+            evento = Evento;
+        }
+
+        public CedEntidades.Evento Evento
+        {
+            set
+            {
+                evento = value;
+            }
+            get
+            {
+                return evento;
+            }
+        }
+        public int Cantidad
+        {
+            set
+            {
+                cantidad = value;
+            }
+            get
+            {
+                return cantidad;
+            }
         }
     }
 }

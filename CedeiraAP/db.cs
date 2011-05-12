@@ -573,6 +573,37 @@ namespace Cedeira.SV
 			return logList;
 
 		}
+        public System.Collections.Generic.List<CedEntidades.Evento> WF_EventosXLote_qry(string IdFlow)
+        {
+            StringBuilder a = new StringBuilder(String.Empty);
+            a.Append("select * ");
+            a.Append("from WF_Evento ");
+            a.Append("where WF_Evento.IdFlow='" + IdFlow + "' ");
+            DataView dv = (DataView)Ejecutar(
+                a.ToString(),
+                TipoRetorno.DV,
+                Transaccion.NoAcepta,
+                sesion.CnnStr);
+            System.Collections.Generic.List<CedEntidades.Evento> eventosXLote = new System.Collections.Generic.List<CedEntidades.Evento>();
+            for (int i = 0; i < dv.Table.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dv.Table.Rows[i]["XLote"]))
+                {
+                    CedEntidades.Evento evento = new CedEntidades.Evento();
+                    evento.Flow.IdFlow = Convert.ToString(dv.Table.Rows[i]["IdFlow"]);
+                    evento.Id = Convert.ToString(dv.Table.Rows[i]["IdEvento"]);
+                    evento.Descr = Convert.ToString(dv.Table.Rows[i]["DescrEvento"]);
+                    evento.TextoAccion = Convert.ToString(dv.Table.Rows[i]["TextoAccion"]);
+                    evento.IdEstadoDsd.IdEstado = Convert.ToString(dv.Table.Rows[i]["IdEstadoDsd"]);
+                    evento.IdEstadoHst.IdEstado = Convert.ToString(dv.Table.Rows[i]["IdEstadoHst"]);
+                    evento.Automatico = Convert.ToBoolean(dv.Table.Rows[i]["Automatico"]);
+                    evento.CXO = Convert.ToBoolean(dv.Table.Rows[i]["CXO"]);
+                    evento.XLote = Convert.ToBoolean(dv.Table.Rows[i]["XLote"]);
+                    eventosXLote.Add(evento);
+                }
+            }
+            return eventosXLote;
+        }
         public System.Collections.Generic.List<CedEntidades.Evento> WF_EventosIniciales_qry(CedEntidades.WF Wf)
 		{
             StringBuilder a=new StringBuilder(String.Empty);
