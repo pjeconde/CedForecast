@@ -69,7 +69,9 @@ namespace CedForecastDB
             Hasta.FechaIngresoDeposito = Convert.ToDateTime(Desde["FechaIngresoDeposito"]);
             Hasta.ImporteGastosNacionalizacion = Convert.ToDecimal(Desde["ImporteGastosNacionalizacion"]);
             Hasta.Comentario = Convert.ToString(Desde["Comentario"]);
-            Hasta.IdOpWF = Convert.ToInt32(Desde["IdOpWF"]);
+            Hasta.WF.IdOp = Convert.ToInt32(Desde["IdOpWF"]);
+            Hasta.WF.Sesion = sesion;
+            Cedeira.SV.WF.Leer(Hasta.WF);
         }
         public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string HandlerWF)
         {

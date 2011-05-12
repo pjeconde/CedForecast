@@ -56,20 +56,20 @@ namespace Cedeira.SV
 		/// 
 		/// </summary>
 		/// <param name="Wf"></param>
-		public void Leer(ref CedEntidades.WF Wf)
+		public static void Leer(CedEntidades.WF Wf)
 		{
-			Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
-			Wf = db.WF_Op_get(Wf.IdOp);
-			if (Wf.IdFlow == string.Empty)
-			{
-				throw new Microsoft.ApplicationBlocks.ExceptionManagement.WF.OpInexistente();
-			}
-			else
-			{
-				Wf.Log = LeerLog(Wf);
-				Wf.EventosPosibles = LeerEventosPosiblesOpExist(Wf);
-				Wf.EventosXLotePosibles = LeerEventosXLotePosiblesOpExist(Wf);
-			}
+            Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
+            db.WF_Op_get(Wf);
+            if (Wf.IdFlow == string.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.WF.OpInexistente();
+            }
+            else
+            {
+                Wf.Log = LeerLog(Wf);
+                Wf.EventosPosibles = LeerEventosPosiblesOpExist(Wf);
+                Wf.EventosXLotePosibles = LeerEventosXLotePosiblesOpExist(Wf);
+            }
 		}
 		/// <summary>
 		/// 

@@ -240,6 +240,7 @@ namespace CedForecast
             this.BrowserGridEX.TabIndex = 6;
             this.BrowserGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.BrowserGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.BrowserGridEX.SelectionChanged += new System.EventHandler(this.BrowserGridEX_SelectionChanged);
             // 
             // HerramientasUiPanel
             // 
@@ -503,6 +504,7 @@ namespace CedForecast
             this.BrowserUiTab.Tag = "";
             this.BrowserUiTab.UseThemes = false;
             this.BrowserUiTab.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.Office2003;
+            this.BrowserUiTab.SelectedTabChanged += new Janus.Windows.UI.Tab.TabEventHandler(this.BrowserUiTab_SelectedTabChanged);
             // 
             // TabBrowserUiTabPage
             // 
@@ -522,7 +524,7 @@ namespace CedForecast
             this.TabFiltroUiTabPage.Key = "Filtro";
             this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
-            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(956, 481);
+            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(951, 446);
             this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.TabFiltroUiTabPage.TabIndex = 0;
             this.TabFiltroUiTabPage.Tag = "Detalle";
@@ -540,7 +542,7 @@ namespace CedForecast
             this.FiltroPanel.Location = new System.Drawing.Point(0, 0);
             this.FiltroPanel.Name = "FiltroPanel";
             this.FiltroPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.FiltroPanel.Size = new System.Drawing.Size(956, 481);
+            this.FiltroPanel.Size = new System.Drawing.Size(951, 446);
             this.FiltroPanel.TabIndex = 5;
             // 
             // EjecutarSeleccionUiButton
@@ -808,6 +810,7 @@ namespace CedForecast
             this.EstadoUiCheckBox.TextAlignment = Janus.Windows.EditControls.TextAlignment.Center;
             this.EstadoUiCheckBox.UseThemes = false;
             this.EstadoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.EstadoUiCheckBox.CheckedChanged += new System.EventHandler(this.EstadoUiCheckBox_CheckedChanged);
             // 
             // EstadoTreeView
             // 

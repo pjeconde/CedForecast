@@ -508,7 +508,33 @@ namespace Cedeira.SV
 			}
 			return wf;
 		}
-		public List<CedEntidades.Log> WF_LogXOp_qry(int IdOp)
+        public void WF_Op_get(CedEntidades.WF WF)
+        {
+            DataView dv = (DataView)Ejecutar(
+                "Select WF_Op.*, WF_Flow.DescrFlow, WF_Circuito.DescrCircuito, WF_NivSeg.DescrNivSeg, WF_Estado.DescrEstado " +
+                "from WF_Op, WF_Flow, WF_Circuito, WF_NivSeg, WF_Estado " +
+                "where IdOp=" + WF.IdOp + " and WF_Op.IdFlow=WF_Flow.IdFlow and WF_Op.IdCircuito=WF_Circuito.IdCircuito and WF_Op.IdNivSeg=WF_NivSeg.IdNivSeg and WF_Op.IdEstado=WF_Estado.IdEstado",
+                TipoRetorno.DV,
+                Transaccion.NoAcepta,
+                sesion.CnnStr);
+            if (dv.Table.Rows.Count != 0)
+            {
+                // Info OpWF
+                WF.IdFlow = Convert.ToString(dv.Table.Rows[0]["IdFlow"]);
+                WF.DescrFlow = Convert.ToString(dv.Table.Rows[0]["DescrFlow"]);
+                WF.IdCircuito = Convert.ToString(dv.Table.Rows[0]["IdCircuito"]);
+                WF.IdCircuitoOrig = WF.IdCircuito;
+                WF.DescrCircuito = Convert.ToString(dv.Table.Rows[0]["DescrCircuito"]);
+                WF.IdNivSeg = Convert.ToInt32(dv.Table.Rows[0]["IdNivSeg"]);
+                WF.DescrNivSeg = Convert.ToString(dv.Table.Rows[0]["DescrNivSeg"]);
+                WF.DescrOp = Convert.ToString(dv.Table.Rows[0]["DescrOp"]);
+                WF.IdEstado = Convert.ToString(dv.Table.Rows[0]["IdEstado"]);
+                WF.UltActualiz = Cedeira.SV.db.ByteArray2TimeStamp((byte[])dv.Table.Rows[0]["UltActualiz"]);
+                WF.DescrEstado = Convert.ToString(dv.Table.Rows[0]["DescrEstado"]);
+                WF.Sesion = sesion;
+            }
+        }
+        public List<CedEntidades.Log> WF_LogXOp_qry(int IdOp)
 		{
 			DataView dv = (DataView)Ejecutar(
 				"Select " +
