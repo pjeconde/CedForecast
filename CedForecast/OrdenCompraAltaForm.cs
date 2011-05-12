@@ -188,6 +188,7 @@ namespace CedForecast
             {
                 LlenarCampos();
                 CedForecastRN.OrdenCompra.Alta(ordenCompraInfoAlta, Aplicacion.Sesion);
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {

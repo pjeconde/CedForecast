@@ -38,10 +38,13 @@ namespace CedForecastEntidades
         DateTime fechaIngresoDeposito;
         decimal importeGastosNacionalizacion;
         string comentario;                      //varchar(255)
-        int idOpWF;
+        CedEntidades.WF wF;
+        DateTime fechaNoInformada;
 
         public OrdenCompra()
-        { 
+        {
+            wF = new CedEntidades.WF();
+            fechaNoInformada = new DateTime(2000, 1, 1);
         }
 
         public string Prefijo
@@ -264,6 +267,20 @@ namespace CedForecastEntidades
                 fechaEstimadaSalida = value;
             }
         }
+        public string FechaEstimadaSalidaFMT
+        {
+            get
+            {
+                if (!fechaEstimadaSalida.Equals(fechaNoInformada))
+                {
+                    return fechaEstimadaSalida.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
         public string Vapor
         {
             get
@@ -284,6 +301,20 @@ namespace CedForecastEntidades
             set
             {
                 fechaEstimadaArribo = value;
+            }
+        }
+        public string FechaEstimadaArriboFMT
+        {
+            get
+            {
+                if (!fechaEstimadaArribo.Equals(fechaNoInformada))
+                {
+                    return fechaEstimadaArribo.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
             }
         }
         public string NroConocimientoEmbarque
@@ -319,6 +350,20 @@ namespace CedForecastEntidades
                 fechaRecepcionDocumentos = value;
             }
         }
+        public string FechaRecepcionDocumentosFMT
+        {
+            get
+            {
+                if (!fechaRecepcionDocumentos.Equals(fechaNoInformada))
+                {
+                    return fechaRecepcionDocumentos.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
         public DateTime FechaIngresoAPuerto
         {
             get
@@ -328,6 +373,20 @@ namespace CedForecastEntidades
             set
             {
                 fechaIngresoAPuerto = value;
+            }
+        }
+        public string FechaIngresoAPuertoFMT
+        {
+            get
+            {
+                if (!fechaIngresoAPuerto.Equals(fechaNoInformada))
+                {
+                    return fechaIngresoAPuerto.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
             }
         }
         public string NroDespacho
@@ -352,6 +411,20 @@ namespace CedForecastEntidades
                 fechaOficializacion = value;
             }
         }
+        public string FechaOficializacionFMT
+        {
+            get
+            {
+                if (!fechaOficializacion.Equals(fechaNoInformada))
+                {
+                    return fechaOficializacion.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
         public DateTime FechaInspeccionRENAR
         {
             get
@@ -363,6 +436,20 @@ namespace CedForecastEntidades
                 fechaInspeccionRENAR = value;
             }
         }
+        public string FechaInspeccionRENARFMT
+        {
+            get
+            {
+                if (!fechaInspeccionRENAR.Equals(fechaNoInformada))
+                {
+                    return fechaInspeccionRENAR.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
         public DateTime FechaIngresoDeposito
         {
             get
@@ -372,6 +459,20 @@ namespace CedForecastEntidades
             set
             {
                 fechaIngresoDeposito = value;
+            }
+        }
+        public string FechaIngresoDepositoFMT
+        {
+            get
+            {
+                if (!fechaIngresoDeposito.Equals(fechaNoInformada))
+                {
+                    return fechaIngresoDeposito.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    return String.Empty;
+                }
             }
         }
         public decimal ImporteGastosNacionalizacion
@@ -396,15 +497,29 @@ namespace CedForecastEntidades
                 comentario = value;
             }
         }
-        public int IdOpWF
+        public CedEntidades.WF WF
         {
             get
             {
-                return idOpWF;
+                return wF;
             }
             set
             {
-                idOpWF = value;
+                wF = value;
+            }
+        }
+        public string IdEstado
+        {
+            get
+            {
+                return wF.IdEstado;
+            }
+        }
+        public string DescrEstado
+            {
+                get
+            {
+                return wF.DescrEstado;
             }
         }
     }
