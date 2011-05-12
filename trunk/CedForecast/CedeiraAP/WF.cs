@@ -52,10 +52,6 @@ namespace Cedeira.SV
 			wf.EventosPosibles = LeerEventosPosiblesOpNueva(wf);
 			return wf;
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Wf"></param>
 		public static void Leer(CedEntidades.WF Wf)
 		{
             Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
@@ -71,142 +67,72 @@ namespace Cedeira.SV
                 Wf.EventosXLotePosibles = LeerEventosXLotePosiblesOpExist(Wf);
             }
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="IdAcceso"></param>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
 		public static List<CedEntidades.Grupo> GruposXAcceso(string IdAcceso, CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_GruposXAcceso(IdAcceso);
         }
+        public static List<CedEntidades.Evento> EventosXLote(string IdFlow, CedEntidades.Sesion Sesion)
+        {
+            Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
+            return db.WF_EventosXLote_qry(IdFlow);
+        }
         public static List<CedEntidades.Evento> EventosIniciales(CedEntidades.Sesion Sesion)
-		{
-			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
-			return  db.WF_EventosIniciales_qry();
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
+        {
+            Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
+            return db.WF_EventosIniciales_qry();
+        }
 		public static List<CedEntidades.Flow> IdFlowCombo(CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_Flow_lst();
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
 		public static List<CedEntidades.Circuito> IdCircuitoCombo(CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_Circuito_lst();
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
 		public static List<CedEntidades.NivSeg> IdNivSegCombo(CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_NivSeg_lst();
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
 		public static List<CedEntidades.Estado> IdEstadoCombo(CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_Estado_qry();
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Wf"></param>
-		/// <returns></returns>
         public static List<CedEntidades.Estado> IdEstadoXFlowCombo(CedEntidades.WF Wf, CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_Estado_qry(Wf.IdFlow);
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Sesion"></param>
-		/// <returns></returns>
 		public static List<CedEntidades.Acceso> IdAccesoCombo(CedEntidades.Sesion Sesion)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Sesion);
 			return db.WF_Acceso_lst();
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="Wf"></param>
-		/// <returns></returns>
 		private static List<CedEntidades.Log> LeerLog(CedEntidades.WF Wf)
 		{
 			
 			Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
 			return  db.WF_LogXOp_qry(Wf.IdOp);
 		}
-		/// <summary>
-		/// Informar las siguientes propiedades de WF:IdFlow,IdCircuito y IdNivSeg
-		/// </summary>
-		/// <returns></returns>
 		private static List<CedEntidades.Evento> LeerEventosPosiblesOpNueva(CedEntidades.WF Wf)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
             return db.WF_EventosIniciales_qry(Wf); ;
 		}
-		/// <summary>
-		/// Informar las siguientes propiedades de WF:IdFlow, IdEstado, IdCircuito y IdNivSeg
-		/// </summary>
-		/// <returns></returns>
 		private static List<CedEntidades.Evento> LeerEventosPosiblesOpExist(CedEntidades.WF Wf)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
 			return db.WF_EventosPosibles_qry(Wf); ;
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="IdFlow"></param>
-		/// <param name="IdEstado"></param>
-		/// <param name="IdCircuito"></param>
-		/// <param name="IdNivSeg"></param>
-		/// <returns></returns>
 		private static List<CedEntidades.Evento> LeerEventosXLotePosiblesOpExist(CedEntidades.WF Wf)
 		{
 			Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
 			return db.WF_EventosXLotePosibles_qry(Wf);
 		}
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="Wf"></param>
-        //public static List<CedEntidades.EsqSegEvenPos> EsquemaSegEventosPosibles(CedEntidades.WF Wf) 
-        //{  
-        //    return LeerEsquemaSegEventosPosibles(Wf);  
-        //}
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="IdFlow"></param>
-        /// <param name="IdCircuito"></param>
-        /// <param name="IdNivSeg"></param>
-        /// <param name="IdEstadoActual"></param>
-        /// <param name="dvEventosPosibles"></param>
-        /// <param name="dvLog"></param>
-        /// <returns></returns>
         private static List<CedEntidades.EsqSegEvenPos> LeerEsquemaSegEventosPosibles(CedEntidades.WF Wf)
         {
             Cedeira.SV.db db = new Cedeira.SV.db(Wf.Sesion);
@@ -292,16 +218,6 @@ namespace Cedeira.SV
             // un EsquemaSeg, si no: lo elimino.
             return esquemaSegEventosPosibles;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="IdEvento"></param>
-        /// <param name="drEvento"></param>
-        /// <param name="drEsquemaSeg"></param>
-        /// <param name="drEsquemaSegUsado"></param>
-        /// <param name="drUsuarioGrupoUsado"></param>
-        /// <returns></returns>
-
         private static string IntervencionPermitida(CedEntidades.WF Wf, CedEntidades.Evento Evento, ref List<CedEntidades.Evento> listEvento, ref List<CedEntidades.EsqSegEvenPos> listEsqSegEvenPos, ref CedEntidades.EsqSegEvenPos esqSegEvenPosUsado, ref List<CedEntidades.GrupoXUsuario> listGrupoXUsuario)
         {
             // Verifico que el evento este entre los eventos posibles
@@ -377,11 +293,6 @@ namespace Cedeira.SV
                 }
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="IdEvento"></param>
-        /// <returns></returns>
         public static bool IntervencionPermitida(CedEntidades.Evento Evento, CedEntidades.WF Wf)
         {
             List<CedEntidades.EsqSegEvenPos> listEsqSegEvenPos = new List<CedEntidades.EsqSegEvenPos>();
@@ -391,12 +302,6 @@ namespace Cedeira.SV
             List<CedEntidades.Evento> listEventosPosibles = Wf.EventosPosibles;
             return IntervencionPermitida(Wf, Evento, ref listEventosPosibles, ref listEsqSegEvenPos, ref esqSegEvenPos, ref listGrupoXUsuario) == "SI";
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="IdEvento"></param>
-        /// <param name="UltimaIntervencion"></param>
-        /// <returns></returns>
         public static bool IntervencionPermitida(CedEntidades.WF Wf, CedEntidades.Evento Evento, out bool UltimaIntervencion)
         {
             List<CedEntidades.EsqSegEvenPos> listEsqSegEvenPos = new List<CedEntidades.EsqSegEvenPos>();
@@ -412,11 +317,6 @@ namespace Cedeira.SV
             }
             return intervPermitida;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="IdGrupo"></param>
-        /// <returns></returns>
         private static bool GrupoHabilitadoParaAcceso(string idGrupo, CedEntidades.WF Wf)
         {
             try
