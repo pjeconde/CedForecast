@@ -147,12 +147,12 @@ namespace CedForecast
                         minuta.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
                         if (evento == "Alta")
                         {
-                            CedForecastRN.OrdenCompra.ValidacionOrdenCompraAltaMinutaNueva(ordenCompraInfoAlta, minuta, Aplicacion.Sesion);
+                            CedForecastRN.OrdenCompra.ValidacionAltaMinutaNueva(ordenCompraInfoAlta, minuta, Aplicacion.Sesion);
                             ordenCompraInfoAlta.Minutas.Add(minuta);
                         }
                         else
                         {
-                            CedForecastRN.OrdenCompra.ValidacionOrdenCompraAltaMinutaExistente(ordenCompraInfoAlta, minuta, idMinuta, Aplicacion.Sesion);
+                            CedForecastRN.OrdenCompra.ValidacionAltaMinutaExistente(ordenCompraInfoAlta, minuta, idMinuta, Aplicacion.Sesion);
                             ordenCompraInfoAlta.Minutas[idMinuta].IdArticulo = minuta.IdArticulo;
                             ordenCompraInfoAlta.Minutas[idMinuta].DescrArticulo = minuta.DescrArticulo;
                             ordenCompraInfoAlta.Minutas[idMinuta].CantidadContenedores = minuta.CantidadContenedores;

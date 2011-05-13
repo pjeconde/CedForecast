@@ -371,6 +371,7 @@ namespace CedForecast
             this.IngrADepUiButton.Text = "Ingreso a Depósito";
             this.IngrADepUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.IngrADepUiButton.UseThemes = false;
+            this.IngrADepUiButton.Click += new System.EventHandler(this.IngrADepUiButton_Click);
             // 
             // InspRenarUiButton
             // 
@@ -389,6 +390,7 @@ namespace CedForecast
             this.InspRenarUiButton.Text = "Inspección RENAR";
             this.InspRenarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.InspRenarUiButton.UseThemes = false;
+            this.InspRenarUiButton.Click += new System.EventHandler(this.InspRenarUiButton_Click);
             // 
             // RegDespUiButton
             // 
@@ -407,6 +409,7 @@ namespace CedForecast
             this.RegDespUiButton.Text = "Registro de Despacho";
             this.RegDespUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.RegDespUiButton.UseThemes = false;
+            this.RegDespUiButton.Click += new System.EventHandler(this.RegDespUiButton_Click);
             // 
             // RecepDocsUiButton
             // 
@@ -425,6 +428,7 @@ namespace CedForecast
             this.RecepDocsUiButton.Text = "Recepción de Documentos";
             this.RecepDocsUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.RecepDocsUiButton.UseThemes = false;
+            this.RecepDocsUiButton.Click += new System.EventHandler(this.RecepDocsUiButton_Click);
             // 
             // IngInfoEmbUiButton
             // 
@@ -443,6 +447,7 @@ namespace CedForecast
             this.IngInfoEmbUiButton.Text = "Ingreso Info Embarque";
             this.IngInfoEmbUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.IngInfoEmbUiButton.UseThemes = false;
+            this.IngInfoEmbUiButton.Click += new System.EventHandler(this.IngInfoEmbUiButton_Click);
             // 
             // EnviarAUiButton
             // 
