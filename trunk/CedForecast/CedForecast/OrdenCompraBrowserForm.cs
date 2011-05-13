@@ -255,6 +255,46 @@ namespace CedForecast
             MinimizarUiButton.Visible = false;
             MaximizarUiButton.Visible = true;
         }
+        private void IngInfoEmbUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoInfoEmbarqueForm();
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void RecepDocsUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraRecepcionDocumentosForm();
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void RegDespUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraRegistroDespachoForm();
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void InspRenarUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraInspeccionRENARForm();
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void IngrADepUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoADepositoForm();
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
     }
     public class EventoReferencia
     {

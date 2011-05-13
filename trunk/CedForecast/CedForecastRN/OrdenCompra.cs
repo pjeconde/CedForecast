@@ -10,11 +10,12 @@ namespace CedForecastRN
         {
             return new CedForecastDB.OrdenCompra(Sesion).LeerLista(FechaDsd, FechaHst, Estados);
         }
-        public static void ValidacionOrdenCompraAltaMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
+
+        public static void ValidacionAltaMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
         {
-            ValidacionOrdenCompraAltaMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
+            ValidacionAltaMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
         }
-        public static void ValidacionOrdenCompraAltaMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, int IdMinuta, CedEntidades.Sesion Sesion)
+        public static void ValidacionAltaMinutaExistente(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, int IdMinuta, CedEntidades.Sesion Sesion)
         {
             if (Minuta.IdArticulo == String.Empty)
             {
@@ -45,7 +46,7 @@ namespace CedForecastRN
                 }
             }
         }
-        public static void ValidacionOrdenCompraAlta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedEntidades.Sesion Sesion)
+        private static void ValidacionAlta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedEntidades.Sesion Sesion)
         {
             if (OrdenCompra.IdProveedor == String.Empty)
             {
@@ -70,7 +71,7 @@ namespace CedForecastRN
         }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
         {
-            ValidacionOrdenCompraAlta(OrdenCompraInfoAlta, Sesion);
+            ValidacionAlta(OrdenCompraInfoAlta, Sesion);
             CedEntidades.WF wF = Cedeira.SV.WF.Nueva("OrdenCpra", "NA", 0, String.Empty, Sesion);
             CedEntidades.Evento eventoWF=new CedEntidades.Evento();
             eventoWF.Flow.IdFlow = wF.IdFlow;
@@ -79,26 +80,52 @@ namespace CedForecastRN
             string handler = Cedeira.SV.WF.EjecutarEvento(wF, eventoWF, true);
             new CedForecastDB.OrdenCompra(Sesion).Alta(OrdenCompraInfoAlta, handler);
         }
-        public static void IngresoADeposito(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito, CedEntidades.Sesion Sesion)
+
+        private static void ValidacionIngresoADeposito(CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).IngresoADeposito(ListaOrdenesCompra(OrdenesCompra), OrdenCompraInfoIngresoADeposito);
         }
-        public static void IngresoInfoEmbarque(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque OrdenCompraInfoEmbarque, CedEntidades.Sesion Sesion)
+        public static void IngresoADeposito(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).IngresoInfoEmbarque(ListaOrdenesCompra(OrdenesCompra), OrdenCompraInfoEmbarque);
+            ValidacionIngresoADeposito(InfoIngresoADeposito, Sesion);
+            new CedForecastDB.OrdenCompra(Sesion).IngresoADeposito(ListaOrdenesCompra(OrdenesCompra), InfoIngresoADeposito);
         }
-        public static void InspeccionRENAR(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR OrdenCompraInfoInspeccionRENAR, CedEntidades.Sesion Sesion)
+
+        private static void ValidacionIngresoInfoEmbarque(CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).InspeccionRENAR(ListaOrdenesCompra(OrdenesCompra), OrdenCompraInfoInspeccionRENAR);
         }
-        public static void RecepcionDocumentos(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos OrdenCompraInfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
+        public static void IngresoInfoEmbarque(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).RecepcionDocumentos(ListaOrdenesCompra(OrdenesCompra), OrdenCompraInfoRecepcionDocumentos);
+            ValidacionIngresoInfoEmbarque(InfoEmbarque, Sesion);
+            new CedForecastDB.OrdenCompra(Sesion).IngresoInfoEmbarque(ListaOrdenesCompra(OrdenesCompra), InfoEmbarque);
         }
-        public static void RegistroDespacho(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho OrdenCompraInfoRegistroDespacho, CedEntidades.Sesion Sesion)
+
+        public static void ValidacionInspeccionRENAR(CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
         {
-            new CedForecastDB.OrdenCompra(Sesion).RegistroDespacho(ListaOrdenesCompra(OrdenesCompra), OrdenCompraInfoRegistroDespacho);
         }
+        public static void InspeccionRENAR(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
+        {
+            ValidacionInspeccionRENAR(InfoInspeccionRENAR, Sesion);
+            new CedForecastDB.OrdenCompra(Sesion).InspeccionRENAR(ListaOrdenesCompra(OrdenesCompra), InfoInspeccionRENAR);
+        }
+
+        public static void ValidacionRecepcionDocumentos(CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
+        {
+        }
+        public static void RecepcionDocumentos(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
+        {
+            ValidacionRecepcionDocumentos(InfoRecepcionDocumentos, Sesion);
+            new CedForecastDB.OrdenCompra(Sesion).RecepcionDocumentos(ListaOrdenesCompra(OrdenesCompra), InfoRecepcionDocumentos);
+        }
+
+        public static void ValidacionRegistroDespacho(CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
+        {
+        }
+        public static void RegistroDespacho(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
+        {
+            ValidacionRegistroDespacho(InfoRegistroDespacho, Sesion);
+            new CedForecastDB.OrdenCompra(Sesion).RegistroDespacho(ListaOrdenesCompra(OrdenesCompra), InfoRegistroDespacho);
+        }
+
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)
         {
             StringBuilder a = new StringBuilder();
