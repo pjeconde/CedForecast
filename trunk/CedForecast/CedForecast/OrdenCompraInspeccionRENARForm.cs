@@ -10,7 +10,7 @@ namespace CedForecast
 {
     public partial class OrdenCompraInspeccionRENARForm : Cedeira.UI.frmBase
     {
-        static string titulo = "Ingreso Info Embarque";
+        static string titulo = "Inspección RENAR";
         CedForecastEntidades.OrdenCompraInfoInspeccionRENAR infoInspeccionRENAR = new CedForecastEntidades.OrdenCompraInfoInspeccionRENAR();
         List<CedForecastEntidades.OrdenCompra> ordenesCompra;
 
