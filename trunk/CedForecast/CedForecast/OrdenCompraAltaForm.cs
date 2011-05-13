@@ -11,7 +11,7 @@ namespace CedForecast
     public partial class OrdenCompraAltaForm : Cedeira.UI.frmBaseEnviarA
     {
         static string titulo = "Alta de Orden de Compra";
-        CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta;
+        CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta = new CedForecastEntidades.OrdenCompraInfoAlta();
 
         public OrdenCompraAltaForm() : base(titulo)
         {
@@ -20,7 +20,6 @@ namespace CedForecast
             IdProveedorUiComboBox.SelectedValue = "COM";
             IdPaisOrigenUiComboBox.SelectedValue = "A";
             FechaEstimadaArriboRequeridaCalendarCombo.Focus();
-            ordenCompraInfoAlta = new CedForecastEntidades.OrdenCompraInfoAlta();
         }
         private void LlenarCombos()
         {
@@ -136,33 +135,6 @@ namespace CedForecast
             oFrm.ShowDialog();
             Cursor = Cursors.Default;
         }
-        private void LlenarCampos()
-        {
-            ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
-            if (IdProveedorUiComboBox.SelectedIndex != -1)
-            {
-                ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
-                ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
-            }
-            else
-            {
-                ordenCompraInfoAlta.IdProveedor = String.Empty;
-                ordenCompraInfoAlta.DescrProveedor = String.Empty;
-            }
-            ordenCompraInfoAlta.Fecha = FechaCalendarCombo.Value.Date;
-            if (IdPaisOrigenUiComboBox.SelectedIndex != -1)
-            {
-                ordenCompraInfoAlta.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
-                ordenCompraInfoAlta.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
-            }
-            else
-            {
-                ordenCompraInfoAlta.IdPaisOrigen = String.Empty;
-                ordenCompraInfoAlta.DescrPaisOrigen = String.Empty;
-            }
-            ordenCompraInfoAlta.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
-            ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
-        }
         private void IdPaisOrigenUiComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             PrefijoEditBox.Text = IdPaisOrigenUiComboBox.SelectedValue.ToString();
@@ -194,6 +166,33 @@ namespace CedForecast
             {
                 Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
+        }
+        private void LlenarCampos()
+        {
+            ordenCompraInfoAlta.Prefijo = PrefijoEditBox.Text;
+            if (IdProveedorUiComboBox.SelectedIndex != -1)
+            {
+                ordenCompraInfoAlta.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
+                ordenCompraInfoAlta.DescrProveedor = IdProveedorUiComboBox.Text;
+            }
+            else
+            {
+                ordenCompraInfoAlta.IdProveedor = String.Empty;
+                ordenCompraInfoAlta.DescrProveedor = String.Empty;
+            }
+            ordenCompraInfoAlta.Fecha = FechaCalendarCombo.Value.Date;
+            if (IdPaisOrigenUiComboBox.SelectedIndex != -1)
+            {
+                ordenCompraInfoAlta.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
+                ordenCompraInfoAlta.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
+            }
+            else
+            {
+                ordenCompraInfoAlta.IdPaisOrigen = String.Empty;
+                ordenCompraInfoAlta.DescrPaisOrigen = String.Empty;
+            }
+            ordenCompraInfoAlta.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
+            ordenCompraInfoAlta.Comentario = ComentarioEditBox.Text;
         }
     }
 }

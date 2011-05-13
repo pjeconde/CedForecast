@@ -689,13 +689,14 @@ namespace Cedeira.SV
 		}
         public System.Collections.Generic.List<CedEntidades.Evento> WF_EventosXLotePosibles_qry(CedEntidades.WF Wf)
 		{
-			string a = "Select WF_Evento.*, WF_Flow.DescrFlow, EstadoDsd.DescrEstado as DescrEstadoDsd, EstadoHst.DescrEstado as DescrEstadoHst " +
-				"from WF_Evento, WF_Flow, WF_Estado EstadoDsd, WF_Estado EstadoHst " +
+            string a = "Select WF_Evento.*, WF_Flow.DescrFlow, EstadoDsd.DescrEstado as DescrEstadoDsd, EstadoHst.DescrEstado as DescrEstadoHst " +
+                "from WF_Evento " +
+                "inner join WF_Flow on WF_Evento.IdFlow=WF_Flow.IdFlow " +
+                "inner join WF_Estado EstadoDsd on WF_Evento.IdEstadoDsd=EstadoDsd.IdEstado " +
+                "left outer join WF_Estado EstadoHst on WF_Evento.IdEstadoHst=EstadoHst.IdEstado " +
                 "where WF_Evento.IdFlow='" + Wf.IdFlow + "' and WF_Evento.IdEstadoDsd in ('" + Wf.IdEstado + "', '<Cualquiera>') " +
-				"and WF_Evento.IdFlow=WF_Flow.IdFlow " +
-				"and EstadoDsd.IdEstado=WF_Evento.IdEstadoDsd and EstadoHst.IdEstado=WF_Evento.IdEstadoHst " +
                 "and WF_Evento.IdEvento in (select IdEvento from WF_EsquemaSeg where IdCircuito='" + Wf.IdCircuito + "' and IdFlow='" + Wf.IdFlow + "') " +
-				"and WF_Evento.XLote=1 ";
+                "and WF_Evento.XLote=1 ";
 			DataView dv = (DataView)Ejecutar(
 				a,
 				TipoRetorno.DV,
@@ -969,7 +970,7 @@ namespace Cedeira.SV
 				"   raiserror ('WorkFlow de la operacion inexistente o contenido modificado por otro usuario', 16, 1) " +
 				"else " +
 				"   begin " +
-				"      insert WF_Log values (" + IdOp + ", '" + IdUsuario + "', '" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEvento + "', getdate(), '" + Comentario + "', '" + IdEstado + "', '" + IdGrupo + "', " + System.Math.Abs(Convert.ToSByte(Supervisor)) + ", " + SupervisorNivel + ") ";
+				"      insert WF_Log values (" + IdOp + ", '" + IdUsuario + "', '" + IdFlow + "', '" + IdCircuito + "', " + IdNivSeg + ", '" + IdEvento + "', getdate(), '" + Comentario + "', '" + IdEstado + "', '" + IdGrupo + "', " + System.Math.Abs(Convert.ToSByte(Supervisor)) + ", " + SupervisorNivel + ", 1) ";
 		}
 		public void WF_Op_upd(int IdOp, string IdFlow, string IdCircuito, int IdNivSeg, string IdEstado, string IdEvento, string IdUsuario, string Comentario, string IdGrupo, bool Supervisor, byte SupervisorNivel, string UltActualiz)
 		{

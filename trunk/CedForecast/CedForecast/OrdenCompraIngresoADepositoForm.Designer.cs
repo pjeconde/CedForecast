@@ -79,6 +79,7 @@
             this.AceptarUiButton.Text = "Aceptar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
+            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
             // 
             // panel3
             // 

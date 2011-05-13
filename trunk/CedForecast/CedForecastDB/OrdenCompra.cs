@@ -73,13 +73,13 @@ namespace CedForecastDB
             Hasta.WF.Sesion = sesion;
             Cedeira.SV.WF.Leer(Hasta.WF);
         }
-        public void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string HandlerWF)
+        public void Alta(CedForecastEntidades.OrdenCompraInfoAlta InfoAlta, string HandlerWF)
         {
             StringBuilder a = new StringBuilder("declare @IdOp int ");
             a.Append("declare @IdOrdenCompra int ");
             a.Append("update WF_Parm set @IdOrdenCompra=ValorInt=ValorInt+1 where IdParm='UltNroOrdenCompra' ");
             string handlerWF = HandlerWF.Replace("declare @IdOp int ", String.Empty);
-            for (int i = 0; i < OrdenCompraInfoAlta.Minutas.Count; i++)
+            for (int i = 0; i < InfoAlta.Minutas.Count; i++)
             {
                 //Cambiar UltimaOrdenCompra y guardarla en @IdOrdenCompra
                 a.Append(handlerWF + " ");
@@ -118,9 +118,9 @@ namespace CedForecastDB
                 a.Append("           ,Comentario ");
                 a.Append("           ,IdOpWF) ");
                 a.Append("     VALUES (");
-                a.Append("           '" + OrdenCompraInfoAlta.Prefijo + "' ");
+                a.Append("           '" + InfoAlta.Prefijo + "' ");
                 a.Append("           ,@IdOrdenCompra ");
-                if (OrdenCompraInfoAlta.Minutas.Count == 1)
+                if (InfoAlta.Minutas.Count == 1)
                 {
                     a.Append("           ,'0' ");
                 }
@@ -128,21 +128,21 @@ namespace CedForecastDB
                 {
                     a.Append("           ," + i.ToString() + " ");
                 }
-                a.Append("           ,'" + OrdenCompraInfoAlta.IdProveedor + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.DescrProveedor + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Fecha.ToString("yyyyMMdd") + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.IdPaisOrigen + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.DescrPaisOrigen + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].IdArticulo + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].DescrArticulo + "' ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.FechaEstimadaArriboRequerida.ToString("yyyyMMdd") + "' ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].CantidadContenedores.ToString() + " ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].ComentarioContenedores + "' ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].CantidadPresentacion.ToString() + " ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Cantidad.ToString() + " ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Minutas[i].IdMoneda + "' ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Precio.ToString() + " ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].Importe.ToString() + " ");
+                a.Append("           ,'" + InfoAlta.IdProveedor + "' ");
+                a.Append("           ,'" + InfoAlta.DescrProveedor + "' ");
+                a.Append("           ,'" + InfoAlta.Fecha.ToString("yyyyMMdd") + "' ");
+                a.Append("           ,'" + InfoAlta.IdPaisOrigen + "' ");
+                a.Append("           ,'" + InfoAlta.DescrPaisOrigen + "' ");
+                a.Append("           ,'" + InfoAlta.Minutas[i].IdArticulo + "' ");
+                a.Append("           ,'" + InfoAlta.Minutas[i].DescrArticulo + "' ");
+                a.Append("           ,'" + InfoAlta.FechaEstimadaArriboRequerida.ToString("yyyyMMdd") + "' ");
+                a.Append("           ," + InfoAlta.Minutas[i].CantidadContenedores.ToString() + " ");
+                a.Append("           ,'" + InfoAlta.Minutas[i].ComentarioContenedores + "' ");
+                a.Append("           ," + InfoAlta.Minutas[i].CantidadPresentacion.ToString() + " ");
+                a.Append("           ," + InfoAlta.Minutas[i].Cantidad.ToString() + " ");
+                a.Append("           ,'" + InfoAlta.Minutas[i].IdMoneda + "' ");
+                a.Append("           ," + InfoAlta.Minutas[i].Precio.ToString() + " ");
+                a.Append("           ," + InfoAlta.Minutas[i].Importe.ToString() + " ");
                 a.Append("           ,'' ");
                 a.Append("           ,'20000101' ");
                 a.Append("           ,'' ");
@@ -155,46 +155,83 @@ namespace CedForecastDB
                 a.Append("           ,'20000101' ");
                 a.Append("           ,'20000101' ");
                 a.Append("           ,'20000101' ");
-                a.Append("           ," + OrdenCompraInfoAlta.Minutas[i].ImporteGastosNacionalizacion.ToString() + " ");
-                a.Append("           ,'" + OrdenCompraInfoAlta.Comentario + "' ");
+                a.Append("           ," + InfoAlta.Minutas[i].ImporteGastosNacionalizacion.ToString() + " ");
+                a.Append("           ,'" + InfoAlta.Comentario + "' ");
                 a.Append("           ,@IdOp) ");
             }
             a.Append("select @IdOrdenCompra as IdOrdenCompra ");
             DataTable tb = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.Usa, sesion.CnnStr);
-            OrdenCompraInfoAlta.Id = Convert.ToInt32(tb.Rows[0]["IdOrdenCompra"]);
+            InfoAlta.Id = Convert.ToInt32(tb.Rows[0]["IdOrdenCompra"]);
         }
-        public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito OrdenCompraInfoIngresoADeposito)
+        public void IngresoInfoEmbarque(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            a.Append("update OrdenCompra ");
+            for (int i=0; i<HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            a.Append("update OrdenCompra set ");
+            a.Append("IdReferenciaSAP='" + InfoEmbarque.IdReferenciaSAP + "', ");
+            a.Append("FechaEstimadaSalida='" + InfoEmbarque.FechaEstimadaSalida.ToString("yyyyMMdd") + "', ");
+            a.Append("Vapor='" + InfoEmbarque.Vapor + "', ");
+            a.Append("FechaEstimadaArribo='" + InfoEmbarque.FechaEstimadaArribo.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
-        public void IngresoInfoEmbarque(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque OrdenCompraInfoEmbarque)
+        public void RecepcionDocumentos(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            a.Append("update OrdenCompra ");
+            for (int i = 0; i < HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            a.Append("update OrdenCompra set ");
+            a.Append("NroConocimientoEmbarque='" + InfoRecepcionDocumentos.NroConocimientoEmbarque + "', ");
+            a.Append("Factura='" + InfoRecepcionDocumentos.Factura + "', ");
+            a.Append("FechaRecepcionDocumentos='" + InfoRecepcionDocumentos.FechaRecepcionDocumentos.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
-        public void InspeccionRENAR(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR OrdenCompraInfoInspeccionRENAR)
+        public void RegistroDespacho(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            a.Append("update OrdenCompra ");
+            for (int i = 0; i < HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            a.Append("update OrdenCompra set ");
+            a.Append("FechaIngresoAPuerto='" + InfoRegistroDespacho.FechaIngresoAPuerto.ToString("yyyyMMdd") + "', ");
+            a.Append("NroDespacho='" + InfoRegistroDespacho.NroDespacho + "', ");
+            a.Append("FechaOficializacion='" + InfoRegistroDespacho.FechaOficializacion.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
-        public void RecepcionDocumentos(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos OrdenCompraInfoRecepcionDocumentos)
+        public void InspeccionRENAR(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            a.Append("update OrdenCompra ");
+            for (int i = 0; i < HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            a.Append("update OrdenCompra set ");
+            a.Append("FechaInspeccionRENAR='" + InfoInspeccionRENAR.FechaInspeccionRENAR.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
-        public void RegistroDespacho(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho OrdenCompraInfoRegistroDespacho)
+        public void IngresoADeposito(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            a.Append("update OrdenCompra ");
+            for (int i = 0; i < HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            a.Append("update OrdenCompra set ");
+            a.Append("FechaIngresoDeposito='" + InfoIngresoADeposito.FechaIngresoDeposito.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }

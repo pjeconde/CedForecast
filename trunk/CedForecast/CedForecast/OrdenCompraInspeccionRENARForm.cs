@@ -11,10 +11,30 @@ namespace CedForecast
     public partial class OrdenCompraInspeccionRENARForm : Cedeira.UI.frmBase
     {
         static string titulo = "Ingreso Info Embarque";
+        CedForecastEntidades.OrdenCompraInfoInspeccionRENAR infoInspeccionRENAR = new CedForecastEntidades.OrdenCompraInfoInspeccionRENAR();
+        List<CedForecastEntidades.OrdenCompra> ordenesCompra;
 
-        public OrdenCompraInspeccionRENARForm() : base(titulo)
+        public OrdenCompraInspeccionRENARForm(List<CedForecastEntidades.OrdenCompra> OrdenesCompra) : base(titulo)
         {
             InitializeComponent();
+            ordenesCompra = OrdenesCompra;
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenarCampos();
+                CedForecastRN.OrdenCompra.InspeccionRENAR(ordenesCompra, infoInspeccionRENAR, Aplicacion.Sesion);
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+            }
+        }
+        private void LlenarCampos()
+        {
+            infoInspeccionRENAR.FechaInspeccionRENAR = FechaInspeccionRENARCalendarCombo.Value.Date;
         }
     }
 }

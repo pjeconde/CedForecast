@@ -66,7 +66,7 @@ namespace CedForecastRN
             }
             if (OrdenCompra.FechaEstimadaArriboRequerida <= OrdenCompra.Fecha)
             {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estim.arribo req.");
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de arribo requerida");
             }
         }
         public static void Alta(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, CedEntidades.Sesion Sesion)
@@ -81,49 +81,149 @@ namespace CedForecastRN
             new CedForecastDB.OrdenCompra(Sesion).Alta(OrdenCompraInfoAlta, handler);
         }
 
-        private static void ValidacionIngresoADeposito(CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
-        {
-        }
-        public static void IngresoADeposito(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
-        {
-            ValidacionIngresoADeposito(InfoIngresoADeposito, Sesion);
-            new CedForecastDB.OrdenCompra(Sesion).IngresoADeposito(ListaOrdenesCompra(OrdenesCompra), InfoIngresoADeposito);
-        }
-
         private static void ValidacionIngresoInfoEmbarque(CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, CedEntidades.Sesion Sesion)
         {
+            if (InfoEmbarque.IdReferenciaSAP == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Referencia SAP");
+            }
+            if (InfoEmbarque.Vapor == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Vapor");
+            }
+            if (InfoEmbarque.FechaEstimadaSalida < DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de salida");
+            }
+            if (InfoEmbarque.FechaEstimadaArribo < InfoEmbarque.FechaEstimadaSalida)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de arribo");
+            }
         }
         public static void IngresoInfoEmbarque(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, CedEntidades.Sesion Sesion)
         {
             ValidacionIngresoInfoEmbarque(InfoEmbarque, Sesion);
-            new CedForecastDB.OrdenCompra(Sesion).IngresoInfoEmbarque(ListaOrdenesCompra(OrdenesCompra), InfoEmbarque);
-        }
-
-        public static void ValidacionInspeccionRENAR(CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
-        {
-        }
-        public static void InspeccionRENAR(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
-        {
-            ValidacionInspeccionRENAR(InfoInspeccionRENAR, Sesion);
-            new CedForecastDB.OrdenCompra(Sesion).InspeccionRENAR(ListaOrdenesCompra(OrdenesCompra), InfoInspeccionRENAR);
+            CedEntidades.Evento eventoWF=new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "IngInfoEmb";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i<OrdenesCompra.Count; i++)
+            {
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            }
+            new CedForecastDB.OrdenCompra(Sesion).IngresoInfoEmbarque(ListaOrdenesCompra(OrdenesCompra), InfoEmbarque, handlers);
         }
 
         public static void ValidacionRecepcionDocumentos(CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
         {
+            if (InfoRecepcionDocumentos.NroConocimientoEmbarque == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Nº Conocimiento de Embarque");
+            }
+            if (InfoRecepcionDocumentos.Factura == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Factura");
+            }
+            if (InfoRecepcionDocumentos.FechaRecepcionDocumentos < DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de recepción de documentos");
+            }
         }
         public static void RecepcionDocumentos(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
         {
             ValidacionRecepcionDocumentos(InfoRecepcionDocumentos, Sesion);
-            new CedForecastDB.OrdenCompra(Sesion).RecepcionDocumentos(ListaOrdenesCompra(OrdenesCompra), InfoRecepcionDocumentos);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "RecepDocs";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i < OrdenesCompra.Count; i++)
+            {
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            } 
+            new CedForecastDB.OrdenCompra(Sesion).RecepcionDocumentos(ListaOrdenesCompra(OrdenesCompra), InfoRecepcionDocumentos, handlers);
         }
 
         public static void ValidacionRegistroDespacho(CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
         {
+            if (InfoRegistroDespacho.NroDespacho == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Nº Despacho");
+            }
+            if (InfoRegistroDespacho.FechaOficializacion < DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de oficialización");
+            }
         }
         public static void RegistroDespacho(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
         {
             ValidacionRegistroDespacho(InfoRegistroDespacho, Sesion);
-            new CedForecastDB.OrdenCompra(Sesion).RegistroDespacho(ListaOrdenesCompra(OrdenesCompra), InfoRegistroDespacho);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "RegDesp";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i < OrdenesCompra.Count; i++)
+            {
+                CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicional = new CedForecastEntidades.ArticuloInfoAdicional();
+                articuloInfoAdicional.IdArticulo = OrdenesCompra[i].IdArticulo;
+                CedForecastRN.ArticuloInfoAdicional.Leer(articuloInfoAdicional, Sesion);
+                if (articuloInfoAdicional.IdRENAR == String.Empty)
+                {
+                    eventoWF.IdEstadoHst.IdEstado = "PteIngrADep";
+                }
+                else
+                {
+                    eventoWF.IdEstadoHst.IdEstado = "PteInspRenar";
+                }
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            } 
+            new CedForecastDB.OrdenCompra(Sesion).RegistroDespacho(ListaOrdenesCompra(OrdenesCompra), InfoRegistroDespacho, handlers);
+        }
+
+        public static void ValidacionInspeccionRENAR(CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
+        {
+            if (InfoInspeccionRENAR.FechaInspeccionRENAR < DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha inspección RENAR");
+            }
+        }
+        public static void InspeccionRENAR(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
+        {
+            ValidacionInspeccionRENAR(InfoInspeccionRENAR, Sesion);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "InspRenar";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i < OrdenesCompra.Count; i++)
+            {
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            }
+            new CedForecastDB.OrdenCompra(Sesion).InspeccionRENAR(ListaOrdenesCompra(OrdenesCompra), InfoInspeccionRENAR, handlers);
+        }
+
+        private static void ValidacionIngresoADeposito(CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
+        {
+            if (InfoIngresoADeposito.FechaIngresoDeposito < DateTime.Today)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de salida");
+            }
+        }
+        public static void IngresoADeposito(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedForecastEntidades.OrdenCompraInfoIngresoADeposito InfoIngresoADeposito, CedEntidades.Sesion Sesion)
+        {
+            ValidacionIngresoADeposito(InfoIngresoADeposito, Sesion);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "IngrADep";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i < OrdenesCompra.Count; i++)
+            {
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            }
+            new CedForecastDB.OrdenCompra(Sesion).IngresoADeposito(ListaOrdenesCompra(OrdenesCompra), InfoIngresoADeposito, handlers);
         }
 
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)
@@ -132,7 +232,7 @@ namespace CedForecastRN
             for (int i = 0; i < OrdenesCompra.Count; i++)
             {
                 if (i > 0) a.Append(", ");
-                a.Append("'" + OrdenesCompra[i].Id.ToString() + OrdenesCompra[i].IdItem + "'");
+                a.Append(OrdenesCompra[i].Id.ToString() + OrdenesCompra[i].IdItem);
             }
             return a.ToString();
         }
