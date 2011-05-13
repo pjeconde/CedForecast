@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraRegistroDespachoForm));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.FechaIngresoAPuertoCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.NroDespachoEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.FechaOficializacionCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.FechaLabel = new System.Windows.Forms.Label();
-            this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
-            this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
-            this.FechaIngresoAPuertoCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.label2 = new System.Windows.Forms.Label();
             this.FondoNicePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,6 +64,27 @@
             this.panel2.Size = new System.Drawing.Size(290, 30);
             this.panel2.TabIndex = 0;
             // 
+            // AceptarUiButton
+            // 
+            this.AceptarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.AceptarUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.AceptarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AceptarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AceptarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.AceptarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AceptarUiButton.Icon")));
+            this.AceptarUiButton.Location = new System.Drawing.Point(0, 3);
+            this.AceptarUiButton.Name = "AceptarUiButton";
+            this.AceptarUiButton.ShowFocusRectangle = false;
+            this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
+            this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.AceptarUiButton.TabIndex = 43;
+            this.AceptarUiButton.TabStop = false;
+            this.AceptarUiButton.Text = "Aceptar";
+            this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
+            this.AceptarUiButton.UseThemes = false;
+            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.SalirUiButton);
@@ -72,6 +93,27 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(82, 24);
             this.panel3.TabIndex = 39;
+            // 
+            // SalirUiButton
+            // 
+            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.SalirUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.SalirUiButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
+            this.SalirUiButton.Location = new System.Drawing.Point(4, 0);
+            this.SalirUiButton.Name = "SalirUiButton";
+            this.SalirUiButton.ShowFocusRectangle = false;
+            this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
+            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.SalirUiButton.TabIndex = 21;
+            this.SalirUiButton.TabStop = false;
+            this.SalirUiButton.Text = "Cancelar";
+            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
+            this.SalirUiButton.UseThemes = false;
             // 
             // panel4
             // 
@@ -98,6 +140,38 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(290, 108);
             this.panel5.TabIndex = 8;
+            // 
+            // FechaIngresoAPuertoCalendarCombo
+            // 
+            this.FechaIngresoAPuertoCalendarCombo.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Name = "";
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.FechaIngresoAPuertoCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.FechaIngresoAPuertoCalendarCombo.ForeColor = System.Drawing.Color.Black;
+            this.FechaIngresoAPuertoCalendarCombo.Location = new System.Drawing.Point(149, 0);
+            this.FechaIngresoAPuertoCalendarCombo.Name = "FechaIngresoAPuertoCalendarCombo";
+            this.FechaIngresoAPuertoCalendarCombo.Size = new System.Drawing.Size(96, 20);
+            this.FechaIngresoAPuertoCalendarCombo.TabIndex = 9094;
+            this.FechaIngresoAPuertoCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.FechaIngresoAPuertoCalendarCombo.TodayButtonText = "Hoy";
+            this.FechaIngresoAPuertoCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
+            // label2
+            // 
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 20);
+            this.label2.TabIndex = 9093;
+            this.label2.Text = "Fecha de ingreso a puerto";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -155,79 +229,6 @@
             this.FechaLabel.TabIndex = 9077;
             this.FechaLabel.Text = "Fecha de oficialización";
             this.FechaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // AceptarUiButton
-            // 
-            this.AceptarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.AceptarUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.AceptarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AceptarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AceptarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AceptarUiButton.Icon")));
-            this.AceptarUiButton.Location = new System.Drawing.Point(0, 3);
-            this.AceptarUiButton.Name = "AceptarUiButton";
-            this.AceptarUiButton.ShowFocusRectangle = false;
-            this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
-            this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.TabIndex = 43;
-            this.AceptarUiButton.TabStop = false;
-            this.AceptarUiButton.Text = "Aceptar";
-            this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
-            this.AceptarUiButton.UseThemes = false;
-            // 
-            // SalirUiButton
-            // 
-            this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.SalirUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.SalirUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SalirUiButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.SalirUiButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(4, 0);
-            this.SalirUiButton.Name = "SalirUiButton";
-            this.SalirUiButton.ShowFocusRectangle = false;
-            this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
-            this.SalirUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.SalirUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.SalirUiButton.TabIndex = 21;
-            this.SalirUiButton.TabStop = false;
-            this.SalirUiButton.Text = "Cancelar";
-            this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
-            this.SalirUiButton.UseThemes = false;
-            // 
-            // FechaIngresoAPuertoCalendarCombo
-            // 
-            this.FechaIngresoAPuertoCalendarCombo.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2011, 4, 1, 0, 0, 0, 0);
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Name = "";
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.FechaIngresoAPuertoCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.FechaIngresoAPuertoCalendarCombo.FlatBorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.FechaIngresoAPuertoCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.FechaIngresoAPuertoCalendarCombo.Location = new System.Drawing.Point(149, 0);
-            this.FechaIngresoAPuertoCalendarCombo.Name = "FechaIngresoAPuertoCalendarCombo";
-            this.FechaIngresoAPuertoCalendarCombo.Size = new System.Drawing.Size(96, 20);
-            this.FechaIngresoAPuertoCalendarCombo.TabIndex = 9094;
-            this.FechaIngresoAPuertoCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.FechaIngresoAPuertoCalendarCombo.TodayButtonText = "Hoy";
-            this.FechaIngresoAPuertoCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            // 
-            // label2
-            // 
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 20);
-            this.label2.TabIndex = 9093;
-            this.label2.Text = "Fecha de ingreso a puerto";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // OrdenCompraRegistroDespachoForm
             // 

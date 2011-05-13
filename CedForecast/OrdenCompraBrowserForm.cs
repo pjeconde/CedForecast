@@ -28,7 +28,6 @@ namespace CedForecast
             }
             Text = titulo;
             FondoNicePanel.HeaderText = titulo;
-            EstadoUiCheckBox.Checked = true;
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
         }
         public OrdenCompraBrowserForm()
@@ -37,7 +36,7 @@ namespace CedForecast
 		}
         private void ConfigurarFiltros()
         {
-            FechaDsdCalendarCombo.Value = DateTime.Now;
+            FechaDsdCalendarCombo.Value = new DateTime(2011, 1, 1);
             FechaHstCalendarCombo.Value = DateTime.Now;
 
             CedEntidades.WF wf = new CedEntidades.WF();
@@ -258,7 +257,7 @@ namespace CedForecast
         private void IngInfoEmbUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoInfoEmbarqueForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoInfoEmbarqueForm(OrdenesCompraSeleccionadas());
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -266,7 +265,7 @@ namespace CedForecast
         private void RecepDocsUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraRecepcionDocumentosForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraRecepcionDocumentosForm(OrdenesCompraSeleccionadas());
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -274,7 +273,7 @@ namespace CedForecast
         private void RegDespUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraRegistroDespachoForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraRegistroDespachoForm(OrdenesCompraSeleccionadas());
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -282,7 +281,7 @@ namespace CedForecast
         private void InspRenarUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraInspeccionRENARForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraInspeccionRENARForm(OrdenesCompraSeleccionadas());
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
@@ -290,10 +289,19 @@ namespace CedForecast
         private void IngrADepUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoADepositoForm();
+            System.Windows.Forms.Form oFrm = new OrdenCompraIngresoADepositoForm(OrdenesCompraSeleccionadas());
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
+        }
+        private List<CedForecastEntidades.OrdenCompra> OrdenesCompraSeleccionadas()
+        {
+            List<CedForecastEntidades.OrdenCompra> ordenesCompraSeleccionadas = new List<CedForecastEntidades.OrdenCompra>();
+            for (int i = 0; i < BrowserGridEX.SelectedItems.Count; i++)
+            {
+                ordenesCompraSeleccionadas.Add(((List<CedForecastEntidades.OrdenCompra>)BrowserGridEX.Tag)[BrowserGridEX.SelectedItems[i].Position]);
+            }
+            return ordenesCompraSeleccionadas;
         }
     }
     public class EventoReferencia

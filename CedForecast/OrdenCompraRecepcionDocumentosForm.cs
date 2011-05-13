@@ -11,10 +11,32 @@ namespace CedForecast
     public partial class OrdenCompraRecepcionDocumentosForm : Cedeira.UI.frmBase
     {
         static string titulo = "Recepción de Documentos";
+        CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos infoRecepcionDocumentos = new CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos();
+        List<CedForecastEntidades.OrdenCompra> ordenesCompra;
 
-        public OrdenCompraRecepcionDocumentosForm() : base(titulo)
+        public OrdenCompraRecepcionDocumentosForm(List<CedForecastEntidades.OrdenCompra> OrdenesCompra) : base(titulo)
         {
             InitializeComponent();
+            ordenesCompra = OrdenesCompra;
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenarCampos();
+                CedForecastRN.OrdenCompra.RecepcionDocumentos(ordenesCompra, infoRecepcionDocumentos, Aplicacion.Sesion);
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+            }
+        }
+        private void LlenarCampos()
+        {
+            infoRecepcionDocumentos.NroConocimientoEmbarque = NroConocimientoEmbarqueEditBox.Text;
+            infoRecepcionDocumentos.Factura = FacturaEditBox.Text;
+            infoRecepcionDocumentos.FechaRecepcionDocumentos = FechaRecepcionDocumentosCalendarCombo.Value.Date;
         }
     }
 }
