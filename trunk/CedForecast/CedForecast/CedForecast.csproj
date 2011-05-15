@@ -114,6 +114,12 @@
     <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.Designer.cs">
       <DependentUpon>OrdenCompraActualizacionInfoEmbarqueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrdenCompraDetalleCompletoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenCompraDetalleCompletoForm.Designer.cs">
+      <DependentUpon>OrdenCompraDetalleCompletoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrdenCompraIngresoADepositoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +222,10 @@
     <EmbeddedResource Include="OrdenCompraBrowserForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OrdenCompraBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenCompraDetalleCompletoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OrdenCompraDetalleCompletoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrdenCompraIngresoADepositoForm.resx">
       <SubType>Designer</SubType>

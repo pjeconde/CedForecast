@@ -127,6 +127,81 @@
     <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true"&gt;&lt;Column0 ID="Prefijo"&gt;&lt;Caption&gt;p&lt;/Caption&gt;&lt;DataMember&gt;Prefijo&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Prefijo&lt;/HeaderToolTip&gt;&lt;Key&gt;Prefijo&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;14&lt;/Width&gt;&lt;HeaderStyle&gt;&lt;ForeColor&gt;PeachPuff&lt;/ForeColor&gt;&lt;/HeaderStyle&gt;&lt;/Column0&gt;&lt;Column1 ID="Id"&gt;&lt;Caption&gt;Nº&lt;/Caption&gt;&lt;DataMember&gt;Id&lt;/DataMember&gt;&lt;HeaderAlignment&gt;Far&lt;/HeaderAlignment&gt;&lt;Key&gt;Id&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;43&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="IdItem"&gt;&lt;Caption&gt;i&lt;/Caption&gt;&lt;DataMember&gt;IdItem&lt;/DataMember&gt;&lt;HeaderToolTip&gt;IdItem&lt;/HeaderToolTip&gt;&lt;Key&gt;IdItem&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;12&lt;/Width&gt;&lt;HeaderStyle&gt;&lt;ForeColor&gt;PeachPuff&lt;/ForeColor&gt;&lt;/HeaderStyle&gt;&lt;/Column2&gt;&lt;Column3 ID="Fecha"&gt;&lt;Caption&gt;Fecha&lt;/Caption&gt;&lt;DataMember&gt;Fecha&lt;/DataMember&gt;&lt;FormatString&gt;dd/MM/yyyy&lt;/FormatString&gt;&lt;Key&gt;Fecha&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="DescrEstado"&gt;&lt;Caption&gt;Estado&lt;/Caption&gt;&lt;DataMember&gt;DescrEstado&lt;/DataMember&gt;&lt;Key&gt;DescrEstado&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;200&lt;/Width&gt;&lt;/Column4&gt;&lt;Column5 ID="DescrArticulo"&gt;&lt;Caption&gt;Articulo&lt;/Caption&gt;&lt;DataMember&gt;DescrArticulo&lt;/DataMember&gt;&lt;Key&gt;DescrArticulo&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Width&gt;168&lt;/Width&gt;&lt;/Column5&gt;&lt;Column6 ID="FechaEstimadaArriboRequerida"&gt;&lt;Caption&gt;F.EstArrReq&lt;/Caption&gt;&lt;DataMember&gt;FechaEstimadaArriboRequerida&lt;/DataMember&gt;&lt;FormatString&gt;dd/MM/yyyy&lt;/FormatString&gt;&lt;HeaderToolTip&gt;Fecha estimada de arribo requerida&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaEstimadaArriboRequerida&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="Cantidad"&gt;&lt;Caption&gt;Cantidad&lt;/Caption&gt;&lt;DataMember&gt;Cantidad&lt;/DataMember&gt;&lt;Key&gt;Cantidad&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column7&gt;&lt;Column8 ID="IdMoneda"&gt;&lt;Caption&gt;Mon&lt;/Caption&gt;&lt;DataMember&gt;IdMoneda&lt;/DataMember&gt;&lt;Key&gt;IdMoneda&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;35&lt;/Width&gt;&lt;/Column8&gt;&lt;Column9 ID="Precio"&gt;&lt;Caption&gt;Precio&lt;/Caption&gt;&lt;DataMember&gt;Precio&lt;/DataMember&gt;&lt;Key&gt;Precio&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column9&gt;&lt;Column10 ID="Importe"&gt;&lt;Caption&gt;Importe&lt;/Caption&gt;&lt;DataMember&gt;Importe&lt;/DataMember&gt;&lt;Key&gt;Importe&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column10&gt;&lt;Column11 ID="ImporteGastosNacionalizacion"&gt;&lt;Caption&gt;Gs.Nacionaliz.&lt;/Caption&gt;&lt;DataMember&gt;ImporteGastosNacionalizacion&lt;/DataMember&gt;&lt;Key&gt;ImporteGastosNacionalizacion&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column11&gt;&lt;Column12 ID="CantidadPresentacion"&gt;&lt;Caption&gt;q Presentacion&lt;/Caption&gt;&lt;DataMember&gt;CantidadPresentacion&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Cantidad Presentacion&lt;/HeaderToolTip&gt;&lt;Key&gt;CantidadPresentacion&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column12&gt;&lt;Column13 ID="CantidadContenedores"&gt;&lt;Caption&gt;q Contenedores&lt;/Caption&gt;&lt;DataMember&gt;CantidadContenedores&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Cantidad de Contenedores&lt;/HeaderToolTip&gt;&lt;Key&gt;CantidadContenedores&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;TextAlignment&gt;Far&lt;/TextAlignment&gt;&lt;/Column13&gt;&lt;Column14 ID="ComentarioContenedores"&gt;&lt;Caption&gt;Comentario (Contenedores)&lt;/Caption&gt;&lt;DataMember&gt;ComentarioContenedores&lt;/DataMember&gt;&lt;Key&gt;ComentarioContenedores&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;Width&gt;168&lt;/Width&gt;&lt;/Column14&gt;&lt;Column15 ID="IdReferenciaSAP"&gt;&lt;Caption&gt;IdReferenciaSAP&lt;/Caption&gt;&lt;DataMember&gt;IdReferenciaSAP&lt;/DataMember&gt;&lt;Key&gt;IdReferenciaSAP&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column15&gt;&lt;Column16 ID="FechaEstimadaSalida"&gt;&lt;Caption&gt;F.Est.Salida&lt;/Caption&gt;&lt;DataMember&gt;FechaEstimadaSalidaFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha estimada de salida&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaEstimadaSalida&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column16&gt;&lt;Column17 ID="Vapor"&gt;&lt;Caption&gt;Vapor&lt;/Caption&gt;&lt;DataMember&gt;Vapor&lt;/DataMember&gt;&lt;Key&gt;Vapor&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column17&gt;&lt;Column18 ID="FechaEstimadaArribo"&gt;&lt;Caption&gt;F.Est.Arribo&lt;/Caption&gt;&lt;DataMember&gt;FechaEstimadaArriboFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha estimada de arribo&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaEstimadaArribo&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column18&gt;&lt;Column19 ID="NroConocimientoEmbarque"&gt;&lt;Caption&gt;Nº Conocim.Embarque&lt;/Caption&gt;&lt;DataMember&gt;NroConocimientoEmbarque&lt;/DataMember&gt;&lt;Key&gt;NroConocimientoEmbarque&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column19&gt;&lt;Column20 ID="Factura"&gt;&lt;Caption&gt;Factura&lt;/Caption&gt;&lt;DataMember&gt;Factura&lt;/DataMember&gt;&lt;Key&gt;Factura&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column20&gt;&lt;Column21 ID="FechaRecepcionDocumentos"&gt;&lt;Caption&gt;F.Rec.Docs&lt;/Caption&gt;&lt;DataMember&gt;FechaRecepcionDocumentosFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha de recepcion de documentos&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaRecepcionDocumentos&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column21&gt;&lt;Column22 ID="FechaIngresoAPuerto"&gt;&lt;Caption&gt;F.Ing.a Pto&lt;/Caption&gt;&lt;DataMember&gt;FechaIngresoAPuertoFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha de ingreso a puerto&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaIngresoAPuerto&lt;/Key&gt;&lt;Position&gt;22&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column22&gt;&lt;Column23 ID="NroDespacho"&gt;&lt;Caption&gt;Nº Despacho&lt;/Caption&gt;&lt;DataMember&gt;NroDespacho&lt;/DataMember&gt;&lt;Key&gt;NroDespacho&lt;/Key&gt;&lt;Position&gt;23&lt;/Position&gt;&lt;Width&gt;130&lt;/Width&gt;&lt;/Column23&gt;&lt;Column24 ID="FechaOficializacion"&gt;&lt;Caption&gt;F.Oficializ.&lt;/Caption&gt;&lt;DataMember&gt;FechaOficializacionFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha de oficializacion&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaOficializacion&lt;/Key&gt;&lt;Position&gt;24&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column24&gt;&lt;Column25 ID="FechaInspeccionRENAR"&gt;&lt;Caption&gt;F.RENAR&lt;/Caption&gt;&lt;DataMember&gt;FechaInspeccionRENARFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha de inspeccion RENAR&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaInspeccionRENAR&lt;/Key&gt;&lt;Position&gt;25&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column25&gt;&lt;Column26 ID="FechaIngresoDeposito"&gt;&lt;Caption&gt;F.Ing.Dep.&lt;/Caption&gt;&lt;DataMember&gt;FechaIngresoDepositoFMT&lt;/DataMember&gt;&lt;HeaderToolTip&gt;Fecha de ingreso a deposito&lt;/HeaderToolTip&gt;&lt;Key&gt;FechaIngresoDeposito&lt;/Key&gt;&lt;Position&gt;26&lt;/Position&gt;&lt;TextAlignment&gt;Center&lt;/TextAlignment&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column26&gt;&lt;Column27 ID="Comentario"&gt;&lt;Caption&gt;Comentario&lt;/Caption&gt;&lt;DataMember&gt;Comentario&lt;/DataMember&gt;&lt;Key&gt;Comentario&lt;/Key&gt;&lt;Position&gt;27&lt;/Position&gt;&lt;Width&gt;168&lt;/Width&gt;&lt;/Column27&gt;&lt;Column28 ID="IdArticulo"&gt;&lt;Caption&gt;IdArticulo&lt;/Caption&gt;&lt;DataMember&gt;IdArticulo&lt;/DataMember&gt;&lt;Key&gt;IdArticulo&lt;/Key&gt;&lt;Position&gt;28&lt;/Position&gt;&lt;/Column28&gt;&lt;Column29 ID="IdProveedor"&gt;&lt;Caption&gt;IdProveedor&lt;/Caption&gt;&lt;DataMember&gt;IdProveedor&lt;/DataMember&gt;&lt;Key&gt;IdProveedor&lt;/Key&gt;&lt;Position&gt;29&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column29&gt;&lt;Column30 ID="DescrProveedor"&gt;&lt;Caption&gt;Proveedor&lt;/Caption&gt;&lt;DataMember&gt;DescrProveedor&lt;/DataMember&gt;&lt;Key&gt;DescrProveedor&lt;/Key&gt;&lt;Position&gt;30&lt;/Position&gt;&lt;Width&gt;150&lt;/Width&gt;&lt;/Column30&gt;&lt;Column31 ID="IdPaisOrigen"&gt;&lt;Caption&gt;IdPaisOrigen&lt;/Caption&gt;&lt;DataMember&gt;IdPaisOrigen&lt;/DataMember&gt;&lt;Key&gt;IdPaisOrigen&lt;/Key&gt;&lt;Position&gt;31&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column31&gt;&lt;Column32 ID="DescrPaisOrigen"&gt;&lt;Caption&gt;Pais de origen&lt;/Caption&gt;&lt;DataMember&gt;DescrPaisOrigen&lt;/DataMember&gt;&lt;Key&gt;DescrPaisOrigen&lt;/Key&gt;&lt;Position&gt;32&lt;/Position&gt;&lt;Width&gt;150&lt;/Width&gt;&lt;/Column32&gt;&lt;/Columns&gt;&lt;GridLineColor&gt;Silver&lt;/GridLineColor&gt;&lt;GroupCondition ID="" /&gt;&lt;ShowGroupConditionCount&gt;True&lt;/ShowGroupConditionCount&gt;&lt;StoredFilters Collection="true"&gt;&lt;StoredFilter0 ID="SoloVigentes"&gt;&lt;FilterCondition&gt;&lt;Value1&gt;A&lt;/Value1&gt;&lt;/FilterCondition&gt;&lt;Key&gt;SoloVigentes&lt;/Key&gt;&lt;/StoredFilter0&gt;&lt;/StoredFilters&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ConsultaUiButton.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        /wDwD/8A8AD/APAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAA
+        DwDwAA8A8AAPAPAADwDwAB8A8AA/APAAfwDwAf8A8AP/ACgAAAAYAAAAMAAAAAEAIAAAAAAAYAkAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ32oz4+KoP+/kJz//5mZv/+ZmX//mZlP/5mZDwAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAEIy7/zi85P8ios7/EY69/z98o/9vg6D/r4yc/9qTmt//mZmf/5mZb/+ZmS8AAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF5PC/3bj//+N6P//eeT//2Pg
+        //8rvuj/HKrX/w6QwP8kgKz/T3ue/4+Fm/+/jZr//5mZv/+ZmX//mZlP/5mZDwAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAGpXD/4Pm//+t7v//v/L//8z1///f+P//wPL//6Ps//9r4f//Oszz/xKx
+        4f8Il8j/A4O1/z91m/9vfZr/nIWZzwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG5bD/4bn
+        //+t7v//v/L//8z1///f+P//8fz//////////////////+L5//+28P//d+P//0bZ//8As+b/AJPG/wAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHZjF/4zo//+t7v//v/L//8z1///f+P//7/v/////
+        ////////////////////////////////////////ALPm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAIJrH/4/o//+q7v//vPH//8r0///d+P//7fv///z+////////////////////////////////
+        ////////CLTm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIpvH/5Hp//+m7f//uPD//8j0
+        ///Y9///6vr///b9////////////////////////////////////////Dbbm/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAI53J/5Dp//+k7f//su///8Pz///R9v//4Pj//+77///8/v//////////
+        ////////////////////////E7jn/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJZ7K/5Pp
+        //+e6///qu7//7rx///I9P//1/f//+b5///w+////P7/////////////////////////////Grrn/wAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ5/K/5Tp//+W6v//pO3//7Lv///B8v//y/T//9n3
+        ///m+f//7vv///b9///8/v3/////////////////ILvo/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAKaHM/5Hp//+N6P//nOv//6ft//+07///xPP//8v0///X9///3/j//+j6///6/Or/8fj5//H8
+        ///u+///JLzo/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK6PN/5Xq//+C5v//kOj//6Ds
+        //+n7f//tO///8Dy///I9P//0fb//9j3////6tX/8+Xc/9/4///e+P//K77o/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAALqTO/5Dp//985f//hOb//5Pp//+g7P//p+3//7Lv//+68f//wvL//9Xw
+        8///1cb//8K3/9Ps9P/M9f//MsDp/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL6XP/4/o
+        //9u4v//fOX//4Tm//+Q6P//nOv//6Tt//+q7v//s+///9rf4P//wrf//7Gq/+i/wv+88f//OMHp/wAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMafQ/5Do//9h3///buL//3zl//+C5v//jej//5Tp
+        //+d6///pO3//+jKx///xsD//8/O//yWlv+24vD/PcLp/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAANKnR/43o//9X3f//YN///2vh//925P//gOb//4bn//+N6P//k+n///+xqv//6un/6Pr//87Z
+        4v/Frrf/RcXq/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANarS/4rn//9K2///Vt3//13e
+        //9o4f//b+L//3jk//9+5f//oNfp//+3tv/o+v//xPP//6Ds//+D3fb/Scbq/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAN6zU/4nn//872P//R9r//1Dc//9Z3f//X9///2fg//9t4v//uL7M/+rU
+        2P/E8///oOz//33k//9p3Pr/J6HM/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOq3V/4bm
+        //8v1f//ONf//0LZ//9K2///Utz//1nd//9d3v//0bW+/8Tz//+g7P//g+b//2nT8f8Yk8HvAH2wTwAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPK/W/4Pm//8i0v//KdT//zTW//861///Qtn//0nb
+        //9O2///0MzU/6Ds//+R6P//ZMno/wqKu88AgbQfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAPbDX/4Dm//8T0P//HdH//yTT//8r1P//NNb//zjX//9i0fD/ouz//6Ts//9Gstf/AIW4nwCE
+        tw8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7LY/9z4//+58f//tPD//5nq
+        //+A5f//e+T//3vk//+X6v//qen6/yOdye8AiLtfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAJnMvwCYy78Alsm/AJXIvyGiz983rNT/NarS/zSp0f8xp9D/DpPD3wCK
+        vS8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwH/8A8AH/APAADwDwAA8A8AAPAPAA
+        DwDwAA8A8AAPAPAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAADwDwAA8A8AAPAPAA
+        HwDwAD8A8AD/APAB/wA=
+</value>
+  </data>
   <data name="MinimizarUiButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
@@ -682,6 +757,9 @@
         AAD//AEA//wDAP//AwA=
 </value>
   </data>
+  <metadata name="EnviarAUiButton.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="EnviarAUiButton.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAGBgAAAEACADIBgAAJgAAABgYAAABACAAiAkAAO4GAAAoAAAAGAAAADAAAAABAAgAAAAAAEAC
