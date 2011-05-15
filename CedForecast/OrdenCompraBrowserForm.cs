@@ -115,14 +115,6 @@ namespace CedForecast
                     IngInfoEmbUiButton.Enabled = true;
                     if (XLote) IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
                     break;
-                case "IngrADep":
-                    IngrADepUiButton.Enabled = true;
-                    if (XLote) IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
-                    break;
-                case "InspRenar":
-                    InspRenarUiButton.Enabled = true;
-                    if (XLote) InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
-                    break;
                 case "RecepDocs":
                     RecepDocsUiButton.Enabled = true;
                     if (XLote) RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
@@ -131,22 +123,37 @@ namespace CedForecast
                     RegDespUiButton.Enabled = true;
                     if (XLote) RegDespUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
                     break;
+                case "InspRenar":
+                    InspRenarUiButton.Enabled = true;
+                    if (XLote) InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "IngrADep":
+                    IngrADepUiButton.Enabled = true;
+                    if (XLote) IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
+                case "Anul":
+                    AnulacionUiButton.Enabled = true;
+                    if (XLote) AnulacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Gold;
+                    break;
                 default:
                     break;
             }
         }
         private void DeshabilitarBotones()
         {
-            IngInfoEmbUiButton.Enabled = false;
-            IngrADepUiButton.Enabled = false;
-            InspRenarUiButton.Enabled = false;
+            IngInfoEmbUiButton.Enabled = false; 
             RecepDocsUiButton.Enabled = false;
             RegDespUiButton.Enabled = false;
+            InspRenarUiButton.Enabled = false;
+            IngrADepUiButton.Enabled = false;
+            AnulacionUiButton.Enabled = false;
+
             IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             RegDespUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            AnulacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
         }
         private void ActualizarBrowserGrid(object sender, System.EventArgs e)
         {
@@ -293,6 +300,16 @@ namespace CedForecast
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
+        }
+        private void AnulacionUiButton_Click(object sender, EventArgs e)
+        {
+            if (BrowserGridEX.SelectedItems.Count > 0 && MessageBox.Show("Confirma la anulación ?", "IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                Cursor = Cursors.WaitCursor;
+                CedForecastRN.OrdenCompra.Anulacion(OrdenesCompraSeleccionadas(), Aplicacion.Sesion);
+                ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+                Cursor = Cursors.Default;
+            }
         }
         private List<CedForecastEntidades.OrdenCompra> OrdenesCompraSeleccionadas()
         {

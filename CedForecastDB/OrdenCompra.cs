@@ -235,5 +235,15 @@ namespace CedForecastDB
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
+        public void Anulacion(List<string> HandlersWF)
+        {
+            StringBuilder a = new StringBuilder();
+            for (int i = 0; i < HandlersWF.Count; i++)
+            {
+                a.Append(HandlersWF[i]);
+                a.Append("end ");
+            }
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
     }
 }

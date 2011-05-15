@@ -226,6 +226,20 @@ namespace CedForecastRN
             new CedForecastDB.OrdenCompra(Sesion).IngresoADeposito(ListaOrdenesCompra(OrdenesCompra), InfoIngresoADeposito, handlers);
         }
 
+        public static void Anulacion(List<CedForecastEntidades.OrdenCompra> OrdenesCompra, CedEntidades.Sesion Sesion)
+        {
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "Anul";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            List<string> handlers = new List<string>();
+            for (int i = 0; i < OrdenesCompra.Count; i++)
+            {
+                handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
+            }
+            new CedForecastDB.OrdenCompra(Sesion).Anulacion(handlers);
+        }
+
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)
         {
             StringBuilder a = new StringBuilder();
