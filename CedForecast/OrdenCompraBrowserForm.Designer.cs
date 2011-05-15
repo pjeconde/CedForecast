@@ -64,6 +64,7 @@ namespace CedForecast
             this.BrowserGridEX = new Janus.Windows.GridEX.GridEX();
             this.HerramientasUiPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.HerramientasUiPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
+            this.ConsultaUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
@@ -258,6 +259,7 @@ namespace CedForecast
             // 
             // HerramientasUiPanelContainer
             // 
+            this.HerramientasUiPanelContainer.Controls.Add(this.ConsultaUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.panel1);
             this.HerramientasUiPanelContainer.Controls.Add(this.AnulacionUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.IngrADepUiButton);
@@ -272,6 +274,25 @@ namespace CedForecast
             this.HerramientasUiPanelContainer.Name = "HerramientasUiPanelContainer";
             this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 415);
             this.HerramientasUiPanelContainer.TabIndex = 0;
+            // 
+            // ConsultaUiButton
+            // 
+            this.ConsultaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.ConsultaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ConsultaUiButton.Enabled = false;
+            this.ConsultaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.ConsultaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ConsultaUiButton.Icon")));
+            this.ConsultaUiButton.Location = new System.Drawing.Point(8, 185);
+            this.ConsultaUiButton.Name = "ConsultaUiButton";
+            this.ConsultaUiButton.ShowFocusRectangle = false;
+            this.ConsultaUiButton.Size = new System.Drawing.Size(158, 25);
+            this.ConsultaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.ConsultaUiButton.TabIndex = 41;
+            this.ConsultaUiButton.Tag = "Consulta";
+            this.ConsultaUiButton.Text = "Consulta";
+            this.ConsultaUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
+            this.ConsultaUiButton.UseThemes = false;
+            this.ConsultaUiButton.Click += new System.EventHandler(this.ConsultaUiButton_Click);
             // 
             // panel1
             // 
@@ -343,10 +364,10 @@ namespace CedForecast
             this.AnulacionUiButton.Enabled = false;
             this.AnulacionUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.AnulacionUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AnulacionUiButton.Icon")));
-            this.AnulacionUiButton.Location = new System.Drawing.Point(8, 153);
+            this.AnulacionUiButton.Location = new System.Drawing.Point(8, 160);
             this.AnulacionUiButton.Name = "AnulacionUiButton";
             this.AnulacionUiButton.ShowFocusRectangle = false;
-            this.AnulacionUiButton.Size = new System.Drawing.Size(158, 24);
+            this.AnulacionUiButton.Size = new System.Drawing.Size(158, 25);
             this.AnulacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AnulacionUiButton.TabIndex = 32;
             this.AnulacionUiButton.Tag = "Baja";
@@ -362,10 +383,10 @@ namespace CedForecast
             this.IngrADepUiButton.Enabled = false;
             this.IngrADepUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.IngrADepUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IngrADepUiButton.Icon")));
-            this.IngrADepUiButton.Location = new System.Drawing.Point(8, 129);
+            this.IngrADepUiButton.Location = new System.Drawing.Point(8, 135);
             this.IngrADepUiButton.Name = "IngrADepUiButton";
             this.IngrADepUiButton.ShowFocusRectangle = false;
-            this.IngrADepUiButton.Size = new System.Drawing.Size(158, 24);
+            this.IngrADepUiButton.Size = new System.Drawing.Size(158, 25);
             this.IngrADepUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.IngrADepUiButton.TabIndex = 31;
             this.IngrADepUiButton.Tag = "";
@@ -381,10 +402,10 @@ namespace CedForecast
             this.InspRenarUiButton.Enabled = false;
             this.InspRenarUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.InspRenarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("InspRenarUiButton.Icon")));
-            this.InspRenarUiButton.Location = new System.Drawing.Point(8, 105);
+            this.InspRenarUiButton.Location = new System.Drawing.Point(8, 110);
             this.InspRenarUiButton.Name = "InspRenarUiButton";
             this.InspRenarUiButton.ShowFocusRectangle = false;
-            this.InspRenarUiButton.Size = new System.Drawing.Size(158, 24);
+            this.InspRenarUiButton.Size = new System.Drawing.Size(158, 25);
             this.InspRenarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.InspRenarUiButton.TabIndex = 30;
             this.InspRenarUiButton.Tag = "";
@@ -400,10 +421,10 @@ namespace CedForecast
             this.RegDespUiButton.Enabled = false;
             this.RegDespUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.RegDespUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("RegDespUiButton.Icon")));
-            this.RegDespUiButton.Location = new System.Drawing.Point(8, 81);
+            this.RegDespUiButton.Location = new System.Drawing.Point(8, 85);
             this.RegDespUiButton.Name = "RegDespUiButton";
             this.RegDespUiButton.ShowFocusRectangle = false;
-            this.RegDespUiButton.Size = new System.Drawing.Size(158, 24);
+            this.RegDespUiButton.Size = new System.Drawing.Size(158, 25);
             this.RegDespUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.RegDespUiButton.TabIndex = 29;
             this.RegDespUiButton.Tag = "";
@@ -419,10 +440,10 @@ namespace CedForecast
             this.RecepDocsUiButton.Enabled = false;
             this.RecepDocsUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.RecepDocsUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("RecepDocsUiButton.Icon")));
-            this.RecepDocsUiButton.Location = new System.Drawing.Point(8, 57);
+            this.RecepDocsUiButton.Location = new System.Drawing.Point(8, 60);
             this.RecepDocsUiButton.Name = "RecepDocsUiButton";
             this.RecepDocsUiButton.ShowFocusRectangle = false;
-            this.RecepDocsUiButton.Size = new System.Drawing.Size(158, 24);
+            this.RecepDocsUiButton.Size = new System.Drawing.Size(158, 25);
             this.RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.RecepDocsUiButton.TabIndex = 28;
             this.RecepDocsUiButton.Tag = "";
@@ -438,10 +459,10 @@ namespace CedForecast
             this.IngInfoEmbUiButton.Enabled = false;
             this.IngInfoEmbUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.IngInfoEmbUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("IngInfoEmbUiButton.Icon")));
-            this.IngInfoEmbUiButton.Location = new System.Drawing.Point(8, 33);
+            this.IngInfoEmbUiButton.Location = new System.Drawing.Point(8, 35);
             this.IngInfoEmbUiButton.Name = "IngInfoEmbUiButton";
             this.IngInfoEmbUiButton.ShowFocusRectangle = false;
-            this.IngInfoEmbUiButton.Size = new System.Drawing.Size(158, 24);
+            this.IngInfoEmbUiButton.Size = new System.Drawing.Size(158, 25);
             this.IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.IngInfoEmbUiButton.TabIndex = 27;
             this.IngInfoEmbUiButton.Tag = "";
@@ -458,10 +479,10 @@ namespace CedForecast
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 177);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 210);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
-            this.EnviarAUiButton.Size = new System.Drawing.Size(158, 24);
+            this.EnviarAUiButton.Size = new System.Drawing.Size(158, 25);
             this.EnviarAUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.EnviarAUiButton.TabIndex = 26;
@@ -475,10 +496,10 @@ namespace CedForecast
             this.AltaUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AltaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.AltaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AltaUiButton.Icon")));
-            this.AltaUiButton.Location = new System.Drawing.Point(8, 9);
+            this.AltaUiButton.Location = new System.Drawing.Point(8, 10);
             this.AltaUiButton.Name = "AltaUiButton";
             this.AltaUiButton.ShowFocusRectangle = false;
-            this.AltaUiButton.Size = new System.Drawing.Size(158, 24);
+            this.AltaUiButton.Size = new System.Drawing.Size(158, 25);
             this.AltaUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.AltaUiButton.TabIndex = 24;
             this.AltaUiButton.Tag = "";
@@ -904,5 +925,6 @@ namespace CedForecast
         private Janus.Windows.EditControls.UIButton MinimizarUiButton;
         private Janus.Windows.EditControls.UIButton MaximizarUiButton;
         protected Janus.Windows.EditControls.UIButton SalirUiButton;
+        protected Janus.Windows.EditControls.UIButton ConsultaUiButton;
     }
 }

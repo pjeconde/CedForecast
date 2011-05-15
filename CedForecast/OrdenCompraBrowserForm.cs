@@ -70,6 +70,7 @@ namespace CedForecast
                         {
                             HabilitarBoton(ordenCompra.WF.EventosXLotePosibles[j].Id, false);
                         }
+                        ConsultaUiButton.Enabled = true;
                     }
                     else
                     {
@@ -147,6 +148,7 @@ namespace CedForecast
             InspRenarUiButton.Enabled = false;
             IngrADepUiButton.Enabled = false;
             AnulacionUiButton.Enabled = false;
+            ConsultaUiButton.Enabled = false;
 
             IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
@@ -310,6 +312,14 @@ namespace CedForecast
                 ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
                 Cursor = Cursors.Default;
             }
+        }
+        private void ConsultaUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Consulta", OrdenesCompraSeleccionadas()[0]);
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
         }
         private List<CedForecastEntidades.OrdenCompra> OrdenesCompraSeleccionadas()
         {
