@@ -64,6 +64,7 @@ namespace CedForecast
             this.BrowserGridEX = new Janus.Windows.GridEX.GridEX();
             this.HerramientasUiPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.HerramientasUiPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
+            this.ModificacionUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultaUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
@@ -259,6 +260,7 @@ namespace CedForecast
             // 
             // HerramientasUiPanelContainer
             // 
+            this.HerramientasUiPanelContainer.Controls.Add(this.ModificacionUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.ConsultaUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.panel1);
             this.HerramientasUiPanelContainer.Controls.Add(this.AnulacionUiButton);
@@ -275,6 +277,25 @@ namespace CedForecast
             this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 415);
             this.HerramientasUiPanelContainer.TabIndex = 0;
             // 
+            // ModificacionUiButton
+            // 
+            this.ModificacionUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.ModificacionUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModificacionUiButton.Enabled = false;
+            this.ModificacionUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.ModificacionUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ModificacionUiButton.Icon")));
+            this.ModificacionUiButton.Location = new System.Drawing.Point(8, 185);
+            this.ModificacionUiButton.Name = "ModificacionUiButton";
+            this.ModificacionUiButton.ShowFocusRectangle = false;
+            this.ModificacionUiButton.Size = new System.Drawing.Size(158, 25);
+            this.ModificacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.ModificacionUiButton.TabIndex = 42;
+            this.ModificacionUiButton.Tag = "Modificacion";
+            this.ModificacionUiButton.Text = "Modificacion";
+            this.ModificacionUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
+            this.ModificacionUiButton.UseThemes = false;
+            this.ModificacionUiButton.Click += new System.EventHandler(this.ModificacionUiButton_Click);
+            // 
             // ConsultaUiButton
             // 
             this.ConsultaUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -282,7 +303,7 @@ namespace CedForecast
             this.ConsultaUiButton.Enabled = false;
             this.ConsultaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ConsultaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ConsultaUiButton.Icon")));
-            this.ConsultaUiButton.Location = new System.Drawing.Point(8, 185);
+            this.ConsultaUiButton.Location = new System.Drawing.Point(8, 210);
             this.ConsultaUiButton.Name = "ConsultaUiButton";
             this.ConsultaUiButton.ShowFocusRectangle = false;
             this.ConsultaUiButton.Size = new System.Drawing.Size(158, 25);
@@ -479,7 +500,7 @@ namespace CedForecast
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 210);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 235);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
             this.EnviarAUiButton.Size = new System.Drawing.Size(158, 25);
@@ -926,5 +947,6 @@ namespace CedForecast
         private Janus.Windows.EditControls.UIButton MaximizarUiButton;
         protected Janus.Windows.EditControls.UIButton SalirUiButton;
         protected Janus.Windows.EditControls.UIButton ConsultaUiButton;
+        protected Janus.Windows.EditControls.UIButton ModificacionUiButton;
     }
 }

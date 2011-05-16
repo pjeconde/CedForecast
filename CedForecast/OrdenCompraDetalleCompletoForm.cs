@@ -51,33 +51,36 @@ namespace CedForecast
             FechaIngresoDepositoCalendarCombo.Value = OrdenCompra.FechaIngresoDeposito;
             IdEstadoUiComboBox.SelectedValue = OrdenCompra.WF.IdEstado;
             //Inhabilitar campos
-            FechaCalendarCombo.Enabled = false;
-            FechaEstimadaArriboRequeridaCalendarCombo.Enabled = false;
-            IdProveedorUiComboBox.Enabled = false;
-            IdPaisOrigenUiComboBox.Enabled = false;
-            PrefijoEditBox.Enabled = false;
-            IdArticuloUiComboBox.Enabled = false;
-            CantidadContenedoresNumericEditBox.Enabled = false;
-            ComentarioContenedoresEditBox.Enabled = false;
-            CantidadPresentacionNumericEditBox.Enabled = false;
-            CantidadNumericEditBox.Enabled = false;
-            IdMonedaUiComboBox.Enabled = false;
-            PrecioNumericEditBox.Enabled = false;
-            ImporteNumericEditBox.Enabled = false;
-            ImporteGastosNacionalizacionNumericEditBox.Enabled = false;
-            IdReferenciaSAPEditBox.Enabled = false;
-            FechaEstimadaSalidaCalendarCombo.Enabled = false;
-            VaporEditBox.Enabled = false;
-            FechaEstimadaArriboCalendarCombo.Enabled = false;
-            NroConocimientoEmbarqueEditBox.Enabled = false;
-            FacturaEditBox.Enabled = false;
-            FechaRecepcionDocumentosCalendarCombo.Enabled = false;
-            FechaIngresoAPuertoCalendarCombo.Enabled = false;
-            NroDespachoEditBox.Enabled = false;
-            FechaOficializacionCalendarCombo.Enabled = false;
-            FechaInspeccionRENARCalendarCombo.Enabled = false;
-            FechaIngresoDepositoCalendarCombo.Enabled = false;
-            IdEstadoUiComboBox.Enabled = false;
+            if (Evento == "Consulta")
+            {
+                FechaCalendarCombo.Enabled = false;
+                FechaEstimadaArriboRequeridaCalendarCombo.Enabled = false;
+                IdProveedorUiComboBox.Enabled = false;
+                IdPaisOrigenUiComboBox.Enabled = false;
+                PrefijoEditBox.Enabled = false;
+                IdArticuloUiComboBox.Enabled = false;
+                CantidadContenedoresNumericEditBox.Enabled = false;
+                ComentarioContenedoresEditBox.Enabled = false;
+                CantidadPresentacionNumericEditBox.Enabled = false;
+                CantidadNumericEditBox.Enabled = false;
+                IdMonedaUiComboBox.Enabled = false;
+                PrecioNumericEditBox.Enabled = false;
+                ImporteNumericEditBox.Enabled = false;
+                ImporteGastosNacionalizacionNumericEditBox.Enabled = false;
+                IdReferenciaSAPEditBox.Enabled = false;
+                FechaEstimadaSalidaCalendarCombo.Enabled = false;
+                VaporEditBox.Enabled = false;
+                FechaEstimadaArriboCalendarCombo.Enabled = false;
+                NroConocimientoEmbarqueEditBox.Enabled = false;
+                FacturaEditBox.Enabled = false;
+                FechaRecepcionDocumentosCalendarCombo.Enabled = false;
+                FechaIngresoAPuertoCalendarCombo.Enabled = false;
+                NroDespachoEditBox.Enabled = false;
+                FechaOficializacionCalendarCombo.Enabled = false;
+                FechaInspeccionRENARCalendarCombo.Enabled = false;
+                FechaIngresoDepositoCalendarCombo.Enabled = false;
+                IdEstadoUiComboBox.Enabled = false;
+            }
         }
         private void LlenarComboArticulo()
         {
