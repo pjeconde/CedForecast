@@ -10,6 +10,8 @@ namespace CedForecast
 {
     public partial class OrdenCompraDetalleCompletoForm : Cedeira.UI.frmBase
     {
+        CedForecastEntidades.OrdenCompra ordenCompraOriginal;
+
         public OrdenCompraDetalleCompletoForm(string Evento, CedForecastEntidades.OrdenCompra OrdenCompra) : base(TituloForm(Evento, OrdenCompra))
         {
             InitializeComponent();
@@ -81,6 +83,7 @@ namespace CedForecast
                 FechaIngresoDepositoCalendarCombo.Enabled = false;
                 IdEstadoUiComboBox.Enabled = false;
             }
+            ordenCompraOriginal = OrdenCompra;
         }
         private void LlenarComboArticulo()
         {
@@ -144,6 +147,50 @@ namespace CedForecast
             System.Windows.Forms.Form oFrm = new TablaGrillaForm(new CedForecastEntidades.Opcion("Moneda", "Monedas"));
             oFrm.ShowDialog();
             LlenarComboMoneda();
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CedForecastEntidades.OrdenCompra ordenCompraModificada = new CedForecastEntidades.OrdenCompra();
+                LlenarCampos(ordenCompraModificada);
+                CedForecastRN.OrdenCompra.Modificacion(ordenCompraOriginal, ordenCompraModificada, Aplicacion.Sesion);
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
+            }
+        }
+        private void LlenarCampos(CedForecastEntidades.OrdenCompra OrdenCompra)
+        {
+            OrdenCompra.Fecha = FechaCalendarCombo.Value.Date;
+            OrdenCompra.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
+            OrdenCompra.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
+            OrdenCompra.IdPaisOrigen=IdPaisOrigenUiComboBox.SelectedValue.ToString();
+            OrdenCompra.Prefijo = PrefijoEditBox.Text;
+            OrdenCompra.IdArticulo=IdArticuloUiComboBox.SelectedValue.ToString();
+            OrdenCompra.CantidadContenedores = Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value);
+            OrdenCompra.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
+            OrdenCompra.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
+            OrdenCompra.Cantidad = Convert.ToInt32(CantidadNumericEditBox.Value);
+            OrdenCompra.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+            OrdenCompra.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
+            OrdenCompra.Importe = Convert.ToDecimal(ImporteNumericEditBox.Value);
+            OrdenCompra.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
+            OrdenCompra.IdReferenciaSAP = IdReferenciaSAPEditBox.Text;
+            OrdenCompra.FechaEstimadaSalida = FechaEstimadaSalidaCalendarCombo.Value.Date;
+            OrdenCompra.Vapor = VaporEditBox.Text;
+            OrdenCompra.FechaEstimadaArribo = FechaEstimadaArriboCalendarCombo.Value.Date;
+            OrdenCompra.NroConocimientoEmbarque = NroConocimientoEmbarqueEditBox.Text;
+            OrdenCompra.Factura = FacturaEditBox.Text;
+            OrdenCompra.FechaRecepcionDocumentos = FechaRecepcionDocumentosCalendarCombo.Value.Date;
+            OrdenCompra.FechaIngresoAPuerto = FechaIngresoAPuertoCalendarCombo.Value.Date;
+            OrdenCompra.NroDespacho = NroDespachoEditBox.Text;
+            OrdenCompra.FechaOficializacion = FechaOficializacionCalendarCombo.Value.Date;
+            OrdenCompra.FechaInspeccionRENAR = FechaInspeccionRENARCalendarCombo.Value.Date;
+            OrdenCompra.FechaIngresoDeposito = FechaIngresoDepositoCalendarCombo.Value;
+            OrdenCompra.WF.IdEstado = IdEstadoUiComboBox.SelectedValue.ToString();
         }
     }
 }

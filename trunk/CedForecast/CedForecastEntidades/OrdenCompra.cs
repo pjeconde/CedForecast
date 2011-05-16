@@ -17,7 +17,7 @@ namespace CedForecastEntidades
         string idArticulo;                      //varchar(20)
         string descrArticulo;                   //varchar(50)
         DateTime fechaEstimadaArriboRequerida;
-        int cantidadContenedores;
+        decimal cantidadContenedores;
         string comentarioContenedores;          //varchar(255)
         int cantidadPresentacion;
         int cantidad;
@@ -168,7 +168,7 @@ namespace CedForecastEntidades
                 fechaEstimadaArriboRequerida = value;
             }
         }
-        public int CantidadContenedores
+        public decimal CantidadContenedores
         {
             get
             {
