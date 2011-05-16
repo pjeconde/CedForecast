@@ -68,9 +68,13 @@ namespace CedForecast
                         ordenCompra = ((List<CedForecastEntidades.OrdenCompra>)BrowserGridEX.Tag)[BrowserGridEX.SelectedItems[0].Position];
                         for (int j = 0; j < ordenCompra.WF.EventosXLotePosibles.Count; j++)
                         {
-                            HabilitarBoton(ordenCompra.WF.EventosXLotePosibles[j].Id, false);
+                            if (!(ordenCompra.WF.IdEstado == "Anulada" && ordenCompra.WF.EventosXLotePosibles[j].Id == "Anul"))
+                            {
+                                HabilitarBoton(ordenCompra.WF.EventosXLotePosibles[j].Id, false);
+                            }
                         }
                         ConsultaUiButton.Enabled = true;
+                        ModificacionUiButton.Enabled = true;
                     }
                     else
                     {
@@ -86,7 +90,10 @@ namespace CedForecast
                             for (int j = 0; j < ordenCompra.WF.EventosXLotePosibles.Count; j++)
                             {
                                 EventoReferencia eventoPosibleEnComun = eventosPosiblesEnComun.Find(delegate(EventoReferencia r) { return r.Evento.Id == ordenCompra.WF.EventosXLotePosibles[j].Id; });
-                                eventoPosibleEnComun.Cantidad++;
+                                if (!(ordenCompra.WF.IdEstado == "Anulada" && eventoPosibleEnComun.Evento.Id == "Anul"))
+                                {
+                                    eventoPosibleEnComun.Cantidad++;
+                                }
                             }
                         }
                         for (int i = 0; i < eventosPosiblesEnComun.Count; i++)
@@ -149,6 +156,7 @@ namespace CedForecast
             IngrADepUiButton.Enabled = false;
             AnulacionUiButton.Enabled = false;
             ConsultaUiButton.Enabled = false;
+            ModificacionUiButton.Enabled = false;
 
             IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
@@ -317,6 +325,14 @@ namespace CedForecast
         {
             Cursor = Cursors.WaitCursor;
             System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Consulta", OrdenesCompraSeleccionadas()[0]);
+            oFrm.ShowDialog();
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void ModificacionUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Modificación", OrdenesCompraSeleccionadas()[0]);
             oFrm.ShowDialog();
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
