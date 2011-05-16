@@ -115,7 +115,7 @@ namespace CedForecastRN
             new CedForecastDB.OrdenCompra(Sesion).IngresoInfoEmbarque(ListaOrdenesCompra(OrdenesCompra), InfoEmbarque, handlers);
         }
 
-        public static void ValidacionRecepcionDocumentos(CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
+        private static void ValidacionRecepcionDocumentos(CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, CedEntidades.Sesion Sesion)
         {
             if (InfoRecepcionDocumentos.NroConocimientoEmbarque == String.Empty)
             {
@@ -145,7 +145,7 @@ namespace CedForecastRN
             new CedForecastDB.OrdenCompra(Sesion).RecepcionDocumentos(ListaOrdenesCompra(OrdenesCompra), InfoRecepcionDocumentos, handlers);
         }
 
-        public static void ValidacionRegistroDespacho(CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
+        private static void ValidacionRegistroDespacho(CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
         {
             if (InfoRegistroDespacho.NroDespacho == String.Empty)
             {
@@ -182,7 +182,7 @@ namespace CedForecastRN
             new CedForecastDB.OrdenCompra(Sesion).RegistroDespacho(ListaOrdenesCompra(OrdenesCompra), InfoRegistroDespacho, handlers);
         }
 
-        public static void ValidacionInspeccionRENAR(CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
+        private static void ValidacionInspeccionRENAR(CedForecastEntidades.OrdenCompraInfoInspeccionRENAR InfoInspeccionRENAR, CedEntidades.Sesion Sesion)
         {
             if (InfoInspeccionRENAR.FechaInspeccionRENAR < DateTime.Today)
             {
@@ -238,6 +238,27 @@ namespace CedForecastRN
                 handlers.Add(Cedeira.SV.WF.EjecutarEvento(OrdenesCompra[i].WF, eventoWF, true));
             }
             new CedForecastDB.OrdenCompra(Sesion).Anulacion(handlers);
+        }
+
+        private static void ValidacionModificacion(CedForecastEntidades.OrdenCompra OrdenCompra, CedEntidades.Sesion Sesion)
+        {
+        }
+        public static void Modificacion(CedForecastEntidades.OrdenCompra OrdenCompraOriginal, CedForecastEntidades.OrdenCompra OrdenCompraModificada, CedEntidades.Sesion Sesion)
+        {
+            ValidacionModificacion(OrdenCompraModificada, Sesion);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            if (OrdenCompraOriginal.WF.IdEstado != OrdenCompraModificada.WF.IdEstado)
+            {
+                eventoWF.Id = "CambioEst";
+            }
+            else
+            {
+                eventoWF.Id = "Modif";
+            }
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            string handler = Cedeira.SV.WF.EjecutarEvento(OrdenCompraOriginal.WF, eventoWF, true);
+            new CedForecastDB.OrdenCompra(Sesion).Modificacion(OrdenCompraOriginal, OrdenCompraModificada, handler);
         }
 
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)
