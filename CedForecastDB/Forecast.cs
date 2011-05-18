@@ -13,7 +13,7 @@ namespace CedForecastDB
         public void EliminarProyectadoAnual(string Año)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("delete Forecast where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdPeriodo='" + Año + "' ");
+            a.Append("delete Forecast where Forecast.IdTipoPlanilla='Proyectado' and substring(rtrim(ltrim(Forecast.IdPeriodo)), 1, 4) ='" + Año + "' ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
         public void EliminarRollingForecast(string Periodo)
@@ -205,12 +205,12 @@ namespace CedForecastDB
         {
             System.Text.StringBuilder a = new StringBuilder();
             //"Zona-Cliente+CondicionDeVenta"
-            a.Append("Select SBDAFERT.dbo.Clientes.clizon_Cod as Zona, SBDAFERT.dbo.Clientes.cli_Cod as Cliente, SBDAFERT.dbo.CondVta.cvt_CantDias as CondVta, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
+            a.Append("Select SBDAFERT.dbo.Clientes.clizon_Cod as Zona, SBDAFERT.dbo.Clientes.cli_Cod as Cliente, SBDAFERT.dbo.Clientes.cli_RazSoc as Nombre, SBDAFERT.dbo.CondVta.cvt_CantDias as CondVta, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
             a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
             a.Append("left outer join SBDAFERT.dbo.CondVta on Clientes.clicvt_Cod = CondVta.cvt_Cod collate SQL_Latin1_General_CP1_CS_AS ");
             a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
-            a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Clientes.clizon_Cod, SBDAFERT.dbo.Clientes.cli_Cod, SBDAFERT.dbo.CondVta.cvt_CantDias, Forecast.IdArticulo, Forecast.IdPeriodo ");
-            a.Append("select Zona, Cliente, CondVta, Periodo, Articulo, Cantidad from #ForecastAux order by Zona, Cliente, CondVta, Articulo asc, Periodo asc ");
+            a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Clientes.clizon_Cod, SBDAFERT.dbo.Clientes.cli_RazSoc, SBDAFERT.dbo.Clientes.cli_Cod, SBDAFERT.dbo.CondVta.cvt_CantDias, Forecast.IdArticulo, Forecast.IdPeriodo ");
+            a.Append("select Zona, Cliente, Nombre, CondVta, Periodo, Articulo, Cantidad from #ForecastAux order by Zona, Cliente, CondVta, Articulo asc, Periodo asc ");
             a.Append("drop table #ForecastAux ");
             return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
         }
