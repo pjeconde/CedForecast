@@ -31,6 +31,7 @@ namespace CedForecast
                     opciones.Add(new CedForecastEntidades.Opcion("Moneda", "Monedas"));
                     opciones.Add(new CedForecastEntidades.Opcion("PaisOrigen", "Paises de origen"));
                     opciones.Add(new CedForecastEntidades.Opcion("Proveedor", "Proveedores"));
+                    opciones.Add(new CedForecastEntidades.Opcion("UnidadMedida", "Unidades de Medida"));
                     break;
                 case "Consultas":
                     opciones.Add(new CedForecastEntidades.Opcion("RFoPA", "Rolling Forecast - Proyectado Anual"));
@@ -82,6 +83,7 @@ namespace CedForecast
                                     case "Moneda":
                                     case "PaisOrigen":
                                     case "Proveedor":
+                                    case "UnidadMedida":
                                         oFrm = new TablaGrillaForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row]);
                                         oFrm.ShowDialog();
                                         break;
