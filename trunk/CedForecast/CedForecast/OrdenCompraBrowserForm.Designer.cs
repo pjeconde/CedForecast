@@ -64,6 +64,7 @@ namespace CedForecast
             this.BrowserGridEX = new Janus.Windows.GridEX.GridEX();
             this.HerramientasUiPanel = new Janus.Windows.UI.Dock.UIPanel();
             this.HerramientasUiPanelContainer = new Janus.Windows.UI.Dock.UIPanelInnerContainer();
+            this.CambioEstadoUiButton = new Janus.Windows.EditControls.UIButton();
             this.ModificacionUiButton = new Janus.Windows.EditControls.UIButton();
             this.ConsultaUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -260,6 +261,7 @@ namespace CedForecast
             // 
             // HerramientasUiPanelContainer
             // 
+            this.HerramientasUiPanelContainer.Controls.Add(this.CambioEstadoUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.ModificacionUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.ConsultaUiButton);
             this.HerramientasUiPanelContainer.Controls.Add(this.panel1);
@@ -277,12 +279,32 @@ namespace CedForecast
             this.HerramientasUiPanelContainer.Size = new System.Drawing.Size(175, 415);
             this.HerramientasUiPanelContainer.TabIndex = 0;
             // 
+            // CambioEstadoUiButton
+            // 
+            this.CambioEstadoUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.CambioEstadoUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CambioEstadoUiButton.Enabled = false;
+            this.CambioEstadoUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.CambioEstadoUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("CambioEstadoUiButton.Icon")));
+            this.CambioEstadoUiButton.Location = new System.Drawing.Point(8, 210);
+            this.CambioEstadoUiButton.Name = "CambioEstadoUiButton";
+            this.CambioEstadoUiButton.ShowFocusRectangle = false;
+            this.CambioEstadoUiButton.Size = new System.Drawing.Size(158, 25);
+            this.CambioEstadoUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.CambioEstadoUiButton.TabIndex = 43;
+            this.CambioEstadoUiButton.Tag = "";
+            this.CambioEstadoUiButton.Text = "Cambio manual de Estado";
+            this.CambioEstadoUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
+            this.CambioEstadoUiButton.UseThemes = false;
+            this.CambioEstadoUiButton.Click += new System.EventHandler(this.CambioEstadoUiButton_Click);
+            // 
             // ModificacionUiButton
             // 
             this.ModificacionUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
             this.ModificacionUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModificacionUiButton.Enabled = false;
             this.ModificacionUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
+            this.ModificacionUiButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModificacionUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ModificacionUiButton.Icon")));
             this.ModificacionUiButton.Location = new System.Drawing.Point(8, 185);
             this.ModificacionUiButton.Name = "ModificacionUiButton";
@@ -291,7 +313,7 @@ namespace CedForecast
             this.ModificacionUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             this.ModificacionUiButton.TabIndex = 42;
             this.ModificacionUiButton.Tag = "Modificacion";
-            this.ModificacionUiButton.Text = "Modificacion";
+            this.ModificacionUiButton.Text = "Modificacion manual";
             this.ModificacionUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ModificacionUiButton.UseThemes = false;
             this.ModificacionUiButton.Click += new System.EventHandler(this.ModificacionUiButton_Click);
@@ -303,7 +325,7 @@ namespace CedForecast
             this.ConsultaUiButton.Enabled = false;
             this.ConsultaUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.ConsultaUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ConsultaUiButton.Icon")));
-            this.ConsultaUiButton.Location = new System.Drawing.Point(8, 210);
+            this.ConsultaUiButton.Location = new System.Drawing.Point(8, 235);
             this.ConsultaUiButton.Name = "ConsultaUiButton";
             this.ConsultaUiButton.ShowFocusRectangle = false;
             this.ConsultaUiButton.Size = new System.Drawing.Size(158, 25);
@@ -500,7 +522,7 @@ namespace CedForecast
             this.EnviarAUiButton.DropDownContextMenu = this.EnviarAUiContextMenu;
             this.EnviarAUiButton.FlatBorderColor = System.Drawing.Color.Transparent;
             this.EnviarAUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("EnviarAUiButton.Icon")));
-            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 235);
+            this.EnviarAUiButton.Location = new System.Drawing.Point(8, 260);
             this.EnviarAUiButton.Name = "EnviarAUiButton";
             this.EnviarAUiButton.ShowFocusRectangle = false;
             this.EnviarAUiButton.Size = new System.Drawing.Size(158, 25);
@@ -947,6 +969,7 @@ namespace CedForecast
         private Janus.Windows.EditControls.UIButton MaximizarUiButton;
         protected Janus.Windows.EditControls.UIButton SalirUiButton;
         protected Janus.Windows.EditControls.UIButton ConsultaUiButton;
+        public Janus.Windows.EditControls.UIButton CambioEstadoUiButton;
         protected Janus.Windows.EditControls.UIButton ModificacionUiButton;
     }
 }

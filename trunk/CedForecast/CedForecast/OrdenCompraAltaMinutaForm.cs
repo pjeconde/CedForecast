@@ -14,6 +14,7 @@ namespace CedForecast
         CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicionalSeleccionado = new CedForecastEntidades.ArticuloInfoAdicional();
         CedForecastEntidades.OrdenCompraInfoAlta ordenCompraInfoAlta;
         int idMinuta;
+
         public OrdenCompraAltaMinutaForm(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompraInfoAlta, string Titulo) : base(Titulo)
         {
             InitializeComponent();

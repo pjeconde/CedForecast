@@ -10,11 +10,14 @@ namespace CedForecast
 {
     public partial class OrdenCompraDetalleCompletoForm : Cedeira.UI.frmBase
     {
+        CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicionalSeleccionado = new CedForecastEntidades.ArticuloInfoAdicional();
         CedForecastEntidades.OrdenCompra ordenCompraOriginal;
+        string evento;
 
         public OrdenCompraDetalleCompletoForm(string Evento, CedForecastEntidades.OrdenCompra OrdenCompra) : base(TituloForm(Evento, OrdenCompra))
         {
             InitializeComponent();
+            evento = Evento;
             //Llenar combos
             LlenarComboProveedor();
             LlenarComboPaisOrigen();
@@ -39,6 +42,7 @@ namespace CedForecast
             PrecioNumericEditBox.Value = OrdenCompra.Precio;
             ImporteNumericEditBox.Value = OrdenCompra.Importe;
             ImporteGastosNacionalizacionNumericEditBox.Value = OrdenCompra.ImporteGastosNacionalizacion;
+            ComentarioEditBox.Text = OrdenCompra.Comentario;
             IdReferenciaSAPEditBox.Text = OrdenCompra.IdReferenciaSAP;
             FechaEstimadaSalidaCalendarCombo.Value = OrdenCompra.FechaEstimadaSalida;
             VaporEditBox.Text = OrdenCompra.Vapor;
@@ -52,42 +56,63 @@ namespace CedForecast
             FechaInspeccionRENARCalendarCombo.Value = OrdenCompra.FechaInspeccionRENAR;
             FechaIngresoDepositoCalendarCombo.Value = OrdenCompra.FechaIngresoDeposito;
             IdEstadoUiComboBox.SelectedValue = OrdenCompra.WF.IdEstado;
+            //CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicional = new CedForecastEntidades.ArticuloInfoAdicional();
+            //articuloInfoAdicional.IdArticulo = OrdenCompra.IdArticulo;
+            //CedForecastRN.ArticuloInfoAdicional.Leer(articuloInfoAdicional, Aplicacion.Sesion);
+            //PresentacionLabel.Text = articuloInfoAdicional.IdPresentacion;
+            //UnidadMedidaLabel.Text = articuloInfoAdicional.IdUnidadMedida;
             //Inhabilitar campos
-            if (Evento == "Consulta")
+            switch (Evento)
             {
-                FechaCalendarCombo.Enabled = false;
-                FechaEstimadaArriboRequeridaCalendarCombo.Enabled = false;
-                IdProveedorUiComboBox.Enabled = false;
-                IdPaisOrigenUiComboBox.Enabled = false;
-                PrefijoEditBox.Enabled = false;
-                IdArticuloUiComboBox.Enabled = false;
-                CantidadContenedoresNumericEditBox.Enabled = false;
-                ComentarioContenedoresEditBox.Enabled = false;
-                CantidadPresentacionNumericEditBox.Enabled = false;
-                CantidadNumericEditBox.Enabled = false;
-                IdMonedaUiComboBox.Enabled = false;
-                PrecioNumericEditBox.Enabled = false;
-                ImporteNumericEditBox.Enabled = false;
-                ImporteGastosNacionalizacionNumericEditBox.Enabled = false;
-                IdReferenciaSAPEditBox.Enabled = false;
-                FechaEstimadaSalidaCalendarCombo.Enabled = false;
-                VaporEditBox.Enabled = false;
-                FechaEstimadaArriboCalendarCombo.Enabled = false;
-                NroConocimientoEmbarqueEditBox.Enabled = false;
-                FacturaEditBox.Enabled = false;
-                FechaRecepcionDocumentosCalendarCombo.Enabled = false;
-                FechaIngresoAPuertoCalendarCombo.Enabled = false;
-                NroDespachoEditBox.Enabled = false;
-                FechaOficializacionCalendarCombo.Enabled = false;
-                FechaInspeccionRENARCalendarCombo.Enabled = false;
-                FechaIngresoDepositoCalendarCombo.Enabled = false;
-                IdEstadoUiComboBox.Enabled = false;
+                case "Consulta":
+                    InhabilitarCampos();
+                    AceptarUiButton.Visible = false;
+                    break;
+                case "Cambio de Estado":
+                    InhabilitarCampos();
+                    IdEstadoUiComboBox.Enabled = true;
+                    break;
+                case "Modificación":
+                    IdEstadoUiComboBox.Enabled = false;
+                    break;
             }
             ordenCompraOriginal = OrdenCompra;
+        }
+        private void InhabilitarCampos()
+        {
+            FechaCalendarCombo.Enabled = false;
+            FechaEstimadaArriboRequeridaCalendarCombo.Enabled = false;
+            IdProveedorUiComboBox.Enabled = false;
+            IdPaisOrigenUiComboBox.Enabled = false;
+            PrefijoEditBox.Enabled = false;
+            IdArticuloUiComboBox.Enabled = false;
+            CantidadContenedoresNumericEditBox.Enabled = false;
+            ComentarioContenedoresEditBox.Enabled = false;
+            CantidadPresentacionNumericEditBox.Enabled = false;
+            CantidadNumericEditBox.Enabled = false;
+            IdMonedaUiComboBox.Enabled = false;
+            PrecioNumericEditBox.Enabled = false;
+            ImporteNumericEditBox.Enabled = false;
+            ImporteGastosNacionalizacionNumericEditBox.Enabled = false;
+            IdReferenciaSAPEditBox.Enabled = false;
+            FechaEstimadaSalidaCalendarCombo.Enabled = false;
+            VaporEditBox.Enabled = false;
+            FechaEstimadaArriboCalendarCombo.Enabled = false;
+            NroConocimientoEmbarqueEditBox.Enabled = false;
+            FacturaEditBox.Enabled = false;
+            FechaRecepcionDocumentosCalendarCombo.Enabled = false;
+            FechaIngresoAPuertoCalendarCombo.Enabled = false;
+            NroDespachoEditBox.Enabled = false;
+            FechaOficializacionCalendarCombo.Enabled = false;
+            FechaInspeccionRENARCalendarCombo.Enabled = false;
+            FechaIngresoDepositoCalendarCombo.Enabled = false;
+            IdEstadoUiComboBox.Enabled = false;
+            ComentarioEditBox.Enabled = false;
         }
         private void LlenarComboArticulo()
         {
             List<CedForecastEntidades.ArticuloInfoAdicional> articulos = CedForecastRN.ArticuloInfoAdicional.LeerLista(Aplicacion.Sesion);
+            IdArticuloUiComboBox.Tag = articulos;
             IdArticuloUiComboBox.DataSource = articulos;
             IdArticuloUiComboBox.ValueMember = "IdArticulo";
             IdArticuloUiComboBox.DisplayMember = "IdDescrArticulo";
@@ -154,7 +179,15 @@ namespace CedForecast
             {
                 CedForecastEntidades.OrdenCompra ordenCompraModificada = new CedForecastEntidades.OrdenCompra();
                 LlenarCampos(ordenCompraModificada);
-                CedForecastRN.OrdenCompra.Modificacion(ordenCompraOriginal, ordenCompraModificada, Aplicacion.Sesion);
+                switch (evento)
+                {
+                    case "Cambio de Estado":
+                        CedForecastRN.OrdenCompra.CambioEstado(ordenCompraOriginal, ordenCompraModificada, Aplicacion.Sesion);
+                        break;
+                    case "Modificación":
+                        CedForecastRN.OrdenCompra.Modificacion(ordenCompraOriginal, ordenCompraModificada, Aplicacion.Sesion);
+                        break;
+                }
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -167,9 +200,12 @@ namespace CedForecast
             OrdenCompra.Fecha = FechaCalendarCombo.Value.Date;
             OrdenCompra.FechaEstimadaArriboRequerida = FechaEstimadaArriboRequeridaCalendarCombo.Value.Date;
             OrdenCompra.IdProveedor = IdProveedorUiComboBox.SelectedValue.ToString();
-            OrdenCompra.IdPaisOrigen=IdPaisOrigenUiComboBox.SelectedValue.ToString();
+            OrdenCompra.DescrProveedor = IdProveedorUiComboBox.Text;
+            OrdenCompra.IdPaisOrigen = IdPaisOrigenUiComboBox.SelectedValue.ToString();
+            OrdenCompra.DescrPaisOrigen = IdPaisOrigenUiComboBox.Text;
             OrdenCompra.Prefijo = PrefijoEditBox.Text;
-            OrdenCompra.IdArticulo=IdArticuloUiComboBox.SelectedValue.ToString();
+            OrdenCompra.IdArticulo = IdArticuloUiComboBox.SelectedValue.ToString();
+            OrdenCompra.DescrArticulo = IdArticuloUiComboBox.Text;
             OrdenCompra.CantidadContenedores = Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value);
             OrdenCompra.ComentarioContenedores = ComentarioContenedoresEditBox.Text;
             OrdenCompra.CantidadPresentacion = Convert.ToInt32(CantidadPresentacionNumericEditBox.Value);
@@ -178,6 +214,7 @@ namespace CedForecast
             OrdenCompra.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
             OrdenCompra.Importe = Convert.ToDecimal(ImporteNumericEditBox.Value);
             OrdenCompra.ImporteGastosNacionalizacion = Convert.ToDecimal(ImporteGastosNacionalizacionNumericEditBox.Value);
+            OrdenCompra.Comentario = ComentarioEditBox.Text;
             OrdenCompra.IdReferenciaSAP = IdReferenciaSAPEditBox.Text;
             OrdenCompra.FechaEstimadaSalida = FechaEstimadaSalidaCalendarCombo.Value.Date;
             OrdenCompra.Vapor = VaporEditBox.Text;
@@ -191,6 +228,92 @@ namespace CedForecast
             OrdenCompra.FechaInspeccionRENAR = FechaInspeccionRENARCalendarCombo.Value.Date;
             OrdenCompra.FechaIngresoDeposito = FechaIngresoDepositoCalendarCombo.Value;
             OrdenCompra.WF.IdEstado = IdEstadoUiComboBox.SelectedValue.ToString();
+        }
+        private void IdArticuloUiComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            articuloInfoAdicionalSeleccionado = ((List<CedForecastEntidades.ArticuloInfoAdicional>)IdArticuloUiComboBox.Tag)[IdArticuloUiComboBox.SelectedIndex];
+            //IdMonedaUiComboBox.SelectedValue = articuloInfoAdicionalSeleccionado.IdMoneda;
+            //PrecioNumericEditBox.Value = articuloInfoAdicionalSeleccionado.Precio;
+            PresentacionLabel.Text = articuloInfoAdicionalSeleccionado.IdPresentacion;
+            UnidadMedidaLabel.Text = articuloInfoAdicionalSeleccionado.IdUnidadMedida;
+        }
+        private void CantidadContenedoresNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadContenedoresNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXContenedor);
+            //    if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            //    {
+            //        CantidadPresentacionNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion), 0);
+            //    }
+            //    else
+            //    {
+            //        CantidadPresentacionNumericEditBox.Value = 0;
+            //    }
+            //    ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+            //    ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            //}
+            //catch
+            //{
+            //}
+        }
+        private void CantidadNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    if (articuloInfoAdicionalSeleccionado.CantidadXContenedor != 0)
+            //    {
+            //        CantidadContenedoresNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXContenedor), 4);
+            //    }
+            //    else
+            //    {
+            //        CantidadContenedoresNumericEditBox.Value = 0;
+            //    }
+            //    if (articuloInfoAdicionalSeleccionado.CantidadXPresentacion != 0)
+            //    {
+            //        CantidadPresentacionNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXPresentacion), 0);
+            //    }
+            //    else
+            //    {
+            //        CantidadPresentacionNumericEditBox.Value = 0;
+            //    }
+            //    ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+            //    ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            //}
+            //catch
+            //{
+            //}
+        }
+        private void PrecioNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+            //    ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            //}
+            //catch
+            //{
+            //}
+        }
+        private void CantidadPresentacionNumericEditBox_Leave(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    CantidadNumericEditBox.Value = Convert.ToInt32(Convert.ToDecimal(CantidadPresentacionNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CantidadXPresentacion);
+            //    if (articuloInfoAdicionalSeleccionado.CantidadXContenedor != 0)
+            //    {
+            //        CantidadContenedoresNumericEditBox.Value = Math.Round(Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) / articuloInfoAdicionalSeleccionado.CantidadXContenedor), 4);
+            //    }
+            //    else
+            //    {
+            //        CantidadContenedoresNumericEditBox.Value = 0;
+            //    }
+            //    ImporteNumericEditBox.Value = Convert.ToDecimal(Convert.ToInt32(CantidadNumericEditBox.Value) * Convert.ToDecimal(PrecioNumericEditBox.Value));
+            //    ImporteGastosNacionalizacionNumericEditBox.Value = Convert.ToDecimal(ImporteNumericEditBox.Value) * articuloInfoAdicionalSeleccionado.CoeficienteGastosNacionalizacion;
+            //}
+            //catch
+            //{
+            //}
         }
     }
 }

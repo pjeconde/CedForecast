@@ -75,6 +75,7 @@ namespace CedForecast
                         }
                         ConsultaUiButton.Enabled = true;
                         ModificacionUiButton.Enabled = true;
+                        CambioEstadoUiButton.Enabled = true;
                     }
                     else
                     {
@@ -157,6 +158,7 @@ namespace CedForecast
             AnulacionUiButton.Enabled = false;
             ConsultaUiButton.Enabled = false;
             ModificacionUiButton.Enabled = false;
+            CambioEstadoUiButton.Enabled = false;
 
             IngInfoEmbUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
             RecepDocsUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
@@ -332,8 +334,22 @@ namespace CedForecast
         private void ModificacionUiButton_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Modificación", OrdenesCompraSeleccionadas()[0]);
-            oFrm.ShowDialog();
+            if (MessageBox.Show("Esta opción permite la modificación LIBRE de los datos.\r\nEs decir, que no se aplicarán los procedimientos de validación.\r\n¿ Sigue adelante ?", "ADVERTENCIA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Modificación", OrdenesCompraSeleccionadas()[0]);
+                oFrm.ShowDialog();
+            }
+            ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
+            Cursor = Cursors.Default;
+        }
+        private void CambioEstadoUiButton_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (MessageBox.Show("Esta opción permite la modificación LIBRE del estado del item de la orden de compra.\r\nEs decir, que no se aplicarán los procedimientos de validación.\r\n¿ Sigue adelante ?", "ADVERTENCIA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Windows.Forms.Form oFrm = new OrdenCompraDetalleCompletoForm("Cambio de Estado", OrdenesCompraSeleccionadas()[0]);
+                oFrm.ShowDialog();
+            }  
             ActualizarBrowserGrid(EjecutarSeleccionUiButton, System.EventArgs.Empty);
             Cursor = Cursors.Default;
         }

@@ -11,6 +11,30 @@ namespace CedForecastDB
         {
         }
 
+        public void Leer(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select ArticuloInfoAdicional.IdArticulo, ArticuloInfoAdicional.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, ArticuloInfoAdicional.IdArticuloOrigen, ArticuloInfoAdicional.IdRENAR, ArticuloInfoAdicional.DescrRENAR, ArticuloInfoAdicional.IdSENASA, ArticuloInfoAdicional.IdPresentacion, ArticuloInfoAdicional.CantidadXPresentacion, ArticuloInfoAdicional.CantidadXContenedor, ArticuloInfoAdicional.UnidadMedida, ArticuloInfoAdicional.Precio, ArticuloInfoAdicional.IdMoneda, ArticuloInfoAdicional.FechaVigenciaPrecio, ArticuloInfoAdicional.CoeficienteGastosNacionalizacion, ArticuloInfoAdicional.CantidadStockSeguridad, ArticuloInfoAdicional.PlazoAvisoStockSeguridad, ArticuloInfoAdicional.Comentario ");
+            a.Append("from ArticuloInfoAdicional, FamiliaArticulo ");
+            a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("and ArticuloInfoAdicional.IdArticulo='" + ArticuloInfoAdicional.IdArticulo + "' ");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            if (dt.Rows.Count == 1)
+            {
+                List<CedForecastEntidades.Bejerman.Articulos> articulosBejerman = new CedForecastDB.Bejerman.Articulos(sesion).LeerLista();
+                Copiar(dt.Rows[0], ArticuloInfoAdicional);
+                CedForecastEntidades.Bejerman.Articulos articuloBejerman = articulosBejerman.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dt.Rows[0]["IdArticulo"]); });
+                if (articuloBejerman == null)
+                {
+                    ArticuloInfoAdicional.DescrArticulo = "<<<Desconocido>>>";
+                }
+                else
+                {
+                    ArticuloInfoAdicional.DescrArticulo = articuloBejerman.Art_DescGen;
+                }
+            }
+        }
         public List<CedForecastEntidades.ArticuloInfoAdicional> LeerLista()
         {
             DataTable dt = new DataTable();
@@ -140,9 +164,6 @@ namespace CedForecastDB
                 }
             }
             return a.ToString();
-        }
-        public void Leer(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
-        {
         }
         public void Crear(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional)
         {
