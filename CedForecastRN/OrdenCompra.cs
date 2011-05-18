@@ -147,11 +147,15 @@ namespace CedForecastRN
 
         private static void ValidacionRegistroDespacho(CedForecastEntidades.OrdenCompraInfoRegistroDespacho InfoRegistroDespacho, CedEntidades.Sesion Sesion)
         {
+            //if (InfoRegistroDespacho.FechaIngresoAPuerto < OrdenCompra.Fecha)
+            //{
+            //    throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de ingreso a puerto");
+            //}
             if (InfoRegistroDespacho.NroDespacho == String.Empty)
             {
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Nº Despacho");
             }
-            if (InfoRegistroDespacho.FechaOficializacion < DateTime.Today)
+            if (InfoRegistroDespacho.FechaOficializacion < InfoRegistroDespacho.FechaIngresoAPuerto)
             {
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de oficialización");
             }
@@ -242,23 +246,99 @@ namespace CedForecastRN
 
         private static void ValidacionModificacion(CedForecastEntidades.OrdenCompra OrdenCompra, CedEntidades.Sesion Sesion)
         {
+            if (OrdenCompra.IdProveedor == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Proveedor");
+            }
+            if (OrdenCompra.IdPaisOrigen == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("País de origen");
+            }
+            if (OrdenCompra.Fecha > OrdenCompra.FechaEstimadaArriboRequerida)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha");
+            }
+            if (OrdenCompra.FechaEstimadaArriboRequerida <= OrdenCompra.Fecha)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de arribo requerida");
+            }
+            if (OrdenCompra.IdReferenciaSAP == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Referencia SAP");
+            }
+            if (OrdenCompra.Vapor == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Vapor");
+            }
+            if (OrdenCompra.FechaEstimadaSalida < OrdenCompra.Fecha)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de salida");
+            }
+            if (OrdenCompra.FechaEstimadaArribo < OrdenCompra.FechaEstimadaSalida)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de arribo");
+            }
+            if (OrdenCompra.NroConocimientoEmbarque == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Nº Conocimiento de Embarque");
+            }
+            if (OrdenCompra.Factura == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Factura");
+            }
+            if (OrdenCompra.FechaRecepcionDocumentos < OrdenCompra.Fecha)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de recepción de documentos");
+            }
+            if (OrdenCompra.FechaIngresoAPuerto < OrdenCompra.Fecha)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de ingreso a puerto");
+            }
+            if (OrdenCompra.NroDespacho == String.Empty)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorNoInfo("Nº Despacho");
+            }
+            if (OrdenCompra.FechaOficializacion < OrdenCompra.FechaIngresoAPuerto)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha de oficialización");
+            }
+            if (OrdenCompra.FechaInspeccionRENAR < OrdenCompra.FechaOficializacion)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha inspección RENAR");
+            }
+            if (OrdenCompra.FechaIngresoDeposito < OrdenCompra.FechaOficializacion)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Fecha estimada de salida");
+            }
         }
         public static void Modificacion(CedForecastEntidades.OrdenCompra OrdenCompraOriginal, CedForecastEntidades.OrdenCompra OrdenCompraModificada, CedEntidades.Sesion Sesion)
         {
             ValidacionModificacion(OrdenCompraModificada, Sesion);
             CedEntidades.Evento eventoWF = new CedEntidades.Evento();
             eventoWF.Flow.IdFlow = "OrdenCpra";
-            if (OrdenCompraOriginal.WF.IdEstado != OrdenCompraModificada.WF.IdEstado)
-            {
-                eventoWF.Id = "CambioEst";
-            }
-            else
-            {
-                eventoWF.Id = "Modif";
-            }
+            eventoWF.Id = "Modif";
             Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
             string handler = Cedeira.SV.WF.EjecutarEvento(OrdenCompraOriginal.WF, eventoWF, true);
             new CedForecastDB.OrdenCompra(Sesion).Modificacion(OrdenCompraOriginal, OrdenCompraModificada, handler);
+        }
+
+        private static void ValidacionCambioEstado(CedForecastEntidades.OrdenCompra OrdenCompraOriginal, CedForecastEntidades.OrdenCompra OrdenCompraModificada, CedEntidades.Sesion Sesion)
+        {
+            if (OrdenCompraOriginal.WF.IdEstado == OrdenCompraModificada.WF.IdEstado)
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+            }
+        }
+        public static void CambioEstado(CedForecastEntidades.OrdenCompra OrdenCompraOriginal, CedForecastEntidades.OrdenCompra OrdenCompraModificada, CedEntidades.Sesion Sesion)
+        {
+            ValidacionCambioEstado(OrdenCompraOriginal, OrdenCompraModificada, Sesion);
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            eventoWF.Flow.IdFlow = "OrdenCpra";
+            eventoWF.Id = "CambioEst";
+            Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+            eventoWF.IdEstadoHst.IdEstado = OrdenCompraModificada.WF.IdEstado;
+            string handler = Cedeira.SV.WF.EjecutarEvento(OrdenCompraOriginal.WF, eventoWF, true);
+            new CedForecastDB.OrdenCompra(Sesion).CambioEstado(OrdenCompraOriginal, OrdenCompraModificada, handler);
         }
 
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)

@@ -939,6 +939,7 @@
             this.CantidadNumericEditBox.Value = 0;
             this.CantidadNumericEditBox.ValueType = Janus.Windows.GridEX.NumericEditValueType.Int32;
             this.CantidadNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.CantidadNumericEditBox.Leave += new System.EventHandler(this.CantidadNumericEditBox_Leave);
             // 
             // label2
             // 
@@ -971,6 +972,7 @@
             this.IdArticuloUiComboBox.Size = new System.Drawing.Size(583, 20);
             this.IdArticuloUiComboBox.TabIndex = 1;
             this.IdArticuloUiComboBox.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
+            this.IdArticuloUiComboBox.SelectedIndexChanged += new System.EventHandler(this.IdArticuloUiComboBox_SelectedIndexChanged);
             // 
             // ImporteGastosNacionalizacionNumericEditBox
             // 
@@ -1019,6 +1021,7 @@
             0,
             262144});
             this.CantidadContenedoresNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.CantidadContenedoresNumericEditBox.Leave += new System.EventHandler(this.CantidadContenedoresNumericEditBox_Leave);
             // 
             // CantidadPresentacionNumericEditBox
             // 
@@ -1039,6 +1042,7 @@
             this.CantidadPresentacionNumericEditBox.Value = 0;
             this.CantidadPresentacionNumericEditBox.ValueType = Janus.Windows.GridEX.NumericEditValueType.Int32;
             this.CantidadPresentacionNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.CantidadPresentacionNumericEditBox.Leave += new System.EventHandler(this.CantidadPresentacionNumericEditBox_Leave);
             // 
             // PrecioNumericEditBox
             // 
@@ -1063,6 +1067,7 @@
             0,
             262144});
             this.PrecioNumericEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.PrecioNumericEditBox.Leave += new System.EventHandler(this.PrecioNumericEditBox_Leave);
             // 
             // label15
             // 

@@ -12,6 +12,7 @@ namespace CedForecastRN
         }
         public static void Leer(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional, CedEntidades.Sesion Sesion)
         {
+            new CedForecastDB.ArticuloInfoAdicional(Sesion).Leer(ArticuloInfoAdicional);
         }
         public static void Crear(CedForecastEntidades.ArticuloInfoAdicional ArticuloInfoAdicional, CedEntidades.Sesion Sesion)
         {
