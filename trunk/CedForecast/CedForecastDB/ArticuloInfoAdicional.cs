@@ -41,7 +41,7 @@ namespace CedForecastDB
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select ArticuloInfoAdicional.IdArticulo, ArticuloInfoAdicional.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo, ArticuloInfoAdicional.IdArticuloOrigen, ArticuloInfoAdicional.IdRENAR, ArticuloInfoAdicional.DescrRENAR, ArticuloInfoAdicional.IdSENASA, ArticuloInfoAdicional.IdPresentacion, ArticuloInfoAdicional.CantidadXPresentacion, ArticuloInfoAdicional.CantidadXContenedor, ArticuloInfoAdicional.UnidadMedida, ArticuloInfoAdicional.Precio, ArticuloInfoAdicional.IdMoneda, ArticuloInfoAdicional.FechaVigenciaPrecio, ArticuloInfoAdicional.CoeficienteGastosNacionalizacion, ArticuloInfoAdicional.CantidadStockSeguridad, ArticuloInfoAdicional.PlazoAvisoStockSeguridad, ArticuloInfoAdicional.Comentario ");
             a.Append("from ArticuloInfoAdicional, FamiliaArticulo ");
-            a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+            a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo collate database_default ");
             a.Append("order by IdArticulo ");
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastEntidades.ArticuloInfoAdicional> lista = new List<CedForecastEntidades.ArticuloInfoAdicional>();
@@ -96,7 +96,7 @@ namespace CedForecastDB
                 System.Text.StringBuilder a = new StringBuilder();
                 a.Append("select ArticuloInfoAdicional.IdArticulo, ArticuloInfoAdicional.IdFamiliaArticulo, FamiliaArticulo.DescrFamiliaArticulo ");
                 a.Append("from ArticuloInfoAdicional, FamiliaArticulo ");
-                a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo ");
+                a.Append("where ArticuloInfoAdicional.IdFamiliaArticulo=FamiliaArticulo.IdFamiliaArticulo collate database_default ");
                 a.Append("and ArticuloInfoAdicional.IdFamiliaArticulo in (" + ListaFamilias.ToString() + ") ");
                 a.Append("order by FamiliaArticulo.DescrFamiliaArticulo, ArticuloInfoAdicional.IdArticulo ");
                 dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
@@ -129,7 +129,7 @@ namespace CedForecastDB
         {
             List<CedForecastEntidades.Articulo> lista = new List<CedForecastEntidades.Articulo>();
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("select distinct(IdArticulo) as Articulo from Forecast where IdArticulo not in (select IdArticulo from ArticuloInfoAdicional) ");
+            a.Append("select distinct(IdArticulo) as Articulo from Forecast where IdArticulo collate database_default not in (select IdArticulo from ArticuloInfoAdicional) ");
             DataTable dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerListaConPrecios(dt);
             for (int i = 0; i < dt.Rows.Count; i++)
