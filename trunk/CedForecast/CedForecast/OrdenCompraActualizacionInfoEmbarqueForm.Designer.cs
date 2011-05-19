@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenCompraActualizacionInfoEmbarqueForm));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
+            this.AceptarUiButton = new Janus.Windows.EditControls.UIButton();
             this.DirectorioPlanillaInfoEmbarqueEditBox = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ExaminarUiButton = new Janus.Windows.EditControls.UIButton();
@@ -58,27 +58,6 @@
             this.panel2.Size = new System.Drawing.Size(958, 30);
             this.panel2.TabIndex = 32;
             // 
-            // AceptarUiButton
-            // 
-            this.AceptarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
-            this.AceptarUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.AceptarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AceptarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this.AceptarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AceptarUiButton.Icon")));
-            this.AceptarUiButton.Location = new System.Drawing.Point(5, 3);
-            this.AceptarUiButton.Name = "AceptarUiButton";
-            this.AceptarUiButton.ShowFocusRectangle = false;
-            this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
-            this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
-            this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.AceptarUiButton.TabIndex = 6;
-            this.AceptarUiButton.TabStop = false;
-            this.AceptarUiButton.Text = "Aceptar";
-            this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
-            this.AceptarUiButton.UseThemes = false;
-            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
-            // 
             // SalirUiButton
             // 
             this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -99,6 +78,27 @@
             this.SalirUiButton.Text = "Cancelar";
             this.SalirUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
             this.SalirUiButton.UseThemes = false;
+            // 
+            // AceptarUiButton
+            // 
+            this.AceptarUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
+            this.AceptarUiButton.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.AceptarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AceptarUiButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.AceptarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
+            this.AceptarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("AceptarUiButton.Icon")));
+            this.AceptarUiButton.Location = new System.Drawing.Point(5, 3);
+            this.AceptarUiButton.Name = "AceptarUiButton";
+            this.AceptarUiButton.ShowFocusRectangle = false;
+            this.AceptarUiButton.Size = new System.Drawing.Size(73, 24);
+            this.AceptarUiButton.StateStyles.FormatStyle.BackColor = System.Drawing.Color.Transparent;
+            this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.AceptarUiButton.TabIndex = 6;
+            this.AceptarUiButton.TabStop = false;
+            this.AceptarUiButton.Text = "Aceptar";
+            this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
+            this.AceptarUiButton.UseThemes = false;
+            this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
             // 
             // DirectorioPlanillaInfoEmbarqueEditBox
             // 
@@ -144,6 +144,7 @@
             this.ExaminarUiButton.Text = "Examinar";
             this.ExaminarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.ExaminarUiButton.UseThemes = false;
+            this.ExaminarUiButton.Click += new System.EventHandler(this.ExaminarUiButton_Click);
             // 
             // OrdenCompraActualizacionInfoEmbarqueForm
             // 
