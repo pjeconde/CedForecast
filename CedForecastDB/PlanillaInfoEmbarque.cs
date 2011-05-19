@@ -16,5 +16,9 @@ namespace CedForecastDB
             DataView dv = WF_Parm_get("DirectorioPlanillaInfoEmbarque");
             return Convert.ToString(dv.Table.Rows[0]["ValorStr"]);
         }
+        public void Guardar(string DirectorioPlanillaInfoEmbarque)
+        {
+            WF_ParmValorStr_upd("DirectorioPlanillaInfoEmbarque", DirectorioPlanillaInfoEmbarque);
+        }
     }
 }

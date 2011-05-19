@@ -10,14 +10,14 @@ namespace CedForecast
 {
     public partial class OrdenCompraActualizacionInfoEmbarqueForm : Cedeira.UI.frmBase
     {
-        public OrdenCompraActualizacionInfoEmbarqueForm(string Titulo)
-            : base(Titulo)
+        public OrdenCompraActualizacionInfoEmbarqueForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
             DirectorioPlanillaInfoEmbarqueEditBox.Text = CedForecastRN.PlanillaInfoEmbarque.LeerDirectorio(Aplicacion.Sesion);
         }
         private void AceptarUiButton_Click(object sender, EventArgs e)
         {
+            CedForecastRN.PlanillaInfoEmbarque.Procesar(DirectorioPlanillaInfoEmbarqueEditBox.Text, Aplicacion.Sesion);
 
         }
         private void ExaminarUiButton_Click(object sender, EventArgs e)
