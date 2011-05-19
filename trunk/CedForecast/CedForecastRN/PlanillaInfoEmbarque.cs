@@ -12,6 +12,11 @@ namespace CedForecastRN
         }
         public static void GuardarDirectorio(string Directorio, CedEntidades.Sesion Sesion)
         {
+            new CedForecastDB.PlanillaInfoEmbarque(Sesion).Guardar(Directorio);
+        }
+        public static void Procesar(string Directorio, CedEntidades.Sesion Sesion)
+        {
+            new CedForecastDB.PlanillaInfoEmbarque(Sesion).Guardar(Directorio);
         }
     }
 }
