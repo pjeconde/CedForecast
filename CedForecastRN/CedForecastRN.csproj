@@ -42,6 +42,7 @@
     <Compile Include="Cuenta.cs" />
     <Compile Include="FamiliaArticulo.cs" />
     <Compile Include="OrdenCompra.cs" />
+    <Compile Include="PlanillaInfoEmbarque.cs" />
     <Compile Include="Proceso.cs" />
     <Compile Include="ProyeccionAnual.cs" />
     <Compile Include="Reporte.cs" />
