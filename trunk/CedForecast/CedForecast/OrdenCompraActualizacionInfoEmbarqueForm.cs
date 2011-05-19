@@ -13,6 +13,11 @@ namespace CedForecast
         public OrdenCompraActualizacionInfoEmbarqueForm(string Titulo) : base(Titulo)
         {
             InitializeComponent();
+            DirectorioPlanillaInfoEmbarqueEditBox.Text = CedForecastRN.PlanillaInfoEmbarque.LeerDirectorio(Aplicacion.Sesion);
+        }
+        private void AceptarUiButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
