@@ -17,8 +17,8 @@ namespace CedForecast
         }
         private void AceptarUiButton_Click(object sender, EventArgs e)
         {
+            CedForecastRN.PlanillaInfoEmbarque.GuardarDirectorio(DirectorioPlanillaInfoEmbarqueEditBox.Text, Aplicacion.Sesion);
             CedForecastRN.PlanillaInfoEmbarque.Procesar(DirectorioPlanillaInfoEmbarqueEditBox.Text, Aplicacion.Sesion);
-
         }
         private void ExaminarUiButton_Click(object sender, EventArgs e)
         {
