@@ -236,6 +236,24 @@ namespace CedForecastRN
                     string periodo = dtForecast.Rows[i]["Periodo"].ToString().Substring(4, 2) + "-" + dtForecast.Rows[i]["Periodo"].ToString().Substring(0, 4);
                     nuevoRegistro[" " + periodo] = dtForecast.Rows[i]["Valor"];
                     dt.Rows.Add(nuevoRegistro);
+                    //Buscar si existe la zona
+                    DataRow[] drFindFinan1 = ds.Tables[0].Select("Zona = '" + dtForecast.Rows[i]["Zona"] + "'");
+                    if (drFindFinan1.Length == 0)
+                    {
+                        DataRow nuevoRegistroFinan1 = ds.Tables[0].NewRow();
+                        nuevoRegistroFinan1["Zona"] = dtForecast.Rows[i]["Zona"].ToString();
+                        ds.Tables[0].Rows.Add(nuevoRegistroFinan1);
+                    }
+                    //Buscar si existe el zona / cliente
+                    DataRow[] drFindFinan2 = ds.Tables[1].Select("Zona = '" + dtForecast.Rows[i]["Zona"] + "' and Cliente = '" + dtForecast.Rows[i]["Cliente"] + "'");
+                    if (drFindFinan2.Length == 0)
+                    {
+                        DataRow nuevoRegistroFinan2 = ds.Tables[1].NewRow();
+                        nuevoRegistroFinan2["Zona"] = dtForecast.Rows[i]["Zona"].ToString();
+                        nuevoRegistroFinan2["Cliente"] = dtForecast.Rows[i]["Cliente"].ToString();
+                        nuevoRegistroFinan2["Nombre"] = dtForecast.Rows[i]["Nombre"].ToString();
+                        ds.Tables[1].Rows.Add(nuevoRegistroFinan2);
+                    }
                 }
                 else if (drFind.Length == 1)
                 {
@@ -254,6 +272,17 @@ namespace CedForecastRN
                     }
                     dt.AcceptChanges();
                 }
+            }
+            DataTable dtCopy = ds.Tables[1].Copy();
+            DataRow[] drows = dtCopy.Select("", "CLIENTE ASC");
+            ds.Tables[1].Clear();
+            for (int i = 0; i < drows.Length; i++)
+            {
+                DataRow drow = ds.Tables[1].NewRow();
+                drow[0] = drows[i][0].ToString();
+                drow[1] = drows[i][1].ToString();
+                drow[2] = drows[i][2].ToString();
+                ds.Tables[1].Rows.Add(drow);
             }
 
             ds.Tables.Add(dtDatosT);
@@ -281,7 +310,8 @@ namespace CedForecastRN
             //Crear datos de forecast para FinancieroDS
             DataTable dt = new DataTable();
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Zona"])); 
-            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cliente"])); 
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Cliente"]));
+            dt.Columns.Add(ClonarColumna(dtDatos.Columns["Nombre"])); 
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["CondVta"])); 
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Articulo"]));
             dt.Columns.Add(ClonarColumna(dtDatos.Columns["Periodo"]));
@@ -323,18 +353,20 @@ namespace CedForecastRN
                     }
                     else
                     {
-                        dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]) + "-" + zona.Zon_Desc;
+                        dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]); // +"-" + zona.Zon_Desc;
                     }
                     //Cliente
                     CedForecastEntidades.Bejerman.Clientes cliente = clientes.Find(delegate(CedForecastEntidades.Bejerman.Clientes c) { return c.Cli_Cod == Convert.ToString(dtDatos.Rows[i]["Cliente"]); });
                     if (cliente == null)
                     {
-                        dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]) + "-<<<Desconocido>>>";
-                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-Forecast-04", "Descripción no encontrada para el cliente " + Convert.ToString(dtDatos.Rows[i]["Cliente"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                        dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]);
+                        dr["Nombre"] = "<<<Desconocido>>>";
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-Forecast-04", "Descripción no encontrada para el cliente " + Convert.ToString(dtDatos.Rows[i]["Cliente"]) + "-" + dr["Nombre"].ToString(), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                     }
                     else
                     {
                         dr["Cliente"] = Convert.ToString(dtDatos.Rows[i]["Cliente"]); // + "-" + cliente.Cli_RazSoc;
+                        dr["Nombre"] = Convert.ToString(dtDatos.Rows[i]["Nombre"]);
                     }
                     if (articulo == null)
                     {
