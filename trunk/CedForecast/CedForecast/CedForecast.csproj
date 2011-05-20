@@ -72,103 +72,123 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticuloInfoAdicionalForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ArticuloInfoAdicionalForm.Designer.cs">
       <DependentUpon>ArticuloInfoAdicionalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ArticuloInfoAdicionalGrillaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ArticuloInfoAdicionalGrillaForm.Designer.cs">
       <DependentUpon>ArticuloInfoAdicionalGrillaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Enum.cs" />
     <Compile Include="Financiero.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Financiero.Designer.cs">
       <DependentUpon>Financiero.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraAltaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraAltaForm.Designer.cs">
       <DependentUpon>OrdenCompraAltaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraAltaMinutaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraAltaMinutaForm.Designer.cs">
       <DependentUpon>OrdenCompraAltaMinutaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraBrowserForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraBrowserForm.Designer.cs">
       <DependentUpon>OrdenCompraBrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraActualizacionInfoEmbarqueForm.Designer.cs">
       <DependentUpon>OrdenCompraActualizacionInfoEmbarqueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraDetalleCompletoForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraDetalleCompletoForm.Designer.cs">
       <DependentUpon>OrdenCompraDetalleCompletoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraIngresoADepositoForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraIngresoADepositoForm.Designer.cs">
       <DependentUpon>OrdenCompraIngresoADepositoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraIngresoInfoEmbarqueForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraIngresoInfoEmbarqueForm.Designer.cs">
       <DependentUpon>OrdenCompraIngresoInfoEmbarqueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraInspeccionRENARForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraInspeccionRENARForm.Designer.cs">
       <DependentUpon>OrdenCompraInspeccionRENARForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraRecepcionDocumentosForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraRecepcionDocumentosForm.Designer.cs">
       <DependentUpon>OrdenCompraRecepcionDocumentosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompraRegistroDespachoForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrdenCompraRegistroDespachoForm.Designer.cs">
       <DependentUpon>OrdenCompraRegistroDespachoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ResumenArgentinaXZonas.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ResumenArgentinaXZonas.Designer.cs">
       <DependentUpon>ResumenArgentinaXZonas.cs</DependentUpon>
     </Compile>
     <Compile Include="FamiliaArticuloForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FamiliaArticuloForm.Designer.cs">
       <DependentUpon>FamiliaArticuloForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FamiliaArticuloGrillaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FamiliaArticuloGrillaForm.Designer.cs">
       <DependentUpon>FamiliaArticuloGrillaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FamiliaArticuloXArticuloForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FamiliaArticuloXArticuloForm.Designer.cs">
       <DependentUpon>FamiliaArticuloXArticuloForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RFoPAForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="RFoPAForm.Designer.cs">
       <DependentUpon>RFoPAForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CrossTabArticulosClientesForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CrossTabArticulosClientesForm.Designer.cs">
       <DependentUpon>CrossTabArticulosClientesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RecursoIncrustado.cs" />
     <Compile Include="SincronizacionForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SincronizacionForm.Designer.cs">
       <DependentUpon>SincronizacionForm.cs</DependentUpon>
@@ -289,16 +309,19 @@
     </Compile>
     <Compile Include="SingleApplication.cs" />
     <Compile Include="TablaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TablaForm.Designer.cs">
       <DependentUpon>TablaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TablaGrillaForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TablaGrillaForm.Designer.cs">
       <DependentUpon>TablaGrillaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TableroForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TableroForm.Designer.cs">
       <DependentUpon>TableroForm.cs</DependentUpon>
