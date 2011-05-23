@@ -19,6 +19,7 @@ namespace CedForecast
         {
             CedForecastRN.PlanillaInfoEmbarque.GuardarDirectorio(DirectorioPlanillaInfoEmbarqueEditBox.Text, Aplicacion.Sesion);
             CedForecastRN.PlanillaInfoEmbarque.Procesar(DirectorioPlanillaInfoEmbarqueEditBox.Text, Aplicacion.Sesion);
+            this.DialogResult = DialogResult.OK;
         }
         private void ExaminarUiButton_Click(object sender, EventArgs e)
         {
