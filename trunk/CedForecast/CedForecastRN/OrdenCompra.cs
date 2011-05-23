@@ -10,7 +10,10 @@ namespace CedForecastRN
         {
             return new CedForecastDB.OrdenCompra(Sesion).LeerLista(FechaDsd, FechaHst, Estados);
         }
-
+        public static void LeerParaActualizacionInfoEmbarque(CedForecastEntidades.OrdenCompra OrdenCompra, CedEntidades.Sesion Sesion)
+        {
+            new CedForecastDB.OrdenCompra(Sesion).LeerParaActualizacionInfoEmbarque(OrdenCompra, "'PteInfoEmb', 'PteRecepDocs', 'PteDesp'");
+        }
         public static void ValidacionAltaMinutaNueva(CedForecastEntidades.OrdenCompraInfoAlta OrdenCompra, CedForecastEntidades.OrdenCompraInfoAltaMinuta Minuta, CedEntidades.Sesion Sesion)
         {
             ValidacionAltaMinutaExistente(OrdenCompra, Minuta, -1, Sesion);
@@ -339,6 +342,23 @@ namespace CedForecastRN
             eventoWF.IdEstadoHst.IdEstado = OrdenCompraModificada.WF.IdEstado;
             string handler = Cedeira.SV.WF.EjecutarEvento(OrdenCompraOriginal.WF, eventoWF, true);
             new CedForecastDB.OrdenCompra(Sesion).CambioEstado(OrdenCompraOriginal, OrdenCompraModificada, handler);
+        }
+
+        public static void ActualizacionInfoEmbarque(CedForecastEntidades.OrdenCompra OrdenCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, CedEntidades.Sesion Sesion)
+        {
+            CedEntidades.Evento eventoWF = new CedEntidades.Evento();
+            if ((OrdenCompra.IdReferenciaSAP != InfoEmbarque.IdReferenciaSAP) ||
+                (OrdenCompra.Vapor != InfoEmbarque.Vapor) ||
+                (OrdenCompra.FechaEstimadaSalida != InfoEmbarque.FechaEstimadaSalida) ||
+                (OrdenCompra.FechaEstimadaArribo != InfoEmbarque.FechaEstimadaArribo))
+            {
+                eventoWF.Flow.IdFlow = "OrdenCpra";
+                eventoWF.Id = "ActInfoEmb";
+                Cedeira.SV.WF.LeerEvento(eventoWF, Sesion);
+                List<string> handlers = new List<string>();
+                string handler = Cedeira.SV.WF.EjecutarEvento(OrdenCompra.WF, eventoWF, true);
+                new CedForecastDB.OrdenCompra(Sesion).ActualizacionInfoEmbarque(OrdenCompra, InfoEmbarque, handler);
+            }
         }
 
         private static string ListaOrdenesCompra(List<CedForecastEntidades.OrdenCompra> OrdenesCompra)

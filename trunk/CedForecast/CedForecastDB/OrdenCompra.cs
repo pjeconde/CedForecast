@@ -35,6 +35,27 @@ namespace CedForecastDB
             }
             return lista;
         }
+        public void LeerParaActualizacionInfoEmbarque(CedForecastEntidades.OrdenCompra OrdenCompra, string Estados)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("SELECT OrdenCompra.Prefijo, OrdenCompra.Id, OrdenCompra.IdItem, OrdenCompra.IdProveedor, OrdenCompra.DescrProveedor, OrdenCompra.Fecha, OrdenCompra.IdPaisOrigen, OrdenCompra.DescrPaisOrigen, OrdenCompra.IdArticulo, OrdenCompra.DescrArticulo, OrdenCompra.FechaEstimadaArriboRequerida, OrdenCompra.CantidadContenedores, OrdenCompra.ComentarioContenedores, OrdenCompra.CantidadPresentacion, OrdenCompra.Cantidad, OrdenCompra.IdMoneda, OrdenCompra.Precio, OrdenCompra.Importe, OrdenCompra.IdReferenciaSAP, OrdenCompra.FechaEstimadaSalida, OrdenCompra.Vapor, OrdenCompra.FechaEstimadaArribo, OrdenCompra.NroConocimientoEmbarque, OrdenCompra.Factura, OrdenCompra.FechaRecepcionDocumentos, OrdenCompra.FechaIngresoAPuerto, OrdenCompra.NroDespacho, OrdenCompra.FechaOficializacion, OrdenCompra.FechaInspeccionRENAR, OrdenCompra.FechaIngresoDeposito, OrdenCompra.ImporteGastosNacionalizacion, OrdenCompra.Comentario, OrdenCompra.IdOpWF, ");
+            a.Append("WF_Op.IdEstado, WF_Estado.DescrEstado ");
+            a.Append("FROM OrdenCompra, WF_Op, WF_Estado ");
+            a.Append("where OrdenCompra.IdOpWF=WF_Op.IdOp ");
+            a.Append("and WF_Op.IdEstado in (" + Estados + ") ");
+            a.Append("and WF_Op.IdEstado=WF_Estado.IdEstado ");
+            a.Append("and convert(varchar, Id) + IdItem = " + OrdenCompra.Id.ToString() + OrdenCompra.IdItem + " ");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            if (dt.Rows.Count == 1)
+            {
+                Copiar(dt.Rows[0], OrdenCompra);
+            }
+            else
+            {
+                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente("Item " + OrdenCompra.IdItem + " de Orden de Compra Nº " + OrdenCompra.Id.ToString());
+            }
+        }
         private void Copiar(DataRow Desde, CedForecastEntidades.OrdenCompra Hasta)
         {
             Hasta.Prefijo = Convert.ToString(Desde["Prefijo"]);
@@ -166,7 +187,7 @@ namespace CedForecastDB
         public void IngresoInfoEmbarque(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, List<string> HandlersWF)
         {
             StringBuilder a = new StringBuilder();
-            for (int i=0; i<HandlersWF.Count; i++)
+            for (int i = 0; i < HandlersWF.Count; i++)
             {
                 a.Append(HandlersWF[i]);
                 a.Append("end ");
@@ -177,6 +198,19 @@ namespace CedForecastDB
             a.Append("Vapor='" + InfoEmbarque.Vapor + "', ");
             a.Append("FechaEstimadaArribo='" + InfoEmbarque.FechaEstimadaArribo.ToString("yyyyMMdd") + "' ");
             a.Append("where convert(varchar, Id) + IdItem in (" + ListaOrdenesCompra + ") ");
+            Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
+        }
+        public void ActualizacionInfoEmbarque(CedForecastEntidades.OrdenCompra OrdenCompra, CedForecastEntidades.OrdenCompraInfoEmbarque InfoEmbarque, string HandlerWF)
+        {
+            StringBuilder a = new StringBuilder();
+            a.Append(HandlerWF);
+            a.Append("end ");
+            a.Append("update OrdenCompra set ");
+            a.Append("IdReferenciaSAP='" + InfoEmbarque.IdReferenciaSAP + "', ");
+            a.Append("FechaEstimadaSalida='" + InfoEmbarque.FechaEstimadaSalida.ToString("yyyyMMdd") + "', ");
+            a.Append("Vapor='" + InfoEmbarque.Vapor + "', ");
+            a.Append("FechaEstimadaArribo='" + InfoEmbarque.FechaEstimadaArribo.ToString("yyyyMMdd") + "' ");
+            a.Append("where convert(varchar, Id) + IdItem = " + OrdenCompra.Id.ToString()+OrdenCompra.IdItem + " ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.Usa, sesion.CnnStr);
         }
         public void RecepcionDocumentos(string ListaOrdenesCompra, CedForecastEntidades.OrdenCompraInfoRecepcionDocumentos InfoRecepcionDocumentos, List<string> HandlersWF)
