@@ -19,37 +19,68 @@ namespace CedForecastRN
         {
             try
             {
-                //new CedForecastDB.PlanillaInfoEmbarque(Sesion).Guardar(Directorio);
-                //FileHelpers.DataLink.ExcelStorage planilla = new FileHelpers.DataLink.ExcelStorage(typeof(CedForecastEntidades.PlanillaInfoEmbarque)); 
-                //planilla.StartRow = 1; 
-                //planilla.StartColumn = 1;
-                //planilla.FileName = Directorio;
-                //CedForecastEntidades.PlanillaInfoEmbarque[] filas = (CedForecastEntidades.PlanillaInfoEmbarque[])planilla.ExtractRecords();
-                for (int i = 0; i < 1; i++)
+                new CedForecastDB.PlanillaInfoEmbarque(Sesion).Guardar(Directorio);
+                //Lectura planilla excel
+                FileHelpers.DataLink.ExcelStorage planilla = new FileHelpers.DataLink.ExcelStorage(typeof(CedForecastEntidades.PlanillaInfoEmbarque));
+                planilla.StartRow = 6;
+                planilla.StartColumn = 1;
+                planilla.FileName = Directorio;
+                CedForecastEntidades.PlanillaInfoEmbarque[] filas = (CedForecastEntidades.PlanillaInfoEmbarque[])planilla.ExtractRecords();
+                //Actualizar items de la orden de compra
+                for (int i = 0; i < filas.Length; i++)
                 {
-                    CedForecastEntidades.OrdenCompra ordenCompra = new CedForecastEntidades.OrdenCompra();
-                    ordenCompra.Id = 1;
-                    ordenCompra.IdItem = "0";
                     try
                     {
+                        //Determino info de embarque
                         CedForecastEntidades.OrdenCompraInfoEmbarque infoEmbarque = new CedForecastEntidades.OrdenCompraInfoEmbarque();
-                        infoEmbarque.IdReferenciaSAP = "";
-                        infoEmbarque.FechaEstimadaSalida = DateTime.Today;
-                        infoEmbarque.Vapor = "";
-                        infoEmbarque.FechaEstimadaArribo = DateTime.Today;
+                        infoEmbarque.IdReferenciaSAP = filas[i].IdReferenciaSAP;
+                        infoEmbarque.FechaEstimadaSalida = FormatearFecha(filas[i].FechaEstimadaSalida);
+                        infoEmbarque.Vapor = filas[i].Vapor;
+                        infoEmbarque.FechaEstimadaArribo = FormatearFecha(filas[i].FechaEstimadaArribo);
+                        //Leo orden de compra
+                        CedForecastEntidades.OrdenCompra ordenCompra = new CedForecastEntidades.OrdenCompra();
+                        string itemOrdenCompra = QuitarPrefijo(filas[i].ItemOrdenCompra);
+                        ordenCompra.Id = Convert.ToInt32(itemOrdenCompra.Substring(0, itemOrdenCompra.Length - 1));
+                        ordenCompra.IdItem = itemOrdenCompra.Substring(itemOrdenCompra.Length - 1, 1);
                         CedForecastRN.OrdenCompra.LeerParaActualizacionInfoEmbarque(ordenCompra, Sesion);
+                        //Actualizo info embarque
                         CedForecastRN.OrdenCompra.ActualizacionInfoEmbarque(ordenCompra, infoEmbarque, Sesion);
                     }
                     catch (Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ElementoInexistente)
                     {
                     }
-                    catch { throw; }
+                    catch
+                    {
+                        throw;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Microsoft.ApplicationBlocks.ExceptionManagement.ExceptionManager.Publish(ex);
             }
+        }
+        private static string QuitarPrefijo(string Valor)
+        {
+            StringBuilder valorSinPrefijo = new StringBuilder();
+            string [] a = Valor.Split(' ');
+            for (int i = 0; i < a.Length; i++)
+            {
+                try
+                {
+                    int numero = int.Parse(a[i]);
+                    valorSinPrefijo.Append(a[i]);
+                }
+                catch
+                {
+                }
+            }
+            return valorSinPrefijo.ToString();
+        }
+        private static DateTime FormatearFecha(string Valor)
+        {
+            string [] a = Valor.Split('/');
+            return new DateTime(Convert.ToInt32(a[2]), Convert.ToInt32(a[1]), Convert.ToInt32(a[0]));
         }
     }
 }
