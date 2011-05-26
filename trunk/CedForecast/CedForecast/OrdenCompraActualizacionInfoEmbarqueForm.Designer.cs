@@ -45,7 +45,7 @@
             this.FondoNicePanel.Controls.Add(this.DirectorioPlanillaInfoEmbarqueEditBox);
             this.FondoNicePanel.Controls.Add(this.label4);
             this.FondoNicePanel.Controls.Add(this.panel2);
-            this.FondoNicePanel.Size = new System.Drawing.Size(958, 110);
+            this.FondoNicePanel.Size = new System.Drawing.Size(726, 110);
             // 
             // panel2
             // 
@@ -55,7 +55,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 80);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.panel2.Size = new System.Drawing.Size(958, 30);
+            this.panel2.Size = new System.Drawing.Size(726, 30);
             this.panel2.TabIndex = 32;
             // 
             // SalirUiButton
@@ -67,7 +67,7 @@
             this.SalirUiButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SalirUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.SalirUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("SalirUiButton.Icon")));
-            this.SalirUiButton.Location = new System.Drawing.Point(875, 3);
+            this.SalirUiButton.Location = new System.Drawing.Point(643, 3);
             this.SalirUiButton.Name = "SalirUiButton";
             this.SalirUiButton.ShowFocusRectangle = false;
             this.SalirUiButton.Size = new System.Drawing.Size(78, 24);
@@ -95,7 +95,7 @@
             this.AceptarUiButton.StateStyles.FormatStyle.ForeColor = System.Drawing.Color.Navy;
             this.AceptarUiButton.TabIndex = 6;
             this.AceptarUiButton.TabStop = false;
-            this.AceptarUiButton.Text = "Aceptar";
+            this.AceptarUiButton.Text = "Procesar";
             this.AceptarUiButton.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Near;
             this.AceptarUiButton.UseThemes = false;
             this.AceptarUiButton.Click += new System.EventHandler(this.AceptarUiButton_Click);
@@ -111,7 +111,7 @@
             this.DirectorioPlanillaInfoEmbarqueEditBox.ForeColor = System.Drawing.Color.Black;
             this.DirectorioPlanillaInfoEmbarqueEditBox.Location = new System.Drawing.Point(86, 48);
             this.DirectorioPlanillaInfoEmbarqueEditBox.Name = "DirectorioPlanillaInfoEmbarqueEditBox";
-            this.DirectorioPlanillaInfoEmbarqueEditBox.Size = new System.Drawing.Size(774, 20);
+            this.DirectorioPlanillaInfoEmbarqueEditBox.Size = new System.Drawing.Size(538, 20);
             this.DirectorioPlanillaInfoEmbarqueEditBox.TabIndex = 9106;
             this.DirectorioPlanillaInfoEmbarqueEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near;
             this.DirectorioPlanillaInfoEmbarqueEditBox.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -123,8 +123,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 9107;
-            this.label4.Text = "Comentario";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Text = "Planilla";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ExaminarUiButton
             // 
@@ -133,7 +133,7 @@
             this.ExaminarUiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExaminarUiButton.FlatBorderColor = System.Drawing.Color.Navy;
             this.ExaminarUiButton.Icon = ((System.Drawing.Icon)(resources.GetObject("ExaminarUiButton.Icon")));
-            this.ExaminarUiButton.Location = new System.Drawing.Point(866, 46);
+            this.ExaminarUiButton.Location = new System.Drawing.Point(630, 46);
             this.ExaminarUiButton.Name = "ExaminarUiButton";
             this.ExaminarUiButton.ShowFocusRectangle = false;
             this.ExaminarUiButton.Size = new System.Drawing.Size(73, 24);
@@ -150,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(958, 110);
+            this.ClientSize = new System.Drawing.Size(726, 110);
             this.Name = "OrdenCompraActualizacionInfoEmbarqueForm";
             this.Text = "OrdenCompraActualizacionInfoEmbarqueForm";
             this.FondoNicePanel.ResumeLayout(false);
