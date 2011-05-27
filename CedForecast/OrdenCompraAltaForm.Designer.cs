@@ -320,6 +320,7 @@
             this.ComentarioEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.ComentarioEditBox.ForeColor = System.Drawing.Color.Black;
             this.ComentarioEditBox.Location = new System.Drawing.Point(62, 50);
+            this.ComentarioEditBox.MaxLength = 255;
             this.ComentarioEditBox.Name = "ComentarioEditBox";
             this.ComentarioEditBox.Size = new System.Drawing.Size(602, 20);
             this.ComentarioEditBox.TabIndex = 5;
@@ -397,6 +398,7 @@
             this.PrefijoEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.PrefijoEditBox.ForeColor = System.Drawing.Color.Black;
             this.PrefijoEditBox.Location = new System.Drawing.Point(629, 25);
+            this.PrefijoEditBox.MaxLength = 3;
             this.PrefijoEditBox.Name = "PrefijoEditBox";
             this.PrefijoEditBox.Size = new System.Drawing.Size(35, 20);
             this.PrefijoEditBox.TabIndex = 4;

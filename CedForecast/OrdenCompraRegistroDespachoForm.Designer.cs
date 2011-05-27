@@ -192,6 +192,7 @@
             this.NroDespachoEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.NroDespachoEditBox.ForeColor = System.Drawing.Color.Black;
             this.NroDespachoEditBox.Location = new System.Drawing.Point(149, 25);
+            this.NroDespachoEditBox.MaxLength = 20;
             this.NroDespachoEditBox.Name = "NroDespachoEditBox";
             this.NroDespachoEditBox.Size = new System.Drawing.Size(124, 20);
             this.NroDespachoEditBox.TabIndex = 9091;

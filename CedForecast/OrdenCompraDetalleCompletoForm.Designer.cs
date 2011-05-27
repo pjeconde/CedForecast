@@ -294,6 +294,7 @@
             this.FacturaEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.FacturaEditBox.ForeColor = System.Drawing.Color.Black;
             this.FacturaEditBox.Location = new System.Drawing.Point(542, 50);
+            this.FacturaEditBox.MaxLength = 20;
             this.FacturaEditBox.Name = "FacturaEditBox";
             this.FacturaEditBox.Size = new System.Drawing.Size(124, 20);
             this.FacturaEditBox.TabIndex = 16;
@@ -319,6 +320,7 @@
             this.NroConocimientoEmbarqueEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.NroConocimientoEmbarqueEditBox.ForeColor = System.Drawing.Color.Black;
             this.NroConocimientoEmbarqueEditBox.Location = new System.Drawing.Point(542, 25);
+            this.NroConocimientoEmbarqueEditBox.MaxLength = 20;
             this.NroConocimientoEmbarqueEditBox.Name = "NroConocimientoEmbarqueEditBox";
             this.NroConocimientoEmbarqueEditBox.Size = new System.Drawing.Size(124, 20);
             this.NroConocimientoEmbarqueEditBox.TabIndex = 15;
@@ -472,6 +474,7 @@
             this.NroDespachoEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.NroDespachoEditBox.ForeColor = System.Drawing.Color.Black;
             this.NroDespachoEditBox.Location = new System.Drawing.Point(542, 225);
+            this.NroDespachoEditBox.MaxLength = 20;
             this.NroDespachoEditBox.Name = "NroDespachoEditBox";
             this.NroDespachoEditBox.Size = new System.Drawing.Size(124, 20);
             this.NroDespachoEditBox.TabIndex = 23;
@@ -529,6 +532,7 @@
             this.IdReferenciaSAPEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdReferenciaSAPEditBox.ForeColor = System.Drawing.Color.Black;
             this.IdReferenciaSAPEditBox.Location = new System.Drawing.Point(542, 100);
+            this.IdReferenciaSAPEditBox.MaxLength = 20;
             this.IdReferenciaSAPEditBox.Name = "IdReferenciaSAPEditBox";
             this.IdReferenciaSAPEditBox.Size = new System.Drawing.Size(124, 20);
             this.IdReferenciaSAPEditBox.TabIndex = 18;
@@ -554,6 +558,7 @@
             this.VaporEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.VaporEditBox.ForeColor = System.Drawing.Color.Black;
             this.VaporEditBox.Location = new System.Drawing.Point(542, 150);
+            this.VaporEditBox.MaxLength = 20;
             this.VaporEditBox.Name = "VaporEditBox";
             this.VaporEditBox.Size = new System.Drawing.Size(191, 20);
             this.VaporEditBox.TabIndex = 20;
@@ -634,6 +639,7 @@
             this.ComentarioEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.ComentarioEditBox.ForeColor = System.Drawing.Color.Black;
             this.ComentarioEditBox.Location = new System.Drawing.Point(122, 325);
+            this.ComentarioEditBox.MaxLength = 255;
             this.ComentarioEditBox.Name = "ComentarioEditBox";
             this.ComentarioEditBox.Size = new System.Drawing.Size(611, 20);
             this.ComentarioEditBox.TabIndex = 27;
@@ -701,6 +707,7 @@
             this.PrefijoEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.PrefijoEditBox.ForeColor = System.Drawing.Color.Black;
             this.PrefijoEditBox.Location = new System.Drawing.Point(294, 126);
+            this.PrefijoEditBox.MaxLength = 3;
             this.PrefijoEditBox.Name = "PrefijoEditBox";
             this.PrefijoEditBox.Size = new System.Drawing.Size(35, 20);
             this.PrefijoEditBox.TabIndex = 7;
@@ -891,7 +898,7 @@
             this.ImporteNumericEditBox.ReadOnly = true;
             this.ImporteNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteNumericEditBox.TabIndex = 13;
-            this.ImporteNumericEditBox.Text = "0,00";
+            this.ImporteNumericEditBox.Text = "0.00";
             this.ImporteNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -989,7 +996,7 @@
             this.ImporteGastosNacionalizacionNumericEditBox.Name = "ImporteGastosNacionalizacionNumericEditBox";
             this.ImporteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteGastosNacionalizacionNumericEditBox.TabIndex = 14;
-            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0,00";
+            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0.00";
             this.ImporteGastosNacionalizacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteGastosNacionalizacionNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1013,7 +1020,7 @@
             this.CantidadContenedoresNumericEditBox.Name = "CantidadContenedoresNumericEditBox";
             this.CantidadContenedoresNumericEditBox.Size = new System.Drawing.Size(88, 20);
             this.CantidadContenedoresNumericEditBox.TabIndex = 6;
-            this.CantidadContenedoresNumericEditBox.Text = "0,0000";
+            this.CantidadContenedoresNumericEditBox.Text = "0.0000";
             this.CantidadContenedoresNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadContenedoresNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1059,7 +1066,7 @@
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.PrecioNumericEditBox.TabIndex = 12;
-            this.PrecioNumericEditBox.Text = "0,0000";
+            this.PrecioNumericEditBox.Text = "0.0000";
             this.PrecioNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PrecioNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1088,6 +1095,7 @@
             this.ComentarioContenedoresEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.ComentarioContenedoresEditBox.ForeColor = System.Drawing.Color.Black;
             this.ComentarioContenedoresEditBox.Location = new System.Drawing.Point(122, 150);
+            this.ComentarioContenedoresEditBox.MaxLength = 255;
             this.ComentarioContenedoresEditBox.Name = "ComentarioContenedoresEditBox";
             this.ComentarioContenedoresEditBox.Size = new System.Drawing.Size(280, 20);
             this.ComentarioContenedoresEditBox.TabIndex = 8;
