@@ -164,6 +164,7 @@
             this.IdReferenciaSAPEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.IdReferenciaSAPEditBox.ForeColor = System.Drawing.Color.Black;
             this.IdReferenciaSAPEditBox.Location = new System.Drawing.Point(149, 0);
+            this.IdReferenciaSAPEditBox.MaxLength = 20;
             this.IdReferenciaSAPEditBox.Name = "IdReferenciaSAPEditBox";
             this.IdReferenciaSAPEditBox.Size = new System.Drawing.Size(124, 20);
             this.IdReferenciaSAPEditBox.TabIndex = 9089;
@@ -189,6 +190,7 @@
             this.VaporEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.VaporEditBox.ForeColor = System.Drawing.Color.Black;
             this.VaporEditBox.Location = new System.Drawing.Point(149, 50);
+            this.VaporEditBox.MaxLength = 20;
             this.VaporEditBox.Name = "VaporEditBox";
             this.VaporEditBox.Size = new System.Drawing.Size(257, 20);
             this.VaporEditBox.TabIndex = 9087;

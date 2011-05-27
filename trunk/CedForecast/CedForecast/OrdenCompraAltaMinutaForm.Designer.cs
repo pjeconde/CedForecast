@@ -241,7 +241,7 @@
             this.ImporteNumericEditBox.ReadOnly = true;
             this.ImporteNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteNumericEditBox.TabIndex = 8;
-            this.ImporteNumericEditBox.Text = "0,00";
+            this.ImporteNumericEditBox.Text = "0.00";
             this.ImporteNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -339,7 +339,7 @@
             this.ImporteGastosNacionalizacionNumericEditBox.Name = "ImporteGastosNacionalizacionNumericEditBox";
             this.ImporteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteGastosNacionalizacionNumericEditBox.TabIndex = 9;
-            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0,00";
+            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0.00";
             this.ImporteGastosNacionalizacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteGastosNacionalizacionNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -363,7 +363,7 @@
             this.CantidadContenedoresNumericEditBox.Name = "CantidadContenedoresNumericEditBox";
             this.CantidadContenedoresNumericEditBox.Size = new System.Drawing.Size(88, 20);
             this.CantidadContenedoresNumericEditBox.TabIndex = 2;
-            this.CantidadContenedoresNumericEditBox.Text = "0,0000";
+            this.CantidadContenedoresNumericEditBox.Text = "0.0000";
             this.CantidadContenedoresNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadContenedoresNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -409,7 +409,7 @@
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.PrecioNumericEditBox.TabIndex = 7;
-            this.PrecioNumericEditBox.Text = "0,0000";
+            this.PrecioNumericEditBox.Text = "0.0000";
             this.PrecioNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PrecioNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -438,6 +438,7 @@
             this.ComentarioContenedoresEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.ComentarioContenedoresEditBox.ForeColor = System.Drawing.Color.Black;
             this.ComentarioContenedoresEditBox.Location = new System.Drawing.Point(275, 27);
+            this.ComentarioContenedoresEditBox.MaxLength = 255;
             this.ComentarioContenedoresEditBox.Name = "ComentarioContenedoresEditBox";
             this.ComentarioContenedoresEditBox.Size = new System.Drawing.Size(280, 20);
             this.ComentarioContenedoresEditBox.TabIndex = 3;

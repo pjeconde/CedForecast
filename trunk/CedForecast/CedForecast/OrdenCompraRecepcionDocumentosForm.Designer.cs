@@ -160,6 +160,7 @@
             this.FacturaEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.FacturaEditBox.ForeColor = System.Drawing.Color.Black;
             this.FacturaEditBox.Location = new System.Drawing.Point(176, 25);
+            this.FacturaEditBox.MaxLength = 20;
             this.FacturaEditBox.Name = "FacturaEditBox";
             this.FacturaEditBox.Size = new System.Drawing.Size(124, 20);
             this.FacturaEditBox.TabIndex = 9091;
@@ -185,6 +186,7 @@
             this.NroConocimientoEmbarqueEditBox.FlatBorderColor = System.Drawing.Color.Black;
             this.NroConocimientoEmbarqueEditBox.ForeColor = System.Drawing.Color.Black;
             this.NroConocimientoEmbarqueEditBox.Location = new System.Drawing.Point(176, 0);
+            this.NroConocimientoEmbarqueEditBox.MaxLength = 20;
             this.NroConocimientoEmbarqueEditBox.Name = "NroConocimientoEmbarqueEditBox";
             this.NroConocimientoEmbarqueEditBox.Size = new System.Drawing.Size(124, 20);
             this.NroConocimientoEmbarqueEditBox.TabIndex = 9089;
