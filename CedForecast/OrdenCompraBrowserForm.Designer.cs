@@ -180,7 +180,7 @@ namespace CedForecast
             this.BrowserPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserPanel.Name = "BrowserPanel";
             this.BrowserPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.BrowserPanel.Size = new System.Drawing.Size(951, 446);
+            this.BrowserPanel.Size = new System.Drawing.Size(946, 446);
             this.BrowserPanel.TabIndex = 5;
             // 
             // BrowserGridsPanel
@@ -191,7 +191,7 @@ namespace CedForecast
             this.BrowserGridsPanel.Location = new System.Drawing.Point(5, 5);
             this.BrowserGridsPanel.Name = "BrowserGridsPanel";
             this.BrowserGridsPanel.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.BrowserGridsPanel.Size = new System.Drawing.Size(763, 436);
+            this.BrowserGridsPanel.Size = new System.Drawing.Size(758, 436);
             this.BrowserGridsPanel.TabIndex = 6;
             // 
             // BrowserGridPanel
@@ -201,7 +201,7 @@ namespace CedForecast
             this.BrowserGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserGridPanel.Location = new System.Drawing.Point(0, 0);
             this.BrowserGridPanel.Name = "BrowserGridPanel";
-            this.BrowserGridPanel.Size = new System.Drawing.Size(759, 436);
+            this.BrowserGridPanel.Size = new System.Drawing.Size(754, 436);
             this.BrowserGridPanel.TabIndex = 9;
             // 
             // BrowserGridEX
@@ -239,7 +239,7 @@ namespace CedForecast
             this.BrowserGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.BrowserGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
             this.BrowserGridEX.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
-            this.BrowserGridEX.Size = new System.Drawing.Size(759, 436);
+            this.BrowserGridEX.Size = new System.Drawing.Size(754, 436);
             this.BrowserGridEX.TabIndex = 6;
             this.BrowserGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
             this.BrowserGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -253,7 +253,7 @@ namespace CedForecast
             this.HerramientasUiPanel.CaptionHeight = 20;
             this.HerramientasUiPanel.CloseButtonVisible = Janus.Windows.UI.InheritableBoolean.False;
             this.HerramientasUiPanel.InnerContainer = this.HerramientasUiPanelContainer;
-            this.HerramientasUiPanel.Location = new System.Drawing.Point(768, 5);
+            this.HerramientasUiPanel.Location = new System.Drawing.Point(763, 5);
             this.HerramientasUiPanel.Name = "HerramientasUiPanel";
             this.HerramientasUiPanel.Size = new System.Drawing.Size(178, 436);
             this.HerramientasUiPanel.TabIndex = 4;
@@ -562,7 +562,7 @@ namespace CedForecast
             this.BrowserUiTab.MultiLine = true;
             this.BrowserUiTab.Name = "BrowserUiTab";
             this.BrowserUiTab.ShowFocusRectangle = false;
-            this.BrowserUiTab.Size = new System.Drawing.Size(953, 468);
+            this.BrowserUiTab.Size = new System.Drawing.Size(948, 468);
             this.BrowserUiTab.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.BrowserUiTab.TabIndex = 9;
             this.BrowserUiTab.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
@@ -582,7 +582,7 @@ namespace CedForecast
             this.TabBrowserUiTabPage.Key = "OrdenCompra";
             this.TabBrowserUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabBrowserUiTabPage.Name = "TabBrowserUiTabPage";
-            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(951, 446);
+            this.TabBrowserUiTabPage.Size = new System.Drawing.Size(946, 446);
             this.TabBrowserUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
             this.TabBrowserUiTabPage.TabIndex = 1;
             this.TabBrowserUiTabPage.Tag = "Detalle";
@@ -594,7 +594,7 @@ namespace CedForecast
             this.TabFiltroUiTabPage.Key = "Filtro";
             this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
             this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
-            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(951, 446);
+            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(946, 446);
             this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.TabFiltroUiTabPage.TabIndex = 0;
             this.TabFiltroUiTabPage.Tag = "Detalle";
@@ -612,7 +612,7 @@ namespace CedForecast
             this.FiltroPanel.Location = new System.Drawing.Point(0, 0);
             this.FiltroPanel.Name = "FiltroPanel";
             this.FiltroPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.FiltroPanel.Size = new System.Drawing.Size(951, 446);
+            this.FiltroPanel.Size = new System.Drawing.Size(946, 446);
             this.FiltroPanel.TabIndex = 5;
             // 
             // EjecutarSeleccionUiButton
@@ -903,7 +903,7 @@ namespace CedForecast
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 0, 5);
+            this.panel4.Padding = new System.Windows.Forms.Padding(5, 30, 5, 5);
             this.panel4.Size = new System.Drawing.Size(958, 503);
             this.panel4.TabIndex = 31;
             // 
