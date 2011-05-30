@@ -35,10 +35,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.BrowserUiTab = new Janus.Windows.UI.Tab.UITab();
-            this.TabFiltroUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
-            this.TabBrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.DetalleCompletoPanel = new System.Windows.Forms.Panel();
+            this.BrowserUiTab = new Janus.Windows.UI.Tab.UITab();
+            this.TabBrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.IdEstadoUiComboBox = new Janus.Windows.EditControls.UIComboBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -102,17 +101,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
+            this.TabFiltroUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.LogGridEX = new Janus.Windows.GridEX.GridEX();
             this.FondoNicePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.DetalleCompletoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).BeginInit();
             this.BrowserUiTab.SuspendLayout();
-            this.TabFiltroUiTabPage.SuspendLayout();
             this.TabBrowserUiTabPage.SuspendLayout();
-            this.DetalleCompletoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.TabFiltroUiTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogGridEX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -195,6 +195,17 @@
             this.panel4.Size = new System.Drawing.Size(756, 469);
             this.panel4.TabIndex = 30;
             // 
+            // DetalleCompletoPanel
+            // 
+            this.DetalleCompletoPanel.BackColor = System.Drawing.Color.Transparent;
+            this.DetalleCompletoPanel.Controls.Add(this.BrowserUiTab);
+            this.DetalleCompletoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DetalleCompletoPanel.Location = new System.Drawing.Point(5, 30);
+            this.DetalleCompletoPanel.Name = "DetalleCompletoPanel";
+            this.DetalleCompletoPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
+            this.DetalleCompletoPanel.Size = new System.Drawing.Size(746, 434);
+            this.DetalleCompletoPanel.TabIndex = 1;
+            // 
             // BrowserUiTab
             // 
             this.BrowserUiTab.BackColor = System.Drawing.Color.Transparent;
@@ -219,19 +230,6 @@
             this.BrowserUiTab.UseThemes = false;
             this.BrowserUiTab.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.Office2003;
             // 
-            // TabFiltroUiTabPage
-            // 
-            this.TabFiltroUiTabPage.Controls.Add(this.LogGridEX);
-            this.TabFiltroUiTabPage.Key = "Historia";
-            this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
-            this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
-            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(744, 382);
-            this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.TabFiltroUiTabPage.TabIndex = 0;
-            this.TabFiltroUiTabPage.Tag = "Historia";
-            this.TabFiltroUiTabPage.Text = "Historia";
-            this.TabFiltroUiTabPage.Visible = false;
-            // 
             // TabBrowserUiTabPage
             // 
             this.TabBrowserUiTabPage.Controls.Add(this.panel1);
@@ -244,17 +242,6 @@
             this.TabBrowserUiTabPage.TabIndex = 1;
             this.TabBrowserUiTabPage.Tag = "Detalle";
             this.TabBrowserUiTabPage.Text = "Detalle";
-            // 
-            // DetalleCompletoPanel
-            // 
-            this.DetalleCompletoPanel.BackColor = System.Drawing.Color.Transparent;
-            this.DetalleCompletoPanel.Controls.Add(this.BrowserUiTab);
-            this.DetalleCompletoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DetalleCompletoPanel.Location = new System.Drawing.Point(5, 30);
-            this.DetalleCompletoPanel.Name = "DetalleCompletoPanel";
-            this.DetalleCompletoPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            this.DetalleCompletoPanel.Size = new System.Drawing.Size(746, 434);
-            this.DetalleCompletoPanel.TabIndex = 1;
             // 
             // panel1
             // 
@@ -967,7 +954,7 @@
             this.ImporteNumericEditBox.ReadOnly = true;
             this.ImporteNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteNumericEditBox.TabIndex = 9159;
-            this.ImporteNumericEditBox.Text = "0.00";
+            this.ImporteNumericEditBox.Text = "0,00";
             this.ImporteNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1063,7 +1050,7 @@
             this.ImporteGastosNacionalizacionNumericEditBox.Name = "ImporteGastosNacionalizacionNumericEditBox";
             this.ImporteGastosNacionalizacionNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.ImporteGastosNacionalizacionNumericEditBox.TabIndex = 9160;
-            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0.00";
+            this.ImporteGastosNacionalizacionNumericEditBox.Text = "0,00";
             this.ImporteGastosNacionalizacionNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.ImporteGastosNacionalizacionNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1087,7 +1074,7 @@
             this.CantidadContenedoresNumericEditBox.Name = "CantidadContenedoresNumericEditBox";
             this.CantidadContenedoresNumericEditBox.Size = new System.Drawing.Size(88, 20);
             this.CantidadContenedoresNumericEditBox.TabIndex = 9152;
-            this.CantidadContenedoresNumericEditBox.Text = "0.0000";
+            this.CantidadContenedoresNumericEditBox.Text = "0,0000";
             this.CantidadContenedoresNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.CantidadContenedoresNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1131,7 +1118,7 @@
             this.PrecioNumericEditBox.Name = "PrecioNumericEditBox";
             this.PrecioNumericEditBox.Size = new System.Drawing.Size(120, 20);
             this.PrecioNumericEditBox.TabIndex = 9158;
-            this.PrecioNumericEditBox.Text = "0.0000";
+            this.PrecioNumericEditBox.Text = "0,0000";
             this.PrecioNumericEditBox.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
             this.PrecioNumericEditBox.Value = new decimal(new int[] {
             0,
@@ -1227,6 +1214,19 @@
             this.IdLabel.Text = "Artículo";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // TabFiltroUiTabPage
+            // 
+            this.TabFiltroUiTabPage.Controls.Add(this.LogGridEX);
+            this.TabFiltroUiTabPage.Key = "Historia";
+            this.TabFiltroUiTabPage.Location = new System.Drawing.Point(1, 21);
+            this.TabFiltroUiTabPage.Name = "TabFiltroUiTabPage";
+            this.TabFiltroUiTabPage.Size = new System.Drawing.Size(744, 382);
+            this.TabFiltroUiTabPage.StateStyles.HotFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.TabFiltroUiTabPage.TabIndex = 0;
+            this.TabFiltroUiTabPage.Tag = "Historia";
+            this.TabFiltroUiTabPage.Text = "Historia";
+            this.TabFiltroUiTabPage.Visible = false;
+            // 
             // LogGridEX
             // 
             this.LogGridEX.AllowColumnDrag = false;
@@ -1275,12 +1275,12 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.DetalleCompletoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BrowserUiTab)).EndInit();
             this.BrowserUiTab.ResumeLayout(false);
-            this.TabFiltroUiTabPage.ResumeLayout(false);
             this.TabBrowserUiTabPage.ResumeLayout(false);
-            this.DetalleCompletoPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.TabFiltroUiTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogGridEX)).EndInit();
             this.ResumeLayout(false);
 
