@@ -56,6 +56,7 @@ namespace CedForecast
             FechaInspeccionRENARCalendarCombo.Value = OrdenCompra.FechaInspeccionRENAR;
             FechaIngresoDepositoCalendarCombo.Value = OrdenCompra.FechaIngresoDeposito;
             IdEstadoUiComboBox.SelectedValue = OrdenCompra.WF.IdEstado;
+            LogGridEX.DataSource = OrdenCompra.WF.Log;
             //CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicional = new CedForecastEntidades.ArticuloInfoAdicional();
             //articuloInfoAdicional.IdArticulo = OrdenCompra.IdArticulo;
             //CedForecastRN.ArticuloInfoAdicional.Leer(articuloInfoAdicional, Aplicacion.Sesion);

@@ -7,7 +7,6 @@ namespace CedEntidades
 	[Serializable]
 	public class Log
 	{
-		#region Atributos
 		int idLog;
 		DateTime fecha;
 		Evento evento=new Evento();
@@ -190,6 +189,5 @@ namespace CedEntidades
 				grupo = value;
 			}
 		} 
-		#endregion
 	}
 }
