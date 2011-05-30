@@ -558,8 +558,9 @@ namespace Cedeira.SV
 				l.Circuito.IdCircuito = Convert.ToString(dv.Table.Rows[i]["IdCircuito"]);
 				l.Comentario = Convert.ToString(dv.Table.Rows[i]["Comentario"]);
 				l.Estado = Convert.ToString(dv.Table.Rows[i]["Estado"]);
-				l.Evento.Id = Convert.ToString(dv.Table.Rows[i]["IdEvento"]);
-				l.Fecha = Convert.ToDateTime(dv.Table.Rows[i]["Fecha"]);
+                l.Evento.Id = Convert.ToString(dv.Table.Rows[i]["IdEvento"]);
+                l.Evento.Descr = Convert.ToString(dv.Table.Rows[i]["Evento"]);
+                l.Fecha = Convert.ToDateTime(dv.Table.Rows[i]["Fecha"]);
 				l.Flow.IdFlow = Convert.ToString(dv.Table.Rows[i]["IdFlow"]);
 				l.Grupo.Id = Convert.ToString(dv.Table.Rows[i]["IdGrupo"]);
 				l.IdLog = Convert.ToInt32(dv.Table.Rows[i]["IdLog"]);

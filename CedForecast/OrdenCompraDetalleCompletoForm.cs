@@ -17,6 +17,8 @@ namespace CedForecast
         public OrdenCompraDetalleCompletoForm(string Evento, CedForecastEntidades.OrdenCompra OrdenCompra) : base(TituloForm(Evento, OrdenCompra))
         {
             InitializeComponent();
+            TabBrowserUiTabPage.StateStyles.FormatStyle.BackColor = Color.PeachPuff;
+            TabFiltroUiTabPage.StateStyles.FormatStyle.BackColor = Color.Cornsilk;
             evento = Evento;
             //Llenar combos
             LlenarComboProveedor();
