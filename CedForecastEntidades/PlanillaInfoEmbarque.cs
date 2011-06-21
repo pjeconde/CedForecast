@@ -8,10 +8,10 @@ namespace CedForecastEntidades
     [DelimitedRecord("|")]
     public class PlanillaInfoEmbarque
     {
-        public string ItemOrdenCompra;
+        public string A;
         public string B;
-        public string C;
-        public string D;
+        public string IdReferenciaSAP;
+        public string ItemOrdenCompra;
         public string E;
         public string F;
         public string G;
@@ -22,10 +22,6 @@ namespace CedForecastEntidades
         public string L;
         public string M;
         public string N;
-        public string O;
-        public string IdReferenciaSAP;
-        public string Q;
-        public string R;
         public string FechaEstimadaSalida;
         public string Vapor;
         public string FechaEstimadaArribo;

@@ -40,6 +40,7 @@ namespace CedForecast
                     opciones.Add(new CedForecastEntidades.Opcion("Financiero", "Financiero"));
                     opciones.Add(new CedForecastEntidades.Opcion("FamiliaArticuloXArticulo", "Familias de Artículos"));
                     opciones.Add(new CedForecastEntidades.Opcion("OrdenCompra", "Órdenes de Compra"));
+                    opciones.Add(new CedForecastEntidades.Opcion("Stock", "Stock"));
                     break;
                 case "Exploradores":
                     opciones.Add(new CedForecastEntidades.Opcion("OrdenCompra", "Órdenes de Compra"));
@@ -116,6 +117,10 @@ namespace CedForecast
                                         break;
                                     case "OrdenCompra":
                                         oFrm = new OrdenCompraBrowserForm(BrowserModoEnum.Consulta);
+                                        oFrm.ShowDialog();
+                                        break;
+                                    case "Stock":
+                                        oFrm = new StockXArticuloForm(((List<CedForecastEntidades.Opcion>)OpcionGridEX.DataSource)[OpcionGridEX.Row].Descr);
                                         oFrm.ShowDialog();
                                         break;
                                     default:
