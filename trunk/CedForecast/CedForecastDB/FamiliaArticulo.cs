@@ -23,6 +23,7 @@ namespace CedForecastDB
                 {
                     CedForecastEntidades.FamiliaArticulo elemento = new CedForecastEntidades.FamiliaArticulo();
                     Copiar(dt.Rows[i], elemento);
+                    LeerArticulos(elemento);
                     lista.Add(elemento);
                 }
             }
@@ -43,6 +44,34 @@ namespace CedForecastDB
         {
             Hasta.Id = Convert.ToString(Desde["IdFamiliaArticulo"]);
             Hasta.Descr = Convert.ToString(Desde["DescrFamiliaArticulo"]);
+        }
+        private void LeerArticulos(CedForecastEntidades.FamiliaArticulo FamiliaArticulo)
+        {
+            DataTable dt = new DataTable();
+            System.Text.StringBuilder a = new StringBuilder();
+            a.Append("select IdArticulo from ArticuloInfoAdicional where IdFamiliaArticulo='" + FamiliaArticulo.Id + "' order by IdArticulo");
+            dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
+            FamiliaArticulo.Articulos.Clear();
+            if (dt.Rows.Count != 0)
+            {
+                List<CedForecastEntidades.Bejerman.Articulos> articulos = new CedForecastDB.Bejerman.Articulos(sesion).LeerLista();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    CedForecastEntidades.Articulo elemento = new CedForecastEntidades.Articulo();
+                    elemento.Id = Convert.ToString(dt.Rows[i]["IdArticulo"]);
+                    CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dt.Rows[i]["IdArticulo"]); });
+                    if (articulo == null)
+                    {
+                        elemento.Descr = "<<<Desconocido>>>";
+                    }
+                    else
+                    {
+                        elemento.Descr = articulo.Art_DescGen;
+                    }
+                    elemento.Familia = FamiliaArticulo;
+                    FamiliaArticulo.Articulos.Add(elemento);
+                }
+            }
         }
         public void Crear(CedForecastEntidades.FamiliaArticulo Familia)
         {

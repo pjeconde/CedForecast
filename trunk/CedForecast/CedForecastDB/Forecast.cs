@@ -129,6 +129,78 @@ namespace CedForecastDB
             }
             return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
         }
+        public DataSet LeerDatosParaStockXArticulo(string PeriodoDesde, string TipoReporte, string ListaArticulos)
+        {
+            System.Text.StringBuilder a = new StringBuilder();
+            switch (TipoReporte)
+            {
+                case "Familia-Articulo":
+                    //Articulos y Familias
+                    a.Append("select IdFamiliaArticulo as Familia, IdArticulo, Articulos.art_DescGen as DescrArticulo into #ArticuloInfoAdicionalAux ");
+                    a.Append("from ArticuloInfoAdicional left outer join SBDAFERT.dbo.Articulos on ArticuloInfoAdicional.IdArticulo = LTRIM(RTRIM(Articulos.art_CodGen)) ");
+                    a.Append("where ArticuloInfoAdicional.IdArticulo in (" + ListaArticulos + ") ");
+                    a.Append("order by IdArticulo ");
+                    a.Append("select Familia, IdArticulo, DescrArticulo from #ArticuloInfoAdicionalAux order by IdArticulo asc ");
+                    a.Append("select distinct Familia from #ArticuloInfoAdicionalAux order by Familia asc ");    
+                    
+                    //Forecast
+                    a.Append("Select '4' as Orden, 'Forecast' as TipoDato, 'Forecast' as Descr, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Articulos.art_DescGen as DescrArticulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad ");
+                    a.Append("from Forecast left outer join ArticuloInfoAdicional on Forecast.IdArticulo=ArticuloInfoAdicional.IdArticulo collate database_default ");
+                    a.Append("left outer join SBDAFERT.dbo.Articulos on ArticuloInfoAdicional.IdArticulo = LTRIM(RTRIM(Articulos.art_CodGen)) ");
+                    a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") ");
+                    a.Append("and IdPeriodo>='" + PeriodoDesde + "' group by IdFamiliaArticulo, Forecast.IdArticulo, Articulos.art_DescGen, Forecast.IdPeriodo ");
+                    a.Append("order by Forecast.IdArticulo asc, Forecast.IdPeriodo asc ");
+                    
+                    //Ordenes de Compra
+                    a.Append("Select '2' as Orden, 'Ordenes de Compra' as TipoDato, 'Ordenes de Compra' as Descr, ArticuloInfoAdicional.IdFamiliaArticulo as Familia, OrdenCompra.IdArticulo as IdArticulo, OrdenCompra.DescrArticulo as Articulo, convert(varchar(6), FechaEstimadaArribo, 112) as Periodo, sum(Cantidad) as Cantidad ");
+                    a.Append("from OrdenCompra left outer join ArticuloInfoAdicional on OrdenCompra.IdArticulo=ArticuloInfoAdicional.IdArticulo collate database_default ");
+                    a.Append("left outer join WF_Op on OrdenCompra.IdOpWF=WF_Op.IdOp ");
+                    a.Append("where convert(varchar(6), FechaEstimadaArribo, 112) >= '" + PeriodoDesde + "' and WF_Op.IdEstado not in ('Concluida', 'Anulada') ");
+                    a.Append("and OrdenCompra.IdArticulo in (" + ListaArticulos + ") ");
+                    a.Append("group by IdFamiliaArticulo, OrdenCompra.IdArticulo, OrdenCompra.DescrArticulo, convert(varchar(6), FechaEstimadaArribo, 112) ");
+                    a.Append("Order by OrdenCompra.IdArticulo asc, convert(varchar(6), FechaEstimadaArribo, 112) asc ");
+                    
+                    //Stock (B)
+                    a.Append("Select '1' as Orden, 'Stock' as TipoDato, Stock.stkdep_Cod+'-'+dep_Desc as Descr, LTRIM(RTRIM(stkart_CodGen)) as IdArticulo, stkdep_Cod as Deposito, stk_CantUM1 as Cantidad, stk_FecMod as FechaModif ");
+                    a.Append("from SBDAFERT.dbo.Stock left outer join SBDAFERT.dbo.Deposito on Stock.stkdep_Cod = Deposito.dep_Cod where stkart_CodGen in (" + ListaArticulos + ") and stk_CantUM1 <> 0 order by stkart_CodGen ");
+
+                    //Notas de Pedido Autorizadas Pendientes de Remitir del mes o meses anteriores (B)
+                    a.Append("SELECT '3' as Orden, 'Notas de Pedido (Con Remito Pte.)' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, ");
+                    a.Append("SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, ");
+                    a.Append("SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
+                    a.Append("FROM SBDAFERT.dbo.SegTiposV INNER JOIN ");
+                    a.Append("SBDAFERT.dbo.SegCabV ON SegTiposV.spvscv_ID = SegCabV.scv_ID AND SegTiposV.spvsuc_Cod = SegCabV.scvsuc_Cod AND ");
+                    a.Append("SegTiposV.spvemp_Codigo = SegCabV.scvemp_Codigo INNER JOIN SBDAFERT.dbo.SegDetV ON SegCabV.scv_ID = SegDetV.sdvscv_ID ");
+                    a.Append("WHERE SegTiposV.spvtco_Cod = 'NPA' and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and SegDetV.sdv_CPendRtUM1 <> 0 ");
+                    a.Append("order by SegDetV.sdvart_CodGen asc ");
+
+                    //Notas de Pedido Autorizadas Remitidas del mes (B)
+                    a.Append("SELECT  '5' as Orden, 'Notas de Pedido del Mes (Sin Remito Pte.)' as TipoDato, SegTiposV.spvtco_Cod+' Nro:'+SegTiposV.spv_Nro+' Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, ");
+                    a.Append("SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, ");
+                    a.Append("SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
+                    a.Append("FROM SBDAFERT.dbo.SegTiposV INNER JOIN ");
+                    a.Append("SBDAFERT.dbo.SegCabV ON SegTiposV.spvscv_ID = SegCabV.scv_ID AND SegTiposV.spvsuc_Cod = SegCabV.scvsuc_Cod AND ");
+                    a.Append("SegTiposV.spvemp_Codigo = SegCabV.scvemp_Codigo INNER JOIN SBDAFERT.dbo.SegDetV ON SegCabV.scv_ID = SegDetV.sdvscv_ID ");
+                    a.Append("WHERE SegTiposV.spvtco_Cod = 'NPA' and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and convert(varchar(6), SegCabV.scv_FEmision, 112) >= '" + PeriodoDesde + "' and SegDetV.sdv_CPendRtUM1 = 0 ");
+                    a.Append("order by SegDetV.sdvart_CodGen asc ");
+
+                    //Bajas de Remitos de NP (B)
+                    a.Append("SELECT '6' as Orden, 'Baja de Remitos de NP' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
+                    a.Append("FROM SBDAFERT.dbo.SegTiposV INNER JOIN SBDAFERT.dbo.SegCabV ON SegTiposV.spvscv_ID = SegCabV.scv_ID AND SegTiposV.spvsuc_Cod = SegCabV.scvsuc_Cod AND SegTiposV.spvemp_Codigo = SegCabV.scvemp_Codigo ");
+                    a.Append("INNER JOIN SBDAFERT.dbo.SegDetV ON SegCabV.scv_ID = SegDetV.sdvscv_ID ");
+                    a.Append("WHERE SegTiposV.spvtco_Cod = 'REM' and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") ");
+                    a.Append("order by SegDetV.sdvart_CodGen asc ");
+
+                    a.Append("drop table #ArticuloInfoAdicionalAux ");                    
+                    break;
+                default:
+                    throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.OpcionInvalida();
+            }
+            return (DataSet)Ejecutar(a.ToString(), TipoRetorno.DS, Transaccion.NoAcepta, sesion.CnnStr);
+        }
         public DataSet LeerDatosParaResumenArgentinaXZonas(string PeriodoDesde, string PeriodoHasta, string TipoReporte, string ListaArticulos, string ListaClientes, string ListaVendedores)
         {
             System.Text.StringBuilder a = new StringBuilder();
@@ -138,7 +210,7 @@ namespace CedForecastDB
                     a.Append("Select convert(varchar(8), 'Empresa') as Empresa, SBDAFERT.dbo.Clientes.clizon_Cod as Zona, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join SBDAFERT.dbo.Vendedor on Forecast.IdCuenta = SBDAFERT.dbo.Vendedor.ven_Cod collate SQL_Latin1_General_CP1_CS_AS ");
-                    a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+                    a.Append("left outer join ArticuloInfoAdicional on Forecast.IdArticulo=ArticuloInfoAdicional.IdArticulo ");
                     a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and SBDAFERT.dbo.Vendedor.ven_Cod in (" + ListaVendedores + ") ");
                     a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Clientes.clizon_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");
@@ -152,7 +224,7 @@ namespace CedForecastDB
                     a.Append("Select convert(varchar(8), 'Empresa') as Empresa, SBDAFERT.dbo.Vendedor.ven_Cod as Vendedor, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join SBDAFERT.dbo.Vendedor on Forecast.IdCuenta = SBDAFERT.dbo.Vendedor.ven_Cod collate SQL_Latin1_General_CP1_CS_AS ");
-                    a.Append("left outer join FamiliaArticuloXArticulo on Forecast.IdArticulo=FamiliaArticuloXArticulo.IdArticulo ");
+                    a.Append("left outer join ArticuloInfoAdicional on Forecast.IdArticulo=ArticuloInfoAdicional.IdArticulo ");
                     a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") and SBDAFERT.dbo.Clientes.cli_Cod in (" + ListaClientes + ") ");
                     a.Append("and SBDAFERT.dbo.Vendedor.ven_Cod in (" + ListaVendedores + ") ");
                     a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo<='" + PeriodoHasta + "' group by SBDAFERT.dbo.Vendedor.ven_Cod, IdFamiliaArticulo, Forecast.IdArticulo, Forecast.IdPeriodo ");

@@ -22,7 +22,7 @@ namespace CedForecastRN
                 new CedForecastDB.PlanillaInfoEmbarque(Sesion).Guardar(Directorio);
                 //Lectura planilla excel
                 FileHelpers.DataLink.ExcelStorage planilla = new FileHelpers.DataLink.ExcelStorage(typeof(CedForecastEntidades.PlanillaInfoEmbarque));
-                planilla.StartRow = 6;
+                planilla.StartRow = 9;
                 planilla.StartColumn = 1;
                 planilla.FileName = Directorio;
                 CedForecastEntidades.PlanillaInfoEmbarque[] filas = (CedForecastEntidades.PlanillaInfoEmbarque[])planilla.ExtractRecords();
@@ -34,9 +34,9 @@ namespace CedForecastRN
                         //Determino info de embarque
                         CedForecastEntidades.OrdenCompraInfoEmbarque infoEmbarque = new CedForecastEntidades.OrdenCompraInfoEmbarque();
                         infoEmbarque.IdReferenciaSAP = filas[i].IdReferenciaSAP;
-                        infoEmbarque.FechaEstimadaSalida = FormatearFecha(filas[i].FechaEstimadaSalida);
+                        infoEmbarque.FechaEstimadaSalida = FormatearFechaOADate(filas[i].FechaEstimadaSalida);
                         infoEmbarque.Vapor = filas[i].Vapor;
-                        infoEmbarque.FechaEstimadaArribo = FormatearFecha(filas[i].FechaEstimadaArribo);
+                        infoEmbarque.FechaEstimadaArribo = FormatearFechaOADate(filas[i].FechaEstimadaArribo);
                         //Leo orden de compra
                         CedForecastEntidades.OrdenCompra ordenCompra = new CedForecastEntidades.OrdenCompra();
                         string itemOrdenCompra = QuitarPrefijo(filas[i].ItemOrdenCompra);
@@ -81,6 +81,14 @@ namespace CedForecastRN
         {
             string [] a = Valor.Split('/');
             return new DateTime(Convert.ToInt32(a[2]), Convert.ToInt32(a[1]), Convert.ToInt32(a[0]));
+        }
+        private static DateTime FormatearFechaOADate(string Valor)
+        {
+            // We must have a double to convert the OA date to a real date.
+            double d = double.Parse(Valor);
+            // Get the converted date from the OLE automation date.
+            DateTime conv = DateTime.FromOADate(d);
+            return conv;
         }
     }
 }

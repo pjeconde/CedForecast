@@ -142,14 +142,20 @@ namespace CedForecast
                         articuloInfoAdicional.IdPresentacion = IdPresentacionEditBox.Text;
                         articuloInfoAdicional.CantidadXPresentacion = Convert.ToInt32(CantidadXPresentacionNumericEditBox.Value);
                         articuloInfoAdicional.CantidadXContenedor = Convert.ToInt32(CantidadXContenedorNumericEditBox.Value);
-                        articuloInfoAdicional.IdUnidadMedida = IdUnidadMedidaUiComboBox.SelectedValue.ToString();
-                        if (articuloInfoAdicional.Precio != Convert.ToDecimal(PrecioNumericEditBox.Value))
+                        if (IdUnidadMedidaUiComboBox.SelectedValue != null)
+                        {
+                            articuloInfoAdicional.IdUnidadMedida = IdUnidadMedidaUiComboBox.SelectedValue.ToString();
+                        }
+                        if (articuloInfoAdicional.Precio != Convert.ToDecimal(PrecioNumericEditBox.Value) || evento == "Alta")
                         {
                             FechaVigenciaPrecioEditBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                         }
                         articuloInfoAdicional.Precio = Convert.ToDecimal(PrecioNumericEditBox.Value);
                         articuloInfoAdicional.FechaVigenciaPrecio = FechaHora(FechaVigenciaPrecioEditBox.Text);
-                        articuloInfoAdicional.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+                        if (IdMonedaUiComboBox.SelectedValue != null)
+                        {
+                            articuloInfoAdicional.IdMoneda = IdMonedaUiComboBox.SelectedValue.ToString();
+                        }
                         articuloInfoAdicional.CoeficienteGastosNacionalizacion = Convert.ToDecimal(CoeficienteGastosNacionalizacionNumericEditBox.Value);
                         articuloInfoAdicional.CantidadStockSeguridad = Convert.ToInt32(CantidadStockSeguridadNumericEditBox.Value);
                         articuloInfoAdicional.PlazoAvisoStockSeguridad = Convert.ToInt32(PlazoAvisoStockSeguridadNumericEditBox.Value);
