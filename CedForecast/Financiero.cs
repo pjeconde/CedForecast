@@ -27,6 +27,7 @@ namespace CedForecast
             TipoReporte_CheckedChanged((object)ZonaClienteUiRadioButton, EventArgs.Empty);
             PeriodoDesdeCalendarCombo.Value = DateTime.Today;
             PeriodoDesdeCalendarCombo.ReadOnly = true;
+            ArmaGruposUiCheckBox.Enabled = false;
         }
         private void ConfigurarFiltros()
         {
@@ -121,7 +122,6 @@ namespace CedForecast
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
             BrowserGridEX.RootTable.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
-            BrowserGridEX.Hierarchical = true;
             for (int i = 0; i<Datos.Columns.Count; i++)
             {
                 string nombre = Datos.Columns[i].ColumnName;
@@ -363,7 +363,14 @@ namespace CedForecast
                     {
                         Cedeira.SV.Export planilla = new Cedeira.SV.Export();
                         Cursor = Cursors.WaitCursor;
-                        ExportDetailsDS(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                        if (JerarquicaUiCheckBox.Checked == true)
+                        {
+                            ExportDetailsDS(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                        }
+                        else
+                        {
+                            ExportDetails(BrowserGridEX, Cedeira.SV.Export.ExportFormat.Excel, this.Text + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -505,6 +512,19 @@ namespace CedForecast
             if (e.Node.Nodes.Count > 0)
             {
                 Cedeira.UI.Fun.ChequeoNodosTreeView(e.Node.Nodes, e.Node.Checked);
+            }
+        }
+
+        private void JerarquicaUiCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (JerarquicaUiCheckBox.Checked == true)
+            {
+                ArmaGruposUiCheckBox.Checked = true;
+                ArmaGruposUiCheckBox.Enabled = false;
+            }
+            else
+            {
+                ArmaGruposUiCheckBox.Enabled = true;
             }
         }
     }

@@ -653,7 +653,7 @@ namespace Cedeira.SV
                     nivelAnterior = JanusGridEx.GetRow(registros).Table.Caption;
                     JanusDataTable = new DataTable("TablaColumnas" + registros.ToString());
                     columnas = JanusGridEx.GetRow(registros).Cells.Count;
-                    if (JanusGridEx.GetRow(registros).Table.Caption != "Finan1")
+                    if (JanusGridEx.GetRow(registros).Table.Caption != "Finan1" && JanusGridEx.GetRow(registros).Table.Caption != "Nivel1")
                     {
                         int nivel = Convert.ToInt32(JanusGridEx.GetRow(registros).Table.Caption.Substring(5, 1));
                         for (int nroNivel = 1; nroNivel < nivel; nroNivel++)

@@ -50,6 +50,7 @@
             PureComponents.NicePanel.ContainerStyle containerStyle3 = new PureComponents.NicePanel.ContainerStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle5 = new PureComponents.NicePanel.PanelHeaderStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle6 = new PureComponents.NicePanel.PanelHeaderStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockXArticuloForm));
             PureComponents.NicePanel.ContainerImage containerImage4 = new PureComponents.NicePanel.ContainerImage();
             PureComponents.NicePanel.HeaderImage headerImage7 = new PureComponents.NicePanel.HeaderImage();
             PureComponents.NicePanel.HeaderImage headerImage8 = new PureComponents.NicePanel.HeaderImage();
@@ -57,15 +58,6 @@
             PureComponents.NicePanel.ContainerStyle containerStyle4 = new PureComponents.NicePanel.ContainerStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle7 = new PureComponents.NicePanel.PanelHeaderStyle();
             PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle8 = new PureComponents.NicePanel.PanelHeaderStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockXArticuloForm));
-            PureComponents.NicePanel.ContainerImage containerImage5 = new PureComponents.NicePanel.ContainerImage();
-            PureComponents.NicePanel.HeaderImage headerImage9 = new PureComponents.NicePanel.HeaderImage();
-            PureComponents.NicePanel.HeaderImage headerImage10 = new PureComponents.NicePanel.HeaderImage();
-            PureComponents.NicePanel.PanelStyle panelStyle5 = new PureComponents.NicePanel.PanelStyle();
-            PureComponents.NicePanel.ContainerStyle containerStyle5 = new PureComponents.NicePanel.ContainerStyle();
-            PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle9 = new PureComponents.NicePanel.PanelHeaderStyle();
-            PureComponents.NicePanel.PanelHeaderStyle panelHeaderStyle10 = new PureComponents.NicePanel.PanelHeaderStyle();
-            Janus.Windows.GridEX.GridEXLayout gridEXLayout2 = new Janus.Windows.GridEX.GridEXLayout();
             this.BrowserUiTab = new Janus.Windows.UI.Tab.UITab();
             this.BrowserUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.BrowserPanel = new System.Windows.Forms.Panel();
@@ -74,17 +66,15 @@
             this.FiltroPanel = new System.Windows.Forms.Panel();
             this.ValorizadoNicePanel = new PureComponents.NicePanel.NicePanel();
             this.ValorizadoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
-            this.nicePanel1 = new PureComponents.NicePanel.NicePanel();
-            this.ArmaGruposUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ArticulosNicePanel = new PureComponents.NicePanel.NicePanel();
             this.ArticulosUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.ArticulosTreeView = new System.Windows.Forms.TreeView();
             this.TipoReporteNicePanel = new PureComponents.NicePanel.NicePanel();
-            this.ArticulosUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.FamiliayArticulosUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.EjecutarSeleccionUiButton = new Janus.Windows.EditControls.UIButton();
             this.CancelarUiButton = new Janus.Windows.EditControls.UIButton();
             this.PeriodoNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.RangoDesdeLabel = new System.Windows.Forms.Label();
             this.PeriodoDesdeCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.MensajesUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.MensajesPanel = new System.Windows.Forms.Panel();
@@ -95,7 +85,6 @@
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.RangoDesdeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -107,7 +96,6 @@
             this.FiltroUiTabPage.SuspendLayout();
             this.FiltroPanel.SuspendLayout();
             this.ValorizadoNicePanel.SuspendLayout();
-            this.nicePanel1.SuspendLayout();
             this.ArticulosNicePanel.SuspendLayout();
             this.TipoReporteNicePanel.SuspendLayout();
             this.PeriodoNicePanel.SuspendLayout();
@@ -196,9 +184,8 @@
             this.BrowserGridEX.BlendColor = System.Drawing.Color.White;
             this.BrowserGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.BrowserGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout1.LayoutString = "<GridEXLayoutData><RootTable><GridLineColor>Silver</GridLineColor><GroupCondition" +
-                " ID=\"\" /><ShowGroupConditionCount>True</ShowGroupConditionCount></RootTable></Gr" +
-                "idEXLayoutData>";
+            gridEXLayout1.LayoutString = "<GridEXLayoutData><RootTable><GroupCondition ID=\"\" /></RootTable></GridEXLayoutDa" +
+                "ta>";
             this.BrowserGridEX.DesignTimeLayout = gridEXLayout1;
             this.BrowserGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BrowserGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
@@ -245,7 +232,6 @@
             // 
             this.FiltroPanel.BackColor = System.Drawing.Color.Cornsilk;
             this.FiltroPanel.Controls.Add(this.ValorizadoNicePanel);
-            this.FiltroPanel.Controls.Add(this.nicePanel1);
             this.FiltroPanel.Controls.Add(this.ArticulosNicePanel);
             this.FiltroPanel.Controls.Add(this.TipoReporteNicePanel);
             this.FiltroPanel.Controls.Add(this.EjecutarSeleccionUiButton);
@@ -282,7 +268,7 @@
             this.ValorizadoNicePanel.HeaderText = "";
             this.ValorizadoNicePanel.HeaderVisible = false;
             this.ValorizadoNicePanel.IsExpanded = true;
-            this.ValorizadoNicePanel.Location = new System.Drawing.Point(8, 219);
+            this.ValorizadoNicePanel.Location = new System.Drawing.Point(8, 175);
             this.ValorizadoNicePanel.Name = "ValorizadoNicePanel";
             this.ValorizadoNicePanel.OriginalFooterVisible = false;
             this.ValorizadoNicePanel.OriginalHeight = 0;
@@ -327,6 +313,7 @@
             this.ValorizadoNicePanel.Style = panelStyle1;
             this.ValorizadoNicePanel.TabIndex = 9035;
             this.ValorizadoNicePanel.Tag = "Artículos-Vendedores";
+            this.ValorizadoNicePanel.Visible = false;
             // 
             // ValorizadoUiCheckBox
             // 
@@ -342,36 +329,36 @@
             this.ValorizadoUiCheckBox.UseThemes = false;
             this.ValorizadoUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
-            // nicePanel1
+            // ArticulosNicePanel
             // 
-            this.nicePanel1.BackColor = System.Drawing.Color.Transparent;
-            this.nicePanel1.CollapseButton = false;
+            this.ArticulosNicePanel.BackColor = System.Drawing.Color.Transparent;
+            this.ArticulosNicePanel.CollapseButton = false;
             containerImage2.Alignment = System.Drawing.ContentAlignment.BottomRight;
             containerImage2.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             containerImage2.Image = null;
             containerImage2.Size = PureComponents.NicePanel.ContainerImageSize.Small;
             containerImage2.Transparency = 50;
-            this.nicePanel1.ContainerImage = containerImage2;
-            this.nicePanel1.ContextMenuButton = false;
-            this.nicePanel1.Controls.Add(this.ArmaGruposUiCheckBox);
+            this.ArticulosNicePanel.ContainerImage = containerImage2;
+            this.ArticulosNicePanel.ContextMenuButton = false;
+            this.ArticulosNicePanel.Controls.Add(this.ArticulosUiCheckBox);
+            this.ArticulosNicePanel.Controls.Add(this.ArticulosTreeView);
             headerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage3.Image = null;
-            this.nicePanel1.FooterImage = headerImage3;
-            this.nicePanel1.FooterText = "";
-            this.nicePanel1.FooterVisible = false;
-            this.nicePanel1.ForeColor = System.Drawing.Color.Black;
+            this.ArticulosNicePanel.FooterImage = headerImage3;
+            this.ArticulosNicePanel.FooterText = "";
+            this.ArticulosNicePanel.FooterVisible = false;
+            this.ArticulosNicePanel.ForeColor = System.Drawing.Color.Black;
             headerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage4.Image = null;
-            this.nicePanel1.HeaderImage = headerImage4;
-            this.nicePanel1.HeaderText = "";
-            this.nicePanel1.HeaderVisible = false;
-            this.nicePanel1.IsExpanded = true;
-            this.nicePanel1.Location = new System.Drawing.Point(8, 172);
-            this.nicePanel1.Name = "nicePanel1";
-            this.nicePanel1.OriginalFooterVisible = false;
-            this.nicePanel1.OriginalHeight = 0;
-            this.nicePanel1.ShowChildFocus = false;
-            this.nicePanel1.Size = new System.Drawing.Size(144, 48);
+            this.ArticulosNicePanel.HeaderImage = headerImage4;
+            this.ArticulosNicePanel.HeaderText = "Familias / Artículos";
+            this.ArticulosNicePanel.IsExpanded = true;
+            this.ArticulosNicePanel.Location = new System.Drawing.Point(158, 8);
+            this.ArticulosNicePanel.Name = "ArticulosNicePanel";
+            this.ArticulosNicePanel.OriginalFooterVisible = false;
+            this.ArticulosNicePanel.OriginalHeight = 0;
+            this.ArticulosNicePanel.ShowChildFocus = false;
+            this.ArticulosNicePanel.Size = new System.Drawing.Size(524, 363);
             containerStyle2.BackColor = System.Drawing.Color.Transparent;
             containerStyle2.BaseColor = System.Drawing.Color.Transparent;
             containerStyle2.BorderColor = System.Drawing.Color.Brown;
@@ -408,54 +395,65 @@
             panelHeaderStyle4.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
             panelHeaderStyle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             panelStyle2.HeaderStyle = panelHeaderStyle4;
-            this.nicePanel1.Style = panelStyle2;
-            this.nicePanel1.TabIndex = 9034;
-            this.nicePanel1.Tag = "Artículos-Vendedores";
+            this.ArticulosNicePanel.Style = panelStyle2;
+            this.ArticulosNicePanel.TabIndex = 9032;
             // 
-            // ArmaGruposUiCheckBox
+            // ArticulosUiCheckBox
             // 
-            this.ArmaGruposUiCheckBox.Checked = true;
-            this.ArmaGruposUiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ArmaGruposUiCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.ArmaGruposUiCheckBox.Location = new System.Drawing.Point(8, 6);
-            this.ArmaGruposUiCheckBox.Name = "ArmaGruposUiCheckBox";
-            this.ArmaGruposUiCheckBox.ShowFocusRectangle = false;
-            this.ArmaGruposUiCheckBox.Size = new System.Drawing.Size(130, 36);
-            this.ArmaGruposUiCheckBox.TabIndex = 9013;
-            this.ArmaGruposUiCheckBox.Text = "Agrupa por ...";
-            this.ArmaGruposUiCheckBox.UseThemes = false;
-            this.ArmaGruposUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.ArticulosUiCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.ArticulosUiCheckBox.Location = new System.Drawing.Point(10, 2);
+            this.ArticulosUiCheckBox.Name = "ArticulosUiCheckBox";
+            this.ArticulosUiCheckBox.ShowFocusRectangle = false;
+            this.ArticulosUiCheckBox.Size = new System.Drawing.Size(20, 16);
+            this.ArticulosUiCheckBox.TabIndex = 9012;
+            this.ArticulosUiCheckBox.TextAlignment = Janus.Windows.EditControls.TextAlignment.Center;
+            this.ArticulosUiCheckBox.UseThemes = false;
+            this.ArticulosUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.ArticulosUiCheckBox.CheckedChanged += new System.EventHandler(this.ArticulosUiCheckBox_CheckedChanged);
             // 
-            // ArticulosNicePanel
+            // ArticulosTreeView
             // 
-            this.ArticulosNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.ArticulosNicePanel.CollapseButton = false;
+            this.ArticulosTreeView.BackColor = System.Drawing.Color.Cornsilk;
+            this.ArticulosTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ArticulosTreeView.CheckBoxes = true;
+            this.ArticulosTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ArticulosTreeView.ForeColor = System.Drawing.Color.Navy;
+            this.ArticulosTreeView.FullRowSelect = true;
+            this.ArticulosTreeView.Location = new System.Drawing.Point(8, 24);
+            this.ArticulosTreeView.Name = "ArticulosTreeView";
+            this.ArticulosTreeView.Size = new System.Drawing.Size(504, 327);
+            this.ArticulosTreeView.TabIndex = 3;
+            this.ArticulosTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCheck);
+            // 
+            // TipoReporteNicePanel
+            // 
+            this.TipoReporteNicePanel.BackColor = System.Drawing.Color.Transparent;
+            this.TipoReporteNicePanel.CollapseButton = false;
             containerImage3.Alignment = System.Drawing.ContentAlignment.BottomRight;
             containerImage3.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             containerImage3.Image = null;
             containerImage3.Size = PureComponents.NicePanel.ContainerImageSize.Small;
             containerImage3.Transparency = 50;
-            this.ArticulosNicePanel.ContainerImage = containerImage3;
-            this.ArticulosNicePanel.ContextMenuButton = false;
-            this.ArticulosNicePanel.Controls.Add(this.ArticulosUiCheckBox);
-            this.ArticulosNicePanel.Controls.Add(this.ArticulosTreeView);
+            this.TipoReporteNicePanel.ContainerImage = containerImage3;
+            this.TipoReporteNicePanel.ContextMenuButton = false;
+            this.TipoReporteNicePanel.Controls.Add(this.FamiliayArticulosUiRadioButton);
             headerImage5.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage5.Image = null;
-            this.ArticulosNicePanel.FooterImage = headerImage5;
-            this.ArticulosNicePanel.FooterText = "";
-            this.ArticulosNicePanel.FooterVisible = false;
-            this.ArticulosNicePanel.ForeColor = System.Drawing.Color.Black;
+            this.TipoReporteNicePanel.FooterImage = headerImage5;
+            this.TipoReporteNicePanel.FooterText = "";
+            this.TipoReporteNicePanel.FooterVisible = false;
+            this.TipoReporteNicePanel.ForeColor = System.Drawing.Color.Black;
             headerImage6.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
             headerImage6.Image = null;
-            this.ArticulosNicePanel.HeaderImage = headerImage6;
-            this.ArticulosNicePanel.HeaderText = "Familias / Artículos";
-            this.ArticulosNicePanel.IsExpanded = true;
-            this.ArticulosNicePanel.Location = new System.Drawing.Point(158, 8);
-            this.ArticulosNicePanel.Name = "ArticulosNicePanel";
-            this.ArticulosNicePanel.OriginalFooterVisible = false;
-            this.ArticulosNicePanel.OriginalHeight = 0;
-            this.ArticulosNicePanel.ShowChildFocus = false;
-            this.ArticulosNicePanel.Size = new System.Drawing.Size(524, 363);
+            this.TipoReporteNicePanel.HeaderImage = headerImage6;
+            this.TipoReporteNicePanel.HeaderText = "Tipo de reporte";
+            this.TipoReporteNicePanel.IsExpanded = true;
+            this.TipoReporteNicePanel.Location = new System.Drawing.Point(8, 90);
+            this.TipoReporteNicePanel.Name = "TipoReporteNicePanel";
+            this.TipoReporteNicePanel.OriginalFooterVisible = false;
+            this.TipoReporteNicePanel.OriginalHeight = 0;
+            this.TipoReporteNicePanel.ShowChildFocus = false;
+            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 66);
             containerStyle3.BackColor = System.Drawing.Color.Transparent;
             containerStyle3.BaseColor = System.Drawing.Color.Transparent;
             containerStyle3.BorderColor = System.Drawing.Color.Brown;
@@ -492,118 +490,9 @@
             panelHeaderStyle6.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
             panelHeaderStyle6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             panelStyle3.HeaderStyle = panelHeaderStyle6;
-            this.ArticulosNicePanel.Style = panelStyle3;
-            this.ArticulosNicePanel.TabIndex = 9032;
-            // 
-            // ArticulosUiCheckBox
-            // 
-            this.ArticulosUiCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosUiCheckBox.Location = new System.Drawing.Point(10, 2);
-            this.ArticulosUiCheckBox.Name = "ArticulosUiCheckBox";
-            this.ArticulosUiCheckBox.ShowFocusRectangle = false;
-            this.ArticulosUiCheckBox.Size = new System.Drawing.Size(20, 16);
-            this.ArticulosUiCheckBox.TabIndex = 9012;
-            this.ArticulosUiCheckBox.TextAlignment = Janus.Windows.EditControls.TextAlignment.Center;
-            this.ArticulosUiCheckBox.UseThemes = false;
-            this.ArticulosUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
-            this.ArticulosUiCheckBox.CheckedChanged += new System.EventHandler(this.ArticulosUiCheckBox_CheckedChanged);
-            // 
-            // ArticulosTreeView
-            // 
-            this.ArticulosTreeView.BackColor = System.Drawing.Color.Cornsilk;
-            this.ArticulosTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ArticulosTreeView.CheckBoxes = true;
-            this.ArticulosTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ArticulosTreeView.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosTreeView.FullRowSelect = true;
-            this.ArticulosTreeView.Location = new System.Drawing.Point(8, 24);
-            this.ArticulosTreeView.Name = "ArticulosTreeView";
-            this.ArticulosTreeView.Size = new System.Drawing.Size(504, 327);
-            this.ArticulosTreeView.TabIndex = 3;
-            this.ArticulosTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterCheck);
-            // 
-            // TipoReporteNicePanel
-            // 
-            this.TipoReporteNicePanel.BackColor = System.Drawing.Color.Transparent;
-            this.TipoReporteNicePanel.CollapseButton = false;
-            containerImage4.Alignment = System.Drawing.ContentAlignment.BottomRight;
-            containerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            containerImage4.Image = null;
-            containerImage4.Size = PureComponents.NicePanel.ContainerImageSize.Small;
-            containerImage4.Transparency = 50;
-            this.TipoReporteNicePanel.ContainerImage = containerImage4;
-            this.TipoReporteNicePanel.ContextMenuButton = false;
-            this.TipoReporteNicePanel.Controls.Add(this.ArticulosUiRadioButton);
-            this.TipoReporteNicePanel.Controls.Add(this.FamiliayArticulosUiRadioButton);
-            headerImage7.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage7.Image = null;
-            this.TipoReporteNicePanel.FooterImage = headerImage7;
-            this.TipoReporteNicePanel.FooterText = "";
-            this.TipoReporteNicePanel.FooterVisible = false;
-            this.TipoReporteNicePanel.ForeColor = System.Drawing.Color.Black;
-            headerImage8.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage8.Image = null;
-            this.TipoReporteNicePanel.HeaderImage = headerImage8;
-            this.TipoReporteNicePanel.HeaderText = "Tipo de reporte";
-            this.TipoReporteNicePanel.IsExpanded = true;
-            this.TipoReporteNicePanel.Location = new System.Drawing.Point(8, 90);
-            this.TipoReporteNicePanel.Name = "TipoReporteNicePanel";
-            this.TipoReporteNicePanel.OriginalFooterVisible = false;
-            this.TipoReporteNicePanel.OriginalHeight = 0;
-            this.TipoReporteNicePanel.ShowChildFocus = false;
-            this.TipoReporteNicePanel.Size = new System.Drawing.Size(144, 83);
-            containerStyle4.BackColor = System.Drawing.Color.Transparent;
-            containerStyle4.BaseColor = System.Drawing.Color.Transparent;
-            containerStyle4.BorderColor = System.Drawing.Color.Brown;
-            containerStyle4.BorderStyle = PureComponents.NicePanel.BorderStyle.Solid;
-            containerStyle4.CaptionAlign = PureComponents.NicePanel.CaptionAlign.Left;
-            containerStyle4.FadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(207)))), ((int)(((byte)(152)))));
-            containerStyle4.FillStyle = PureComponents.NicePanel.FillStyle.Flat;
-            containerStyle4.FlashItemBackColor = System.Drawing.Color.Red;
-            containerStyle4.FocusItemBackColor = System.Drawing.Color.White;
-            containerStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            containerStyle4.ForeColor = System.Drawing.Color.Black;
-            containerStyle4.Shape = PureComponents.NicePanel.Shape.Rounded;
-            panelStyle4.ContainerStyle = containerStyle4;
-            panelHeaderStyle7.BackColor = System.Drawing.Color.ForestGreen;
-            panelHeaderStyle7.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            panelHeaderStyle7.FadeColor = System.Drawing.Color.LightGreen;
-            panelHeaderStyle7.FillStyle = PureComponents.NicePanel.FillStyle.HorizontalFading;
-            panelHeaderStyle7.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle7.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle7.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            panelHeaderStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
-            panelHeaderStyle7.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
-            panelStyle4.FooterStyle = panelHeaderStyle7;
-            panelHeaderStyle8.BackColor = System.Drawing.Color.Brown;
-            panelHeaderStyle8.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
-            panelHeaderStyle8.FadeColor = System.Drawing.Color.Peru;
-            panelHeaderStyle8.FillStyle = PureComponents.NicePanel.FillStyle.DiagonalBackward;
-            panelHeaderStyle8.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle8.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle8.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            panelHeaderStyle8.ForeColor = System.Drawing.Color.White;
-            panelHeaderStyle8.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
-            panelHeaderStyle8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            panelStyle4.HeaderStyle = panelHeaderStyle8;
-            this.TipoReporteNicePanel.Style = panelStyle4;
+            this.TipoReporteNicePanel.Style = panelStyle3;
             this.TipoReporteNicePanel.TabIndex = 9030;
-            this.TipoReporteNicePanel.Tag = "Zona-Familia-Articulo";
-            // 
-            // ArticulosUiRadioButton
-            // 
-            this.ArticulosUiRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.ArticulosUiRadioButton.Location = new System.Drawing.Point(8, 52);
-            this.ArticulosUiRadioButton.Name = "ArticulosUiRadioButton";
-            this.ArticulosUiRadioButton.Size = new System.Drawing.Size(130, 25);
-            this.ArticulosUiRadioButton.TabIndex = 3;
-            this.ArticulosUiRadioButton.TabStop = false;
-            this.ArticulosUiRadioButton.Tag = "Articulos";
-            this.ArticulosUiRadioButton.Text = "Artículos";
-            this.ArticulosUiRadioButton.UseThemes = false;
-            this.ArticulosUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporte_CheckedChanged);
+            this.TipoReporteNicePanel.Tag = "Familia-Articulo";
             // 
             // FamiliayArticulosUiRadioButton
             // 
@@ -616,7 +505,6 @@
             this.FamiliayArticulosUiRadioButton.Tag = "Familia-Articulo";
             this.FamiliayArticulosUiRadioButton.Text = "Familia-Artículos";
             this.FamiliayArticulosUiRadioButton.UseThemes = false;
-            this.FamiliayArticulosUiRadioButton.CheckedChanged += new System.EventHandler(this.TipoReporte_CheckedChanged);
             // 
             // EjecutarSeleccionUiButton
             // 
@@ -661,24 +549,24 @@
             // 
             this.PeriodoNicePanel.BackColor = System.Drawing.Color.Transparent;
             this.PeriodoNicePanel.CollapseButton = false;
-            containerImage5.Alignment = System.Drawing.ContentAlignment.BottomRight;
-            containerImage5.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            containerImage5.Image = null;
-            containerImage5.Size = PureComponents.NicePanel.ContainerImageSize.Small;
-            containerImage5.Transparency = 50;
-            this.PeriodoNicePanel.ContainerImage = containerImage5;
+            containerImage4.Alignment = System.Drawing.ContentAlignment.BottomRight;
+            containerImage4.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
+            containerImage4.Image = null;
+            containerImage4.Size = PureComponents.NicePanel.ContainerImageSize.Small;
+            containerImage4.Transparency = 50;
+            this.PeriodoNicePanel.ContainerImage = containerImage4;
             this.PeriodoNicePanel.ContextMenuButton = false;
             this.PeriodoNicePanel.Controls.Add(this.RangoDesdeLabel);
             this.PeriodoNicePanel.Controls.Add(this.PeriodoDesdeCalendarCombo);
-            headerImage9.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage9.Image = null;
-            this.PeriodoNicePanel.FooterImage = headerImage9;
+            headerImage7.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
+            headerImage7.Image = null;
+            this.PeriodoNicePanel.FooterImage = headerImage7;
             this.PeriodoNicePanel.FooterText = "";
             this.PeriodoNicePanel.FooterVisible = false;
             this.PeriodoNicePanel.ForeColor = System.Drawing.Color.Black;
-            headerImage10.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
-            headerImage10.Image = null;
-            this.PeriodoNicePanel.HeaderImage = headerImage10;
+            headerImage8.ClipArt = PureComponents.NicePanel.ImageClipArt.None;
+            headerImage8.Image = null;
+            this.PeriodoNicePanel.HeaderImage = headerImage8;
             this.PeriodoNicePanel.HeaderText = "Período (meses)";
             this.PeriodoNicePanel.IsExpanded = true;
             this.PeriodoNicePanel.Location = new System.Drawing.Point(8, 8);
@@ -687,44 +575,54 @@
             this.PeriodoNicePanel.OriginalHeight = 0;
             this.PeriodoNicePanel.ShowChildFocus = false;
             this.PeriodoNicePanel.Size = new System.Drawing.Size(144, 76);
-            containerStyle5.BackColor = System.Drawing.Color.Transparent;
-            containerStyle5.BaseColor = System.Drawing.Color.Transparent;
-            containerStyle5.BorderColor = System.Drawing.Color.Brown;
-            containerStyle5.BorderStyle = PureComponents.NicePanel.BorderStyle.Solid;
-            containerStyle5.CaptionAlign = PureComponents.NicePanel.CaptionAlign.Left;
-            containerStyle5.FadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(207)))), ((int)(((byte)(152)))));
-            containerStyle5.FillStyle = PureComponents.NicePanel.FillStyle.Flat;
-            containerStyle5.FlashItemBackColor = System.Drawing.Color.Red;
-            containerStyle5.FocusItemBackColor = System.Drawing.Color.White;
-            containerStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            containerStyle5.ForeColor = System.Drawing.Color.Black;
-            containerStyle5.Shape = PureComponents.NicePanel.Shape.Rounded;
-            panelStyle5.ContainerStyle = containerStyle5;
-            panelHeaderStyle9.BackColor = System.Drawing.Color.ForestGreen;
-            panelHeaderStyle9.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            panelHeaderStyle9.FadeColor = System.Drawing.Color.LightGreen;
-            panelHeaderStyle9.FillStyle = PureComponents.NicePanel.FillStyle.HorizontalFading;
-            panelHeaderStyle9.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle9.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle9.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            panelHeaderStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
-            panelHeaderStyle9.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
-            panelStyle5.FooterStyle = panelHeaderStyle9;
-            panelHeaderStyle10.BackColor = System.Drawing.Color.Brown;
-            panelHeaderStyle10.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
-            panelHeaderStyle10.FadeColor = System.Drawing.Color.Peru;
-            panelHeaderStyle10.FillStyle = PureComponents.NicePanel.FillStyle.DiagonalBackward;
-            panelHeaderStyle10.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
-            panelHeaderStyle10.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
-            panelHeaderStyle10.FlashForeColor = System.Drawing.Color.White;
-            panelHeaderStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            panelHeaderStyle10.ForeColor = System.Drawing.Color.White;
-            panelHeaderStyle10.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
-            panelHeaderStyle10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            panelStyle5.HeaderStyle = panelHeaderStyle10;
-            this.PeriodoNicePanel.Style = panelStyle5;
+            containerStyle4.BackColor = System.Drawing.Color.Transparent;
+            containerStyle4.BaseColor = System.Drawing.Color.Transparent;
+            containerStyle4.BorderColor = System.Drawing.Color.Brown;
+            containerStyle4.BorderStyle = PureComponents.NicePanel.BorderStyle.Solid;
+            containerStyle4.CaptionAlign = PureComponents.NicePanel.CaptionAlign.Left;
+            containerStyle4.FadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(207)))), ((int)(((byte)(152)))));
+            containerStyle4.FillStyle = PureComponents.NicePanel.FillStyle.Flat;
+            containerStyle4.FlashItemBackColor = System.Drawing.Color.Red;
+            containerStyle4.FocusItemBackColor = System.Drawing.Color.White;
+            containerStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            containerStyle4.ForeColor = System.Drawing.Color.Black;
+            containerStyle4.Shape = PureComponents.NicePanel.Shape.Rounded;
+            panelStyle4.ContainerStyle = containerStyle4;
+            panelHeaderStyle7.BackColor = System.Drawing.Color.ForestGreen;
+            panelHeaderStyle7.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            panelHeaderStyle7.FadeColor = System.Drawing.Color.LightGreen;
+            panelHeaderStyle7.FillStyle = PureComponents.NicePanel.FillStyle.HorizontalFading;
+            panelHeaderStyle7.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
+            panelHeaderStyle7.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
+            panelHeaderStyle7.FlashForeColor = System.Drawing.Color.White;
+            panelHeaderStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            panelHeaderStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
+            panelHeaderStyle7.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
+            panelStyle4.FooterStyle = panelHeaderStyle7;
+            panelHeaderStyle8.BackColor = System.Drawing.Color.Brown;
+            panelHeaderStyle8.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(233)))), ((int)(((byte)(184)))));
+            panelHeaderStyle8.FadeColor = System.Drawing.Color.Peru;
+            panelHeaderStyle8.FillStyle = PureComponents.NicePanel.FillStyle.DiagonalBackward;
+            panelHeaderStyle8.FlashBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(122)))), ((int)(((byte)(1)))));
+            panelHeaderStyle8.FlashFadeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(215)))), ((int)(((byte)(159)))));
+            panelHeaderStyle8.FlashForeColor = System.Drawing.Color.White;
+            panelHeaderStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            panelHeaderStyle8.ForeColor = System.Drawing.Color.White;
+            panelHeaderStyle8.Size = PureComponents.NicePanel.PanelHeaderSize.Small;
+            panelHeaderStyle8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            panelStyle4.HeaderStyle = panelHeaderStyle8;
+            this.PeriodoNicePanel.Style = panelStyle4;
             this.PeriodoNicePanel.TabIndex = 9024;
+            // 
+            // RangoDesdeLabel
+            // 
+            this.RangoDesdeLabel.AutoSize = true;
+            this.RangoDesdeLabel.ForeColor = System.Drawing.Color.Navy;
+            this.RangoDesdeLabel.Location = new System.Drawing.Point(9, 36);
+            this.RangoDesdeLabel.Name = "RangoDesdeLabel";
+            this.RangoDesdeLabel.Size = new System.Drawing.Size(38, 13);
+            this.RangoDesdeLabel.TabIndex = 9017;
+            this.RangoDesdeLabel.Text = "Desde";
             // 
             // PeriodoDesdeCalendarCombo
             // 
@@ -784,8 +682,6 @@
             this.MensajesGridEX.BlendColor = System.Drawing.Color.White;
             this.MensajesGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
             this.MensajesGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
-            this.MensajesGridEX.DesignTimeLayout = gridEXLayout2;
             this.MensajesGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MensajesGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
             this.MensajesGridEX.ExpandableCards = false;
@@ -913,16 +809,6 @@
             this.panel2.Size = new System.Drawing.Size(958, 466);
             this.panel2.TabIndex = 34;
             // 
-            // RangoDesdeLabel
-            // 
-            this.RangoDesdeLabel.AutoSize = true;
-            this.RangoDesdeLabel.ForeColor = System.Drawing.Color.Navy;
-            this.RangoDesdeLabel.Location = new System.Drawing.Point(9, 36);
-            this.RangoDesdeLabel.Name = "RangoDesdeLabel";
-            this.RangoDesdeLabel.Size = new System.Drawing.Size(38, 13);
-            this.RangoDesdeLabel.TabIndex = 9017;
-            this.RangoDesdeLabel.Text = "Desde";
-            // 
             // StockXArticuloForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -941,7 +827,6 @@
             this.FiltroUiTabPage.ResumeLayout(false);
             this.FiltroPanel.ResumeLayout(false);
             this.ValorizadoNicePanel.ResumeLayout(false);
-            this.nicePanel1.ResumeLayout(false);
             this.ArticulosNicePanel.ResumeLayout(false);
             this.TipoReporteNicePanel.ResumeLayout(false);
             this.PeriodoNicePanel.ResumeLayout(false);
@@ -977,15 +862,12 @@
         private PureComponents.NicePanel.NicePanel ArticulosNicePanel;
         private Janus.Windows.EditControls.UICheckBox ArticulosUiCheckBox;
         private System.Windows.Forms.TreeView ArticulosTreeView;
-        private PureComponents.NicePanel.NicePanel nicePanel1;
-        private Janus.Windows.EditControls.UICheckBox ArmaGruposUiCheckBox;
         private PureComponents.NicePanel.NicePanel ValorizadoNicePanel;
         private Janus.Windows.EditControls.UICheckBox ValorizadoUiCheckBox;
         private Janus.Windows.UI.Tab.UITabPage MensajesUiTabPage;
         private Janus.Windows.GridEX.GridEX BrowserGridEX;
         private System.Windows.Forms.Panel MensajesPanel;
         private Janus.Windows.GridEX.GridEX MensajesGridEX;
-        private Janus.Windows.EditControls.UIRadioButton ArticulosUiRadioButton;
         private System.Windows.Forms.Label RangoDesdeLabel;
     }
 }

@@ -61,6 +61,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CedEntidades", "CedEntidade
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CedForecast-Instalador", "CedForecast-Instalador\CedForecast-Instalador.vdproj", "{B3079B10-650E-4A21-98E6-F7DAD068F067}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -238,6 +244,24 @@ Global
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2D17A63F-789D-4C01-864A-C15411D577A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|.NET.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|.NET.Build.0 = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|Any CPU.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|Any CPU.Build.0 = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|Mixed Platforms.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Cedeira|Mixed Platforms.Build.0 = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|.NET.ActiveCfg = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|.NET.Build.0 = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|Any CPU.ActiveCfg = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|Any CPU.Build.0 = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Debug|Mixed Platforms.Build.0 = Debug
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|.NET.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|.NET.Build.0 = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|Any CPU.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|Any CPU.Build.0 = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|Mixed Platforms.ActiveCfg = Release
+		{B3079B10-650E-4A21-98E6-F7DAD068F067}.Release|Mixed Platforms.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

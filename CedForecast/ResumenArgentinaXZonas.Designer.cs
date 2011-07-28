@@ -105,6 +105,12 @@
             this.EjecutarSeleccionUiButton = new Janus.Windows.EditControls.UIButton();
             this.CancelarUiButton = new Janus.Windows.EditControls.UIButton();
             this.PeriodoNicePanel = new PureComponents.NicePanel.NicePanel();
+            this.PeriodoRangoUIRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.PeriodoAnualUIRadioButton = new Janus.Windows.EditControls.UIRadioButton();
+            this.RangoHastaLabel = new System.Windows.Forms.Label();
+            this.RangoDesdeLabel = new System.Windows.Forms.Label();
+            this.PeriodoRangoHastaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.PeriodoRangoDesdeCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.PeriodoDesdeCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.MensajesUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
             this.MensajesPanel = new System.Windows.Forms.Panel();
@@ -115,12 +121,6 @@
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.PeriodoRangoDesdeCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.PeriodoRangoHastaCalendarCombo = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.RangoDesdeLabel = new System.Windows.Forms.Label();
-            this.RangoHastaLabel = new System.Windows.Forms.Label();
-            this.PeriodoAnualUIRadioButton = new Janus.Windows.EditControls.UIRadioButton();
-            this.PeriodoRangoUIRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -952,6 +952,100 @@
             this.PeriodoNicePanel.Style = panelStyle7;
             this.PeriodoNicePanel.TabIndex = 9024;
             // 
+            // PeriodoRangoUIRadioButton
+            // 
+            this.PeriodoRangoUIRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.PeriodoRangoUIRadioButton.Location = new System.Drawing.Point(8, 82);
+            this.PeriodoRangoUIRadioButton.Name = "PeriodoRangoUIRadioButton";
+            this.PeriodoRangoUIRadioButton.Size = new System.Drawing.Size(74, 20);
+            this.PeriodoRangoUIRadioButton.TabIndex = 9021;
+            this.PeriodoRangoUIRadioButton.TabStop = false;
+            this.PeriodoRangoUIRadioButton.Tag = "Rango";
+            this.PeriodoRangoUIRadioButton.Text = "Rango";
+            this.PeriodoRangoUIRadioButton.UseThemes = false;
+            // 
+            // PeriodoAnualUIRadioButton
+            // 
+            this.PeriodoAnualUIRadioButton.Checked = true;
+            this.PeriodoAnualUIRadioButton.ForeColor = System.Drawing.Color.Navy;
+            this.PeriodoAnualUIRadioButton.Location = new System.Drawing.Point(8, 24);
+            this.PeriodoAnualUIRadioButton.Name = "PeriodoAnualUIRadioButton";
+            this.PeriodoAnualUIRadioButton.Size = new System.Drawing.Size(56, 20);
+            this.PeriodoAnualUIRadioButton.TabIndex = 9020;
+            this.PeriodoAnualUIRadioButton.Tag = "Anual";
+            this.PeriodoAnualUIRadioButton.Text = "Anual";
+            this.PeriodoAnualUIRadioButton.UseThemes = false;
+            // 
+            // RangoHastaLabel
+            // 
+            this.RangoHastaLabel.AutoSize = true;
+            this.RangoHastaLabel.ForeColor = System.Drawing.Color.Navy;
+            this.RangoHastaLabel.Location = new System.Drawing.Point(25, 141);
+            this.RangoHastaLabel.Name = "RangoHastaLabel";
+            this.RangoHastaLabel.Size = new System.Drawing.Size(35, 13);
+            this.RangoHastaLabel.TabIndex = 9018;
+            this.RangoHastaLabel.Text = "Hasta";
+            // 
+            // RangoDesdeLabel
+            // 
+            this.RangoDesdeLabel.AutoSize = true;
+            this.RangoDesdeLabel.ForeColor = System.Drawing.Color.Navy;
+            this.RangoDesdeLabel.Location = new System.Drawing.Point(25, 112);
+            this.RangoDesdeLabel.Name = "RangoDesdeLabel";
+            this.RangoDesdeLabel.Size = new System.Drawing.Size(38, 13);
+            this.RangoDesdeLabel.TabIndex = 9017;
+            this.RangoDesdeLabel.Text = "Desde";
+            // 
+            // PeriodoRangoHastaCalendarCombo
+            // 
+            this.PeriodoRangoHastaCalendarCombo.BackColor = System.Drawing.Color.White;
+            this.PeriodoRangoHastaCalendarCombo.CustomFormat = "MM/yyyy";
+            this.PeriodoRangoHastaCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 10, 1, 0, 0, 0, 0);
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Name = "";
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.PeriodoRangoHastaCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.PeriodoRangoHastaCalendarCombo.ForeColor = System.Drawing.Color.Navy;
+            this.PeriodoRangoHastaCalendarCombo.Location = new System.Drawing.Point(66, 141);
+            this.PeriodoRangoHastaCalendarCombo.Name = "PeriodoRangoHastaCalendarCombo";
+            this.PeriodoRangoHastaCalendarCombo.Size = new System.Drawing.Size(72, 20);
+            this.PeriodoRangoHastaCalendarCombo.TabIndex = 9016;
+            this.PeriodoRangoHastaCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.PeriodoRangoHastaCalendarCombo.TodayButtonText = "Hoy";
+            this.PeriodoRangoHastaCalendarCombo.Value = new System.DateTime(2010, 6, 26, 0, 0, 0, 0);
+            this.PeriodoRangoHastaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
+            // PeriodoRangoDesdeCalendarCombo
+            // 
+            this.PeriodoRangoDesdeCalendarCombo.BackColor = System.Drawing.Color.White;
+            this.PeriodoRangoDesdeCalendarCombo.CustomFormat = "MM/yyyy";
+            this.PeriodoRangoDesdeCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 10, 1, 0, 0, 0, 0);
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Name = "";
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.TabIndex = 0;
+            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            this.PeriodoRangoDesdeCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
+            this.PeriodoRangoDesdeCalendarCombo.ForeColor = System.Drawing.Color.Navy;
+            this.PeriodoRangoDesdeCalendarCombo.Location = new System.Drawing.Point(66, 112);
+            this.PeriodoRangoDesdeCalendarCombo.Name = "PeriodoRangoDesdeCalendarCombo";
+            this.PeriodoRangoDesdeCalendarCombo.Size = new System.Drawing.Size(72, 20);
+            this.PeriodoRangoDesdeCalendarCombo.TabIndex = 9015;
+            this.PeriodoRangoDesdeCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
+            this.PeriodoRangoDesdeCalendarCombo.TodayButtonText = "Hoy";
+            this.PeriodoRangoDesdeCalendarCombo.Value = new System.DateTime(2010, 6, 26, 0, 0, 0, 0);
+            this.PeriodoRangoDesdeCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
+            // 
             // PeriodoDesdeCalendarCombo
             // 
             this.PeriodoDesdeCalendarCombo.BackColor = System.Drawing.Color.White;
@@ -1137,100 +1231,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 30, 5, 0);
             this.panel2.Size = new System.Drawing.Size(958, 466);
             this.panel2.TabIndex = 34;
-            // 
-            // PeriodoRangoDesdeCalendarCombo
-            // 
-            this.PeriodoRangoDesdeCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.PeriodoRangoDesdeCalendarCombo.CustomFormat = "MM/yyyy";
-            this.PeriodoRangoDesdeCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
-            // 
-            // 
-            // 
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 10, 1, 0, 0, 0, 0);
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Name = "";
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.PeriodoRangoDesdeCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.PeriodoRangoDesdeCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
-            this.PeriodoRangoDesdeCalendarCombo.ForeColor = System.Drawing.Color.Navy;
-            this.PeriodoRangoDesdeCalendarCombo.Location = new System.Drawing.Point(66, 112);
-            this.PeriodoRangoDesdeCalendarCombo.Name = "PeriodoRangoDesdeCalendarCombo";
-            this.PeriodoRangoDesdeCalendarCombo.Size = new System.Drawing.Size(72, 20);
-            this.PeriodoRangoDesdeCalendarCombo.TabIndex = 9015;
-            this.PeriodoRangoDesdeCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.PeriodoRangoDesdeCalendarCombo.TodayButtonText = "Hoy";
-            this.PeriodoRangoDesdeCalendarCombo.Value = new System.DateTime(2010, 6, 26, 0, 0, 0, 0);
-            this.PeriodoRangoDesdeCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            // 
-            // PeriodoRangoHastaCalendarCombo
-            // 
-            this.PeriodoRangoHastaCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.PeriodoRangoHastaCalendarCombo.CustomFormat = "MM/yyyy";
-            this.PeriodoRangoHastaCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
-            // 
-            // 
-            // 
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.FirstMonth = new System.DateTime(2008, 10, 1, 0, 0, 0, 0);
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Location = new System.Drawing.Point(0, 0);
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Name = "";
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.Size = new System.Drawing.Size(170, 173);
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.TabIndex = 0;
-            this.PeriodoRangoHastaCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.PeriodoRangoHastaCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
-            this.PeriodoRangoHastaCalendarCombo.ForeColor = System.Drawing.Color.Navy;
-            this.PeriodoRangoHastaCalendarCombo.Location = new System.Drawing.Point(66, 141);
-            this.PeriodoRangoHastaCalendarCombo.Name = "PeriodoRangoHastaCalendarCombo";
-            this.PeriodoRangoHastaCalendarCombo.Size = new System.Drawing.Size(72, 20);
-            this.PeriodoRangoHastaCalendarCombo.TabIndex = 9016;
-            this.PeriodoRangoHastaCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
-            this.PeriodoRangoHastaCalendarCombo.TodayButtonText = "Hoy";
-            this.PeriodoRangoHastaCalendarCombo.Value = new System.DateTime(2010, 6, 26, 0, 0, 0, 0);
-            this.PeriodoRangoHastaCalendarCombo.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            // 
-            // RangoDesdeLabel
-            // 
-            this.RangoDesdeLabel.AutoSize = true;
-            this.RangoDesdeLabel.ForeColor = System.Drawing.Color.Navy;
-            this.RangoDesdeLabel.Location = new System.Drawing.Point(25, 112);
-            this.RangoDesdeLabel.Name = "RangoDesdeLabel";
-            this.RangoDesdeLabel.Size = new System.Drawing.Size(38, 13);
-            this.RangoDesdeLabel.TabIndex = 9017;
-            this.RangoDesdeLabel.Text = "Desde";
-            // 
-            // RangoHastaLabel
-            // 
-            this.RangoHastaLabel.AutoSize = true;
-            this.RangoHastaLabel.ForeColor = System.Drawing.Color.Navy;
-            this.RangoHastaLabel.Location = new System.Drawing.Point(25, 141);
-            this.RangoHastaLabel.Name = "RangoHastaLabel";
-            this.RangoHastaLabel.Size = new System.Drawing.Size(35, 13);
-            this.RangoHastaLabel.TabIndex = 9018;
-            this.RangoHastaLabel.Text = "Hasta";
-            // 
-            // PeriodoAnualUIRadioButton
-            // 
-            this.PeriodoAnualUIRadioButton.Checked = true;
-            this.PeriodoAnualUIRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.PeriodoAnualUIRadioButton.Location = new System.Drawing.Point(8, 24);
-            this.PeriodoAnualUIRadioButton.Name = "PeriodoAnualUIRadioButton";
-            this.PeriodoAnualUIRadioButton.Size = new System.Drawing.Size(56, 20);
-            this.PeriodoAnualUIRadioButton.TabIndex = 9020;
-            this.PeriodoAnualUIRadioButton.Tag = "Anual";
-            this.PeriodoAnualUIRadioButton.Text = "Anual";
-            this.PeriodoAnualUIRadioButton.UseThemes = false;
-            // 
-            // PeriodoRangoUIRadioButton
-            // 
-            this.PeriodoRangoUIRadioButton.ForeColor = System.Drawing.Color.Navy;
-            this.PeriodoRangoUIRadioButton.Location = new System.Drawing.Point(8, 82);
-            this.PeriodoRangoUIRadioButton.Name = "PeriodoRangoUIRadioButton";
-            this.PeriodoRangoUIRadioButton.Size = new System.Drawing.Size(74, 20);
-            this.PeriodoRangoUIRadioButton.TabIndex = 9021;
-            this.PeriodoRangoUIRadioButton.TabStop = false;
-            this.PeriodoRangoUIRadioButton.Tag = "Rango";
-            this.PeriodoRangoUIRadioButton.Text = "Rango";
-            this.PeriodoRangoUIRadioButton.UseThemes = false;
             // 
             // ResumenArgentinaXZonasForm
             // 
