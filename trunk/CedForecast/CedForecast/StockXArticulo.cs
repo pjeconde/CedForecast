@@ -24,7 +24,6 @@ namespace CedForecast
             volverATabBrowser = false;
             ConfigurarFiltros();
             ArticulosUiCheckBox.Checked = true;
-            TipoReporte_CheckedChanged((object)FamiliayArticulosUiRadioButton, EventArgs.Empty);
         }
         private void ConfigurarFiltros()
         {
@@ -246,7 +245,7 @@ namespace CedForecast
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Groups[0].HeaderCaption = "";
             
             Janus.Windows.GridEX.GridEXSortKey s = new Janus.Windows.GridEX.GridEXSortKey();
-            s.Column = BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[0];
+            s.Column = BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[2];
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].SortKeys.Add(s);
 
             Janus.Windows.GridEX.GridEXGroup grupo2 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[1]);
@@ -261,22 +260,6 @@ namespace CedForecast
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Groups[0].GroupPrefix = "";
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[0].Visible = false;
             BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[3].Visible = false;
-
-            //BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[0].Visible = false;
-            //BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[1].Visible = false;
-            //BrowserGridEX.RootTable.ChildTables[0].ChildTables[0].Columns[2].Visible = false;
-
-            //if (BrowserGridEX.RootTable.ChildTables[0].ChildTables.Count > 1)
-            //{
-            //    BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[0].Visible = false;
-            //    BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[1].Visible = false;
-            //    BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[2].Visible = false;
-
-            //    Janus.Windows.GridEX.GridEXGroup grupo3 = new Janus.Windows.GridEX.GridEXGroup(BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Columns[1]);
-            //    grupo2.GroupInterval = Janus.Windows.GridEX.GroupInterval.Value;
-            //    BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Groups.Add(grupo3);
-            //    BrowserGridEX.RootTable.ChildTables[0].ChildTables[1].Groups[0].GroupPrefix = "Crédito Disponible Cliente:";
-            //}
         }
 
         private void BrowserUiTab_SelectedTabChanged(object sender, Janus.Windows.UI.Tab.TabEventArgs e)
@@ -328,46 +311,32 @@ namespace CedForecast
             loProcess.MinWorkingSet = (IntPtr)5000000;
             try
             {
-                DataSet dsExport = Cedeira.SV.Fun.GetDataSetFromJanusGridEx(Grilla, FileName);
+                DataSet dsExport = Cedeira.SV.Fun.GetDataSetFromJanusGridExDS(Grilla, FileName);
                 dsExport.DataSetName = "Export";
-                dsExport.Tables[0].TableName = "Values";
-                string[] sHeaders = new string[dsExport.Tables[0].Columns.Count];
-                string[] sFileds = new string[dsExport.Tables[0].Columns.Count];
-                for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
+                for (int t = 0; t < dsExport.Tables.Count; t++)
                 {
-                    dsExport.Tables[0].Columns[i].ColumnName = Convert.ToString(i);
-                }
-                for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
-                {
-                    sHeaders[i] = export.ReemplazarEspaciosyAcentos(dsExport.Tables[0].Columns[i].Caption);
-                    dsExport.Tables[0].Columns[i].ColumnName = sHeaders[i];
-                    sFileds[i] = sHeaders[i];
-                }
-                int columnas = dsExport.Tables[0].Columns.Count;
-                for (int l = 0; l < dsExport.Tables[0].Rows.Count; l++)
-                {
-                    for (int i = 0; i < dsExport.Tables[0].Columns.Count; i++)
+                    for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
                     {
-                        string aux = export.ReemplazarXPath(Convert.ToString(dsExport.Tables[0].Rows[l].ItemArray[i]));
-                        dsExport.Tables[0].Rows[l][i] = aux;
-                        dsExport.Tables[0].Rows[l].AcceptChanges();
+                        if (dsExport.Tables[t].Columns[i].Caption != "")
+                        {
+                            dsExport.Tables[t].Columns[i].ColumnName = Convert.ToString(i);
+                        }
                     }
-                    if (dsExport.Tables[0].Rows[l][0].ToString() == "")
+                    for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
                     {
-                        decimal real = 0;
-                        decimal plan = 0;
-                        if (dsExport.Tables[0].Rows[l][columnas - 2].ToString().Trim() != "")
+                        if (dsExport.Tables[t].Columns[i].Caption != "")
                         {
-                            real = Convert.ToDecimal(dsExport.Tables[0].Rows[l][columnas - 2].ToString());
+                            dsExport.Tables[t].Columns[i].ColumnName = export.ReemplazarEspaciosyAcentos(dsExport.Tables[t].Columns[i].Caption);
                         }
-                        if (dsExport.Tables[0].Rows[l][columnas - 3].ToString().Trim() != "")
+                    }
+                    int columnas = dsExport.Tables[t].Columns.Count;
+                    for (int l = 0; l < dsExport.Tables[t].Rows.Count; l++)
+                    {
+                        for (int i = 0; i < dsExport.Tables[t].Columns.Count; i++)
                         {
-                            plan = Convert.ToDecimal(dsExport.Tables[0].Rows[l][columnas - 3].ToString());
-                        }
-                        if (plan != 0)
-                        {
-                            dsExport.Tables[0].Rows[l][columnas - 1] = Convert.ToString(Math.Round((real / plan - 1) * 100, 2));
-                            dsExport.Tables[0].Rows[l].AcceptChanges();
+                            string aux = export.ReemplazarXPath(Convert.ToString(dsExport.Tables[t].Rows[l].ItemArray[i]));
+                            dsExport.Tables[t].Rows[l][i] = aux;
+                            dsExport.Tables[t].Rows[l].AcceptChanges();
                         }
                     }
                 }
@@ -377,7 +346,7 @@ namespace CedForecast
                     System.IO.Directory.CreateDirectory(dir);
                 }
                 FileName = dir + export.ReemplazarCaracteresMalos(FileName);
-                export.Export_with_XSLT_Windows(dsExport, sHeaders, sFileds, FormatType, FileName);
+                export.Export_with_XSLT_WindowsDS(dsExport, FormatType, FileName);
                 System.Diagnostics.Process.Start(FileName);
             }
             catch (Exception Ex)
@@ -397,19 +366,6 @@ namespace CedForecast
             WindowState = FormWindowState.Normal;
             MinimizarUiButton.Visible = false;
             MaximizarUiButton.Visible = true;
-        }
-        private void TipoReporte_CheckedChanged(object sender, EventArgs e)
-        {
-            TipoReporteNicePanel.Tag = ((Janus.Windows.EditControls.UIRadioButton)sender).Tag;
-            switch (((Janus.Windows.EditControls.UIRadioButton)sender).Tag.ToString())
-            {
-                case "Familia-Articulo":
-                    ArmaGruposUiCheckBox.Text = "Agrupa por familia de artículos";
-                    break;
-                case "Articulo":
-                    ArmaGruposUiCheckBox.Text = "Agrupa artículo";
-                    break;
-            }
         }
         private void ArticulosUiCheckBox_CheckedChanged(object sender, EventArgs e)
         {

@@ -85,13 +85,21 @@ namespace CedForecastRN
                 //}
                 decimal valor = Convert.ToDecimal(dtDatos.Rows[i]["Saldo"]);
                 string periodo = Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("MM-yyyy");
-                if (Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]) < fechaInicio)
+                if (Convert.ToInt32(Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("yyyyMM")) < Convert.ToInt32(fechaInicio.ToString("yyyyMM")))
                 {
                     if (dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")].ToString() == "")
                     {
                         dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")] = "0";
                     }
                     dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")]) + valor;
+                }
+                else if (Convert.ToInt32(Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("yyyyMM")) > Convert.ToInt32(fechaInicio.AddMonths(11).ToString("yyyyMM")))
+                {
+                    if (dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")].ToString() == "")
+                    {
+                        dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")] = "0";
+                    }
+                    dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")]) + valor;
                 }
                 else
                 {
@@ -192,7 +200,7 @@ namespace CedForecastRN
 
                 decimal valor = Convert.ToDecimal(dtDatos.Rows[i]["Saldo"]);
                 string periodo = Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("MM-yyyy");
-                if (Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]) < fechaInicio)
+                if (Convert.ToInt32(Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("yyyyMM")) < Convert.ToInt32(fechaInicio.ToString("yyyyMM")))
                 {
                     if (dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")].ToString() == "")
                     {
@@ -200,7 +208,15 @@ namespace CedForecastRN
                     }
                     dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.ToString("MM-yyyy")]) + valor;
                 }
-                else
+                else if (Convert.ToInt32(Convert.ToDateTime(dtDatos.Rows[i]["FecVto"]).ToString("yyyyMM")) > Convert.ToInt32(fechaInicio.AddMonths(11).ToString("yyyyMM")))
+                {
+                    if (dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")].ToString() == "")
+                    {
+                        dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")] = "0";
+                    }
+                    dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1][" " + fechaInicio.AddMonths(11).ToString("MM-yyyy")]) + valor;
+                }
+                else 
                 {
                     if (dt.Rows[dt.Rows.Count - 1][" " + periodo].ToString() == "")
                     {
@@ -414,7 +430,7 @@ namespace CedForecastRN
             DataTable dtStock = ds.Tables[4];
             //Notas de Pedido Ptes de remitir
             DataTable dtNotasDePedidoPtes = ds.Tables[5].Copy();
-            //Notas de Pedido 
+            //Notas de Pedido (del mes remitidas disminuye el forecast)
             DataTable dtNotasDePedido = ds.Tables[6].Copy();
             //Baja de Remitos de Notas de Pedido 
             DataTable dtNotasDePedidoBaja = ds.Tables[7].Copy();
@@ -443,7 +459,14 @@ namespace CedForecastRN
                 dt.Columns.Add(ClonarColumna(dtForecast.Columns["Cantidad"], "_" + idPeriodo, "_" + idPeriodo));
                 idPeriodo = periodoDesde.AddMonths(i).ToString("yyyyMM");
             }
-            dt.Columns.Add(ClonarColumna(dtForecast.Columns["Cantidad"], "Total", "Total"));
+            //dt.Columns.Add(ClonarColumna(dtForecast.Columns["Cantidad"], "Total", "Total"));
+
+            //--- Para cálculo del Saldo de Arrastre ---
+            for (int i = 0; i < dtArticulos.Rows.Count; i++)
+            {
+                dt.Rows.Add("1", "Stock", "_Saldo", dtArticulos.Rows[i]["Familia"].ToString(), dtArticulos.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[i]["DescrArticulo"].ToString(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            }
+            //------------------------------------------
 
             //Stock
             for (int i = 0; i < dtStock.Rows.Count; i++)
@@ -456,6 +479,19 @@ namespace CedForecastRN
                         if (drv.Length > 0)
                         {
                             dt.Rows.Add(dtStock.Rows[i]["Orden"].ToString(), dtStock.Rows[i]["TipoDato"].ToString(), dtStock.Rows[i]["Descr"].ToString(), dtArticulos.Rows[0]["Familia"].ToString(), dtStock.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[0]["DescrArticulo"].ToString(), dtStock.Rows[i]["Cantidad"].ToString());
+                            //--- Para cálculo del Saldo de Arrastre ---
+                            DataRow[] dr = dt.Select("TipoDato = 'Stock' and Descr = '_Saldo' and IdArticulo = '" + dtStock.Rows[i]["IdArticulo"].ToString() + "'");
+                            if (dr.Length > 0)
+                            {
+                                string periodoAux = periodoDesde.AddMonths(1).ToString("yyyyMM");
+                                dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + periodoAux].ToString()) + Convert.ToDecimal(dtStock.Rows[i]["Cantidad"].ToString());
+                                for (int p = 2; p <= 11; p++)
+                                {
+                                    periodoAux = periodoDesde.AddMonths(p).ToString("yyyyMM");
+                                    dr[0]["_" + periodoAux] = Convert.ToDecimal(dtStock.Rows[i]["Cantidad"].ToString());
+                                }
+                            }
+                            //------------------------------------------
                         }
                         break;
                 }
@@ -471,7 +507,7 @@ namespace CedForecastRN
                         drv = dtArticulos.Select("IdArticulo = '" + dtOrdenesDeCompra.Rows[i]["IdArticulo"].ToString() + "'");
                         if (drv.Length > 0)
                         {
-                            dt.Rows.Add(dtOrdenesDeCompra.Rows[i]["Orden"].ToString(), dtOrdenesDeCompra.Rows[i]["TipoDato"].ToString(), dtOrdenesDeCompra.Rows[i]["Descr"], dtArticulos.Rows[0]["Familia"].ToString(), dtOrdenesDeCompra.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[0]["DescrArticulo"].ToString());
+                            dt.Rows.Add(dtOrdenesDeCompra.Rows[i]["Orden"].ToString(), dtOrdenesDeCompra.Rows[i]["TipoDato"].ToString(), dtOrdenesDeCompra.Rows[i]["Descr"], drv[0]["Familia"].ToString(), dtOrdenesDeCompra.Rows[i]["IdArticulo"].ToString(), drv[0]["DescrArticulo"].ToString());
                             dt.Rows[dt.Rows.Count - 1]["_" + dtOrdenesDeCompra.Rows[i]["Periodo"].ToString()] = dtOrdenesDeCompra.Rows[i]["Cantidad"].ToString();
                         }
                         break;
@@ -491,7 +527,7 @@ namespace CedForecastRN
                             DataRow[] drAux = dt.Select("TipoDato = '" + dtForecast.Rows[i]["TipoDato"] + "' and IdArticulo = '" + dtForecast.Rows[i]["IdArticulo"].ToString() + "'");
                             if (drAux.Length == 0)
                             {
-                                dt.Rows.Add(dtForecast.Rows[i]["Orden"].ToString(), dtForecast.Rows[i]["TipoDato"].ToString(), dtForecast.Rows[i]["Descr"], dtArticulos.Rows[0]["Familia"].ToString(), dtForecast.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[0]["DescrArticulo"].ToString());
+                                dt.Rows.Add(dtForecast.Rows[i]["Orden"].ToString(), dtForecast.Rows[i]["TipoDato"].ToString(), dtForecast.Rows[i]["Descr"], drv[0]["Familia"].ToString(), dtForecast.Rows[i]["IdArticulo"].ToString(), drv[0]["DescrArticulo"].ToString());
                                 dt.Rows[dt.Rows.Count - 1]["_" + dtForecast.Rows[i]["Periodo"].ToString()] = Convert.ToDecimal(dtForecast.Rows[i]["Cantidad"].ToString()) * -1;
                             }
                             else
@@ -513,14 +549,33 @@ namespace CedForecastRN
                         drv = dtArticulos.Select("IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "'");
                         if (drv.Length > 0)
                         {
-                            dt.Rows.Add(dtNotasDePedidoPtes.Rows[i]["Orden"].ToString(), dtNotasDePedidoPtes.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoPtes.Rows[i]["Descr"].ToString(), dtArticulos.Rows[0]["Familia"].ToString(), dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[0]["DescrArticulo"].ToString());
+                            dt.Rows.Add(dtNotasDePedidoPtes.Rows[i]["Orden"].ToString(), dtNotasDePedidoPtes.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoPtes.Rows[i]["Descr"].ToString(), drv[0]["Familia"].ToString(), dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString(), drv[0]["DescrArticulo"].ToString());
                             dt.Rows[dt.Rows.Count - 1]["_" + periodoDesde.ToString("yyyyMM")] = Convert.ToDecimal(dtNotasDePedidoPtes.Rows[i]["Cantidad_Pend_RT"]) * -1;
-                            //Verivicar si no fue dada de BAJA la NP.
+
+                            //--- Para cálculo del Saldo de Arrastre ---
+                            DataRow[] dr = dt.Select("TipoDato = 'Stock' and Descr = '_Saldo' and IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "'");
+                            if (dr.Length > 0)
+                            {
+                                string periodoAux = periodoDesde.AddMonths(1).ToString("yyyyMM");
+                                dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + periodoAux].ToString()) + Convert.ToDecimal(dtNotasDePedidoPtes.Rows[i]["Cantidad_Pend_RT"]) * -1;
+                            }
+                            //------------------------------------------
+
+                            //Verificar si no fue dado de BAJA el articulo de la NP.
                             DataRow[] drAuxNPB = dtNotasDePedidoBaja.Select("IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "' and TipoComprobante = 'REM' and NroComprobante = '" + dtNotasDePedidoPtes.Rows[i]["NroComprobante"].ToString() + "'");
                             if (drAuxNPB.Length != 0)
                             {
-                                dt.Rows.Add(dtNotasDePedidoBaja.Rows[i]["Orden"].ToString(), dtNotasDePedidoBaja.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoBaja.Rows[i]["Descr"].ToString(), dtArticulos.Rows[0]["Familia"].ToString(), dtNotasDePedidoBaja.Rows[i]["IdArticulo"].ToString(), dtArticulos.Rows[0]["DescrArticulo"].ToString());
-                                dt.Rows[dt.Rows.Count - 1]["_" + periodoDesde.ToString("yyyyMM")] = Convert.ToDecimal(dtNotasDePedidoBaja.Rows[i]["Cantidad_Total"]);
+                                dt.Rows.Add(drAuxNPB[0]["Orden"].ToString(), drAuxNPB[0]["TipoDato"].ToString(), drAuxNPB[0]["Descr"].ToString(), drv[0]["Familia"].ToString(), drAuxNPB[0]["IdArticulo"].ToString(), drv[0]["DescrArticulo"].ToString());
+                                dt.Rows[dt.Rows.Count - 1]["_" + periodoDesde.ToString("yyyyMM")] = Convert.ToDecimal(drAuxNPB[0]["Cantidad_Total"]) * -1;
+                                
+                                //--- Para cálculo del Saldo de Arrastre ---
+                                dr = dt.Select("TipoDato = 'Stock' and Descr = '_Saldo' and IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "'");
+                                if (dr.Length > 0)
+                                {
+                                    string periodoAux = periodoDesde.AddMonths(1).ToString("yyyyMM");
+                                    dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + periodoAux].ToString()) + Convert.ToDecimal(drAuxNPB[0]["Cantidad_Total"]) * -1;
+                                }
+                                //------------------------------------------
                             }
                         }
                         break;
@@ -545,7 +600,7 @@ namespace CedForecastRN
                         drv = dtArticulos.Select("IdArticulo = '" + dtForecastDelMes[i]["IdArticulo"].ToString() + "'");
                         if (drv.Length > 0)
                         {
-                            dtResumenXArticulo.Rows.Add(dtForecastDelMes[i]["Orden"].ToString(), dtForecastDelMes[i]["TipoDato"].ToString(), dtForecastDelMes[i]["Descr"].ToString() + " del mes", dtForecastDelMes[i]["IdArticulo"].ToString(), Convert.ToDecimal(dtForecastDelMes[i]["Cantidad"]) * -1);
+                            dtResumenXArticulo.Rows.Add(dtForecastDelMes[i]["Orden"].ToString(), dtForecastDelMes[i]["TipoDato"].ToString() + " del mes", dtForecastDelMes[i]["Descr"].ToString() + " del " + periodoDesde.ToString("MM/yyyy"), dtForecastDelMes[i]["IdArticulo"].ToString(), Convert.ToDecimal(dtForecastDelMes[i]["Cantidad"]) * -1);
                         }
                         break;
                 }
@@ -559,7 +614,40 @@ namespace CedForecastRN
                         drv = dtArticulos.Select("IdArticulo = '" + dtNotasDePedido.Rows[i]["IdArticulo"].ToString() + "'");
                         if (drv.Length > 0)
                         {
-                            dtResumenXArticulo.Rows.Add(dtNotasDePedido.Rows[i]["Orden"].ToString(), dtNotasDePedido.Rows[i]["TipoDato"].ToString(), dtNotasDePedido.Rows[i]["Descr"].ToString() + " del mes", dtNotasDePedido.Rows[i]["IdArticulo"].ToString(), dtNotasDePedido.Rows[i]["Cantidad_Total"].ToString());
+                            dtResumenXArticulo.Rows.Add(dtNotasDePedido.Rows[i]["Orden"].ToString(), dtNotasDePedido.Rows[i]["TipoDato"].ToString(), dtNotasDePedido.Rows[i]["Descr"].ToString(), dtNotasDePedido.Rows[i]["IdArticulo"].ToString(), dtNotasDePedido.Rows[i]["Cantidad_Total"].ToString());
+                            //Verivicar si no fue dada de BAJA la NP.
+                            DataRow[] drAuxNPB = dtNotasDePedidoBaja.Select("IdArticulo = '" + dtNotasDePedido.Rows[i]["IdArticulo"].ToString() + "' and TipoComprobante = 'REM' and NroComprobante = '" + dtNotasDePedido.Rows[i]["NroComprobante"].ToString() + "'");
+                            if (drAuxNPB.Length != 0)
+                            {
+                                dtResumenXArticulo.Rows.Add(dtNotasDePedidoBaja.Rows[i]["Orden"].ToString(), dtNotasDePedidoBaja.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoBaja.Rows[i]["Descr"].ToString(), dtNotasDePedidoBaja.Rows[i]["IdArticulo"].ToString(), Convert.ToDecimal(dtNotasDePedidoBaja.Rows[i]["Cantidad_Total"]) * -1);
+                            }
+
+                            //----- Para el periodo actual del Forecast se le descuentan las NP remitidas y se suman las anulaciones del las NP.
+                            //----- para NP sin remitos Ptes.
+                            DataRow[] drAuxForecast = dt.Select("TipoDato = 'Forecast' and IdArticulo = '" + dtNotasDePedido.Rows[i]["IdArticulo"].ToString() + "'");
+                            if (drAuxForecast.Length != 0)
+                            {
+                                decimal valorForecast = 0;
+                                if (drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] != System.DBNull.Value)
+                                {
+                                    valorForecast = Convert.ToDecimal(drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")]);
+                                }
+                                decimal valorNP = Convert.ToDecimal(dtNotasDePedido.Rows[i]["Cantidad_Total"].ToString());
+                                drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] = valorForecast + valorNP;
+                                //Verificar si no fue dado de BAJA el articulo de la NP.
+                                DataRow[] drAuxForecastNPB = dtNotasDePedidoBaja.Select("IdArticulo = '" + dtNotasDePedido.Rows[i]["IdArticulo"].ToString() + "' and TipoComprobante = 'REM' and NroComprobante = '" + dtNotasDePedido.Rows[i]["NroComprobante"].ToString() + "'");
+                                if (drAuxForecastNPB.Length != 0)
+                                {
+                                    valorForecast = 0;
+                                    if (drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] != System.DBNull.Value)
+                                    {
+                                        valorForecast = Convert.ToDecimal(drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")]);
+                                    }
+                                    valorNP = Convert.ToDecimal(drAuxForecastNPB[0]["Cantidad_Total"]);
+                                    drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] = valorForecast - valorNP;
+                                }
+                            }
+                            //-----
                         }
                         break;
                 }
@@ -575,14 +663,108 @@ namespace CedForecastRN
                         {
                             if (Convert.ToDateTime(dtNotasDePedidoPtes.Rows[i]["Fecha_Emision"]).ToString("yyyyMM") == periodoDesde.ToString("yyyyMM"))
                             {
-                                dtResumenXArticulo.Rows.Add(dtNotasDePedidoPtes.Rows[i]["Orden"].ToString(), dtNotasDePedidoPtes.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoPtes.Rows[i]["Descr"].ToString() + " del mes", dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString(), dtNotasDePedidoPtes.Rows[i]["Cantidad_Pend_RT"].ToString());
+                                dtResumenXArticulo.Rows.Add(dtNotasDePedidoPtes.Rows[i]["Orden"].ToString(), dtNotasDePedidoPtes.Rows[i]["TipoDato"].ToString() + " del mes", dtNotasDePedidoPtes.Rows[i]["Descr"].ToString(), dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString(), dtNotasDePedidoPtes.Rows[i]["Cantidad_Pend_RT"].ToString());
+                                //Verificar si no fue dada de BAJA la NP.
+                                DataRow[] drAuxNPB = dtNotasDePedidoBaja.Select("IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "' and TipoComprobante = 'REM' and NroComprobante = '" + dtNotasDePedidoPtes.Rows[i]["NroComprobante"].ToString() + "'");
+                                if (drAuxNPB.Length != 0)
+                                {
+                                    dtResumenXArticulo.Rows.Add(dtNotasDePedidoBaja.Rows[i]["Orden"].ToString(), dtNotasDePedidoBaja.Rows[i]["TipoDato"].ToString(), dtNotasDePedidoBaja.Rows[i]["Descr"].ToString(), dtNotasDePedidoBaja.Rows[i]["IdArticulo"].ToString(), Convert.ToDecimal(dtNotasDePedidoBaja.Rows[i]["Cantidad_Total"]));
+                                }
+                                
+                                ////----- Para el periodo actual del Forecast se le descuentan las NP Ptes de remito y se suman las anulaciones del las NP.
+                                ////----- para NP sin remitos Ptes.
+                                //DataRow[] drAuxForecast = dt.Select("TipoDato = 'Forecast' and IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "'");
+                                //if (drAuxForecast.Length != 0)
+                                //{
+                                //    decimal valorForecast = Convert.ToDecimal(drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")]);
+                                //    decimal valorNP = Convert.ToDecimal(dtNotasDePedido.Rows[i]["Cantidad_Total"].ToString());
+                                //    drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] = valorForecast + valorNP;
+                                //    //Verificar si no fue dado de BAJA el articulo de la NP.
+                                //    DataRow[] drAuxForecastNPB = dtNotasDePedidoBaja.Select("IdArticulo = '" + dtNotasDePedidoPtes.Rows[i]["IdArticulo"].ToString() + "' and TipoComprobante = 'REM' and NroComprobante = '" + dtNotasDePedido.Rows[i]["NroComprobante"].ToString() + "'");
+                                //    if (drAuxForecastNPB.Length != 0)
+                                //    {
+                                //        valorForecast = Convert.ToDecimal(drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")]);
+                                //        valorNP = Convert.ToDecimal(drAuxForecastNPB[0]["Cantidad_Total"]);
+                                //        drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] = valorForecast - valorNP;
+                                //    }
+                                //}
+                                //-----
                             }
                         }
                         break;
                 }
             }
-            
-            //Recorro la lista de articulos, para verificar si alguno, no tiene datos de ( stock / notas de pedido / forecast / ordenes de compra ).
+            //(A) - Recorrer el Forecast y si hay importes negativos informar cero.
+            dtForecastDelMes = dt.Select("TipoDato = 'Forecast'");
+            for (int i = 0; i < dtForecastDelMes.Length; i++)
+            {
+                DataRow[] drv;
+                switch (TipoReporte)
+                {
+                    case "Familia-Articulo":
+                        drv = dtArticulos.Select("IdArticulo = '" + dtForecastDelMes[i]["IdArticulo"].ToString() + "'");
+                        if (drv.Length > 0)
+                        {
+                            DataRow[] drAuxForecast = dt.Select("TipoDato = 'Forecast' and IdArticulo = '" + dtForecastDelMes[i]["IdArticulo"].ToString() + "'");
+                            if (drAuxForecast.Length > 0)
+                            {
+                                if (drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")].GetType() != typeof(System.DBNull) && Convert.ToDecimal(drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")]) > 0)
+                                {
+                                    drAuxForecast[0]["_" + periodoDesde.ToString("yyyyMM")] = 0;
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+
+
+            idPeriodo = periodoDesde.ToString("yyyyMM");
+            for (int p = 1; p <= 11; p++)
+            {
+                DataRow[] drGrilla = dt.Select("TipoDato = 'Forecast'");
+                for (int i = 0; i < drGrilla.Length; i++)
+                {
+                    //--- Para cálculo del Saldo de Arrastre ---
+                    DataRow[] dr = dt.Select("TipoDato = 'Stock' and Descr = '_Saldo' and IdArticulo = '" + drGrilla[i]["IdArticulo"].ToString() + "'");
+                    if (dr.Length > 0)
+                    {
+                        string periodoAux = periodoDesde.AddMonths(p).ToString("yyyyMM");
+                        decimal cantidad = 0;
+                        if (drGrilla[i]["_" + idPeriodo] != System.DBNull.Value)
+                        {
+                            cantidad = Convert.ToDecimal(drGrilla[i]["_" + idPeriodo]);
+                        }
+                        if (p == 1)
+                        {
+                            dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + idPeriodo].ToString()) + Convert.ToDecimal(dr[0]["_" + periodoAux].ToString()) + cantidad;
+                        }
+                        else
+                        {
+                            dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + idPeriodo].ToString()) + cantidad;
+                        }
+                    }
+                    //------------------------------------------
+                }
+                DataRow[] drOrdenesDeCompra = dtOrdenesDeCompra.Select("Periodo = '" + idPeriodo + "'");
+                for (int i = 0; i < drOrdenesDeCompra.Length; i++)
+                {
+                    //--- Para cálculo del Saldo de Arrastre ---
+                    DataRow[] dr = dt.Select("TipoDato = 'Stock' and Descr = '_Saldo' and IdArticulo = '" + drOrdenesDeCompra[i]["IdArticulo"].ToString() + "'");
+                    if (dr.Length > 0)
+                    {
+                        string periodoAux = periodoDesde.AddMonths(1).ToString("yyyyMM");
+                        decimal cantidad = 0;
+                        if (drOrdenesDeCompra[i]["Cantidad"] != System.DBNull.Value)
+                        {
+                            cantidad = Convert.ToDecimal(drOrdenesDeCompra[i]["Cantidad"]);
+                        }
+                        dr[0]["_" + periodoAux] = Convert.ToDecimal(dr[0]["_" + periodoAux].ToString()) + cantidad;
+                    }
+                    //------------------------------------------
+                }
+                idPeriodo = periodoDesde.AddMonths(p).ToString("yyyyMM");
+            }
 
             ds.Tables.Add(dt);
             ds.Tables[2].TableName = "Nivel3";
@@ -662,82 +844,100 @@ namespace CedForecastRN
             decimal precio = 0;
             for (int i = 0; i < ventas.Count; i++)
             {
+                string familia = "";
+                CedForecastEntidades.ArticuloInfoAdicional articuloInfoAdicional = familiaXArticulos.Find(delegate(CedForecastEntidades.ArticuloInfoAdicional c) { return c.IdArticulo == Convert.ToString(ventas[i].Sdvart_CodGen); });
+                if (articuloInfoAdicional != null)
+                {
+                    familia = articuloInfoAdicional.IdFamiliaArticulo;
+                }
                 DataRow[] drv;
                 switch (TipoReporte)
                 {
                     case "Zona-Familia-Articulo":
-                        drv = dtDatos.Select("Zona = '" + ventas[i].Zona + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
+                        drv = dtDatos.Select("Zona = '" + ventas[i].Zona + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "'");
                         if (drv.Length == 0)
                         {
-                            dtDatos.Rows.Add("Empresa", ventas[i].Zona, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+
+                            dtDatos.Rows.Add("Empresa", ventas[i].Zona, familia, "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                     case "Vendedor-Familia-Articulo":
-                        drv = dtDatos.Select("Vendedor = '" + ventas[i].Vendedor + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
+                        drv = dtDatos.Select("Vendedor = '" + ventas[i].Vendedor + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "'");
                         if (drv.Length == 0)
                         {
-                            dtDatos.Rows.Add("Empresa", ventas[i].Vendedor, "", "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+                            dtDatos.Rows.Add("Empresa", ventas[i].Vendedor, familia, "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                 }
             }
-            for (int i = 0; i < dtDatos.Rows.Count; i++)
+            //Ordenar datos
+            switch (TipoReporte)
             {
-                string claveActual = Convert.ToString(dtDatos.Rows[i][1]) + Convert.ToString(dtDatos.Rows[i]["Familia"]) + Convert.ToString(dtDatos.Rows[i]["Articulo"]);
+                case "Zona-Familia-Articulo":
+                    dtDatos.DefaultView.Sort = "Zona ASC, Familia ASC, Articulo ASC";
+                    break;
+                case "Vendedor-Familia-Articulo":
+                    dtDatos.DefaultView.Sort = "Vendedor ASC, Familia ASC, Articulo ASC";
+                    break;
+            }
+            
+            for (int i = 0; i < dtDatos.DefaultView.Count; i++)
+            {
+                string claveActual = Convert.ToString(dtDatos.DefaultView[i][1]) + Convert.ToString(dtDatos.DefaultView[i]["Familia"]) + Convert.ToString(dtDatos.DefaultView[i]["Articulo"]);
                 if (claveAnterior != claveActual)
                 {
                     DataRow dr = dt.NewRow();
                     dr["Empresa"] = "Empresa";
-                    CedForecastEntidades.ArticuloInfoAdicional familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.ArticuloInfoAdicional c) { return c.IdArticulo == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
+                    CedForecastEntidades.ArticuloInfoAdicional familiaXArticulo = familiaXArticulos.Find(delegate(CedForecastEntidades.ArticuloInfoAdicional c) { return c.IdArticulo == Convert.ToString(dtDatos.DefaultView[i]["Articulo"]); });
                     if (familiaXArticulo == null)
                     {
                         dr["Familia"] = "<<<Desconocida>>>";
-                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-01", "Artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]) + " sin familia definida", CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-01", "Artículo " + Convert.ToString(dtDatos.DefaultView[i]["Articulo"]) + " sin familia definida", CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                     }
                     else
                     {
                         dr["Familia"] = familiaXArticulo.DescrFamiliaArticulo;
                     }
-                    CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dtDatos.Rows[i]["Articulo"]); });
+                    CedForecastEntidades.Bejerman.Articulos articulo = articulos.Find(delegate(CedForecastEntidades.Bejerman.Articulos c) { return c.Art_CodGen == Convert.ToString(dtDatos.DefaultView[i]["Articulo"]); });
                     if (articulo == null)
                     {
-                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-<<<Desconocido>>>";
-                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-02", "Descripción no encontrada para el artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                        dr["Articulo"] = Convert.ToString(dtDatos.DefaultView[i]["Articulo"]) + "-<<<Desconocido>>>";
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-02", "Descripción no encontrada para el artículo " + Convert.ToString(dtDatos.DefaultView[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                         precio = 0;
                     }
                     else
                     {
-                        dr["Articulo"] = Convert.ToString(dtDatos.Rows[i]["Articulo"]) + "-" + articulo.Art_DescGen;
+                        dr["Articulo"] = Convert.ToString(dtDatos.DefaultView[i]["Articulo"]) + "-" + articulo.Art_DescGen;
                         precio = articulo.Lpr_Precio;
                     }
                     if (precio == 0)
                     {
-                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dtDatos.Rows[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
+                        Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-03", "Precio no encontrado para el artículo " + Convert.ToString(dtDatos.DefaultView[i]["Articulo"]), CedForecastEntidades.Advertencia.TipoSeveridad.Error));
                     }
                     switch (TipoReporte)
                     {
                         case "Zona-Familia-Articulo":
-                            CedForecastEntidades.Bejerman.Zona zona = zonas.Find(delegate(CedForecastEntidades.Bejerman.Zona c) { return c.Zon_Cod == Convert.ToString(dtDatos.Rows[i]["Zona"]); });
+                            CedForecastEntidades.Bejerman.Zona zona = zonas.Find(delegate(CedForecastEntidades.Bejerman.Zona c) { return c.Zon_Cod == Convert.ToString(dtDatos.DefaultView[i]["Zona"]); });
                             if (zona == null)
                             {
-                                dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]) + "-<<<Desconocido>>>";
-                                Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-04", "Descripción no encontrada para la zona " + Convert.ToString(dtDatos.Rows[i]["Zona"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                                dr["Zona"] = Convert.ToString(dtDatos.DefaultView[i]["Zona"]) + "-<<<Desconocido>>>";
+                                Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-04", "Descripción no encontrada para la zona " + Convert.ToString(dtDatos.DefaultView[i]["Zona"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                             }
                             else
                             {
-                                dr["Zona"] = Convert.ToString(dtDatos.Rows[i]["Zona"]) + "-" + zona.Zon_Desc;
+                                dr["Zona"] = Convert.ToString(dtDatos.DefaultView[i]["Zona"]) + "-" + zona.Zon_Desc;
                             }
                             break;
                         case "Vendedor-Familia-Articulo":
-                            CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.Rows[i]["Vendedor"]); });
+                            CedForecastEntidades.Bejerman.Vendedor vendedor = vendedores.Find(delegate(CedForecastEntidades.Bejerman.Vendedor c) { return c.Ven_Cod == Convert.ToString(dtDatos.DefaultView[i]["Vendedor"]); });
                             if (vendedor == null)
                             {
-                                dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-<<<Desconocido>>>";
-                                Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-04", "Descripción no encontrada para el vendedor " + Convert.ToString(dtDatos.Rows[i]["Vendedor"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
+                                dr["Vendedor"] = Convert.ToString(dtDatos.DefaultView[i]["Vendedor"]) + "-<<<Desconocido>>>";
+                                Advertencias.Add(new CedForecastEntidades.Advertencia("CTabAC-04", "Descripción no encontrada para el vendedor " + Convert.ToString(dtDatos.DefaultView[i]["Vendedor"]), CedForecastEntidades.Advertencia.TipoSeveridad.Advertencia));
                             }
                             else
                             {
-                                dr["Vendedor"] = Convert.ToString(dtDatos.Rows[i]["Vendedor"]) + "-" + vendedor.Ven_Desc;
+                                dr["Vendedor"] = Convert.ToString(dtDatos.DefaultView[i]["Vendedor"]) + "-" + vendedor.Ven_Desc;
                             }
                             break;
                     }
@@ -762,17 +962,17 @@ namespace CedForecastRN
                     dt.Rows.Add(dr);
                     claveAnterior = claveActual;
                 }
-                decimal valor = Convert.ToDecimal(dtDatos.Rows[i]["Cantidad"]) * precio;
-                dt.Rows[dt.Rows.Count - 1]["Plan-" + dtDatos.Rows[i]["Periodo"].ToString()] = valor;
+                decimal valor = Convert.ToDecimal(dtDatos.DefaultView[i]["Cantidad"]) * precio;
+                dt.Rows[dt.Rows.Count - 1]["Plan-" + dtDatos.DefaultView[i]["Periodo"].ToString()] = valor;
                 //Completo ventas
                 CedForecastEntidades.Bejerman.Ventas venta = new CedForecastEntidades.Bejerman.Ventas();
                 switch (TipoReporte)
                 {
                     case "Zona-Familia-Articulo":
-                        venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Zona == dtDatos.Rows[i]["Zona"].ToString() && e.Sdvart_CodGen == dtDatos.Rows[i]["Articulo"].ToString() && e.Periodo == dtDatos.Rows[i]["Periodo"].ToString(); }));
+                        venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Zona == dtDatos.DefaultView[i]["Zona"].ToString() && e.Sdvart_CodGen == dtDatos.DefaultView[i]["Articulo"].ToString() && e.Periodo == dtDatos.DefaultView[i]["Periodo"].ToString(); }));
                         break;
                     case "Vendedor-Familia-Articulo":
-                        venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Vendedor == dtDatos.Rows[i]["Vendedor"].ToString() && e.Sdvart_CodGen == dtDatos.Rows[i]["Articulo"].ToString() && e.Periodo == dtDatos.Rows[i]["Periodo"].ToString(); }));
+                        venta = ventas.Find((delegate(CedForecastEntidades.Bejerman.Ventas e) { return e.Vendedor == dtDatos.DefaultView[i]["Vendedor"].ToString() && e.Sdvart_CodGen == dtDatos.DefaultView[i]["Articulo"].ToString() && e.Periodo == dtDatos.DefaultView[i]["Periodo"].ToString(); }));
                         break;
                 }
                 
@@ -787,7 +987,7 @@ namespace CedForecastRN
                     {
                         valorReal = venta.Sdv_CantUM1;
                     }
-                    dt.Rows[dt.Rows.Count - 1]["Real-" + dtDatos.Rows[i]["Periodo"].ToString()] = valorReal;
+                    dt.Rows[dt.Rows.Count - 1]["Real-" + dtDatos.DefaultView[i]["Periodo"].ToString()] = valorReal;
                 }
                 //Sumar a Total
                 dt.Rows[dt.Rows.Count - 1]["Total Plan"] = Convert.ToDecimal(dt.Rows[dt.Rows.Count - 1]["Total Plan"]) + valor;

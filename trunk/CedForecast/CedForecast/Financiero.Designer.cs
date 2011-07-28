@@ -339,6 +339,7 @@
             this.JerarquicaUiCheckBox.Text = "Grilla Jerárquica ...";
             this.JerarquicaUiCheckBox.UseThemes = false;
             this.JerarquicaUiCheckBox.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
+            this.JerarquicaUiCheckBox.CheckedChanged += new System.EventHandler(this.JerarquicaUiCheckBox_CheckedChanged);
             // 
             // nicePanel1
             // 

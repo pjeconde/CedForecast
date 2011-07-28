@@ -131,6 +131,8 @@ namespace CedForecastDB
         }
         public DataSet LeerDatosParaStockXArticulo(string PeriodoDesde, string TipoReporte, string ListaArticulos)
         {
+            DateTime periodoDesde = Convert.ToDateTime("01/" + PeriodoDesde.Substring(4, 2) + "/" + PeriodoDesde.Substring(0, 4));
+            string periodoHasta = periodoDesde.AddMonths(12).ToString("yyyyMM");
             System.Text.StringBuilder a = new StringBuilder();
             switch (TipoReporte)
             {
@@ -148,7 +150,7 @@ namespace CedForecastDB
                     a.Append("from Forecast left outer join ArticuloInfoAdicional on Forecast.IdArticulo=ArticuloInfoAdicional.IdArticulo collate database_default ");
                     a.Append("left outer join SBDAFERT.dbo.Articulos on ArticuloInfoAdicional.IdArticulo = LTRIM(RTRIM(Articulos.art_CodGen)) ");
                     a.Append("where Forecast.IdTipoPlanilla='RollingForecast' and Forecast.IdArticulo in (" + ListaArticulos + ") ");
-                    a.Append("and IdPeriodo>='" + PeriodoDesde + "' group by IdFamiliaArticulo, Forecast.IdArticulo, Articulos.art_DescGen, Forecast.IdPeriodo ");
+                    a.Append("and IdPeriodo>='" + PeriodoDesde + "' and IdPeriodo < '"+ periodoHasta + "' group by IdFamiliaArticulo, Forecast.IdArticulo, Articulos.art_DescGen, Forecast.IdPeriodo ");
                     a.Append("order by Forecast.IdArticulo asc, Forecast.IdPeriodo asc ");
                     
                     //Ordenes de Compra
@@ -165,18 +167,18 @@ namespace CedForecastDB
                     a.Append("from SBDAFERT.dbo.Stock left outer join SBDAFERT.dbo.Deposito on Stock.stkdep_Cod = Deposito.dep_Cod where stkart_CodGen in (" + ListaArticulos + ") and stk_CantUM1 <> 0 order by stkart_CodGen ");
 
                     //Notas de Pedido Autorizadas Pendientes de Remitir del mes o meses anteriores (B)
-                    a.Append("SELECT '3' as Orden, 'Notas de Pedido (Con Remito Pte.)' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SELECT '3' as Orden, 'Notas de Pedido (NO APLICADAS A STOCK)' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103)+'  Pte:'+rtrim(ltrim(convert(varchar(20),SegDetV.sdv_CPendRtUM1))) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
                     a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, ");
                     a.Append("SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, ");
                     a.Append("SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
                     a.Append("FROM SBDAFERT.dbo.SegTiposV INNER JOIN ");
                     a.Append("SBDAFERT.dbo.SegCabV ON SegTiposV.spvscv_ID = SegCabV.scv_ID AND SegTiposV.spvsuc_Cod = SegCabV.scvsuc_Cod AND ");
                     a.Append("SegTiposV.spvemp_Codigo = SegCabV.scvemp_Codigo INNER JOIN SBDAFERT.dbo.SegDetV ON SegCabV.scv_ID = SegDetV.sdvscv_ID ");
-                    a.Append("WHERE SegTiposV.spvtco_Cod = 'NPA' and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and SegDetV.sdv_CPendRtUM1 <> 0 ");
+                    a.Append("WHERE SegTiposV.spvtco_Cod = 'NPA' and SegDetV.sdvart_CodGen in (" + ListaArticulos + ") and SegDetV.sdv_CPendRtUM1 <> 0 and SegCabV.scv_FEntrega >= '01/01/2009'");
                     a.Append("order by SegDetV.sdvart_CodGen asc ");
 
                     //Notas de Pedido Autorizadas Remitidas del mes (B)
-                    a.Append("SELECT  '5' as Orden, 'Notas de Pedido del Mes (Sin Remito Pte.)' as TipoDato, SegTiposV.spvtco_Cod+' Nro:'+SegTiposV.spv_Nro+' Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SELECT '5' as Orden, 'Notas de Pedido (APLICADAS A STOCK) del Mes' as TipoDato, SegTiposV.spvtco_Cod+' Nro:'+SegTiposV.spv_Nro+' Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
                     a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, ");
                     a.Append("SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, ");
                     a.Append("SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
@@ -187,7 +189,7 @@ namespace CedForecastDB
                     a.Append("order by SegDetV.sdvart_CodGen asc ");
 
                     //Bajas de Remitos de NP (B)
-                    a.Append("SELECT '6' as Orden, 'Baja de Remitos de NP' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
+                    a.Append("SELECT '6' as Orden, 'Notas de Pedido (BAJA de REMITOS)' as TipoDato, SegTiposV.spvtco_Cod+'-'+SegTiposV.spv_Nro+'  Cliente:'+SegCabV.scvcli_Cod+'-'+SegCabV.scvcli_RazSoc+'  FechaEmi:'+Convert(varchar(10), SegCabV.scv_FEmision, 103) as Descr, SegTiposV.spvtco_Cod as TipoComprobante, SegTiposV.spv_Nro as NroComprobante, LTRIM(RTRIM(SegDetV.sdvart_CodGen)) AS IdArticulo, ");
                     a.Append("SegDetV.sdv_Desc AS DescrArticulo, SegCabV.scv_FEmision AS Fecha_Emision, SegCabV.scv_FEntrega AS Fecha_Entrega, SegDetV.sdv_CantUM1 AS Cantidad_Total, SegDetV.sdv_CPendRtUM1 AS Cantidad_Pend_RT, SegDetV.sdv_CPendFcUM1 AS Cantidad_Pend_FC, SegDetV.sdvemp_Codigo, SegDetV.sdvsuc_Cod, SegDetV.sdv_ID, SegDetV.sdvscv_ID ");
                     a.Append("FROM SBDAFERT.dbo.SegTiposV INNER JOIN SBDAFERT.dbo.SegCabV ON SegTiposV.spvscv_ID = SegCabV.scv_ID AND SegTiposV.spvsuc_Cod = SegCabV.scvsuc_Cod AND SegTiposV.spvemp_Codigo = SegCabV.scvemp_Codigo ");
                     a.Append("INNER JOIN SBDAFERT.dbo.SegDetV ON SegCabV.scv_ID = SegDetV.sdvscv_ID ");

@@ -274,9 +274,6 @@
         DwDgAB8A+AA/AP4A/wA=
 </value>
   </data>
-  <data name="gridEXLayout2.LayoutString" xml:space="preserve">
-    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true"&gt;&lt;Column0 ID="Id"&gt;&lt;Caption&gt;Id&lt;/Caption&gt;&lt;DataMember&gt;Id&lt;/DataMember&gt;&lt;Key&gt;Id&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;/Column0&gt;&lt;Column1 ID="Descr"&gt;&lt;Caption&gt;Descripción&lt;/Caption&gt;&lt;DataMember&gt;Descr&lt;/DataMember&gt;&lt;Key&gt;Descr&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;700&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="Tipo"&gt;&lt;Caption&gt;Tipo&lt;/Caption&gt;&lt;DataMember&gt;Tipo&lt;/DataMember&gt;&lt;Key&gt;Tipo&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;/Columns&gt;&lt;FormatConditions Collection="true"&gt;&lt;Condition0 ID="Error"&gt;&lt;ColIndex&gt;2&lt;/ColIndex&gt;&lt;FormatStyle&gt;&lt;ForeColor&gt;DarkRed&lt;/ForeColor&gt;&lt;/FormatStyle&gt;&lt;Value1&gt;Error&lt;/Value1&gt;&lt;Key&gt;Error&lt;/Key&gt;&lt;/Condition0&gt;&lt;/FormatConditions&gt;&lt;GridLineColor&gt;Silver&lt;/GridLineColor&gt;&lt;GroupCondition ID="" /&gt;&lt;ShowGroupConditionCount&gt;True&lt;/ShowGroupConditionCount&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
-  </data>
   <data name="MinimizarUiButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
