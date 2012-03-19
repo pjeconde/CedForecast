@@ -209,7 +209,7 @@ namespace CedForecastDB
             switch (TipoReporte)
             {
                 case "Zona-Familia-Articulo":
-                    a.Append("Select convert(varchar(8), 'Empresa') as Empresa, SBDAFERT.dbo.Clientes.clizon_Cod as Zona, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
+                    a.Append("Select convert(varchar(8), 'Empresa') as Empresa, IsNull(SBDAFERT.dbo.Clientes.clizon_Cod, '') as Zona, IdFamiliaArticulo as Familia, Forecast.IdArticulo as IdArticulo, Forecast.IdArticulo as Articulo, Forecast.IdPeriodo as Periodo, sum(Cantidad) as Cantidad into #ForecastAux ");
                     a.Append("from Forecast left outer join SBDAFERT.dbo.Clientes on Forecast.IdCliente = SBDAFERT.dbo.Clientes.cli_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join SBDAFERT.dbo.Vendedor on Forecast.IdCuenta = SBDAFERT.dbo.Vendedor.ven_Cod collate SQL_Latin1_General_CP1_CS_AS ");
                     a.Append("left outer join ArticuloInfoAdicional on Forecast.IdArticulo=ArticuloInfoAdicional.IdArticulo ");

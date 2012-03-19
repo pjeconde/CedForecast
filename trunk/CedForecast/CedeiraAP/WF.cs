@@ -433,7 +433,14 @@ namespace Cedeira.SV
                             }
                             throw new Microsoft.ApplicationBlocks.ExceptionManagement.WF.EstadoVirtualMalConfigurado();
                         case ("<ElMismo>"):
-                            Wf.IdEstado = Wf.Log[Wf.Log.Count - 1].Estado;
+                            List<CedEntidades.Estado> listaEstados = IdEstadoCombo(Wf.Sesion);
+                            CedEntidades.Estado estado = listaEstados.Find((delegate(CedEntidades.Estado e) { return e.DescrEstado == Wf.Log[Wf.Log.Count - 1].Estado; }));
+                            string idEstado = "";
+                            if (estado != null)
+                            {
+                                idEstado = estado.IdEstado;
+                            }
+                            Wf.IdEstado = idEstado;
                             if (!DevolverHandler)
                             {
                                 db.WF_Op_upd(Wf.IdOp, Wf.IdFlow, Wf.IdCircuito, Wf.IdNivSeg, Wf.IdEstado, Evento.Id, Wf.Sesion.Usuario.IdUsuario, Evento.Comentario, gruposXUsuario[0].Id, gruposXUsuario[0].Supervisor, gruposXUsuario[0].SupervisorNivel, Wf.UltActualiz);
