@@ -718,7 +718,6 @@ namespace CedForecastRN
                 }
             }
 
-
             idPeriodo = periodoDesde.ToString("yyyyMM");
             for (int p = 1; p <= 11; p++)
             {
@@ -854,18 +853,18 @@ namespace CedForecastRN
                 switch (TipoReporte)
                 {
                     case "Zona-Familia-Articulo":
-                        drv = dtDatos.Select("Zona = '" + ventas[i].Zona + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "'");
+                        drv = dtDatos.Select("Zona = '" + ventas[i].Zona + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
                         if (drv.Length == 0)
                         {
 
-                            dtDatos.Rows.Add("Empresa", ventas[i].Zona, familia, "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+                            dtDatos.Rows.Add("Empresa", ventas[i].Zona, familia, ventas[i].Sdvart_CodGen, ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                     case "Vendedor-Familia-Articulo":
-                        drv = dtDatos.Select("Vendedor = '" + ventas[i].Vendedor + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "'");
+                        drv = dtDatos.Select("Vendedor = '" + ventas[i].Vendedor + "' and Articulo = '" + ventas[i].Sdvart_CodGen + "' and Periodo = '" + ventas[i].Periodo + "'");
                         if (drv.Length == 0)
                         {
-                            dtDatos.Rows.Add("Empresa", ventas[i].Vendedor, familia, "", ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
+                            dtDatos.Rows.Add("Empresa", ventas[i].Vendedor, familia, ventas[i].Sdvart_CodGen, ventas[i].Sdvart_CodGen, ventas[i].Periodo, 0);
                         }
                         break;
                 }
