@@ -39,13 +39,10 @@ namespace CedForecastWebDB
                 a.Append("and FamiliaArticulo.IdFamiliaArticulo='" + Forecast.Articulo.FamiliaArticulo.Id + "' ");
             }
             string periodo = "";
-            if (Forecast.IdTipoPlanilla=="Proyectado")
+            periodo = UltimoMesForecast(Forecast.IdPeriodo);
+            if (Forecast.IdTipoPlanilla == "Proyectado" && Forecast.IdPeriodo.Substring(0, 4) == periodo.Substring(0, 4))
             {
-                periodo = Forecast.IdPeriodo + "99";
-            }
-            else
-            {
-                periodo = UltimoMesForecast(Forecast.IdPeriodo);
+                periodo = Forecast.IdPeriodo.Substring(0, 4) + "99";
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
@@ -61,6 +58,7 @@ namespace CedForecastWebDB
                 //Lista de ventas para Rolling Forecast
                 List<CedForecastWebEntidades.Venta> ventaLista = new List<CedForecastWebEntidades.Venta>();
                 List<CedForecastWebEntidades.RFoPA> totalProyectadoLista = new List<CedForecastWebEntidades.RFoPA>();
+                int cantidadMesesParaDevio = 0;
                 if (Forecast.IdTipoPlanilla == "RollingForecast")
                 {
                     Venta ventaRN = new Venta(sesion);
@@ -80,14 +78,25 @@ namespace CedForecastWebDB
                     {
                         forecast.Proyectado = totalProyectado.Proyectado;
                     }
+                    //Buscar primer mes de ejercicio economico.
+                    string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                    DateTime FechaInicio = DateTime.Today;
+                    if (Convert.ToInt32(Forecast.IdPeriodo.Substring(4, 2)) < Convert.ToInt32(ProyectadoMesInicio))
+                    {
+                        FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Convert.ToDateTime("01/" + Forecast.IdPeriodo.Substring(4, 2) + "/" + Forecast.IdPeriodo.Substring(0, 4)).AddYears(-1).Year);
+                    }
+                    else
+                    {
+                        FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Forecast.IdPeriodo.Substring(0, 4));
+                    }
+                    //Diferencia entre el año-mes del ejercicio económico y año-mes inicial del Rolling
+                    cantidadMesesParaDevio = MesAProcesar(Forecast.IdPeriodo, FechaInicio.ToString("yyyyMM"));
+                    cantidadMesesParaDevio = cantidadMesesParaDevio - 1;
+                    forecast.CantidadMesesParaDesvio = cantidadMesesParaDevio;
                 }
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string periodoInicial = Forecast.IdPeriodo;
-                    if (Forecast.IdTipoPlanilla == "Proyectado")
-                    {
-                        periodoInicial = periodoInicial + "01";
-                    }
                     int mes = 0;
                     if (Forecast.IdTipoPlanilla == "Proyectado" && (dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "13" || dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "14"))
                     {
@@ -102,6 +111,7 @@ namespace CedForecastWebDB
                         idArticulo = dt.Rows[i]["IdArticulo"].ToString() + dt.Rows[i]["IdCliente"].ToString();
                         lista.Add(forecast);
                         forecast = new CedForecastWebEntidades.RFoPA();
+                        forecast.CantidadMesesParaDesvio = cantidadMesesParaDevio;
                         CopiarCab(dt.Rows[i], forecast, Forecast.IdPeriodo);
                         if (Forecast.IdTipoPlanilla == "RollingForecast")
                         {
@@ -148,8 +158,39 @@ namespace CedForecastWebDB
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
             }
-            a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0,4) + "01' ");
-            a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0,4) + "99' ");
+            try
+            {
+                string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                DateTime FechaInicio = DateTime.Today;
+                if (Convert.ToInt32(Forecast.IdPeriodo.Substring(4, 2)) < Convert.ToInt32(ProyectadoMesInicio))
+                {
+                    FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Convert.ToDateTime("01/" + Forecast.IdPeriodo.Substring(4, 2) + "/" + Forecast.IdPeriodo.Substring(0, 4)).AddYears(-1).Year);
+                }
+                else
+                {
+                    FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Forecast.IdPeriodo.Substring(0, 4));
+                }
+                string periodoDsd = FechaInicio.ToString("yyyyMM");
+                string periodoHst = UltimoMesForecast(FechaInicio.ToString("yyyyMM"));
+                if (Forecast.IdTipoPlanilla == "Proyectado" && periodoDsd.Substring(0, 4) == periodoHst.Substring(0, 4))
+                {
+                    a.Append("and (IdPeriodo >= '" + periodoDsd + "' ");
+                    a.Append("and IdPeriodo <= '" + periodoDsd.Substring(0, 4) + "12') ");
+                }
+                else
+                {
+                    a.Append("and ((IdPeriodo >= '" + periodoDsd + "' ");
+                    a.Append("and IdPeriodo <= '" + periodoDsd.Substring(0, 4) + "12') or ");
+                    a.Append("(IdPeriodo >= '" + periodoHst.Substring(0, 4) + "01' ");
+                    a.Append("and IdPeriodo <= '" + periodoHst + "')) ");
+                }
+            }
+            catch
+            {
+                //MessageBox.Show("Problemas para obtener el mes inicial del ejercicio ecónomico.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0, 4) + "01' ");
+                a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0, 4) + "12' ");
+            }
             a.Append("order by IdArticulo asc, IdCliente asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
@@ -300,13 +341,10 @@ namespace CedForecastWebDB
                 a.Append("delete Forecast from Forecast, FamiliaArticuloXArticulo, FamiliaArticulo where Forecast.IdArticulo = FamiliaArticuloXArticulo.IdArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo = FamiliaArticulo.IdFamiliaArticulo and FamiliaArticuloXArticulo.IdFamiliaArticulo = '" + IdFamiliaArticulo + "' and IdCuenta = '" + IdCuenta + "' and IdCliente = '" + IdCliente + "' and IdTipoPlanilla = '" + IdTipoPlanilla + "' ");
             }
             string periodo = "";
-            if (IdTipoPlanilla == "Proyectado")
+            periodo = UltimoMesForecast(Periodo);
+            if (IdTipoPlanilla == "Proyectado" && Periodo.Substring(0, 4) == periodo.Substring(0, 4))
             {
-                periodo = Periodo + "99";
-            }
-            else
-            {
-                periodo = UltimoMesForecast(Periodo);
+                periodo = Periodo.Substring(0, 4) + "99";
             }
             a.Append("and IdPeriodo >= '" + Periodo + "' and IdPeriodo <= '" + periodo + "' ");
             foreach (CedForecastWebEntidades.RFoPA Forecast in ForecastLista)
@@ -360,7 +398,7 @@ namespace CedForecastWebDB
                             a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
                             if (Forecast.IdTipoPlanilla == "Proyectado")
                             {
-                                a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo + "01") + "', " + cantidad + ") ");
+                                a.Append(Forecast.Articulo.Id + "', '" + PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                             }
                             else 
                             { 
@@ -373,19 +411,19 @@ namespace CedForecastWebDB
                         if (Forecast.Cantidad13 > 0)
                         {
                             a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo + "13', " + Forecast.Cantidad13 + ") ");
+                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo.Substring(0, 4) + "13', " + Forecast.Cantidad13 + ") ");
                         }
                         if (Forecast.Cantidad14 > 0)
                         {
                             a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + Forecast.IdCuenta + "', '" + Forecast.IdCliente + "', '");
-                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo + "14', " + Forecast.Cantidad14 + ") ");
+                            a.Append(Forecast.Articulo.Id + "', '" + Forecast.IdPeriodo.Substring(0, 4) + "14', " + Forecast.Cantidad14 + ") ");
                         }
                     }
                 }
             }
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
-        public List<CedForecastWebEntidades.RFoPA> Lista(out int CantidadFilas, int IndicePagina, int TamañoPagina, string OrderBy, string SessionID, List<CedForecastWebEntidades.RFoPA> ForecastLista)
+        public List<CedForecastWebEntidades.RFoPA> Lista(out int CantidadFilas, int IndicePagina, int TamañoPagina, string OrderBy, string SessionID, List<CedForecastWebEntidades.RFoPA> ForecastLista, int CantidadMesesParaDesvio)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("CREATE TABLE #Forecast" + SessionID +"( ");
@@ -482,6 +520,7 @@ namespace CedForecastWebDB
                     articulo.Descr = dt.Rows[i]["DescrArticulo"].ToString();
                     forecast.Articulo = articulo;
                     forecast.Proyectado = Convert.ToDecimal(dt.Rows[i]["Proyectado"].ToString());
+                    forecast.CantidadMesesParaDesvio = CantidadMesesParaDesvio;
                     forecast.Ventas = Convert.ToDecimal(dt.Rows[i]["Ventas"].ToString());
                     forecast.Cantidad1 = Convert.ToDecimal(dt.Rows[i]["Cantidad1"].ToString());
                     forecast.Cantidad2 = Convert.ToDecimal(dt.Rows[i]["Cantidad2"].ToString());

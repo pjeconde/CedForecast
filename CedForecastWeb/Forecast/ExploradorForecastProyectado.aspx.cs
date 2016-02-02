@@ -52,8 +52,8 @@ namespace CedForecastWeb.Forecast
                                 ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
                             }
                             ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text;
-                            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
-                            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
+                            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4)).AddYears(1).Year.ToString();
+                            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4)).AddYears(2).Year.ToString();
 
                             LeerPeriodoActual();
                             BindPagingGrid();
@@ -78,7 +78,7 @@ namespace CedForecastWeb.Forecast
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "Proyectado";
                 Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
-                CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
+                CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue;
                 int CantidadFilas = 0;
@@ -99,7 +99,7 @@ namespace CedForecastWeb.Forecast
 		}
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/01/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }
@@ -201,7 +201,7 @@ namespace CedForecastWeb.Forecast
             try
             {
                 CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
-                CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
+                CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 periodo.IdTipoPlanilla = "Proyectado";
                 CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                 PeriodoTextBox.Text = periodo.IdPeriodo;

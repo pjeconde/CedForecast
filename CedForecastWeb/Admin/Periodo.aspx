@@ -181,7 +181,7 @@
                                                         </td>
                                                         <td align="left" style="width: 300px" valign="top">
                                                             <asp:TextBox ID="PeriodoProyectadoTextBox" runat="server" Width="73px"></asp:TextBox>
-                                                            <asp:Label ID="Label9" runat="server" SkinID="TituloMediano" Text="Formato (YYYY)"></asp:Label></td>
+                                                            <asp:Label ID="Label9" runat="server" SkinID="TituloMediano" Text="Formato (YYYYMM)" Width="109px"></asp:Label></td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width: 1px">

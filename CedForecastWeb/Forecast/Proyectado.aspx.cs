@@ -62,8 +62,8 @@ namespace CedForecastWeb.Forecast
                             detalleGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
                         }
                         detalleGridView.Columns[13 + colFijas].HeaderText = "Total " + periodo.IdPeriodo;
-                        detalleGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
-                        detalleGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
+                        detalleGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4)).AddYears(1).Year.ToString();
+                        detalleGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4, 2) + "/" + PeriodoTextBox.Text.Substring(0, 4)).AddYears(2).Year.ToString();
 
                         DataBind();
 
@@ -567,7 +567,7 @@ namespace CedForecastWeb.Forecast
         }
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/01/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }

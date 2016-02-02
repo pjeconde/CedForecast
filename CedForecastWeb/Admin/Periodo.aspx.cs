@@ -90,7 +90,7 @@ namespace CedForecastWeb.Admin
         {
             try
             {
-                DateTime d = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
+                DateTime d = Convert.ToDateTime("01/" + Periodo.Substring(4, 2) + "/" + Periodo.Substring(0, 4));
             }
             catch
             {

@@ -521,7 +521,7 @@ insert TipoPlanilla values ('Proyectado', 'Proyectado')
 GO
 insert TipoPlanilla values ('RollingForecast', 'Rolling Forecast')
 GO
-insert Cuenta values ('Administrador', 'Administrador', '', '', '', '', '', '', 'Admin', 'Vigente', 'Admin', '20100101', 0, '99991231', '', 0, '20100101')
+insert Cuenta values ('Administrador', 'Administrador', '', '', '', '123456', '', '', 'Admin', 'Vigente', 'Admin', '20100101', 0, '99991231', '', 0, '20100101')
 GO
 insert Periodo values ('Proyectado', '2011', '20101231', 0)
 GO

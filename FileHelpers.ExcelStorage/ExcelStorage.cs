@@ -9,7 +9,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using Excel;
+using Microsoft.Office.Interop.Excel;
 
 namespace FileHelpers.DataLink
 {
@@ -209,7 +209,7 @@ namespace FileHelpers.DataLink
 			if (info.Exists == false)
 				throw new FileNotFoundException("Excel File '" + filename + "' not found.", filename);
 
-			this.mBook = this.mApp.Workbooks.Open(info.FullName, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
+			this.mBook = this.mApp.Workbooks.Open(info.FullName, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv, mv);
 
 			if (this.mSheetName == null || mSheetName == string.Empty)
 				this.mSheet = (Worksheet) this.mBook.ActiveSheet;
@@ -258,7 +258,7 @@ namespace FileHelpers.DataLink
 		private void SaveWorkbook(string filename)
 		{
 			if (this.mBook != null)
-				this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv);
+				this.mBook.SaveAs(filename, mv, mv, mv, mv, mv, XlSaveAsAccessMode.xlNoChange, mv, mv, mv, mv, mv);
 		}
 
 		#endregion
@@ -273,7 +273,7 @@ namespace FileHelpers.DataLink
 			}
 			Range r;
 			r = (Range) this.mSheet.Cells[row, col];
-			object res = r.Value;
+			object res = r.get_Value(Type.Missing);
 			DisposeCOMObject(r);
 			return Convert.ToString(res);
 		}
@@ -316,7 +316,7 @@ namespace FileHelpers.DataLink
 			if (numberOfCols == 1)
 			{
 				r = mSheet.get_Range(ColLetter(startCol) + row.ToString(), ColLetter(startCol + numberOfCols - 1) + row.ToString());
-				res = new object[] {r.Value};
+				res = new object[] {r.get_Value(Type.Missing)};
 				//DisposeCOMObject(r);
 			}
 			else

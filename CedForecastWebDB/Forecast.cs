@@ -11,14 +11,12 @@ namespace CedForecastWebDB
         {
         }
 
-        public List<CedForecastWebEntidades.Forecast> ListaProyeccionAnual(string Año)
+        public List<CedForecastWebEntidades.Forecast> ListaProyeccionAnual(string Periodo)
         {
             System.Text.StringBuilder a = new StringBuilder();
             a.Append("select Forecast.IdTipoPlanilla, Forecast.IdCuenta, Forecast.IdCliente, Forecast.IdArticulo, Forecast.IdPeriodo, Forecast.Cantidad ");
             a.Append("from Forecast ");
-            a.Append("where Forecast.IdTipoPlanilla='Proyectado' ");
-            a.Append("and Forecast.IdPeriodo >= '" + Año + "01' ");
-            a.Append("and Forecast.IdPeriodo <= '" + Año + "99' ");
+            a.Append("where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdPeriodo >= '" + Periodo + "' ");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);
             List<CedForecastWebEntidades.Forecast> lista = new List<CedForecastWebEntidades.Forecast>();

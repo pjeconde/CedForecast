@@ -54,8 +54,8 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                             ClienteAReasignarDropDownList.DataSource = CedForecastWebRN.Cliente.Lista(true, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                             ClienteAReasignarDropDownList.SelectedIndex = -1;
 
-                            CancelarButton.Attributes.Add("onclick", "return confirm('Confirma la cancelación de los datos a reasignar ?');");
-                            AceptarButton.Attributes.Add("onclick", "return confirm('Confirma la aceptación de los datos a reasignar ?');");
+                            //CancelarButton.Attributes.Add("onclick", "return confirm('Confirma la cancelación de los datos a reasignar ?');");
+                            //AceptarButton.Attributes.Add("onclick", "return confirm('Confirma la aceptación de los datos a reasignar ?');");
 
                             DataBind();
 
@@ -98,10 +98,10 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 Forecast.Cliente.Id = ClienteDropDownList.SelectedValue;
-                if (Forecast.IdCliente.Trim() == "")
-                {
-                    throw new Exception("Seleccione el cliente.");
-                }
+                //if (Forecast.IdCliente.Trim() == "")
+                //{
+                //    throw new Exception("Seleccione el cliente.");
+                //}
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                 int colFijas = 6; //Es 0 y 1.
@@ -119,7 +119,14 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 PanelSeleccion.Enabled = false;
                 LeerButton.Enabled = false;
                 CuentaAReasignarDropDownList.Enabled = true;
-                ClienteAReasignarDropDownList.Enabled = true;
+                if (Forecast.IdCliente.Trim() == "")
+                {
+                    ClienteAReasignarDropDownList.Enabled = false;
+                }
+                else
+                {
+                    ClienteAReasignarDropDownList.Enabled = true;
+                }
                 CuentaAReasignarDropDownList.SelectedIndex = -1;
                 ClienteAReasignarDropDownList.SelectedIndex = -1;
 			}
@@ -147,7 +154,8 @@ namespace CedForecastWeb.Admin.ForecastReasignar
 				System.Collections.Generic.List<CedForecastWebEntidades.RFoPA> lista;
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue;
+                Forecast.Cliente.Id = ClienteDropDownList.SelectedValue;
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
@@ -173,7 +181,8 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 System.Collections.Generic.List<CedForecastWebEntidades.RFoPA> lista = new System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>();
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
-                Forecast.IdCuenta = ((CedForecastWebEntidades.Sesion)Session["Sesion"]).Cuenta.Id;
+                Forecast.IdCuenta = CuentaDropDownList.SelectedValue;
+                Forecast.Cliente.Id = ClienteDropDownList.SelectedValue;
                 Forecast.IdPeriodo = PeriodoTextBox.Text;
                 int CantidadFilas = 0;
                 lista = CedForecastWebRN.RFoPA.Lista(out CantidadFilas, ForecastPagingGridView.PageIndex, ForecastPagingGridView.PageSize, ForecastPagingGridView.OrderBy, Forecast, Session.SessionID, (CedEntidades.Sesion)Session["Sesion"]);
@@ -216,16 +225,28 @@ namespace CedForecastWeb.Admin.ForecastReasignar
             ClienteAReasignarDropDownList.Enabled = false;
             PanelSeleccion.Enabled = true;
             LeerButton.Enabled = true;
+            ForecastPagingGridView.DataSource = new System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>();
+            ForecastPagingGridView.DataBind();
 		}
         protected void LeerButton_Click(object sender, EventArgs e)
         {
             BindPagingGrid();
         }
-
         protected void AceptarButton_Click(object sender, EventArgs e)
+        {
+            DivConfirmar.Visible = true;
+            DivAceptarCancelar.Visible = false;
+            CuentaAReasignarDropDownList.Enabled = false;
+            ClienteAReasignarDropDownList.Enabled = false;
+        }
+        protected void ConfirmarOK_Click(object sender, EventArgs e)
         {
             try
             {
+                DivConfirmar.Visible = false;
+                DivAceptarCancelar.Visible = true;
+                AceptarButton.Enabled = false;
+                CancelarButton.Enabled = false;
                 System.Collections.Generic.List<CedForecastWebEntidades.RFoPA> lista;
                 CedForecastWebEntidades.RFoPA Forecast = new CedForecastWebEntidades.RFoPA();
                 Forecast.IdTipoPlanilla = "RollingForecast";
@@ -250,7 +271,14 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 {
                     if (CuentaAReasignarDropDownList.SelectedValue != "")
                     {
-                        CedForecastWebRN.ForecastReasignar.Modificar(lista, "Cuenta", CuentaAReasignarDropDownList.SelectedValue.Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                        if (ClienteDropDownList.SelectedValue != "")
+                        {
+                            CedForecastWebRN.ForecastReasignar.Modificar(lista, "Cuenta", CuentaAReasignarDropDownList.SelectedValue.Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                        }
+                        else
+                        {
+                            CedForecastWebRN.ForecastReasignar.Modificar(lista, "CuentaCompleta", CuentaAReasignarDropDownList.SelectedValue.Trim(), PeriodoTextBox.Text, (CedEntidades.Sesion)Session["Sesion"]);
+                        }
                     }
                     else
                     {
@@ -274,8 +302,17 @@ namespace CedForecastWeb.Admin.ForecastReasignar
                 ClienteAReasignarDropDownList.Enabled = false;
                 PanelSeleccion.Enabled = true;
                 LeerButton.Enabled = true;
+                ForecastPagingGridView.DataSource = new System.Collections.Generic.List<CedForecastWebEntidades.RFoPA>();
+                ForecastPagingGridView.DataBind();
                 MsgErrorLabel.Text = "El cambio se ha realizado correctamente.";
             }
+        }
+        protected void ConfirmarNOK_Click(object sender, EventArgs e)
+        {
+            DivConfirmar.Visible = false;
+            DivAceptarCancelar.Visible = true;
+            CuentaAReasignarDropDownList.Enabled = true;
+            ClienteAReasignarDropDownList.Enabled = true;
         }
 	}
 }

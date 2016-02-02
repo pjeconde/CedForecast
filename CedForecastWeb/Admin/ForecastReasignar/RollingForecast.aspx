@@ -217,20 +217,43 @@
                     </tr>
                     <tr>
                         <td style="text-align: right">
-                            <table border="0" cellpadding="0" cellspacing="0" id="Table1">
-                                <tr>
-                                    <td style="width: 190px; text-align:left; padding-left:15px;">
-                                        <asp:Button ID="AceptarButton" runat="server" OnClick="AceptarButton_Click" Text="Aceptar"
-                                            Width="100px" />
-                                    </td>
-                                    <td style="width: 490px;">
-                                    </td>
-                                    <td style="width: 190px; text-align: right;">
-                                        <asp:Button ID="CancelarButton" runat="server" OnClick="CancelarButton_Click" Text="Cancelar"
-                                            Width="100px" />
-                                    </td>
-                                </tr>
-                            </table>
+                            <asp:Panel runat="server" ID="PanelDivConfirmar">
+                                <div id="DivConfirmar" runat="server" visible="false">
+                                    <table border="0" cellpadding="0" cellspacing="0" id="Table2" style="width: 100%">
+                                        <tr>
+                                            <td style="text-align:center; padding-left:15px;" colspan="3">
+                                                <asp:Label runat="server" ID="Pregunta" Text="Confirmar la operación de reasignación de datos ?"></asp:Label>   
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 190px; text-align: right; padding-left:15px;">
+                                                <asp:Button runat="server" ID="ConfirmarOK" Text="Si" Width="100px" OnClick="ConfirmarOK_Click" UseSubmitBehavior="false" OnClientClick="this.disabled = true;ctl00_AdministracionContentPlaceHolder_ConfirmarNOK.disabled = true;" />
+                                            </td>
+                                            <td style="width: 15px;">
+                                            </td>
+                                            <td style="width: 190px; text-align: left; padding-right:15px;">
+                                                <asp:Button runat="server" ID="ConfirmarNOK" Text="No" Width="100px" OnClick="ConfirmarNOK_Click" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </asp:Panel>
+                            <asp:Panel runat="server" ID="PanelDivAceptarCancelar">
+                                <div id="DivAceptarCancelar" runat="server" visible="true">
+                                    <table border="0" cellpadding="0" cellspacing="0" id="Table1">
+                                        <tr>
+                                            <td style="width: 190px; text-align:left; padding-left:15px;">
+                                                <asp:Button runat="server" ID="AceptarButton" UseSubmitBehavior="false" OnClick="AceptarButton_Click" Text="Aceptar" Width="100px" />
+                                            </td>
+                                            <td style="width: 490px;">
+                                            </td>
+                                            <td style="width: 190px; text-align: right;">
+                                                <asp:Button runat="server" ID="CancelarButton" OnClick="CancelarButton_Click" Text="Cancelar" Width="100px" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </asp:Panel>
                         </td>
                     </tr>
                     <tr>

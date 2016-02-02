@@ -23,6 +23,8 @@ namespace CedForecastWebEntidades
         [FileHelpers.FieldIgnored()]
         protected string idPeriodo;
         protected decimal proyectado;
+        [FileHelpers.FieldIgnored()]
+        private int cantidadMesesParaDesvio;
         protected decimal ventas;
         protected decimal desvio;
         protected decimal cantidad1;
@@ -307,17 +309,23 @@ namespace CedForecastWebEntidades
                 return proyectado;
             }
         }
+        public int CantidadMesesParaDesvio
+        {
+            set
+            {
+                cantidadMesesParaDesvio = value;
+            }
+            get
+            {
+                return cantidadMesesParaDesvio;
+            }
+        }
         public decimal Desvio
         {
             get
             {
                 decimal suma = 0;
-                int cantidadMesesParaDesvio = 0;
-                if (idPeriodo != null && idPeriodo != "")
-                {
-                    cantidadMesesParaDesvio = 13 - Convert.ToInt32(idPeriodo.Substring(4, 2));
-                }
-                for (int i = 1; i <= cantidadMesesParaDesvio; i++)
+                for (int i = 1; i <= 12 - cantidadMesesParaDesvio; i++)
                 {
                     switch (i)
                     {

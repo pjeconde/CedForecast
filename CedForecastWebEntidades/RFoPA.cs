@@ -35,6 +35,7 @@ namespace CedForecastWebEntidades
         {
             articulo = new Articulo();
             cliente = new Cliente();
+            CantidadMesesParaDesvio = 0;
         }
         public string IdTipoPlanilla
         {
@@ -157,16 +158,12 @@ namespace CedForecastWebEntidades
         }
         public int CantidadMesesParaDesvio
         {
+            set
+            {
+                cantidadMesesParaDesvio = value;
+            }
             get
             {
-                if (idPeriodo != null && idPeriodo != "" && idTipoPlanilla != null && idTipoPlanilla == "RollingForecast")
-                {
-                    cantidadMesesParaDesvio = 13 - Convert.ToInt32(idPeriodo.Substring(4, 2));
-                }
-                else
-                {
-                    cantidadMesesParaDesvio = 0;
-                }
                 return cantidadMesesParaDesvio;
             }
         }
@@ -175,7 +172,7 @@ namespace CedForecastWebEntidades
             get
             {
                 decimal suma = 0;
-                for (int i = 1; i <= CantidadMesesParaDesvio; i++)
+                for (int i = 1; i <= 12 - CantidadMesesParaDesvio; i++)
                 {
                     switch (i)
                     {

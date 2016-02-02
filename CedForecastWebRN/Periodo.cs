@@ -30,16 +30,5 @@ namespace CedForecastWebRN
                 throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo");
             }
         }
-        public static void ValidarPeriodoYYYY(string Periodo)
-        {
-            try
-            {
-                DateTime d = Convert.ToDateTime("01/01/" + Periodo.Substring(0, 4));
-            }
-            catch
-            {
-                throw new Microsoft.ApplicationBlocks.ExceptionManagement.Validaciones.ValorInvalido("Periodo");
-            }
-        }
     }
 }

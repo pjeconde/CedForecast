@@ -39,7 +39,11 @@ namespace CedForecastWebDB
                 a.Append("and FamiliaArticulo.IdFamiliaArticulo='" + Proyectado.Articulo.FamiliaArticulo.Id + "' ");
             }
             string periodo = "";
-            periodo = Proyectado.IdPeriodo + "99";
+            periodo = UltimoMesForecast(Proyectado.IdPeriodo);
+            if (Proyectado.IdTipoPlanilla == "Proyectado" && Proyectado.IdPeriodo.Substring(0, 4) == periodo.Substring(0, 4))
+            {
+                periodo = Proyectado.IdPeriodo.Substring(0, 4) + "99";
+            }
             a.Append("and IdPeriodo >= '" + Proyectado.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
             a.Append("order by IdArticulo asc, IdCliente asc, IdPeriodo asc");
@@ -158,7 +162,7 @@ namespace CedForecastWebDB
         }
         private string PrimerMes(string Periodo)
         {
-            DateTime primerMes = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), 1, 1);
+            DateTime primerMes = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), Convert.ToInt32(Periodo.Substring(4, 2)), 1);
             return primerMes.ToString("yyyyMM");
         }
         private int MesAProcesar(string PeriodoAProcesar, string PeriodoInicial)
@@ -192,6 +196,10 @@ namespace CedForecastWebDB
             }
             string periodo = "";
             periodo = UltimoMesForecast(Periodo);
+            if (IdTipoPlanilla == "Proyectado" && Periodo.Substring(0, 4) == periodo.Substring(0, 4))
+            {
+                periodo = Periodo.Substring(0, 4) + "99";
+            }
             a.Append("and IdPeriodo >= '" + Periodo + "' and IdPeriodo <= '" + periodo + "' ");
             foreach (CedForecastWebEntidades.Proyectado Proyectado in ProyectadoLista)
             {

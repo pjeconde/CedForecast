@@ -486,11 +486,11 @@ insert WCUsuarios values ('Claudio', 'Claudio A. Cedeira', 1, 'DESA', '20100501'
 GO
 insert WCUsuarios values ('Pol', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
 GO
-insert WCUsuarios values ('Fernando', 'Fernando J. Cedeira', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+insert WCUsuarios values ('Fernando', 'Fernando J. Cedeira', 1, 'DESA', '20100501', '20671231', 0, '')
 GO
-insert WCUsuarios values ('Diego', 'Pablo J.E.Conde', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+insert WCUsuarios values ('Diego', 'Diego Longobucco', 1, 'DESA', '20100501', '20671231', 0, '')
 GO
-insert WCUsuarios values ('Herreros', 'Sebastian Herrero', 1, 'DESA', '20100501', '20671231', 0, 'pjeconde@yahoo.com.ar')
+insert WCUsuarios values ('Herreros', 'Sebastian Herrero', 1, 'DESA', '20100501', '20671231', 0, '')
 GO
 insert WCGrupos values ('Usuarios', 'Claudio', 0, 0)
 GO

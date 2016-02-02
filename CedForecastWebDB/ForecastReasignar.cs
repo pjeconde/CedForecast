@@ -12,15 +12,19 @@ namespace CedForecastWebDB
         public void Modificar(List<CedForecastWebEntidades.RFoPA> ForecastLista, string TipoDatoAReasignar, string ValorAReasignar, string Periodo)
         { 
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("delete Forecast where IdCuenta = '" + ForecastLista[0].IdCuenta + "' and IdCliente = '" + ForecastLista[0].Cliente.Id + "' and IdTipoPlanilla = '" + ForecastLista[0].IdTipoPlanilla + "' ");
-            string periodo = "";
-            if (ForecastLista[0].IdTipoPlanilla == "Proyectado")
+            if (TipoDatoAReasignar == "CuentaCompleta") 
             {
-                periodo = Periodo + "99";
+                a.Append("delete Forecast where IdCuenta = '" + ForecastLista[0].IdCuenta + "' and IdTipoPlanilla = '" + ForecastLista[0].IdTipoPlanilla + "' ");
             }
             else
             {
-                periodo = CedForecastWebDB.RFoPA.UltimoMesForecast(Periodo);
+                a.Append("delete Forecast where IdCuenta = '" + ForecastLista[0].IdCuenta + "' and IdCliente = '" + ForecastLista[0].Cliente.Id + "' and IdTipoPlanilla = '" + ForecastLista[0].IdTipoPlanilla + "' ");
+            }
+            string periodo = "";
+            periodo = CedForecastWebDB.RFoPA.UltimoMesForecast(Periodo);
+            if (ForecastLista[0].IdTipoPlanilla == "Proyectado" && Periodo.Substring(0, 4) == periodo.Substring(0, 4))
+            {
+                periodo = Periodo.Substring(0, 4) + "99";
             }
             a.Append("and IdPeriodo >= '" + Periodo + "' and IdPeriodo <= '" + periodo + "' ");
             foreach (CedForecastWebEntidades.RFoPA Forecast in ForecastLista)
@@ -29,7 +33,7 @@ namespace CedForecastWebDB
                 {
                     string cuentaAReasignar = Forecast.IdCuenta;
                     string clienteAReasignar = Forecast.IdCliente;
-                    if (TipoDatoAReasignar == "Cuenta")
+                    if (TipoDatoAReasignar == "Cuenta" || TipoDatoAReasignar == "CuentaCompleta")
                     {
                         cuentaAReasignar = ValorAReasignar;
                     }
@@ -84,7 +88,7 @@ namespace CedForecastWebDB
                             a.Append("Insert Forecast values ('" + Forecast.IdTipoPlanilla + "', '" + cuentaAReasignar + "', '" + clienteAReasignar + "', '");
                             if (Forecast.IdTipoPlanilla == "Proyectado")
                             {
-                                a.Append(Forecast.Articulo.Id + "', '" + CedForecastWebDB.RFoPA.PeriodoAProcesar(i - 1, Forecast.IdPeriodo + "01") + "', " + cantidad + ") ");
+                                a.Append(Forecast.Articulo.Id + "', '" + CedForecastWebDB.RFoPA.PeriodoAProcesar(i - 1, Forecast.IdPeriodo) + "', " + cantidad + ") ");
                             }
                             else 
                             {

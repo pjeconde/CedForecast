@@ -83,9 +83,9 @@ namespace CedForecastWeb.Admin.Forecast
             {
                 ForecastPagingGridView.Columns[i + colFijas].HeaderText = TextoCantidadHeader(i, PeriodoTextBox.Text);
             }
-            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text;
-            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString();
-            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString();
+            ForecastPagingGridView.Columns[13 + colFijas].HeaderText = "Total " + PeriodoTextBox.Text.Substring(0,4);
+            ForecastPagingGridView.Columns[14 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4,2) + "/" + PeriodoTextBox.Text.Substring(0,4)).AddYears(1).Year.ToString();
+            ForecastPagingGridView.Columns[15 + colFijas].HeaderText = "Total " + Convert.ToDateTime("01/" + PeriodoTextBox.Text.Substring(4,2) + "/" + PeriodoTextBox.Text.Substring(0,4)).AddYears(2).Year.ToString();
         }
 		private void BindPagingGrid()
 		{
@@ -96,7 +96,7 @@ namespace CedForecastWeb.Admin.Forecast
                 CedForecastWebEntidades.Proyectado Proyectado = new CedForecastWebEntidades.Proyectado();
                 Proyectado.IdTipoPlanilla = "Proyectado";
                 Proyectado.IdCuenta = CuentaDropDownList.SelectedValue.Trim();
-                CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
+                CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 Proyectado.IdPeriodo = PeriodoTextBox.Text;
                 CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
                 cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
@@ -119,7 +119,7 @@ namespace CedForecastWeb.Admin.Forecast
 		}
         private string TextoCantidadHeader(int ColCantidad, string PeriodoInicial)
         {
-            DateTime fechaAux = Convert.ToDateTime("01/01/" + PeriodoInicial.Substring(0, 4));
+            DateTime fechaAux = Convert.ToDateTime("01/" + PeriodoInicial.Substring(4, 2) + "/" + PeriodoInicial.Substring(0, 4));
             fechaAux = fechaAux.AddMonths(ColCantidad - 1);
             return fechaAux.ToString("MM-yyyy");
         }
@@ -221,7 +221,7 @@ namespace CedForecastWeb.Admin.Forecast
             try
             {
                 CedForecastWebEntidades.Periodo periodo = new CedForecastWebEntidades.Periodo();
-                CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
+                CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
                 periodo.IdTipoPlanilla = "Proyectado";
                 CedForecastWebRN.Periodo.Leer(periodo, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
                 PeriodoTextBox.Text = periodo.IdPeriodo;
@@ -241,7 +241,7 @@ namespace CedForecastWeb.Admin.Forecast
             CedForecastWebEntidades.Cliente cliente = new CedForecastWebEntidades.Cliente();
             cliente.Id = ClienteDropDownList.SelectedValue.ToString().Trim();
             Proyectado.Cliente = cliente;
-            CedForecastWebRN.Periodo.ValidarPeriodoYYYY(PeriodoTextBox.Text);
+            CedForecastWebRN.Periodo.ValidarPeriodoYYYYMM(PeriodoTextBox.Text);
             Proyectado.IdPeriodo = PeriodoTextBox.Text;
             lista = CedForecastWebRN.Proyectado.Lista(Proyectado, (CedForecastWebEntidades.Sesion)Session["Sesion"]);
             string archivo = "Id.Vendedor; Id.Cliente; Nombre Cliente; Id.Artículo; Nombre Artículo; ";
@@ -251,8 +251,8 @@ namespace CedForecastWeb.Admin.Forecast
                 archivo += TextoCantidadHeader(i, PeriodoTextBox.Text) + "; ";
             }
             archivo += "Total " + PeriodoTextBox.Text + "; ";
-            archivo += "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(1).Year.ToString() + "; ";
-            archivo += "Total " + Convert.ToDateTime("01/01/" + PeriodoTextBox.Text).AddYears(2).Year.ToString() + "; ";
+            archivo += "Total " + Convert.ToDateTime("01" + PeriodoTextBox.Text.Substring(4,2) + "/" + PeriodoTextBox.Text.Substring(0,4)).AddYears(1).Year.ToString() + "; ";
+            archivo += "Total " + Convert.ToDateTime("01" + PeriodoTextBox.Text.Substring(4,2) + "/" + PeriodoTextBox.Text.Substring(0,4)).AddYears(2).Year.ToString() + "; ";
             archivo += "\r\n";
             FileHelperEngine fhe = new FileHelperEngine(typeof(CedForecastWebEntidades.Proyectado));
             archivo += fhe.WriteString(lista);
