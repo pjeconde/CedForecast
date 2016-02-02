@@ -105,15 +105,15 @@
             this.RFUiRadioButton = new Janus.Windows.EditControls.UIRadioButton();
             this.EjecutarSeleccionUiButton = new Janus.Windows.EditControls.UIButton();
             this.CancelarUiButton = new Janus.Windows.EditControls.UIButton();
+            this.MensajesUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
+            this.MensajesPanel = new System.Windows.Forms.Panel();
+            this.MensajesGridEX = new Janus.Windows.GridEX.GridEX();
             this.SalirUiButton = new Janus.Windows.EditControls.UIButton();
             this.EnviarAUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MinimizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.MaximizarUiButton = new Janus.Windows.EditControls.UIButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.MensajesUiTabPage = new Janus.Windows.UI.Tab.UITabPage();
-            this.MensajesPanel = new System.Windows.Forms.Panel();
-            this.MensajesGridEX = new Janus.Windows.GridEX.GridEX();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiCommandManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnviarAUiContextMenu)).BeginInit();
             this.FondoNicePanel.SuspendLayout();
@@ -132,11 +132,11 @@
             this.ArticulosNicePanel.SuspendLayout();
             this.VendedoresNicePanel.SuspendLayout();
             this.ReporteNicePanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.MensajesUiTabPage.SuspendLayout();
             this.MensajesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MensajesGridEX)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnviarAUiCommandManager
@@ -878,7 +878,7 @@
             // PeriodoPACalendarCombo
             // 
             this.PeriodoPACalendarCombo.BackColor = System.Drawing.Color.White;
-            this.PeriodoPACalendarCombo.CustomFormat = "yyyy";
+            this.PeriodoPACalendarCombo.CustomFormat = "MM/yyyy";
             this.PeriodoPACalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
@@ -986,6 +986,68 @@
             this.CancelarUiButton.UseThemes = false;
             this.CancelarUiButton.Click += new System.EventHandler(this.CancelarUiButton_Click);
             // 
+            // MensajesUiTabPage
+            // 
+            this.MensajesUiTabPage.Controls.Add(this.MensajesPanel);
+            this.MensajesUiTabPage.Key = "Mensajes";
+            this.MensajesUiTabPage.Location = new System.Drawing.Point(1, 21);
+            this.MensajesUiTabPage.Name = "MensajesUiTabPage";
+            this.MensajesUiTabPage.Size = new System.Drawing.Size(946, 414);
+            this.MensajesUiTabPage.TabIndex = 2;
+            this.MensajesUiTabPage.Text = "Avisos / Advertencias / Errores";
+            // 
+            // MensajesPanel
+            // 
+            this.MensajesPanel.BackColor = System.Drawing.Color.LightCoral;
+            this.MensajesPanel.Controls.Add(this.MensajesGridEX);
+            this.MensajesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MensajesPanel.Location = new System.Drawing.Point(0, 0);
+            this.MensajesPanel.Name = "MensajesPanel";
+            this.MensajesPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.MensajesPanel.Size = new System.Drawing.Size(946, 414);
+            this.MensajesPanel.TabIndex = 7;
+            // 
+            // MensajesGridEX
+            // 
+            this.MensajesGridEX.AllowColumnDrag = false;
+            this.MensajesGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.MensajesGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.MensajesGridEX.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
+            this.MensajesGridEX.BlendColor = System.Drawing.Color.White;
+            this.MensajesGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
+            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
+            this.MensajesGridEX.DesignTimeLayout = gridEXLayout2;
+            this.MensajesGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MensajesGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
+            this.MensajesGridEX.ExpandableCards = false;
+            this.MensajesGridEX.FlatBorderColor = System.Drawing.Color.Brown;
+            this.MensajesGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.MensajesGridEX.GridLineColor = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
+            this.MensajesGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
+            this.MensajesGridEX.GroupByBoxVisible = false;
+            this.MensajesGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
+            this.MensajesGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
+            this.MensajesGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.LightCoral;
+            this.MensajesGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
+            this.MensajesGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.MensajesGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.MensajesGridEX.Location = new System.Drawing.Point(5, 5);
+            this.MensajesGridEX.Name = "MensajesGridEX";
+            this.MensajesGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.White;
+            this.MensajesGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.MensajesGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.MensajesGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
+            this.MensajesGridEX.Size = new System.Drawing.Size(936, 404);
+            this.MensajesGridEX.TabIndex = 7;
+            this.MensajesGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
+            this.MensajesGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            // 
             // SalirUiButton
             // 
             this.SalirUiButton.Appearance = Janus.Windows.UI.Appearance.FlatBorderless;
@@ -1083,68 +1145,6 @@
             this.panel2.Size = new System.Drawing.Size(958, 466);
             this.panel2.TabIndex = 34;
             // 
-            // MensajesUiTabPage
-            // 
-            this.MensajesUiTabPage.Controls.Add(this.MensajesPanel);
-            this.MensajesUiTabPage.Key = "Mensajes";
-            this.MensajesUiTabPage.Location = new System.Drawing.Point(1, 21);
-            this.MensajesUiTabPage.Name = "MensajesUiTabPage";
-            this.MensajesUiTabPage.Size = new System.Drawing.Size(946, 414);
-            this.MensajesUiTabPage.TabIndex = 2;
-            this.MensajesUiTabPage.Text = "Avisos / Advertencias / Errores";
-            // 
-            // MensajesPanel
-            // 
-            this.MensajesPanel.BackColor = System.Drawing.Color.LightCoral;
-            this.MensajesPanel.Controls.Add(this.MensajesGridEX);
-            this.MensajesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MensajesPanel.Location = new System.Drawing.Point(0, 0);
-            this.MensajesPanel.Name = "MensajesPanel";
-            this.MensajesPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.MensajesPanel.Size = new System.Drawing.Size(946, 414);
-            this.MensajesPanel.TabIndex = 7;
-            // 
-            // MensajesGridEX
-            // 
-            this.MensajesGridEX.AllowColumnDrag = false;
-            this.MensajesGridEX.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
-            this.MensajesGridEX.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.MensajesGridEX.BackColor = System.Drawing.Color.White;
-            this.MensajesGridEX.BackgroundImageDrawMode = Janus.Windows.GridEX.BackgroundImageDrawMode.None;
-            this.MensajesGridEX.BlendColor = System.Drawing.Color.White;
-            this.MensajesGridEX.ControlStyle.ControlColor = System.Drawing.Color.PeachPuff;
-            this.MensajesGridEX.ControlStyle.ScrollBarColor = System.Drawing.Color.PeachPuff;
-            gridEXLayout2.LayoutString = resources.GetString("gridEXLayout2.LayoutString");
-            this.MensajesGridEX.DesignTimeLayout = gridEXLayout2;
-            this.MensajesGridEX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MensajesGridEX.EditorsControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.Regular;
-            this.MensajesGridEX.ExpandableCards = false;
-            this.MensajesGridEX.FlatBorderColor = System.Drawing.Color.Brown;
-            this.MensajesGridEX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.MensajesGridEX.GridLineColor = System.Drawing.Color.LightCoral;
-            this.MensajesGridEX.GridLines = Janus.Windows.GridEX.GridLines.Vertical;
-            this.MensajesGridEX.GridLineStyle = Janus.Windows.GridEX.GridLineStyle.Solid;
-            this.MensajesGridEX.GroupByBoxVisible = false;
-            this.MensajesGridEX.GroupRowFormatStyle.BackColor = System.Drawing.Color.PeachPuff;
-            this.MensajesGridEX.GroupRowFormatStyle.BackColorGradient = System.Drawing.Color.PeachPuff;
-            this.MensajesGridEX.GroupTotals = Janus.Windows.GridEX.GroupTotals.Default;
-            this.MensajesGridEX.HeaderFormatStyle.BackColor = System.Drawing.Color.LightCoral;
-            this.MensajesGridEX.HeaderFormatStyle.BackColorGradient = System.Drawing.Color.LightCoral;
-            this.MensajesGridEX.HeaderFormatStyle.ForeColor = System.Drawing.Color.Navy;
-            this.MensajesGridEX.HeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
-            this.MensajesGridEX.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.MensajesGridEX.Location = new System.Drawing.Point(5, 5);
-            this.MensajesGridEX.Name = "MensajesGridEX";
-            this.MensajesGridEX.RowFormatStyle.BackColor = System.Drawing.Color.White;
-            this.MensajesGridEX.SelectedFormatStyle.BackColor = System.Drawing.Color.White;
-            this.MensajesGridEX.SelectedFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.MensajesGridEX.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.MensajesGridEX.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Empty;
-            this.MensajesGridEX.Size = new System.Drawing.Size(936, 404);
-            this.MensajesGridEX.TabIndex = 7;
-            this.MensajesGridEX.ThemedAreas = Janus.Windows.GridEX.ThemedArea.None;
-            this.MensajesGridEX.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
-            // 
             // RFoPAForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1170,11 +1170,11 @@
             this.ArticulosNicePanel.ResumeLayout(false);
             this.VendedoresNicePanel.ResumeLayout(false);
             this.ReporteNicePanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.MensajesUiTabPage.ResumeLayout(false);
             this.MensajesPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MensajesGridEX)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

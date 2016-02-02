@@ -10,10 +10,10 @@ namespace CedForecastDB
         public Forecast(CedEntidades.Sesion Sesion) : base(Sesion)
         {
         }
-        public void EliminarProyectadoAnual(string Año)
+        public void EliminarProyectadoAnual(string Periodo)
         {
             System.Text.StringBuilder a = new StringBuilder();
-            a.Append("delete Forecast where Forecast.IdTipoPlanilla='Proyectado' and substring(rtrim(ltrim(Forecast.IdPeriodo)), 1, 4) ='" + Año + "' ");
+            a.Append("delete Forecast where Forecast.IdTipoPlanilla='Proyectado' and Forecast.IdPeriodo>='" + Periodo + "' ");
             Ejecutar(a.ToString(), TipoRetorno.None, Transaccion.NoAcepta, sesion.CnnStr);
         }
         public void EliminarRollingForecast(string Periodo)
@@ -56,7 +56,7 @@ namespace CedForecastDB
                     a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descr, ");
                     a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
-                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    a.Append("where convert(varchar(6),ch3_FVto,112) >= '" + IdPeriodo + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
                     //a.Append("UNION ");
                     a.Append(" ) go ");
                     a.Append("select distinct Zona from #Financiero order by Zona ");
@@ -90,7 +90,7 @@ namespace CedForecastDB
                     a.Append("'Cheque Nro.:' + rtrim(ltrim(ch3_nroCheq)) + '-Banco:' + ch3bco_cod as Descripcion, ");
                     a.Append("ch3_FVto as FecVto, ch3_Importe as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
-                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    a.Append("where convert(varchar(6),ch3_FVto,112) >= '" + IdPeriodo + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
                     a.Append(" ) go ");
                     a.Append("select distinct Zona from #Financiero order by Zona ");
                     a.Append("select distinct Zona, Cliente, Nombre from #Financiero order by Zona, Cliente ");
@@ -118,7 +118,7 @@ namespace CedForecastDB
                     a.Append("convert(varchar(50), 'Exposición') as Descripcion, ");
                     a.Append("sum(ch3_Importe * -1) as Saldo ");
                     a.Append("from SBDAFERT.dbo.Cheques3 left outer join SBDAFERT.dbo.Clientes on Cheques3.ch3cli_Cod=Clientes.cli_Cod ");
-                    a.Append("where ch3_FVto >= '" + IdPeriodo + "01" + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
+                    a.Append("where convert(varchar(6),ch3_FVto,112) >= '" + IdPeriodo + "' and ch3tch_Cod = 'DIF' and Cheques3.ch3cli_Cod in (" + ListaClientes + ") ");
                     a.Append("Group by Clientes.clizon_cod, ch3cli_Cod ) GO ");
                     a.Append("select Zona, Cliente, TipoDato, Descripcion, sum(Saldo) as Monto from #financieroT where Cliente in (select distinct #Financiero.Cliente from #Financiero) group by Zona, Cliente, TipoDato, Descripcion ");
                     a.Append("drop table #financieroT ");

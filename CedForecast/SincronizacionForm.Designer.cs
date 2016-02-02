@@ -58,6 +58,7 @@ namespace CedForecast
             this.RecibirPanel = new System.Windows.Forms.Panel();
             this.RecibirTodoUiCheckBox = new Janus.Windows.EditControls.UICheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.FondoNicePanel.SuspendLayout();
             this.BotonesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -345,7 +346,7 @@ namespace CedForecast
             // ProyeccionAnualCalendarCombo
             // 
             this.ProyeccionAnualCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.ProyeccionAnualCalendarCombo.CustomFormat = "yyyy";
+            this.ProyeccionAnualCalendarCombo.CustomFormat = "MM/yyyy";
             this.ProyeccionAnualCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
@@ -358,9 +359,9 @@ namespace CedForecast
             this.ProyeccionAnualCalendarCombo.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.ProyeccionAnualCalendarCombo.FlatBorderColor = System.Drawing.Color.Black;
             this.ProyeccionAnualCalendarCombo.ForeColor = System.Drawing.Color.Black;
-            this.ProyeccionAnualCalendarCombo.Location = new System.Drawing.Point(123, 34);
+            this.ProyeccionAnualCalendarCombo.Location = new System.Drawing.Point(160, 34);
             this.ProyeccionAnualCalendarCombo.Name = "ProyeccionAnualCalendarCombo";
-            this.ProyeccionAnualCalendarCombo.Size = new System.Drawing.Size(50, 20);
+            this.ProyeccionAnualCalendarCombo.Size = new System.Drawing.Size(70, 20);
             this.ProyeccionAnualCalendarCombo.TabIndex = 9035;
             this.ProyeccionAnualCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
             this.ProyeccionAnualCalendarCombo.TodayButtonText = "Hoy";
@@ -456,6 +457,7 @@ namespace CedForecast
             // RecibirPanel
             // 
             this.RecibirPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RecibirPanel.Controls.Add(this.label2);
             this.RecibirPanel.Controls.Add(this.RecibirTodoUiCheckBox);
             this.RecibirPanel.Controls.Add(this.ProyeccionAnualUiProgressBar);
             this.RecibirPanel.Controls.Add(this.label7);
@@ -493,6 +495,15 @@ namespace CedForecast
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 9025;
             this.label1.Text = "Recibir";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(122, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 20);
+            this.label2.TabIndex = 9039;
+            this.label2.Text = "desde";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SincronizacionForm
             // 
@@ -540,5 +551,6 @@ namespace CedForecast
         private System.Windows.Forms.Label label1;
         private Janus.Windows.EditControls.UICheckBox EnviarTodoUiCheckBox;
         private Janus.Windows.EditControls.UICheckBox RecibirTodoUiCheckBox;
+        private System.Windows.Forms.Label label2;
     }
 }

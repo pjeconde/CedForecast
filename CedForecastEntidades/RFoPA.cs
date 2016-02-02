@@ -38,6 +38,7 @@ namespace CedForecastEntidades
             articulo = new Bejerman.Articulos();
             vendedor = new Bejerman.Vendedor();
             cliente = new Bejerman.Clientes();
+            cantidadMesesParaDesvio = 0;
         }
         public string IdTipoPlanilla
         {
@@ -187,15 +188,19 @@ namespace CedForecastEntidades
         {
             get
             {
-                if (idPeriodo != null && idPeriodo != "" && idTipoPlanilla != null && idTipoPlanilla == "RollingForecast")
-                {
-                    cantidadMesesParaDesvio = 13 - Convert.ToInt32(idPeriodo.Substring(4, 2));
-                }
-                else
-                {
-                    cantidadMesesParaDesvio = 0;
-                }
+                //if (idPeriodo != null && idPeriodo != "" && idTipoPlanilla != null && idTipoPlanilla == "RollingForecast")
+                //{
+                //    cantidadMesesParaDesvio = 13 - Convert.ToInt32(idPeriodo.Substring(4, 2));
+                //}
+                //else
+                //{
+                //    cantidadMesesParaDesvio = 0;
+                //}
                 return cantidadMesesParaDesvio;
+            }
+            set
+            {
+                cantidadMesesParaDesvio = value;
             }
         }
         public decimal Desvio
@@ -203,7 +208,8 @@ namespace CedForecastEntidades
             get
             {
                 decimal suma = 0;
-                for (int i = 1; i <= CantidadMesesParaDesvio; i++)
+                //for (int i = 1; i <= CantidadMesesParaDesvio; i++)
+                for (int i = 1 + CantidadMesesParaDesvio; i <= 12; i++)
                 {
                     switch (i)
                     {

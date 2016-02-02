@@ -24,8 +24,24 @@ namespace CedForecastRN
                 FileHelpers.DataLink.ExcelStorage planilla = new FileHelpers.DataLink.ExcelStorage(typeof(CedForecastEntidades.PlanillaInfoEmbarque));
                 planilla.StartRow = 9;
                 planilla.StartColumn = 1;
+                //planilla.SheetName = "Tabelle3";
                 planilla.FileName = Directorio;
                 CedForecastEntidades.PlanillaInfoEmbarque[] filas = (CedForecastEntidades.PlanillaInfoEmbarque[])planilla.ExtractRecords();
+
+                //Prueba ----------------
+                //planilla = new FileHelpers.DataLink.ExcelStorage(typeof(CedForecastEntidades.PlanillaInfoEmbarque));
+                //planilla.OverrideFile = false;
+                //planilla.StartRow = 9;
+                //planilla.StartColumn = 1;
+                //planilla.TemplateFile = "C:\\KS\\2011 Amerika - NEW.xls";
+                //planilla.FileName = "C:\\KS\\2011 Amerika - NEW2.xls";
+                //planilla.SheetName = "Cabecera";
+                //planilla.InsertRecords(filas);
+                //planilla.TemplateFile = ""; 
+                //planilla.SheetName = "Detalle";
+                //planilla.InsertRecords(filas);
+                //Fin Prueba ------------
+
                 //Actualizar items de la orden de compra
                 for (int i = 0; i < filas.Length; i++)
                 {

@@ -104,6 +104,22 @@ namespace CedForecast
             PeriodoDesdeCalendarCombo.Value = DateTime.Today;
             PeriodoRangoDesdeCalendarCombo.Value = DateTime.Today;
             PeriodoRangoHastaCalendarCombo.Value = DateTime.Today;
+            try
+            {
+                string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                if (DateTime.Today.Month < Convert.ToInt32(ProyectadoMesInicio))
+                {
+                    PeriodoDesdeCalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.AddYears(-1).Year);
+                }
+                else
+                {
+                    PeriodoDesdeCalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.Year);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Problemas para obtener el mes inicial del ejercicio ecónomico.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void CancelarUiButton_Click(object sender, EventArgs e)
         {
@@ -118,6 +134,12 @@ namespace CedForecast
                 DialogResult = DialogResult.OK;
             }
         }
+        private string UltimoMesForecast(string Periodo)
+        {
+            DateTime fechaUltimoMesForecast = new DateTime(Convert.ToInt32(Periodo.Substring(0, 4)), Convert.ToInt32(Periodo.Substring(4, 2)), 1);
+            fechaUltimoMesForecast = fechaUltimoMesForecast.AddMonths(11);
+            return fechaUltimoMesForecast.ToString("yyyyMM");
+        }
         private void EjecutarSeleccionUiButton_Click(object sender, EventArgs e)
         {
             try
@@ -128,8 +150,8 @@ namespace CedForecast
                 string periodoHasta;
                 if (PeriodoAnualUIRadioButton.Checked)
                 {
-                    periodoDesde = PeriodoDesdeCalendarCombo.Value.ToString("yyyy") + "01";
-                    periodoHasta = PeriodoDesdeCalendarCombo.Value.ToString("yyyy") + "12";
+                    periodoDesde = PeriodoDesdeCalendarCombo.Value.ToString("yyyyMM");
+                    periodoHasta = UltimoMesForecast(periodoDesde);
                 }
                 else
                 {

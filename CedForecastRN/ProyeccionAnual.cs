@@ -8,13 +8,13 @@ namespace CedForecastRN
     {
         private CedEntidades.Sesion sesion;
         private string cedForecastWSRUL;
-        private string año;
+        private string periodo;
 
-        public ProyeccionAnual(CedEntidades.Sesion Sesion, string CedForecastWSRUL, string Año)
+        public ProyeccionAnual(CedEntidades.Sesion Sesion, string CedForecastWSRUL, string Periodo)
         {
             sesion = Sesion;
             cedForecastWSRUL = CedForecastWSRUL;
-            año = Año;
+            periodo = Periodo;
         }
         public void RecibirNovedades()
         {
@@ -22,11 +22,11 @@ namespace CedForecastRN
             {
                 WS.Sincronizacion ws = new WS.Sincronizacion();
                 ws.Url = cedForecastWSRUL;
-                WS.Forecast[] lista = ws.RecibirProyeccionAnual(año);
+                WS.Forecast[] lista = ws.RecibirProyeccionAnual(periodo);
                 contador = 0;
                 contadorTope = lista.Length;
                 CedForecastDB.Forecast db = new CedForecastDB.Forecast(sesion);
-                db.EliminarProyectadoAnual(año);
+                db.EliminarProyectadoAnual(periodo);
                 for (contador = 0; contador < contadorTope; contador++)
                 {
                     CedForecastEntidades.Forecast elemento = new CedForecastEntidades.Forecast();

@@ -42,13 +42,10 @@ namespace CedForecastDB
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
             }
             string periodo = "";
-            if (Forecast.IdTipoPlanilla=="Proyectado")
+            periodo = UltimoMesForecast(Forecast.IdPeriodo);
+            if (Forecast.IdTipoPlanilla == "Proyectado" && Forecast.IdPeriodo.Substring(0, 4) == periodo.Substring(0, 4))
             {
-                periodo = Forecast.IdPeriodo + "99";
-            }
-            else
-            {
-                periodo = UltimoMesForecast(Forecast.IdPeriodo);
+                periodo = Forecast.IdPeriodo.Substring(0, 4) + "99";
             }
             a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo + "' ");
             a.Append("and IdPeriodo <= '" + periodo + "' ");
@@ -109,10 +106,10 @@ namespace CedForecastDB
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string periodoInicial = Forecast.IdPeriodo;
-                    if (Forecast.IdTipoPlanilla == "Proyectado")
-                    {
-                        periodoInicial = periodoInicial + "01";
-                    }
+                    //if (Forecast.IdTipoPlanilla == "Proyectado")
+                    //{
+                    //    periodoInicial = periodoInicial + "01";
+                    //}
                     int mes = 0;
                     if (Forecast.IdTipoPlanilla == "Proyectado" && (dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "13" || dt.Rows[i]["IdPeriodo"].ToString().Substring(4, 2) == "14"))
                     {
@@ -199,8 +196,32 @@ namespace CedForecastDB
             {
                 a.Append("and Forecast.IdCliente='" + Forecast.IdCliente + "' ");
             }
-            a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0,4) + "01' ");
-            a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0,4) + "99' ");
+            try
+            {
+                string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                DateTime FechaInicio = DateTime.Today;
+                if (Convert.ToInt32(Forecast.IdPeriodo.Substring(4, 2)) < Convert.ToInt32(ProyectadoMesInicio))
+                {
+                    FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Convert.ToDateTime("01/" + Forecast.IdPeriodo.Substring(4, 2) + "/" + Forecast.IdPeriodo.Substring(0, 4)).AddYears(-1).Year);
+                }
+                else
+                {
+                    FechaInicio = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + Forecast.IdPeriodo.Substring(0, 4));
+                }
+                string periodoDsd = FechaInicio.ToString("yyyyMM");
+                string periodoHst = UltimoMesForecast(FechaInicio.ToString("yyyyMM"));
+                if (periodoDsd.Substring(4, 2) == "01")
+                {
+                    periodoHst = periodoHst.Substring(0, 4) + "99";
+                }
+                a.Append("and IdPeriodo >= '" + periodoDsd + "' ");
+                a.Append("and IdPeriodo <= '" + periodoHst + "' ");
+            }
+            catch
+            {
+                a.Append("and IdPeriodo >= '" + Forecast.IdPeriodo.Substring(0, 4) + "01' ");
+                a.Append("and IdPeriodo <= '" + Forecast.IdPeriodo.Substring(0, 4) + "99' ");
+            }
             a.Append("order by IdArticulo asc, IdPeriodo asc");
             DataTable dt = new DataTable();
             dt = (DataTable)Ejecutar(a.ToString(), TipoRetorno.TB, Transaccion.NoAcepta, sesion.CnnStr);

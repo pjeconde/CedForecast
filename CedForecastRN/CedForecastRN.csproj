@@ -67,10 +67,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:3000/Sincronizacion.asmx">
+    <WebReferenceUrl Include="C:\GitHub\CedForecast\CedForecastRN\Web References\WS\Sincronizacion.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WS\</RelPath>
-      <UpdateFromURL>http://localhost:3000/Sincronizacion.asmx</UpdateFromURL>
+      <UpdateFromURL>C:\GitHub\CedForecast\CedForecastRN\Web References\WS\Sincronizacion.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -92,7 +92,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\WS\Sincronizacion.disco" />
     <None Include="Web References\WS\Sincronizacion.wsdl" />
   </ItemGroup>
   <ItemGroup>

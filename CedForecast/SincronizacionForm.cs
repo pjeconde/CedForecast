@@ -21,6 +21,22 @@ namespace CedForecast
             VentaCalendarCombo.Value = aux;
             ProyeccionAnualCalendarCombo.Value = aux;
             RollingForecastCalendarCombo.Value = aux;
+            try
+            {
+                string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                if (DateTime.Today.Month < Convert.ToInt32(ProyectadoMesInicio))
+                {
+                    ProyeccionAnualCalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.AddYears(-1).Year);
+                }
+                else
+                {
+                    ProyeccionAnualCalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.Year);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Problemas para obtener el mes inicial del ejercicio ecónomico.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void SalirUiButton_Click(object sender, EventArgs e)
         {
@@ -206,7 +222,7 @@ namespace CedForecast
                 #region Proyección Anual
                 if (ProyeccionAnualUiCheckBox.Checked)
                 {
-                    CedForecastRN.ProyeccionAnual proceso = new CedForecastRN.ProyeccionAnual(Aplicacion.Sesion, cedForecastWSURL, ProyeccionAnualCalendarCombo.Value.Year.ToString());
+                    CedForecastRN.ProyeccionAnual proceso = new CedForecastRN.ProyeccionAnual(Aplicacion.Sesion, cedForecastWSURL, ProyeccionAnualCalendarCombo.Value.ToString("yyyyMM"));
                     thread = new Thread(new ThreadStart(proceso.RecibirNovedades));
                     thread.Start();
                     while (true)

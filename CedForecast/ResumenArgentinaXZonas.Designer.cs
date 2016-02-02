@@ -1049,7 +1049,7 @@
             // PeriodoDesdeCalendarCombo
             // 
             this.PeriodoDesdeCalendarCombo.BackColor = System.Drawing.Color.White;
-            this.PeriodoDesdeCalendarCombo.CustomFormat = "yyyy";
+            this.PeriodoDesdeCalendarCombo.CustomFormat = "MM/yyyy";
             this.PeriodoDesdeCalendarCombo.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
@@ -1064,7 +1064,7 @@
             this.PeriodoDesdeCalendarCombo.ForeColor = System.Drawing.Color.Black;
             this.PeriodoDesdeCalendarCombo.Location = new System.Drawing.Point(28, 50);
             this.PeriodoDesdeCalendarCombo.Name = "PeriodoDesdeCalendarCombo";
-            this.PeriodoDesdeCalendarCombo.Size = new System.Drawing.Size(53, 20);
+            this.PeriodoDesdeCalendarCombo.Size = new System.Drawing.Size(72, 20);
             this.PeriodoDesdeCalendarCombo.TabIndex = 9013;
             this.PeriodoDesdeCalendarCombo.ThemedAreas = Janus.Windows.CalendarCombo.ThemedArea.None;
             this.PeriodoDesdeCalendarCombo.TodayButtonText = "Hoy";

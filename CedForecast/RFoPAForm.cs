@@ -26,6 +26,24 @@ namespace CedForecast
             ClientesUiCheckBox.Checked = true;
             VendedoresUiCheckBox.Checked = true;
             TipoReporteNicePanel.Tag = "FamArtCliVen";
+            PeriodoRFCalendarCombo.Value = DateTime.Today;
+            PeriodoPACalendarCombo.Value = DateTime.Today;
+            try
+            {
+                string ProyectadoMesInicio = System.Configuration.ConfigurationManager.AppSettings["ProyectadoMesInicio"];
+                if (DateTime.Today.Month < Convert.ToInt32(ProyectadoMesInicio))
+                {
+                    PeriodoPACalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.AddYears(-1).Year);
+                }
+                else
+                {
+                    PeriodoPACalendarCombo.Value = Convert.ToDateTime("01/" + ProyectadoMesInicio + "/" + DateTime.Today.Year);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Problemas para obtener el mes inicial del ejercicio ecónomico.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void ConfigurarFiltros()
         {
@@ -84,7 +102,7 @@ namespace CedForecast
                 else
                 {
                     forecast.IdTipoPlanilla = "Proyectado";
-                    forecast.IdPeriodo = PeriodoPACalendarCombo.Value.ToString("yyyy");
+                    forecast.IdPeriodo = PeriodoPACalendarCombo.Value.ToString("yyyyMM");
                 }
                 List<CedForecastEntidades.RFoPA> l = CedForecastRN.RFoPA.Lista(forecast, TipoReporteNicePanel.Tag.ToString(), Cedeira.UI.Fun.ListaTreeView(ArticulosTreeView), Cedeira.UI.Fun.ListaTreeView(ClientesTreeView), Cedeira.UI.Fun.ListaTreeView(VendedoresTreeView), Aplicacion.Sesion, out advertencias);
                 PersonalizarGrilla(l);
@@ -128,6 +146,7 @@ namespace CedForecast
         }
         private void PersonalizarGrilla(List<CedForecastEntidades.RFoPA> Datos)
         {
+            
             //Columnas
             BrowserGridEX.RootTable.Columns.Clear();
             BrowserGridEX.RootTable.Columns.Add("IdFamiliaArticulo", Janus.Windows.GridEX.ColumnType.Text);
@@ -200,7 +219,7 @@ namespace CedForecast
                 }
                 else
                 {
-                    BrowserGridEX.RootTable.Columns[elemento].Caption = " " + TextoCantidadHeader(i, PeriodoPACalendarCombo.Value.Year.ToString("0000") + "01");
+                    BrowserGridEX.RootTable.Columns[elemento].Caption = " " + TextoCantidadHeader(i, PeriodoPACalendarCombo.Value.Year.ToString("0000") + PeriodoPACalendarCombo.Value.Month.ToString("00"));
                 }
                 FormatoColumna(elemento, 75);
             }
@@ -221,6 +240,8 @@ namespace CedForecast
                 BrowserGridEX.RootTable.Columns["Cantidad14"].Caption = "Total " + PeriodoPACalendarCombo.Value.AddYears(2).Year.ToString("0000");
                 FormatoColumna("Cantidad14", 75);
             }
+            //BrowserGridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOn;
+            //BrowserGridEX.RootTable.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True;
         }
         private void FormatoColumna(string elemento, int tamaño)
         {
