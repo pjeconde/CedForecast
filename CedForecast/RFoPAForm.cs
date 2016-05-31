@@ -170,6 +170,7 @@ namespace CedForecast
             BrowserGridEX.RootTable.Columns.Add("IdCuenta", Janus.Windows.GridEX.ColumnType.Text);
             BrowserGridEX.RootTable.Columns["IdCuenta"].Caption = "Vendedor";
             BrowserGridEX.RootTable.Columns["IdCuenta"].Width = 60;
+            
             if (!VisualizarCodigosUiCheckBox.Checked)
             {
                 BrowserGridEX.RootTable.Columns["IdFamiliaArticulo"].Visible = false;
@@ -242,6 +243,7 @@ namespace CedForecast
             }
             //BrowserGridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOn;
             //BrowserGridEX.RootTable.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True;
+            BrowserGridEX.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
         }
         private void FormatoColumna(string elemento, int tamaño)
         {
